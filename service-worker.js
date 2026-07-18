@@ -1,9 +1,9 @@
-// service-worker.js — 18 Jul 2026 v2
+// service-worker.js — 18 Jul 2026 v3
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
 
-const CACHE_NAME = 'home-os-shell-v2';
+const CACHE_NAME = 'home-os-shell-v3';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 
 const SHELL_FILES = [
@@ -17,6 +17,7 @@ const SHELL_FILES = [
   './css/components.css',
   './js/config.js',
   './js/supabaseClient.js',
+  './js/vendor/supabase-js.js',
   './js/app.js',
   './js/router.js',
   './js/routes.js',
@@ -63,9 +64,9 @@ self.addEventListener('activate', (event) => {
 });
 
 function isShellRequest(url) {
-  // Only same-origin requests inside this app's scope are ever
-  // considered "shell" — third-party origins (Supabase, esm.sh CDN)
-  // always fall through to network-first below.
+  // Only same-origin requests inside this app's scope are ever considered
+  // "shell" — the Supabase API itself always falls through to network-first
+  // below, since its data changes and must not be served stale from cache.
   return url.origin === self.location.origin && url.pathname.startsWith(new URL(SCOPE).pathname);
 }
 
@@ -95,8 +96,19 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Network-first for everything else (Supabase data, CDN module).
+  // Network-first for everything else (Supabase data API calls). respondWith
+  // always needs a real Response — if both network and cache miss (e.g.
+  // genuinely offline and nothing was ever cached for this request), return
+  // a synthetic error response instead of letting the promise reject, which
+  // previously surfaced as an uncaught "Failed to convert value to Response".
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(event.request).catch(async () => {
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      return new Response(
+        JSON.stringify({ error: 'offline', message: 'No network connection and nothing cached for this request.' }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } }
+      );
+    })
   );
 });
