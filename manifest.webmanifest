@@ -1,0 +1,18 @@
+{
+  "name": "Home-OS",
+  "short_name": "Home-OS",
+  "description": "Personal daily wellness, chores, meals, pantry, and holiday planning in one place.",
+  "start_url": "/Home-OS/",
+  "scope": "/Home-OS/",
+  "display": "standalone",
+  "background_color": "#F7F5F1",
+  "theme_color": "#35635C",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
