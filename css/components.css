@@ -1,4 +1,4 @@
-/* css/components.css — 14 Jul 2026 v1 */
+/* css/components.css — 18 Jul 2026 v2 */
 
 /* ============ Buttons ============ */
 .btn {
@@ -207,9 +207,12 @@ legend {
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-weight: 600;
+  border-top: 3px solid transparent; /* reserved so the active state doesn't shift layout */
 }
 .bottom-nav a[aria-current="page"] {
   color: var(--color-accent-strong);
+  font-weight: 800;
+  border-top-color: var(--color-accent);
 }
 .bottom-nav a[aria-current="page"] .bottom-nav-icon {
   color: var(--color-accent);
