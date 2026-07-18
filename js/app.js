@@ -1,4 +1,4 @@
-// js/app.js — 18 Jul 2026 v2
+// js/app.js — 18 Jul 2026 v3
 // Single entry point. Boots the app: checks the session, loads settings,
 // applies theme, starts the router. Write-once — later phases do not
 // edit this file; they add view files that routes.js already points at.
@@ -12,6 +12,10 @@ import { announce } from './lib/a11y.js';
 import { setSession, setSettings, subscribe, getState } from './lib/store.js';
 
 let bottomNavHandle = null;
+let hasBootstrapped = false; // guards against Supabase firing a duplicate
+// SIGNED_IN event alongside the initial getSession() check on page load —
+// without this, buildAppShell() (and startRouter()) can run twice for one
+// real login, racing two renders into the same mount point.
 
 function applyTheme(settings) {
   const root = document.documentElement;
@@ -146,6 +150,7 @@ async function bootAuthedShell() {
   setSettings(settings);
   applyTheme(settings);
   buildAppShell();
+  hasBootstrapped = true;
 }
 
 async function init() {
@@ -167,9 +172,13 @@ async function init() {
   supabase.auth.onAuthStateChange(async (event, session) => {
     setSession(session);
     if (event === 'SIGNED_IN' && session) {
+      if (hasBootstrapped) return; // already built for this session — Supabase
+      // can fire SIGNED_IN a second time on page load alongside the initial
+      // getSession() check; treat that as a no-op rather than rebuilding.
       await bootAuthedShell();
       navigate('dashboard');
     } else if (event === 'SIGNED_OUT') {
+      hasBootstrapped = false;
       buildSignInView();
     }
   });
