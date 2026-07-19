@@ -244,7 +244,28 @@ export function render(mountEl) {
     return input;
   }
 
-  const sideInput = labeledField('new-exercise-side', 'Side (left, right, or both)');
+  const sideId = 'new-exercise-side';
+  const sideWrap = document.createElement('div');
+  const sideLabel = document.createElement('label');
+  sideLabel.htmlFor = sideId;
+  sideLabel.textContent = 'Side';
+  const sideInput = document.createElement('select');
+  sideInput.id = sideId;
+  const sideOptions = [
+    { value: '', label: 'Not applicable' },
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' },
+    { value: 'both', label: 'Both' }
+  ];
+  for (const opt of sideOptions) {
+    const optionEl = document.createElement('option');
+    optionEl.value = opt.value;
+    optionEl.textContent = opt.label;
+    sideInput.appendChild(optionEl);
+  }
+  sideWrap.append(sideLabel, sideInput);
+  moreDetails.appendChild(sideWrap);
+
   const setsInput = labeledField('new-exercise-sets', 'Target sets', 'number');
   const repsInput = labeledField('new-exercise-reps', 'Target reps', 'number');
   const regionInput = labeledField('new-exercise-region', 'Body region');
