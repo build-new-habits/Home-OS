@@ -1,11 +1,9 @@
-// service-worker.js — 18 Jul 2026 v3
+// service-worker.js — 19 Jul 2026 v4
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
-
-const CACHE_NAME = 'home-os-shell-v3';
+const CACHE_NAME = 'home-os-shell-v4';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
-
 const SHELL_FILES = [
   './',
   './index.html',
@@ -27,10 +25,13 @@ const SHELL_FILES = [
   './js/lib/dates.js',
   './js/lib/units.js',
   './js/data/settings.js',
+  './js/data/exercises.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',
   './js/components/liveRegion.js',
+  './js/components/card.js',
+  './js/components/completionStamp.js',
   './js/views/settings.js',
   './js/views/dashboard.js',
   './js/views/exercises.js',
@@ -42,14 +43,12 @@ const SHELL_FILES = [
   './js/views/shopping.js',
   './js/views/holidays.js'
 ];
-
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_FILES))
   );
   self.skipWaiting();
 });
-
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((names) =>
@@ -62,23 +61,15 @@ self.addEventListener('activate', (event) => {
   );
   self.clients.claim();
 });
-
 function isShellRequest(url) {
-  // Only same-origin requests inside this app's scope are ever considered
-  // "shell" — the Supabase API itself always falls through to network-first
-  // below, since its data changes and must not be served stale from cache.
   return url.origin === self.location.origin && url.pathname.startsWith(new URL(SCOPE).pathname);
 }
-
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-
   if (event.request.method !== 'GET') {
-    return; // never intercept writes
+    return;
   }
-
   if (isShellRequest(url)) {
-    // Cache-first for the shell: fast offline open, background revalidate.
     event.respondWith(
       caches.match(event.request).then((cached) => {
         const network = fetch(event.request)
@@ -95,12 +86,6 @@ self.addEventListener('fetch', (event) => {
     );
     return;
   }
-
-  // Network-first for everything else (Supabase data API calls). respondWith
-  // always needs a real Response — if both network and cache miss (e.g.
-  // genuinely offline and nothing was ever cached for this request), return
-  // a synthetic error response instead of letting the promise reject, which
-  // previously surfaced as an uncaught "Failed to convert value to Response".
   event.respondWith(
     fetch(event.request).catch(async () => {
       const cached = await caches.match(event.request);
