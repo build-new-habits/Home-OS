@@ -116,9 +116,10 @@ export async function addExercise({
   body_region,
   fromPhysio
 }) {
+  const normalizedSide = side ? side.trim().toLowerCase() : null;
   const payload = {
     name,
-    side: side || null,
+    side: ['left', 'right', 'both'].includes(normalizedSide) ? normalizedSide : null,
     target_reps: target_reps ?? null,
     target_sets: target_sets ?? null,
     instructions: instructions || null,
