@@ -1,6 +1,13 @@
-// js/data/chores.js — 20 Jul 2026 v1
+// js/data/chores.js — 20 Jul 2026 v2
 // Projects + tasks queries. Views never call Supabase directly — this is
 // the only place that does, for these two tables.
+//
+// v2: applyQueuedOp() now checks and throws on a Supabase-returned error
+// before flush() marks the op as synced. v1 returned the Supabase call
+// directly — since supabase-js resolves (doesn't reject) on a DB error
+// like a check-constraint violation, that would have let flush() silently
+// drop a failed write. Caught via parity check against data/exercises.js,
+// which already did this correctly.
 import { supabase } from '../supabaseClient.js';
 import { enqueue, flush } from '../lib/offlineQueue.js';
 
