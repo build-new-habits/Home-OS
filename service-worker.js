@@ -1,8 +1,8 @@
-// service-worker.js — 19 Jul 2026 v4
+// service-worker.js — 19 Jul 2026 v5
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
-const CACHE_NAME = 'home-os-shell-v4';
+const CACHE_NAME = 'home-os-shell-v5';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
