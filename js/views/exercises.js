@@ -1,7 +1,9 @@
-// js/views/exercises.js — 19 Jul 2026 v2
+// js/views/exercises.js — 19 Jul 2026 v3
 // Replaces the Phase 2 stub. Exercise cards + one-tap logging (principles
-// 1, 2, 3, 6, 10). v2: form fields now wrapped in .field (matches
-// components.css spacing/label rules — v1 rendered unstyled and cramped).
+// 1, 2, 3, 6, 10). v2: form fields wrapped in .field (spacing). v3: pending
+// cards now show full details (side/sets/reps/instructions/YouTube) via a
+// shared appendExerciseDetails() helper, so an exercise can be reviewed
+// before clearing it — not just its name.
 import { listCleared, listPending, getLogsForDate, setDone, addExercise, clearExercise } from '../data/exercises.js';
 import { createCard } from '../components/card.js';
 import { showCompletionStamp, hideCompletionStamp } from '../components/completionStamp.js';
@@ -22,6 +24,36 @@ function fieldWrap(labelEl, inputEl, extraEl) {
   wrap.append(labelEl, inputEl);
   if (extraEl) wrap.appendChild(extraEl);
   return wrap;
+}
+
+function appendExerciseDetails(body, exercise) {
+  if (exercise.side) {
+    const side = document.createElement('p');
+    side.textContent = `Side: ${exercise.side}`;
+    body.appendChild(side);
+  }
+  if (exercise.target_sets || exercise.target_reps) {
+    const target = document.createElement('p');
+    target.textContent = `${exercise.target_sets || '—'} sets × ${exercise.target_reps || '—'} reps`;
+    body.appendChild(target);
+  }
+  if (exercise.instructions) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Instructions';
+    const text = document.createElement('p');
+    text.textContent = exercise.instructions;
+    details.append(summary, text);
+    body.appendChild(details);
+  }
+  if (exercise.youtube_search_query) {
+    const link = document.createElement('a');
+    link.href = buildYoutubeUrl(exercise.youtube_search_query);
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = `Watch ${exercise.name} on YouTube`;
+    body.appendChild(link);
+  }
 }
 
 export function render(mountEl) {
@@ -62,34 +94,7 @@ export function render(mountEl) {
     const { article, body, actions } = createCard({ title: exercise.name, headingLevel: 2, className: 'exercise-card' });
     article.dataset.exerciseId = exercise.id;
     const existingLog = logsByExerciseId.get(exercise.id);
-
-    if (exercise.side) {
-      const side = document.createElement('p');
-      side.textContent = `Side: ${exercise.side}`;
-      body.appendChild(side);
-    }
-    if (exercise.target_sets || exercise.target_reps) {
-      const target = document.createElement('p');
-      target.textContent = `${exercise.target_sets || '—'} sets × ${exercise.target_reps || '—'} reps`;
-      body.appendChild(target);
-    }
-    if (exercise.instructions) {
-      const details = document.createElement('details');
-      const summary = document.createElement('summary');
-      summary.textContent = 'Instructions';
-      const text = document.createElement('p');
-      text.textContent = exercise.instructions;
-      details.append(summary, text);
-      body.appendChild(details);
-    }
-    if (exercise.youtube_search_query) {
-      const link = document.createElement('a');
-      link.href = buildYoutubeUrl(exercise.youtube_search_query);
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = `Watch ${exercise.name} on YouTube`;
-      body.appendChild(link);
-    }
+    appendExerciseDetails(body, exercise);
 
     const notesDetails = document.createElement('details');
     const notesSummary = document.createElement('summary');
@@ -184,6 +189,7 @@ export function render(mountEl) {
       const status = document.createElement('p');
       status.textContent = 'Status: pending confirmation';
       body.appendChild(status);
+      appendExerciseDetails(body, exercise);
 
       const clearBtn = document.createElement('button');
       clearBtn.type = 'button';
