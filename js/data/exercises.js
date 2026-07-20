@@ -26,7 +26,13 @@ async function applyExerciseLogOp(op) {
 // supabaseClient's single-instance export — this module owns exercise_logs
 // sync, nothing else does.
 window.addEventListener('online', () => {
-  flush(applyExerciseLogOp).catch((err) => console.error('Offline queue flush failed:', err));
+  flush(applyExerciseLogOp)
+    .then(({ failed }) => {
+      for (const { op, error } of failed) {
+        console.error('Failed to sync queued exercise log:', op, error);
+      }
+    })
+    .catch((err) => console.error('Offline queue flush failed:', err));
 });
 
 export async function listCleared() {
