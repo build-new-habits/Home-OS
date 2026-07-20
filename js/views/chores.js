@@ -1,17 +1,18 @@
-// js/views/chores.js — 20 Jul 2026 v1
-// Replaces the Phase 2 stub. Projects, tasks (with the 3-month recurrence
-// confirmation — principle 4), and a calendar (principles 1, 2, 3, 9, 10).
+// js/views/chores.js — 20 Jul 2026 v2
+// Replaces the Phase 2 stub. Projects, tasks — now including edit — with
+// the 3-month recurrence confirmation (principle 4), and a calendar
+// (principles 1, 2, 3, 9, 10).
 //
-// Known gap (flagged in the Phase 4 handoff, not hidden): task EDIT
-// (changing an existing task's title/details/recurrence) is not
-// implemented this pass — only create, complete/uncomplete, and delete.
-// The brief calls for an edit form; this needs a small follow-up addition
-// before the phase is fully cleared.
+// v2: adds task editing (title/details/project/recurrence), which v1
+// shipped without — flagged as an open gap in the Phase 4 handoff and
+// closed here. The add form and each task's inline edit form now share
+// one recurrence-builder factory (createRecurrenceBuilder) instead of
+// duplicating the fieldset — this is the only structural change from v1.
 import {
   listProjects, createProject, countTasksInProject, deleteProject,
-  listTasks, createTask, completeTask, uncompleteTask, deleteTask
+  listTasks, createTask, updateTask, completeTask, uncompleteTask, deleteTask
 } from '../data/chores.js';
-import { upsertTaskEvent, removeTaskEvent, listEvents } from '../data/calendar.js';
+import { upsertTaskEvent, removeTaskEvent, findEventByTaskId, listEvents } from '../data/calendar.js';
 import { expand, describe } from '../lib/rrule.js';
 import { createCard } from '../components/card.js';
 import { showCompletionStamp, hideCompletionStamp } from '../components/completionStamp.js';
@@ -50,6 +51,220 @@ function labeledInput(id, labelText, type = 'text') {
   input.id = id;
   input.type = type;
   return { label, input };
+}
+
+// Loose parse of a rule string for prefilling the edit form only — not
+// used for expansion or validation (that's rrule.js's job, always).
+function parseRuleForPrefill(rule) {
+  const parts = (rule || '').split(';').reduce((acc, part) => {
+    const [k, v] = part.split('=');
+    if (k) acc[k] = v;
+    return acc;
+  }, {});
+  return {
+    freq: parts.FREQ || 'DAILY',
+    interval: parts.INTERVAL ? Number(parts.INTERVAL) : 1,
+    byday: parts.BYDAY ? parts.BYDAY.split(',') : [],
+    bymonthday: parts.BYMONTHDAY ? Number(parts.BYMONTHDAY) : null
+  };
+}
+
+/**
+ * Builds the recurrence fieldset (start date, frequency, interval,
+ * weekday/month-day pickers, and the 3-month preview/confirmation gate).
+ * Shared by the add-task form and every task's inline edit form so the
+ * trust-critical confirmation logic exists in exactly one place.
+ */
+function createRecurrenceBuilder(idPrefix, signal) {
+  const fieldset = document.createElement('fieldset');
+  const legend = document.createElement('legend');
+  legend.textContent = 'Repeats';
+  fieldset.appendChild(legend);
+
+  const startF = labeledInput(`${idPrefix}-start`, 'Starts on', 'date');
+  startF.input.value = todayIso();
+  startF.input.required = true;
+  fieldset.appendChild(fieldWrap(startF.label, startF.input));
+
+  const freqLabel = document.createElement('label');
+  freqLabel.htmlFor = `${idPrefix}-freq`;
+  freqLabel.textContent = 'Frequency';
+  const freqSelect = document.createElement('select');
+  freqSelect.id = `${idPrefix}-freq`;
+  for (const [value, text] of [['DAILY', 'Daily'], ['WEEKLY', 'Weekly'], ['MONTHLY', 'Monthly']]) {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = text;
+    freqSelect.appendChild(opt);
+  }
+  fieldset.appendChild(fieldWrap(freqLabel, freqSelect));
+
+  const intervalF = labeledInput(`${idPrefix}-interval`, 'Every (number of days/weeks/months)', 'number');
+  intervalF.input.min = '1';
+  intervalF.input.value = '1';
+  intervalF.input.required = true;
+  fieldset.appendChild(fieldWrap(intervalF.label, intervalF.input));
+
+  const weekdayFieldset = document.createElement('fieldset');
+  const weekdayLegend = document.createElement('legend');
+  weekdayLegend.textContent = 'On these days';
+  weekdayFieldset.appendChild(weekdayLegend);
+  const weekdayCheckboxes = new Map();
+  for (const { code, label } of WEEKDAYS) {
+    const row = document.createElement('div');
+    row.className = 'field field-checkbox';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = `${idPrefix}-byday-${code}`;
+    cb.value = code;
+    const lbl = document.createElement('label');
+    lbl.htmlFor = cb.id;
+    lbl.textContent = label;
+    row.append(cb, lbl);
+    weekdayFieldset.appendChild(row);
+    weekdayCheckboxes.set(code, cb);
+  }
+  fieldset.appendChild(weekdayFieldset);
+
+  const monthDayLabel = document.createElement('label');
+  monthDayLabel.htmlFor = `${idPrefix}-monthday`;
+  monthDayLabel.textContent = 'Day of month';
+  const monthDaySelect = document.createElement('select');
+  monthDaySelect.id = `${idPrefix}-monthday`;
+  for (let d = 1; d <= 28; d++) {
+    const opt = document.createElement('option');
+    opt.value = String(d);
+    opt.textContent = String(d);
+    monthDaySelect.appendChild(opt);
+  }
+  const monthDayField = fieldWrap(monthDayLabel, monthDaySelect);
+  fieldset.appendChild(monthDayField);
+
+  const monthDayHint = document.createElement('p');
+  monthDayHint.className = 'field-hint';
+  monthDayHint.textContent = 'Days 29–31 are not supported yet, to avoid short-month edge cases.';
+  fieldset.appendChild(monthDayHint);
+
+  function updateFreqVisibility() {
+    const freq = freqSelect.value;
+    weekdayFieldset.hidden = freq !== 'WEEKLY';
+    monthDayField.hidden = freq !== 'MONTHLY';
+    monthDayHint.hidden = freq !== 'MONTHLY';
+  }
+  freqSelect.addEventListener('change', () => { updateFreqVisibility(); clearPreview(); }, { signal });
+  updateFreqVisibility();
+
+  const previewRegion = document.createElement('div');
+  previewRegion.className = 'recurrence-preview';
+  previewRegion.setAttribute('aria-live', 'polite');
+
+  const previewBtn = document.createElement('button');
+  previewBtn.type = 'button';
+  previewBtn.className = 'btn';
+  previewBtn.textContent = 'Show upcoming dates';
+  fieldset.appendChild(previewBtn);
+  fieldset.appendChild(previewRegion);
+
+  let confirmedRule = null;
+  let lastBuiltStart = null;
+
+  function clearPreview() {
+    previewRegion.replaceChildren();
+    confirmedRule = null;
+  }
+
+  function buildRuleFromForm() {
+    const freq = freqSelect.value;
+    const interval = Number(intervalF.input.value) || 1;
+    if (freq === 'WEEKLY') {
+      const days = [...weekdayCheckboxes.entries()].filter(([, cb]) => cb.checked).map(([code]) => code);
+      if (days.length === 0) {
+        showToast('Pick at least one day of the week.');
+        return null;
+      }
+      return `FREQ=WEEKLY;INTERVAL=${interval};BYDAY=${days.join(',')}`;
+    }
+    if (freq === 'MONTHLY') {
+      return `FREQ=MONTHLY;INTERVAL=${interval};BYMONTHDAY=${monthDaySelect.value}`;
+    }
+    return `FREQ=DAILY;INTERVAL=${interval}`;
+  }
+
+  function showPreview(rule, startDate) {
+    previewRegion.replaceChildren();
+    let dates;
+    try {
+      const windowEnd = addMonthsIso(startDate, 3);
+      dates = expand(rule, startDate, startDate, windowEnd);
+    } catch (err) {
+      console.error('Recurrence rule error:', err);
+      showToast("That repeat pattern isn't valid — check the details above.");
+      confirmedRule = null;
+      return;
+    }
+    const summary = document.createElement('p');
+    summary.textContent = describe(rule);
+    const count = document.createElement('p');
+    count.textContent = `${dates.length} occurrence${dates.length === 1 ? '' : 's'} over the next 3 months:`;
+    const list = document.createElement('ul');
+    list.className = 'preview-dates';
+    for (const iso of dates.slice(0, 20)) {
+      const li = document.createElement('li');
+      li.textContent = iso;
+      list.appendChild(li);
+    }
+    if (dates.length > 20) {
+      const more = document.createElement('li');
+      more.textContent = `…and ${dates.length - 20} more`;
+      list.appendChild(more);
+    }
+    previewRegion.append(summary, count, list);
+    confirmedRule = rule;
+    lastBuiltStart = startDate;
+    announce(`Showing ${dates.length} upcoming dates`);
+  }
+
+  previewBtn.addEventListener('click', () => {
+    const rule = buildRuleFromForm();
+    if (!rule) return;
+    showPreview(rule, startF.input.value);
+  }, { signal });
+
+  return {
+    fieldset,
+    startInput: startF.input,
+    /** Returns the confirmed rule only if it still matches the current start date; otherwise null, forcing a fresh preview. */
+    getConfirmedRule() {
+      if (!confirmedRule) return null;
+      if (lastBuiltStart !== startF.input.value) return null;
+      return confirmedRule;
+    },
+    buildRuleFromForm,
+    showPreview,
+    clearPreview,
+    reset() {
+      startF.input.value = todayIso();
+      freqSelect.value = 'DAILY';
+      intervalF.input.value = '1';
+      for (const cb of weekdayCheckboxes.values()) cb.checked = false;
+      monthDaySelect.value = '1';
+      updateFreqVisibility();
+      clearPreview();
+    },
+    setInitial({ recurrenceRule, startDate }) {
+      if (startDate) startF.input.value = startDate;
+      if (!recurrenceRule) return;
+      const parsed = parseRuleForPrefill(recurrenceRule);
+      freqSelect.value = parsed.freq;
+      intervalF.input.value = String(parsed.interval || 1);
+      for (const [code, cb] of weekdayCheckboxes.entries()) {
+        cb.checked = parsed.byday.includes(code);
+      }
+      if (parsed.bymonthday) monthDaySelect.value = String(parsed.bymonthday);
+      updateFreqVisibility();
+      clearPreview();
+    }
+  };
 }
 
 export function render(mountEl) {
@@ -137,7 +352,7 @@ export function render(mountEl) {
       colourF.input.value = '#2f6f4f';
       announce(`${result.data.title} project added`);
       await loadProjects();
-      populateProjectSelect();
+      populateProjectSelect(projectSelectEl);
     }, { signal });
 
     return { form };
@@ -189,7 +404,7 @@ export function render(mountEl) {
       }
       announce(`${project.title} deleted`);
       await loadProjects();
-      populateProjectSelect();
+      populateProjectSelect(projectSelectEl);
     }, { signal });
 
     actions.appendChild(deleteBtn);
@@ -216,13 +431,14 @@ export function render(mountEl) {
     }
   }
 
-  function populateProjectSelect() {
-    projectSelectEl.replaceChildren();
+  function populateProjectSelect(selectEl, selectedId) {
+    selectEl.replaceChildren();
     for (const project of projects) {
       const opt = document.createElement('option');
       opt.value = project.id;
       opt.textContent = project.title;
-      projectSelectEl.appendChild(opt);
+      if (selectedId && project.id === selectedId) opt.selected = true;
+      selectEl.appendChild(opt);
     }
   }
 
@@ -258,164 +474,12 @@ export function render(mountEl) {
     repeatLabel.textContent = 'This task repeats';
     repeatRow.append(repeatCheckbox, repeatLabel);
 
-    // ---- Recurrence builder (hidden until "repeats" is checked) ----
-    const recurrenceFieldset = document.createElement('fieldset');
-    recurrenceFieldset.hidden = true;
-    const recurrenceLegend = document.createElement('legend');
-    recurrenceLegend.textContent = 'Repeats';
-    recurrenceFieldset.appendChild(recurrenceLegend);
-
-    const startF = labeledInput('new-task-start', 'Starts on', 'date');
-    startF.input.value = todayIso();
-    startF.input.required = true;
-    recurrenceFieldset.appendChild(fieldWrap(startF.label, startF.input));
-
-    const freqLabel = document.createElement('label');
-    freqLabel.htmlFor = 'new-task-freq';
-    freqLabel.textContent = 'Frequency';
-    const freqSelect = document.createElement('select');
-    freqSelect.id = 'new-task-freq';
-    for (const [value, text] of [['DAILY', 'Daily'], ['WEEKLY', 'Weekly'], ['MONTHLY', 'Monthly']]) {
-      const opt = document.createElement('option');
-      opt.value = value;
-      opt.textContent = text;
-      freqSelect.appendChild(opt);
-    }
-    recurrenceFieldset.appendChild(fieldWrap(freqLabel, freqSelect));
-
-    const intervalF = labeledInput('new-task-interval', 'Every (number of days/weeks/months)', 'number');
-    intervalF.input.min = '1';
-    intervalF.input.value = '1';
-    intervalF.input.required = true;
-    recurrenceFieldset.appendChild(fieldWrap(intervalF.label, intervalF.input));
-
-    const weekdayFieldset = document.createElement('fieldset');
-    const weekdayLegend = document.createElement('legend');
-    weekdayLegend.textContent = 'On these days';
-    weekdayFieldset.appendChild(weekdayLegend);
-    const weekdayCheckboxes = new Map();
-    for (const { code, label } of WEEKDAYS) {
-      const row = document.createElement('div');
-      row.className = 'field field-checkbox';
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.id = `new-task-byday-${code}`;
-      cb.value = code;
-      const lbl = document.createElement('label');
-      lbl.htmlFor = cb.id;
-      lbl.textContent = label;
-      row.append(cb, lbl);
-      weekdayFieldset.appendChild(row);
-      weekdayCheckboxes.set(code, cb);
-    }
-    recurrenceFieldset.appendChild(weekdayFieldset);
-
-    const monthDayLabel = document.createElement('label');
-    monthDayLabel.htmlFor = 'new-task-monthday';
-    monthDayLabel.textContent = 'Day of month';
-    const monthDaySelect = document.createElement('select');
-    monthDaySelect.id = 'new-task-monthday';
-    for (let d = 1; d <= 28; d++) {
-      const opt = document.createElement('option');
-      opt.value = String(d);
-      opt.textContent = String(d);
-      monthDaySelect.appendChild(opt);
-    }
-    const monthDayField = fieldWrap(monthDayLabel, monthDaySelect);
-    recurrenceFieldset.appendChild(monthDayField);
-
-    const monthDayHint = document.createElement('p');
-    monthDayHint.className = 'field-hint';
-    monthDayHint.textContent = 'Days 29–31 are not supported yet, to avoid short-month edge cases.';
-    recurrenceFieldset.appendChild(monthDayHint);
-
-    function updateFreqVisibility() {
-      const freq = freqSelect.value;
-      weekdayFieldset.hidden = freq !== 'WEEKLY';
-      monthDayField.hidden = freq !== 'MONTHLY';
-      monthDayHint.hidden = freq !== 'MONTHLY';
-    }
-    freqSelect.addEventListener('change', () => { updateFreqVisibility(); clearPreview(); }, { signal });
-    updateFreqVisibility();
-
-    // ---- Preview / 3-month confirmation (principle 4 — the trust gate) ----
-    const previewRegion = document.createElement('div');
-    previewRegion.className = 'recurrence-preview';
-    previewRegion.setAttribute('aria-live', 'polite');
-
-    const previewBtn = document.createElement('button');
-    previewBtn.type = 'button';
-    previewBtn.className = 'btn';
-    previewBtn.textContent = 'Show upcoming dates';
-    recurrenceFieldset.appendChild(previewBtn);
-    recurrenceFieldset.appendChild(previewRegion);
-
-    let confirmedRule = null;
-
-    function clearPreview() {
-      previewRegion.replaceChildren();
-      confirmedRule = null;
-    }
-
-    function buildRuleFromForm() {
-      const freq = freqSelect.value;
-      const interval = Number(intervalF.input.value) || 1;
-      if (freq === 'WEEKLY') {
-        const days = [...weekdayCheckboxes.entries()].filter(([, cb]) => cb.checked).map(([code]) => code);
-        if (days.length === 0) {
-          showToast('Pick at least one day of the week.');
-          return null;
-        }
-        return `FREQ=WEEKLY;INTERVAL=${interval};BYDAY=${days.join(',')}`;
-      }
-      if (freq === 'MONTHLY') {
-        return `FREQ=MONTHLY;INTERVAL=${interval};BYMONTHDAY=${monthDaySelect.value}`;
-      }
-      return `FREQ=DAILY;INTERVAL=${interval}`;
-    }
-
-    function showPreview(rule, startDate) {
-      previewRegion.replaceChildren();
-      let dates;
-      try {
-        const windowEnd = addMonthsIso(startDate, 3);
-        dates = expand(rule, startDate, startDate, windowEnd);
-      } catch (err) {
-        console.error('Recurrence rule error:', err);
-        showToast("That repeat pattern isn't valid — check the details above.");
-        confirmedRule = null;
-        return;
-      }
-      const summary = document.createElement('p');
-      summary.textContent = describe(rule);
-      const count = document.createElement('p');
-      count.textContent = `${dates.length} occurrence${dates.length === 1 ? '' : 's'} over the next 3 months:`;
-      const list = document.createElement('ul');
-      list.className = 'preview-dates';
-      for (const iso of dates.slice(0, 20)) {
-        const li = document.createElement('li');
-        li.textContent = iso;
-        list.appendChild(li);
-      }
-      if (dates.length > 20) {
-        const more = document.createElement('li');
-        more.textContent = `…and ${dates.length - 20} more`;
-        list.appendChild(more);
-      }
-      previewRegion.append(summary, count, list);
-      confirmedRule = rule;
-      announce(`Showing ${dates.length} upcoming dates`);
-    }
-
-    previewBtn.addEventListener('click', () => {
-      const rule = buildRuleFromForm();
-      if (!rule) return;
-      showPreview(rule, startF.input.value);
-    }, { signal });
+    const recurrence = createRecurrenceBuilder('new-task', signal);
+    recurrence.fieldset.hidden = true;
 
     repeatCheckbox.addEventListener('change', () => {
-      recurrenceFieldset.hidden = !repeatCheckbox.checked;
-      clearPreview();
+      recurrence.fieldset.hidden = !repeatCheckbox.checked;
+      recurrence.clearPreview();
     }, { signal });
 
     const submitBtn = document.createElement('button');
@@ -428,7 +492,7 @@ export function render(mountEl) {
       fieldWrap(projectLabel, projectSelectEl),
       fieldWrap(detailsLabel, detailsInput),
       repeatRow,
-      recurrenceFieldset,
+      recurrence.fieldset,
       submitBtn
     );
 
@@ -445,12 +509,12 @@ export function render(mountEl) {
       const isRepeatable = repeatCheckbox.checked;
       let rule = null;
       if (isRepeatable) {
-        rule = confirmedRule || buildRuleFromForm();
+        rule = recurrence.getConfirmedRule() || recurrence.buildRuleFromForm();
         if (!rule) return;
-        if (!confirmedRule) {
+        if (!recurrence.getConfirmedRule()) {
           // Force the confirmation step — the user must see the real
           // upcoming dates before the save is finalised (principle 4).
-          showPreview(rule, startF.input.value);
+          recurrence.showPreview(rule, recurrence.startInput.value);
           showToast('Review the upcoming dates below, then press Add task again to confirm.');
           return;
         }
@@ -477,7 +541,7 @@ export function render(mountEl) {
           title: taskResult.data.title,
           isRepeatable: true,
           recurrenceRule: rule,
-          startDate: startF.input.value
+          startDate: recurrence.startInput.value
         });
         if (!eventResult.ok) {
           console.error('Failed to write calendar event:', eventResult.error);
@@ -487,9 +551,8 @@ export function render(mountEl) {
 
       submitBtn.disabled = false;
       form.reset();
-      clearPreview();
-      recurrenceFieldset.hidden = true;
-      updateFreqVisibility();
+      recurrence.reset();
+      recurrence.fieldset.hidden = true;
       announce(`${taskResult.data.title} added${taskResult.queued ? ', saved offline' : ''}`);
       if (taskResult.queued) {
         showToast(isRepeatable
@@ -500,6 +563,142 @@ export function render(mountEl) {
     }, { signal });
 
     return { form };
+  }
+
+  function buildTaskEditForm(task, onDone) {
+    const form = document.createElement('form');
+    form.setAttribute('aria-label', `Edit ${task.title}`);
+    const idPrefix = `edit-task-${task.id}`;
+
+    const titleF = labeledInput(`${idPrefix}-title`, 'Title');
+    titleF.input.required = true;
+    titleF.input.value = task.title;
+
+    const projectLabel = document.createElement('label');
+    projectLabel.htmlFor = `${idPrefix}-project`;
+    projectLabel.textContent = 'Project';
+    const projectSelect = document.createElement('select');
+    projectSelect.id = `${idPrefix}-project`;
+    projectSelect.required = true;
+    populateProjectSelect(projectSelect, task.project_id);
+
+    const detailsLabel = document.createElement('label');
+    detailsLabel.htmlFor = `${idPrefix}-details`;
+    detailsLabel.textContent = 'Details (optional)';
+    const detailsInput = document.createElement('textarea');
+    detailsInput.id = `${idPrefix}-details`;
+    detailsInput.value = task.details || '';
+
+    const repeatRow = document.createElement('div');
+    repeatRow.className = 'field field-checkbox';
+    const repeatCheckbox = document.createElement('input');
+    repeatCheckbox.type = 'checkbox';
+    repeatCheckbox.id = `${idPrefix}-repeat`;
+    repeatCheckbox.checked = !!task.is_repeatable;
+    const repeatLabel = document.createElement('label');
+    repeatLabel.htmlFor = repeatCheckbox.id;
+    repeatLabel.textContent = 'This task repeats';
+    repeatRow.append(repeatCheckbox, repeatLabel);
+
+    const recurrence = createRecurrenceBuilder(idPrefix, signal);
+    recurrence.fieldset.hidden = !task.is_repeatable;
+
+    repeatCheckbox.addEventListener('change', () => {
+      recurrence.fieldset.hidden = !repeatCheckbox.checked;
+      recurrence.clearPreview();
+    }, { signal });
+
+    const saveBtn = document.createElement('button');
+    saveBtn.type = 'submit';
+    saveBtn.className = 'btn btn-primary';
+    saveBtn.textContent = 'Save changes';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.className = 'btn';
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.addEventListener('click', () => onDone(false), { signal });
+
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'card-actions';
+    actionsRow.append(saveBtn, cancelBtn);
+
+    form.append(
+      fieldWrap(titleF.label, titleF.input),
+      fieldWrap(projectLabel, projectSelect),
+      fieldWrap(detailsLabel, detailsInput),
+      repeatRow,
+      recurrence.fieldset,
+      actionsRow
+    );
+
+    // Prefill the recurrence builder. chore_tasks has no start_date column
+    // (see data/calendar.js) — the anchor date lives only on the task's
+    // calendar_events row, so it's fetched here for a repeatable task.
+    (async () => {
+      if (!task.is_repeatable || !task.recurrence_rule) return;
+      let startDate = todayIso();
+      const eventResult = await findEventByTaskId(task.id);
+      if (eventResult.ok && eventResult.data) startDate = eventResult.data.start_date;
+      recurrence.setInitial({ recurrenceRule: task.recurrence_rule, startDate });
+    })();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!titleF.input.value.trim()) {
+        titleF.input.focus();
+        return;
+      }
+      const isRepeatable = repeatCheckbox.checked;
+      let rule = null;
+      if (isRepeatable) {
+        rule = recurrence.getConfirmedRule() || recurrence.buildRuleFromForm();
+        if (!rule) return;
+        // If this rule hasn't been confirmed via a preview in this
+        // session, force one before saving (principle 4 applies to
+        // recurrence changes on edit exactly as it does on create).
+        if (!recurrence.getConfirmedRule()) {
+          recurrence.showPreview(rule, recurrence.startInput.value);
+          showToast('Review the upcoming dates below, then press Save changes again to confirm.');
+          return;
+        }
+      }
+
+      saveBtn.disabled = true;
+      const result = await updateTask(task.id, {
+        title: titleF.input.value.trim(),
+        details: detailsInput.value.trim() || null,
+        is_repeatable: isRepeatable,
+        recurrence_rule: rule
+      });
+      if (!result.ok) {
+        saveBtn.disabled = false;
+        console.error('Failed to update task:', result.error);
+        showToast("Couldn't save those changes — check your connection and try again.");
+        return;
+      }
+
+      const eventResult = await upsertTaskEvent({
+        taskId: task.id,
+        title: titleF.input.value.trim(),
+        isRepeatable,
+        recurrenceRule: rule,
+        startDate: recurrence.startInput.value
+      });
+      if (!eventResult.ok) {
+        console.error('Failed to update calendar event:', eventResult.error);
+        showToast('Task saved, but the calendar entry failed to update — try saving again.');
+      }
+
+      saveBtn.disabled = false;
+      announce(`${titleF.input.value.trim()} updated${result.queued ? ', saved offline' : ''}`);
+      if (result.queued) {
+        showToast("Saved offline — this will sync when you're back online.");
+      }
+      onDone(true);
+    }, { signal });
+
+    return form;
   }
 
   function buildTaskCard(task, project) {
@@ -538,6 +737,9 @@ export function render(mountEl) {
     statusChip.textContent = task.status === 'complete' ? 'Complete' : 'Pending';
     body.appendChild(statusChip);
 
+    const editContainer = document.createElement('div');
+    body.appendChild(editContainer);
+
     const completeBtn = document.createElement('button');
     completeBtn.type = 'button';
     completeBtn.className = 'btn btn-done';
@@ -567,6 +769,33 @@ export function render(mountEl) {
     }, { signal });
     actions.appendChild(completeBtn);
     if (isComplete) showCompletionStamp(article, { label: 'Complete' });
+
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.className = 'btn';
+    editBtn.setAttribute('aria-expanded', 'false');
+    editBtn.textContent = `Edit ${task.title}`;
+    editBtn.addEventListener('click', () => {
+      const editing = editBtn.getAttribute('aria-expanded') === 'true';
+      if (editing) {
+        editContainer.replaceChildren();
+        editBtn.setAttribute('aria-expanded', 'false');
+        editBtn.textContent = `Edit ${task.title}`;
+        return;
+      }
+      const editForm = buildTaskEditForm(task, async (saved) => {
+        editContainer.replaceChildren();
+        editBtn.setAttribute('aria-expanded', 'false');
+        editBtn.textContent = `Edit ${task.title}`;
+        if (saved) {
+          await Promise.all([loadTasks(), loadCalendar()]);
+        }
+      });
+      editContainer.replaceChildren(editForm);
+      editBtn.setAttribute('aria-expanded', 'true');
+      editBtn.textContent = `Close edit form for ${task.title}`;
+    }, { signal });
+    actions.appendChild(editBtn);
 
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
@@ -777,7 +1006,7 @@ export function render(mountEl) {
 
   (async () => {
     await loadProjects();
-    populateProjectSelect();
+    populateProjectSelect(projectSelectEl);
     await loadTasks();
     await loadCalendar();
   })();
