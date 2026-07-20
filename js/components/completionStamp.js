@@ -1,39 +1,33 @@
-// js/components/completionStamp.js — 19 Jul 2026 v1
-// The visible "Complete" done-state treatment (behavioural principle 3:
-// completion is a physical event; completed cards stay visible, not
-// removed). Status is carried by text, never colour alone.
-// Reduced-motion aware: the animate class is only added when the user has
-// not requested reduced motion; CSS (components.css) should make the
-// non-animate state visually identical minus the transition itself.
+// js/components/completionStamp.js — 19 Jul 2026 v2
+// The visible "Complete" done-state treatment (behavioural principle 3).
+// v2: uses the existing .stamp class from components.css instead of
+// inventing new ones — v1's classes had no CSS behind them and rendered
+// unstyled. .stamp has no transition/animation defined, so it already
+// appears instantly; no reduced-motion branching needed.
 
 export function showCompletionStamp(cardEl, { label = 'Complete' } = {}) {
-  let stamp = cardEl.querySelector('.completion-stamp');
+  let stamp = cardEl.querySelector('.stamp');
   if (!stamp) {
     stamp = document.createElement('span');
-    stamp.className = 'completion-stamp';
+    stamp.className = 'stamp';
     stamp.setAttribute('role', 'status');
     cardEl.prepend(stamp);
   }
   stamp.replaceChildren();
 
   const icon = document.createElement('span');
-  icon.className = 'completion-stamp-icon';
   icon.setAttribute('aria-hidden', 'true');
   icon.textContent = '✓';
 
   const text = document.createElement('span');
-  text.className = 'completion-stamp-text';
   text.textContent = label;
 
   stamp.append(icon, text);
   cardEl.classList.add('is-complete');
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  stamp.classList.toggle('completion-stamp-animate', !prefersReducedMotion);
 }
 
 export function hideCompletionStamp(cardEl) {
-  const stamp = cardEl.querySelector('.completion-stamp');
+  const stamp = cardEl.querySelector('.stamp');
   if (stamp) stamp.remove();
   cardEl.classList.remove('is-complete');
 }
