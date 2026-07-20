@@ -143,16 +143,20 @@ export async function deleteTask(taskId) {
 // The view surfaces this to the user at save time; re-saving the task
 // once online creates the missing calendar entry.
 
-function applyQueuedOp(op) {
+async function applyQueuedOp(op) {
   if (op.table === 'chore_tasks') {
     if (op.type === 'insert') {
-      return supabase.from('chore_tasks').insert(op.payload);
+      const { error } = await supabase.from('chore_tasks').insert(op.payload);
+      if (error) throw error;
+      return;
     }
     if (op.type === 'update') {
-      return supabase.from('chore_tasks').update(op.payload.patch).eq('id', op.payload.id);
+      const { error } = await supabase.from('chore_tasks').update(op.payload.patch).eq('id', op.payload.id);
+      if (error) throw error;
+      return;
     }
   }
-  return Promise.reject(new Error(`No handler for queued op: ${op.table}/${op.type}`));
+  throw new Error(`No handler for queued op: ${op.table}/${op.type}`);
 }
 
 if (typeof window !== 'undefined') {
