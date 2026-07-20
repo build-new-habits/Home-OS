@@ -1,8 +1,15 @@
-// service-worker.js — 19 Jul 2026 v5
+// service-worker.js — 20 Jul 2026 v6
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
-const CACHE_NAME = 'home-os-shell-v5';
+//
+// v6: adds the three new Phase 4 files (js/lib/rrule.js, js/data/chores.js,
+// js/data/calendar.js) to the precache list. js/views/chores.js was already
+// present as a placeholder for the Phase 2 stub, so it needed no addition —
+// only its content changed. CACHE_NAME bumped per the standing rule (bump
+// on any precached content change, even when this script's own logic is
+// untouched — see PHASE3_HANDOFF.md bug #3).
+const CACHE_NAME = 'home-os-shell-v6';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -24,8 +31,11 @@ const SHELL_FILES = [
   './js/lib/offlineQueue.js',
   './js/lib/dates.js',
   './js/lib/units.js',
+  './js/lib/rrule.js',
   './js/data/settings.js',
   './js/data/exercises.js',
+  './js/data/chores.js',
+  './js/data/calendar.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',
