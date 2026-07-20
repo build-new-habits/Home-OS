@@ -1,6 +1,7 @@
-// js/views/exercises.js — 19 Jul 2026 v1
+// js/views/exercises.js — 19 Jul 2026 v2
 // Replaces the Phase 2 stub. Exercise cards + one-tap logging (principles
-// 1, 2, 3, 6, 10).
+// 1, 2, 3, 6, 10). v2: form fields now wrapped in .field (matches
+// components.css spacing/label rules — v1 rendered unstyled and cramped).
 import { listCleared, listPending, getLogsForDate, setDone, addExercise, clearExercise } from '../data/exercises.js';
 import { createCard } from '../components/card.js';
 import { showCompletionStamp, hideCompletionStamp } from '../components/completionStamp.js';
@@ -13,6 +14,14 @@ function todayIso() {
 
 function buildYoutubeUrl(query) {
   return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+}
+
+function fieldWrap(labelEl, inputEl, extraEl) {
+  const wrap = document.createElement('div');
+  wrap.className = 'field';
+  wrap.append(labelEl, inputEl);
+  if (extraEl) wrap.appendChild(extraEl);
+  return wrap;
 }
 
 export function render(mountEl) {
@@ -92,7 +101,7 @@ export function render(mountEl) {
     const notesInput = document.createElement('textarea');
     notesInput.id = notesId;
     notesInput.value = existingLog?.notes || '';
-    notesDetails.append(notesSummary, notesLabel, notesInput);
+    notesDetails.append(notesSummary, fieldWrap(notesLabel, notesInput));
     body.appendChild(notesDetails);
 
     const doneBtn = document.createElement('button');
@@ -216,8 +225,11 @@ export function render(mountEl) {
   errorMsg.hidden = true;
   nameInput.setAttribute('aria-describedby', errorMsg.id);
 
+  const nameField = fieldWrap(nameLabel, nameInput, errorMsg);
+
   const physioId = 'new-exercise-physio';
   const physioRow = document.createElement('div');
+  physioRow.className = 'field field-checkbox';
   const physioCheckbox = document.createElement('input');
   physioCheckbox.type = 'checkbox';
   physioCheckbox.id = physioId;
@@ -232,20 +244,17 @@ export function render(mountEl) {
   moreDetails.appendChild(moreSummary);
 
   function labeledField(id, labelText, type = 'text') {
-    const wrap = document.createElement('div');
     const label = document.createElement('label');
     label.htmlFor = id;
     label.textContent = labelText;
     const input = document.createElement('input');
     input.id = id;
     input.type = type;
-    wrap.append(label, input);
-    moreDetails.appendChild(wrap);
+    moreDetails.appendChild(fieldWrap(label, input));
     return input;
   }
 
   const sideId = 'new-exercise-side';
-  const sideWrap = document.createElement('div');
   const sideLabel = document.createElement('label');
   sideLabel.htmlFor = sideId;
   sideLabel.textContent = 'Side';
@@ -263,8 +272,7 @@ export function render(mountEl) {
     optionEl.textContent = opt.label;
     sideInput.appendChild(optionEl);
   }
-  sideWrap.append(sideLabel, sideInput);
-  moreDetails.appendChild(sideWrap);
+  moreDetails.appendChild(fieldWrap(sideLabel, sideInput));
 
   const setsInput = labeledField('new-exercise-sets', 'Target sets', 'number');
   const repsInput = labeledField('new-exercise-reps', 'Target reps', 'number');
@@ -272,21 +280,19 @@ export function render(mountEl) {
   const youtubeInput = labeledField('new-exercise-youtube', 'YouTube search terms');
 
   const instructionsId = 'new-exercise-instructions';
-  const instructionsWrap = document.createElement('div');
   const instructionsLabel = document.createElement('label');
   instructionsLabel.htmlFor = instructionsId;
   instructionsLabel.textContent = 'Instructions';
   const instructionsInput = document.createElement('textarea');
   instructionsInput.id = instructionsId;
-  instructionsWrap.append(instructionsLabel, instructionsInput);
-  moreDetails.appendChild(instructionsWrap);
+  moreDetails.appendChild(fieldWrap(instructionsLabel, instructionsInput));
 
   const submitBtn = document.createElement('button');
   submitBtn.type = 'submit';
-  submitBtn.className = 'btn btn-block';
+  submitBtn.className = 'btn btn-primary btn-block';
   submitBtn.textContent = 'Add exercise';
 
-  form.append(nameLabel, nameInput, errorMsg, physioRow, moreDetails, submitBtn);
+  form.append(nameField, physioRow, moreDetails, submitBtn);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -300,7 +306,7 @@ export function render(mountEl) {
     submitBtn.disabled = true;
     const result = await addExercise({
       name: nameInput.value.trim(),
-      side: sideInput.value.trim() || null,
+      side: sideInput.value || null,
       target_sets: setsInput.value ? Number(setsInput.value) : null,
       target_reps: repsInput.value ? Number(repsInput.value) : null,
       instructions: instructionsInput.value.trim() || null,
