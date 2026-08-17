@@ -204,6 +204,19 @@ past RLS.
 
 ---
 
+## Process miss caught in-session
+
+The docs/password commit changed `js/data/settings.js` and
+`js/views/settings.js` — both **precached** — without bumping `CACHE_NAME`.
+That is a direct breach of standing rule 3, committed minutes after writing
+that rule into the schedule. Caught on post-commit review and fixed in a
+follow-up (`v7` → `v8`).
+
+Worth recording rather than quietly correcting, because the failure mode is
+instructive: the rule was front-of-mind for the *feature* files and forgotten
+for files touched incidentally. The trigger is "did any precached file's
+**content** change", not "was this the main thing I was working on".
+
 ## Integration points for later phases
 
 - **`offlineQueue.flush(applyFn, { tables })`** — every future data module
