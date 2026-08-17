@@ -101,8 +101,32 @@ Amended: **`app.js` owns bootstrap and auth state; auth UI lives in
 retains only the state machine (`getSession`, `onAuthStateChange`).
 
 Write-once files are now: `router.js`, `routes.js`, `tokens.css`,
-`supabaseClient.js`, `lib/rrule.js`. `app.js` is *restricted*, not frozen:
+`lib/rrule.js`. `supabaseClient.js` left the list on 17 Aug when its auth
+config turned out to contain a bug (see below); it is *restricted* — client
+configuration only. `app.js` is *restricted*, not frozen:
 bootstrap and auth-state changes only.
+
+## Auth bug, 17 Aug 2026 — `detectSessionInUrl`
+
+Sign-in was broken end to end and the cause was one line in
+`supabaseClient.js`: `detectSessionInUrl: false`.
+
+supabase-js 2.45.4 defaults to implicit flow, so magic-link and
+password-reset links return tokens in the URL hash. With detection off the
+client never read them — the link "worked", then dropped the user back on
+sign-in with no session and no error. Almost certainly set false in Phase 2
+out of a reasonable fear of colliding with the hash router.
+
+It does not collide: the client only treats a hash as a grant when it parses
+an `access_token` or `error_description`, and `#/dashboard` parses to a
+single valueless key. Verified against the vendored bundle before changing
+it. `flowType` is now pinned to `implicit` explicitly, because that is what
+preserves `type=recovery` — switching to `pkce` would silently turn every
+password-reset link into an ordinary sign-in.
+
+Lesson: **a defensive setting that is never exercised is a bug waiting for
+the day the feature ships.** Phase 2 had no magic link and no reset, so
+nothing tested this flag for a month.
 
 ## Standing rules (apply to every later phase)
 
