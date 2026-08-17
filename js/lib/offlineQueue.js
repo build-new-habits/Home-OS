@@ -1,13 +1,26 @@
-// js/lib/offlineQueue.js — 14 Jul 2026 v1
-// Offline write queue scaffolding (behavioural principle 10).
-// Feature phases enqueue writes through this when the network is down;
-// this phase stands up the mechanism only — no feature writes yet.
+// js/lib/offlineQueue.js — 17 Aug 2026 v2
+// Offline write queue (behavioural principle 10).
+//
+// v2: flush() gained an optional table filter. Previously flush(applyFn)
+// replayed EVERY pending op through whichever applyFn it was handed, so a
+// module's 'online' listener would try to apply another module's queued
+// rows to its own table. With one feature module that was harmless; with
+// exercises + chores + weight + water all registering listeners it is a
+// race. Ops are now claimed by the module that owns their table.
 //
 // Public API:
-//   enqueue(op) -> Promise<number>   store one pending write, returns its id
-//   flush()     -> Promise<{ ok, failed }>  replay all pending writes in order
-//   list()      -> Promise<Array>    inspect pending writes (for UI/debug)
-//   remove(id)  -> Promise<void>     drop a single queued op
+//   enqueue(op)                  -> Promise<number>   store one pending write
+//   flush(applyFn, opts)         -> Promise<{ ok, failed, skipped }>
+//   list()                       -> Promise<Array>    inspect pending writes
+//   remove(id)                   -> Promise<void>     drop a single queued op
+//
+// opts.tables: string[] — replay ONLY ops whose op.table is in this list.
+// Omitted = replay everything (v1 behaviour, kept for backward compat).
+//
+// IMPORTANT: an applyFn must never resolve for an op it does not own.
+// flush() removes an op as soon as applyFn resolves, so a silent "not
+// mine, ignore it" return would delete another module's pending write.
+// Filter with opts.tables instead — filtered ops are left untouched.
 
 const DB_NAME = 'home-os-offline';
 const DB_VERSION = 1;
@@ -33,10 +46,12 @@ function openDb() {
 
 /**
  * op shape: { table: string, type: 'insert'|'update'|'delete', payload: object, queuedAt: string }
- * Feature phases define `table`/`type`/`payload`; this module only stores
- * and replays them — it has no knowledge of table schemas.
+ * `table` is mandatory from v2 onward — flush() uses it to decide ownership.
  */
 export async function enqueue(op) {
+  if (!op || !op.table) {
+    throw new Error('offlineQueue.enqueue: op.table is required (v2)');
+  }
   const db = await openDb();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE, 'readwrite');
@@ -70,15 +85,23 @@ export async function remove(id) {
 
 /**
  * Replays queued ops in order via `applyFn`, a caller-supplied function
- * (typically a Supabase call) — this module stays storage-only and does
- * not import supabaseClient itself, keeping the dependency direction
- * one-way (lib -> nothing app-specific).
+ * (typically a Supabase call). This module stays storage-only and never
+ * imports supabaseClient, keeping the dependency direction one-way.
+ *
+ * An op is removed ONLY after applyFn resolves. If applyFn throws, the op
+ * stays queued and is reported in `failed` — never silently dropped.
  */
-export async function flush(applyFn) {
+export async function flush(applyFn, opts = {}) {
+  const tables = Array.isArray(opts.tables) ? opts.tables : null;
   const pending = await list();
   let ok = 0;
+  let skipped = 0;
   const failed = [];
   for (const op of pending) {
+    if (tables && !tables.includes(op.table)) {
+      skipped += 1;
+      continue;
+    }
     try {
       await applyFn(op);
       await remove(op.id);
@@ -87,5 +110,5 @@ export async function flush(applyFn) {
       failed.push({ op, error: err });
     }
   }
-  return { ok, failed };
+  return { ok, failed, skipped };
 }

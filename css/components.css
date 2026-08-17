@@ -1,4 +1,8 @@
-/* css/components.css — 20 Jul 2026 v4 */
+/* css/components.css — 17 Aug 2026 v5 */
+/* v5: adds Phase 5 (weight + water) sections at the end. Everything
+   above is unchanged. Focus rings are global in base.css and are not
+   redefined here. No colour carries meaning on its own anywhere in
+   this file — every state that uses colour also has text. */
 
 /* ============ Buttons ============ */
 .btn {
@@ -485,4 +489,178 @@ details summary {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+
+/* ============ Phase 5: Water ============ */
+
+/* The one-tap target. --tap-min is 44px; padding keeps it comfortably above
+   the WCAG 2.2 target-size minimum (2.5.8) even at the smallest text size. */
+.water-tap {
+  min-height: calc(var(--tap-min) + var(--space-3));
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
+}
+
+.water-total {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+/* Progress bar. Decorative only — aria-hidden in the markup, because the
+   same figure is stated in .water-total above it. Being under target is not
+   styled as a fault: the track and fill differ in lightness as well as hue,
+   so the bar still reads without colour perception. */
+.water-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-neutral-chip);
+  /* --color-border is only 1.39:1 against the card and the track itself is
+     1.2:1, so the bar would have had no visible boundary. --color-text-muted
+     gives 6.54:1. Fill vs track is 5.66:1. (WCAG 1.4.11) */
+  border: 1px solid var(--color-text-muted);
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+}
+
+.water-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width var(--motion-normal) var(--motion-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-bar-fill {
+    transition: none;
+  }
+}
+
+.custom-amount {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.custom-amount > summary {
+  cursor: pointer;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+/* ============ Phase 5: Weight ============ */
+
+.trend {
+  margin-bottom: var(--space-4);
+}
+
+.trend-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+/* The line is given both a strong stroke and visible point markers so it
+   does not rely on hue to be readable. The SVG is aria-hidden regardless —
+   .summary-list and the entries table carry the same information as text. */
+.trend-line {
+  stroke: var(--color-accent-strong);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.trend-point {
+  fill: var(--color-accent-strong);
+  stroke: var(--color-surface-raised);
+  stroke-width: 1.5;
+}
+
+/* Target line is dashed as well as tinted — shape, not colour, distinguishes
+   it from the trend line. */
+.trend-target {
+  stroke: var(--color-text-muted);
+  stroke-width: 1.5;
+}
+
+.trend-empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* Neutral by design: every entry is a plain fact, so there is no success or
+   failure variant of this list. Adding one would breach principle 1. */
+.summary-list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.summary-list > li {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+}
+
+.history-details {
+  margin-top: var(--space-4);
+}
+
+.history-details > summary {
+  cursor: pointer;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.data-table caption {
+  text-align: left;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  padding-bottom: var(--space-2);
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table thead th {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.data-table tbody th {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.view-status {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
 }

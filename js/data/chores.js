@@ -1,4 +1,7 @@
-// js/data/chores.js — 20 Jul 2026 v2
+// js/data/chores.js — 17 Aug 2026 v2
+// v2: offline replay scoped to this module's own table via flush()'s new
+// { tables } filter, so exercise/weight/water ops are no longer pulled
+// into this listener and reported as failures. Replay logic unchanged.
 // Projects + tasks queries. Views never call Supabase directly — this is
 // the only place that does, for these two tables.
 //
@@ -168,9 +171,14 @@ async function applyQueuedOp(op) {
 
 if (typeof window !== 'undefined') {
   window.addEventListener('online', async () => {
-    const { failed } = await flush(applyQueuedOp);
-    for (const f of failed) {
-      console.error('Failed to sync a queued chore write:', f.op, f.error);
+    try {
+      const { failed } = await flush(applyQueuedOp, { tables: ['chore_tasks'] });
+      for (const f of failed) {
+        console.error('Failed to sync a queued chore write:', f.op, f.error);
+      }
+    } catch (err) {
+      // No silent failures: a rejected flush must be visible, not swallowed.
+      console.error('Offline queue flush failed (chores):', err);
     }
   });
 }

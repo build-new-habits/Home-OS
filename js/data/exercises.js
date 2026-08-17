@@ -1,4 +1,10 @@
-// js/data/exercises.js — 19 Jul 2026 v1
+// js/data/exercises.js — 17 Aug 2026 v2
+// v2: offline replay is now scoped to this module's own table. Previously
+// applyExerciseLogOp() ignored op.table and would attempt to insert a
+// queued chore/weight/water row into exercise_logs on reconnect. Fixed by
+// (a) asserting op.table and (b) passing { tables } to flush() so other
+// modules' ops are left queued for their owner. No behaviour change to any
+// exported function.
 import { supabase } from '../supabaseClient.js';
 import { enqueue, flush } from '../lib/offlineQueue.js';
 
@@ -8,6 +14,13 @@ import { enqueue, flush } from '../lib/offlineQueue.js';
  * per its own header comment.
  */
 async function applyExerciseLogOp(op) {
+  if (op.table !== 'exercise_logs') {
+    // Defensive: flush() is table-scoped, so this should be unreachable.
+    // Throwing (not returning) is deliberate — flush() removes an op as
+    // soon as applyFn resolves, so a silent return would delete another
+    // module's pending write.
+    throw new Error(`applyExerciseLogOp received a non-exercise_logs op: ${op.table}`);
+  }
   if (op.type === 'insert') {
     const { error } = await supabase.from('exercise_logs').insert(op.payload);
     if (error) throw error;
@@ -26,7 +39,7 @@ async function applyExerciseLogOp(op) {
 // supabaseClient's single-instance export — this module owns exercise_logs
 // sync, nothing else does.
 window.addEventListener('online', () => {
-  flush(applyExerciseLogOp)
+  flush(applyExerciseLogOp, { tables: ['exercise_logs'] })
     .then(({ failed }) => {
       for (const { op, error } of failed) {
         console.error('Failed to sync queued exercise log:', op, error);

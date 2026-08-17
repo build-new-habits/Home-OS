@@ -1,15 +1,19 @@
-// service-worker.js — 20 Jul 2026 v6
+// service-worker.js — 17 Aug 2026 v7
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
 //
-// v6: adds the three new Phase 4 files (js/lib/rrule.js, js/data/chores.js,
-// js/data/calendar.js) to the precache list. js/views/chores.js was already
-// present as a placeholder for the Phase 2 stub, so it needed no addition —
-// only its content changed. CACHE_NAME bumped per the standing rule (bump
-// on any precached content change, even when this script's own logic is
-// untouched — see PHASE3_HANDOFF.md bug #3).
-const CACHE_NAME = 'home-os-shell-v6';
+// v7: adds the two new Phase 5 data modules (js/data/weight.js,
+// js/data/water.js). js/views/weight.js and js/views/water.js were already
+// listed as Phase 2 stubs, so only their content changed — no new entry
+// needed for them. CACHE_NAME bumped per the standing rule: bump on any
+// precached *content* change, even when this script's own logic is
+// untouched, or install never re-runs and stale files keep being served
+// (see PHASE3_HANDOFF.md bug #3).
+//
+// Precache is all-or-nothing: cache.addAll() rejects the whole install if
+// any single path 404s, so every path below must be verified to return 200.
+const CACHE_NAME = 'home-os-shell-v7';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -36,6 +40,8 @@ const SHELL_FILES = [
   './js/data/exercises.js',
   './js/data/chores.js',
   './js/data/calendar.js',
+  './js/data/weight.js',
+  './js/data/water.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',
