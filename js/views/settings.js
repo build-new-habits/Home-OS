@@ -1,5 +1,7 @@
-// js/views/settings.js — 18 Jul 2026 v2
-import { upsertSettings, exportAllData, downloadJson, signOutUser } from '../data/settings.js';
+// js/views/settings.js — 17 Aug 2026 v3
+// v3: adds a Change password form under Account. Requested out-of-band
+// during the Phase 5 session; logged in PHASE5_HANDOFF.md.
+import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
@@ -58,6 +60,60 @@ function buildToggleGroup({ legend, name, options, current, onChange }) {
 
   fieldset.appendChild(group);
   return fieldset;
+}
+
+/**
+ * Labelled password field. autocomplete values matter here: they tell a
+ * password manager which box is which, so the browser can offer to store
+ * the new password instead of the user memorising it (WCAG 1.3.5).
+ */
+function buildPasswordField({ id, label, autocomplete, hint }) {
+  const wrap = document.createElement('div');
+  wrap.className = 'field';
+
+  const labelEl = document.createElement('label');
+  labelEl.setAttribute('for', id);
+  labelEl.textContent = label;
+
+  const input = document.createElement('input');
+  input.type = 'password';
+  input.id = id;
+  input.setAttribute('autocomplete', autocomplete);
+
+  const describedBy = [];
+  wrap.append(labelEl, input);
+
+  if (hint) {
+    const hintEl = document.createElement('p');
+    hintEl.className = 'field-hint';
+    hintEl.id = `${id}-hint`;
+    hintEl.textContent = hint;
+    wrap.appendChild(hintEl);
+    describedBy.push(`${id}-hint`);
+  }
+
+  const err = document.createElement('p');
+  err.className = 'field-error';
+  err.id = `${id}-error`;
+  err.setAttribute('role', 'alert');
+  err.hidden = true;
+  wrap.appendChild(err);
+  describedBy.push(`${id}-error`);
+
+  input.setAttribute('aria-describedby', describedBy.join(' '));
+  return { wrap, input, err };
+}
+
+function setFieldError(field, message) {
+  field.err.textContent = message;
+  field.err.hidden = false;
+  field.input.setAttribute('aria-invalid', 'true');
+}
+
+function clearFieldError(field) {
+  field.err.textContent = '';
+  field.err.hidden = true;
+  field.input.removeAttribute('aria-invalid');
 }
 
 function buildSwitch({ label, checked, onChange }) {
@@ -217,6 +273,84 @@ export function render(mountEl) {
       // On success, app.js's onAuthStateChange listener rebuilds the shell.
     });
     accountFieldset.appendChild(signOutBtn);
+
+    // ---- Change password ----
+    // Behind a <details> so the everyday Account view stays a single
+    // Sign out button; opening it is a deliberate act, not a stumble.
+    const pwDetails = document.createElement('details');
+    pwDetails.className = 'custom-amount';
+    const pwSummary = document.createElement('summary');
+    pwSummary.textContent = 'Change password';
+    pwDetails.appendChild(pwSummary);
+
+    const currentF = buildPasswordField({
+      id: 'pw-current', label: 'Current password', autocomplete: 'current-password'
+    });
+    const newF = buildPasswordField({
+      id: 'pw-new', label: 'New password', autocomplete: 'new-password',
+      hint: 'At least 8 characters. A long phrase you can remember beats a short complicated one.'
+    });
+    const confirmF = buildPasswordField({
+      id: 'pw-confirm', label: 'Confirm new password', autocomplete: 'new-password'
+    });
+    pwDetails.append(currentF.wrap, newF.wrap, confirmF.wrap);
+
+    const pwBtn = document.createElement('button');
+    pwBtn.type = 'button';
+    pwBtn.className = 'btn btn-block';
+    pwBtn.textContent = 'Update password';
+    pwBtn.addEventListener('click', async () => {
+      [currentF, newF, confirmF].forEach(clearFieldError);
+
+      if (!currentF.input.value) {
+        setFieldError(currentF, 'Enter your current password.');
+        currentF.input.focus();
+        return;
+      }
+      if (newF.input.value.length < 8) {
+        setFieldError(newF, 'New password must be at least 8 characters.');
+        newF.input.focus();
+        return;
+      }
+      if (newF.input.value !== confirmF.input.value) {
+        setFieldError(confirmF, 'The two new passwords do not match.');
+        confirmF.input.focus();
+        return;
+      }
+
+      pwBtn.disabled = true;
+      pwBtn.textContent = 'Updating…';
+      const result = await changePassword(currentF.input.value, newF.input.value);
+      pwBtn.disabled = false;
+      pwBtn.textContent = 'Update password';
+
+      if (!result.ok) {
+        if (result.code === 'wrong-current') {
+          setFieldError(currentF, 'That is not your current password.');
+          currentF.input.focus();
+        } else if (result.code === 'too-short') {
+          setFieldError(newF, 'New password must be at least 8 characters.');
+          newF.input.focus();
+        } else if (result.code === 'unchanged') {
+          setFieldError(newF, 'New password must be different from the current one.');
+          newF.input.focus();
+        } else {
+          console.error('Password change failed:', result.error);
+          setFieldError(newF, 'Could not update the password. Check your connection and try again.');
+        }
+        announce('Password not changed.');
+        return;
+      }
+
+      [currentF, newF, confirmF].forEach((f) => { f.input.value = ''; });
+      pwDetails.open = false;
+      announce('Password updated. Your session stays signed in on this device.');
+      showToast('Password updated');
+    });
+
+    pwDetails.appendChild(pwBtn);
+    accountFieldset.appendChild(pwDetails);
+
     bodyContainer.appendChild(accountFieldset);
   }
 

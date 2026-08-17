@@ -1,4 +1,7 @@
-// js/data/settings.js — 18 Jul 2026 v2
+// js/data/settings.js — 17 Aug 2026 v3
+// v3: adds changePassword(). Requested out-of-band during the Phase 5
+// session; recorded in PHASE5_HANDOFF.md as an addition outside that
+// brief. No schema change — Supabase Auth owns credentials, not our tables.
 import { supabase } from '../supabaseClient.js';
 
 // The 17 tables, per schema.md / PROJECT_BLUEPRINT.md §4. Frozen list —
@@ -91,6 +94,46 @@ export async function signOutUser() {
   const { error } = await supabase.auth.signOut();
   if (error) return { ok: false, error };
   return { ok: true };
+}
+
+/**
+ * Changes the account password.
+ *
+ * The current password is re-verified with signInWithPassword before the
+ * change is applied. Supabase's updateUser() would accept a new password on
+ * the strength of the existing session alone, but that means anyone reaching
+ * an unlocked, signed-in device could lock the owner out of their own health
+ * data. Re-authenticating costs one round trip and removes that.
+ *
+ * Returns the shared { ok, data|error } shape with a `code` on the failures
+ * a view needs to tell apart, so the UI can point at the right field.
+ */
+export async function changePassword(currentPassword, newPassword) {
+  if (!newPassword || newPassword.length < 8) {
+    return { ok: false, code: 'too-short', error: new Error('New password must be at least 8 characters.') };
+  }
+  if (currentPassword === newPassword) {
+    return { ok: false, code: 'unchanged', error: new Error('New password must be different from the current one.') };
+  }
+
+  const { data: userData, error: userErr } = await supabase.auth.getUser();
+  if (userErr) return { ok: false, error: userErr };
+  const email = userData && userData.user && userData.user.email;
+  if (!email) {
+    return { ok: false, code: 'no-session', error: new Error('No signed-in account found.') };
+  }
+
+  const { error: reauthErr } = await supabase.auth.signInWithPassword({
+    email,
+    password: currentPassword
+  });
+  if (reauthErr) {
+    return { ok: false, code: 'wrong-current', error: reauthErr };
+  }
+
+  const { error: updateErr } = await supabase.auth.updateUser({ password: newPassword });
+  if (updateErr) return { ok: false, error: updateErr };
+  return { ok: true, data: { email } };
 }
 
 export function downloadJson(obj, filename) {
