@@ -90,6 +90,20 @@ What this does **not** change:
 worth the overhead now that the architect chat can read and commit directly.
 Decide deliberately rather than defaulting.
 
+## Write-once rule amended (17 Aug 2026)
+
+`js/app.js` was declared write-once in Phase 2, but it also owned the entire
+sign-in UI — so *any* change to authentication forced an edit to it. The rule
+was unworkable as written.
+
+Amended: **`app.js` owns bootstrap and auth state; auth UI lives in
+`js/views/signin.js`.** The sign-in screen was extracted there whole. app.js
+retains only the state machine (`getSession`, `onAuthStateChange`).
+
+Write-once files are now: `router.js`, `routes.js`, `tokens.css`,
+`supabaseClient.js`, `lib/rrule.js`. `app.js` is *restricted*, not frozen:
+bootstrap and auth-state changes only.
+
 ## Standing rules (apply to every later phase)
 
 1. **Constrain UI inputs to the schema** — enum/`CHECK` columns get a

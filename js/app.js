@@ -1,4 +1,13 @@
-// js/app.js — 18 Jul 2026 v3
+// js/app.js — 17 Aug 2026 v4
+// WRITE-ONCE RULE AMENDED (17 Aug 2026, architect decision). This file was
+// declared write-once in Phase 2, but it also owned the entire sign-in UI —
+// so every change to authentication forced an edit here anyway. Rather than
+// keep breaking the rule, the auth UI is extracted to views/signin.js and
+// app.js keeps only the auth *state machine*. The rule now reads: app.js
+// owns bootstrap and auth state; auth UI lives in views/signin.js.
+//
+// v4: sign-in UI extracted; PASSWORD_RECOVERY handled so a reset link lands
+// on a set-new-password screen instead of a shell the user cannot use.
 // Single entry point. Boots the app: checks the session, loads settings,
 // applies theme, starts the router. Write-once — later phases do not
 // edit this file; they add view files that routes.js already points at.
@@ -8,8 +17,8 @@ import { getSettings } from './data/settings.js';
 import { startRouter, navigate } from './router.js';
 import { mountBottomNav } from './components/bottomNav.js';
 import { mountLiveRegion } from './components/liveRegion.js';
-import { announce } from './lib/a11y.js';
 import { setSession, setSettings, subscribe, getState } from './lib/store.js';
+import { buildSignInView, buildSetPasswordView } from './views/signin.js';
 
 let bottomNavHandle = null;
 let hasBootstrapped = false; // guards against Supabase firing a duplicate
@@ -63,84 +72,6 @@ function buildAppShell() {
   });
 }
 
-function buildSignInView() {
-  document.body.replaceChildren();
-  mountLiveRegion(document.body);
-
-  const wrap = document.createElement('div');
-  wrap.className = 'signin-wrap';
-
-  const h1 = document.createElement('h1');
-  h1.textContent = 'Sign in to Home-OS';
-  h1.tabIndex = -1;
-
-  const form = document.createElement('form');
-  form.noValidate = true;
-
-  const emailField = document.createElement('div');
-  emailField.className = 'field';
-  const emailLabel = document.createElement('label');
-  emailLabel.htmlFor = 'signin-email';
-  emailLabel.textContent = 'Email';
-  const emailInput = document.createElement('input');
-  emailInput.type = 'email';
-  emailInput.id = 'signin-email';
-  emailInput.name = 'email';
-  emailInput.autocomplete = 'username';
-  emailInput.required = true;
-  emailField.append(emailLabel, emailInput);
-
-  const passField = document.createElement('div');
-  passField.className = 'field';
-  const passLabel = document.createElement('label');
-  passLabel.htmlFor = 'signin-password';
-  passLabel.textContent = 'Password';
-  const passInput = document.createElement('input');
-  passInput.type = 'password';
-  passInput.id = 'signin-password';
-  passInput.name = 'password';
-  passInput.autocomplete = 'current-password';
-  passInput.required = true;
-  passField.append(passLabel, passInput);
-
-  const errorEl = document.createElement('p');
-  errorEl.className = 'field-error';
-  errorEl.id = 'signin-error';
-  errorEl.setAttribute('role', 'alert');
-  errorEl.hidden = true;
-
-  const submitBtn = document.createElement('button');
-  submitBtn.type = 'submit';
-  submitBtn.className = 'btn btn-primary btn-block';
-  submitBtn.textContent = 'Sign in';
-
-  form.append(emailField, passField, errorEl, submitBtn);
-  wrap.append(h1, form);
-  document.body.appendChild(wrap);
-  h1.focus();
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errorEl.hidden = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Signing in…';
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email: emailInput.value.trim(),
-      password: passInput.value
-    });
-
-    if (error) {
-      errorEl.textContent = error.message || 'Sign-in failed. Check your details and try again.';
-      errorEl.hidden = false;
-      announce(errorEl.textContent);
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Sign in';
-    }
-    // On success, onAuthStateChange below rebuilds the shell.
-  });
-}
-
 async function bootAuthedShell() {
   const result = await getSettings();
   if (!result.ok) {
@@ -171,6 +102,21 @@ async function init() {
 
   supabase.auth.onAuthStateChange(async (event, session) => {
     setSession(session);
+    if (event === 'PASSWORD_RECOVERY') {
+      // Arrived via a reset link. Supabase has already established a
+      // recovery session, so SIGNED_IN may fire alongside this — mark the
+      // shell as built so it does not race in underneath the form.
+      hasBootstrapped = true;
+      buildSetPasswordView();
+      return;
+    }
+    if (event === 'USER_UPDATED' && session) {
+      // Password just set via recovery: now boot the real shell.
+      hasBootstrapped = false;
+      await bootAuthedShell();
+      navigate('dashboard');
+      return;
+    }
     if (event === 'SIGNED_IN' && session) {
       if (hasBootstrapped) return; // already built for this session — Supabase
       // can fire SIGNED_IN a second time on page load alongside the initial
