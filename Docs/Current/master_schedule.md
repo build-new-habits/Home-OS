@@ -110,6 +110,12 @@ Decide deliberately rather than defaulting.
    boundary. *(New — P5)*
 9. **File version headers increment within a session** when content changes,
    not only across days.
+10. **A control's boundary must clear 3:1** where nothing else identifies it.
+    Use `--control-border`, not `--color-border`, for anything interactive.
+    Container borders stay decorative. *(New — P5 audit)*
+11. **Compute contrast for all four theme combinations**, not just the
+    default. The 1.4.11 failure below sat undetected from Phase 2 because
+    only the default theme was ever checked by eye. *(New — P5 audit)*
 
 ## Tracked debt
 
@@ -119,5 +125,6 @@ Decide deliberately rather than defaulting.
 | Offline linked-row creation for repeatable chores | P4 | Open |
 | Phase 9 join: `chore_tasks` × `calendar_events`, large future-dated volumes | P4 | Open — address in the P9 brief |
 | Water glass size / daily target not configurable | P5 | Open — needs `user_settings` columns |
-| High-contrast + dusk theme contrast not computed | P5 | Open — coordinator to confirm in-browser |
+| High-contrast + dusk theme contrast | P5 | **Closed P5** — all four combinations computed |
+| Control-boundary contrast, 1.4.11 (pre-existing, P2) | P5 audit | **Closed P5** — `--control-border` |
 | GitHub token scoped to all 13 org repos | P5 | Open — narrow to `Home-OS` and rotate |

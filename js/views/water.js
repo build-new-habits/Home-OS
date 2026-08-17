@@ -8,7 +8,7 @@
 // target is not styled as a failure, and there is no streak.
 
 import { createCard } from '../components/card.js';
-import { announce, focusHeading } from '../lib/a11y.js';
+import { announce } from '../lib/a11y.js';
 import { todayIso, formatDateDisplay } from '../lib/dates.js';
 import { formatMl } from '../lib/units.js';
 import {
@@ -168,7 +168,6 @@ export function render(mountEl) {
   }
 
   paintTotal();
-  focusHeading(mountEl);
   load();
 
   return () => { destroyed = true; };

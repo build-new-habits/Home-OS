@@ -1,4 +1,28 @@
-/* css/components.css — 17 Aug 2026 v5 */
+/* css/components.css — 17 Aug 2026 v6 */
+/* v6: fixes an app-wide WCAG 1.4.11 (Non-text Contrast) failure that
+   predates Phase 5. Interactive controls — inputs, selects, textareas,
+   buttons, toggles, the notification switch, calendar days — were drawn
+   with `background: var(--color-surface)` on a card that is ALSO
+   --color-surface, so the ONLY thing marking them as controls was a
+   1px --color-border at 1.39:1 (default) / 1.42:1 (dusk). An empty text
+   input has no content of its own, so its boundary is the sole indicator
+   that a control is there at all — the canonical 1.4.11 failing case.
+
+   Control boundaries now use --control-border (an alias for
+   --color-text-muted): 6.54:1 default, 7.25:1 dusk, 14.16:1 / 16.83:1 in
+   the high-contrast themes. tokens.css is write-once and was NOT edited;
+   the alias is defined locally here.
+
+   Container boundaries (.card, fieldset, .bottom-nav, .data-table rules,
+   .trend-svg, .recurrence-preview) deliberately KEEP --color-border. Those
+   are decorative structure, not component identification, and 1.4.11 does
+   not apply to them — raising them too would make the whole UI read as
+   heavy boxes and lose the quiet feel the design is going for. */
+
+:root {
+  /* Alias, not a new design token — tokens.css stays untouched. */
+  --control-border: var(--color-text-muted);
+}
 /* v5: adds Phase 5 (weight + water) sections at the end. Everything
    above is unchanged. Focus rings are global in base.css and are not
    redefined here. No colour carries meaning on its own anywhere in
@@ -14,7 +38,7 @@
   min-width: var(--tap-min);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   background: var(--color-surface);
   color: var(--color-text);
   font-size: var(--text-base);
@@ -58,7 +82,7 @@
 .field select {
   min-height: var(--tap-min);
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
@@ -99,7 +123,7 @@ legend {
   min-height: var(--tap-min);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   background: var(--color-surface);
   cursor: pointer;
 }
@@ -121,7 +145,7 @@ legend {
   width: 48px;
   height: 28px;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   background: var(--color-neutral-chip);
   position: relative;
   cursor: pointer;
@@ -134,7 +158,7 @@ legend {
   width: 22px; height: 22px;
   border-radius: 50%;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   transition: transform var(--motion-normal) var(--motion-ease);
 }
 .switch-control[aria-checked="true"] {
@@ -328,7 +352,7 @@ legend {
   width: 100%;
   min-height: 4rem;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
@@ -383,7 +407,7 @@ details summary {
   width: 1.25rem;
   height: 1.25rem;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   flex-shrink: 0;
 }
 .colour-swatch-inline {
@@ -450,7 +474,7 @@ details summary {
   justify-content: center;
   gap: 2px;
   padding: var(--space-2);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--control-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);

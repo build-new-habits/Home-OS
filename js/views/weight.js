@@ -9,7 +9,7 @@
 // display unit and converts via lib/units.js before any write.
 
 import { createCard } from '../components/card.js';
-import { announce, focusHeading } from '../lib/a11y.js';
+import { announce } from '../lib/a11y.js';
 import { todayIso, formatDateDisplay } from '../lib/dates.js';
 import { formatWeight, formatWeightDelta, parseWeightToKg, kgToStoneLb } from '../lib/units.js';
 import { getSettings } from '../data/settings.js';
@@ -397,7 +397,6 @@ export function render(mountEl) {
     targetSection.appendChild(article);
   }
 
-  focusHeading(mountEl);
   loadAll();
 
   return () => { destroyed = true; };

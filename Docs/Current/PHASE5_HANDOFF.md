@@ -217,6 +217,53 @@ instructive: the rule was front-of-mind for the *feature* files and forgotten
 for files touched incidentally. The trigger is "did any precached file's
 **content** change", not "was this the main thing I was working on".
 
+## Post-build audit (same session)
+
+With Phase 6 gated on the smoke test, the remaining time went on closing
+tracked debt and auditing code not yet read.
+
+**Closed: theme contrast debt.** All four combinations (default/dusk ×
+standard/high) computed across all thirteen colour pairs the Phase 5 CSS
+relies on. Default and dusk pass; both high-contrast themes clear everything
+by a wide margin. This closes the "high-contrast + dusk not computed" item.
+
+**Found and fixed: app-wide WCAG 1.4.11 failure predating Phase 5.**
+Interactive controls — `.field input`, `.field select`, `textarea`, `.btn`,
+`.toggle-option`, `.switch-control` (and its thumb), `.calendar-day`,
+`.colour-swatch` — were drawn with `background: var(--color-surface)` inside
+a `.card` that is *also* `--color-surface`. The only thing marking them as
+controls was a 1px `--color-border` at **1.39:1** (default) / **1.42:1**
+(dusk), against a 3:1 requirement.
+
+An empty text input has no content of its own, so its boundary is the sole
+indicator that a control exists there — the canonical 1.4.11 failing case.
+The notification switch is worse: its off-state track is `--color-neutral-chip`
+at 1.2:1 against the card, and the thumb position *conveys state*.
+
+Fixed in `components.css` v6 via a local `--control-border` alias
+(→ `--color-text-muted`): **6.54:1** default, **7.25:1** dusk, 14.16:1 and
+16.83:1 high-contrast. `tokens.css` is write-once and was **not** edited.
+
+Container borders (`.card`, `fieldset`, `.bottom-nav`, `.data-table` rules,
+`.trend-svg`, `.recurrence-preview`, `.custom-amount`, `.dashboard-links a`)
+deliberately keep `--color-border`. Those are decorative structure rather
+than component identification, 1.4.11 does not apply, and raising them would
+make the whole UI read as heavy boxes.
+
+**This is a visible change** to every form, button and toggle in the app —
+the coordinator should eyeball it, not just pass the smoke test.
+
+**Cleanup:** `views/weight.js` and `views/water.js` were calling
+`focusHeading()` themselves, which `router.js` already does after every
+render. No other view does this. Removed to match the convention.
+
+**Audited clean:** `index.html` (lang, viewport, noscript), `app.js`
+(skip link, `<main id="app-main" tabindex="-1">`, landmarks), `router.js`
+(document title per route, `aria-busy`, focus on render, stale-render token),
+`liveRegion.js` (`.visually-hidden` confirmed defined in `base.css` — the
+region is genuinely hidden, not merely off-screen by accident), `config.js`
+(publishable key only, no secret).
+
 ## Integration points for later phases
 
 - **`offlineQueue.flush(applyFn, { tables })`** — every future data module
@@ -244,7 +291,8 @@ for files touched incidentally. The trigger is "did any precached file's
 | Offline linked-row creation for repeatable chores | Still open (Phase 4) |
 | Phase 9 dashboard join: `chore_tasks` × `calendar_events` | Still open |
 | Water glass size / daily target not user-configurable | New — needs `user_settings` columns |
-| High-contrast and dusk theme contrast not computed | New — coordinator to confirm in-browser |
+| High-contrast and dusk theme contrast | **Closed** — all four combinations computed and passing |
+| Control-boundary contrast (1.4.11) | **Closed** — `--control-border`, `components.css` v6 |
 
 ---
 

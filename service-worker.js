@@ -1,4 +1,4 @@
-// service-worker.js — 17 Aug 2026 v8
+// service-worker.js — 17 Aug 2026 v9
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
@@ -11,6 +11,10 @@
 // untouched, or install never re-runs and stale files keep being served
 // (see PHASE3_HANDOFF.md bug #3).
 //
+// v9: no path list change — bumped for the css/components.css v6 control-
+// border fix and the views/weight.js + views/water.js cleanup. Standing
+// rule 3 again: content changed, so the cache generation changes.
+//
 // v8: no path list change — bumped because js/data/settings.js and
 // js/views/settings.js changed content (change-password form). Standing
 // rule 3: bump on any precached *content* change or install never re-runs
@@ -18,7 +22,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v8';
+const CACHE_NAME = 'home-os-shell-v9';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
