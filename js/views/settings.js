@@ -1,4 +1,8 @@
-// js/views/settings.js — 18 Aug 2026 v4
+// js/views/settings.js — 18 Aug 2026 v5
+// v5: fixes a ReferenceError introduced in v4 — an el() helper was used
+// here that only exists in other views. This file builds nodes with
+// document.createElement directly; that idiom is kept rather than importing
+// a helper, so the file stays internally consistent.
 // v4: the change-password form now offers a reset-link route when the
 // current password is rejected. A magic-link user may have no password at
 // all, and Supabase returns the same 400 for 'wrong' and 'never set' — so
@@ -297,10 +301,10 @@ export function render(mountEl) {
     const confirmF = buildPasswordField({
       id: 'pw-confirm', label: 'Confirm new password', autocomplete: 'new-password'
     });
-    pwDetails.appendChild(el('p', {
-      class: 'field-hint',
-      text: 'If you signed in with a link and have never set a password, leave this and use the reset option below.'
-    }));
+    const pwIntro = document.createElement('p');
+    pwIntro.className = 'field-hint';
+    pwIntro.textContent = 'If you signed in with a link and have never set a password, leave this and use the reset option below.';
+    pwDetails.appendChild(pwIntro);
     pwDetails.append(currentF.wrap, newF.wrap, confirmF.wrap);
 
     // Always present, but only surfaced once it is actually relevant, so the

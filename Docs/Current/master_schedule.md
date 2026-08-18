@@ -128,6 +128,26 @@ Lesson: **a defensive setting that is never exercised is a bug waiting for
 the day the feature ships.** Phase 2 had no magic link and no reset, so
 nothing tested this flag for a month.
 
+## Verification gap found 18 Aug 2026 — `node --check` is not enough
+
+A `ReferenceError` (`el is not defined`) shipped to `main` and broke the
+settings screen. The pre-commit gate ran `node --check` on every changed
+file and passed it, because `node --check` only parses syntax — an undefined
+identifier is perfectly valid syntax and only fails when the line executes.
+The call sat inside a click-adjacent branch that nothing exercised before
+deploy.
+
+Cause: a helper (`el()`) was copied from `views/weight.js` into
+`views/settings.js`, which builds nodes with `document.createElement`
+directly and has no such helper.
+
+**Gate added:** every view is now rendered in jsdom against a stubbed
+Supabase client before commit, which executes the module top to bottom and
+surfaces exactly this class of error. Confirmed it catches the bug it was
+written for. Static syntax checks stay, but they are no longer the last word.
+
+Standing rule 12 below follows from this.
+
 ## Standing rules (apply to every later phase)
 
 1. **Constrain UI inputs to the schema** — enum/`CHECK` columns get a
@@ -154,6 +174,10 @@ nothing tested this flag for a month.
 11. **Compute contrast for all four theme combinations**, not just the
     default. The 1.4.11 failure below sat undetected from Phase 2 because
     only the default theme was ever checked by eye. *(New — P5 audit)*
+12. **Execute the code before committing it.** `node --check` proves syntax,
+    not that a module runs. Render each changed view in jsdom against a
+    stubbed client. Never copy a helper between files without confirming the
+    destination defines it. *(New — 18 Aug)*
 
 ## Tracked debt
 

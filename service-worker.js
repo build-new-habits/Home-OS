@@ -1,4 +1,4 @@
-// service-worker.js — 18 Aug 2026 v12
+// service-worker.js — 18 Aug 2026 v13
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
@@ -10,6 +10,10 @@
 // precached *content* change, even when this script's own logic is
 // untouched, or install never re-runs and stale files keep being served
 // (see PHASE3_HANDOFF.md bug #3).
+//
+// v13: no path change — bumped for the views/settings.js ReferenceError
+// fix. The broken file is precached, so without a bump the settings screen
+// would stay broken no matter what was deployed.
 //
 // v12: adds js/lib/net.js (offline + timeout guards). NEW path — must 200
 // or the entire precache install fails.
@@ -34,7 +38,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v12';
+const CACHE_NAME = 'home-os-shell-v13';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
