@@ -1,4 +1,11 @@
-// js/data/settings.js — 17 Aug 2026 v3
+// js/data/settings.js — 18 Aug 2026 v4
+// v4: changePassword() no longer assumes the account HAS a password. A user
+// who signed in by magic link may never have set one, so requiring the
+// current password locked out exactly the people who most needed to set it.
+// Supabase returns an identical 400 whether a password is wrong or was
+// never set, and exposes no reliable flag for 'has a password'. Rather than
+// ship a guess, the view offers sendPasswordReset() — a route through that
+// resolves both cases without needing to tell them apart.
 // v3: adds changePassword(). Requested out-of-band during the Phase 5
 // session; recorded in PHASE5_HANDOFF.md as an addition outside that
 // brief. No schema change — Supabase Auth owns credentials, not our tables.
@@ -108,6 +115,18 @@ export async function signOutUser() {
  * Returns the shared { ok, data|error } shape with a `code` on the failures
  * a view needs to tell apart, so the UI can point at the right field.
  */
+/** Emails a reset link, the route through for an account with no password. */
+export async function sendPasswordReset() {
+  const { data, error } = await supabase.auth.getUser();
+  if (error) return { ok: false, error };
+  const email = data && data.user && data.user.email;
+  if (!email) return { ok: false, code: 'no-session', error: new Error('No signed-in account found.') };
+  const redirectTo = new URL('./', window.location.href).href;
+  const { error: resetErr } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  if (resetErr) return { ok: false, error: resetErr };
+  return { ok: true, data: { email } };
+}
+
 export async function changePassword(currentPassword, newPassword) {
   if (!newPassword || newPassword.length < 8) {
     return { ok: false, code: 'too-short', error: new Error('New password must be at least 8 characters.') };
@@ -128,6 +147,9 @@ export async function changePassword(currentPassword, newPassword) {
     password: currentPassword
   });
   if (reauthErr) {
+    // Indistinguishable at the API level from a wrong password: Supabase
+    // returns the same 400 whether the password is wrong or was never set.
+    // The view offers the reset route for both, since it resolves either.
     return { ok: false, code: 'wrong-current', error: reauthErr };
   }
 

@@ -1,4 +1,4 @@
-// service-worker.js — 17 Aug 2026 v11
+// service-worker.js — 18 Aug 2026 v12
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
@@ -10,6 +10,9 @@
 // precached *content* change, even when this script's own logic is
 // untouched, or install never re-runs and stale files keep being served
 // (see PHASE3_HANDOFF.md bug #3).
+//
+// v12: adds js/lib/net.js (offline + timeout guards). NEW path — must 200
+// or the entire precache install fails.
 //
 // v11: no path change — bumped for the supabaseClient.js detectSessionInUrl
 // fix. This one matters more than most: the old client is precached, so
@@ -31,7 +34,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v11';
+const CACHE_NAME = 'home-os-shell-v12';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -51,6 +54,7 @@ const SHELL_FILES = [
   './js/lib/store.js',
   './js/lib/a11y.js',
   './js/lib/offlineQueue.js',
+  './js/lib/net.js',
   './js/lib/dates.js',
   './js/lib/units.js',
   './js/lib/rrule.js',

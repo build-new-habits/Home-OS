@@ -1,4 +1,10 @@
-// js/views/weight.js — 17 Aug 2026 v1
+// js/views/weight.js — 18 Aug 2026 v2
+// v2: entry unit is now chosen independently of display unit. v1 tied them
+// together, so someone whose scale reads in kg but who thinks in stone had
+// to convert by hand — the exact job this app should be doing. The choice is
+// a constrained radio group (standing rule 1: never free text for an enum),
+// defaults to the display preference, and is display-only: canonical kg is
+// still what reaches the database either way.
 // Weight tracker. Replaces the Phase 2 stub whole.
 //
 // Behavioural principle 1 (no shame): every reading is stated as a fact.
@@ -27,6 +33,37 @@ function el(tag, props = {}, children = []) {
   });
   children.forEach((c) => node.appendChild(c));
   return node;
+}
+
+/**
+ * Entry-unit chooser. A radio group rather than a select: two options, both
+ * worth seeing at once, and it stays operable by arrow keys. Wrapped in a
+ * fieldset so the group has an accessible name of its own.
+ */
+function buildUnitChoice(current, onChange) {
+  const fs = document.createElement('fieldset');
+  fs.className = 'unit-choice';
+  const legend = document.createElement('legend');
+  legend.textContent = 'Enter weight in';
+  fs.appendChild(legend);
+
+  [['kg', 'Kilograms'], ['stone_lb', 'Stone and pounds']].forEach(([value, label]) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'radio-row';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'weight-entry-unit';
+    input.id = `entry-unit-${value}`;
+    input.value = value;
+    input.checked = current === value;
+    input.addEventListener('change', () => { if (input.checked) onChange(value); });
+    const lab = document.createElement('label');
+    lab.setAttribute('for', `entry-unit-${value}`);
+    lab.textContent = label;
+    wrap.append(input, lab);
+    fs.appendChild(wrap);
+  });
+  return fs;
 }
 
 /** Labelled field. The unit is named in the label, not just the placeholder. */
@@ -208,6 +245,7 @@ export function render(mountEl) {
   mountEl.append(logSection, trendSection, targetSection);
 
   let unitPref = 'stone_lb';
+  let entryUnit = null;   // null until settings load, then defaults to unitPref
   let logs = [];
   let target = null;
 
@@ -219,6 +257,7 @@ export function render(mountEl) {
     if (settingsRes.ok && settingsRes.data) {
       unitPref = settingsRes.data.weight_unit_display || 'stone_lb';
     }
+    if (entryUnit === null) entryUnit = unitPref;
     if (logsRes.ok) logs = logsRes.data || [];
     if (targetRes.ok) target = targetRes.data;
     status.hidden = true;
@@ -236,7 +275,15 @@ export function render(mountEl) {
 
   function buildLogForm() {
     const { article, body, actions } = createCard({ title: 'Log a weight' });
-    const inKg = unitPref === 'kg';
+    const inKg = entryUnit === 'kg';
+
+    body.appendChild(buildUnitChoice(entryUnit, (value) => {
+      entryUnit = value;
+      paint();
+      // Keep focus on the control the user just operated.
+      const moved = document.getElementById(`entry-unit-${value}`);
+      if (moved) moved.focus();
+    }));
 
     const dateF = field('weight-date', 'Date', { type: 'date', value: todayIso() });
     body.appendChild(dateF.wrap);
@@ -288,6 +335,8 @@ export function render(mountEl) {
       }
       logs = logs.concat([{ log_date: dateF.input.value, weight_kg: kg }])
         .sort((a, b) => String(a.log_date).localeCompare(String(b.log_date)));
+      // Always confirm in the DISPLAY unit, so entering kg while displaying
+      // stone/lb visibly shows the conversion rather than echoing the input.
       announce(res.queued
         ? `${formatWeight(kg, unitPref)} saved on this device and will sync when you are back online.`
         : `${formatWeight(kg, unitPref)} logged for ${formatDateDisplay(dateF.input.value)}.`);
@@ -313,7 +362,8 @@ export function render(mountEl) {
 
   function buildTargetForm() {
     const { article, body, actions } = createCard({ title: 'Target' });
-    const inKg = unitPref === 'kg';
+    // Follows the same entry unit as the log form, so the two never disagree.
+    const inKg = entryUnit === 'kg';
     const hasLogs = logs.length > 0;
 
     if (target && target.target_weight_kg != null) {

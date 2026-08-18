@@ -1,4 +1,9 @@
-// js/views/water.js — 17 Aug 2026 v1
+// js/views/water.js — 18 Aug 2026 v2
+// v2: failures are now VISIBLE. v1 reported them only through announce(),
+// which writes to a visually-hidden live region — a sighted user saw the
+// total simply not move, with no indication why. Smoke test found exactly
+// that. Also shows a pending state while the write is in flight, so a slow
+// network reads as 'working' rather than 'broken'.
 // Water tracker. Replaces the Phase 2 stub whole.
 //
 // Behavioural principle 2 (friction): logging a glass is ONE tap from the
@@ -58,6 +63,23 @@ export function render(mountEl) {
   offlineNote.hidden = true;
   body.appendChild(offlineNote);
 
+  // Visible failure surface. role="status" rather than "alert": a queued
+  // write is not an emergency, and the wording stays neutral either way.
+  const errorNote = el('p', { class: 'field-error' });
+  errorNote.setAttribute('role', 'status');
+  errorNote.hidden = true;
+  body.appendChild(errorNote);
+
+  function showError(message) {
+    errorNote.textContent = message;
+    errorNote.hidden = false;
+    announce(message);
+  }
+  function clearError() {
+    errorNote.hidden = true;
+    errorNote.textContent = '';
+  }
+
   function paintTotal() {
     const glasses = Math.round((total / GLASS_ML) * 10) / 10;
     totalEl.textContent =
@@ -79,12 +101,16 @@ export function render(mountEl) {
   glassBtn.setAttribute('aria-label', `Log a glass of water, ${GLASS_ML} millilitres`);
 
   async function addWater(ml, sourceLabel) {
+    clearError();
     glassBtn.disabled = true;
+    const restoreLabel = glassBtn.textContent;
+    glassBtn.textContent = 'Saving…';
     const res = await logWater(ml, today);
     glassBtn.disabled = false;
+    glassBtn.textContent = restoreLabel;
     if (destroyed) return;
     if (!res.ok) {
-      announce('That did not save. Try again.');
+      showError('That did not save, and it has not been counted. Try again.');
       return;
     }
     total += ml;

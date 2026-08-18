@@ -1,4 +1,5 @@
-/* css/components.css — 17 Aug 2026 v6 */
+/* css/components.css — 18 Aug 2026 v7 */
+/* v7: adds .unit-choice / .radio-row for the weight entry-unit chooser. */
 /* v6: fixes an app-wide WCAG 1.4.11 (Non-text Contrast) failure that
    predates Phase 5. Interactive controls — inputs, selects, textareas,
    buttons, toggles, the notification switch, calendar days — were drawn
@@ -687,4 +688,46 @@ details summary {
 .view-status {
   color: var(--color-text-muted);
   font-size: var(--text-sm);
+}
+
+
+/* ============ Weight entry-unit chooser ============ */
+
+.unit-choice {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.unit-choice > legend {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 0 var(--space-2);
+}
+
+/* Whole row is the target, not just the 20px dot — the label is tied to the
+   input by `for`, so tapping anywhere in the row selects it. Height meets the
+   44px minimum (WCAG 2.5.8). */
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap-min);
+}
+
+.radio-row input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-accent);
+  flex: none;
+}
+
+.radio-row label {
+  flex: 1;
+  cursor: pointer;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding: var(--space-2) 0;
 }

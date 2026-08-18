@@ -1,7 +1,11 @@
-// js/views/settings.js — 17 Aug 2026 v3
+// js/views/settings.js — 18 Aug 2026 v4
+// v4: the change-password form now offers a reset-link route when the
+// current password is rejected. A magic-link user may have no password at
+// all, and Supabase returns the same 400 for 'wrong' and 'never set' — so
+// the only honest response is to offer the path that resolves both.
 // v3: adds a Change password form under Account. Requested out-of-band
 // during the Phase 5 session; logged in PHASE5_HANDOFF.md.
-import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword } from '../data/settings.js';
+import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword, sendPasswordReset } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
@@ -293,7 +297,35 @@ export function render(mountEl) {
     const confirmF = buildPasswordField({
       id: 'pw-confirm', label: 'Confirm new password', autocomplete: 'new-password'
     });
+    pwDetails.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'If you signed in with a link and have never set a password, leave this and use the reset option below.'
+    }));
     pwDetails.append(currentF.wrap, newF.wrap, confirmF.wrap);
+
+    // Always present, but only surfaced once it is actually relevant, so the
+    // common path stays a single button.
+    const resetRow = document.createElement('div');
+    resetRow.hidden = true;
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'btn btn-block';
+    resetBtn.textContent = 'Email me a reset link';
+    resetBtn.addEventListener('click', async () => {
+      resetBtn.disabled = true;
+      resetBtn.textContent = 'Sending…';
+      const res = await sendPasswordReset();
+      resetBtn.disabled = false;
+      resetBtn.textContent = 'Email me a reset link';
+      if (!res.ok) {
+        console.error('Password reset request failed:', res.error);
+        setFieldError(currentF, 'Could not send a reset link. Check your connection and try again.');
+        return;
+      }
+      announce('A reset link is on its way to your email address.');
+      showToast('Reset link sent');
+    });
+    resetRow.appendChild(resetBtn);
 
     const pwBtn = document.createElement('button');
     pwBtn.type = 'button';
@@ -326,7 +358,9 @@ export function render(mountEl) {
 
       if (!result.ok) {
         if (result.code === 'wrong-current') {
-          setFieldError(currentF, 'That is not your current password.');
+          setFieldError(currentF,
+            'That current password was not accepted. If you have never set one — for example if you always sign in with a link — use "Email me a reset link" below instead.');
+          resetRow.hidden = false;
           currentF.input.focus();
         } else if (result.code === 'too-short') {
           setFieldError(newF, 'New password must be at least 8 characters.');
@@ -349,6 +383,8 @@ export function render(mountEl) {
     });
 
     pwDetails.appendChild(pwBtn);
+    pwDetails.appendChild(resetRow);
+
     accountFieldset.appendChild(pwDetails);
 
     bodyContainer.appendChild(accountFieldset);

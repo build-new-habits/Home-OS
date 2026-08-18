@@ -1,4 +1,8 @@
-// js/data/water.js — 17 Aug 2026 v1
+// js/data/water.js — 18 Aug 2026 v2
+// v2: writes go through attemptWrite() (lib/net.js). Previously a tap made
+// with no connection could hang instead of failing, so the offline queue was
+// never reached and the UI sat mid-write until the network returned. See
+// lib/net.js header.
 // All Supabase access for water_logs. Shared data-access contract:
 // { ok, data|error } returns, error always checked, nothing thrown at views.
 //
@@ -13,6 +17,7 @@
 
 import { supabase } from '../supabaseClient.js';
 import { enqueue, flush, list as listQueued } from '../lib/offlineQueue.js';
+import { attemptWrite, isOffline } from '../lib/net.js';
 
 const TABLE = 'water_logs';
 
@@ -80,6 +85,9 @@ export async function listForDate(logDate) {
  */
 export async function totalForDate(logDate) {
   const queuedMl = await queuedMlForDate(logDate);
+  if (isOffline()) {
+    return { ok: true, data: { total: queuedMl, queuedMl, partial: true } };
+  }
   const { data, error } = await supabase
     .from(TABLE)
     .select('ml_logged')
@@ -102,8 +110,9 @@ export async function logWater(mlLogged, logDate) {
   }
   const payload = { log_date: logDate, ml_logged: Math.round(amount) };
   try {
-    const { data, error } = await supabase.from(TABLE).insert(payload).select().single();
-    if (error) throw error;
+    const data = await attemptWrite(() =>
+      supabase.from(TABLE).insert(payload).select().single()
+    );
     return { ok: true, data };
   } catch (err) {
     try {

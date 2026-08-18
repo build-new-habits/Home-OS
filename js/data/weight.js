@@ -1,4 +1,9 @@
-// js/data/weight.js — 17 Aug 2026 v1
+// js/data/weight.js — 18 Aug 2026 v2
+// v2: writes go through attemptWrite() (see lib/net.js) so an offline log
+// queues immediately instead of hanging. Weights are rounded to gram
+// precision before storage — a stone/lb conversion produced values like
+// 79.83235206067259, which is false precision from a scale reading to the
+// nearest pound.
 // All Supabase access for weight_logs. Follows the shared data-access
 // contract (GEMINI_BUILD_CONVENTIONS.md §2): every call checks `error` and
 // returns { ok, data|error }; views never see a thrown exception.
@@ -18,6 +23,7 @@
 
 import { supabase } from '../supabaseClient.js';
 import { enqueue, flush } from '../lib/offlineQueue.js';
+import { attemptWrite } from '../lib/net.js';
 
 const TABLE = 'weight_logs';
 
@@ -75,10 +81,13 @@ export async function listLogs() {
  * the view can update immediately (same shape as exercises.setDone).
  */
 export async function logWeight(weightKg, logDate) {
-  const payload = { log_date: logDate, weight_kg: weightKg };
+  // Gram precision. Storing 79.83235206067259 implies a measurement accuracy
+  // no bathroom scale has; it is an artefact of dividing pounds by 2.20462.
+  const payload = { log_date: logDate, weight_kg: Math.round(weightKg * 1000) / 1000 };
   try {
-    const { data, error } = await supabase.from(TABLE).insert(payload).select().single();
-    if (error) throw error;
+    const data = await attemptWrite(() =>
+      supabase.from(TABLE).insert(payload).select().single()
+    );
     return { ok: true, data };
   } catch (err) {
     try {
@@ -125,16 +134,15 @@ export async function setTarget(targetWeightKg, targetDate) {
   if (!recent || recent.length === 0) {
     return { ok: false, code: 'no-logs', error: new Error('Log a weight before setting a target.') };
   }
-  const patch = { target_weight_kg: targetWeightKg, target_date: targetDate || null };
+  const patch = {
+    target_weight_kg: Math.round(targetWeightKg * 1000) / 1000,
+    target_date: targetDate || null
+  };
   const targetId = recent[0].id;
   try {
-    const { data, error } = await supabase
-      .from(TABLE)
-      .update(patch)
-      .eq('id', targetId)
-      .select()
-      .single();
-    if (error) throw error;
+    const data = await attemptWrite(() =>
+      supabase.from(TABLE).update(patch).eq('id', targetId).select().single()
+    );
     return { ok: true, data };
   } catch (err) {
     try {
