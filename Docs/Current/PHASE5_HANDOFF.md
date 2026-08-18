@@ -264,6 +264,43 @@ render. No other view does this. Removed to match the convention.
 region is genuinely hidden, not merely off-screen by accident), `config.js`
 (publishable key only, no secret).
 
+## Smoke test round 1 — three defects, all fixed
+
+**Passed:** weight stored as canonical kg (verified in the table, not the
+UI); trend has a real text summary and data table; control borders read as
+clearer, not heavier.
+
+**Failed — offline water logging.** Reported as "nothing changed, but it did
+when I got back online". The queue was fine; it was never reached. A fetch
+with no connection does not reliably fail fast — on mobile it hangs until
+the network returns and the parked request then succeeds. Code that queues
+only in a `.catch()` therefore never queues.
+
+Fixed in two stages, and the first stage was not good enough:
+1. `lib/net.js` added `isOffline()` and `withTimeout()` so a stalled write
+   fails in ~6s instead of never.
+2. That still awaited the network before moving the total, so a tap showed
+   "Saving…" with the button **disabled** until it resolved — you could log
+   one glass offline and were then stuck. Reported back as "this is fine";
+   it was not, and was not recorded as a pass.
+
+**`views/water.js` v3 — logging is now optimistic.** The tap is counted
+immediately and the write happens behind it, because the queue already
+guarantees durability. The only real question was whether the UI should
+wait, and it should not. Verified: total moves 2ms after the tap, button
+never disables, three offline taps all counted and all three durably
+queued. If a write fails outright the count is rolled back and said so
+plainly — a silently wrong total is worse than a visible failure.
+
+**Design note for later phases:** any one-tap logging control should follow
+this shape. Awaiting a network round trip before acknowledging a tap defeats
+the point of the offline queue and fails hardest exactly where the app is
+most needed.
+
+**Also fixed this round:** entry unit decoupled from display unit (enter kg,
+read stone/lb); weights rounded to gram precision; password change no longer
+blocked for magic-link users who may have no password at all.
+
 ## Integration points for later phases
 
 - **`offlineQueue.flush(applyFn, { tables })`** — every future data module

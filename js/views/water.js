@@ -1,4 +1,16 @@
-// js/views/water.js — 18 Aug 2026 v2
+// js/views/water.js — 18 Aug 2026 v3
+// v3: logging is OPTIMISTIC. v2 still awaited the network before moving the
+// total, so a tap with no connection showed 'Saving…' with the button
+// disabled until the request resolved — meaning you could log one glass
+// offline and then were stuck. That fails the one-tap premise exactly when
+// it matters most.
+//
+// Now the tap is counted immediately and the write happens behind it. This
+// is safe because the offline queue already guarantees durability: the only
+// question was ever whether the UI should wait, and it should not. If the
+// write ultimately fails outright the count is rolled back and said so
+// plainly — a silently wrong total would be worse than a visible failure.
+//
 // v2: failures are now VISIBLE. v1 reported them only through announce(),
 // which writes to a visually-hidden live region — a sighted user saw the
 // total simply not move, with no indication why. Smoke test found exactly
@@ -36,6 +48,7 @@ export function render(mountEl) {
   const today = todayIso();
   let total = 0;
   let partial = false;
+  let inFlight = 0;   // writes still settling; suppresses reconciliation races
 
   mountEl.appendChild(el('h1', { text: 'Water' }));
 
@@ -88,7 +101,10 @@ export function render(mountEl) {
     barFill.style.width = `${pct}%`;
     offlineNote.hidden = !partial;
     if (partial) {
-      offlineNote.textContent = 'Showing what is saved on this device. It will sync when you are back online.';
+      // Wording matters: the total IS correct, it just is not uploaded yet.
+      // "showing what is saved on this device" would imply something is
+      // missing from the number, which would read as a fault.
+      offlineNote.textContent = 'Some of today\'s total is saved on this device only. It will upload when you are back online.';
     }
   }
 
@@ -100,28 +116,41 @@ export function render(mountEl) {
   });
   glassBtn.setAttribute('aria-label', `Log a glass of water, ${GLASS_ML} millilitres`);
 
-  async function addWater(ml, sourceLabel) {
+  function addWater(ml) {
     clearError();
-    glassBtn.disabled = true;
-    const restoreLabel = glassBtn.textContent;
-    glassBtn.textContent = 'Saving…';
-    const res = await logWater(ml, today);
-    glassBtn.disabled = false;
-    glassBtn.textContent = restoreLabel;
-    if (destroyed) return;
-    if (!res.ok) {
-      showError('That did not save, and it has not been counted. Try again.');
-      return;
-    }
+
+    // Count it now. The button is never disabled, so repeated taps all land.
     total += ml;
-    partial = partial || !!res.queued;
+    inFlight += 1;
     paintTotal();
-    announce(res.queued
-      ? `${formatMl(ml)} logged on this device, ${formatMl(total)} of ${formatMl(DAILY_TARGET_ML)} today. It will sync when you are back online.`
-      : `${formatMl(ml)} logged, ${formatMl(total)} of ${formatMl(DAILY_TARGET_ML)} today.`);
+    announce(`${formatMl(ml)} logged, ${formatMl(total)} of ${formatMl(DAILY_TARGET_ML)} today.`);
+
+    // Sync behind the UI. Deliberately not awaited.
+    logWater(ml, today)
+      .then((res) => {
+        inFlight -= 1;
+        if (destroyed) return;
+        if (!res.ok) {
+          // Neither stored nor queued — the only case where the count is wrong.
+          total -= ml;
+          paintTotal();
+          showError(`That ${formatMl(ml)} could not be saved and has not been counted. Tap again to retry.`);
+          return;
+        }
+        if (res.queued) partial = true;
+        paintTotal();
+      })
+      .catch((err) => {
+        inFlight -= 1;
+        if (destroyed) return;
+        console.error('Unexpected error logging water:', err);
+        total -= ml;
+        paintTotal();
+        showError(`That ${formatMl(ml)} could not be saved and has not been counted. Tap again to retry.`);
+      });
   }
 
-  glassBtn.addEventListener('click', () => addWater(GLASS_ML, 'glass'));
+  glassBtn.addEventListener('click', () => addWater(GLASS_ML));
   actions.appendChild(glassBtn);
 
   // ---- Custom amount, behind an expander ----
@@ -158,7 +187,7 @@ export function render(mountEl) {
     }
     customErr.hidden = true;
     customInput.removeAttribute('aria-invalid');
-    await addWater(Math.round(ml), 'custom');
+    addWater(Math.round(ml));
     customInput.value = '';
   });
 
@@ -183,7 +212,9 @@ export function render(mountEl) {
   async function load() {
     const totals = await totalForDate(today);
     if (destroyed) return;
-    if (totals.ok && totals.data) {
+    // Only adopt the server figure when nothing is still settling, otherwise
+    // a slow read could overwrite a tap the user has already seen counted.
+    if (totals.ok && totals.data && inFlight === 0) {
       total = totals.data.total;
       partial = totals.data.partial;
     }
@@ -193,8 +224,24 @@ export function render(mountEl) {
     if (rows.ok) paintList(rows.data);
   }
 
+  // Reconnection: data/water.js flushes the queue on the same event, so wait
+  // a moment for that to settle before re-reading, otherwise the totals come
+  // back mid-flush and the 'will sync' note lingers after it has synced.
+  let reconcileTimer = null;
+  function onOnline() {
+    clearTimeout(reconcileTimer);
+    reconcileTimer = setTimeout(() => {
+      if (!destroyed) load();
+    }, 1200);
+  }
+  window.addEventListener('online', onOnline);
+
   paintTotal();
   load();
 
-  return () => { destroyed = true; };
+  return () => {
+    destroyed = true;
+    clearTimeout(reconcileTimer);
+    window.removeEventListener('online', onOnline);
+  };
 }
