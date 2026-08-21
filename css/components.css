@@ -1,4 +1,11 @@
-/* css/components.css — 18 Aug 2026 v7 */
+/* css/components.css — 21 Aug 2026 v8 */
+/* v8: adds the Phase 6 sections at the end — .btn-small, the weekly meal
+   plan table, ingredient rows, and the scanner dialog. Everything above is
+   unchanged; the file was rewritten whole and diffed against v7 to prove
+   nothing was dropped (standing rule 2). Two new bare controls appear this
+   phase (.plan-serves-input and the ingredient quantity input); neither sits
+   inside a .field, so both carry --control-border explicitly rather than
+   inheriting nothing (standing rule 10). */
 /* v7: adds .unit-choice / .radio-row for the weight entry-unit chooser. */
 /* v6: fixes an app-wide WCAG 1.4.11 (Non-text Contrast) failure that
    predates Phase 5. Interactive controls — inputs, selects, textareas,
@@ -730,4 +737,224 @@ details summary {
   font-size: var(--text-base);
   color: var(--color-text);
   padding: var(--space-2) 0;
+}
+
+
+/* ============ Phase 6: shared small control ============ */
+
+/* Secondary actions inside dense rows (a plan cell, an ingredient line).
+   Smaller than .btn but still 36px, comfortably over the WCAG 2.2 target
+   minimum of 24x24 (2.5.8). The 44px floor is reserved for daily one-tap
+   actions — adding a meal to next Thursday is not one of those. Sibling
+   targets are separated by --space-2 so the spacing exception is not being
+   leaned on either way. */
+.btn-small {
+  min-height: 36px;
+  min-width: 36px;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/* ============ Phase 6: weekly meal plan ============ */
+
+/* Focusable scroll container: when 5 columns overflow a narrow screen the
+   table must still be scrollable from the keyboard, which needs a real
+   tabindex on a labelled region (markup side) and a scroll axis here. */
+.plan-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-4);
+}
+
+.plan-table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+/* Decorative structure, not component identification — 1.4.11 does not
+   apply, so these keep --color-border like every other container rule. */
+.plan-table th,
+.plan-table td {
+  border: 1px solid var(--color-border);
+  padding: var(--space-2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.plan-table thead th {
+  background: var(--color-neutral-chip);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.plan-table tbody th {
+  background: var(--color-neutral-chip);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* A neutral statement of fact, never a warning (principle 1). */
+.plan-empty {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.plan-entries {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.plan-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.plan-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.plan-entry-name {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.plan-entry-serves {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Not inside a .field, so it needs its own control boundary. --control-border
+   rather than --color-border: an empty number input has no content of its
+   own, so the boundary is the only thing marking it as a control (1.4.11). */
+.plan-serves-input {
+  width: 5rem;
+  min-height: 36px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+/* ============ Phase 6: meals and ingredients ============ */
+
+.ingredient-list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ingredient-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ingredient-row:last-child {
+  border-bottom: none;
+}
+
+.ingredient-name {
+  flex: 1 1 8rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Same reasoning as .plan-serves-input — a bare control needs a 3:1 boundary. */
+.ingredient-row input[type="number"] {
+  width: 5.5rem;
+  min-height: 36px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* The unit is real text next to the figure, never an icon or a colour. */
+.ingredient-unit {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.add-ingredient {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.macro-list {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+/* ============ Phase 6: foods and the scanner ============ */
+
+.scan-actions {
+  margin-bottom: var(--space-4);
+}
+
+.food-form {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.food-form > summary {
+  cursor: pointer;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.scanner-dialog {
+  max-width: 480px;
+}
+
+/* The viewfinder is aria-hidden in the markup: it carries nothing without
+   sight, and .scanner-status below it holds the entire state as text. */
+.scanner-video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-neutral-chip);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+}
+
+.scanner-status {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  min-height: 3rem;
 }

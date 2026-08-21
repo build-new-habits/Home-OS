@@ -1,4 +1,4 @@
-// service-worker.js — 18 Aug 2026 v14
+// service-worker.js — 21 Aug 2026 v15
 // Precaches only real Home-OS shell files (behavioural principle 10:
 // every daily-use screen must open offline). No path from any other
 // project belongs in this list — ever.
@@ -10,6 +10,17 @@
 // precached *content* change, even when this script's own logic is
 // untouched, or install never re-runs and stale files keep being served
 // (see PHASE3_HANDOFF.md bug #3).
+//
+// v15 (Phase 6): SIX new paths — js/lib/barcode.js, js/lib/openFoodFacts.js,
+// js/vendor/zxing-upcean.js, js/data/foods.js, js/data/meals.js and
+// js/data/mealPlan.js. js/views/meals.js was already listed as a Phase 2
+// stub, so only its content changed. Every new path must return 200 or the
+// whole precache install fails silently and the shell stays on v14.
+//
+// zxing-upcean.js is precached even though it is dynamically imported and
+// most devices never load it: the fallback exists FOR the offline case, and
+// an engine fetched on demand from a network that is not there is no
+// fallback at all.
 //
 // v14: no path change — bumped for views/water.js v3 (optimistic logging).
 //
@@ -40,7 +51,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v14';
+const CACHE_NAME = 'home-os-shell-v15';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -54,6 +65,7 @@ const SHELL_FILES = [
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
+  './js/vendor/zxing-upcean.js',
   './js/app.js',
   './js/router.js',
   './js/routes.js',
@@ -64,12 +76,17 @@ const SHELL_FILES = [
   './js/lib/dates.js',
   './js/lib/units.js',
   './js/lib/rrule.js',
+  './js/lib/barcode.js',
+  './js/lib/openFoodFacts.js',
   './js/data/settings.js',
   './js/data/exercises.js',
   './js/data/chores.js',
   './js/data/calendar.js',
   './js/data/weight.js',
   './js/data/water.js',
+  './js/data/foods.js',
+  './js/data/meals.js',
+  './js/data/mealPlan.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',

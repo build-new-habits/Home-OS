@@ -1,4 +1,9 @@
-// js/lib/offlineQueue.js — 17 Aug 2026 v2
+// js/lib/offlineQueue.js — 21 Aug 2026 v3
+// v3: openDb() no longer memoises a REJECTED promise. Found by the Phase 6
+// render gate, which runs in jsdom where indexedDB is absent: the first
+// failure stuck, and every later queue call for the rest of the session
+// reported that same original error. In a browser the equivalent is one
+// transient open failure permanently disabling offline writes. See openDb().
 // Offline write queue (behavioural principle 10).
 //
 // v2: flush() gained an optional table filter. Previously flush(applyFn)
@@ -41,6 +46,18 @@ function openDb() {
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
   });
+  // v3: a FAILED open must not be memoised. Without this, one transient
+  // failure (private browsing, storage pressure, a blocked upgrade) leaves
+  // dbPromise as a permanently rejected promise, so every later enqueue,
+  // list and flush fails for the rest of the session with the SAME stale
+  // error — the queue is silently dead and an offline tap gets rolled back
+  // instead of being stored. Clearing it lets the next call try again.
+  //
+  // Attaching .catch() here also means the rejection is always handled, so
+  // a caller that never awaits cannot raise an unhandled rejection. Callers
+  // in the same tick still share (and fail on) this attempt; the retry
+  // happens on the next one, which is the intended behaviour.
+  dbPromise.catch(() => { dbPromise = null; });
   return dbPromise;
 }
 
