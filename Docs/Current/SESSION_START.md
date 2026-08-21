@@ -1,4 +1,4 @@
-# Home-OS — Phase 6 session start
+# Home-OS — session start
 
 Paste `SESSION_START.md` (or the short version below) into a new chat.
 
@@ -17,12 +17,12 @@ Paste `SESSION_START.md` (or the short version below) into a new chat.
 > **Read `Docs/Current/` in the repo before doing anything else.** It is the
 > canonical, versioned project documentation and it is NEWER than the copies
 > in this project's knowledge. Where they disagree, the repo wins. Start
-> with `master_schedule.md`, then `phase6_build_brief.md`, then
-> `PHASE5_HANDOFF.md`, then `schema.md` and `GEMINI_BUILD_CONVENTIONS.md`.
+> with `master_schedule.md`, then the newest `PHASEn_HANDOFF.md`, then
+> `schema.md` and `GEMINI_BUILD_CONVENTIONS.md`.
 >
-> Phase 5 is cleared. **Phase 6 (meal planner + barcode) is active and its
-> brief is written.** Resolve the open question at the end of that brief,
-> then build.
+> Phases 1–5 are cleared. **Phase 6 is built and awaiting my smoke test.**
+> Do not start Phase 7 until I have cleared Phase 6 — if the smoke test
+> found problems, fixing those is the job.
 >
 > Read existing code before extending it — every significant defect this
 > project has hit was found that way. Do not trust my summary of the code,
@@ -43,14 +43,22 @@ worth more than any amount of copied context.
 
 ---
 
-## Current state, 18 Aug 2026
+## Current state, 21 Aug 2026
 
-- `main` @ `b6c114b`. Service worker cache **`home-os-shell-v14`**.
-- Phases 1–5 complete and cleared. Phase 6 active, brief written.
-- 43 precache paths. Precache is all-or-nothing — every new path must 200.
+- `main` @ `4c7adbc`. Service worker cache **`home-os-shell-v15`**.
+- Phases 1–5 complete and cleared. **Phase 6 built, awaiting smoke test.**
+- **49 precache paths.** Precache is all-or-nothing — every new path must
+  200. Before any Phase 6 testing, hard-refresh and confirm Cache Storage
+  shows `v15` with 49 entries and that `v14` is gone.
 - Supabase project `vkjwwnjhizrlqcovpdco` (EU). **Free tier: it pauses after
   about a week idle.** A paused project presents as `Failed to fetch`, or
   as Supabase's own `error 111` page. Check this before debugging code.
+- **The verification harness is not in the repo.** The render gate, the
+  behavioural tests, the queue tests and the contrast maths were built in
+  the session sandbox and do not survive it. A new session rebuilding them
+  should read the "Verification performed" section of `PHASE6_HANDOFF.md`
+  first — it says what each one asserts and, more usefully, which real bugs
+  each was proven to catch.
 
 ## Gotchas that have already cost time
 
@@ -77,6 +85,17 @@ worth more than any amount of copied context.
 8. **`--control-border`, not `--color-border`**, for interactive boundaries.
 9. **Cross-project contamination:** the PAT grants admin on 13 repos.
    Only ever touch `Home-OS`.
+10. **A memoised promise must not cache a rejection.** `openDb()` did, and
+    one transient IndexedDB failure disabled offline writes for the whole
+    session. Fixed in `offlineQueue.js` v3 — but check for the pattern
+    anywhere else a promise is cached.
+11. **A UPC-A barcode decodes to TWELVE digits, not thirteen.** Both
+    scanner engines do this. `normaliseBarcode()` in `lib/barcode.js` is the
+    only supported route from a raw scan to a stored barcode; bypass it and
+    the same product produces two rows.
+12. **The vendored scanner reads UPC/EAN only** — deliberately, to keep it
+    at 58 KB rather than 406 KB. It will not read QR, Code 128 or
+    DataMatrix. Rebuild from the real package if that is ever needed.
 
 ## The honest bit
 
@@ -90,9 +109,27 @@ Graeme's call on scope is final; do not expand a phase's scope without
 asking. Present decisions as made, not as menus — but flag genuine
 uncertainty rather than guessing.
 
-## Two decisions outstanding
+## Decisions
 
-1. Whether Phase 6 runs in this chat or a separate builder chat. Direct repo
-   access has weakened the original case for separation.
-2. Whether to upgrade the Supabase project off the free tier. Barcode work
-   means heavy iteration, and a mid-session pause will waste time.
+**Settled 21 Aug:** phases run in the architect chat, not a separate builder
+chat. The case for separation was that a builder needed files pasted to it;
+that is no longer how the work happens, and reading the repo directly is what
+finds defects. Recorded in `master_schedule.md` v8.
+
+**Still outstanding — the coordinator's call:** whether to upgrade the
+Supabase project off the free tier. It costs money, which is why it has not
+been decided here. It matters most during heavy iteration, where a mid-
+session pause presents as `Failed to fetch` and wastes time looking for a
+bug that is not there.
+
+## What Phase 6 added that later phases should reuse
+
+- `computeMacros()` in `data/meals.js` is **pure** — Phase 9's dashboard
+  should call it, not re-implement the maths.
+- `DAYS` and `SLOTS` in `data/mealPlan.js` are the canonical enum values and
+  match the CHECK constraints. Import them; do not re-declare.
+- `findByBarcode()` and `normaliseBarcode()` are reusable by Phase 7's
+  pantry unchanged. `countFoodDependents()` already counts `pantry_stock`
+  and `shopping_list_items`, so Phase 7 inherits a correct delete confirm.
+- `listIngredients()` with no argument fetches every meal's ingredients in
+  ONE query — use `groupByMeal()` rather than N+1.

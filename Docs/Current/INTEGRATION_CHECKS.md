@@ -127,29 +127,77 @@ This is the one that everything inherits from. Five minutes here saves days.
 - *Ignore:* graph aesthetics; sub-gram rounding.
 
 ## Phase 6 — Meals + barcode
-- [ ] Scan a real barcode → food created with `source: 'openfoodfacts'`,
-      macros populated where the product has them.
-- [ ] Unknown barcode → manual form opens pre-filled with the barcode.
-- [ ] Camera permission denied → manual entry still fully usable, no repeat
-      prompt, no scolding.
-- [ ] Meal macros match a hand calculation; a meal containing a food with
-      null macros reports **incomplete**, not a wrong total.
-- [ ] `serves_override` changes per-serving figures without altering
-      `meals.default_serves`.
-- [ ] Deleting a food used in a meal reports the dependent count and is
-      refused cleanly (no raw FK error).
-- [ ] Weekly plan navigable by keyboard; announces day and slot.
-- *Ignore:* Open Food Facts data quality; scanner framing aesthetics.
 
-## Phase 6 — original notes
-- [ ] Scan on a supported browser creates a food (`source=openfoodfacts`);
-      manual fallback works when not found or camera denied.
-- [ ] Meal macros compute from ingredients.
-- [ ] `serves_override` scales quantities for that planned instance **without
-      re-entering ingredients** (principle 5); base `default_serves` unchanged.
-- [ ] Deleting a food used in a meal → confirm with meal count (restrict).
-- *Ignore:* Open Food Facts data gaps for obscure products (that's their data,
-  not your bug) — as long as the manual path catches it.
+Supersedes the two earlier Phase 6 blocks (the brief's list and the original
+notes), which are merged here. Priority checks are **#3 and #6** — the
+duplicate path and the restrict delete are the two places this phase can
+quietly corrupt data rather than merely misbehave.
+
+**Before testing:** hard-refresh and confirm Cache Storage shows
+`home-os-shell-v15` with **49 entries**, and that `v14` is gone. Six paths are
+new, and precache is all-or-nothing — if the count is wrong, nothing else
+below is meaningful.
+
+### Scanning
+- [ ] Scan a real product barcode → a food is created with
+      `source: 'openfoodfacts'` and macros populated where the product has
+      them. **Check the row in Supabase, not just the screen.**
+- [ ] Unknown barcode → the manual form opens **pre-filled with the barcode**
+      and says so. No dead end.
+- [ ] Camera permission denied → manual entry still fully usable, the button
+      relabels, and nothing prompts again on its own. No scolding.
+- [ ] Scan a **UPC-A** product (a 12-digit barcode, common on US goods) →
+      the stored barcode is the 13-digit form with a leading zero. This is
+      the case that produces duplicates if normalisation is wrong.
+- [ ] Cancel mid-scan, and separately navigate away mid-scan → the camera
+      light goes **off** both times.
+
+### Duplicates (priority)
+- [ ] Scan the same product twice → the second scan offers the food you
+      already have rather than silently creating a second row. Choosing
+      "Add a separate entry" is still possible and still works.
+- [ ] Go offline, scan and save a food, then scan the same barcode again
+      **while still offline** → it recognises the one waiting to upload.
+
+### Macros
+- [ ] Meal macros match a hand calculation. Take a meal with two known
+      ingredients and check it on paper: `sum(quantity_g / 100 × per_100g)`.
+- [ ] A meal containing a food with null macros reports **"N of M
+      ingredients have no nutrition data"** and names them — not a wrong
+      total, and not zero.
+- [ ] A food with a genuine **zero** (water, protein 0) is treated as known,
+      not as missing.
+- [ ] `serves_override` changes the per-serving figures for that planned
+      instance only, **without** altering `meals.default_serves` — confirm
+      the meal row in Supabase is untouched (principle 5).
+
+### Deletes (priority)
+- [ ] Deleting a food used in a meal reports the dependent count and is
+      refused cleanly — **no raw foreign-key error**.
+- [ ] Deleting a meal that is in the weekly plan reports how many times it
+      is planned and refuses.
+- [ ] Deleting a meal that is **not** planned names its ingredients as
+      cascading, and the foods themselves survive.
+
+### The weekly plan
+- [ ] Navigable by keyboard end to end; each cell button announces **day and
+      meal time**, not just "Add".
+- [ ] The plan table is reachable and scrollable by keyboard when it
+      overflows a narrow screen.
+- [ ] Empty cells read "Nothing planned" as text — neutral, not a warning.
+
+### Offline
+- [ ] Offline: adding a **food** works and appears under "waiting to
+      upload"; it is **not** offered in ingredient pickers until it syncs.
+- [ ] Offline: adding a meal or a plan entry says plainly that it needs a
+      connection. It must not fail silently.
+- [ ] Reconnect → the queued food uploads, moves out of "waiting to upload",
+      and becomes available as an ingredient. IndexedDB is empty afterwards.
+
+- *Ignore:* Open Food Facts data quality and gaps for obscure products
+  (their data, not our bug) as long as the manual path catches it; scanner
+  framing aesthetics; the fallback engine not reading QR or Code 128 — it is
+  deliberately UPC/EAN only.
 
 ## Phase 7 — Pantry + shopping
 - [ ] Generate the list → it lists **only the shortfall** (plan needs minus

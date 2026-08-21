@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-17 Aug 2026 v7
+21 Aug 2026 v8
 
-Supersedes v6. Older versions live in `Docs/Archive/`.
+Supersedes v7. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -15,7 +15,7 @@ All in `Docs/Current/`:
 - `REPO_STRUCTURE.md` — fixed repo layout.
 - `INTEGRATION_CHECKS.md` — per-phase seam tests.
 - `BUILD_PROCESS_CONTROL.md`, `BUILDER_CHAT_PREAMBLE.md` — the loop.
-- `PHASE2_HANDOFF.md` … `PHASE5_HANDOFF.md` — records later phases read for
+- `PHASE2_HANDOFF.md` … `PHASE6_HANDOFF.md` — records later phases read for
   the contracts they wire into.
 - `phaseN_build_brief.md` — the task for phase N.
 
@@ -28,14 +28,15 @@ All in `Docs/Current/`:
 | 3 | Exercise cards + logging | **Complete** | phase3_build_brief.md |
 | 4 | Chores: projects, tasks, calendar, recurrence | **Complete** | phase4_build_brief.md |
 | 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
-| 6 | Meal planner + barcode scanning | **Active** | phase6_build_brief.md |
+| 6 | Meal planner + barcode scanning | **Built — awaiting smoke test** | phase6_build_brief.md |
 | 7 | Pantry stock + shopping list | Ready | to write |
 | 8 | Holidays + work-location calendar | Ready | to write |
 | 9 | Dashboard | Ready | to write |
 | 10 | Notifications (opt-in, per-type) | Ready | to write |
 
-Phase 5 cleared 18 Aug 2026 after three rounds of smoke testing. Phase 6 is
-active; its brief is written. Phase 7's brief is gated on Phase 6 clearing.
+Phase 5 cleared 18 Aug 2026 after three rounds of smoke testing. Phase 6 was
+built 21 Aug and is **awaiting the coordinator's smoke test** — built is not
+cleared. Phase 7's brief is gated on Phase 6 clearing.
 
 ## Completion log
 
@@ -81,6 +82,34 @@ device, not by any check run before commit.** The gates were strengthened
 each round (rules 10–12), but the smoke test remains the thing that finds
 what the gates do not.
 
+**Phase 6 — Meals + barcode.** Built 21 Aug, commit `4c7adbc`. Awaiting
+smoke test. Full record in `PHASE6_HANDOFF.md`.
+
+*The open question resolved.* `foods.barcode` has no unique constraint and
+the schema is frozen, so de-duplication is an application concern.
+`findByBarcode()` looks up before every insert; that read **is** correct
+under RLS, because `using (auth.uid() = user_id)` scopes it to exactly the
+rows where a duplicate matters. It is not sufficient alone, though — a food
+created offline is invisible to any query, so the queue is checked too. On a
+match the user chooses; nothing is silently de-duplicated or duplicated.
+
+*Defect found in cleared code and fixed.* `offlineQueue.js` memoised a
+**rejected** `openDb()` promise, so one transient IndexedDB failure left the
+queue silently dead for the rest of the session — offline writes rolled back
+instead of stored, on the exact path that exists to prevent that. Found by
+the new render gate; proven by reverting the fix in a throwaway copy and
+watching the retry test fail. `v3`.
+
+*Two findings from executing the scanner before building on it.* A UPC-A
+symbol decodes to twelve digits, not the thirteen-digit EAN-13 form the
+databases key on — unnormalised, that is a duplicate straight past the check
+above. And the full scanner library bundles to 406 KB; only the UPC/EAN
+readers are needed, at 58 KB. Both are recorded in the handoff.
+
+*Also this phase:* `countFoodDependents()` counts all three
+restrict-referencing tables rather than only meals, because counting only
+meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
 ## Process change — direct repo access (from 17 Aug 2026)
 
 The coordinator supplied a GitHub token, so the architect chat now reads the
@@ -102,9 +131,12 @@ What this does **not** change:
   testing in a real browser against real Supabase.
 - Phases are still gated. Built ≠ cleared.
 
-**Open question for Phase 6:** whether separate builder chats are still
-worth the overhead now that the architect chat can read and commit directly.
-Decide deliberately rather than defaulting.
+**Open question for Phase 6 — decided 21 Aug: keep it combined.** The case
+for a separate builder chat was that a builder needed files pasted to it.
+That is no longer how the work happens, and reading the repo directly is now
+the thing that finds defects — it found one in cleared code again this phase.
+Separation would reintroduce the guessing it was meant to prevent. Revisit
+only if a phase is large enough that context becomes the binding constraint.
 
 ## Write-once rule amended (17 Aug 2026)
 
@@ -195,6 +227,20 @@ Standing rule 12 below follows from this.
     stubbed client. Never copy a helper between files without confirming the
     destination defines it. *(New — 18 Aug)*
 
+13. **Vendor the narrowest thing that works.** The full scanner library is
+    406 KB because one convenience class pulls in every 1D format; the four
+    product formats need 58 KB. Check what a dependency actually costs before
+    precaching it, and record the narrowing so a later phase does not assume
+    capabilities that were deliberately left out. *(New — P6)*
+14. **Execute a third-party decoder against known input before building on
+    it.** Running the scanner over synthetic EAN-13 rasters in Node exposed
+    that UPC-A returns twelve digits rather than thirteen — a silent
+    duplicate-row bug that no amount of reading the docs would have surfaced.
+    *(New — P6)*
+15. **A memoised promise must not cache a rejection.** `openDb()` did, and
+    one transient failure disabled offline writes for the whole session.
+    Anywhere a promise is cached for reuse, clear it on failure. *(New — P6)*
+
 ## Tracked debt
 
 | Item | Origin | Status |
@@ -206,3 +252,6 @@ Standing rule 12 below follows from this.
 | High-contrast + dusk theme contrast | P5 | **Closed P5** — all four combinations computed |
 | Control-boundary contrast, 1.4.11 (pre-existing, P2) | P5 audit | **Closed P5** — `--control-border` |
 | GitHub token scoped to all 13 org repos | P5 | Open — narrow to `Home-OS` and rotate |
+| Offline queue permanently dead after one failed IndexedDB open | P2 (found P6) | **Closed P6** — `offlineQueue.js` v3 |
+| Vendored scanner reads UPC/EAN only, not QR or Code 128 | P6 | Open by design — rebuild from the package if a later phase needs more |
+| No `User-Agent` sent to Open Food Facts (browsers forbid it) | P6 | Open — unfixable from a browser, documented in the module |
