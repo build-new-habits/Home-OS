@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v9
+21 Aug 2026 v10
 
-Supersedes v8. Older versions live in `Docs/Archive/`.
+Supersedes v9. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -29,14 +29,16 @@ All in `Docs/Current/`:
 | 4 | Chores: projects, tasks, calendar, recurrence | **Complete** | phase4_build_brief.md |
 | 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
 | 6 | Meal planner + barcode scanning | **Built — awaiting smoke test** | phase6_build_brief.md |
-| 7 | Pantry stock + shopping list | Ready | to write |
+| 7 | Pantry stock + shopping list | Brief written — **gated on Phase 6 clearing** | phase7_build_brief.md |
 | 8 | Holidays + work-location calendar | Ready | to write |
 | 9 | Dashboard | Ready | to write |
 | 10 | Notifications (opt-in, per-type) | Ready | to write |
 
 Phase 5 cleared 18 Aug 2026 after three rounds of smoke testing. Phase 6 was
 built 21 Aug and is **awaiting the coordinator's smoke test** — built is not
-cleared. Phase 7's brief is gated on Phase 6 clearing.
+cleared. Phase 7's **brief** is written (21 Aug); Phase 7's **build** is gated on
+Phase 6 clearing, because Phase 7 reads straight through four Phase 6 tables
+and would inherit any defect the smoke test finds.
 
 ## Completion log
 
@@ -109,6 +111,39 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Phase 7 brief written (21 Aug 2026) — two schema gaps decided
+
+Written ahead of the Phase 6 smoke test because a brief is cheap to revise
+and code built on an unverified foundation is not. Two problems the frozen
+schema does not solve had to be decided in it:
+
+**No unit on either quantity column.** `pantry_stock.current_qty` and
+`shopping_list_items.qty_needed` are bare `numeric`. "Plan needs minus
+pantry stock" is arithmetic between them and `meal_ingredients.quantity_g`,
+which is grams. **Decided: both are grams** — the only option the frozen
+schema supports, since the pack-count reading cannot be diffed against grams
+without a pack size and `foods` has no such column. This needs a
+**documentation** amendment to `schema.md` (a canonical-unit note in the
+Notes cell, exactly as `weight_kg` and `ml_logged` already carry), not a
+schema change. Phase 7 makes that edit first, before any code.
+
+**No purchase date, so "near expiry" has no honest source.**
+`shelf_life_days` exists; nothing records when an item was bought.
+**Decided: use `updated_at` as a "last restocked" proxy and never present it
+as an expiry date** — the UI says "stocked about 9 days ago; this usually
+keeps about 14", never "expires Tuesday". Principle 5 requires the signal on
+two surfaces, so dropping it is not an option. The proxy is wrong when a row
+is edited for an unrelated reason; if that proves misleading in use, the
+honest fix is **a schema change to add a purchase date, which is the
+coordinator's call, not a builder's** — it would be the first since Phase 1.
+
+Also settled in the brief: the shortfall maths goes in `lib/shortfall.js` as
+a pure function with the **view** orchestrating, because
+`REPO_STRUCTURE.md` forbids `data/` importing `data/` and the calculation
+spans three domains. And Phase 7's "use these up" section in
+`views/meals.js` is a declared cross-phase edit — additive, last, and
+re-gated afterwards.
 
 ## Verification harness committed (21 Aug 2026)
 
