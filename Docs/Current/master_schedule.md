@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v8
+21 Aug 2026 v9
 
-Supersedes v7. Older versions live in `Docs/Archive/`.
+Supersedes v8. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -109,6 +109,32 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Verification harness committed (21 Aug 2026)
+
+`Tests/` now holds the render gate, behavioural tests, queue tests,
+structural a11y checks and contrast maths, behind one entry point:
+`bash Tests/run-all.sh`.
+
+Until now these were rebuilt from scratch in every session and died with it.
+That is wasteful, but the real cost is that each rebuild re-derived the same
+lessons — and a gate is only worth what its comments record about the bug it
+was written for.
+
+`Tests/self-test.sh` proves the render gate still catches the 18 Aug
+`ReferenceError`: it injects an undefined identifier, confirms `node --check`
+passes it, and confirms the gate does not. **Run it after any change to the
+gate.** A gate nobody has proven is a gate nobody should trust.
+
+Not for the coordinator — deployment is still copy-paste through the GitHub
+web UI, and none of this runs there. `node_modules` is gitignored; the
+harness resolves jsdom from wherever the session installed it. Note that
+`NODE_PATH` does **not** work for ES modules, so the modules are linked into
+the shadow copy rather than exported.
+
+**These gates do not replace the smoke test** and must never be cited as
+though they had. Every significant defect this project has hit was found on
+a real device.
 
 ## Process change — direct repo access (from 17 Aug 2026)
 

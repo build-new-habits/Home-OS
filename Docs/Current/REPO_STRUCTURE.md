@@ -65,9 +65,30 @@ locations and nowhere else. The repo root is what GitHub Pages serves, so
 │       ├── offlineQueue.js   IndexedDB write queue + sync (Phase 2)
 │       └── a11y.js           focus trap, announce(), reduced-motion helper
 │
-└── assets/
-    └── icons/                PWA + UI icons (SVG preferred)
+├── assets/
+│   └── icons/                PWA + UI icons (SVG preferred)
+│
+├── Docs/                     canonical project documentation
+│   ├── Current/              the live set — this file, schema.md, briefs,
+│   │                         handoffs, master_schedule.md
+│   └── Archive/              superseded versions
+│
+└── Tests/                    verification harness (added 21 Aug 2026)
+    ├── run-all.sh            single entry point
+    ├── self-test.sh          proves the render gate still catches its bug
+    ├── render-gate.mjs       every view executed in jsdom
+    ├── behaviour.mjs         macros, barcodes, Open Food Facts
+    ├── queue.mjs             offline queue retry + table scoping
+    ├── a11y.mjs              structure of the rendered DOM
+    ├── contrast.mjs          every colour pair, all four themes
+    └── README.md             what each gate is for and which bug it caught
 ```
+
+`Tests/` and `Docs/` were added after this document was first written and are
+recorded here so the "no file outside this tree" rule below stays true.
+Neither is loaded by the app, neither is precached, and nothing in `js/`
+imports from either. `node_modules/` is gitignored — the harness resolves
+jsdom from wherever the session installed it.
 
 ## Rules
 
