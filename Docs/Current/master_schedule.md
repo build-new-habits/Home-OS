@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v10
+21 Aug 2026 v11
 
-Supersedes v9. Older versions live in `Docs/Archive/`.
+Supersedes v10. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,29 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Two fixes before the Phase 6 smoke test (21 Aug 2026)
+
+Found by re-reading the riskiest paths once more, not by any gate. Both
+would have wasted the coordinator's testing time. `views/meals.js` v2,
+`CACHE_NAME` **v16**.
+
+1. **A typed barcode that could not be normalised was silently dropped to
+   null on save.** Correct for the database — an empty string would be a
+   distinct value and would break barcode matching — and wrong to do without
+   saying so (standing rule 8). Now reported on both the add and edit forms.
+2. **Inline quantity and servings edits dropped focus to `<body>`.** The
+   change handler re-renders the whole list, destroying the field the user
+   is standing in. Ids are stable across renders, so focus is now restored
+   (WCAG 3.2.2).
+
+`PHASE6_SMOKE_ROUTE.md` added: the ordered route through the Phase 6 checks,
+sequenced so anything that would invalidate later steps fails first, with a
+"rule out the environment" step at the top covering the paused-Supabase and
+stale-cache traps that have each already cost a session.
+
+Note that `CACHE_NAME` was bumped for a **content-only** change. No path
+moved; standing rule 3 still applies.
 
 ## Phase 7 brief written (21 Aug 2026) — two schema gaps decided
 

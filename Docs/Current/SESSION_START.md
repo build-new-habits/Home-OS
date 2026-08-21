@@ -45,11 +45,14 @@ worth more than any amount of copied context.
 
 ## Current state, 21 Aug 2026
 
-- `main` @ `4c7adbc`. Service worker cache **`home-os-shell-v15`**.
+- `main` @ `cfea01a`+. Service worker cache **`home-os-shell-v16`**.
 - Phases 1–5 complete and cleared. **Phase 6 built, awaiting smoke test.**
 - **49 precache paths.** Precache is all-or-nothing — every new path must
   200. Before any Phase 6 testing, hard-refresh and confirm Cache Storage
-  shows `v15` with 49 entries and that `v14` is gone.
+  shows `v16` with 49 entries and that `v15` is gone.
+- **Start here for testing: `PHASE6_SMOKE_ROUTE.md`** — the ordered route
+  through the Phase 6 checks, sequenced so anything that would invalidate
+  later steps fails first.
 - Supabase project `vkjwwnjhizrlqcovpdco` (EU). **Free tier: it pauses after
   about a week idle.** A paused project presents as `Failed to fetch`, or
   as Supabase's own `error 111` page. Check this before debugging code.

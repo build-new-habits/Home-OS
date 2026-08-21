@@ -1,4 +1,8 @@
-// js/views/meals.js — 21 Aug 2026 v1
+// js/views/meals.js — 21 Aug 2026 v2
+// v2, pre-smoke-test: (a) a typed barcode that cannot be normalised is now
+// reported instead of being silently dropped to null on save; (b) focus is
+// restored after an inline quantity or servings edit, which previously
+// re-rendered the list and dropped focus to <body>.
 // Replaces the Phase 2 stub, whole. Three sections on one screen: the
 // weekly plan, meals and their ingredients, and foods.
 //
@@ -37,7 +41,7 @@ import {
   DAYS, SLOTS, listPlan, groupByCell, addPlanEntry, updatePlanEntry,
   removePlanEntry, servesFor
 } from '../data/mealPlan.js';
-import { scan, isScanSupported } from '../lib/barcode.js';
+import { scan, isScanSupported, normaliseBarcode } from '../lib/barcode.js';
 import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
@@ -80,6 +84,21 @@ function selectFrom(id, options, { includeBlank = null } = {}) {
     select.appendChild(el('option', { value: option.value, text: option.label }));
   }
   return select;
+}
+
+/**
+ * Puts focus back on a control after a re-render has replaced it.
+ * Ids are stable across renders, so the replacement is findable; the caret
+ * is sent to the end so the user can keep typing.
+ */
+function restoreFocus(id) {
+  const node = document.getElementById(id);
+  if (!node) return;
+  node.focus();
+  if (typeof node.setSelectionRange === 'function' && node.type !== 'number') {
+    const end = node.value.length;
+    try { node.setSelectionRange(end, end); } catch { /* not all inputs allow it */ }
+  }
 }
 
 /** "12.5 g" / "340 kcal" / "not known" — the unit is always in the text. */
@@ -251,7 +270,12 @@ export function render(mountEl) {
         return;
       }
       announce(`Servings updated for ${mealName}.`);
+      // loadPlan() rebuilds the whole table, destroying the input the user
+      // is standing in and dropping focus to <body>. Ids are stable, so put
+      // focus back where it was (WCAG 3.2.2 — a change of setting must not
+      // disorientate).
       await loadPlan();
+      if (!destroyed) restoreFocus(`plan-serves-${entry.id}`);
     }, { signal });
 
     const removeBtn = el('button', { type: 'button', class: 'btn btn-small btn-danger', text: 'Remove' });
@@ -531,7 +555,10 @@ export function render(mountEl) {
         return;
       }
       announce(`${name} set to ${result.data.quantity_g} grams.`);
+      // Same reasoning as the plan servings input: the re-render destroys
+      // this field, so focus is put back on its replacement.
       await loadMeals();
+      if (!destroyed) restoreFocus(`ingredient-qty-${row.id}`);
     }, { signal });
 
     const removeBtn = el('button', { type: 'button', class: 'btn btn-small btn-danger', text: 'Remove' });
@@ -820,6 +847,21 @@ export function render(mountEl) {
       foodNameInput.focus();
       return;
     }
+    // createFood() stores an unusable barcode as null, because an empty
+    // string would be a distinct value and would break barcode matching.
+    // That is right for the database and WRONG to do silently: typing a
+    // barcode and watching it disappear on save is a silent failure
+    // (standing rule 8). Caught here so the user is told instead.
+    const typedBarcode = foodBarcodeInput.value.trim();
+    if (typedBarcode && !normaliseBarcode(typedBarcode)) {
+      foodError.textContent =
+        'That barcode does not look right, so it has not been saved. '
+        + 'Product barcodes are 8, 12 or 13 digits — check it, or clear the '
+        + 'box to save this food without one.';
+      foodError.hidden = false;
+      foodBarcodeInput.focus();
+      return;
+    }
     foodSubmit.disabled = true;
     const result = await createFood({
       name: foodNameInput.value,
@@ -954,6 +996,16 @@ export function render(mountEl) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       error.hidden = true;
+      const typed = barcodeInput.value.trim();
+      if (typed && !normaliseBarcode(typed)) {
+        error.textContent =
+          'That barcode does not look right, so nothing has been changed. '
+          + 'Product barcodes are 8, 12 or 13 digits — check it, or clear '
+          + 'the box to save without one.';
+        error.hidden = false;
+        barcodeInput.focus();
+        return;
+      }
       save.disabled = true;
       const result = await updateFood(food.id, {
         name: nameInput.value,
