@@ -127,6 +127,21 @@ This is the one that everything inherits from. Five minutes here saves days.
 - *Ignore:* graph aesthetics; sub-gram rounding.
 
 ## Phase 6 — Meals + barcode
+- [ ] Scan a real barcode → food created with `source: 'openfoodfacts'`,
+      macros populated where the product has them.
+- [ ] Unknown barcode → manual form opens pre-filled with the barcode.
+- [ ] Camera permission denied → manual entry still fully usable, no repeat
+      prompt, no scolding.
+- [ ] Meal macros match a hand calculation; a meal containing a food with
+      null macros reports **incomplete**, not a wrong total.
+- [ ] `serves_override` changes per-serving figures without altering
+      `meals.default_serves`.
+- [ ] Deleting a food used in a meal reports the dependent count and is
+      refused cleanly (no raw FK error).
+- [ ] Weekly plan navigable by keyboard; announces day and slot.
+- *Ignore:* Open Food Facts data quality; scanner framing aesthetics.
+
+## Phase 6 — original notes
 - [ ] Scan on a supported browser creates a food (`source=openfoodfacts`);
       manual fallback works when not found or camera denied.
 - [ ] Meal macros compute from ingredients.

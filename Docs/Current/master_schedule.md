@@ -27,15 +27,15 @@ All in `Docs/Current/`:
 | 2 | Shell + auth + nav + theming + settings + export + offline | **Complete** | phase2_build_brief.md |
 | 3 | Exercise cards + logging | **Complete** | phase3_build_brief.md |
 | 4 | Chores: projects, tasks, calendar, recurrence | **Complete** | phase4_build_brief.md |
-| 5 | Weight + water tracker | **Built — awaiting smoke test** | phase5_build_brief.md |
-| 6 | Meal planner + barcode scanning | Next | to write |
+| 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
+| 6 | Meal planner + barcode scanning | **Active** | phase6_build_brief.md |
 | 7 | Pantry stock + shopping list | Ready | to write |
 | 8 | Holidays + work-location calendar | Ready | to write |
 | 9 | Dashboard | Ready | to write |
 | 10 | Notifications (opt-in, per-type) | Ready | to write |
 
-Phase 5 is **not cleared**. Phase 6's brief is gated on the Phase 5 smoke
-test passing on the live site and real Supabase project.
+Phase 5 cleared 18 Aug 2026 after three rounds of smoke testing. Phase 6 is
+active; its brief is written. Phase 7's brief is gated on Phase 6 clearing.
 
 ## Completion log
 
@@ -51,8 +51,8 @@ vendored to `js/vendor/` for offline.
 hand-verified across a year boundary. PM rulings: recurrence anchor on
 `calendar_events.start_date` only — accepted, logged as tracked debt.
 
-**Phase 5 — Weight + water.** Built 17 Aug, commit `860d2b3`. Awaiting smoke
-test. Two defects in already-cleared code found by reading it before building
+**Phase 5 — Weight + water.** Complete, cleared 18 Aug. Took three smoke-test
+rounds; the offline path was wrong twice before it was right. Two defects in already-cleared code found by reading it before building
 on it, and fixed:
 - **Offline queue was not table-scoped** — `flush()` replayed every pending
   op through whichever handler it was given, so `exercises.js` would try to
@@ -62,8 +62,24 @@ on it, and fixed:
 - **`units.js` rounding carry** — 69.8 kg rendered as "10st 14lb". Fixed, and
   the missing display-unit→kg input direction added.
 
-Also this phase: a **change-password** form in settings (out-of-band request,
-outside the brief) with re-authentication before the change is applied.
+Also this phase, all out-of-band: change-password with re-authentication and
+a reset route for magic-link users; magic-link and password-reset sign-in
+(`views/signin.js`); the `detectSessionInUrl` auth fix; an app-wide WCAG
+1.4.11 control-contrast fix; `lib/net.js` offline/timeout guards; and
+optimistic one-tap logging.
+
+**Phase 5 smoke test — what it caught.** Three rounds. Round 1: offline
+water logging did nothing (fetch hangs rather than failing, so the queue was
+never reached); entry unit wrongly tied to display unit; password change
+impossible for magic-link users. Round 2: a `ReferenceError` shipped to
+`main` and broke the settings route — `node --check` passes undefined
+identifiers. Round 3: the offline fix still awaited the network, disabling
+the button after one tap; replaced with optimistic logging.
+
+Worth stating plainly: **every one of those was found by testing on the real
+device, not by any check run before commit.** The gates were strengthened
+each round (rules 10–12), but the smoke test remains the thing that finds
+what the gates do not.
 
 ## Process change — direct repo access (from 17 Aug 2026)
 
