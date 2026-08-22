@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v12
+21 Aug 2026 v13
 
-Supersedes v11. Older versions live in `Docs/Archive/`.
+Supersedes v12. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -30,7 +30,7 @@ All in `Docs/Current/`:
 | 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
 | 6 | Meal planner + barcode scanning | **Built — awaiting smoke test** | phase6_build_brief.md |
 | 7 | Pantry stock + shopping list | Brief written — **gated on Phase 6 clearing** | phase7_build_brief.md |
-| 8 | Holidays + work-location calendar | Ready | to write |
+| 8 | Holidays + work-location calendar | Brief written — **buildable now, ahead of Phase 7** | phase8_build_brief.md |
 | 9 | Dashboard | Ready | to write |
 | 10 | Notifications (opt-in, per-type) | Ready | to write |
 
@@ -111,6 +111,47 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Phase 8 brief written (21 Aug 2026) — and a recurrence trap found
+
+Written before Phase 7 deliberately. Phase 8 touches `holidays`, its two
+child tables and `calendar_events` — **not one Phase 6 table** — and builds
+on cleared Phase 4, so it stacks testable work without compounding the
+unverified Phase 6 foundation. Phase 7 stays gated. Deviation from schedule
+order recorded here per `BUILD_PROCESS_CONTROL.md`.
+
+**`lib/rrule.js` silently ignores `UNTIL` and `COUNT`.** Not rejected, not
+warned — ignored. Verified: `FREQ=DAILY;UNTIL=20260828` over a 15-day window
+returns 15 dates, not 5. A holiday is a bounded range, so the obvious
+encoding would have produced a holiday that never ends — looking correct for
+a fortnight and wrong forever after. `rrule.js` is write-once and must not
+be edited to fix it.
+
+Decided: a holiday gets **one `calendar_events` row with a NULL recurrence
+rule**, marking its start. The span is read from `holidays.start_date` /
+`end_date`, which is the source of truth. Work-location patterns must be
+open-ended, and the UI must not offer an end date the engine will ignore.
+Phase 8 adds `assertSupportedRule()` to `data/calendar.js` to reject
+`UNTIL`/`COUNT` at the boundary — verified safe first by reading
+`buildRuleFromForm()` in `views/chores.js`, which emits only
+`FREQ`/`INTERVAL`/`BYDAY`/`BYMONTHDAY`.
+
+**The holiday → shopping bridge cannot be built yet.**
+`shopping_list_items.food_id` is `NOT NULL references foods(id)`, and a
+holiday purchase item is a bare title — "sun cream", "euros". The only
+schema-legal route is creating a `foods` row for each, which puts sun cream
+in the meal planner's ingredient picker, and `foods.source` is
+CHECK-constrained so such rows cannot be tagged and filtered back out.
+Deferred to the Phase 7 build, which owns the table and its UI; that
+integration check moves to the Phase 7 block.
+
+**This is the second place the frozen schema has blocked the blueprint** —
+the first was Phase 7's missing purchase date. Two is a pattern, and worth a
+coordinator decision rather than two more workarounds.
+
+Also noted: there is **no work-location route** and `routes.js` is
+write-once, so work location lives as a second section inside
+`views/holidays.js`.
 
 ## Defect found in cleared Phase 4 code while preparing Phase 8 (21 Aug 2026)
 
