@@ -1,4 +1,6 @@
-// service-worker.js — 21 Aug 2026 v16
+// service-worker.js — 21 Aug 2026 v17
+// v17: no path change — bumped for data/calendar.js v2 and views/chores.js
+// v3 (the calendar_events event_type filter).
 // v16: no path change — bumped for views/meals.js v2 (barcode validation
 // feedback and focus restoration). CACHE_NAME must be bumped on any
 // precached CONTENT change, not only when this script changes, or the old
@@ -55,7 +57,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v16';
+const CACHE_NAME = 'home-os-shell-v17';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

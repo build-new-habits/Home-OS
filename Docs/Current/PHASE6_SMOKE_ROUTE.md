@@ -24,7 +24,7 @@ as a bug and is not one.
 
 2. **Is the new shell actually installed?** Hard-refresh, then
    DevTools → Application → Cache Storage. You want
-   **`home-os-shell-v16`** and **49 entries**. If you see `v15` or `v14`,
+   **`home-os-shell-v17`** and **49 entries**. If you see an older version,
    or a different count, the service worker has not updated and you are
    testing old code. Fix that before anything else.
 
@@ -155,7 +155,23 @@ work around it. I would rather fix it than have you learn to avoid it.
 
 ---
 
-## Two fixes went in tonight, before you test
+## 8. Chores calendar — 1 min (new, added after the Phase 6 build)
+
+A defect was found in cleared Phase 4 code while preparing Phase 8:
+`listEvents()` returned **every** calendar event type, and the chores
+calendar rendered all of them as chores. Latent — chores are currently the
+only writer — but it would have started corrupting the calendar the moment
+Phase 8 wrote its first work-location row.
+
+- [ ] Open **Chores**. The 3-month calendar still shows your recurring
+      chores, exactly as before. Nothing missing, nothing new.
+
+That is the whole check. It is a "prove I did not break Phase 4" step, not a
+new feature.
+
+---
+
+## Three fixes went in tonight, before you test
 
 Found by re-reading the code, not by the gates:
 
@@ -166,5 +182,10 @@ Found by re-reading the code, not by the gates:
   focus to the page body.** Disorientating on a keyboard, worse with a
   screen reader. Focus is now restored to the field you were in.
 
-Both are in `views/meals.js` v2, cache **v16**. Which is why step 0.2 says
-v16 and not v15.
+- **The chores calendar would have shown holiday and work-location events
+  as chores.** Found by reading Phase 4 code before building Phase 8, not by
+  any gate — the filter was simply absent, and invisible while chores were
+  the only writer.
+
+`views/meals.js` v2, `data/calendar.js` v2, `views/chores.js` v3, cache
+**v17**. Which is why step 0.2 says v17.

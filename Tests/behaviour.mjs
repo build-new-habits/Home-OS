@@ -16,10 +16,26 @@ function eq(name, actual, expected) {
   check(name, Object.is(actual, expected), `expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
 }
 
+// MUST be set before the first import that pulls in supabaseClient.js: the
+// shadow copy's stub reads this global at module-evaluation time, so setting
+// it afterwards leaves `supabase` bound to undefined.
+// data/calendar.js reaches the client on its happy path, so the last
+// assertion below needs one. Minimal on purpose: the guard clauses are what
+// is under test, not the query.
+globalThis.__HOME_OS_SUPABASE_STUB__ = {
+  from: () => {
+    const b = {};
+    for (const m of ['select', 'in', 'lte', 'eq', 'order']) b[m] = () => b;
+    b.then = (res) => Promise.resolve({ data: [], error: null }).then(res);
+    return b;
+  }
+};
+
 const { computeMacros } = await import(`${REPO}/js/data/meals.js`);
 const { normaliseBarcode, barcodeCandidates } = await import(`${REPO}/js/lib/barcode.js`);
 const { energyKcalPer100g, mapProductToFood, missingMacroFields } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
+const { listEvents, EVENT_TYPES } = await import(`${REPO}/js/data/calendar.js`);
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -151,6 +167,32 @@ eq('a single dependent is singular',
 eq('non-meal dependents are named too',
   describeDependents({ meal_ingredients: 2, pantry_stock: 1, shopping_list_items: 1, total: 4 }),
   '2 meals, 1 pantry entry and 1 shopping list item');
+
+// ============ calendar_events is shared: the filter is not optional ============
+// Regression guard. listEvents() v1 returned EVERY event type, and
+// views/chores.js rendered all of them as chores. Invisible while chores
+// were the only writer; it would have started corrupting the chores
+// calendar the moment Phase 8 wrote its first work_location row.
+console.log('\ncalendar_events type filter');
+
+const noFilter = await listEvents('2026-08-01', '2026-11-01');
+check('listEvents refuses to run without eventTypes', noFilter.ok === false);
+check('and says what the caller should pass',
+  /eventTypes/.test(noFilter.error.message), noFilter.error && noFilter.error.message);
+
+const emptyFilter = await listEvents('2026-08-01', '2026-11-01', { eventTypes: [] });
+check('an empty eventTypes array is refused too', emptyFilter.ok === false);
+
+const badFilter = await listEvents('2026-08-01', '2026-11-01', { eventTypes: ['chore', 'nonsense'] });
+check('an unknown event type is refused', badFilter.ok === false);
+check('the unknown type is named', /nonsense/.test(badFilter.error.message));
+
+const good = await listEvents('2026-08-01', '2026-11-01', { eventTypes: ['chore'] });
+check('a valid call succeeds', good.ok === true);
+
+check('EVENT_TYPES matches the CHECK constraint exactly',
+  JSON.stringify(EVENT_TYPES) === JSON.stringify(['chore', 'holiday', 'work_location', 'custom']),
+  JSON.stringify(EVENT_TYPES));
 
 console.log('');
 if (failures.length) {

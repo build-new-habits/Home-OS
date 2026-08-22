@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v11
+21 Aug 2026 v12
 
-Supersedes v10. Older versions live in `Docs/Archive/`.
+Supersedes v11. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,32 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Defect found in cleared Phase 4 code while preparing Phase 8 (21 Aug 2026)
+
+`data/calendar.js` v1 `listEvents()` returned **every row** in
+`calendar_events` regardless of `event_type`, and `views/chores.js` rendered
+all of them as chore occurrences. Invisible while chores were the only
+writer; it would have started silently corrupting the chores calendar the
+moment Phase 8 wrote its first `work_location` row.
+
+Found by reading Phase 4 code before writing the Phase 8 brief — the fourth
+consecutive phase where reading existing code found a defect that no gate
+caught.
+
+`listEvents()` now **requires** an explicit `eventTypes` filter and
+validates it against the CHECK constraint. Required rather than defaulted,
+because forgetting the filter is precisely the failure being fixed and a
+default would let the next caller repeat it quietly. `data/calendar.js` v2,
+`views/chores.js` v3, `CACHE_NAME` v17, regression test in
+`Tests/behaviour.mjs`.
+
+*Also checked and NOT a defect:* `rrule.expand()` throws on a null
+recurrence rule, which looked like a second Phase 8 landmine. The chores
+view already handles a null rule as a one-off on `start_date` and wraps the
+call in a try/catch. Worth recording that the call site was read rather than
+the behaviour inferred from the library — the inference would have been
+wrong. `rrule.js` is write-once and was not touched.
 
 ## Two fixes before the Phase 6 smoke test (21 Aug 2026)
 

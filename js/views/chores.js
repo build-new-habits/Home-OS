@@ -1,4 +1,7 @@
-// js/views/chores.js — 20 Jul 2026 v2
+// js/views/chores.js — 21 Aug 2026 v3
+// v3: loadCalendar() now asks listEvents() for chore events only. See
+// data/calendar.js v2 — the unfiltered call was latent until Phase 8 and
+// would have rendered work-location and holiday events as chores.
 // Replaces the Phase 2 stub. Projects, tasks — now including edit — with
 // the 3-month recurrence confirmation (principle 4), and a calendar
 // (principles 1, 2, 3, 9, 10).
@@ -995,7 +998,10 @@ export function render(mountEl) {
   async function loadCalendar() {
     const today = todayIso();
     const rangeEnd = addMonthsIso(today, 3);
-    const result = await listEvents(today, rangeEnd);
+    // Explicitly chores only. calendar_events is shared with holidays,
+    // work locations and custom entries (Phase 8), and without this filter
+    // those would render here as chore occurrences.
+    const result = await listEvents(today, rangeEnd, { eventTypes: ['chore'] });
     if (!result.ok) {
       console.error('Failed to load calendar events:', result.error);
       showToast("Couldn't load the calendar — check your connection and try again.");
