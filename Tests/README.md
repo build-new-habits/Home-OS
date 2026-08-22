@@ -81,6 +81,53 @@ write-once and not parseable from Node without a CSS parser, so the copy is
 deliberate — but it means a token change must be mirrored here or the gate
 silently checks the wrong colours.
 
+### `schema-conformance.mjs` — 166 references
+
+Cross-checks every column name the data layer uses against `schema.md`. A
+typo is invisible to jsdom (the stub accepts anything) and to `node --check`;
+it only fails against the **real** database, i.e. halfway through a physical
+smoke test. This is the check that protects that time.
+
+Handles PostgREST embeds (`foods(id, name)` is a related table, not a
+column), resolves table-name constants, and validates dynamic `.from(expr)`
+segments against the tables the file could plausibly be addressing.
+
+Proven against three injected typos — an `.eq()`, a `.select()` field and a
+payload key. All three were caught.
+
+*Getting this checker right mattered more than writing it.* Its first
+version resolved only literal `.from('x')` calls, so `.from(INGREDIENTS)`
+was invisible and the preceding segment BLED forward — inventing two false
+positives while hiding half the data layer. It checked 55 references; the
+corrected version checks 166.
+
+### `trace.mjs` — 52 interactions
+
+The render gate proves a view **draws**. This proves it **works**: every
+control is clicked or filled for real, and the resulting database call is
+captured and inspected — table, operation, payload.
+
+Catches what nothing else does: a button wired to nothing; a handler calling
+a function with the wrong argument shape; a write hitting the wrong table or
+sending the wrong columns; an optimistic UI that never issues its write; a
+rollback that does not happen when the write fails.
+
+Proven against four injected regressions — optimistic UI removed,
+soft-pointer calendar cleanup dropped, the `UNTIL` trap walked into, and
+dependent counting narrowed to one table. All four were caught, each by the
+assertion written for it.
+
+**The write stub is deliberately slow (40 ms).** A zero-latency stub makes
+the optimistic window unobservable — the UI updates and is replaced within
+the same tick — so an optimistic-UI assertion would silently assert nothing.
+That is not hypothetical: it happened, and looked like an app bug for
+several minutes.
+
+**`confirmDialog` uses `role="alertdialog"`, and appends CANCEL first.**
+Guessing it the other way round clicked Cancel silently and made two working
+delete paths look broken. The helper now asserts a dialog was actually found
+and dismissed, so a silent miss cannot pass again.
+
 ---
 
 ## How the stub works
