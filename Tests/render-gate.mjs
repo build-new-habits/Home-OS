@@ -50,6 +50,23 @@ function fixtureFor(table) {
         { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, foods: fixtureFor('foods')[0] },
         { id: 'ing-2', meal_id: 'meal-1', food_id: 'food-2', quantity_g: 200, foods: fixtureFor('foods')[1] }
       ];
+    case 'holidays':
+      return [{ id: 'hol-1', title: 'Cornwall', start_date: '2026-09-05', end_date: '2026-09-12' }];
+    case 'holiday_checklist_items':
+      return [
+        { id: 'chk-1', holiday_id: 'hol-1', title: 'Passports', status: 'complete' },
+        { id: 'chk-2', holiday_id: 'hol-1', title: 'Chargers', status: 'pending' }
+      ];
+    case 'holiday_purchase_items':
+      return [{ id: 'buy-1', holiday_id: 'hol-1', title: 'Sun cream', status: 'pending', send_to_shopping: true }];
+    case 'calendar_events':
+      return [
+        { id: 'ev-1', event_type: 'work_location', source_id: null, title: 'Office',
+          start_date: '2026-08-24', recurrence_rule: 'FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH',
+          location_label: 'Head office' },
+        { id: 'ev-2', event_type: 'holiday', source_id: 'hol-1', title: 'Cornwall',
+          start_date: '2026-09-05', recurrence_rule: null, location_label: null }
+      ];
     case 'weekly_meal_plan':
       return [{
         id: 'plan-1', day_of_week: 'mon', slot: 'breakfast', serves_override: 3,

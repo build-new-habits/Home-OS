@@ -1,4 +1,10 @@
-/* css/components.css — 21 Aug 2026 v8 */
+/* css/components.css — 21 Aug 2026 v9 */
+/* v9: adds the Phase 8 section at the end — holiday item groups, the
+   check-list toggle, the weekday fieldset and the recurrence preview.
+   Everything above is unchanged; diffed against v8 to prove nothing was
+   dropped (standing rule 2). .check-toggle keeps the full 44px target
+   because ticking while packing is a repeated one-tap action, unlike the
+   incidental .btn-small controls added in v8. */
 /* v8: adds the Phase 6 sections at the end — .btn-small, the weekly meal
    plan table, ingredient rows, and the scanner dialog. Everything above is
    unchanged; the file was rewritten whole and diffed against v7 to prove
@@ -958,3 +964,103 @@ details summary {
   font-size: var(--text-base);
   min-height: 3rem;
 }
+
+
+/* ============ Phase 8: holidays and work location ============ */
+
+.item-group {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.item-group > h4 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.check-list {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.check-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.check-row:last-child { border-bottom: none; }
+
+/* Ticking while packing is a repeated one-tap action, so this keeps the
+   full 44px target rather than the 36px .btn-small used for incidental
+   controls (WCAG 2.2 SC 2.5.8, and the friction budget in principle 2). */
+.check-toggle {
+  min-width: 6rem;
+  min-height: var(--tap-min);
+  justify-content: center;
+}
+
+/* Complete state is carried by the LABEL TEXT ("Packed"/"To do") and by
+   aria-pressed. This background is reinforcement only — remove it and the
+   state is still fully readable, which is the test for 1.4.1. */
+.check-toggle.is-complete {
+  background: var(--color-neutral-chip);
+  font-weight: 700;
+}
+
+.check-title {
+  flex: 1 1 8rem;
+  color: var(--color-text);
+}
+
+.send-shopping {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.send-shopping input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--color-accent);
+}
+
+.add-item {
+  margin-top: var(--space-3);
+}
+
+.weekday-set {
+  margin: var(--space-3) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.weekday-set > legend {
+  padding: 0 var(--space-1);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+.preview {
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  background: var(--color-neutral-chip);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+}
+
+.preview p { margin: 0 0 var(--space-1); }
+.preview p:last-child { margin-bottom: 0; }

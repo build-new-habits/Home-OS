@@ -209,13 +209,57 @@ below is meaningful.
   direction is right.
 
 ## Phase 8 — Holidays + work location
-- [ ] A purchase item with `send_to_shopping=true` creates a
-      `shopping_list_items` row with `source=holiday`.
-- [ ] Deleting a holiday cascades its own checklist/purchase items and the
-      confirm **names** what else is removed.
-- [ ] Recurring work-location events render across the 3-month window (reuses
-      the Phase 4 recurrence engine — if Phase 4 passed, this should too).
-- *Ignore:* map/location styling; this is a label, not a mapping feature.
+
+**Before testing:** hard-refresh and confirm Cache Storage shows
+`home-os-shell-v18` with **50 entries**. Precache is all-or-nothing.
+
+The page is reached from the **Holidays** nav item. The nav label still says
+"Holidays" while the page says "Holidays & work" — `routes.js` is write-once
+and there is no work-location route. Not a bug.
+
+### Priority — the shared calendar table
+- [ ] **Open Chores. Work-location patterns and holidays do NOT appear in
+      the chores calendar.** This is the first time anything but chores has
+      written to `calendar_events`, and it is what the 21 Aug `listEvents()`
+      fix was for.
+- [ ] A holiday appears on the calendar at its **start date, once** — not
+      repeating forever. Repeating past the end date would mean the
+      `UNTIL`/`COUNT` trap has been walked into.
+
+### Holidays
+- [ ] Create a holiday spanning two weeks. It reads as a date range in
+      **text** ("5 to 12 September 2026"), not as a coloured bar alone.
+- [ ] Try to save one that ends before it starts → refused with a clear
+      message. There is no CHECK constraint behind this, so it is refused in
+      the app or not at all.
+- [ ] Add packing and purchase items; tick them; they persist over a reload.
+- [ ] Tick state reads as a **word** ("Packed"/"Bought"/"To do"), not
+      colour alone.
+- [ ] Delete the holiday. The confirm **names** how many checklist and
+      purchase items go with it, and the calendar entry disappears too —
+      `source_id` is a soft pointer, so nothing cascades it automatically.
+
+### Work location
+- [ ] A weekly pattern ("Office, Tuesdays and Thursdays") previews the next
+      3 months before saving, and what saved matches the preview.
+- [ ] The pattern is described **in words** on the card — no raw `FREQ=`
+      string anywhere on screen.
+- [ ] There is no end-date field. Patterns run until removed; the form says
+      so. (An end date would be silently ignored by the engine.)
+
+### Offline
+- [ ] Aeroplane mode: tick three packing items. Each counts **immediately**,
+      no button disables, all three sync on reconnect, IndexedDB empty after.
+- [ ] Offline: adding a holiday says plainly it needs a connection rather
+      than failing silently.
+
+- *Ignore:* map or location styling — this is a label, not a mapping
+  feature. Also ignore the nav/page title mismatch above.
+- *Moved to Phase 7:* the `send_to_shopping` → `shopping_list_items` check.
+  `shopping_list_items.food_id` is `NOT NULL references foods(id)` and a
+  purchase item is a bare title, so the bridge cannot be built until the
+  shopping list exists. The **flag itself** is stored and testable now:
+  tick "Add to shopping list", reload, confirm it stuck.
 
 ## Phase 9 — Dashboard (the everything-connects moment)
 - [ ] Each section reflects **today's real data** from its source phase

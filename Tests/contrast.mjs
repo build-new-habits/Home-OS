@@ -57,7 +57,17 @@ const PAIRS = [
   ['.scanner-status on dialog',                'text',          'surface',     4.5],
   ['.food-form summary on page',               'text',          'bg',          4.5],
   ['plan section .field-hint on page',         'textMuted',     'bg',          4.5],
-  ['data-table caption on card',               'textMuted',     'surface',     4.5]
+  ['data-table caption on card',               'textMuted',     'surface',     4.5],
+  // --- Phase 8 ---
+  ['.check-toggle complete label on chip',     'text',          'neutralChip', 4.5],
+  ['.check-toggle BORDER vs card',             'controlBorder', 'surface',     3.0],
+  ['.check-title on card',                     'text',          'surface',     4.5],
+  ['.send-shopping label on card',             'text',          'surface',     4.5],
+  // accent-color paints the checkbox itself; it must read against the card.
+  ['send-to-shopping checkbox vs card',        'accent',        'surface',     3.0],
+  ['.weekday-set legend on card',              'text',          'surface',     4.5],
+  ['.preview text on chip',                    'text',          'neutralChip', 4.5],
+  ['.item-group h4 on card',                   'text',          'surface',     4.5]
 ];
 
 let fails = 0;

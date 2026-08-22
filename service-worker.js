@@ -1,4 +1,8 @@
-// service-worker.js — 21 Aug 2026 v17
+// service-worker.js — 21 Aug 2026 v18
+// v18 (Phase 8): ONE new path, js/data/holidays.js. js/views/holidays.js
+// was already listed as a Phase 2 stub, and work location lives inside
+// data/calendar.js rather than a module of its own, so the count goes
+// 49 -> 50 rather than the 51 the brief estimated.
 // v17: no path change — bumped for data/calendar.js v2 and views/chores.js
 // v3 (the calendar_events event_type filter).
 // v16: no path change — bumped for views/meals.js v2 (barcode validation
@@ -57,7 +61,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v17';
+const CACHE_NAME = 'home-os-shell-v18';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -89,6 +93,7 @@ const SHELL_FILES = [
   './js/data/chores.js',
   './js/data/calendar.js',
   './js/data/weight.js',
+  './js/data/holidays.js',
   './js/data/water.js',
   './js/data/foods.js',
   './js/data/meals.js',

@@ -29,6 +29,12 @@ function fixture(t) {
   if (t === 'meal_ingredients') return [{ id:'ing-1', meal_id:'meal-1', food_id:'food-1', quantity_g:80, foods:fixture('foods')[0] },
                                         { id:'ing-2', meal_id:'meal-1', food_id:'food-2', quantity_g:200, foods:fixture('foods')[1] }];
   if (t === 'weekly_meal_plan') return [{ id:'plan-1', day_of_week:'mon', slot:'breakfast', serves_override:3, meal_id:'meal-1', meals:{ id:'meal-1', name:'Porridge', default_serves:2 } }];
+  if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
+  if (t === 'holiday_checklist_items') return [
+    { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete' },
+    { id:'chk-2', holiday_id:'hol-1', title:'Chargers', status:'pending' }];
+  if (t === 'holiday_purchase_items') return [{ id:'buy-1', holiday_id:'hol-1', title:'Sun cream', status:'pending', send_to_shopping:true }];
+  if (t === 'calendar_events') return [{ id:'ev-1', event_type:'work_location', source_id:null, title:'Office', start_date:'2026-08-24', recurrence_rule:'FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH', location_label:'Head office' }];
   return [];
 }
 function builder(t) { const st={}; const b={}; for (const m of CHAIN) b[m]=(...a)=>{ if(m==='select'&&a[1]&&a[1].head) st.head=true; return b; };
@@ -120,6 +126,64 @@ for (let i = 1; i < levels.length; i++) if (levels[i] - levels[i - 1] > 1) order
 check('heading levels never skip a level', ordered, levels.join(','));
 check('exactly one h1', mount.querySelectorAll('h1').length === 1);
 
+// ================= Phase 8: holidays & work =================
+// A second view, rendered into its own mount, checked the same way.
+console.log('');
+const holMount = window.document.createElement('main');
+window.document.body.appendChild(holMount);
+const holMod = await import(pathToFileURL(path.join(REPO, 'js/views/holidays.js')).href);
+holMod.render(holMount, {});
+await new Promise((r) => setTimeout(r, 80));
+
+const holControls = [...holMount.querySelectorAll('input, select, textarea')];
+const holUnlabelled = holControls.filter((c) => {
+  if (c.getAttribute('aria-label') || c.getAttribute('aria-labelledby')) return false;
+  if (!c.id) return true;
+  return !holMount.querySelector(`label[for="${CSS.escape(c.id)}"]`);
+});
+check(`holidays: all ${holControls.length} controls have a resolvable label`,
+  holUnlabelled.length === 0, holUnlabelled.map((c) => c.id || c.type).join(', '));
+
+const holIds = [...holMount.querySelectorAll('[id]')].map((n) => n.id);
+const holDupes = [...new Set(holIds.filter((i, n) => holIds.indexOf(i) !== n))];
+check('holidays: no duplicate element ids', holDupes.length === 0, holDupes.join(', '));
+
+const holButtons = [...holMount.querySelectorAll('button')];
+check(`holidays: all ${holButtons.length} buttons have an accessible name`,
+  holButtons.every((b) => b.getAttribute('aria-label') || b.textContent.trim()));
+
+// State must be carried by aria-pressed AND by words, never colour alone.
+const toggles = [...holMount.querySelectorAll('.check-toggle')];
+check('holidays: item toggles exist', toggles.length === 3, `found ${toggles.length}`);
+check('holidays: every toggle reports pressed state',
+  toggles.every((t) => ['true', 'false'].includes(t.getAttribute('aria-pressed'))));
+check('holidays: toggle state is readable as a word',
+  toggles.every((t) => /Packed|Bought|To do/.test(t.textContent)),
+  toggles.map((t) => t.textContent).join(' | '));
+check('holidays: the completed item is marked pressed',
+  toggles.some((t) => t.getAttribute('aria-pressed') === 'true'));
+
+// The date range must be text, not a bar.
+check('holidays: the date range is readable text',
+  /5 to 12 September 2026/.test(holMount.textContent), '');
+
+// The recurrence pattern must be described in words.
+check('holidays: the work pattern is described in words, not an RRULE',
+  !/FREQ=/.test(holMount.textContent), 'a raw RRULE string leaked into the page');
+
+// No end-date field: rrule.js would silently ignore it.
+const dateInputs = [...holMount.querySelectorAll('input[type="date"]')].map((i) => i.id);
+check('holidays: the work form offers no end date',
+  !dateInputs.some((id) => /work-end/.test(id)), dateInputs.join(', '));
+
+const holLevels = [...holMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
+let holOrdered = true;
+for (let i = 1; i < holLevels.length; i++) if (holLevels[i] - holLevels[i - 1] > 1) holOrdered = false;
+check('holidays: heading levels never skip', holOrdered, holLevels.join(','));
+check('holidays: exactly one h1', holMount.querySelectorAll('h1').length === 1);
+check('holidays: the weekday chooser is a labelled fieldset',
+  !!holMount.querySelector('fieldset.weekday-set legend'));
+
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals + holidays)`);

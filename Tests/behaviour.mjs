@@ -35,7 +35,9 @@ const { computeMacros } = await import(`${REPO}/js/data/meals.js`);
 const { normaliseBarcode, barcodeCandidates } = await import(`${REPO}/js/lib/barcode.js`);
 const { energyKcalPer100g, mapProductToFood, missingMacroFields } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
-const { listEvents, EVENT_TYPES } = await import(`${REPO}/js/data/calendar.js`);
+const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/js/data/calendar.js`);
+const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
+const { expand } = await import(`${REPO}/js/lib/rrule.js`);
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -193,6 +195,48 @@ check('a valid call succeeds', good.ok === true);
 check('EVENT_TYPES matches the CHECK constraint exactly',
   JSON.stringify(EVENT_TYPES) === JSON.stringify(['chore', 'holiday', 'work_location', 'custom']),
   JSON.stringify(EVENT_TYPES));
+
+// ============ Bounded ranges are not recurrence rules ============
+// CHARACTERISATION TEST. These assert the engine's SURPRISING behaviour on
+// purpose, so the trap is documented rather than rediscovered. rrule.js is
+// write-once and cannot be fixed; the guard below is the protection.
+console.log('\nrrule ignores UNTIL and COUNT (characterisation)');
+
+const bounded = expand('FREQ=DAILY;UNTIL=20260828', '2026-08-24', '2026-08-24', '2026-09-07');
+eq('UNTIL is IGNORED — 15 dates, not 5', bounded.length, 15);
+const counted = expand('FREQ=DAILY;COUNT=7', '2026-08-24', '2026-08-24', '2026-09-07');
+eq('COUNT is IGNORED — 15 dates, not 7', counted.length, 15);
+
+console.log('\nassertSupportedRule guards the boundary');
+check('a plain weekly rule is accepted',
+  assertSupportedRule('FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH').ok === true);
+check('a null rule is accepted (a one-off has no rule)', assertSupportedRule(null).ok === true);
+check('UNTIL is refused', assertSupportedRule('FREQ=DAILY;UNTIL=20260828').ok === false);
+check('COUNT is refused', assertSupportedRule('FREQ=DAILY;COUNT=7').ok === false);
+check('lower case is refused too', assertSupportedRule('freq=daily;until=20260828').ok === false);
+check('the refusal explains the consequence',
+  /forever/.test(assertSupportedRule('FREQ=DAILY;COUNT=7').error.message));
+// Phase 4's rules must survive the guard, or cleared code breaks.
+for (const rule of ['FREQ=WEEKLY;INTERVAL=2;BYDAY=MO', 'FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=15', 'FREQ=DAILY;INTERVAL=3']) {
+  check(`Phase 4 chores rule still accepted: ${rule}`, assertSupportedRule(rule).ok === true);
+}
+
+// ============ Holiday ranges ============
+console.log('\nHoliday ranges');
+
+eq('a range inside one month reads naturally', formatRange('2026-08-24', '2026-08-31'), '24 to 31 August 2026');
+eq('a range across months spells both', formatRange('2026-08-30', '2026-09-02'), '30 August to 2 September 2026');
+eq('a single day has no range', formatRange('2026-08-24', '2026-08-24'), '24 August 2026');
+eq('days are inclusive of both ends', nightsBetween('2026-08-24', '2026-08-31'), 8);
+eq('a one-day holiday is one day', nightsBetween('2026-08-24', '2026-08-24'), 1);
+eq('a bad date gives null rather than NaN', nightsBetween('nonsense', '2026-08-31'), null);
+
+eq('no children gives an empty description',
+  describeChildren({ checklist: 0, purchases: 0, total: 0 }), '');
+eq('both child kinds are named',
+  describeChildren({ checklist: 8, purchases: 5, total: 13 }), '8 checklist items and 5 things to buy');
+eq('singulars are singular',
+  describeChildren({ checklist: 1, purchases: 0, total: 1 }), '1 checklist item');
 
 console.log('');
 if (failures.length) {
