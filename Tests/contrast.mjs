@@ -67,6 +67,9 @@ const PAIRS = [
   ['send-to-shopping checkbox vs card',        'accent',        'surface',     3.0],
   ['.weekday-set legend on card',              'text',          'surface',     4.5],
   ['.preview text on chip',                    'text',          'neutralChip', 4.5],
+  ['.factor-prompt text on chip',              'text',          'neutralChip', 4.5],
+  ['.factor-prompt input BORDER vs chip',      'controlBorder', 'neutralChip', 3.0],
+  ['.food-picker search BORDER vs card',       'controlBorder', 'surface',     3.0],
   ['.item-group h4 on card',                   'text',          'surface',     4.5]
 ];
 

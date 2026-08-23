@@ -33,7 +33,7 @@ globalThis.__HOME_OS_SUPABASE_STUB__ = {
 
 const { computeMacros, toGrams, formatIngredientQuantity, isValidUnit } = await import(`${REPO}/js/data/meals.js`);
 const { normaliseBarcode, barcodeCandidates } = await import(`${REPO}/js/lib/barcode.js`);
-const { energyKcalPer100g, mapProductToFood, missingMacroFields } = await import(`${REPO}/js/lib/openFoodFacts.js`);
+const { energyKcalPer100g, mapProductToFood, missingMacroFields, suggestCategory } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
 const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/js/data/calendar.js`);
 const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
@@ -202,6 +202,30 @@ const missing = missingMacroFields(sparse);
 check('missing fields are reported for honest UI copy',
   missing.includes('calories') && missing.includes('fat') && missing.includes('carbohydrate')
   && !missing.includes('protein'), JSON.stringify(missing));
+
+// ============ Category suggestion from a barcode ============
+// A SUGGESTION, never a saved default. OFF's tags are community-maintained
+// and inconsistent, and it barely covers non-food — so the view must make
+// the user confirm. These assertions pin the mapping, not the policy.
+console.log('\nCategory suggestion');
+
+eq('beverages suggest drink', suggestCategory({ categories_tags: ['en:beverages'] }), 'drink');
+eq('frozen wins over the food type it also carries',
+  suggestCategory({ categories_tags: ['en:meals', 'en:frozen-foods'] }), 'food_frozen');
+eq('dairy suggests fresh', suggestCategory({ categories_tags: ['en:dairies', 'en:milks'] }), 'food_fresh');
+eq('tinned suggests cupboard', suggestCategory({ categories_tags: ['en:canned-foods'] }), 'food_ambient');
+eq('shampoo suggests personal care', suggestCategory({ categories_tags: ['en:shampoos'] }), 'personal');
+eq('an unrecognised tag suggests nothing', suggestCategory({ categories_tags: ['en:widgets'] }), null);
+eq('no tags suggest nothing', suggestCategory({ categories_tags: [] }), null);
+eq('a missing product suggests nothing', suggestCategory(null), null);
+
+const scanned = mapProductToFood({
+  product_name: 'Semi Skimmed Milk', brands: 'Tesco',
+  categories_tags: ['en:dairies', 'en:milks'], nutriments: { 'energy-kcal_100g': 50 }
+}, '5000000000000');
+eq('a mapped product carries the suggestion', scanned.suggestedCategory, 'food_fresh');
+check('and does NOT carry a ready-to-save category field',
+  !('category' in scanned), JSON.stringify(Object.keys(scanned)));
 
 // ============ Dependent descriptions ============
 console.log('\nDelete confirmations');

@@ -124,6 +124,18 @@ check('the food list is grouped under category headings', groupHeadings.length >
 check('each group heading states its count',
   groupHeadings.every((h) => /\(\d+\)/.test(h.textContent)),
   groupHeadings.map((h) => h.textContent).join(' | '));
+// ---- The missing conversion factor is offered where it is needed --------
+// The fixture's second ingredient is 200 ml of a food with no grams_per_ml.
+const prompt = mount.querySelector('.factor-prompt');
+check('a missing conversion factor is offered inline on the row', !!prompt);
+check('the prompt says which food and which unit',
+  !!prompt && /Home-made stock/.test(prompt.textContent) && /millilitre/.test(prompt.textContent),
+  prompt ? prompt.textContent.slice(0, 90) : '');
+check('the prompt input is labelled',
+  !!prompt && !!mount.querySelector(`label[for="${CSS.escape(prompt.querySelector('input').id)}"]`));
+check('the prompt offers a worked example rather than assuming knowledge',
+  !!prompt && /about 1.03|about 60 g/.test(prompt.textContent));
+
 check('a non-food food card says it will not be offered as an ingredient',
   /will not be offered as a recipe ingredient/.test(mount.textContent));
 

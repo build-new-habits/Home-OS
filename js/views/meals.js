@@ -1,4 +1,17 @@
-// js/views/meals.js — 21 Aug 2026 v5
+// js/views/meals.js — 21 Aug 2026 v6
+// v6: after a SCAN the category is deliberately left UNCHOSEN.
+//
+// Open Food Facts gives macros but not a Home-OS category, and defaulting
+// silently to 'food_ambient' would put scanned shampoo in the ingredient
+// picker — the exact failure that column exists to prevent, discovered only
+// mid-recipe. A wrong default is worse than no default, because nobody
+// checks a field that already looks filled in. So a scan pre-selects OFF's
+// suggestion where there is one, marks it as a guess, and refuses to save
+// until the user has confirmed. One tap, on a form they are already reading.
+//
+// Also: picking millilitres or items for an ingredient whose food has no
+// conversion factor now offers to fill it in there and then, rather than
+// only reporting the gap after the totals come out wrong.
 // v5: foods carry a CATEGORY, set here for the first time (revision 3 added
 // the column; nothing wrote it, so every food was 'food_ambient' and the
 // value was dead weight).
@@ -622,6 +635,69 @@ export function render(mountEl) {
     return article;
   }
 
+  /**
+   * Offers the missing conversion factor inline, at the moment it is needed.
+   *
+   * Reporting "no weight per millilitre is recorded" after the totals come
+   * out wrong is honest but useless — the user is looking at a recipe, not a
+   * food record, and would have to navigate away and come back. This puts
+   * the one number they need in front of them where they are.
+   */
+  function buildFactorPrompt(food, unit, onFilled) {
+    const wrap = el('div', { class: 'factor-prompt' });
+    const isMl = unit === 'ml';
+    const fieldName = isMl ? 'grams_per_ml' : 'grams_per_item';
+    const idBase = `factor-${fieldName}-${food.id}`;
+
+    wrap.appendChild(el('p', {
+      text: `${food.name} has no weight per ${isMl ? 'millilitre' : 'item'} recorded, `
+        + 'so it cannot be counted in the nutrition totals yet.'
+    }));
+
+    const input = numberInput(idBase, { min: '0.01', step: 'any' });
+    const hint = el('p', {
+      class: 'field-hint', id: `${idBase}-hint`,
+      text: isMl
+        ? 'Milk is about 1.03, oil about 0.92, water is 1.'
+        : 'One egg is about 60 g, one onion about 150 g.'
+    });
+    input.setAttribute('aria-describedby', hint.id);
+
+    const save = el('button', { type: 'button', class: 'btn', text: 'Save and include it' });
+    const error = el('p', { class: 'field-error', role: 'alert' });
+    error.hidden = true;
+
+    save.addEventListener('click', async () => {
+      error.hidden = true;
+      const value = Number(input.value);
+      if (!Number.isFinite(value) || value <= 0) {
+        error.textContent = 'Enter a weight in grams, greater than zero.';
+        error.hidden = false;
+        input.focus();
+        return;
+      }
+      save.disabled = true;
+      const result = await updateFood(food.id, { [fieldName]: value });
+      save.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        console.error('Failed to save a conversion factor:', result.error);
+        error.textContent = (result.error && result.error.message) || "Couldn't save that — try again.";
+        error.hidden = false;
+        return;
+      }
+      announce(`${food.name} saved: 1 ${isMl ? 'millilitre' : 'item'} weighs ${value} grams. Totals updated.`);
+      onFilled();
+    }, { signal });
+
+    wrap.append(
+      field(`Grams per ${isMl ? 'millilitre' : 'item'}`, input, hint),
+      error,
+      save
+    );
+    return wrap;
+  }
+
   function buildIngredientRow(meal, row) {
     const item = el('li', { class: 'ingredient-row' });
     const food = row.foods || {};
@@ -648,6 +724,19 @@ export function render(mountEl) {
       text: `Unit for ${name} in ${meal.name}`
     });
     item.append(qtyLabel, qtyInput, unitLabel, unitSelect);
+
+    // The factor is missing exactly when the unit needs one and the food
+    // has none. Offer it here rather than only naming the gap in the totals.
+    const unitNow = row.unit || 'g';
+    const needsFactor =
+      (unitNow === 'ml' && food.grams_per_ml == null)
+      || (unitNow === 'item' && food.grams_per_item == null);
+    if (needsFactor && food.id) {
+      item.appendChild(buildFactorPrompt(food, unitNow, async () => {
+        await loadFoods();
+        if (!destroyed) await loadMeals();
+      }));
+    }
 
     unitSelect.addEventListener('change', async () => {
       const result = await updateIngredient(row.id, { unit: unitSelect.value });
@@ -981,17 +1070,39 @@ export function render(mountEl) {
   foodDetails.appendChild(foodForm);
   foodsSection.appendChild(foodDetails);
 
+  // True when the form was opened by a scan and the category has not yet
+  // been confirmed by the user. Blocks save; cleared on any deliberate change.
+  let categoryNeedsConfirming = false;
+
+  function markCategoryConfirmed() {
+    if (!categoryNeedsConfirming) return;
+    categoryNeedsConfirming = false;
+    foodCategoryHint.textContent =
+      'Only food and drink can be added to a recipe. Everything else is for the shopping list.';
+    foodCategorySelect.removeAttribute('aria-invalid');
+  }
+
   function resetFoodForm() {
     foodForm.reset();
     foodCategorySelect.value = 'food_ambient';
+    categoryNeedsConfirming = false;
+    foodCategorySelect.removeAttribute('aria-invalid');
+    foodCategoryHint.textContent =
+      'Only food and drink can be added to a recipe. Everything else is for the shopping list.';
     pendingSource = 'manual';
     foodSourceNote.hidden = true;
     foodSourceNote.textContent = '';
     foodError.hidden = true;
   }
 
-  /** Opens the manual form with whatever the scan and lookup managed to find. */
-  function prefillFoodForm({ barcode = '', food = null, note = '' } = {}) {
+  /**
+   * Opens the manual form with whatever the scan and lookup managed to find.
+   *
+   * @param {boolean} fromScan when true the category must be CONFIRMED before
+   *        saving — Open Food Facts does not supply one, and a silent
+   *        'food_ambient' would put shampoo in the ingredient picker.
+   */
+  function prefillFoodForm({ barcode = '', food = null, note = '', fromScan = false } = {}) {
     foodDetails.open = true;
     foodBarcodeInput.value = barcode;
     foodNameInput.value = food ? (food.name || '') : '';
@@ -1001,7 +1112,19 @@ export function render(mountEl) {
     carbsInput.value = food && food.carbs_g != null ? food.carbs_g : '';
     perMlInput.value = food && food.grams_per_ml != null ? food.grams_per_ml : '';
     perItemInput.value = food && food.grams_per_item != null ? food.grams_per_item : '';
-    foodCategorySelect.value = (food && food.category) || 'food_ambient';
+    const suggestion = food && food.suggestedCategory;
+    foodCategorySelect.value = suggestion || (food && food.category) || 'food_ambient';
+    categoryNeedsConfirming = Boolean(fromScan);
+    if (categoryNeedsConfirming) {
+      foodCategorySelect.setAttribute('aria-invalid', 'true');
+      foodCategoryHint.textContent = suggestion
+        ? `Best guess from the barcode: ${categoryLabel(suggestion)}. Check it — a scan cannot tell us for certain, `
+          + 'and getting this wrong puts non-food in your recipe ingredients.'
+        : 'The barcode did not say what kind of thing this is. Choose one before saving — '
+          + 'it decides whether this can be a recipe ingredient.';
+    } else {
+      foodCategorySelect.removeAttribute('aria-invalid');
+    }
     pendingSource = food && food.source === 'openfoodfacts' ? 'openfoodfacts' : 'manual';
 
     if (note) {
@@ -1014,9 +1137,19 @@ export function render(mountEl) {
     foodNameInput.focus();
   }
 
+  foodCategorySelect.addEventListener('change', markCategoryConfirmed, { signal });
+
   foodForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     foodError.hidden = true;
+    if (categoryNeedsConfirming) {
+      foodError.textContent =
+        'Check what kind of thing this is before saving. A scan cannot tell us, and it '
+        + 'decides whether this shows up as a recipe ingredient.';
+      foodError.hidden = false;
+      foodCategorySelect.focus();
+      return;
+    }
     if (!foodNameInput.value.trim()) {
       foodError.textContent = 'Give the food a name.';
       foodError.hidden = false;
@@ -1431,6 +1564,7 @@ export function render(mountEl) {
       const missing = lookup.missing || [];
       prefillFoodForm({
         barcode,
+        fromScan: true,
         food: lookup.data,
         note: missing.length === 0
           ? 'Found on Open Food Facts with full nutrition data. Check it over, then save.'
@@ -1447,7 +1581,7 @@ export function render(mountEl) {
       error: 'Open Food Facts could not be reached. Fill this in yourself, or scan again later.',
       invalid: 'That barcode could not be read properly. Type the details in below.'
     };
-    prefillFoodForm({ barcode, note: reasons[lookup.reason] || reasons.error });
+    prefillFoodForm({ barcode, fromScan: true, note: reasons[lookup.reason] || reasons.error });
   }
 
   scanBtn.addEventListener('click', () => {

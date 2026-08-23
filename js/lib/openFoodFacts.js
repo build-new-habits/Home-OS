@@ -1,4 +1,6 @@
-// js/lib/openFoodFacts.js — 21 Aug 2026 v1
+// js/lib/openFoodFacts.js — 21 Aug 2026 v2
+// v2: also reads categories_tags and suggests a Home-OS category from them.
+// A SUGGESTION ONLY, never a saved default — see suggestCategory().
 // The ONLY place Home-OS talks to Open Food Facts. Free, no key, ODbL data,
 // rate-limited by courtesy.
 //
@@ -32,7 +34,7 @@ import { isOffline, withTimeout } from './net.js';
 import { barcodeCandidates } from './barcode.js';
 
 const API_BASE = 'https://world.openfoodfacts.org/api/v2/product';
-const FIELDS = 'code,product_name,product_name_en,generic_name,brands,quantity,nutriments';
+const FIELDS = 'code,product_name,product_name_en,generic_name,brands,quantity,nutriments,categories_tags';
 
 /** Shorter than the 6s write budget: a lookup is an accelerator, not a save. */
 export const OFF_TIMEOUT_MS = 5000;
@@ -113,12 +115,50 @@ export function mapProductToFood(product, barcode) {
   return {
     name: name.slice(0, 120),
     barcode,
+    // Deliberately NOT called `category`: it must not be mistaken for a
+    // value ready to save. The view pre-selects it and waits for a choice.
+    suggestedCategory: suggestCategory(product),
     calories_per_100g: energyKcalPer100g(n),
     protein_g: round2(toNumber(n.proteins_100g)),
     fat_g: round2(toNumber(n.fat_100g)),
     carbs_g: round2(toNumber(n.carbohydrates_100g)),
     source: 'openfoodfacts'
   };
+}
+
+/**
+ * Suggests a Home-OS category from Open Food Facts' category tags.
+ *
+ * A SUGGESTION, not a default. OFF's tags are community-maintained and
+ * inconsistent, and it barely covers non-food at all — so this is right
+ * often and quietly wrong sometimes. "Often right" is not good enough here,
+ * because the failure mode is shampoo appearing in the ingredient picker
+ * mid-recipe, which the user only discovers when it is confusing.
+ *
+ * So the caller must present this as a pre-selection the user CONFIRMS, and
+ * must never save a category the user has not seen. Returns null when
+ * nothing matches, which is a perfectly good answer.
+ */
+export function suggestCategory(product) {
+  const tags = (product && product.categories_tags) || [];
+  if (!Array.isArray(tags) || tags.length === 0) return null;
+  const joined = tags.join(' ').toLowerCase();
+
+  // Order matters: the most specific storage state wins. A frozen pizza is
+  // tagged both frozen and meals, and frozen is the useful answer.
+  const rules = [
+    ['food_frozen', /frozen|ice-cream|ices/],
+    ['drink', /beverage|drink|water|juice|coffee|tea|soda|squash|wine|beer|spirit/],
+    ['food_fresh', /fresh|dairy|milk|cheese|yogurt|yoghurt|meat|poultry|fish|seafood|fruit|vegetable|salad|bread|bakery|egg/],
+    ['personal', /hygiene|cosmetic|shampoo|soap|toothpaste|deodorant|shaving/],
+    ['household', /cleaning|detergent|laundry|household/],
+    ['pet', /pet-food|cat-food|dog-food/],
+    ['food_ambient', /canned|tinned|dried|pasta|rice|cereal|snack|biscuit|confectionery|sauce|spice|condiment|flour|sugar/]
+  ];
+  for (const [category, pattern] of rules) {
+    if (pattern.test(joined)) return category;
+  }
+  return null;
 }
 
 /** Which of our four macro fields came back empty. Used for honest UI copy. */

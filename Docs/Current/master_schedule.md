@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v18
+21 Aug 2026 v19
 
-Supersedes v17. Older versions live in `Docs/Archive/`.
+Supersedes v18. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,42 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## A scan must not guess a category (21 Aug 2026)
+
+Graeme asked whether scanning a barcode would self-organise into categories
+and macros. Macros, yes. Category, **no** — and the honest answer exposed a
+trap that was about to be baked in at scale.
+
+Open Food Facts supplies no Home-OS category, so a scanned item would have
+defaulted to `food_ambient`. **Scan shampoo and it lands in the ingredient
+picker** — the exact failure `category` exists to prevent, discovered only
+mid-recipe. And a wrong default is worse than no default, because nobody
+checks a field that already looks filled in. At a shop's worth of barcodes
+that becomes dozens of quiet mistakes to unpick.
+
+Two changes, both about putting the decision where the user already is:
+
+1. **A scan leaves the category UNCONFIRMED and refuses to save.** Where
+   OFF's `categories_tags` suggest something, it is pre-selected and
+   labelled as a guess ("Best guess from the barcode: Drinks. Check it").
+   Where they suggest nothing, nothing is selected. One tap on a form the
+   user is already reading.
+   `suggestCategory()` is deliberately named a suggestion and returned as
+   `suggestedCategory`, never `category`, so it cannot be mistaken for a
+   value ready to save. OFF's tags are inconsistent and barely cover
+   non-food; "often right" is not good enough when the failure is silent.
+
+2. **A missing conversion factor is offered inline, on the ingredient row.**
+   Reporting "no weight per millilitre is recorded" *after* the totals come
+   out wrong is honest but useless — the user is looking at a recipe, not a
+   food record, and would have to navigate away and come back. The prompt
+   now appears exactly where the unit was chosen, with a worked example.
+
+`openFoodFacts.js` v2, `views/meals.js` v6, `components.css` v12, cache
+**v22**. Gates: a11y 47 → 51, trace 52 → 57, behaviour +10, contrast +3
+pairs, and every one of them written to exercise the new path rather than
+sit alongside it.
 
 ## Food categories made real, and a picker that scales (21 Aug 2026)
 

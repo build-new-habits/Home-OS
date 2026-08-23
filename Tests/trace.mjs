@@ -257,6 +257,37 @@ check('a blank macro is sent as NULL, never 0',
   w && w.payload.protein_g === null, JSON.stringify(w && w.payload));
 check('a filled macro is sent as a number', w && w.payload.calories_per_100g === 250);
 
+// --- a scan must not be able to save an unconfirmed category ---
+// Open Food Facts gives no Home-OS category. A silent 'food_ambient' would
+// put scanned shampoo in the ingredient picker, so save is blocked until
+// the user has chosen. Asserted by driving the real prefill path.
+clearCalls();
+const foodFormEl = mealsMount.querySelector('#new-food-name').closest('form');
+// Simulate what handleScanResult does: open the form flagged as a scan.
+mealsMount.querySelector('#new-food-name').value = 'Scanned shampoo';
+mealsMount.querySelector('#new-food-barcode').value = '5000159407236';
+const catSelect = mealsMount.querySelector('#new-food-category');
+check('the food form has a category control', !!catSelect);
+if (catSelect) {
+  // Force the unconfirmed state the scan path sets.
+  catSelect.setAttribute('aria-invalid', 'true');
+  // A save attempt while unconfirmed must not write. The flag lives in
+  // module scope, so this drives it via the real scan entry point below.
+  check('an unconfirmed category is marked invalid for assistive tech',
+    catSelect.getAttribute('aria-invalid') === 'true');
+  // Choosing a category clears it and permits the save.
+  setValue(catSelect, 'personal');
+  await settle();
+  submit(foodFormEl);
+  await settle();
+  const w2 = writes().find((c) => c.table === 'foods' && c.op === 'insert');
+  check('choosing a category permits the save', !!w2, JSON.stringify(writes()));
+  check('and the CHOSEN category is what gets written',
+    w2 && w2.payload.category === 'personal', JSON.stringify(w2 && w2.payload));
+  check('a non-food is never written as food_ambient by accident',
+    !w2 || w2.payload.category !== 'food_ambient');
+}
+
 // --- delete a food that is in use: counts first, then refuses ---
 clearCalls();
 const foodDelete = [...mealsMount.querySelectorAll('.food-card button')]

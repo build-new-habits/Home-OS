@@ -1,4 +1,6 @@
-/* css/components.css — 21 Aug 2026 v11 */
+/* css/components.css — 21 Aug 2026 v12 */
+/* v12: adds .factor-prompt for the inline "fill in the missing conversion"
+   block on an ingredient row. Appended, diffed against v11. */
 /* v11: adds .food-picker and .group-heading for the searchable, grouped
    food picker and the category-grouped food list. Appended, diffed. */
 /* v10: adds .ingredient-unit-select for the per-ingredient unit chooser
@@ -1114,4 +1116,33 @@ details summary {
 
 .group-heading:first-child {
   margin-top: 0;
+}
+
+
+/* ============ Inline conversion-factor prompt ============ */
+
+/* Information, not a warning: this is a gap to fill, not a mistake made
+   (principle 1). Neutral chip background, never a red or amber alert. */
+.factor-prompt {
+  flex: 1 1 100%;
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-neutral-chip);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+.factor-prompt > p:first-child {
+  margin: 0 0 var(--space-2);
+}
+
+.factor-prompt input[type="number"] {
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
