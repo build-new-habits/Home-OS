@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v14
+21 Aug 2026 v15
 
-Supersedes v13. Older versions live in `Docs/Archive/`.
+Supersedes v14. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,52 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Migration 003 applied (21 Aug 2026) — and two things it taught us
+
+Applied and verified against `vkjwwnjhizrlqcovpdco`. `foods.category`,
+`unit` on both quantity tables, `pantry_stock.last_restocked`. RLS `true` on
+all three tables, **17 tables present**.
+
+**That 17 confirms Phase 1 landed correctly — which had never actually been
+checked against the live database.** Every phase since had assumed it.
+
+Two failures on the way, both worth keeping:
+
+1. **The first run hit the wrong project** (`Alongside-Learn`) and failed
+   with `relation "foods" does not exist`. That failure was the *right*
+   outcome: had that project contained a `foods` table, the migration would
+   have succeeded and silently altered the wrong database. **Confirm the
+   project name in the editor before running anything.**
+2. **The explicit `begin;`/`commit;` silently rolled the migration back.**
+   The Supabase editor runs each execution in its own transaction; the
+   explicit COMMIT does not take effect, and everything is undone on
+   disconnect — while the editor reports *"Success. No rows returned"*.
+   Caught only because the verification was run as a **separate execution**
+   and errored. Pasted into the same run, it would have executed inside the
+   doomed transaction, passed, and confirmed a migration about to vanish.
+
+   **Never trust "Success" from the SQL editor for DDL. Verify in a new run.**
+   Recorded in the migration file itself.
+
+## Phase 7 brief rewritten as v2 (21 Aug 2026)
+
+v1 is void, not amended — its premise was the thing revision 3 disproved.
+Rewritten whole rather than patched, because a brief with a corrected
+section and a stale surrounding argument is worse than either.
+
+Changed: quantities are unit-bearing, not grams; the shopping list groups by
+**category in aisle order**, which is the difference between a list you use
+and one you ignore; near-expiry uses `last_restocked`; and the **holiday →
+shopping bridge moves back into Phase 7**, since `foods` now covers
+everything you buy.
+
+One genuinely awkward thing remains and is recorded rather than smoothed
+over: `meal_ingredients.quantity_g` is grams-only, so a pantry row stocked
+in `ml` or `item` **cannot be compared** to a recipe requirement. Phase 7
+lists the full amount and says why on the line. It does **not** convert —
+1 ml of water is 1 g, oil is ~0.9, flour is neither, and there is no density
+column. A confidently wrong shopping list is worse than no list.
 
 ## Schema revision 3 — the shopping revision (21 Aug 2026)
 
@@ -454,5 +500,6 @@ Standing rule 12 below follows from this.
 | Offline queue permanently dead after one failed IndexedDB open | P2 (found P6) | **Closed P6** — `offlineQueue.js` v3 |
 | Vendored scanner reads UPC/EAN only, not QR or Code 128 | P6 | Open by design — rebuild from the package if a later phase needs more |
 | `foods` table still named `foods` while holding razors and light bulbs | Rev 3 | Open — rename churns every module, test fixture and doc; wrong moment while P6 is untested |
-| Phase 7 brief's "all quantities are grams" section | Rev 3 | **Invalidated** — must be reworked around `unit` before P7 is built |
+| Phase 7 brief's "all quantities are grams" section | Rev 3 | **Closed** — brief rewritten whole as v2, 21 Aug |
+| `meal_ingredients` has no unit column, so liquids are grams-only | Rev 3 | Open — P7 flags incomparable units rather than guessing a density. Revision 4 conversation if it annoys in use |
 | No `User-Agent` sent to Open Food Facts (browsers forbid it) | P6 | Open — unfixable from a browser, documented in the module |
