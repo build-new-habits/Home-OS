@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-02 Jul 2026 v2
+21 Aug 2026 v3
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -8,6 +8,63 @@ added, renamed, or removed anywhere without changing it here first.
 
 Backend: Supabase (PostgreSQL, **EU region**, fresh project). 17 tables,
 17 RLS policies, 1 trigger function, 17 update triggers, single owner.
+
+---
+
+## 0. Revision 3 — the shopping revision (21 Aug 2026)
+
+The **first schema change since Phase 1**, and the reasoning matters more
+than the columns.
+
+Phases 1–8 were built against a frozen schema, and the freeze was right: it
+forced workarounds to be recorded rather than the schema to sprawl. Two of
+those workarounds were then found to rest on a false assumption, and a third
+would have been built on top of it in Phase 7.
+
+**The false assumption: that `foods` is what a supermarket shop is made of.**
+It is not. A real shop is shampoo, toilet roll, light bulbs, guinea pig
+bedding, birthday cards, razors and batteries. `shopping_list_items.food_id`
+was `not null references foods(id)`, so none of those could be listed at
+all — and the only schema-legal route, inventing a `foods` row for shower
+gel, would have put shower gel in the meal planner's ingredient picker.
+
+**The consequence: grams are not a universal unit.** Phase 7's brief locked
+"all quantities are grams" because it was the only reading the frozen schema
+supported. You do not buy 400 g of light bulbs. Quantities need a unit.
+
+So `foods` becomes *things you buy*. Its nutrition columns were already
+nullable, so a light bulb is simply a row with a name, a barcode and no
+macros. What was missing was a way to say **what kind of thing it is**, so
+non-food can be kept out of ingredient pickers.
+
+Three additions, all non-destructive — every column has a default, nothing
+is dropped or renamed, and every existing row stays valid:
+
+1. `foods.category` — nine values, splitting food by **storage state**
+   (fresh / frozen / ambient), because that is what actually determines
+   shelf life. A single `food` value would have lumped fresh salmon with
+   tinned beans and made expiry meaningless.
+2. `unit` on `pantry_stock` and `shopping_list_items` — `g` / `ml` / `item`.
+   `item` is what makes non-food work: 3 light bulbs, 1 shower gel.
+3. `pantry_stock.last_restocked` — a real date, replacing the `updated_at`
+   proxy for near-expiry. The proxy was wrong whenever a row was edited for
+   an unrelated reason, such as fixing a typo in its location.
+
+**`household` vs `home` is consumable vs durable.** Cleaning products,
+toilet roll and foil are `household` — you restock them. Cleaning
+equipment, light bulbs, batteries and stationery are `home` — you replace
+them when they die. That is the test for anything new.
+
+**Known debt, deliberately not fixed here:** the table is still named
+`foods` while holding razors. Renaming is clean in Postgres but would churn
+every data module, every test fixture and every doc — and Phase 6 is built
+but not yet smoke-tested, so this is the wrong moment. Recorded, not
+forgotten.
+
+**Phase 6 is unaffected.** Nothing in Phase 6 reads `category`, and the
+column arrives with a default, so foods added through the meals screen land
+as `food_ambient` until Phase 7 provides a picker. The Phase 6 smoke test
+remains valid and does not need re-running because of this.
 
 ---
 
@@ -123,15 +180,40 @@ adds stays `pending_confirmation` until the user clears it (principle 6).
 | ml_logged | int | not null; **canonical unit millilitres** |
 
 ### foods
+
+Despite the name, this is **anything you buy**, not only food (see §0).
+Nutrition columns are nullable throughout: a light bulb is a row with a name
+and no macros. `category` is what keeps non-food out of ingredient pickers.
+
 | Column | Type | Notes |
 |---|---|---|
 | name | text | not null |
 | barcode | text | nullable |
-| calories_per_100g | numeric | |
-| protein_g | numeric | |
-| fat_g | numeric | |
-| carbs_g | numeric | |
+| category | text | not null; check in the 9 values below; default `'food_ambient'` |
+| calories_per_100g | numeric | **canonical unit kcal per 100 g** |
+| protein_g | numeric | **per 100 g** |
+| fat_g | numeric | **per 100 g** |
+| carbs_g | numeric | **per 100 g** |
 | source | text | check in ('manual','openfoodfacts'); default 'manual' |
+
+**`category` values** (order is display order; `other` sits last so it does
+not become the lazy default):
+
+| Value | Covers |
+|---|---|
+| `food_fresh` | fruit, veg, meat, fish, dairy, bakery |
+| `food_frozen` | anything from the freezer aisle |
+| `food_ambient` | dried, tinned, jarred, packets, herbs, snacks, bars |
+| `drink` | tea, coffee, squash, bottles, cans |
+| `household` | **consumable**: cleaning products, toilet roll, kitchen roll, foil, bin bags |
+| `personal` | shower gel, shampoo, conditioner, toothpaste, razors, shaving gel, deodorant, hair products |
+| `home` | **durable**: light bulbs, fuses, batteries, kitchen equipment, cleaning equipment, cards, stationery |
+| `pet` | pet food, bedding, hay, litter |
+| `other` | anything genuinely uncategorised |
+
+Meal-ingredient pickers must filter to `food_fresh`, `food_frozen`,
+`food_ambient` and `drink`. Offering shower gel mid-recipe is the failure
+this column exists to prevent.
 
 ### meals
 | Column | Type | Notes |
@@ -155,20 +237,31 @@ adds stays `pending_confirmation` until the user clears it (principle 6).
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
 
 ### pantry_stock
+
+Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.
+
 | Column | Type | Notes |
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
-| default_location | text | |
-| shelf_life_days | int | |
-| current_qty | numeric | default 0 |
+| default_location | text | which cupboard. Distinct from `foods.category`: category is *what the thing is*, location is *where it lives*, and non-food needs locations like "bathroom cabinet" and "garage" |
+| shelf_life_days | int | how long it keeps once bought |
+| current_qty | numeric | default 0; **interpret with `unit`** |
+| unit | text | not null; check in ('g','ml','item'); default `'g'` |
+| last_restocked | date | nullable. When it was actually bought. **Near-expiry is `last_restocked + shelf_life_days`** — never `updated_at`, which moves whenever the row is edited for any reason |
 
 ### shopping_list_items
 | Column | Type | Notes |
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
-| qty_needed | numeric | |
+| qty_needed | numeric | **interpret with `unit`** |
+| unit | text | not null; check in ('g','ml','item'); default `'g'` |
 | source | text | not null; check in ('usual','meal_plan','holiday') |
 | status | text | check in ('needed','have','bought'); default 'needed' |
+
+`food_id` stays `not null`: with `foods` now covering everything you buy,
+every list item has a real row behind it. A holiday purchase item reaches
+the list by creating (or matching) a `foods` row with the right `category` —
+"sun cream" is `personal`, not an invented food.
 
 ### holidays
 | Column | Type | Notes |
@@ -347,6 +440,9 @@ create table foods (
   protein_g numeric,
   fat_g numeric,
   carbs_g numeric,
+  category text not null default 'food_ambient'
+    check (category in ('food_fresh','food_frozen','food_ambient','drink',
+                        'household','personal','home','pet','other')),
   source text check (source in ('manual','openfoodfacts')) default 'manual'
 );
 
@@ -388,7 +484,9 @@ create table pantry_stock (
   food_id uuid not null references foods(id) on delete restrict,
   default_location text,
   shelf_life_days int,
-  current_qty numeric default 0
+  current_qty numeric default 0,
+  unit text not null default 'g' check (unit in ('g','ml','item')),
+  last_restocked date
 );
 
 create table shopping_list_items (
@@ -398,6 +496,7 @@ create table shopping_list_items (
   updated_at timestamptz not null default now(),
   food_id uuid not null references foods(id) on delete restrict,
   qty_needed numeric,
+  unit text not null default 'g' check (unit in ('g','ml','item')),
   source text check (source in ('usual','meal_plan','holiday')) not null,
   status text check (status in ('needed','have','bought')) default 'needed'
 );

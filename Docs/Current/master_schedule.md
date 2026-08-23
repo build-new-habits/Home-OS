@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v13
+21 Aug 2026 v14
 
-Supersedes v12. Older versions live in `Docs/Archive/`.
+Supersedes v13. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,54 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Schema revision 3 — the shopping revision (21 Aug 2026)
+
+**The first schema change since Phase 1**, made on the coordinator's
+decision. `schema.md` v3; SQL in `Docs/Current/migrations/`.
+
+The freeze was right and did its job: it forced workarounds to be recorded
+rather than the schema to sprawl. But two of those workarounds — Phase 7's
+missing purchase date and Phase 8's blocked holiday→shopping bridge — turned
+out to rest on the same false assumption, and Phase 7 was about to be built
+on top of it.
+
+**The false assumption: that `foods` is what a supermarket shop is made of.**
+Graeme's list settled it — cleaning products, toilet roll, guinea pig
+bedding, birthday cards, shampoo, razors, light bulbs, matches, batteries.
+`shopping_list_items.food_id` is `not null references foods(id)`, so none of
+it could be listed; and the only schema-legal route, inventing a `foods` row
+for shower gel, would have put shower gel in the meal planner's ingredient
+picker.
+
+Its consequence killed a decision made only hours earlier: **"all quantities
+are grams" cannot survive contact with light bulbs.** That had been locked
+into the Phase 7 brief as the only reading the frozen schema supported.
+
+Three additions, all non-destructive:
+
+1. `foods.category` — nine values. Food is split by **storage state**
+   (fresh/frozen/ambient) because that is what determines shelf life; a
+   single `food` value would lump fresh salmon with tinned beans. Graeme's
+   categories, not the architect's first list, which had no frozen/fresh
+   split and no `home`.
+2. `unit` (`g`/`ml`/`item`) on `pantry_stock` and `shopping_list_items`.
+3. `pantry_stock.last_restocked` — a real date, retiring the `updated_at`
+   proxy, which reset whenever a row was edited for an unrelated reason.
+
+**`household` vs `home` is consumable vs durable** — restocked versus
+replaced when it dies. That is the test for anything new.
+
+**Phase 6 is unaffected and its smoke test stays valid.** Nothing in Phase 6
+reads `category`, and the column arrives with a default.
+
+**Debt taken on deliberately:** the table is still called `foods` while
+holding razors. Renaming is clean in Postgres but would churn every data
+module, test fixture and doc — and Phase 6 is built but untested, so this is
+the wrong moment.
+
+The Phase 7 brief is now **invalidated in its units section** and must be
+reworked before that phase is built.
 
 ## Phase 8 brief written (21 Aug 2026) — and a recurrence trap found
 
@@ -405,4 +453,6 @@ Standing rule 12 below follows from this.
 | GitHub token scoped to all 13 org repos | P5 | Open — narrow to `Home-OS` and rotate |
 | Offline queue permanently dead after one failed IndexedDB open | P2 (found P6) | **Closed P6** — `offlineQueue.js` v3 |
 | Vendored scanner reads UPC/EAN only, not QR or Code 128 | P6 | Open by design — rebuild from the package if a later phase needs more |
+| `foods` table still named `foods` while holding razors and light bulbs | Rev 3 | Open — rename churns every module, test fixture and doc; wrong moment while P6 is untested |
+| Phase 7 brief's "all quantities are grams" section | Rev 3 | **Invalidated** — must be reworked around `unit` before P7 is built |
 | No `User-Agent` sent to Open Food Facts (browsers forbid it) | P6 | Open — unfixable from a browser, documented in the module |
