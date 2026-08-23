@@ -120,6 +120,49 @@ for (const file of files) {
 // a regex: the earlier non-greedy `[\s\S]*?\n\s*\};` ran past the object
 // it started in and flagged unrelated locals (computeMacros' `serves`, the
 // export result's `exported_at`) as database columns.
+/**
+ * Blanks out // and /* *\/ comments, preserving length and newlines so every
+ * index stays valid. Without this the key regex matches prose: a comment
+ * reading "A CHECK-constrained column: ..." inside an object literal was
+ * reported as a database column called `column`.
+ */
+function stripComments(src) {
+  let out = '';
+  let i = 0;
+  while (i < src.length) {
+    const two = src.slice(i, i + 2);
+    if (two === '//') {
+      while (i < src.length && src[i] !== '\n') { out += ' '; i += 1; }
+      continue;
+    }
+    if (two === '/*') {
+      while (i < src.length && src.slice(i, i + 2) !== '*/') {
+        out += src[i] === '\n' ? '\n' : ' ';
+        i += 1;
+      }
+      out += '  ';
+      i += 2;
+      continue;
+    }
+    // Skip string bodies too: a table name inside a string is handled
+    // elsewhere, and prose in a string should not be read as keys.
+    if (src[i] === "'" || src[i] === '"' || src[i] === '`') {
+      const quote = src[i];
+      out += quote; i += 1;
+      while (i < src.length && src[i] !== quote) {
+        if (src[i] === '\\') { out += '  '; i += 2; continue; }
+        out += src[i] === '\n' ? '\n' : ' ';
+        i += 1;
+      }
+      if (i < src.length) { out += quote; i += 1; }
+      continue;
+    }
+    out += src[i];
+    i += 1;
+  }
+  return out;
+}
+
 function objectAt(src, braceIndex) {
   let depth = 0;
   for (let i = braceIndex; i < src.length; i++) {
@@ -130,7 +173,9 @@ function objectAt(src, braceIndex) {
 }
 
 for (const file of files) {
-  const src = fs.readFileSync(file, 'utf8');
+  const raw = fs.readFileSync(file, 'utf8');
+  // Comments and string bodies blanked, so prose cannot be read as keys.
+  const src = stripComments(raw);
   for (const m of src.matchAll(/\b(?:const|let)\s+([A-Za-z_$][\w$]*)\s*=\s*\{/g)) {
     const name = m[1];
     // Only objects that actually reach the database.

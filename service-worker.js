@@ -1,4 +1,7 @@
-// service-worker.js — 21 Aug 2026 v20
+// service-worker.js — 21 Aug 2026 v21
+// v21: no path change — bumped for the food category controls and the
+// searchable grouped picker (data/foods.js v3, views/meals.js v5,
+// components.css v11).
 // v20: no path change — bumped for views/meals.js v4 (the quantity input
 // min/step fix; every round number was unenterable).
 // v19: no path change — bumped for schema revision 4 (ingredient units and
@@ -66,7 +69,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v20';
+const CACHE_NAME = 'home-os-shell-v21';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

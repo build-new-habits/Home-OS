@@ -1,4 +1,6 @@
-/* css/components.css — 21 Aug 2026 v10 */
+/* css/components.css — 21 Aug 2026 v11 */
+/* v11: adds .food-picker and .group-heading for the searchable, grouped
+   food picker and the category-grouped food list. Appended, diffed. */
 /* v10: adds .ingredient-unit-select for the per-ingredient unit chooser
    (schema revision 4). Appended, diffed against v9. */
 /* v9: adds the Phase 8 section at the end — holiday item groups, the
@@ -1080,4 +1082,36 @@ details summary {
   background: var(--color-surface);
   color: var(--color-text);
   font-size: var(--text-sm);
+}
+
+
+/* ============ Searchable, grouped food picker ============ */
+
+.food-picker {
+  margin-bottom: var(--space-3);
+}
+
+/* A search input is a control like any other; --control-border gives the
+   3:1 boundary an empty box needs to read as one (1.4.11). */
+.food-picker input[type="search"] {
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-base);
+}
+
+.group-heading {
+  margin: var(--space-5) 0 var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 2px solid var(--color-border);
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.group-heading:first-child {
+  margin-top: 0;
 }

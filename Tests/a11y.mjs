@@ -23,8 +23,8 @@ window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventL
 
 const CHAIN = ['select','insert','update','delete','upsert','eq','neq','gt','gte','lt','lte','order','limit','range','match','is','in'];
 function fixture(t) {
-  if (t === 'foods') return [{ id:'food-1', name:'Rolled oats', barcode:'5000159407236', calories_per_100g:379, protein_g:13.2, fat_g:8.1, carbs_g:60.1, source:'openfoodfacts' },
-                             { id:'food-2', name:'Home-made stock', barcode:null, calories_per_100g:null, protein_g:null, fat_g:null, carbs_g:null, source:'manual' }];
+  if (t === 'foods') return [{ id:'food-1', name:'Rolled oats', barcode:'5000159407236', calories_per_100g:379, protein_g:13.2, fat_g:8.1, carbs_g:60.1, source:'openfoodfacts', category:'food_ambient' },
+                             { id:'food-2', name:'Home-made stock', barcode:null, calories_per_100g:null, protein_g:null, fat_g:null, carbs_g:null, source:'manual', category:'personal' }];
   if (t === 'meals') return [{ id:'meal-1', name:'Porridge', default_serves:2 }];
   if (t === 'meal_ingredients') return [{ id:'ing-1', meal_id:'meal-1', food_id:'food-1', quantity_g:80, unit:'g', foods:fixture('foods')[0] },
                                         { id:'ing-2', meal_id:'meal-1', food_id:'food-2', quantity_g:200, unit:'ml', foods:fixture('foods')[1] }];
@@ -96,6 +96,36 @@ check(`all ${controls.length} form controls have a resolvable label`, unlabelled
   unlabelled.map((c) => c.id || c.type).join(', '));
 
 checkNumberInputs(mount, 'meals');
+
+// ---- The ingredient picker must scale, and must exclude non-food --------
+// A real kitchen has hundreds of ingredients; a flat <select> of hundreds is
+// unusable one-handed. And the whole point of foods.category is that shower
+// gel is never offered mid-recipe.
+const picker = mount.querySelector('.food-picker');
+check('the ingredient picker has a type-ahead box', !!picker && !!picker.querySelector('input[type="search"]'));
+check('the search box is labelled', !!picker && !!mount.querySelector(`label[for="${CSS.escape(picker.querySelector('input[type="search"]').id)}"]`));
+check('the match count is announced politely',
+  !!picker && picker.querySelector('[role="status"]')
+  && picker.querySelector('[role="status"]').getAttribute('aria-live') === 'polite');
+
+const pickerSelect = picker && picker.querySelector('select');
+const optgroups = pickerSelect ? [...pickerSelect.querySelectorAll('optgroup')] : [];
+check('picker options are grouped under category headings', optgroups.length > 0,
+  `${optgroups.length} groups`);
+const pickerNames = pickerSelect ? [...pickerSelect.querySelectorAll('option')].map((o) => o.textContent) : [];
+// The fixture's second food is category 'personal'.
+check('a NON-FOOD is not offered as an ingredient',
+  !pickerNames.includes('Home-made stock'), pickerNames.join(' | '));
+check('an edible food IS offered', pickerNames.includes('Rolled oats'), pickerNames.join(' | '));
+
+// ---- The food list is grouped so it stays navigable at scale ----
+const groupHeadings = [...mount.querySelectorAll('.group-heading')];
+check('the food list is grouped under category headings', groupHeadings.length > 0);
+check('each group heading states its count',
+  groupHeadings.every((h) => /\(\d+\)/.test(h.textContent)),
+  groupHeadings.map((h) => h.textContent).join(' | '));
+check('a non-food food card says it will not be offered as an ingredient',
+  /will not be offered as a recipe ingredient/.test(mount.textContent));
 
 // ---- No duplicate ids (a duplicate silently breaks label association) ----
 const ids = [...mount.querySelectorAll('[id]')].map((n) => n.id);

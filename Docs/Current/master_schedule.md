@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v17
+21 Aug 2026 v18
 
-Supersedes v16. Older versions live in `Docs/Archive/`.
+Supersedes v17. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,47 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Food categories made real, and a picker that scales (21 Aug 2026)
+
+Graeme, testing with one ingredient, pointed out the thing one ingredient
+hides: a real kitchen has hundreds, and a flat `<select>` of hundreds is
+unusable one-handed in a kitchen.
+
+**Building it exposed that `foods.category` was dead weight.** Revision 3
+added the column; nothing ever wrote it, because the UI control was assigned
+to Phase 7. So every food was `food_ambient` and grouping or filtering by it
+would have done nothing. The control now lives in Phase 6 where the food
+form is — a small scope move, recorded rather than silent.
+
+Three things, no migration:
+
+1. **Category controls** on both food forms, constrained (standing rule 1).
+2. **The ingredient picker filters to edible categories**, so shower gel is
+   never offered mid-recipe. That is what the column is for.
+3. **Type-ahead plus `<optgroup>` headings.** At a few hundred items you
+   know the name and want to type three letters, not navigate a tree. The
+   match count is announced politely, so the filter is perceivable without
+   sight.
+
+The food list is grouped under category headings with counts, and food cards
+dropped to `h4` since they now sit inside a category `h3`.
+
+**A finer taxonomy (fruit / dairy / meat / fish) was considered and
+deferred, deliberately.** It is a real second dimension — frozen peas are
+`food_frozen` *and* a vegetable — but every food would need the field
+filled, and a half-filled taxonomy filters *unreliably*, which is worse than
+none. Revisit once there are fifty real foods and it is clear whether
+hunting is still a problem. Designing a taxonomy for imagined data is how a
+field nobody fills in gets created.
+
+Also fixed: the schema-conformance checker read prose inside object literals
+as column names — a comment reading *"A CHECK-constrained column: ..."* was
+reported as a column called `column`. It now blanks comments and string
+bodies before scanning, and was re-proven against an injected typo.
+
+`data/foods.js` v3, `views/meals.js` v5, `components.css` v11, cache **v21**.
+a11y 38 → 47 checks.
 
 ## A gate hole found on a real device (21 Aug 2026)
 

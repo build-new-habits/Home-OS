@@ -40,8 +40,8 @@ function fixtureFor(table) {
   switch (table) {
     case 'foods':
       return [
-        { id: 'food-1', name: 'Rolled oats', barcode: '5000159407236', calories_per_100g: 379, protein_g: 13.2, fat_g: 8.1, carbs_g: 60.1, source: 'openfoodfacts' },
-        { id: 'food-2', name: 'Home-made stock', barcode: null, calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null, source: 'manual' }
+        { id: 'food-1', name: 'Rolled oats', barcode: '5000159407236', calories_per_100g: 379, protein_g: 13.2, fat_g: 8.1, carbs_g: 60.1, source: 'openfoodfacts', category: 'food_ambient' },
+        { id: 'food-2', name: 'Home-made stock', barcode: null, calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null, source: 'manual', category: 'personal' }
       ];
     case 'meals':
       return [{ id: 'meal-1', name: 'Porridge', default_serves: 2 }];

@@ -1,4 +1,7 @@
-// js/data/foods.js — 21 Aug 2026 v2
+// js/data/foods.js — 21 Aug 2026 v3
+// v3: `category` is now written and read. Revision 3 added the column but
+// nothing set it, so every food defaulted to food_ambient and the value was
+// dead weight — grouping or filtering by it would have been meaningless.
 // v2 (schema revision 4): grams_per_ml and grams_per_item are optional
 // conversion factors letting an ingredient measured in ml or items reach
 // the per-100 g nutrition figures. Null means "cannot convert", which
@@ -55,6 +58,56 @@ const DEPENDENT_TABLES = [
 
 const MACRO_FIELDS = ['calories_per_100g', 'protein_g', 'fat_g', 'carbs_g'];
 
+/**
+ * The `foods.category` CHECK constraint, in full and in DISPLAY ORDER.
+ * Order matters: it is aisle order for the shopping list (Phase 7) and
+ * grouping order in every picker. `other` sits last so it does not become
+ * the lazy default.
+ *
+ * `isFood` marks the categories an ingredient picker may offer. Shower gel
+ * must never appear mid-recipe — that is what this column exists for.
+ */
+export const FOOD_CATEGORIES = [
+  { value: 'food_fresh', label: 'Fresh food', hint: 'fruit, veg, meat, fish, dairy, bakery', isFood: true },
+  { value: 'food_frozen', label: 'Frozen food', hint: 'anything from the freezer', isFood: true },
+  { value: 'food_ambient', label: 'Cupboard food', hint: 'dried, tinned, jarred, packets, herbs, snacks', isFood: true },
+  { value: 'drink', label: 'Drinks', hint: 'tea, coffee, squash, bottles, cans', isFood: true },
+  { value: 'household', label: 'Household', hint: 'cleaning products, toilet roll, foil, bin bags', isFood: false },
+  { value: 'personal', label: 'Personal care', hint: 'shower gel, shampoo, toothpaste, razors', isFood: false },
+  { value: 'home', label: 'Home', hint: 'bulbs, batteries, equipment, cards, stationery', isFood: false },
+  { value: 'pet', label: 'Pet', hint: 'pet food, bedding, hay, litter', isFood: false },
+  { value: 'other', label: 'Other', hint: '', isFood: false }
+];
+
+const CATEGORY_VALUES = FOOD_CATEGORIES.map((c) => c.value);
+const FOOD_CATEGORY_VALUES = FOOD_CATEGORIES.filter((c) => c.isFood).map((c) => c.value);
+
+export function isValidCategory(value) {
+  return CATEGORY_VALUES.includes(value);
+}
+
+/** True if this food may appear in a recipe ingredient picker. */
+export function isEdible(food) {
+  return FOOD_CATEGORY_VALUES.includes((food && food.category) || 'food_ambient');
+}
+
+export function categoryLabel(value) {
+  const found = FOOD_CATEGORIES.find((c) => c.value === value);
+  return found ? found.label : 'Other';
+}
+
+/** Foods grouped by category, in display order, each group name-sorted. */
+export function groupByCategory(foods) {
+  const groups = [];
+  for (const category of FOOD_CATEGORIES) {
+    const members = (foods || []).filter(
+      (f) => (f.category || 'food_ambient') === category.value
+    );
+    if (members.length > 0) groups.push({ ...category, foods: members });
+  }
+  return groups;
+}
+
 /** Optional ml/item -> grams factors. Same null-is-not-zero rule as macros. */
 const FACTOR_FIELDS = ['grams_per_ml', 'grams_per_item'];
 
@@ -102,6 +155,7 @@ export async function listFoods() {
   const { data, error } = await supabase
     .from(TABLE)
     .select('*')
+    .order('category', { ascending: true })
     .order('name', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };
@@ -142,6 +196,9 @@ function buildFoodPayload(input = {}) {
     // Empty string would be a distinct value from null and would break
     // barcode matching, so an absent barcode is stored as null.
     barcode: normaliseBarcode(barcode),
+    // A CHECK-constrained column: an invalid value comes back as an opaque
+    // database error, so it is normalised here rather than sent through.
+    category: isValidCategory(input.category) ? input.category : 'food_ambient',
     source: source === 'openfoodfacts' ? 'openfoodfacts' : 'manual'
   };
   for (const field of MACRO_FIELDS) {
@@ -196,6 +253,12 @@ export async function updateFood(foodId, patch) {
     next.name = name;
   }
   if (patch.barcode !== undefined) next.barcode = normaliseBarcode(patch.barcode);
+  if (patch.category !== undefined) {
+    if (!isValidCategory(patch.category)) {
+      return { ok: false, error: new Error(`"${patch.category}" is not a category.`) };
+    }
+    next.category = patch.category;
+  }
   for (const field of MACRO_FIELDS) {
     if (patch[field] === undefined) continue;
     if (patch[field] === null || patch[field] === '') {

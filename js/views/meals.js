@@ -1,4 +1,14 @@
-// js/views/meals.js — 21 Aug 2026 v4
+// js/views/meals.js — 21 Aug 2026 v5
+// v5: foods carry a CATEGORY, set here for the first time (revision 3 added
+// the column; nothing wrote it, so every food was 'food_ambient' and the
+// value was dead weight).
+//
+// Two consequences, both about scale. A real kitchen has hundreds of
+// ingredients and a flat <select> of hundreds is unusable one-handed:
+//   * The ingredient picker FILTERS to edible categories, so shower gel is
+//     never offered mid-recipe. That is what the column is for.
+//   * It has a type-ahead box and <optgroup> headings, because at that size
+//     you know the name and want to type three letters, not navigate.
 // v4: ingredient quantity inputs used min="0.1" with step="1". HTML
 // validity requires (value - min) % step === 0, so that permitted ONLY
 // 0.1, 1.1, 2.1 ... and the browser rejected 100 with "the two nearest
@@ -39,7 +49,8 @@
 
 import {
   listFoods, listQueuedFoods, findByBarcode, createFood, updateFood,
-  countFoodDependents, describeDependents, deleteFood
+  countFoodDependents, describeDependents, deleteFood,
+  FOOD_CATEGORIES, isEdible, categoryLabel, groupByCategory
 } from '../data/foods.js';
 import {
   listMeals, listIngredients, groupByMeal, createMeal, updateMeal,
@@ -83,6 +94,70 @@ function field(labelText, inputEl, hintEl) {
 
 function numberInput(id, { min = '0', step = 'any' } = {}) {
   return el('input', { id, type: 'number', min, step, inputmode: 'decimal' });
+}
+
+/**
+ * A food picker that stays usable at hundreds of ingredients.
+ *
+ * A type-ahead box narrows the list, and options are grouped by category
+ * with <optgroup> so the native picker shows headings. `onlyEdible` keeps
+ * non-food out of recipes.
+ *
+ * Returns { wrapper, select, refresh } — refresh() rebuilds from a new food
+ * list without losing the current selection or the typed filter.
+ */
+function foodPicker(idPrefix, foods, { onlyEdible = true, blankLabel = 'Choose a food' } = {}) {
+  const source = onlyEdible ? foods.filter(isEdible) : foods.slice();
+
+  const filterInput = el('input', { id: `${idPrefix}-filter`, type: 'search', autocomplete: 'off' });
+  filterInput.placeholder = 'Type to narrow the list';
+  const select = el('select', { id: `${idPrefix}-select` });
+
+  const count = el('p', { class: 'field-hint', id: `${idPrefix}-count`, role: 'status' });
+  count.setAttribute('aria-live', 'polite');
+  filterInput.setAttribute('aria-describedby', count.id);
+
+  function build() {
+    const term = filterInput.value.trim().toLowerCase();
+    const chosen = select.value;
+    const matching = term
+      ? source.filter((f) => (f.name || '').toLowerCase().includes(term))
+      : source;
+
+    select.replaceChildren();
+    select.appendChild(el('option', {
+      value: '',
+      text: source.length === 0 ? 'No foods yet' : (matching.length === 0 ? 'Nothing matches' : blankLabel)
+    }));
+
+    for (const group of groupByCategory(matching)) {
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = group.label;
+      for (const food of group.foods) {
+        const option = el('option', { value: food.id, text: food.name });
+        if (food.id === chosen) option.selected = true;
+        optgroup.appendChild(option);
+      }
+      select.appendChild(optgroup);
+    }
+
+    // Spoken, not just visual — the count is how a screen-reader user knows
+    // the typed filter did anything at all.
+    count.textContent = term
+      ? `${matching.length} of ${source.length} foods match "${filterInput.value.trim()}".`
+      : `${source.length} food${source.length === 1 ? '' : 's'}.`;
+  }
+
+  filterInput.addEventListener('input', build);
+  build();
+
+  const wrapper = el('div', { class: 'food-picker' });
+  wrapper.append(
+    field('Search foods', filterInput),
+    count,
+    field('Food', select)
+  );
+  return { wrapper, select, refresh: build };
 }
 
 function selectFrom(id, options, { includeBlank = null } = {}) {
@@ -633,13 +708,11 @@ export function render(mountEl) {
     const form = el('form', { class: 'add-ingredient' });
     form.setAttribute('aria-label', `Add an ingredient to ${meal.name}`);
 
-    const foodSelect = selectFrom(
-      `add-ingredient-food-${meal.id}`,
-      // Synced foods only: a food still in the offline queue has no real id,
-      // so meal_ingredients.food_id could not point at it.
-      foods.map((food) => ({ value: food.id, label: food.name })),
-      { includeBlank: 'Choose a food' }
-    );
+    // Synced foods only: a food still in the offline queue has no real id,
+    // so meal_ingredients.food_id could not point at it. Filtered to edible
+    // categories, grouped, and searchable — see foodPicker().
+    const picker = foodPicker(`add-ingredient-${meal.id}`, foods, { onlyEdible: true });
+    const foodSelect = picker.select;
     const qtyInput = numberInput(`add-ingredient-qty-${meal.id}`, { min: '0.1', step: 'any' });
     // A CHECK-constrained column, so a constrained control, never free text
     // (standing rule 1).
@@ -652,7 +725,7 @@ export function render(mountEl) {
     const submit = el('button', { type: 'submit', class: 'btn', text: 'Add ingredient' });
 
     form.append(
-      field('Food', foodSelect),
+      picker.wrapper,
       field('Quantity', qtyInput),
       field('Measured in', unitSelect),
       error,
@@ -663,8 +736,9 @@ export function render(mountEl) {
       event.preventDefault();
       error.hidden = true;
       if (!foodSelect.value) {
-        error.textContent = foods.length === 0
-          ? 'Add a food further down this page first, then come back here.'
+        const edibleCount = foods.filter(isEdible).length;
+        error.textContent = edibleCount === 0
+          ? 'No foods to add yet. Add one further down this page, and give it a food category.'
           : 'Choose a food to add.';
         error.hidden = false;
         foodSelect.focus();
@@ -829,6 +903,19 @@ export function render(mountEl) {
   });
   foodBarcodeInput.setAttribute('aria-describedby', 'new-food-barcode-hint');
 
+  // A CHECK-constrained column, so a constrained control (standing rule 1).
+  // Placed high: it decides whether this thing can ever be an ingredient.
+  const foodCategorySelect = selectFrom(
+    'new-food-category',
+    FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.hint ? `${c.label} — ${c.hint}` : c.label }))
+  );
+  foodCategorySelect.value = 'food_ambient';
+  const foodCategoryHint = el('p', {
+    class: 'field-hint', id: 'new-food-category-hint',
+    text: 'Only food and drink can be added to a recipe. Everything else is for the shopping list.'
+  });
+  foodCategorySelect.setAttribute('aria-describedby', 'new-food-category-hint');
+
   const macroFieldset = el('fieldset');
   macroFieldset.appendChild(el('legend', { text: 'Nutrition per 100 g (optional)' }));
   macroFieldset.appendChild(el('p', {
@@ -884,6 +971,7 @@ export function render(mountEl) {
   foodForm.append(
     field('Food name', foodNameInput),
     field('Barcode', foodBarcodeInput, foodBarcodeHint),
+    field('What kind of thing is it?', foodCategorySelect, foodCategoryHint),
     macroFieldset,
     convertFieldset,
     foodSourceNote,
@@ -895,6 +983,7 @@ export function render(mountEl) {
 
   function resetFoodForm() {
     foodForm.reset();
+    foodCategorySelect.value = 'food_ambient';
     pendingSource = 'manual';
     foodSourceNote.hidden = true;
     foodSourceNote.textContent = '';
@@ -912,6 +1001,7 @@ export function render(mountEl) {
     carbsInput.value = food && food.carbs_g != null ? food.carbs_g : '';
     perMlInput.value = food && food.grams_per_ml != null ? food.grams_per_ml : '';
     perItemInput.value = food && food.grams_per_item != null ? food.grams_per_item : '';
+    foodCategorySelect.value = (food && food.category) || 'food_ambient';
     pendingSource = food && food.source === 'openfoodfacts' ? 'openfoodfacts' : 'manual';
 
     if (note) {
@@ -952,6 +1042,7 @@ export function render(mountEl) {
     const result = await createFood({
       name: foodNameInput.value,
       barcode: foodBarcodeInput.value,
+      category: foodCategorySelect.value,
       calories_per_100g: caloriesInput.value,
       protein_g: proteinInput.value,
       fat_g: fatInput.value,
@@ -982,7 +1073,9 @@ export function render(mountEl) {
 
   function buildFoodCard(food) {
     const { article, body, actions } = createCard({
-      title: food.name, headingLevel: 3, className: 'food-card'
+      // h4: the card sits under a category h3, which sits under the
+      // "Foods" h2. A sibling h3 would misdescribe the nesting.
+      title: food.name, headingLevel: 4, className: 'food-card'
     });
     article.dataset.foodId = food.id;
 
@@ -991,8 +1084,15 @@ export function render(mountEl) {
     }
     body.appendChild(el('p', {
       class: 'chip',
-      text: food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand'
+      text: `${categoryLabel(food.category)} · ${food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand'}`
     }));
+    if (!isEdible(food)) {
+      // Stated plainly rather than left to be discovered by its absence.
+      body.appendChild(el('p', {
+        class: 'field-hint',
+        text: 'Not food, so it will not be offered as a recipe ingredient.'
+      }));
+    }
 
     const macroList = el('ul', { class: 'macro-list' });
     const perHundred = [
@@ -1057,6 +1157,12 @@ export function render(mountEl) {
     const barcodeInput = el('input', { id: `${prefix}-barcode`, type: 'text', inputmode: 'numeric' });
     barcodeInput.value = food.barcode || '';
 
+    const categorySelect = selectFrom(
+      `${prefix}-category`,
+      FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))
+    );
+    categorySelect.value = food.category || 'food_ambient';
+
     const set = el('fieldset');
     set.appendChild(el('legend', { text: 'Nutrition per 100 g' }));
     const cal = numberInput(`${prefix}-calories`);
@@ -1094,6 +1200,7 @@ export function render(mountEl) {
     form.append(
       field('Food name', nameInput),
       field('Barcode', barcodeInput),
+      field('What kind of thing is it?', categorySelect),
       set,
       convSet,
       error,
@@ -1117,6 +1224,7 @@ export function render(mountEl) {
       const result = await updateFood(food.id, {
         name: nameInput.value,
         barcode: barcodeInput.value,
+        category: categorySelect.value,
         calories_per_100g: cal.value,
         protein_g: pro.value,
         fat_g: fat.value,
@@ -1411,7 +1519,14 @@ export function render(mountEl) {
       if (foods.length === 0) {
         foodsList.appendChild(el('p', { text: 'No foods yet. Scan a barcode, or add one by hand below.' }));
       } else {
-        for (const food of foods) foodsList.appendChild(buildFoodCard(food));
+        // Grouped under real headings so a long list stays navigable by
+        // heading rather than by scrolling.
+        for (const group of groupByCategory(foods)) {
+          const heading = el('h3', { class: 'group-heading' });
+          heading.textContent = `${group.label} (${group.foods.length})`;
+          foodsList.appendChild(heading);
+          for (const food of group.foods) foodsList.appendChild(buildFoodCard(food));
+        }
       }
     }
 
