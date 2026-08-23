@@ -47,8 +47,8 @@ function fixtureFor(table) {
       return [{ id: 'meal-1', name: 'Porridge', default_serves: 2 }];
     case 'meal_ingredients':
       return [
-        { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, foods: fixtureFor('foods')[0] },
-        { id: 'ing-2', meal_id: 'meal-1', food_id: 'food-2', quantity_g: 200, foods: fixtureFor('foods')[1] }
+        { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixtureFor('foods')[0] },
+        { id: 'ing-2', meal_id: 'meal-1', food_id: 'food-2', quantity_g: 200, unit: 'ml', foods: fixtureFor('foods')[1] }
       ];
     case 'holidays':
       return [{ id: 'hol-1', title: 'Cornwall', start_date: '2026-09-05', end_date: '2026-09-12' }];

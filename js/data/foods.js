@@ -1,4 +1,8 @@
-// js/data/foods.js — 21 Aug 2026 v1
+// js/data/foods.js — 21 Aug 2026 v2
+// v2 (schema revision 4): grams_per_ml and grams_per_item are optional
+// conversion factors letting an ingredient measured in ml or items reach
+// the per-100 g nutrition figures. Null means "cannot convert", which
+// surfaces as an incomplete total — never a guess.
 // All Supabase access for `foods`. Shared data-access contract:
 // { ok, data|error } returns, error always checked, nothing thrown at views,
 // no user_id on inserts (the column defaults to auth.uid(); RLS scopes it).
@@ -50,6 +54,9 @@ const DEPENDENT_TABLES = [
 ];
 
 const MACRO_FIELDS = ['calories_per_100g', 'protein_g', 'fat_g', 'carbs_g'];
+
+/** Optional ml/item -> grams factors. Same null-is-not-zero rule as macros. */
+const FACTOR_FIELDS = ['grams_per_ml', 'grams_per_item'];
 
 async function applyFoodOp(op) {
   // Throwing, not returning: flush() removes an op as soon as the handler
@@ -128,7 +135,8 @@ export async function findByBarcode(rawBarcode) {
   return { ok: true, data: null };
 }
 
-function buildFoodPayload({ name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, source }) {
+function buildFoodPayload(input = {}) {
+  const { name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, source } = input;
   const payload = {
     name: String(name || '').trim(),
     // Empty string would be a distinct value from null and would break
@@ -144,6 +152,17 @@ function buildFoodPayload({ name, barcode, calories_per_100g, protein_g, fat_g, 
     }
     const n = Number(raw);
     payload[field] = Number.isFinite(n) && n >= 0 ? n : null;
+  }
+  for (const field of FACTOR_FIELDS) {
+    const raw = input[field];
+    if (raw === null || raw === undefined || raw === '') {
+      payload[field] = null;
+      continue;
+    }
+    const n = Number(raw);
+    // The CHECK constraint requires > 0; zero would also make every
+    // conversion collapse to nothing, so it is rejected here too.
+    payload[field] = Number.isFinite(n) && n > 0 ? n : null;
   }
   return payload;
 }
@@ -185,6 +204,15 @@ export async function updateFood(foodId, patch) {
     }
     const n = Number(patch[field]);
     next[field] = Number.isFinite(n) && n >= 0 ? n : null;
+  }
+  for (const field of FACTOR_FIELDS) {
+    if (patch[field] === undefined) continue;
+    if (patch[field] === null || patch[field] === '') {
+      next[field] = null;
+      continue;
+    }
+    const n = Number(patch[field]);
+    next[field] = Number.isFinite(n) && n > 0 ? n : null;
   }
   const { data, error } = await supabase
     .from(TABLE)

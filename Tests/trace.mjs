@@ -57,7 +57,7 @@ function fixture(t) {
     { id: 'food-2', name: 'Home-made stock', barcode: null, calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null, source: 'manual' }];
   if (t === 'meals') return [{ id: 'meal-1', name: 'Porridge', default_serves: 2 }];
   if (t === 'meal_ingredients') return [
-    { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, foods: fixture('foods')[0] }];
+    { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixture('foods')[0] }];
   if (t === 'weekly_meal_plan') return [{ id: 'plan-1', day_of_week: 'mon', slot: 'breakfast', serves_override: 3, meal_id: 'meal-1', meals: { id: 'meal-1', name: 'Porridge', default_serves: 2 } }];
   if (t === 'holidays') return [{ id: 'hol-1', title: 'Cornwall', start_date: '2026-09-05', end_date: '2026-09-12' }];
   if (t === 'holiday_checklist_items') return [

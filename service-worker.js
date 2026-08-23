@@ -1,4 +1,7 @@
-// service-worker.js — 21 Aug 2026 v18
+// service-worker.js — 21 Aug 2026 v19
+// v19: no path change — bumped for schema revision 4 (ingredient units and
+// food conversion factors) touching data/meals.js, data/foods.js,
+// views/meals.js and components.css.
 // v18 (Phase 8): ONE new path, js/data/holidays.js. js/views/holidays.js
 // was already listed as a Phase 2 stub, and work location lives inside
 // data/calendar.js rather than a module of its own, so the count goes
@@ -61,7 +64,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v18';
+const CACHE_NAME = 'home-os-shell-v19';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

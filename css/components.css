@@ -1,4 +1,6 @@
-/* css/components.css — 21 Aug 2026 v9 */
+/* css/components.css — 21 Aug 2026 v10 */
+/* v10: adds .ingredient-unit-select for the per-ingredient unit chooser
+   (schema revision 4). Appended, diffed against v9. */
 /* v9: adds the Phase 8 section at the end — holiday item groups, the
    check-list toggle, the weekday fieldset and the recurrence preview.
    Everything above is unchanged; diffed against v8 to prove nothing was
@@ -1064,3 +1066,18 @@ details summary {
 
 .preview p { margin: 0 0 var(--space-1); }
 .preview p:last-child { margin-bottom: 0; }
+
+
+/* ============ Revision 4: per-ingredient unit ============ */
+
+/* A bare control outside .field, so it carries --control-border explicitly
+   for the 3:1 boundary (1.4.11, standing rule 10). */
+.ingredient-unit-select {
+  min-height: 36px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}

@@ -1,4 +1,7 @@
-// js/views/meals.js — 21 Aug 2026 v2
+// js/views/meals.js — 21 Aug 2026 v3
+// v3 (schema revision 4): ingredients carry a unit (g/ml/item), and foods
+// carry optional ml->g and item->g conversion factors. An ingredient whose
+// unit cannot be converted is reported with WHY, not just as a gap.
 // v2, pre-smoke-test: (a) a typed barcode that cannot be normalised is now
 // reported instead of being silently dropped to null on save; (b) focus is
 // restored after an inline quantity or servings edit, which previously
@@ -35,7 +38,7 @@ import {
   listMeals, listIngredients, groupByMeal, createMeal, updateMeal,
   countPlanEntries, countIngredients, deleteMeal,
   addIngredient, updateIngredient, removeIngredient,
-  computeMacros, MACROS
+  computeMacros, MACROS, INGREDIENT_UNITS, formatIngredientQuantity
 } from '../data/meals.js';
 import {
   DAYS, SLOTS, listPlan, groupByCell, addPlanEntry, updatePlanEntry,
@@ -485,9 +488,17 @@ export function render(mountEl) {
         class: 'field-hint',
         text: `${macros.incompleteCount} of ${macros.ingredientCount} ingredient`
           + `${macros.ingredientCount === 1 ? '' : 's'} `
-          + `${macros.incompleteCount === 1 ? 'has' : 'have'} no nutrition data `
+          + `${macros.incompleteCount === 1 ? 'is' : 'are'} not counted here `
           + `(${macros.incompleteNames.join(', ')}), so these figures are incomplete rather than final.`
       }));
+      // Say WHAT to fill in, not just that something is missing.
+      for (const gap of macros.unconvertible) {
+        body.appendChild(el('p', {
+          class: 'field-hint',
+          text: `${gap.name} is measured in ${gap.unit === 'item' ? 'items' : gap.unit}, but `
+            + `${gap.reason}. Add it on that food to include it in these totals.`
+        }));
+      }
     }
 
     if (rows.length > 0) {
@@ -541,9 +552,34 @@ export function render(mountEl) {
     const qtyLabel = el('label', {
       for: qtyInput.id,
       class: 'sr-only',
-      text: `Grams of ${name} in ${meal.name}`
+      text: `Quantity of ${name} in ${meal.name}`
     });
-    item.append(qtyLabel, qtyInput, el('span', { class: 'ingredient-unit', text: 'g' }));
+    const unitSelect = selectFrom(
+      `ingredient-unit-${row.id}`,
+      INGREDIENT_UNITS.map((u) => ({ value: u.value, label: u.short }))
+    );
+    unitSelect.value = row.unit || 'g';
+    unitSelect.className = 'ingredient-unit-select';
+    const unitLabel = el('label', {
+      for: unitSelect.id,
+      class: 'sr-only',
+      text: `Unit for ${name} in ${meal.name}`
+    });
+    item.append(qtyLabel, qtyInput, unitLabel, unitSelect);
+
+    unitSelect.addEventListener('change', async () => {
+      const result = await updateIngredient(row.id, { unit: unitSelect.value });
+      if (destroyed) return;
+      if (!result.ok) {
+        console.error('Failed to update an ingredient unit:', result.error);
+        showToast((result.error && result.error.message) || "Couldn't change that unit — try again.");
+        unitSelect.value = row.unit || 'g';
+        return;
+      }
+      announce(`${name} now measured in ${result.data.unit}.`);
+      await loadMeals();
+      if (!destroyed) restoreFocus(`ingredient-unit-${row.id}`);
+    }, { signal });
 
     qtyInput.addEventListener('change', async () => {
       const result = await updateIngredient(row.id, { quantity_g: qtyInput.value });
@@ -554,7 +590,7 @@ export function render(mountEl) {
         qtyInput.value = String(row.quantity_g);
         return;
       }
-      announce(`${name} set to ${result.data.quantity_g} grams.`);
+      announce(`${name} set to ${formatIngredientQuantity(result.data.quantity_g, result.data.unit)}.`);
       // Same reasoning as the plan servings input: the re-render destroys
       // this field, so focus is put back on its replacement.
       await loadMeals();
@@ -598,11 +634,23 @@ export function render(mountEl) {
       { includeBlank: 'Choose a food' }
     );
     const qtyInput = numberInput(`add-ingredient-qty-${meal.id}`, { min: '0.1', step: '1' });
+    // A CHECK-constrained column, so a constrained control, never free text
+    // (standing rule 1).
+    const unitSelect = selectFrom(
+      `add-ingredient-unit-${meal.id}`,
+      INGREDIENT_UNITS.map((u) => ({ value: u.value, label: u.label }))
+    );
     const error = el('p', { class: 'field-error', id: `add-ingredient-error-${meal.id}`, role: 'alert' });
     error.hidden = true;
     const submit = el('button', { type: 'submit', class: 'btn', text: 'Add ingredient' });
 
-    form.append(field('Food', foodSelect), field('Quantity in grams', qtyInput), error, submit);
+    form.append(
+      field('Food', foodSelect),
+      field('Quantity', qtyInput),
+      field('Measured in', unitSelect),
+      error,
+      submit
+    );
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -620,7 +668,8 @@ export function render(mountEl) {
       const result = await addIngredient({
         meal_id: meal.id,
         food_id: foodSelect.value,
-        quantity_g: qtyInput.value
+        quantity_g: qtyInput.value,
+        unit: unitSelect.value
       });
       submit.disabled = false;
       if (destroyed) return;
@@ -790,6 +839,33 @@ export function render(mountEl) {
     field('Carbohydrate (g)', carbsInput)
   );
 
+  // Optional conversion factors. Without these an ingredient measured in ml
+  // or items cannot reach the per-100 g nutrition figures, so its macros are
+  // reported as incomplete rather than guessed.
+  const convertFieldset = el('fieldset');
+  convertFieldset.appendChild(el('legend', { text: 'Measuring it another way (optional)' }));
+  convertFieldset.appendChild(el('p', {
+    class: 'field-hint',
+    text: 'Only needed if you use this in a recipe by volume or by count. '
+      + 'Leave blank if you always weigh it.'
+  }));
+  const perMlInput = numberInput('new-food-per-ml');
+  const perItemInput = numberInput('new-food-per-item');
+  const perMlHint = el('p', {
+    class: 'field-hint', id: 'new-food-per-ml-hint',
+    text: 'Milk is about 1.03, oil about 0.92, water is 1.'
+  });
+  perMlInput.setAttribute('aria-describedby', 'new-food-per-ml-hint');
+  const perItemHint = el('p', {
+    class: 'field-hint', id: 'new-food-per-item-hint',
+    text: 'One egg is about 60 g, one onion about 150 g.'
+  });
+  perItemInput.setAttribute('aria-describedby', 'new-food-per-item-hint');
+  convertFieldset.append(
+    field('Grams per millilitre', perMlInput, perMlHint),
+    field('Grams per item', perItemInput, perItemHint)
+  );
+
   const foodSourceNote = el('p', { class: 'field-hint' });
   foodSourceNote.hidden = true;
   let pendingSource = 'manual';
@@ -802,6 +878,7 @@ export function render(mountEl) {
     field('Food name', foodNameInput),
     field('Barcode', foodBarcodeInput, foodBarcodeHint),
     macroFieldset,
+    convertFieldset,
     foodSourceNote,
     foodError,
     foodSubmit
@@ -826,6 +903,8 @@ export function render(mountEl) {
     proteinInput.value = food && food.protein_g != null ? food.protein_g : '';
     fatInput.value = food && food.fat_g != null ? food.fat_g : '';
     carbsInput.value = food && food.carbs_g != null ? food.carbs_g : '';
+    perMlInput.value = food && food.grams_per_ml != null ? food.grams_per_ml : '';
+    perItemInput.value = food && food.grams_per_item != null ? food.grams_per_item : '';
     pendingSource = food && food.source === 'openfoodfacts' ? 'openfoodfacts' : 'manual';
 
     if (note) {
@@ -870,6 +949,8 @@ export function render(mountEl) {
       protein_g: proteinInput.value,
       fat_g: fatInput.value,
       carbs_g: carbsInput.value,
+      grams_per_ml: perMlInput.value,
+      grams_per_item: perItemInput.value,
       source: pendingSource
     });
     foodSubmit.disabled = false;
@@ -920,6 +1001,13 @@ export function render(mountEl) {
       }));
     }
     body.appendChild(macroList);
+
+    const conversions = [];
+    if (food.grams_per_ml != null) conversions.push(`1 ml weighs ${food.grams_per_ml} g`);
+    if (food.grams_per_item != null) conversions.push(`1 item weighs ${food.grams_per_item} g`);
+    if (conversions.length > 0) {
+      body.appendChild(el('p', { class: 'field-hint', text: conversions.join(' · ') }));
+    }
 
     const editWrap = el('div');
     body.appendChild(editWrap);
@@ -979,6 +1067,17 @@ export function render(mountEl) {
       field('Carbohydrate (g)', carb)
     );
 
+    const convSet = el('fieldset');
+    convSet.appendChild(el('legend', { text: 'Measuring it another way (optional)' }));
+    const perMl = numberInput(`${prefix}-per-ml`);
+    const perItem = numberInput(`${prefix}-per-item`);
+    perMl.value = food.grams_per_ml != null ? food.grams_per_ml : '';
+    perItem.value = food.grams_per_item != null ? food.grams_per_item : '';
+    convSet.append(
+      field('Grams per millilitre', perMl),
+      field('Grams per item', perItem)
+    );
+
     const error = el('p', { class: 'field-error', role: 'alert' });
     error.hidden = true;
     const save = el('button', { type: 'submit', class: 'btn btn-primary', text: 'Save changes' });
@@ -989,6 +1088,7 @@ export function render(mountEl) {
       field('Food name', nameInput),
       field('Barcode', barcodeInput),
       set,
+      convSet,
       error,
       el('div', { class: 'card-actions' }, [save, cancel])
     );
@@ -1013,7 +1113,9 @@ export function render(mountEl) {
         calories_per_100g: cal.value,
         protein_g: pro.value,
         fat_g: fat.value,
-        carbs_g: carb.value
+        carbs_g: carb.value,
+        grams_per_ml: perMl.value,
+        grams_per_item: perItem.value
       });
       save.disabled = false;
       if (destroyed) return;

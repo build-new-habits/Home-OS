@@ -26,8 +26,8 @@ function fixture(t) {
   if (t === 'foods') return [{ id:'food-1', name:'Rolled oats', barcode:'5000159407236', calories_per_100g:379, protein_g:13.2, fat_g:8.1, carbs_g:60.1, source:'openfoodfacts' },
                              { id:'food-2', name:'Home-made stock', barcode:null, calories_per_100g:null, protein_g:null, fat_g:null, carbs_g:null, source:'manual' }];
   if (t === 'meals') return [{ id:'meal-1', name:'Porridge', default_serves:2 }];
-  if (t === 'meal_ingredients') return [{ id:'ing-1', meal_id:'meal-1', food_id:'food-1', quantity_g:80, foods:fixture('foods')[0] },
-                                        { id:'ing-2', meal_id:'meal-1', food_id:'food-2', quantity_g:200, foods:fixture('foods')[1] }];
+  if (t === 'meal_ingredients') return [{ id:'ing-1', meal_id:'meal-1', food_id:'food-1', quantity_g:80, unit:'g', foods:fixture('foods')[0] },
+                                        { id:'ing-2', meal_id:'meal-1', food_id:'food-2', quantity_g:200, unit:'ml', foods:fixture('foods')[1] }];
   if (t === 'weekly_meal_plan') return [{ id:'plan-1', day_of_week:'mon', slot:'breakfast', serves_override:3, meal_id:'meal-1', meals:{ id:'meal-1', name:'Porridge', default_serves:2 } }];
   if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
@@ -112,7 +112,11 @@ check('every macro figure states a unit or says it is not known',
   macroCells.every((t) => /\b(kcal|g)\b/.test(t) || t === 'not known'), macroCells.join(' | '));
 // The fixture deliberately includes a food with no nutrition data.
 check('the incomplete ingredient count is stated in words',
-  /1 of 2 ingredients? (has|have) no nutrition data/.test(mount.textContent), '');
+  /1 of 2 ingredients? (is|are) not counted here/.test(mount.textContent), '');
+// The fixture's second ingredient is 200 ml of a food with no grams_per_ml,
+// so the view must say WHAT to fill in, not merely that something is amiss.
+check('an unconvertible unit is explained, not just flagged',
+  /no weight per millilitre is recorded/.test(mount.textContent), '');
 check('the incomplete ingredient is named', mount.textContent.includes('Home-made stock'));
 
 // ---- No colour-only meaning: the empty cell says so in text ----

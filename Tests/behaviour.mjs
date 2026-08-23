@@ -31,7 +31,7 @@ globalThis.__HOME_OS_SUPABASE_STUB__ = {
   }
 };
 
-const { computeMacros } = await import(`${REPO}/js/data/meals.js`);
+const { computeMacros, toGrams, formatIngredientQuantity, isValidUnit } = await import(`${REPO}/js/data/meals.js`);
 const { normaliseBarcode, barcodeCandidates } = await import(`${REPO}/js/lib/barcode.js`);
 const { energyKcalPer100g, mapProductToFood, missingMacroFields } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
@@ -93,6 +93,53 @@ eq('no ingredients gives a zero total', computeMacros([], { serves: 2 }).totals.
 eq('undefined ingredients is survivable', computeMacros(undefined).ingredientCount, 0);
 eq('serves of 0 falls back to 1 rather than dividing by zero',
   computeMacros([{ quantity_g: 100, foods: oats }], { serves: 0 }).perServing.calories, 379);
+
+// ============ Ingredient units (schema revision 4) ============
+// Nutrition is per 100 GRAMS, so every quantity must reach grams first.
+// A missing conversion factor makes the ingredient INCOMPLETE, never
+// guessed: 1 ml of water is 1 g, oil is ~0.9, flour is neither.
+console.log('\nIngredient units');
+
+const milkMl = { name: 'Milk', calories_per_100g: 50, protein_g: 3.6, fat_g: 1.8, carbs_g: 4.8, grams_per_ml: 1.03 };
+const eggs = { name: 'Egg', calories_per_100g: 143, protein_g: 12.6, fat_g: 9.5, carbs_g: 0.7, grams_per_item: 60 };
+const noFactor = { name: 'Olive oil', calories_per_100g: 884, protein_g: 0, fat_g: 100, carbs_g: 0 };
+
+eq('grams pass through untouched', toGrams(250, 'g', {}).grams, 250);
+eq('an absent unit is treated as grams', toGrams(250, undefined, {}).grams, 250);
+eq('millilitres convert by grams_per_ml', toGrams(200, 'ml', milkMl).grams, 206);
+eq('items convert by grams_per_item', toGrams(2, 'item', eggs).grams, 120);
+eq('ml with no factor refuses rather than assuming 1:1', toGrams(15, 'ml', noFactor).grams, null);
+check('and says what is missing',
+  /millilitre/.test(toGrams(15, 'ml', noFactor).reason), toGrams(15, 'ml', noFactor).reason);
+eq('items with no factor refuse too', toGrams(2, 'item', noFactor).grams, null);
+eq('an unknown unit refuses', toGrams(1, 'cups', milkMl).grams, null);
+eq('a zero quantity refuses', toGrams(0, 'g', milkMl).grams, null);
+check('the CHECK values are the accepted ones',
+  isValidUnit('g') && isValidUnit('ml') && isValidUnit('item') && !isValidUnit('cups'));
+eq('quantities format with their unit', formatIngredientQuantity(250, 'g'), '250 g');
+eq('millilitres too', formatIngredientQuantity(500, 'ml'), '500 ml');
+eq('items pluralise', formatIngredientQuantity(2, 'item'), '2 items');
+eq('one item is singular', formatIngredientQuantity(1, 'item'), '1 item');
+
+// Hand calculation across three units:
+//   200 ml milk x 1.03 = 206 g -> 206/100 x 50   = 103.0 kcal
+//   2 eggs x 60         = 120 g -> 120/100 x 143 = 171.6 kcal
+//   15 ml oil, no factor        -> contributes NOTHING
+const mixed = computeMacros([
+  { quantity_g: 200, unit: 'ml', foods: milkMl },
+  { quantity_g: 2, unit: 'item', foods: eggs },
+  { quantity_g: 15, unit: 'ml', foods: noFactor }
+], { serves: 2 });
+eq('mixed units total matches the hand calculation', mixed.totals.calories, 274.6);
+eq('the unconvertible ingredient is counted incomplete', mixed.incompleteCount, 1);
+eq('and named', mixed.incompleteNames[0], 'Olive oil');
+eq('with a reason the UI can show', mixed.unconvertible.length, 1);
+check('the reason names the missing factor',
+  /millilitre/.test(mixed.unconvertible[0].reason), mixed.unconvertible[0].reason);
+// The critical one: it must not have silently contributed 15 g of oil.
+check('an unconvertible ingredient contributes ZERO, not a guess',
+  mixed.totals.fat_g === Math.round((200 * 1.03 / 100 * 1.8 + 120 / 100 * 9.5) * 10) / 10,
+  String(mixed.totals.fat_g));
 
 // ============ Barcode normalisation ============
 console.log('\nBarcode normalisation');

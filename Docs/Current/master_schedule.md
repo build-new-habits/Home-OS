@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v15
+21 Aug 2026 v16
 
-Supersedes v14. Older versions live in `Docs/Archive/`.
+Supersedes v15. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,44 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Schema revision 4 — units on recipe ingredients (21 Aug 2026)
+
+Prompted by Graeme, and he was right where the architect was not. Revision 3
+gave the pantry and shopping list units and **stopped there**, leaving
+recipes grams-only — recorded as "a revision 4 conversation if it annoys in
+use". That was too relaxed: "200 g of milk" is not how anyone cooks, and
+`item` is just as common — 2 eggs, 1 onion. It was a hole in the recipe
+feature, not a nicety.
+
+**The consequence had to be solved in the same breath.** Nutrition is stored
+per 100 **grams**, so the moment an ingredient is in ml or items the macro
+maths has nothing to work from. Adding `unit` alone would have produced
+silently wrong calorie totals — a worse bug than the one being fixed.
+
+Three additions, purely additive:
+
+1. `meal_ingredients.unit` — `g`/`ml`/`item`, default `g`.
+2. `foods.grams_per_ml` — nullable, `> 0`.
+3. `foods.grams_per_item` — nullable, `> 0`.
+
+**A missing factor makes the ingredient INCOMPLETE, never guessed**, reusing
+the existing "not counted here" machinery rather than inventing a second
+failure mode — and the UI names the specific factor to fill in. Nothing is
+assumed: 1 ml of water is 1 g, oil ~0.92, flour neither.
+
+`quantity_g` was deliberately **not renamed** despite now being able to hold
+ml. A rename breaks any client running cached JavaScript from before the
+deploy, and this app is offline-first with an aggressive precache.
+Additive-only is the property that has kept every migration here safe, and
+it is worth more than a tidy column name.
+
+Phase 6 code updated in the same pass (`data/meals.js` v2, `data/foods.js`
+v2, `views/meals.js` v3, `components.css` v10, cache **v19**), because the
+columns are useless without controls to set them. Phase 7 brief now v3: it
+imports `toGrams()` from `data/meals.js` rather than re-implementing the
+rule, since two implementations of one rule drift and this one decides what
+ends up in the basket.
 
 ## Migration 003 applied (21 Aug 2026) — and two things it taught us
 
@@ -501,5 +539,6 @@ Standing rule 12 below follows from this.
 | Vendored scanner reads UPC/EAN only, not QR or Code 128 | P6 | Open by design — rebuild from the package if a later phase needs more |
 | `foods` table still named `foods` while holding razors and light bulbs | Rev 3 | Open — rename churns every module, test fixture and doc; wrong moment while P6 is untested |
 | Phase 7 brief's "all quantities are grams" section | Rev 3 | **Closed** — brief rewritten whole as v2, 21 Aug |
-| `meal_ingredients` has no unit column, so liquids are grams-only | Rev 3 | Open — P7 flags incomparable units rather than guessing a density. Revision 4 conversation if it annoys in use |
+| `meal_ingredients` has no unit column, so liquids are grams-only | Rev 3 | **Closed Rev 4** — `unit` added, plus `grams_per_ml` / `grams_per_item` on foods |
+| `meal_ingredients.quantity_g` name is historical — it can hold ml or items | Rev 4 | Open by choice — a rename breaks clients on cached JS; additive-only is what keeps migrations safe |
 | No `User-Agent` sent to Open Food Facts (browsers forbid it) | P6 | Open — unfixable from a browser, documented in the module |

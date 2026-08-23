@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-21 Aug 2026 v3
+21 Aug 2026 v4
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -8,6 +8,41 @@ added, renamed, or removed anywhere without changing it here first.
 
 Backend: Supabase (PostgreSQL, **EU region**, fresh project). 17 tables,
 17 RLS policies, 1 trigger function, 17 update triggers, single owner.
+
+---
+
+## 0b. Revision 4 — units on recipe ingredients (21 Aug 2026)
+
+Revision 3 gave the pantry and shopping list units and stopped there.
+Recipes were left grams-only, which is not how anyone cooks: "200 g of milk"
+is wrong, and `item` is just as common — 2 eggs, 1 onion, 3 rashers. The
+ingredient form could not express most real recipes.
+
+**And the consequence had to be solved in the same breath.** Nutrition is
+stored per 100 **grams**. The moment an ingredient is in ml or items, the
+macro maths has nothing to work from.
+
+Three additions, all purely additive:
+
+1. `meal_ingredients.unit` — `g`/`ml`/`item`, default `g`.
+2. `foods.grams_per_ml` — nullable. Milk ~1.03, oil ~0.92, water 1.0.
+3. `foods.grams_per_item` — nullable. One egg ~60 g, one onion ~150 g.
+
+**A missing conversion factor makes the ingredient INCOMPLETE, never
+guessed.** This reuses the existing "N of M ingredients have no nutrition
+data" machinery rather than inventing a second failure mode. Nothing is
+assumed: 1 ml of water is 1 g, oil is about 0.9, flour is neither, and a
+plausible-looking wrong total is worse than an admitted gap.
+
+The same factors let Phase 7's shortfall compare a pantry stocked in `ml`
+against a recipe in `g` — again, only where the factor is known.
+
+**`quantity_g` is deliberately NOT renamed**, even though the name becomes
+historical once it can hold ml. A rename would break any client still
+running cached JavaScript from before the deploy, and this app is
+offline-first with an aggressive precache. **Additive-only is the property
+that has made every migration here safe**, and it is worth more than a tidy
+column name. Recorded as debt.
 
 ---
 
@@ -191,6 +226,8 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | barcode | text | nullable |
 | category | text | not null; check in the 9 values below; default `'food_ambient'` |
 | calories_per_100g | numeric | **canonical unit kcal per 100 g** |
+| grams_per_ml | numeric | nullable; `> 0`. How many grams one millilitre weighs (milk ~1.03, oil ~0.92). **Null means ml cannot be converted** — the ingredient is reported incomplete, never guessed |
+| grams_per_item | numeric | nullable; `> 0`. How many grams one item weighs (egg ~60, onion ~150). Same rule when null |
 | protein_g | numeric | **per 100 g** |
 | fat_g | numeric | **per 100 g** |
 | carbs_g | numeric | **per 100 g** |
@@ -222,8 +259,15 @@ this column exists to prevent.
 | default_serves | int | not null; default 4 |
 
 ### meal_ingredients
+
+**`quantity_g` is a historical name.** Since revision 4 it holds a quantity
+in whatever `unit` says — grams, millilitres or items. It was not renamed
+because a rename breaks clients running cached JavaScript, and additive-only
+migrations are what have kept this app safe. Read `unit` before using it.
+
 | Column | Type | Notes |
 |---|---|---|
+| unit | text | not null; check in ('g','ml','item'); default `'g'` |
 | meal_id | uuid | not null; references meals(id) **on delete cascade** |
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | quantity_g | numeric | not null |

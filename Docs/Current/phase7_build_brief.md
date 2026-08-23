@@ -1,5 +1,5 @@
 # Home-OS: Phase 7 Build Brief — Pantry Stock + Shopping List
-21 Aug 2026 **v2** — supersedes v1 entirely
+21 Aug 2026 **v3** — supersedes v1 and v2
 
 **v1 is void, not amended.** It was written against the frozen schema and
 locked in "all quantities are grams" as the only reading that schema
@@ -70,36 +70,33 @@ written silently.
 
 ---
 
-## The unit mismatch — the one genuinely awkward thing left
+## Comparing quantities across units
 
-`meal_ingredients.quantity_g` is **grams, always**. It has no unit column,
-it is Phase 6 code, and revision 3 did not touch it.
+Schema revision 4 gave `meal_ingredients` a `unit` and gave `foods` two
+optional conversion factors, `grams_per_ml` and `grams_per_item`. So a
+recipe can say 500 ml of milk or 2 eggs, and Phase 6 already converts those
+to grams for its macro totals.
 
-So the shortfall — plan needs minus pantry stock — is only meaningful when
-the pantry row for that food is **also in grams**.
+Phase 7 uses **the same conversion, from the same place**. Import `toGrams()`
+from `data/meals.js` — do not re-implement it. Two implementations of one
+rule drift, and this one decides what ends up in the shopping basket.
 
-**Do not convert between units.** 1 ml of water is 1 g; 1 ml of oil is
-about 0.9 g; flour is nowhere near either. There is no density column and
-guessing one would produce a confidently wrong shopping list, which is worse
-than no list.
+The rule for a shortfall line:
 
-Rule, and it must be visible in the UI rather than silent:
+- Both sides reach grams → subtract normally.
+- Either side **cannot** reach grams (no factor recorded on the food) →
+  list the full amount the plan needs and **say why on that line**:
+  *"you have 500 ml in the pantry, but no weight per millilitre is recorded
+  for milk — add one on the food, or check this line yourself."*
 
-- Pantry row is **`g`** → subtract normally.
-- Pantry row is **`ml`** or **`item`** → the stock **cannot be compared**.
-  List the full amount the plan needs, and say why on that line: *"you have
-  500 ml in the pantry, but the recipe is in grams — check this one
-  yourself."*
+`toGrams()` already returns that reason as user-facing text. Use it rather
+than composing a second wording.
 
-Erring toward listing it means over-buying rather than running out, which is
-the right direction to fail, but only if the user is told. A silently
-over-stated list stops being trusted after about two shops.
-
-**Record as debt:** `meal_ingredients` has no unit column. If this proves
-annoying in real use, that is a revision 4 conversation, and Graeme's call —
-not something to work around with a density table.
-
----
+**Never convert without a recorded factor.** 1 ml of water is 1 g, oil is
+about 0.92, flour is neither. A guessed density produces a confidently wrong
+shopping list, which is worse than an admitted gap. Erring toward listing
+means over-buying rather than running out — the right direction to fail, but
+only if the user is told.
 
 ## Files to create
 

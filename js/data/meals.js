@@ -1,4 +1,6 @@
-// js/data/meals.js — 21 Aug 2026 v1
+// js/data/meals.js — 21 Aug 2026 v2
+// v2 (schema revision 4): ingredients carry a UNIT. quantity_g is a
+// historical column name — read `unit` before using it.
 // All Supabase access for `meals` and `meal_ingredients`, plus the macro
 // maths. Shared data-access contract: { ok, data|error }, error always
 // checked, nothing thrown at views, no user_id on inserts.
@@ -12,6 +14,17 @@
 // quantity or a food's nutrition data changes. computeMacros() runs on
 // every read. It is a pure function of its arguments, which is what makes
 // it testable against a hand calculation.
+//
+// ---- Units, and why a missing conversion is incomplete ----
+// Nutrition is stored per 100 GRAMS, but an ingredient may be measured in
+// millilitres or items. Converting needs foods.grams_per_ml or
+// foods.grams_per_item, both nullable.
+//
+// When the factor is missing the ingredient contributes NOTHING and is
+// counted as incomplete — the same treatment as a missing macro, not a
+// second failure mode. Nothing is guessed: 1 ml of water is 1 g, oil is
+// about 0.9, flour is neither, and a plausible wrong total is worse than an
+// admitted gap.
 //
 // A null macro is INCOMPLETE, NOT ZERO. A food added by hand with no
 // nutrition data must not quietly drag a meal's protein total down to a
@@ -31,6 +44,57 @@ import { supabase } from '../supabaseClient.js';
 
 const MEALS = 'meals';
 const INGREDIENTS = 'meal_ingredients';
+
+/** Units an ingredient can be measured in. Matches the CHECK constraint. */
+export const INGREDIENT_UNITS = [
+  { value: 'g', label: 'grams (g)', short: 'g' },
+  { value: 'ml', label: 'millilitres (ml)', short: 'ml' },
+  { value: 'item', label: 'items', short: 'item' }
+];
+
+const UNIT_VALUES = INGREDIENT_UNITS.map((u) => u.value);
+
+export function isValidUnit(value) {
+  return UNIT_VALUES.includes(value);
+}
+
+/**
+ * Converts an ingredient quantity to grams so it can meet per-100 g macros.
+ *
+ * @returns {{ grams: number } | { grams: null, reason: string }}
+ *   `reason` is user-facing text explaining what is missing, so the view
+ *   never has to reconstruct why a figure could not be worked out.
+ */
+export function toGrams(quantity, unit, food = {}) {
+  const qty = Number(quantity);
+  if (!Number.isFinite(qty) || qty <= 0) {
+    return { grams: null, reason: 'the quantity is not a usable number' };
+  }
+  if (unit === 'g' || unit === undefined || unit === null) return { grams: qty };
+
+  if (unit === 'ml') {
+    const factor = Number(food.grams_per_ml);
+    if (!Number.isFinite(factor) || factor <= 0) {
+      return { grams: null, reason: 'no weight per millilitre is recorded for it' };
+    }
+    return { grams: qty * factor };
+  }
+  if (unit === 'item') {
+    const factor = Number(food.grams_per_item);
+    if (!Number.isFinite(factor) || factor <= 0) {
+      return { grams: null, reason: 'no weight per item is recorded for it' };
+    }
+    return { grams: qty * factor };
+  }
+  return { grams: null, reason: `"${unit}" is not a unit this app understands` };
+}
+
+/** "250 g" / "500 ml" / "2 items" — the unit is always present in the text. */
+export function formatIngredientQuantity(quantity, unit) {
+  const qty = Math.round(Number(quantity) * 100) / 100;
+  if (unit === 'item') return `${qty} item${qty === 1 ? '' : 's'}`;
+  return `${qty} ${unit || 'g'}`;
+}
 
 /** Our four macro fields, mapped from the foods column to the total's key. */
 const MACROS = [
@@ -63,7 +127,7 @@ export async function listMeals() {
 export async function listIngredients(mealId) {
   let query = supabase
     .from(INGREDIENTS)
-    .select('id, meal_id, food_id, quantity_g, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g)')
+    .select('id, meal_id, food_id, quantity_g, unit, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item)')
     .order('created_at', { ascending: true });
   if (mealId) query = query.eq('meal_id', mealId);
   const { data, error } = await query;
@@ -152,31 +216,44 @@ export async function countIngredients(mealId) {
   return { ok: true, data: count ?? 0 };
 }
 
-export async function addIngredient({ meal_id, food_id, quantity_g }) {
-  const grams = Number(quantity_g);
-  if (!Number.isFinite(grams) || grams <= 0) {
-    return { ok: false, error: new Error('Enter a quantity in grams, greater than zero.') };
+export async function addIngredient({ meal_id, food_id, quantity_g, unit = 'g' }) {
+  const qty = Number(quantity_g);
+  if (!Number.isFinite(qty) || qty <= 0) {
+    return { ok: false, error: new Error('Enter a quantity greater than zero.') };
+  }
+  if (!isValidUnit(unit)) {
+    return { ok: false, error: new Error(`"${unit}" is not a unit this app understands.`) };
   }
   if (!meal_id || !food_id) {
     return { ok: false, error: new Error('Pick a meal and a food first.') };
   }
   const { data, error } = await supabase
     .from(INGREDIENTS)
-    .insert({ meal_id, food_id, quantity_g: Math.round(grams * 100) / 100 })
+    .insert({ meal_id, food_id, quantity_g: Math.round(qty * 100) / 100, unit })
     .select()
     .single();
   if (error) return { ok: false, error };
   return { ok: true, data };
 }
 
-export async function updateIngredient(ingredientId, { quantity_g }) {
-  const grams = Number(quantity_g);
-  if (!Number.isFinite(grams) || grams <= 0) {
-    return { ok: false, error: new Error('Enter a quantity in grams, greater than zero.') };
+export async function updateIngredient(ingredientId, { quantity_g, unit } = {}) {
+  const patch = {};
+  if (quantity_g !== undefined) {
+    const qty = Number(quantity_g);
+    if (!Number.isFinite(qty) || qty <= 0) {
+      return { ok: false, error: new Error('Enter a quantity greater than zero.') };
+    }
+    patch.quantity_g = Math.round(qty * 100) / 100;
+  }
+  if (unit !== undefined) {
+    if (!isValidUnit(unit)) {
+      return { ok: false, error: new Error(`"${unit}" is not a unit this app understands.`) };
+    }
+    patch.unit = unit;
   }
   const { data, error } = await supabase
     .from(INGREDIENTS)
-    .update({ quantity_g: Math.round(grams * 100) / 100 })
+    .update(patch)
     .eq('id', ingredientId)
     .select()
     .single();
@@ -208,7 +285,8 @@ export async function removeIngredient(ingredientId) {
  *   complete: Record<string, boolean>,
  *   missingByField: Record<string, number>,
  *   incompleteCount: number,
- *   incompleteNames: string[]
+ *   incompleteNames: string[],
+ *   unconvertible: Array<{ name: string, unit: string, reason: string }>
  * }}
  */
 export function computeMacros(ingredients, { serves = 1 } = {}) {
@@ -225,12 +303,36 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
   }
 
   const incompleteNames = [];
+  // Ingredients whose quantity could not be turned into grams at all, with
+  // the reason, so the view can say what to fill in rather than just
+  // reporting a gap.
+  const unconvertible = [];
 
   for (const row of rows) {
     const food = row.foods || row.food || {};
-    const grams = Number(row.quantity_g);
-    const usableGrams = Number.isFinite(grams) && grams > 0 ? grams : 0;
+
+    // Everything must reach grams before it can meet per-100 g macros.
+    // A quantity in ml or items needs a conversion factor on the food; when
+    // that is missing the ingredient contributes NOTHING and is counted as
+    // incomplete, exactly like a missing macro. Never guessed.
+    const converted = toGrams(row.quantity_g, row.unit, food);
+    const usableGrams = converted.grams === null ? 0 : converted.grams;
     let rowMissing = false;
+
+    if (converted.grams === null) {
+      // One reason for the whole row: no macro can be worked out at all.
+      for (const macro of MACROS) {
+        missingByField[macro.key] += 1;
+        complete[macro.key] = false;
+      }
+      incompleteNames.push(food.name || 'an unnamed food');
+      unconvertible.push({
+        name: food.name || 'an unnamed food',
+        unit: row.unit || 'g',
+        reason: converted.reason
+      });
+      continue;
+    }
 
     for (const macro of MACROS) {
       const per100 = food[macro.column];
@@ -271,6 +373,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
     complete,
     missingByField,
     incompleteCount: incompleteNames.length,
-    incompleteNames
+    incompleteNames,
+    unconvertible
   };
 }
