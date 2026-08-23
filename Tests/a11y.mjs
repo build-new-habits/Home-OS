@@ -49,6 +49,39 @@ const mod = await import(pathToFileURL(path.join(REPO, 'js/views/meals.js')).hre
 mod.render(mount, {});
 await new Promise((r) => setTimeout(r, 80));
 
+
+// ---- Number inputs must accept ordinary numbers ------------------------
+// HTML constraint validation requires (value - min) % step === 0. So
+// min="0.1" with step="1" permits ONLY 0.1, 1.1, 2.1 ... and a browser
+// rejects 100 with "the two nearest valid values are 99.1 and 100.1".
+// Every round number becomes unenterable.
+//
+// This shipped, and none of the other gates could catch it: jsdom does not
+// run constraint validation, and the interaction trace sets values directly
+// and calls submit(), bypassing it entirely. So it is checked structurally.
+function checkNumberInputs(root, label) {
+  const inputs = [...root.querySelectorAll('input[type="number"]')];
+  const broken = [];
+  for (const input of inputs) {
+    const step = input.getAttribute('step');
+    if (!step || step === 'any') continue;
+    const stepNum = Number(step);
+    if (!Number.isFinite(stepNum) || stepNum <= 0) { broken.push(`${input.id}: step="${step}"`); continue; }
+    const min = Number(input.getAttribute('min') ?? 0);
+    const base = Number.isFinite(min) ? min : 0;
+    // Can the user type ANY ordinary round number?
+    const candidates = [1, 2, 3, 5, 10, 25, 50, 100, 200, 250, 500, 1000];
+    const usable = candidates.some((v) => {
+      if (v < base) return false;
+      const steps = (v - base) / stepNum;
+      return Math.abs(steps - Math.round(steps)) < 1e-9;
+    });
+    if (!usable) broken.push(`${input.id || input.name}: min="${input.getAttribute('min')}" step="${step}"`);
+  }
+  check(`${label}: every number input accepts ordinary round numbers`,
+    broken.length === 0, broken.join(' | '));
+}
+
 let pass = 0; const fails = [];
 const check = (n, c, d='') => { if (c) { pass++; console.log(`  PASS  ${n}`); } else { fails.push(`${n}${d?' — '+d:''}`); console.log(`  FAIL  ${n}  ${d}`); } };
 
@@ -61,6 +94,8 @@ const unlabelled = controls.filter((c) => {
 });
 check(`all ${controls.length} form controls have a resolvable label`, unlabelled.length === 0,
   unlabelled.map((c) => c.id || c.type).join(', '));
+
+checkNumberInputs(mount, 'meals');
 
 // ---- No duplicate ids (a duplicate silently breaks label association) ----
 const ids = [...mount.querySelectorAll('[id]')].map((n) => n.id);
@@ -179,6 +214,8 @@ check('holidays: the work pattern is described in words, not an RRULE',
 const dateInputs = [...holMount.querySelectorAll('input[type="date"]')].map((i) => i.id);
 check('holidays: the work form offers no end date',
   !dateInputs.some((id) => /work-end/.test(id)), dateInputs.join(', '));
+
+checkNumberInputs(holMount, 'holidays');
 
 const holLevels = [...holMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
 let holOrdered = true;

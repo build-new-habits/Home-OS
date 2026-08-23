@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v16
+21 Aug 2026 v17
 
-Supersedes v15. Older versions live in `Docs/Archive/`.
+Supersedes v16. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,32 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## A gate hole found on a real device (21 Aug 2026)
+
+The ingredient quantity input carried `min="0.1"` with `step="1"`. HTML
+constraint validation requires `(value - min) % step === 0`, so the only
+permitted values were 0.1, 1.1, 2.1 … and the browser rejected `100` with
+*"the two nearest valid values are 99.1 and 100.1"*. **Every round number
+was unenterable.** Graeme hit it within a minute of testing.
+
+**None of the seven gates could have caught it.** jsdom does not run HTML
+constraint validation, and `Tests/trace.mjs` sets input values directly and
+calls `submit()`, which bypasses validation entirely. The interaction trace
+even asserted "add ingredient issues an insert" — and it did, in jsdom,
+because nothing was validating.
+
+`Tests/a11y.mjs` now checks every rendered number input structurally: given
+its `min` and `step`, can any ordinary round number be typed at all? Proven
+by reintroducing the exact bug in a throwaway copy and watching it fail.
+
+**The wider lesson, recorded as a standing rule:** a gate that drives the UI
+through JavaScript is not testing what the browser enforces. Anything the
+*platform* validates — input constraints, form validity, native pickers —
+needs either a structural check on the attributes or a real device. Adding
+assertions to the trace would not have helped.
+
+`views/meals.js` v4, `CACHE_NAME` **v20**.
 
 ## Schema revision 4 — units on recipe ingredients (21 Aug 2026)
 
@@ -510,17 +536,23 @@ Standing rule 12 below follows from this.
     stubbed client. Never copy a helper between files without confirming the
     destination defines it. *(New — 18 Aug)*
 
-13. **Vendor the narrowest thing that works.** The full scanner library is
+13. **Attributes the BROWSER enforces need a structural check, not a driven
+    one.** A gate that sets `input.value` and calls `submit()` bypasses HTML
+    constraint validation completely. `min`/`step`/`pattern`/`required` must
+    be asserted as attributes, or verified on a real device. *(New — 21 Aug,
+    after `min="0.1" step="1"` made every round number unenterable and all
+    seven gates passed it.)*
+14. **Vendor the narrowest thing that works.** The full scanner library is
     406 KB because one convenience class pulls in every 1D format; the four
     product formats need 58 KB. Check what a dependency actually costs before
     precaching it, and record the narrowing so a later phase does not assume
     capabilities that were deliberately left out. *(New — P6)*
-14. **Execute a third-party decoder against known input before building on
+15. **Execute a third-party decoder against known input before building on
     it.** Running the scanner over synthetic EAN-13 rasters in Node exposed
     that UPC-A returns twelve digits rather than thirteen — a silent
     duplicate-row bug that no amount of reading the docs would have surfaced.
     *(New — P6)*
-15. **A memoised promise must not cache a rejection.** `openDb()` did, and
+16. **A memoised promise must not cache a rejection.** `openDb()` did, and
     one transient failure disabled offline writes for the whole session.
     Anywhere a promise is cached for reuse, clear it on failure. *(New — P6)*
 

@@ -1,4 +1,11 @@
-// js/views/meals.js — 21 Aug 2026 v3
+// js/views/meals.js — 21 Aug 2026 v4
+// v4: ingredient quantity inputs used min="0.1" with step="1". HTML
+// validity requires (value - min) % step === 0, so that permitted ONLY
+// 0.1, 1.1, 2.1 ... and the browser rejected 100 with "the two nearest
+// valid values are 99.1 and 100.1". Every round number was unenterable.
+// step is now "any". Found on a real device; see Tests/a11y.mjs, which now
+// checks this because jsdom does not run constraint validation and the
+// interaction trace bypasses it by setting values directly.
 // v3 (schema revision 4): ingredients carry a unit (g/ml/item), and foods
 // carry optional ml->g and item->g conversion factors. An ingredient whose
 // unit cannot be converted is reported with WHY, not just as a gap.
@@ -547,7 +554,7 @@ export function render(mountEl) {
 
     item.appendChild(el('span', { class: 'ingredient-name', text: name }));
 
-    const qtyInput = numberInput(`ingredient-qty-${row.id}`, { min: '0.1', step: '1' });
+    const qtyInput = numberInput(`ingredient-qty-${row.id}`, { min: '0.1', step: 'any' });
     qtyInput.value = String(row.quantity_g);
     const qtyLabel = el('label', {
       for: qtyInput.id,
@@ -633,7 +640,7 @@ export function render(mountEl) {
       foods.map((food) => ({ value: food.id, label: food.name })),
       { includeBlank: 'Choose a food' }
     );
-    const qtyInput = numberInput(`add-ingredient-qty-${meal.id}`, { min: '0.1', step: '1' });
+    const qtyInput = numberInput(`add-ingredient-qty-${meal.id}`, { min: '0.1', step: 'any' });
     // A CHECK-constrained column, so a constrained control, never free text
     // (standing rule 1).
     const unitSelect = selectFrom(
