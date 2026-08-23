@@ -18,11 +18,28 @@
 -- adds are guarded, because ALTER TABLE ... ADD CONSTRAINT has no
 -- IF NOT EXISTS in PostgreSQL and would error on a second run.
 --
+-- ---------------------------------------------------------------------
+-- NO `begin;` / `commit;` HERE, AND THIS MATTERS.
+--
+-- The first version of this file wrapped everything in an explicit
+-- transaction. In the Supabase SQL editor that FAILS SILENTLY: the editor
+-- runs each execution inside its own transaction, the explicit COMMIT does
+-- not take effect, and the whole migration is rolled back on disconnect --
+-- while the editor still reports "Success. No rows returned".
+--
+-- Applied 21 Aug 2026. It was caught only because the verification block
+-- was run separately and errored with `column "category" does not exist`.
+-- Had the verification been pasted into the same execution, it would have
+-- run inside the doomed transaction, passed, and reported a migration that
+-- was about to vanish.
+--
+-- SO: run the migration, then run the verification as a SEPARATE execution.
+-- Never trust "Success" from the editor for DDL. Verify in a new run.
+-- ---------------------------------------------------------------------
+--
 -- RLS is untouched. No policy is added, altered or dropped: these are new
 -- columns on tables whose existing `auth.uid() = user_id` policies already
 -- cover every row.
-
-begin;
 
 -- ---------------------------------------------------------------------
 -- 1. foods.category — `foods` is now "things you buy"
@@ -105,10 +122,20 @@ end $$;
 alter table pantry_stock
   add column if not exists last_restocked date;
 
-commit;
-
 -- ---------------------------------------------------------------------
--- Verification. Run these after the migration and check the output.
+-- VERIFICATION -- RUN AS A SEPARATE EXECUTION, NOT WITH THE ABOVE.
+-- Run one statement at a time on mobile: the editor shows only the last
+-- result set.
+--
+-- Result when applied, 21 Aug 2026:
+--   foods.category        text, default 'food_ambient', not null   OK
+--   pantry_stock.unit     text, default 'g', not null              OK
+--   pantry_stock.last_restocked  date, nullable                    OK
+--   shopping_list_items.unit     text, default 'g', not null       OK
+--   3 CHECK constraints present                                    OK
+--   foods: 0 rows (empty table, nothing added through the app yet) OK
+--   RLS true on all three tables                                   OK
+--   17 tables in public, matching schema.md                        OK
 -- ---------------------------------------------------------------------
 
 -- Expect exactly: category | text | 'food_ambient'::text | NO
@@ -140,3 +167,7 @@ select tablename, rowsecurity
 from pg_tables
 where schemaname = 'public'
   and tablename in ('foods', 'pantry_stock', 'shopping_list_items');
+
+-- Whole-schema sanity: should be 17, matching schema.md.
+select count(*) from information_schema.tables
+where table_schema = 'public' and table_type = 'BASE TABLE';
