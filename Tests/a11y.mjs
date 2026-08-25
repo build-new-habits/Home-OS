@@ -29,6 +29,13 @@ function fixture(t) {
   if (t === 'meal_ingredients') return [{ id:'ing-1', meal_id:'meal-1', food_id:'food-1', quantity_g:80, unit:'g', foods:fixture('foods')[0] },
                                         { id:'ing-2', meal_id:'meal-1', food_id:'food-2', quantity_g:200, unit:'ml', foods:fixture('foods')[1] }];
   if (t === 'weekly_meal_plan') return [{ id:'plan-1', day_of_week:'mon', slot:'breakfast', serves_override:3, meal_id:'meal-1', meals:{ id:'meal-1', name:'Porridge', default_serves:2 } }];
+  if (t === 'pantry_stock') return [
+    { id:'st-1', food_id:'food-1', default_location:'Kitchen cupboard', shelf_life_days:365,
+      current_qty:500, unit:'g', last_restocked:'2026-08-01',
+      foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient', grams_per_ml:null, grams_per_item:25 } },
+    { id:'st-2', food_id:'food-2', default_location:'Bathroom', shelf_life_days:5,
+      current_qty:2, unit:'item', last_restocked:'2026-08-19',
+      foods:{ id:'food-2', name:'Home-made stock', category:'personal', grams_per_ml:null, grams_per_item:null } }];
   if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
     { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete' },
@@ -267,6 +274,51 @@ check('holidays: exactly one h1', holMount.querySelectorAll('h1').length === 1);
 check('holidays: the weekday chooser is a labelled fieldset',
   !!holMount.querySelector('fieldset.weekday-set legend'));
 
+// ================= Phase 7: pantry =================
+console.log('');
+const panMount = window.document.createElement('main');
+window.document.body.appendChild(panMount);
+const panMod = await import(pathToFileURL(path.join(REPO, 'js/views/pantry.js')).href);
+panMod.render(panMount, {});
+await new Promise((r) => setTimeout(r, 90));
+
+const panControls = [...panMount.querySelectorAll('input, select, textarea')];
+const panUnlabelled = panControls.filter((c) => {
+  if (c.getAttribute('aria-label') || c.getAttribute('aria-labelledby')) return false;
+  if (!c.id) return true;
+  return !panMount.querySelector(`label[for="${CSS.escape(c.id)}"]`);
+});
+check(`pantry: all ${panControls.length} controls have a resolvable label`,
+  panUnlabelled.length === 0, panUnlabelled.map((c) => c.id || c.type).join(', '));
+
+const panIds = [...panMount.querySelectorAll('[id]')].map((n) => n.id);
+const panDupes = [...new Set(panIds.filter((i, n) => panIds.indexOf(i) !== n))];
+check('pantry: no duplicate element ids', panDupes.length === 0, panDupes.join(', '));
+
+const panButtons = [...panMount.querySelectorAll('button')];
+check(`pantry: all ${panButtons.length} buttons have an accessible name`,
+  panButtons.every((b) => b.getAttribute('aria-label') || b.textContent.trim()));
+
+checkNumberInputs(panMount, 'pantry');
+
+const panDesc = [...panMount.querySelectorAll('[aria-describedby]')]
+  .flatMap((n) => n.getAttribute('aria-describedby').split(/\s+/))
+  .filter((id) => id && !panMount.querySelector(`#${CSS.escape(id)}`));
+check('pantry: every aria-describedby target exists', panDesc.length === 0, panDesc.join(', '));
+
+// Quantities must carry their unit as text, never a bare number.
+check('pantry: quantities are shown with a unit',
+  /500 g|0.5 kg/.test(panMount.textContent), '');
+// Freshness in words, and "unknown" must be an unembarrassed state.
+check('pantry: freshness is stated in words',
+  /Stocked .* days ago|Freshness unknown/.test(panMount.textContent), '');
+
+const panLevels = [...panMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
+let panOrdered = true;
+for (let i = 1; i < panLevels.length; i++) if (panLevels[i] - panLevels[i - 1] > 1) panOrdered = false;
+check('pantry: heading levels never skip', panOrdered, panLevels.join(','));
+check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
+
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals + holidays)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals, holidays, pantry)`);

@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v20
+21 Aug 2026 v21
 
-Supersedes v19. Older versions live in `Docs/Archive/`.
+Supersedes v20. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -29,7 +29,7 @@ All in `Docs/Current/`:
 | 4 | Chores: projects, tasks, calendar, recurrence | **Complete** | phase4_build_brief.md |
 | 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
 | 6 | Meal planner + barcode scanning | **Built — awaiting smoke test** | phase6_build_brief.md |
-| 7 | Pantry stock + shopping list | Brief written — **gated on Phase 6 clearing** | phase7_build_brief.md |
+| 7 | Pantry stock + shopping list | **Pantry built**; shopping list next | phase7_build_brief.md |
 | 8 | Holidays + work-location calendar | Brief written — **buildable now, ahead of Phase 7** | phase8_build_brief.md |
 | 9 | Dashboard | Ready | to write |
 | 10 | Notifications (opt-in, per-type) | Ready | to write |
@@ -111,6 +111,48 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Phase 7 part one — the pantry (21 Aug 2026)
+
+**The Phase 6 gate was relaxed deliberately, and the reasoning is recorded
+rather than skipped.** Phase 7 was gated on Phase 6 *clearing* because it
+reads through the foods layer. That layer has now been exercised hard on a
+real device — meals, ingredients, units, conversion, macros, categories —
+finding and fixing three genuine bugs. The part Phase 7 leans on most is the
+part best tested. And there is an argument the other way: **the search picker
+cannot be tested with one food.** Capturing a real cupboard puts fifty foods
+in, which is the scale test that could not otherwise be run.
+
+Residual risk, accepted: the scan-confirm path and barcode duplicate
+detection are still unverified. Neither is load-bearing for the pantry.
+
+**Built for STOCKTAKING, not for adding one thing.** The first real use is a
+whole cupboard in one sitting, one-handed, standing up. So:
+
+- Location and restock date **persist between saves**; only the item and
+  amount clear. Re-typing "Kitchen cupboard" sixty times is what stops a
+  stocktake finishing.
+- A new item can be created **without leaving the screen**. Bouncing to
+  Meals and back would make capture unusable.
+- Shelf life is **pre-filled from the category and left editable** — a
+  visible default, never a silent one.
+- Foods already stocked are **excluded from the picker**, and a second guard
+  checks on save: a duplicate row splits the count and makes the shortfall
+  wrong.
+
+**Freshness is `last_restocked + shelf_life_days`, never `updated_at`** —
+the workaround revision 3 existed to kill, and it must not creep back.
+"Unknown" is a first-class state: without both fields there is nothing to
+work out, and the UI says so rather than implying the item is fine. The
+warning window is a fifth of the shelf life with a two-day floor, so a tin
+gets proportional notice rather than the same two days as a salad.
+
+`freshness()` is pure and tested against **fixed dates**, not whatever today
+happens to be.
+
+`data/pantry.js`, `views/pantry.js`, `lib/units.js` v3 (`formatQuantity`),
+`components.css` v14, cache **v24**, 51 precache paths. Gates: behaviour
+108 → 130, a11y 51 → 60 and now rendering the pantry too, contrast +3 pairs.
 
 ## A guard made of a boolean is not a guard (21 Aug 2026)
 

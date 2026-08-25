@@ -70,6 +70,10 @@ const PAIRS = [
   ['.factor-prompt text on chip',              'text',          'neutralChip', 4.5],
   ['.factor-prompt input BORDER vs chip',      'controlBorder', 'neutralChip', 3.0],
   ['.food-picker search BORDER vs card',       'controlBorder', 'surface',     3.0],
+  // --- Phase 7 pantry ---
+  ['.use-soon-item text on chip',              'text',          'neutralChip', 4.5],
+  ['.use-soon-item hint on chip',              'textMuted',     'neutralChip', 4.5],
+  ['.stock-qty-row input BORDER vs card',      'controlBorder', 'surface',     3.0],
   ['.item-group h4 on card',                   'text',          'surface',     4.5]
 ];
 

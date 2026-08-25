@@ -1,4 +1,6 @@
-// service-worker.js — 21 Aug 2026 v23
+// service-worker.js — 21 Aug 2026 v24
+// v24 (Phase 7, part one): ONE new path, js/data/pantry.js.
+// js/views/pantry.js was already listed as a Phase 2 stub.
 // v23: no path change — bumped for the category sentinel and select spacing.
 // v22: no path change — bumped for the scan category confirmation and the
 // inline conversion-factor prompt.
@@ -72,7 +74,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v23';
+const CACHE_NAME = 'home-os-shell-v24';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -105,6 +107,7 @@ const SHELL_FILES = [
   './js/data/calendar.js',
   './js/data/weight.js',
   './js/data/holidays.js',
+  './js/data/pantry.js',
   './js/data/water.js',
   './js/data/foods.js',
   './js/data/meals.js',

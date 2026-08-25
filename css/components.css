@@ -1,4 +1,5 @@
-/* css/components.css — 21 Aug 2026 v13 */
+/* css/components.css — 21 Aug 2026 v14 */
+/* v14: adds the Phase 7 pantry classes. Appended, diffed against v13. */
 /* v13: breathing room in <select> lists. See the note in the option rules:
    Android's popup is native and only partly stylable, so the larger win was
    shortening the option labels themselves, in views/meals.js v7. */
@@ -1183,4 +1184,51 @@ select optgroup {
 .field select[aria-invalid="true"] {
   border-width: 2px;
   border-color: var(--color-caution);
+}
+
+
+/* ============ Phase 7: pantry ============ */
+
+.stock-qty-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* Quantity is what changes most, so it is edited in place. A bare control
+   outside .field needs --control-border for its 3:1 boundary (1.4.11). */
+.stock-qty-row input[type="number"] {
+  flex: 0 1 7rem;
+  min-height: var(--tap-min);
+  padding: var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.use-soon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Information, NOT a warning. Neutral chip, never amber or red: this is
+   food you have, not a mistake you made (principle 1). */
+.use-soon-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-neutral-chip);
+  border-radius: var(--radius-md);
+}
+
+.use-soon-name {
+  font-weight: 700;
+  color: var(--color-text);
 }

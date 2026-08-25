@@ -59,6 +59,13 @@ function fixture(t) {
   if (t === 'meal_ingredients') return [
     { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixture('foods')[0] }];
   if (t === 'weekly_meal_plan') return [{ id: 'plan-1', day_of_week: 'mon', slot: 'breakfast', serves_override: 3, meal_id: 'meal-1', meals: { id: 'meal-1', name: 'Porridge', default_serves: 2 } }];
+  if (t === 'pantry_stock') return [
+    { id:'st-1', food_id:'food-1', default_location:'Kitchen cupboard', shelf_life_days:365,
+      current_qty:500, unit:'g', last_restocked:'2026-08-01',
+      foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient', grams_per_ml:null, grams_per_item:25 } },
+    { id:'st-2', food_id:'food-2', default_location:'Bathroom', shelf_life_days:5,
+      current_qty:2, unit:'item', last_restocked:'2026-08-19',
+      foods:{ id:'food-2', name:'Home-made stock', category:'personal', grams_per_ml:null, grams_per_item:null } }];
   if (t === 'holidays') return [{ id: 'hol-1', title: 'Cornwall', start_date: '2026-09-05', end_date: '2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
     { id: 'chk-1', holiday_id: 'hol-1', title: 'Passports', status: 'complete' },

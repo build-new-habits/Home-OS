@@ -1,4 +1,7 @@
-// js/lib/units.js — 17 Aug 2026 v2
+// js/lib/units.js — 21 Aug 2026 v3
+// v3 (Phase 7): adds formatQuantity() for the g/ml/item quantities on
+// pantry stock and shopping list items. Extension by addition only — no
+// existing export's signature changed.
 // Display-only unit conversion. Canonical storage stays kg / ml / macros
 // per 100g everywhere (locked architectural decision).
 //
@@ -106,3 +109,31 @@ export function formatMl(ml) {
 }
 
 export { KG_PER_STONE, LB_PER_KG, LB_PER_STONE };
+
+
+/**
+ * "250 g" / "1.5 kg" / "500 ml" / "2 l" / "3 items"
+ *
+ * Switches to the larger unit above 1000 so a shopping list does not read
+ * "2400 g of flour". The UNIT IS ALWAYS PRESENT in the returned text: a
+ * bare number on a shopping list is ambiguous at exactly the moment it
+ * matters, standing in an aisle.
+ */
+export function formatQuantity(value, unit = 'g') {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return 'not known';
+  const round = (v, dp = 2) => {
+    const factor = 10 ** dp;
+    return String(Math.round(v * factor) / factor);
+  };
+  if (unit === 'item') {
+    const rounded = Math.round(n * 100) / 100;
+    return `${rounded} item${rounded === 1 ? '' : 's'}`;
+  }
+  if (unit === 'ml') {
+    return n >= 1000 ? `${round(n / 1000)} l` : `${round(n, 1)} ml`;
+  }
+  // grams, and anything unrecognised, which is safer read as grams than
+  // silently relabelled.
+  return n >= 1000 ? `${round(n / 1000)} kg` : `${round(n, 1)} g`;
+}

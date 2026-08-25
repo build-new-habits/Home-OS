@@ -50,6 +50,12 @@ function fixtureFor(table) {
         { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixtureFor('foods')[0] },
         { id: 'ing-2', meal_id: 'meal-1', food_id: 'food-2', quantity_g: 200, unit: 'ml', foods: fixtureFor('foods')[1] }
       ];
+    case 'pantry_stock':
+      return [
+        { id: 'st-1', food_id: 'food-1', default_location: 'Kitchen cupboard', shelf_life_days: 365,
+          current_qty: 500, unit: 'g', last_restocked: '2026-08-01',
+          foods: { id: 'food-1', name: 'Rolled oats', category: 'food_ambient' } }
+      ];
     case 'holidays':
       return [{ id: 'hol-1', title: 'Cornwall', start_date: '2026-09-05', end_date: '2026-09-12' }];
     case 'holiday_checklist_items':

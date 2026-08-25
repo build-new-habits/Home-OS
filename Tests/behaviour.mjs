@@ -38,6 +38,8 @@ const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
 const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/js/data/calendar.js`);
 const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
 const { expand } = await import(`${REPO}/js/lib/rrule.js`);
+const { freshness, describeFreshness, useSoon, defaultShelfLife } = await import(`${REPO}/js/data/pantry.js`);
+const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -308,6 +310,59 @@ eq('both child kinds are named',
   describeChildren({ checklist: 8, purchases: 5, total: 13 }), '8 checklist items and 5 things to buy');
 eq('singulars are singular',
   describeChildren({ checklist: 1, purchases: 0, total: 1 }), '1 checklist item');
+
+// ============ Pantry freshness (Phase 7) ============
+// Pure, and tested against FIXED dates rather than whatever today is.
+// last_restocked + shelf_life_days -- never updated_at, which moves when a
+// row is edited for any reason and would silently reset freshness.
+console.log('\nPantry freshness');
+
+eq('well within shelf life is fresh',
+  freshness({ last_restocked: '2026-08-20', shelf_life_days: 5 }, '2026-08-21').state, 'fresh');
+eq('near the end is worth using up',
+  freshness({ last_restocked: '2026-08-18', shelf_life_days: 5 }, '2026-08-21').state, 'soon');
+eq('past its time says so',
+  freshness({ last_restocked: '2026-08-10', shelf_life_days: 5 }, '2026-08-21').state, 'past');
+eq('no restock date is UNKNOWN, not fresh',
+  freshness({ last_restocked: null, shelf_life_days: 5 }, '2026-08-21').state, 'unknown');
+eq('no shelf life is UNKNOWN, not fresh',
+  freshness({ last_restocked: '2026-08-20', shelf_life_days: null }, '2026-08-21').state, 'unknown');
+check('unknown says WHICH piece is missing',
+  /date not recorded/.test(freshness({ last_restocked: null, shelf_life_days: 5 }, '2026-08-21').reason));
+eq('days left is exact',
+  freshness({ last_restocked: '2026-08-18', shelf_life_days: 5 }, '2026-08-21').daysLeft, 2);
+// A long shelf life needs a proportionally longer warning than two days.
+eq('a tin gets a proportional warning window, not a fixed one',
+  freshness({ last_restocked: '2026-01-01', shelf_life_days: 365 }, '2026-11-01').state, 'soon');
+
+check('the description is neutral, never alarming',
+  !/expired|warning|bad|throw/i.test(
+    describeFreshness(freshness({ last_restocked: '2026-08-10', shelf_life_days: 5 }, '2026-08-21'))),
+  describeFreshness(freshness({ last_restocked: '2026-08-10', shelf_life_days: 5 }, '2026-08-21')));
+
+const soonList = useSoon([
+  { id: 'a', last_restocked: '2026-08-20', shelf_life_days: 5 },
+  { id: 'b', last_restocked: '2026-08-18', shelf_life_days: 5 },
+  { id: 'c', last_restocked: '2026-08-10', shelf_life_days: 5 },
+  { id: 'd', last_restocked: null, shelf_life_days: null }
+], '2026-08-21');
+eq('only soon and past appear in the use-up list', soonList.length, 2);
+eq('most urgent first', soonList[0].row.id, 'c');
+check('an unknown row is NOT listed as needing using up',
+  !soonList.some((e) => e.row.id === 'd'));
+
+eq('fresh food gets a short default shelf life', defaultShelfLife('food_fresh'), 5);
+eq('cupboard food gets a long one', defaultShelfLife('food_ambient'), 365);
+eq('things that do not expire get no default', defaultShelfLife('home'), null);
+eq('an unknown category gets no default', defaultShelfLife('nonsense'), null);
+
+console.log('\nQuantity formatting');
+eq('grams below a kilo stay grams', formatQuantity(250, 'g'), '250 g');
+eq('grams above a kilo become kg', formatQuantity(2400, 'g'), '2.4 kg');
+eq('millilitres above a litre become litres', formatQuantity(1500, 'ml'), '1.5 l');
+eq('one item is singular', formatQuantity(1, 'item'), '1 item');
+eq('items pluralise', formatQuantity(3, 'item'), '3 items');
+check('a unit is ALWAYS present', /[a-z]/.test(formatQuantity(500, 'g')));
 
 console.log('');
 if (failures.length) {
