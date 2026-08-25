@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v19
+21 Aug 2026 v20
 
-Supersedes v18. Older versions live in `Docs/Archive/`.
+Supersedes v19. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,44 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## A guard made of a boolean is not a guard (21 Aug 2026)
+
+The scan's "confirm the category" block shipped and **did not work**. Graeme
+scanned a real product and saved it without touching the category.
+
+The guard was a mutable flag, cleared by any `change` event on the select.
+**Android's native select fires `change` on dismissal even when the same
+option is re-selected** — so merely opening the dropdown to look at it
+satisfied the guard. Graeme opened it, because he was checking the spacing.
+
+Replaced with a **sentinel option**: after a scan a blank "Choose one — we
+guessed Drinks" option is inserted and selected, so the select genuinely has
+no value. The submit handler simply has nothing to save. No stray event can
+manufacture a value that is not there.
+
+**The general lesson, and it is not the first time this week:** state you
+can see beats a flag you cannot. The `min="0.1" step="1"` bug was also a
+case of trusting a mechanism without checking what the platform actually
+does with it. Where the browser is a participant, assert on the observable
+thing — the value, the attribute — not on a variable tracking intent.
+
+`Tests/trace.mjs` now reproduces the exact regression: it dispatches a stray
+`change` event, asserts the value stays empty, then asserts that saving
+issues **no write at all**. Proven by disabling the guard in a throwaway
+copy, where the failure output reads
+`"name":"Scanned shampoo" ... "category":"food_ambient"` — shampoo filed as
+cupboard food, bound for the ingredient picker.
+
+Also fixed: category option labels carried their hints inline ("Fresh food —
+fruit, veg, meat, fish, dairy, bakery"), which wrap and cram on a narrow
+Android picker. Labels are now just the category name and the hints moved
+below. Select line-height and option padding were added too, but recorded
+honestly as a **progressive enhancement**: Android draws the popup itself
+and honours option styling inconsistently. Shortening the text was the real
+fix.
+
+`views/meals.js` v7, `components.css` v13, cache **v23**. Trace 57 → 59.
 
 ## A scan must not guess a category (21 Aug 2026)
 

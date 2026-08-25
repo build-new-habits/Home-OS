@@ -1,4 +1,5 @@
-// service-worker.js — 21 Aug 2026 v22
+// service-worker.js — 21 Aug 2026 v23
+// v23: no path change — bumped for the category sentinel and select spacing.
 // v22: no path change — bumped for the scan category confirmation and the
 // inline conversion-factor prompt.
 // v21: no path change — bumped for the food category controls and the
@@ -71,7 +72,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v22';
+const CACHE_NAME = 'home-os-shell-v23';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

@@ -258,24 +258,39 @@ check('a blank macro is sent as NULL, never 0',
 check('a filled macro is sent as a number', w && w.payload.calories_per_100g === 250);
 
 // --- a scan must not be able to save an unconfirmed category ---
-// Open Food Facts gives no Home-OS category. A silent 'food_ambient' would
-// put scanned shampoo in the ingredient picker, so save is blocked until
-// the user has chosen. Asserted by driving the real prefill path.
+// Previously a boolean flag, cleared by any `change` event -- and Android's
+// native select fires `change` on dismissal, so merely OPENING the dropdown
+// satisfied it. Now a sentinel option leaves the select genuinely empty.
 clearCalls();
 const foodFormEl = mealsMount.querySelector('#new-food-name').closest('form');
-// Simulate what handleScanResult does: open the form flagged as a scan.
-mealsMount.querySelector('#new-food-name').value = 'Scanned shampoo';
-mealsMount.querySelector('#new-food-barcode').value = '5000159407236';
 const catSelect = mealsMount.querySelector('#new-food-category');
 check('the food form has a category control', !!catSelect);
+
 if (catSelect) {
-  // Force the unconfirmed state the scan path sets.
+  // Reproduce the scan state: a blank sentinel inserted and selected.
+  const sentinel = window.document.createElement('option');
+  sentinel.id = 'new-food-category-unchosen';
+  sentinel.value = '';
+  sentinel.textContent = 'Choose one — we guessed Drinks';
+  catSelect.insertBefore(sentinel, catSelect.firstChild);
+  catSelect.value = '';
   catSelect.setAttribute('aria-invalid', 'true');
-  // A save attempt while unconfirmed must not write. The flag lives in
-  // module scope, so this drives it via the real scan entry point below.
-  check('an unconfirmed category is marked invalid for assistive tech',
-    catSelect.getAttribute('aria-invalid') === 'true');
-  // Choosing a category clears it and permits the save.
+
+  check('after a scan the category has NO value', catSelect.value === '');
+
+  // THE REGRESSION: opening and dismissing the native picker fires change.
+  catSelect.dispatchEvent(new window.Event('change', { bubbles: true }));
+  await settle(20);
+  check('a stray change event does NOT satisfy the requirement',
+    catSelect.value === '', `value became "${catSelect.value}"`);
+
+  mealsMount.querySelector('#new-food-name').value = 'Scanned shampoo';
+  submit(foodFormEl);
+  await settle();
+  check('saving with no category chosen issues NO write',
+    !writes().some((c) => c.table === 'foods'), JSON.stringify(writes()));
+
+  // A real choice permits it.
   setValue(catSelect, 'personal');
   await settle();
   submit(foodFormEl);

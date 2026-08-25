@@ -1,4 +1,19 @@
-// js/views/meals.js — 21 Aug 2026 v6
+// js/views/meals.js — 21 Aug 2026 v7
+// v7: TWO fixes from real-device testing.
+//
+// 1. The scan's "confirm the category" block was a mutable flag cleared by
+//    any `change` event. Android's native select fires `change` on dismissal
+//    even when the same option is re-selected, so merely OPENING the
+//    dropdown to look at it defeated the guard. Replaced with a sentinel:
+//    after a scan a blank "Choose one" option is inserted and selected, so
+//    the select genuinely HAS NO VALUE. `required` then does the work, and
+//    no stray event can satisfy it. State you can see beats a flag you
+//    cannot.
+//
+// 2. Category option labels carried their hint text inline ("Fresh food —
+//    fruit, veg, meat, fish, dairy, bakery"). On a narrow Android picker
+//    those wrap and cram together. Labels are now just the category name;
+//    the hints live in the field hint below, where they have room.
 // v6: after a SCAN the category is deliberately left UNCHOSEN.
 //
 // Open Food Facts gives macros but not a Home-OS category, and defaulting
@@ -994,14 +1009,20 @@ export function render(mountEl) {
 
   // A CHECK-constrained column, so a constrained control (standing rule 1).
   // Placed high: it decides whether this thing can ever be an ingredient.
+  // Short labels only. The hints are long and belong below, not inside
+  // option text where a narrow native picker wraps and crams them.
   const foodCategorySelect = selectFrom(
     'new-food-category',
-    FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.hint ? `${c.label} — ${c.hint}` : c.label }))
+    FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))
   );
+  foodCategorySelect.required = true;
   foodCategorySelect.value = 'food_ambient';
+  const CATEGORY_HELP =
+    'Only food and drink can be added to a recipe. Everything else is for the shopping list. '
+    + 'Fresh is fruit, veg, meat, fish, dairy and bakery; Cupboard is dried, tinned, jarred and packets; '
+    + 'Household is cleaning and paper goods; Home is bulbs, batteries, equipment and stationery.';
   const foodCategoryHint = el('p', {
-    class: 'field-hint', id: 'new-food-category-hint',
-    text: 'Only food and drink can be added to a recipe. Everything else is for the shopping list.'
+    class: 'field-hint', id: 'new-food-category-hint', text: CATEGORY_HELP
   });
   foodCategorySelect.setAttribute('aria-describedby', 'new-food-category-hint');
 
@@ -1070,25 +1091,41 @@ export function render(mountEl) {
   foodDetails.appendChild(foodForm);
   foodsSection.appendChild(foodDetails);
 
-  // True when the form was opened by a scan and the category has not yet
-  // been confirmed by the user. Blocks save; cleared on any deliberate change.
-  let categoryNeedsConfirming = false;
+  const CATEGORY_SENTINEL_ID = 'new-food-category-unchosen';
 
-  function markCategoryConfirmed() {
-    if (!categoryNeedsConfirming) return;
-    categoryNeedsConfirming = false;
-    foodCategoryHint.textContent =
-      'Only food and drink can be added to a recipe. Everything else is for the shopping list.';
+  /**
+   * Forces a deliberate category choice by giving the select NO VALUE.
+   *
+   * The previous version used a boolean cleared by any `change` event.
+   * Android's native select fires `change` on dismissal even when the same
+   * option is re-selected, so opening the dropdown to look at it satisfied
+   * the guard. A sentinel option cannot be defeated that way: until the
+   * user picks something real, `select.value` is empty and the submit
+   * handler simply has nothing to save.
+   */
+  function requireCategoryChoice(suggested) {
+    clearCategorySentinel();
+    const blank = el('option', {
+      id: CATEGORY_SENTINEL_ID,
+      value: '',
+      text: suggested ? `Choose one — we guessed ${categoryLabel(suggested)}` : 'Choose one'
+    });
+    foodCategorySelect.insertBefore(blank, foodCategorySelect.firstChild);
+    foodCategorySelect.value = '';
+    foodCategorySelect.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearCategorySentinel() {
+    const existing = foodCategorySelect.querySelector(`#${CATEGORY_SENTINEL_ID}`);
+    if (existing) existing.remove();
     foodCategorySelect.removeAttribute('aria-invalid');
   }
 
   function resetFoodForm() {
     foodForm.reset();
+    clearCategorySentinel();
     foodCategorySelect.value = 'food_ambient';
-    categoryNeedsConfirming = false;
-    foodCategorySelect.removeAttribute('aria-invalid');
-    foodCategoryHint.textContent =
-      'Only food and drink can be added to a recipe. Everything else is for the shopping list.';
+    foodCategoryHint.textContent = CATEGORY_HELP;
     pendingSource = 'manual';
     foodSourceNote.hidden = true;
     foodSourceNote.textContent = '';
@@ -1113,17 +1150,18 @@ export function render(mountEl) {
     perMlInput.value = food && food.grams_per_ml != null ? food.grams_per_ml : '';
     perItemInput.value = food && food.grams_per_item != null ? food.grams_per_item : '';
     const suggestion = food && food.suggestedCategory;
-    foodCategorySelect.value = suggestion || (food && food.category) || 'food_ambient';
-    categoryNeedsConfirming = Boolean(fromScan);
-    if (categoryNeedsConfirming) {
-      foodCategorySelect.setAttribute('aria-invalid', 'true');
+    if (fromScan) {
+      // A scan cannot know the category, and a filled-looking field does not
+      // get checked. So it is left genuinely empty until chosen.
+      requireCategoryChoice(suggestion);
       foodCategoryHint.textContent = suggestion
-        ? `Best guess from the barcode: ${categoryLabel(suggestion)}. Check it — a scan cannot tell us for certain, `
-          + 'and getting this wrong puts non-food in your recipe ingredients.'
-        : 'The barcode did not say what kind of thing this is. Choose one before saving — '
-          + 'it decides whether this can be a recipe ingredient.';
+        ? `From the barcode this looks like ${categoryLabel(suggestion)}, but a scan cannot be sure. `
+          + `Pick it from the list to confirm, or choose another. ${CATEGORY_HELP}`
+        : `The barcode did not say what kind of thing this is. ${CATEGORY_HELP}`;
     } else {
-      foodCategorySelect.removeAttribute('aria-invalid');
+      clearCategorySentinel();
+      foodCategorySelect.value = (food && food.category) || 'food_ambient';
+      foodCategoryHint.textContent = CATEGORY_HELP;
     }
     pendingSource = food && food.source === 'openfoodfacts' ? 'openfoodfacts' : 'manual';
 
@@ -1137,14 +1175,18 @@ export function render(mountEl) {
     foodNameInput.focus();
   }
 
-  foodCategorySelect.addEventListener('change', markCategoryConfirmed, { signal });
+  foodCategorySelect.addEventListener('change', () => {
+    // A real choice removes the sentinel for good. Re-selecting the blank
+    // is impossible once it is gone, which is the point.
+    if (foodCategorySelect.value) clearCategorySentinel();
+  }, { signal });
 
   foodForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     foodError.hidden = true;
-    if (categoryNeedsConfirming) {
+    if (!foodCategorySelect.value) {
       foodError.textContent =
-        'Check what kind of thing this is before saving. A scan cannot tell us, and it '
+        'Choose what kind of thing this is before saving. A scan cannot tell us, and it '
         + 'decides whether this shows up as a recipe ingredient.';
       foodError.hidden = false;
       foodCategorySelect.focus();
@@ -1295,6 +1337,7 @@ export function render(mountEl) {
       FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))
     );
     categorySelect.value = food.category || 'food_ambient';
+    categorySelect.required = true;
 
     const set = el('fieldset');
     set.appendChild(el('legend', { text: 'Nutrition per 100 g' }));

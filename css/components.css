@@ -1,4 +1,7 @@
-/* css/components.css — 21 Aug 2026 v12 */
+/* css/components.css — 21 Aug 2026 v13 */
+/* v13: breathing room in <select> lists. See the note in the option rules:
+   Android's popup is native and only partly stylable, so the larger win was
+   shortening the option labels themselves, in views/meals.js v7. */
 /* v12: adds .factor-prompt for the inline "fill in the missing conversion"
    block on an ingredient row. Appended, diffed against v11. */
 /* v11: adds .food-picker and .group-heading for the searchable, grouped
@@ -1145,4 +1148,39 @@ details summary {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
+}
+
+
+/* ============ Select list legibility ============ */
+
+/* HONEST LIMITATION: on Android the <select> popup is drawn by the platform,
+   and option padding is respected inconsistently or not at all. These rules
+   are a progressive enhancement — they help on desktop and on the browsers
+   that do honour them, and cost nothing where they are ignored.
+   The reliable fix for cramped lists was shortening the option TEXT so it
+   stops wrapping; long labels were the real cause. */
+select option,
+select optgroup {
+  padding: var(--space-2) var(--space-3);
+  line-height: 1.6;
+}
+
+select optgroup {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* The CLOSED control is fully ours, so give its text room. */
+.field select,
+.food-picker select,
+.ingredient-unit-select {
+  line-height: 1.5;
+}
+
+/* An unchosen category after a scan: the sentinel option leaves the select
+   empty, so `required` styles it. Boundary only — the hint below says what
+   to do in words, never colour alone. */
+.field select[aria-invalid="true"] {
+  border-width: 2px;
+  border-color: var(--color-caution);
 }
