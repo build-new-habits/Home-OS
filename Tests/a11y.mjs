@@ -301,6 +301,15 @@ check(`pantry: all ${panButtons.length} buttons have an accessible name`,
 
 checkNumberInputs(panMount, 'pantry');
 
+// ---- Scanning is offered, and is never the ONLY way in ----
+const panScan = [...panMount.querySelectorAll('button')].find((b) => /Scan a barcode/.test(b.textContent));
+check('pantry: a scan button is offered', !!panScan);
+check('pantry: the manual add form exists regardless of the scanner',
+  !!panMount.querySelector('#pantry-new-name') && !!panMount.querySelector('#pantry-food'));
+const panScanNote = [...panMount.querySelectorAll('[role="status"]')]
+  .filter((n) => n.getAttribute('aria-live') === 'polite');
+check('pantry: scan feedback is announced politely', panScanNote.length > 0);
+
 const panDesc = [...panMount.querySelectorAll('[aria-describedby]')]
   .flatMap((n) => n.getAttribute('aria-describedby').split(/\s+/))
   .filter((id) => id && !panMount.querySelector(`#${CSS.escape(id)}`));

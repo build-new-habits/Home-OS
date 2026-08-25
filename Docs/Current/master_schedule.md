@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v21
+21 Aug 2026 v22
 
-Supersedes v20. Older versions live in `Docs/Archive/`.
+Supersedes v21. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -111,6 +111,35 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Scanning into the pantry (21 Aug 2026)
+
+Graeme, looking at the finished pantry screen: *"Shouldn't I be able to scan
+items into the pantry?"* Yes — and shipping it without was a plain
+oversight. Typing names for a cupboard of packaged goods is **exactly the
+friction that screen was built to remove**, and the scanner already existed
+one view away.
+
+The dialog was extracted to `components/scannerDialog.js` rather than
+duplicated. A focus-trapped camera modal copied into a second file is the
+wrong kind of quick: two places to fix a camera-release bug, and two places
+to drift. `views/meals.js` v8 now uses the shared component and its
+behaviour is otherwise unchanged.
+
+**A scan does the tedious part and stops wherever it would have to guess:**
+
+- **Already in the pantry** → sends you to that card with the amount field
+  focused and selected. It does *not* make a second row; a duplicate splits
+  the count and breaks the shortfall.
+- **Known but not stocked** → preselects the item and jumps to "how much",
+  which is the only thing left to say.
+- **Unknown** → fills the name and macros from Open Food Facts and **still
+  requires the category**, using the same sentinel-option discipline as
+  meals v7. OFF cannot know a Home-OS category, and a wrong one puts shower
+  gel in your recipes.
+
+`components/scannerDialog.js`, `views/pantry.js` v2, `views/meals.js` v8,
+cache **v25**, 52 precache paths.
 
 ## Phase 7 part one — the pantry (21 Aug 2026)
 

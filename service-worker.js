@@ -1,4 +1,6 @@
-// service-worker.js — 21 Aug 2026 v24
+// service-worker.js — 21 Aug 2026 v25
+// v25: ONE new path, js/components/scannerDialog.js — the scanner dialog
+// extracted from views/meals.js so the pantry can scan a shelf too.
 // v24 (Phase 7, part one): ONE new path, js/data/pantry.js.
 // js/views/pantry.js was already listed as a Phase 2 stub.
 // v23: no path change — bumped for the category sentinel and select spacing.
@@ -74,7 +76,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v24';
+const CACHE_NAME = 'home-os-shell-v25';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -117,6 +119,7 @@ const SHELL_FILES = [
   './js/components/confirmDialog.js',
   './js/components/liveRegion.js',
   './js/components/card.js',
+  './js/components/scannerDialog.js',
   './js/components/completionStamp.js',
   './js/views/signin.js',
   './js/views/settings.js',

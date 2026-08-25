@@ -1,4 +1,12 @@
-// js/views/pantry.js — 21 Aug 2026 v1
+// js/views/pantry.js — 21 Aug 2026 v2
+// v2: SCANNING. Typing names for a cupboard of packaged goods is exactly the
+// friction this screen was meant to remove, and v1 shipped without it.
+//
+// A scan does the tedious part and stops at every point where it would have
+// to guess: an item already in the pantry sends you to its card rather than
+// making a second row; a new item still requires the category to be chosen,
+// because Open Food Facts cannot know it and a wrong one puts shower gel in
+// your recipes.
 // Replaces the Phase 2 stub, whole.
 //
 // ---- Designed for STOCKTAKING, not for adding one thing ----
@@ -24,8 +32,11 @@ import {
   STOCK_UNITS, defaultShelfLife, freshness, describeFreshness, useSoon, todayIso
 } from '../data/pantry.js';
 import {
-  listFoods, createFood, FOOD_CATEGORIES, categoryLabel, groupByCategory
+  listFoods, createFood, findByBarcode, FOOD_CATEGORIES, categoryLabel, groupByCategory
 } from '../data/foods.js';
+import { isScanSupported } from '../lib/barcode.js';
+import { openScanner, describeScanFailure } from '../components/scannerDialog.js';
+import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { formatQuantity } from '../lib/units.js';
 import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
@@ -305,6 +316,22 @@ export function render(mountEl) {
       + 'so you only change the item and the amount.'
   }));
 
+  // Scanning first: it is the fast path for a shelf of packaged goods.
+  const scanWrap = el('div', { class: 'scan-actions' });
+  const scanBtn = el('button', {
+    type: 'button', class: 'btn btn-primary btn-block', text: 'Scan a barcode'
+  });
+  const scanNote = el('p', { class: 'field-hint', role: 'status' });
+  scanNote.setAttribute('aria-live', 'polite');
+  scanNote.hidden = true;
+  scanWrap.append(scanBtn, scanNote);
+  if (!isScanSupported()) {
+    scanBtn.hidden = true;
+    scanNote.hidden = false;
+    scanNote.textContent = 'This browser cannot use the camera, so add items with the form below.';
+  }
+  addSection.appendChild(scanWrap);
+
   const addForm = el('form');
   addForm.setAttribute('aria-label', 'Add something to the pantry');
 
@@ -330,6 +357,10 @@ export function render(mountEl) {
   existingWrap.append(field('Search', searchInput), searchCount, field('Item', foodSelect));
 
   // New: name + category, created here so a stocktake never leaves the page.
+  // Held between a scan and the save that follows it, so a scanned item
+  // keeps its barcode and macros and can be recognised next time.
+  let scannedExtras = null;
+
   const newNameInput = el('input', { id: 'pantry-new-name', type: 'text' });
   const newCategorySelect = selectFrom('pantry-new-category',
     FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.label })));
@@ -373,6 +404,129 @@ export function render(mountEl) {
     addError, addSubmit
   );
   addSection.appendChild(addForm);
+
+  // ---- Category confirmation after a scan -------------------------------
+  // Same sentinel discipline as views/meals.js v7: a boolean flag was
+  // defeated because Android's native select fires `change` on dismissal.
+  // An empty value cannot be faked by a stray event.
+  const CATEGORY_SENTINEL_ID = 'pantry-new-category-unchosen';
+
+  function requireCategoryChoice(suggested) {
+    clearCategorySentinel();
+    const blank = el('option', {
+      id: CATEGORY_SENTINEL_ID,
+      value: '',
+      text: suggested ? `Choose one — we guessed ${categoryLabel(suggested)}` : 'Choose one'
+    });
+    newCategorySelect.insertBefore(blank, newCategorySelect.firstChild);
+    newCategorySelect.value = '';
+    newCategorySelect.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearCategorySentinel() {
+    const existing = newCategorySelect.querySelector(`#${CATEGORY_SENTINEL_ID}`);
+    if (existing) existing.remove();
+    newCategorySelect.removeAttribute('aria-invalid');
+  }
+
+  newCategorySelect.addEventListener('change', () => {
+    if (newCategorySelect.value) clearCategorySentinel();
+  }, { signal });
+
+  // ---- Scanning ---------------------------------------------------------
+
+  let scanSession = null;
+
+  scanBtn.addEventListener('click', async () => {
+    if (scanSession) return;
+    scanNote.hidden = true;
+    scanSession = openScanner({ title: 'Scan into the pantry' });
+    const outcome = await scanSession.result;
+    scanSession = null;
+    if (destroyed) return;
+    await handleScan(outcome);
+  }, { signal });
+
+  async function handleScan(outcome) {
+    if (!outcome.ok) {
+      scanNote.hidden = false;
+      scanNote.textContent = describeScanFailure(outcome.reason);
+      return;
+    }
+    const { barcode } = outcome;
+    scanNote.hidden = false;
+    scanNote.textContent = `Barcode ${barcode} scanned. Looking it up.`;
+
+    const existing = await findByBarcode(barcode);
+    if (destroyed) return;
+
+    if (existing.ok && existing.data && !existing.pending) {
+      const food = existing.data;
+      // Already stocked? Send them to the card rather than making a second
+      // row — a duplicate splits the count and breaks the shortfall.
+      const alreadyStocked = stock.find((row) => row.food_id === food.id);
+      if (alreadyStocked) {
+        scanNote.textContent = `${food.name} is already in the pantry. Change its amount on its card above.`;
+        announce(scanNote.textContent);
+        const input = document.getElementById(`stock-qty-${alreadyStocked.id}`);
+        if (input) {
+          input.focus();
+          input.select();
+        }
+        return;
+      }
+      // Known but not stocked: preselect it and jump to the amount, which is
+      // the only thing left to say.
+      modeExisting.checked = true;
+      syncMode();
+      searchInput.value = '';
+      rebuildFoodSelect();
+      foodSelect.value = food.id;
+      syncShelfDefault();
+      scanNote.textContent = `${food.name} recognised. How much have you got?`;
+      announce(scanNote.textContent);
+      qtyInput.focus();
+      return;
+    }
+
+    // Unknown barcode: fill what Open Food Facts knows and stop at the
+    // category, which it cannot know.
+    const lookup = await lookupBarcode(barcode);
+    if (destroyed) return;
+
+    modeNew.checked = true;
+    syncMode();
+    scannedExtras = { barcode };
+
+    if (lookup.ok) {
+      newNameInput.value = lookup.data.name || '';
+      scannedExtras = {
+        barcode,
+        calories_per_100g: lookup.data.calories_per_100g,
+        protein_g: lookup.data.protein_g,
+        fat_g: lookup.data.fat_g,
+        carbs_g: lookup.data.carbs_g
+      };
+      requireCategoryChoice(lookup.data.suggestedCategory);
+      scanNote.textContent = lookup.data.suggestedCategory
+        ? `Found: ${lookup.data.name}. From the barcode this looks like `
+          + `${categoryLabel(lookup.data.suggestedCategory)} — pick it to confirm, or choose another.`
+        : `Found: ${lookup.data.name}. Choose what kind of thing it is before saving.`;
+    } else {
+      newNameInput.value = '';
+      requireCategoryChoice(null);
+      const reasons = {
+        'not-found': 'That barcode is not in Open Food Facts. Type the name and choose a category.',
+        offline: 'You are offline, so the barcode could not be looked up. Type the name yourself.',
+        timeout: 'Open Food Facts did not answer in time. Type the name yourself.',
+        invalid: 'That barcode could not be read properly. Type the details in below.'
+      };
+      scanNote.textContent = reasons[lookup.reason] || 'Open Food Facts could not be reached. Type the name yourself.';
+    }
+    announce(scanNote.textContent);
+    if (newNameInput.value) newCategorySelect.focus();
+    else newNameInput.focus();
+  }
 
   function syncMode() {
     const isNew = modeNew.checked;
@@ -441,6 +595,14 @@ export function render(mountEl) {
     let itemName = '';
 
     if (modeNew.checked) {
+      if (!newCategorySelect.value) {
+        addError.textContent =
+          'Choose what kind of thing this is before saving. A scan cannot tell us, and it '
+          + 'decides whether this can be a recipe ingredient.';
+        addError.hidden = false;
+        newCategorySelect.focus();
+        return;
+      }
       const name = newNameInput.value.trim();
       if (!name) {
         addError.textContent = 'Give it a name.';
@@ -449,7 +611,16 @@ export function render(mountEl) {
         return;
       }
       addSubmit.disabled = true;
-      const created = await createFood({ name, category: newCategorySelect.value, source: 'manual' });
+      const created = await createFood({
+        name,
+        category: newCategorySelect.value,
+        source: scannedExtras ? 'openfoodfacts' : 'manual',
+        barcode: scannedExtras ? scannedExtras.barcode : null,
+        calories_per_100g: scannedExtras ? scannedExtras.calories_per_100g : null,
+        protein_g: scannedExtras ? scannedExtras.protein_g : null,
+        fat_g: scannedExtras ? scannedExtras.fat_g : null,
+        carbs_g: scannedExtras ? scannedExtras.carbs_g : null
+      });
       if (destroyed) return;
       if (!created.ok || created.queued) {
         addSubmit.disabled = false;
@@ -507,6 +678,8 @@ export function render(mountEl) {
     announce(`${itemName} added: ${formatQuantity(result.data.current_qty, result.data.unit)}.`);
     newNameInput.value = '';
     qtyInput.value = '';
+    scannedExtras = null;
+    clearCategorySentinel();
     searchInput.value = '';
     shelfInput.dataset.touched = 'false';
     await loadAll();
@@ -587,6 +760,8 @@ export function render(mountEl) {
 
   return () => {
     destroyed = true;
+    // Release the camera if the user navigates away mid-scan.
+    if (scanSession) scanSession.abort();
     window.removeEventListener('online', onConnectionChange);
     window.removeEventListener('offline', onConnectionChange);
     controller.abort();

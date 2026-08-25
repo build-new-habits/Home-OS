@@ -1,4 +1,7 @@
-// js/views/meals.js — 21 Aug 2026 v7
+// js/views/meals.js — 21 Aug 2026 v8
+// v8: the scanner dialog moved to components/scannerDialog.js so the pantry
+// can scan a shelf too. Behaviour here is unchanged; only the dialog's
+// construction left this file.
 // v7: TWO fixes from real-device testing.
 //
 // 1. The scan's "confirm the category" block was a mutable flag cleared by
@@ -90,7 +93,8 @@ import {
   DAYS, SLOTS, listPlan, groupByCell, addPlanEntry, updatePlanEntry,
   removePlanEntry, servesFor
 } from '../data/mealPlan.js';
-import { scan, isScanSupported, normaliseBarcode } from '../lib/barcode.js';
+import { isScanSupported, normaliseBarcode } from '../lib/barcode.js';
+import { openScanner as openScannerDialog } from '../components/scannerDialog.js';
 import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
@@ -1470,77 +1474,14 @@ export function render(mountEl) {
    * without sight; the status line beneath it carries the entire state.
    */
   function openScanner() {
-    const previouslyFocused = document.activeElement;
-    const localController = new AbortController();
-    scanController = localController;
-
-    const backdrop = el('div', { class: 'dialog-backdrop' });
-    const dialog = el('div', {
-      class: 'dialog scanner-dialog',
-      role: 'dialog',
-      'aria-modal': 'true',
-      'aria-labelledby': 'scanner-title',
-      'aria-describedby': 'scanner-status'
-    });
-
-    const title = el('h2', { id: 'scanner-title', text: 'Scan a barcode' });
-    const video = el('video', { class: 'scanner-video', 'aria-hidden': 'true' });
-    video.setAttribute('playsinline', '');
-    video.muted = true;
-
-    const status = el('p', { class: 'scanner-status', id: 'scanner-status', role: 'status' });
-    status.setAttribute('aria-live', 'polite');
-    status.textContent = 'Starting the camera.';
-
-    const cancelBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Cancel' });
-
-    dialog.append(title, video, status, el('div', { class: 'dialog-actions' }, [cancelBtn]));
-    backdrop.appendChild(dialog);
-    document.body.appendChild(backdrop);
-
-    function onKeydown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        localController.abort();
-        return;
-      }
-      if (event.key === 'Tab') {
-        // Cancel is the only control in here, so focus simply stays on it.
-        event.preventDefault();
-        cancelBtn.focus();
-      }
-    }
-
-    function closeScanner() {
-      document.removeEventListener('keydown', onKeydown, true);
-      backdrop.remove();
-      if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
-        previouslyFocused.focus();
-      }
-    }
-
-    cancelBtn.addEventListener('click', () => localController.abort());
-    document.addEventListener('keydown', onKeydown, true);
-    cancelBtn.focus();
-
-    scan({
-      videoEl: video,
-      signal: localController.signal,
-      onStatus: (text) => { status.textContent = text; }
-    }).then(async (result) => {
-      closeScanner();
+    // The dialog itself now lives in components/scannerDialog.js so the
+    // pantry can scan too. This view keeps only what it does with a result.
+    const session = openScannerDialog({ title: 'Scan a barcode' });
+    scanController = session;
+    session.result.then(async (result) => {
       scanController = null;
       if (destroyed) return;
       await handleScanResult(result);
-    }).catch((err) => {
-      // scan() is written never to reject; this is belt and braces so a
-      // future change cannot leave the dialog stuck on screen.
-      console.error('Scanner failed unexpectedly:', err);
-      closeScanner();
-      scanController = null;
-      if (!destroyed) {
-        prefillFoodForm({ note: 'The scanner could not start. You can add the food by hand here.' });
-      }
     });
   }
 
