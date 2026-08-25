@@ -1,5 +1,14 @@
 # Phase 6 smoke test — the route
 
+> **STILL CURRENT, with two changes.** Cache is now **v25** (52 entries),
+> and steps 2 and 5 have been rebuilt since this was written: the scan now
+> refuses to save until you choose a category, and the ingredient form has a
+> "Measured in" unit chooser. Everything else stands.
+>
+> Much of this has now passed on a device. The parts **still unverified**
+> are the scan category-confirm path and barcode duplicate detection —
+> steps 2 and 5.
+
 21 Aug 2026. Read this on the phone you are testing with.
 
 `INTEGRATION_CHECKS.md` is the complete list. **This is the order to do it
@@ -24,7 +33,7 @@ as a bug and is not one.
 
 2. **Is the new shell actually installed?** Hard-refresh, then
    DevTools → Application → Cache Storage. You want
-   **`home-os-shell-v17`** and **49 entries**. If you see an older version,
+   **`home-os-shell-v25`** and **49 entries**. If you see an older version,
    or a different count, the service worker has not updated and you are
    testing old code. Fix that before anything else.
 

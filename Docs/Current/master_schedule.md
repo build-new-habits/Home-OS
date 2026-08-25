@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v22
+21 Aug 2026 v23
 
-Supersedes v21. Older versions live in `Docs/Archive/`.
+Supersedes v22. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -15,7 +15,7 @@ All in `Docs/Current/`:
 - `REPO_STRUCTURE.md` — fixed repo layout.
 - `INTEGRATION_CHECKS.md` — per-phase seam tests.
 - `BUILD_PROCESS_CONTROL.md`, `BUILDER_CHAT_PREAMBLE.md` — the loop.
-- `PHASE2_HANDOFF.md` … `PHASE6_HANDOFF.md` — records later phases read for
+- `PHASE2_HANDOFF.md` … `PHASE7_HANDOFF_PART1.md` — records later phases read for
   the contracts they wire into.
 - `phaseN_build_brief.md` — the task for phase N.
 
@@ -111,6 +111,25 @@ readers are needed, at 58 KB. Both are recorded in the handoff.
 *Also this phase:* `countFoodDependents()` counts all three
 restrict-referencing tables rather than only meals, because counting only
 meals would say "used in 0 meals" and then hit a raw foreign-key error.
+
+## Session close, 21 Aug 2026
+
+A long session. Six corrections to Phase 6, two schema revisions, the pantry
+built, and the scanner shared. **Every one of the six corrections was found
+by Graeme on a real device, and not one was caught by the seven gates.** Two
+of them changed how the gates work, which is the useful outcome.
+
+Full record in `PHASE7_HANDOFF_PART1.md`. Orientation for the next session
+in `SESSION_START.md`, rewritten whole.
+
+**The honest state:** Phases 6, 8 and half of 7 are built; only parts of
+Phase 6 are confirmed on a device. The phase numbers overstate how much is
+verified, which is why `SESSION_START.md` now carries a "what is actually
+verified" list instead.
+
+**Next build:** the shopping list, the shortfall diff and the holiday
+bridge — the rest of Phase 7. `phase7_build_brief.md` v3 is current and
+already reworked around revisions 3 and 4.
 
 ## Scanning into the pantry (21 Aug 2026)
 

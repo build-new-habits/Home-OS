@@ -1,6 +1,21 @@
 # Home-OS: Phase 6 Handoff — Meal Planner + Barcode Scanning
 21 Aug 2026 v1
 
+> **SUPERSEDED IN PART — read this first.**
+>
+> This file records Phase 6 **as built**, and is kept as the historical
+> record of the reasoning. Six defects were found afterwards on a real
+> device and fixed; two schema revisions landed on top.
+>
+> **Anything in this file about cache versions, `views/meals.js` behaviour,
+> or "quantities are grams" is out of date.** Current state is in
+> `PHASE7_HANDOFF_PART1.md` and `SESSION_START.md`. Cache is now **v25**,
+> not v15; `views/meals.js` is **v8**, not v1; ingredients carry units.
+>
+> The *reasoning* below still stands — the UPC-A finding, the vendored
+> scanner narrowing, the Open Food Facts traps, the offline queue defect.
+> Only the version numbers and the grams assumption have moved.
+
 Commit: `4c7adbc` on `main`. Deployed to GitHub Pages.
 Service worker `v15`, `CACHE_NAME = home-os-shell-v15`, **49 precache paths**.
 

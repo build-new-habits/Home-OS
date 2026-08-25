@@ -200,13 +200,69 @@ below is meaningful.
   deliberately UPC/EAN only.
 
 ## Phase 7 — Pantry + shopping
-- [ ] Generate the list → it lists **only the shortfall** (plan needs minus
-      pantry stock), not everything.
-- [ ] A near-expiry item flags in **both** the shopping list ("don't rebuy")
-      and the meal planner ("use up") — one signal, two surfaces.
-- [ ] Items move needed → have → bought and persist.
-- *Ignore:* exact quantity rounding conventions as long as the shortfall
-  direction is right.
+
+**Before testing:** hard-refresh and confirm cache **`home-os-shell-v25`**,
+**52 entries**. Quick check without DevTools: the Pantry screen has a
+**"Scan a barcode"** button. That only exists from v25.
+
+Reach it from **Dashboard → Everything → Pantry**.
+
+### Part one — the pantry (BUILT, awaiting test)
+
+The real test is a stocktake, not a single item. Do one shelf, back to back.
+
+**The scan loop — this decides whether the feature is usable**
+- [ ] Scan → enter amount → save → scan again. How many seconds per item?
+      If it is slow or breaks rhythm, say where.
+- [ ] **Scan the same item twice.** The second scan must send you to its
+      existing card with the amount selected — **not** create a second row.
+      A duplicate splits the count and makes the shortfall wrong later.
+- [ ] Scan something already on your list but not in the pantry → it is
+      preselected and focus jumps to "How much".
+- [ ] Scan something unknown → name and macros fill in, and it **refuses to
+      save until you choose a category**. Open the category dropdown and
+      close it without changing anything — it must still refuse.
+
+**Stocktaking ergonomics**
+- [ ] Location and restock date **stay put** between saves. Does that help,
+      or get in the way when you move to a different cupboard?
+- [ ] "Something new" is fast enough for bulk entry.
+- [ ] Shelf life pre-fills from the category (fresh 5, cupboard 365, home
+      blank) and can be changed or cleared.
+
+**The scale question — the one that has never been answered**
+- [ ] Once you are past twenty items, **does the search picker hold up?**
+      Type three letters — does it narrow usefully? This is the test one
+      food could not provide.
+- [ ] Is the food list still navigable, grouped by category?
+
+**Freshness**
+- [ ] An item with a date and a shelf life shows "Stocked N days ago — about
+      N days left".
+- [ ] An item with **no** date says "Freshness unknown — date not recorded",
+      and does **not** appear under "Worth using up".
+- [ ] Nothing reads as a warning or shows red. This is food you have, not a
+      mistake you made.
+- [ ] "Restocked today" updates the date and the freshness line.
+
+**Basics**
+- [ ] Quantities always show a unit — "500 g", "1.5 kg", "3 items", never a
+      bare number.
+- [ ] Editing an amount in place saves and keeps focus.
+- [ ] Removing from the pantry keeps the item itself.
+- [ ] Offline: the pantry says plainly it needs a connection rather than
+      failing silently.
+
+- *Ignore:* the native dropdown's line spacing — Android draws that popup
+  itself and honours option styling inconsistently. Option labels were
+  shortened, which was the real fix.
+
+### Part two — shopping list (NOT BUILT)
+
+Not started. The brief is `phase7_build_brief.md` v3. Checks to come:
+the shortfall listing only what is short; regeneration not destroying
+have/bought/usual rows; aisle-order grouping; the holiday → shopping bridge;
+ticking items offline in a shop.
 
 ## Phase 8 — Holidays + work location
 
