@@ -1,13 +1,76 @@
 # Home PWA: Schema (Canonical)
-21 Aug 2026 v4
+26 Aug 2026 v5
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
 reconcile before writing anything (PROJECT_BLUEPRINT.md §3). No field is
 added, renamed, or removed anywhere without changing it here first.
 
-Backend: Supabase (PostgreSQL, **EU region**, fresh project). 17 tables,
-17 RLS policies, 1 trigger function, 17 update triggers, single owner.
+Backend: Supabase (PostgreSQL, **EU region**, fresh project). **18 tables,
+18 RLS policies**, 1 trigger function, 18 update triggers, single owner.
+(17 until revision 5, which added the first new table since Phase 1.)
+
+---
+
+## 0c. Revision 5 — occurrences and classification (26 Aug 2026)
+
+Three additions, driven by the app finally being used with real data.
+
+### `chore_task_completions` — the first new TABLE since Phase 1
+
+Completing a repeating chore marked **the task** complete, not **this
+occurrence**. With four chores nobody notices; with a dashboard driving the
+day it is fatal — clean the fridge on 1 September and the whole series reads
+as done forever, because there was nowhere to record that one occurrence
+happened.
+
+A completion is a fact about *a task on a date*, not a property of the task,
+so it gets its own row:
+
+| Column | Type | Notes |
+|---|---|---|
+| task_id | uuid | not null; references chore_tasks(id) **on delete cascade** |
+| occurrence_date | date | not null |
+| completed_at | timestamptz | not null; default now() |
+
+**`unique (task_id, occurrence_date)` is the point of the table.** Ticking
+the same occurrence twice — a double tap, or an offline replay landing after
+the live write — must be harmless rather than a second row.
+
+"Is this due today?" becomes a question with an answer instead of a guess,
+and history comes for free.
+
+### `meals.is_favourite` — boolean, not null, default false
+
+A recipe list grows and is never re-sorted by hand. Without this, reaching a
+weeknight regular means scrolling past everything ever entered — the failure
+the pantry hit at seven items. Not-a-favourite is the honest state of every
+existing row, and a nullable boolean would give three meanings to a
+two-state fact.
+
+### `meals.meal_type` — nullable text, CHECK breakfast/lunch/dinner/snack/drink
+
+**Distinct from `weekly_meal_plan.slot`, which already exists and means
+something else.** Slot is where a meal sits in one week; meal_type is what
+the recipe inherently *is*. Porridge is a breakfast whether or not it is
+planned for Tuesday, and eating it at 9pm does not reclassify it. Conflating
+them would mean planning a meal for dinner silently rewrote the recipe.
+
+**Nullable on purpose**: "not said yet" is a real state and every existing
+recipe is in it. Defaulting to `dinner` would invent an answer, and a
+half-filled classification filters worse than none.
+
+`drink` is a valid meal_type but is **not** added to
+`weekly_meal_plan.slot`. Widening that CHECK is a separate decision with its
+own consequences for the planner grid.
+
+### Deliberately NOT added: a chore cadence column
+
+Daily / weekly / monthly / seasonal is already fully determined by
+`chore_tasks.recurrence_rule` — FREQ plus INTERVAL. Storing it as well
+creates two sources for one fact that can silently disagree the moment a
+rule is edited. It is derived in `js/lib/rrule.js`, where the rule is
+already parsed. **Seasonal means MONTHLY with an interval of three or more.**
 
 ---
 
@@ -190,6 +253,16 @@ adds stays `pending_confirmation` until the user clears it (principle 6).
 | status | text | check in ('pending','complete'); default 'pending' |
 | completed_at | timestamptz | |
 
+### chore_task_completions
+| Column | Type | Notes |
+|---|---|---|
+| task_id | uuid | not null; references chore_tasks(id) **on delete cascade** |
+| occurrence_date | date | not null |
+| completed_at | timestamptz | not null; default now() |
+
+**`unique (task_id, occurrence_date)`** — one row per occurrence actually
+done. Re-ticking is harmless rather than duplicated. Added in revision 5.
+
 ### calendar_events
 | Column | Type | Notes |
 |---|---|---|
@@ -257,6 +330,8 @@ this column exists to prevent.
 |---|---|---|
 | name | text | not null |
 | default_serves | int | not null; default 4 |
+| is_favourite | boolean | not null; default false (revision 5) |
+| meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
 
 ### meal_ingredients
 
