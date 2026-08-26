@@ -389,6 +389,71 @@ for (let i = 1; i < panLevels.length; i++) if (panLevels[i] - panLevels[i - 1] >
 check('pantry: heading levels never skip', panOrdered, panLevels.join(','));
 check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
 
+// ================= Calendar =================
+console.log('');
+const calMount = window.document.createElement('main');
+window.document.body.appendChild(calMount);
+const calMod = await import(pathToFileURL(path.join(REPO, 'js/views/calendar.js')).href);
+calMod.render(calMount, {});
+await new Promise((r) => setTimeout(r, 90));
+
+// A month is tabular data and has to be announced as such, or a screen
+// reader reads a wall of bare numbers.
+const calTable = calMount.querySelector('table');
+check('calendar: the month is a real table', !!calTable);
+const calHeaders = [...calMount.querySelectorAll('th')];
+check('calendar: every day column header has scope', calHeaders.length === 7
+  && calHeaders.every((th) => th.getAttribute('scope') === 'col'));
+check('calendar: day names are available in full, not just abbreviated',
+  /Wednesday/.test(calMount.textContent));
+
+const calDays = [...calMount.querySelectorAll('.calendar-day')];
+check('calendar: dates are buttons, not just text', calDays.length > 27);
+check('calendar: every date carries its own full label',
+  calDays.every((b) => /\d{1,2} \w+ \d{4}/.test(b.getAttribute('aria-label') || '')),
+  'a bare "26" says nothing about whether the day is busy');
+check('calendar: a date says whether anything is on it',
+  calDays.some((b) => /nothing on|item/.test(b.getAttribute('aria-label') || '')));
+const calToday = calMount.querySelector('.calendar-day.is-today');
+check('calendar: today is marked with aria-current, not just a colour',
+  !calToday || calToday.getAttribute('aria-current') === 'date');
+
+// Tapping a date opens the day rather than navigating away from the month.
+if (calDays[0]) calDays[0].dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+const calSheet = window.document.querySelector('.sheet[role="dialog"]');
+check('calendar: tapping a date opens the day in the sheet', !!calSheet);
+check('calendar: the day sheet is titled with the date',
+  !!calSheet && /\d{1,2} \w+ \d{4}/.test(calSheet.textContent));
+if (calSheet) {
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  await new Promise((r) => setTimeout(r, 20));
+}
+check('calendar: the grid survives closing the day',
+  !!calMount.querySelector('.calendar-day'));
+
+const calLevels = [...calMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
+let calOrdered = true;
+for (let i = 1; i < calLevels.length; i++) if (calLevels[i] - calLevels[i - 1] > 1) calOrdered = false;
+check('calendar: heading levels never skip', calOrdered, calLevels.join(','));
+check('calendar: exactly one h1', calMount.querySelectorAll('h1').length === 1);
+
+// ================= Health hub =================
+console.log('');
+const hubMount = window.document.createElement('main');
+window.document.body.appendChild(hubMount);
+const hubMod = await import(pathToFileURL(path.join(REPO, 'js/views/health.js')).href);
+hubMod.render(hubMount, {});
+await new Promise((r) => setTimeout(r, 60));
+
+const hubLinks = [...hubMount.querySelectorAll('.hub-link')];
+check('health: the hub links to all three pages', hubLinks.length === 3);
+check('health: every link has an accessible name',
+  hubLinks.every((a) => (a.getAttribute('aria-label') || a.textContent.trim()).length > 0));
+check('health: links point at real routes',
+  hubLinks.every((a) => /^#\/(exercises|weight|water)$/.test(a.getAttribute('href') || '')));
+check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
+
 // ---- The hidden attribute must not be defeated by the cascade ----------
 // `el.hidden = true` is the app's only mechanism for conditional fields, and
 // the UA sheet's [hidden] { display: none } loses to ANY author rule that
@@ -405,4 +470,4 @@ check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals, holidays, pantry)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals, holidays, pantry, calendar, health)`);

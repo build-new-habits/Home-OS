@@ -1,4 +1,7 @@
-// service-worker.js — 26 Aug 2026 v29
+// service-worker.js — 26 Aug 2026 v30
+// v30: FOUR new paths — navConfig.js, data/completions.js,
+// views/calendar.js, views/health.js. The calendar becomes its own page and
+// Health absorbs exercises/weight/water in the bottom bar.
 // v29: no path changes. Bumped for views/settings.js v6, which reports the
 // installed build so an out-of-date device can be identified by looking.
 // v28: ONE new path, js/components/detailSheet.js. Also fixes install() to
@@ -87,7 +90,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v29';
+const CACHE_NAME = 'home-os-shell-v30';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -105,6 +108,7 @@ const SHELL_FILES = [
   './js/app.js',
   './js/router.js',
   './js/routes.js',
+  './js/navConfig.js',
   './js/lib/store.js',
   './js/lib/a11y.js',
   './js/lib/offlineQueue.js',
@@ -118,6 +122,7 @@ const SHELL_FILES = [
   './js/data/exercises.js',
   './js/data/chores.js',
   './js/data/calendar.js',
+  './js/data/completions.js',
   './js/data/weight.js',
   './js/data/holidays.js',
   './js/data/pantry.js',
@@ -143,7 +148,9 @@ const SHELL_FILES = [
   './js/views/meals.js',
   './js/views/pantry.js',
   './js/views/shopping.js',
-  './js/views/holidays.js'
+  './js/views/holidays.js',
+  './js/views/calendar.js',
+  './js/views/health.js'
 ];
 self.addEventListener('install', (event) => {
   event.waitUntil(

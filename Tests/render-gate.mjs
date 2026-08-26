@@ -7,6 +7,7 @@
 import { JSDOM } from 'jsdom';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import fs from 'node:fs';
 
 const REPO = process.env.GATE_REPO || '/home/claude/repo';
 
@@ -127,10 +128,17 @@ window.fetch = global.fetch;
 // --- Run every view ----------------------------------------------------
 // Route views: must export render(mountEl) and produce an <h1>, because
 // router.js focuses that heading after every render.
-const VIEWS = [
-  'dashboard', 'exercises', 'chores', 'weight', 'water',
-  'meals', 'pantry', 'shopping', 'holidays', 'settings'
-];
+// DERIVED FROM routes.js, not hand-listed. A hand-listed set silently stops
+// covering the app the moment a route is added — which is exactly what
+// happened when calendar and health were appended and this gate carried on
+// reporting a confident pass over ten views.
+const routesSource = fs.readFileSync(path.join(REPO, 'js/routes.js'), 'utf8');
+const VIEWS = [...routesSource.matchAll(/import\('\.\/views\/([a-zA-Z0-9_-]+)\.js'\)/g)]
+  .map((m) => m[1]);
+if (VIEWS.length === 0) {
+  console.log('RENDER GATE FAILED — could not read any views out of routes.js');
+  process.exit(1);
+}
 
 // signin.js is NOT a route — app.js mounts it directly — so it exports
 // builders rather than render(). It is still executed here: the 18 Aug

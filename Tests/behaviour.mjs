@@ -37,7 +37,7 @@ const { energyKcalPer100g, mapProductToFood, missingMacroFields, suggestCategory
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
 const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/js/data/calendar.js`);
 const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
-const { expand } = await import(`${REPO}/js/lib/rrule.js`);
+const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
@@ -269,26 +269,67 @@ check('EVENT_TYPES matches the CHECK constraint exactly',
   JSON.stringify(EVENT_TYPES) === JSON.stringify(['chore', 'holiday', 'work_location', 'custom']),
   JSON.stringify(EVENT_TYPES));
 
-// ============ Bounded ranges are not recurrence rules ============
-// CHARACTERISATION TEST. These assert the engine's SURPRISING behaviour on
-// purpose, so the trap is documented rather than rediscovered. rrule.js is
-// write-once and cannot be fixed; the guard below is the protection.
-console.log('\nrrule ignores UNTIL and COUNT (characterisation)');
+// ============ Bounded repeats ============
+// These were CHARACTERISATION tests: they asserted that UNTIL and COUNT were
+// silently ignored, so the trap was documented rather than rediscovered.
+// rrule.js v2 honours both, so they are now correctness tests. An end date
+// the app accepts and then ignores is worse than one it refuses.
+console.log('\nrrule honours UNTIL and COUNT');
 
 const bounded = expand('FREQ=DAILY;UNTIL=20260828', '2026-08-24', '2026-08-24', '2026-09-07');
-eq('UNTIL is IGNORED — 15 dates, not 5', bounded.length, 15);
+eq('UNTIL stops the series — 5 dates, not 15', bounded.length, 5);
+eq('and the last one is the UNTIL date itself (inclusive)', bounded[bounded.length - 1], '2026-08-28');
 const counted = expand('FREQ=DAILY;COUNT=7', '2026-08-24', '2026-08-24', '2026-09-07');
-eq('COUNT is IGNORED — 15 dates, not 7', counted.length, 15);
+eq('COUNT stops the series — 7 dates, not 15', counted.length, 7);
 
-console.log('\nassertSupportedRule guards the boundary');
+// The trap this replaces: COUNT must be counted from the RULE's start, not
+// from the start of whatever window is being rendered. Otherwise a series
+// that finished in August reappears the moment September is opened.
+eq('a spent COUNT does not refill in a later window',
+  expand('FREQ=DAILY;COUNT=7', '2026-08-24', '2026-09-01', '2026-09-07').length, 0);
+eq('a window opening mid-series only gets what is left',
+  expand('FREQ=DAILY;COUNT=7', '2026-08-24', '2026-08-28', '2026-09-07').length, 3);
+eq('a window entirely after UNTIL is empty',
+  expand('FREQ=DAILY;UNTIL=20260828', '2026-08-24', '2026-08-29', '2026-09-07').length, 0);
+eq('UNTIL accepts the extended date form too',
+  expand('FREQ=DAILY;UNTIL=2026-08-26', '2026-08-24', '2026-08-24', '2026-09-07').length, 3);
+
+// An end that is honoured must also be SAID, or the preview lies.
+check('describe states an UNTIL', /until 2026-12-25/.test(describe('FREQ=WEEKLY;BYDAY=MO;UNTIL=20261225')));
+check('describe states a COUNT', /3 times/.test(describe('FREQ=DAILY;COUNT=3')));
+
+// Nonsense must be refused, not absorbed.
+let rejected = false;
+try { expand('FREQ=DAILY;UNTIL=soon', '2026-08-24', '2026-08-24', '2026-09-07'); } catch { rejected = true; }
+check('an unreadable UNTIL is refused rather than ignored', rejected);
+let bothRefused = false;
+try { expand('FREQ=DAILY;UNTIL=20260828;COUNT=3', '2026-08-24', '2026-08-24', '2026-09-07'); } catch { bothRefused = true; }
+check('UNTIL and COUNT together are refused as ambiguous', bothRefused);
+
+console.log('\nCadence is derived from the rule, never stored');
+// A cadence column would be a second source for a fact the rule already
+// determines, and the two would drift the first time a rule was edited.
+eq('daily', cadence('FREQ=DAILY'), 'daily');
+eq('every 7 days is really weekly', cadence('FREQ=DAILY;INTERVAL=7'), 'weekly');
+eq('weekly', cadence('FREQ=WEEKLY;BYDAY=MO'), 'weekly');
+eq('every 4 weeks is really monthly', cadence('FREQ=WEEKLY;BYDAY=MO;INTERVAL=4'), 'monthly');
+eq('monthly', cadence('FREQ=MONTHLY;BYMONTHDAY=1'), 'monthly');
+eq('every 3 months is seasonal', cadence('FREQ=MONTHLY;BYMONTHDAY=1;INTERVAL=3'), 'seasonal');
+eq('a task with no rule is a one-off', cadence(null), 'once');
+eq('an unreadable rule is a one-off rather than a crash', cadence('FREQ=NONSENSE'), 'once');
+
+console.log('\nassertSupportedRule defers to the engine');
 check('a plain weekly rule is accepted',
   assertSupportedRule('FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH').ok === true);
 check('a null rule is accepted (a one-off has no rule)', assertSupportedRule(null).ok === true);
-check('UNTIL is refused', assertSupportedRule('FREQ=DAILY;UNTIL=20260828').ok === false);
-check('COUNT is refused', assertSupportedRule('FREQ=DAILY;COUNT=7').ok === false);
-check('lower case is refused too', assertSupportedRule('freq=daily;until=20260828').ok === false);
-check('the refusal explains the consequence',
-  /forever/.test(assertSupportedRule('FREQ=DAILY;COUNT=7').error.message));
+// These two were refused while the engine ignored them. It does not now.
+check('UNTIL is accepted now the engine honours it',
+  assertSupportedRule('FREQ=DAILY;UNTIL=20260828').ok === true);
+check('COUNT is accepted now the engine honours it',
+  assertSupportedRule('FREQ=DAILY;COUNT=7').ok === true);
+check('lower case is still refused', assertSupportedRule('freq=daily;until=20260828').ok === false);
+check('a rule the engine cannot read is still refused',
+  assertSupportedRule('FREQ=HOURLY').ok === false);
 // Phase 4's rules must survive the guard, or cleared code breaks.
 for (const rule of ['FREQ=WEEKLY;INTERVAL=2;BYDAY=MO', 'FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=15', 'FREQ=DAILY;INTERVAL=3']) {
   check(`Phase 4 chores rule still accepted: ${rule}`, assertSupportedRule(rule).ok === true);

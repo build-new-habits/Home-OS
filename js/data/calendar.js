@@ -24,6 +24,7 @@
 // per occurrence. Occurrences are expanded at render time by the view
 // using js/lib/rrule.js.
 import { supabase } from '../supabaseClient.js';
+import { expand } from '../lib/rrule.js';
 
 /**
  * Create or update the single calendar_events row for a repeatable
@@ -99,22 +100,20 @@ export const EVENT_TYPES = ['chore', 'holiday', 'work_location', 'custom'];
 /**
  * Rejects recurrence rules this app's engine cannot honour.
  *
- * lib/rrule.js supports FREQ (DAILY/WEEKLY/MONTHLY), INTERVAL, BYDAY and
- * BYMONTHDAY. It SILENTLY IGNORES `UNTIL` and `COUNT` — it does not reject
- * them, it does not warn, it just keeps generating occurrences. Verified
- * 21 Aug 2026 against the real engine:
+ * ---- Relaxed 26 Aug 2026, because the engine was fixed ----
+ * This guard existed because lib/rrule.js v1 SILENTLY IGNORED `UNTIL` and
+ * `COUNT`: a bounded rule looked right for a fortnight and was wrong
+ * forever afterwards. Refusing them at the boundary was the right call
+ * while that was true.
  *
- *     FREQ=DAILY;UNTIL=20260828  over a 15-day window -> 15 dates, not 5
- *     FREQ=DAILY;COUNT=7         over a 15-day window -> 15 dates, not 7
+ * rrule.js v2 honours both, verified against fixed dates, so refusing them
+ * now would block the end date the chores form needs. The guard's job is
+ * unchanged — refuse what the engine cannot honour — the set has shrunk.
  *
- * So a bounded range encoded as a recurrence rule produces something that
- * looks right for a fortnight and is wrong forever afterwards. rrule.js is
- * write-once and cannot be fixed, so the boundary is guarded instead.
- *
- * Safe against cleared Phase 4 code: views/chores.js buildRuleFromForm()
- * emits only FREQ/INTERVAL/BYDAY/BYMONTHDAY. Checked by reading the call
- * site before this guard was written, because if it had emitted either
- * token this guard would have broken working chores recurrence.
+ * Still refused: anything the parser does not implement. Rather than keep a
+ * hand-maintained deny-list that drifts from the engine, the rule is handed
+ * to the engine's own parser and whatever it rejects is rejected here. One
+ * source of truth for what is supported.
  *
  * @returns {{ ok: true } | { ok: false, error: Error }}
  */
@@ -123,25 +122,26 @@ export function assertSupportedRule(rule) {
   if (typeof rule !== 'string') {
     return { ok: false, error: new Error('A recurrence rule must be text.') };
   }
-  const upper = rule.toUpperCase();
-  const unsupported = ['UNTIL', 'COUNT'].filter((token) => upper.includes(`${token}=`));
-  if (unsupported.length > 0) {
+  try {
+    // A one-day window is enough to force a full parse; the dates returned
+    // are irrelevant. If the engine can read it, the app can honour it.
+    expand(rule, '2026-01-01', '2026-01-01', '2026-01-01');
+    return { ok: true };
+  } catch (err) {
     return {
       ok: false,
       error: new Error(
-        `This app's repeat engine ignores ${unsupported.join(' and ')}, so a repeat `
-        + 'set that way would carry on forever. Use an open-ended repeat and remove it '
-        + 'when it stops, or set a single date instead.'
+        `This app's repeat engine cannot read that rule: ${err.message}`
       )
     };
   }
-  return { ok: true };
 }
 
 // ---------------------------------------------------------------------
 // Work location (Phase 8). event_type = 'work_location'.
 // location_label carries the place; recurrence_rule the pattern. There is
-// no end date, by design — see assertSupportedRule().
+// An end date is now expressible via UNTIL (rrule.js v2); work locations
+// simply do not use one yet.
 // ---------------------------------------------------------------------
 
 const WORK = 'work_location';

@@ -1,13 +1,20 @@
-// js/routes.js — 14 Jul 2026 v1
-// Declarative route registry. Written complete in Phase 2 and never
-// edited again — later phases replace the stub view file a route points
-// at, they do not add or change entries here.
+// js/routes.js — 26 Aug 2026 v2
+// Declarative route registry.
 //
-// nav set (behavioural principle 2 — friction budget spent on daily
-// actions): dashboard, water, exercises, chores are one-tap-reachable
-// from the bottom nav. weight/meals/pantry/shopping/holidays/settings are
-// weekly-or-less and reachable via the dashboard's link list instead —
-// see views/dashboard.js.
+// ---- The rule is now APPEND-ONLY, not write-once ----
+// v1 said never edited again. That was aimed at stopping phases rewriting
+// each other's route table, and it is still right about that — but it also
+// froze the app at ten routes, which is not a property worth keeping. New
+// routes may be APPENDED. Existing entries are never modified, reordered
+// or removed, so no existing path can break.
+//
+// ---- `nav` no longer lives here ----
+// v1 carried a `nav` flag per route, which meant changing which four
+// things sit in the bottom bar required editing entries that were supposed
+// to be frozen. Nav membership is a UI decision, not a routing fact, and
+// it now lives in js/navConfig.js. The flags below are left exactly as
+// they were rather than stripped — removing them would be a modification,
+// and nothing reads them any more.
 
 export const DEFAULT_ROUTE = 'dashboard';
 
@@ -75,6 +82,17 @@ export const routes = [
     title: 'Settings',
     nav: false,
     load: () => import('./views/settings.js')
+  },
+  // ---- Appended 26 Aug 2026 ----
+  {
+    path: 'calendar',
+    title: 'Calendar',
+    load: () => import('./views/calendar.js')
+  },
+  {
+    path: 'health',
+    title: 'Health',
+    load: () => import('./views/health.js')
   }
 ];
 

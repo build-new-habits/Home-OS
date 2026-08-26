@@ -1,4 +1,5 @@
-/* css/components.css — 26 Aug 2026 v16 */
+/* css/components.css — 26 Aug 2026 v17 */
+/* v17: calendar page, Health hub, day items. Appended only. */
 /* v16: rewrites the v15 pantry block (spacing, two-line rows) and adds the
    slide-out sheet. Only v15's own rules changed; nothing from v14 or
    earlier is touched, and no new colour pair is introduced. */
@@ -1461,4 +1462,183 @@ select optgroup {
 /* The page behind must not scroll under the panel. */
 body.sheet-open {
   overflow: hidden;
+}
+
+/* ---- Calendar page, Health hub, day items (v17) ----
+   Existing tokens only; no new colour pair, so Tests/contrast.mjs is
+   unchanged. */
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 var(--space-3);
+}
+
+.calendar-month {
+  margin: 0;
+  font-size: var(--text-lg);
+  text-align: center;
+}
+
+.calendar-wrap {
+  overflow-x: auto;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.calendar-table th {
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.calendar-table td {
+  padding: 2px;
+  vertical-align: top;
+}
+
+/* Every date is a real target, not a cramped number. */
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Today is marked by a heavier border AND aria-current, never by colour
+   alone (1.4.1). */
+.calendar-day.is-today {
+  border-width: 2px;
+  border-color: var(--color-accent);
+  font-weight: 700;
+}
+
+.calendar-day-number {
+  font-size: var(--text-base);
+}
+
+/* A count, not a dot: the number survives being read aloud. */
+.calendar-day-count {
+  min-width: 1.25rem;
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-size: var(--text-sm);
+  line-height: 1.25rem;
+}
+
+.calendar-empty {
+  border: 0;
+}
+
+.day-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.day-items > li {
+  list-style: none;
+}
+
+.day-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.day-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.day-item-title {
+  font-weight: 700;
+}
+
+.day-item-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---- Health hub ---- */
+
+.hub-list,
+.hub-list > li {
+  list-style: none;
+}
+
+.hub-list {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+
+.hub-item + .hub-item {
+  margin-top: var(--space-3);
+}
+
+.hub-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--tap-min);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.hub-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.hub-title {
+  font-weight: 700;
+  font-size: var(--text-lg);
+}
+
+.hub-blurb,
+.hub-status {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.hub-status:not(:empty) {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.hub-chevron {
+  flex: 0 0 auto;
+  font-size: var(--text-xl);
+  color: var(--color-text-muted);
 }

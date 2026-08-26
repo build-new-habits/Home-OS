@@ -1,4 +1,20 @@
-// js/lib/rrule.js — 20 Jul 2026 v1
+// js/lib/rrule.js — 26 Aug 2026 v2
+//
+// ---- v2 breaks the write-once rule, deliberately ----
+// v1 was marked write-once to stop later phases churning a load-bearing
+// engine. It also SILENTLY IGNORED `UNTIL` and `COUNT`: a rule carrying
+// either was accepted and then expanded forever. That is not a missing
+// feature, it is a correctness hole — an end date the app promises to
+// honour and then does not. Adding an end date to the chores form made it
+// load-bearing, so the engine is extended rather than the rule worked
+// around at each call site, which would put the rule's meaning outside the
+// only place that parses it.
+//
+// Purely additive: a rule without UNTIL or COUNT behaves exactly as in v1.
+// v2 also adds cadence(), which classifies a rule as daily / weekly /
+// monthly / seasonal. Derived, never stored — a cadence column would be a
+// second source for a fact the rule already fully determines.
+//
 // Recurrence engine for Phase 4 (behavioural principle 4: recurrence must
 // be trustworthy). Supports exactly three constrained rule shapes — see
 // phase4_build_brief.md. Pure: no DOM, no network, so it is unit-checkable
@@ -35,12 +51,37 @@ function parseRule(rule) {
     throw new Error(`Invalid INTERVAL: ${parts.INTERVAL}`);
   }
 
+  // UNTIL: an inclusive last date. Accepts YYYY-MM-DD and the RFC 5545
+  // basic form YYYYMMDD (with an optional time part, which is discarded —
+  // every date in this app is a whole day).
+  let until = null;
+  if (parts.UNTIL !== undefined && parts.UNTIL !== '') {
+    until = normaliseUntil(parts.UNTIL);
+    if (!until) throw new Error(`Invalid UNTIL: ${parts.UNTIL}`);
+  }
+
+  // COUNT: a maximum number of occurrences, counted from the rule's own
+  // start date — NOT from the start of whatever window is being rendered.
+  let count = null;
+  if (parts.COUNT !== undefined && parts.COUNT !== '') {
+    count = parseInt(parts.COUNT, 10);
+    if (!Number.isInteger(count) || count < 1) {
+      throw new Error(`Invalid COUNT: ${parts.COUNT}`);
+    }
+  }
+
+  if (until && count) {
+    // Both is legal in RFC 5545 but ambiguous to a reader, and this app has
+    // one UI for "ends". Refusing is safer than silently honouring one.
+    throw new Error('A rule cannot carry both UNTIL and COUNT.');
+  }
+
   if (freq === 'WEEKLY') {
     const byday = (parts.BYDAY || '').split(',').map((d) => d.trim()).filter(Boolean);
     if (byday.length === 0 || !byday.every((d) => VALID_DAYS.includes(d))) {
       throw new Error(`Invalid BYDAY for WEEKLY: ${parts.BYDAY}`);
     }
-    return { freq, interval, byday };
+    return { freq, interval, byday, until, count };
   }
 
   if (freq === 'MONTHLY') {
@@ -48,10 +89,20 @@ function parseRule(rule) {
     if (!Number.isInteger(bymonthday) || bymonthday < 1 || bymonthday > 28) {
       throw new Error(`Invalid BYMONTHDAY (must be 1-28 this phase): ${parts.BYMONTHDAY}`);
     }
-    return { freq, interval, bymonthday };
+    return { freq, interval, bymonthday, until, count };
   }
 
-  return { freq, interval };
+  return { freq, interval, until, count };
+}
+
+/** YYYYMMDD or YYYY-MM-DD (optionally with a time part) -> YYYY-MM-DD. */
+function normaliseUntil(raw) {
+  const text = String(raw).trim();
+  const basic = text.match(/^(\d{4})(\d{2})(\d{2})(T.*)?$/);
+  if (basic) return `${basic[1]}-${basic[2]}-${basic[3]}`;
+  const extended = text.match(/^(\d{4}-\d{2}-\d{2})(T.*)?$/);
+  if (extended) return extended[1];
+  return null;
 }
 
 // ---- UTC date helpers (dates are DB `date` columns — treat as UTC midnight
@@ -135,8 +186,31 @@ export function expand(rule, startDateISO, windowStartISO, windowEndISO) {
     throw new Error('windowEndISO is before windowStartISO');
   }
 
+  // UNTIL clamps the window. Scanning past it would only produce dates that
+  // are then discarded.
+  const hardEnd = params.until
+    ? (parseISODate(params.until) < windowEnd ? parseISODate(params.until) : windowEnd)
+    : windowEnd;
+  if (hardEnd < windowStart) return [];
+
+  // COUNT is counted from the RULE's start, not the window's. So when a
+  // window opens partway through a series, the occurrences before it still
+  // have to be counted — otherwise a rule that ended in March reappears
+  // when April is rendered.
+  let consumed = 0;
+  if (params.count && start < windowStart) {
+    let back = new Date(start);
+    let guard = 0;
+    while (back < windowStart && consumed < params.count && guard < 366 * 5) {
+      if (matchesRule(params, start, back)) consumed += 1;
+      back = addDays(back, 1);
+      guard += 1;
+    }
+    if (consumed >= params.count) return [];
+  }
+
   const rangeStart = start > windowStart ? start : windowStart;
-  if (rangeStart > windowEnd) return [];
+  if (rangeStart > hardEnd) return [];
 
   const results = [];
   let cursor = new Date(rangeStart);
@@ -147,9 +221,11 @@ export function expand(rule, startDateISO, windowStartISO, windowEndISO) {
   const maxIterations = 366 * 5;
   let iterations = 0;
 
-  while (cursor <= windowEnd && iterations < maxIterations) {
+  while (cursor <= hardEnd && iterations < maxIterations) {
     if (matchesRule(params, start, cursor)) {
+      if (params.count && consumed >= params.count) break;
       results.push(toISODate(cursor));
+      consumed += 1;
     }
     cursor = addDays(cursor, 1);
     iterations += 1;
@@ -166,19 +242,64 @@ export function describe(rule) {
   const params = parseRule(rule);
 
   if (params.freq === 'DAILY') {
-    return params.interval === 1 ? 'Every day' : `Every ${params.interval} days`;
+    return withEnding(params.interval === 1 ? 'Every day' : `Every ${params.interval} days`, params);
   }
 
   if (params.freq === 'WEEKLY') {
     const days = params.byday.map((d) => DAY_NAMES[d]).join(', ');
     const freqPart = params.interval === 1 ? 'Every week' : `Every ${params.interval} weeks`;
-    return `${freqPart} on ${days}`;
+    return withEnding(`${freqPart} on ${days}`, params);
   }
 
   if (params.freq === 'MONTHLY') {
     const freqPart = params.interval === 1 ? 'Every month' : `Every ${params.interval} months`;
-    return `${freqPart} on day ${params.bymonthday}`;
+    return withEnding(`${freqPart} on day ${params.bymonthday}`, params);
   }
 
   return rule;
 }
+
+/** An end that is honoured must also be stated, or the preview lies. */
+function withEnding(text, params) {
+  if (params.until) return `${text}, until ${params.until}`;
+  if (params.count) return `${text}, ${params.count} time${params.count === 1 ? '' : 's'}`;
+  return text;
+}
+
+/**
+ * How often a rule comes round, as a word: 'daily' | 'weekly' | 'monthly'
+ * | 'seasonal'. Used to group a long chore list without asking the user to
+ * classify anything twice.
+ *
+ * DERIVED, NEVER STORED. A cadence column would be a second source for a
+ * fact the rule already fully determines, and the two would drift the first
+ * time a rule was edited.
+ *
+ * SEASONAL is monthly with an interval of three or more — quarterly, or
+ * twice a year, or annually. Those belong together: they are the jobs you
+ * would otherwise forget entirely.
+ *
+ * A one-off task has no rule at all; callers pass null and get 'once'.
+ */
+export function cadence(rule) {
+  if (!rule) return 'once';
+  let params;
+  try {
+    params = parseRule(rule);
+  } catch {
+    return 'once';
+  }
+  if (params.freq === 'DAILY') return params.interval >= 7 ? 'weekly' : 'daily';
+  if (params.freq === 'WEEKLY') return params.interval >= 4 ? 'monthly' : 'weekly';
+  if (params.freq === 'MONTHLY') return params.interval >= 3 ? 'seasonal' : 'monthly';
+  return 'once';
+}
+
+/** The cadences in the order a person thinks about them. */
+export const CADENCES = [
+  { value: 'daily', label: 'Daily' },
+  { value: 'weekly', label: 'Weekly' },
+  { value: 'monthly', label: 'Monthly' },
+  { value: 'seasonal', label: 'Seasonally' },
+  { value: 'once', label: 'One-off' }
+];
