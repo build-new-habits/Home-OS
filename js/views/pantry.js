@@ -1,4 +1,11 @@
-// js/views/pantry.js — 26 Aug 2026 v3
+// js/views/pantry.js — 26 Aug 2026 v4
+// v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
+// row that ran a name straight into its own status text, and hid the one
+// thing worth opening an item for — its macros. Tapping a row now opens a
+// slide-out sheet: the row stays one scannable line, the detail gets room to
+// be read. Spacing, alignment and type weight are set deliberately rather
+// than inherited from whatever the browser does with a <li>.
+//
 // v3: THE SCREEN HAD TO SURVIVE A REAL CUPBOARD. Seven items filled a phone
 // screen and a third of one shelf produced them, so the flat list was never
 // going to hold sixty. Three things changed:
@@ -50,6 +57,7 @@ import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { formatQuantity } from '../lib/units.js';
 import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
+import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 
@@ -108,8 +116,7 @@ export function render(mountEl) {
   let foods = [];
   let mode = 'capture';
   let openLocation = null;
-  const justAdded = [];       // stock ids added this session, newest first
-  const openRows = new Set(); // stock ids whose actions are expanded
+  const justAdded = [];  // stock ids added this session, newest first
 
   mountEl.appendChild(el('h1', { text: 'Pantry' }));
 
@@ -149,15 +156,18 @@ export function render(mountEl) {
     for (const row of rows) {
       const food = row.foods || {};
       const item = el('li', { class: 'stock-row stock-row-fix' });
-      const name = el('span', { class: 'stock-row-name', text: food.name || 'Unknown' });
-      // Said per row, not only in the heading above: the state is a property
-      // of this item, and a bare empty box does not communicate it.
-      const state = el('span', {
-        class: 'field-hint',
-        text: row.current_qty == null
-          ? 'Amount not recorded'
-          : `Recorded as none — ${describeAmount(row)}`
-      });
+      const text = el('span', { class: 'stock-row-text' });
+      // Two lines, not two spans run together: the name is the heading of
+      // this row and the state is its subtitle.
+      text.append(
+        el('span', { class: 'stock-row-name', text: food.name || 'Unknown' }),
+        el('span', {
+          class: 'stock-row-meta',
+          text: row.current_qty == null
+            ? 'Amount not recorded'
+            : `Recorded as none — ${describeAmount(row)}`
+        })
+      );
 
       const input = numberInput(`fix-qty-${row.id}`, { min: '0', step: 'any' });
       input.value = row.current_qty == null ? '' : String(row.current_qty);
@@ -169,7 +179,7 @@ export function render(mountEl) {
 
       input.addEventListener('change', () => saveQuantity(row, input), { signal });
 
-      item.append(name, state, el('span', { class: 'stock-qty-row' }, [label, input, unitText]));
+      item.append(text, el('span', { class: 'stock-qty-row' }, [label, input, unitText]));
       fixList.appendChild(item);
     }
   }
@@ -258,110 +268,146 @@ export function render(mountEl) {
     const item = el('li', { class: 'stock-row' });
     item.dataset.stockId = row.id;
 
-    const summaryBits = [describeAmount(row)];
     // Freshness earns a place on the collapsed row only when it is close.
-    // "about 365 days left" on sixty rows is noise.
-    if (fresh.state === 'soon' || fresh.state === 'past') summaryBits.push(describeFreshness(fresh));
+    // "about 365 days left" on sixty rows is noise, not information.
+    const meta = [describeAmount(row)];
+    if (fresh.state === 'soon' || fresh.state === 'past') meta.push(describeFreshness(fresh));
 
-    const toggle = el('button', { type: 'button', class: 'stock-row-main' });
-    toggle.setAttribute('aria-expanded', String(openRows.has(row.id)));
-    toggle.append(
+    const open = el('button', { type: 'button', class: 'stock-row-open' });
+    const text = el('span', { class: 'stock-row-text' });
+    text.append(
       el('span', { class: 'stock-row-name', text: name }),
-      el('span', { class: 'field-hint', text: summaryBits.join(' · ') })
+      el('span', { class: 'stock-row-meta', text: meta.join(' · ') })
     );
-    toggle.setAttribute('aria-label', `${name}, ${summaryBits.join(', ')}. Show actions.`);
+    // A chevron is decoration; the accessible name says what the control does.
+    const chevron = el('span', { class: 'stock-row-chevron', 'aria-hidden': 'true', text: '›' });
+    open.append(text, chevron);
+    open.setAttribute('aria-label', `${name}, ${meta.join(', ')}. Open details.`);
+    open.addEventListener('click', () => openStockSheet(row, open), { signal });
 
-    const detail = el('div', { class: 'stock-row-detail' });
-    detail.hidden = !openRows.has(row.id);
-
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-      detail.hidden = open;
-      if (open) openRows.delete(row.id); else openRows.add(row.id);
-    }, { signal });
-
-    // The full freshness sentence always exists here, so the words are
-    // available even when the collapsed row stays quiet.
-    detail.appendChild(el('p', { class: 'field-hint', text: describeFreshness(fresh) }));
-    if (row.default_location) {
-      detail.appendChild(el('p', { class: 'field-hint', text: `Lives in ${row.default_location}.` }));
-    }
-
-    // The amount is what changes most, so it stays editable in place.
-    const qtyInput = numberInput(`stock-qty-${row.id}`, { min: '0', step: 'any' });
-    qtyInput.value = row.current_qty == null ? '' : String(row.current_qty);
-    const qtyLabel = el('label', {
-      for: qtyInput.id, class: 'visually-hidden',
-      text: `How much ${name} you have, in ${unitWord(row.unit)}`
-    });
-    const qtyRow = el('div', { class: 'stock-qty-row' });
-    qtyRow.append(qtyLabel, qtyInput, el('span', { class: 'ingredient-unit', text: unitWord(row.unit) }));
-    detail.appendChild(qtyRow);
-    qtyInput.addEventListener('change', () => saveQuantity(row, qtyInput), { signal });
-
-    const actions = el('div', { class: 'card-actions' });
-
-    // Restocking is a one-tap action: it is what you do when you get home.
-    const restockBtn = el('button', { type: 'button', class: 'btn', text: 'Restocked today' });
-    restockBtn.setAttribute('aria-label', `Mark ${name} as restocked today`);
-    restockBtn.addEventListener('click', async () => {
-      const result = await updateStock(row.id, { last_restocked: todayIso() });
-      if (destroyed) return;
-      if (!result.ok) {
-        console.error('Failed to mark restocked:', result.error);
-        showToast("Couldn't save that — try again.");
-        return;
-      }
-      announce(`${name} marked as restocked today.`);
-      await loadStock();
-    }, { signal });
-    actions.appendChild(restockBtn);
-
-    const editWrap = el('div');
-    const editBtn = el('button', { type: 'button', class: 'btn', 'aria-expanded': 'false', text: 'Details' });
-    editBtn.setAttribute('aria-label', `Details for ${name}`);
-    editBtn.addEventListener('click', () => {
-      const open = editBtn.getAttribute('aria-expanded') === 'true';
-      if (open) {
-        editWrap.replaceChildren();
-        editBtn.setAttribute('aria-expanded', 'false');
-        return;
-      }
-      editWrap.replaceChildren(buildStockEditForm(row, food, () => {
-        editWrap.replaceChildren();
-        editBtn.setAttribute('aria-expanded', 'false');
-      }));
-      editBtn.setAttribute('aria-expanded', 'true');
-    }, { signal });
-    actions.appendChild(editBtn);
-
-    const removeBtn = el('button', { type: 'button', class: 'btn btn-danger', text: 'Remove' });
-    removeBtn.setAttribute('aria-label', `Remove ${name} from the pantry`);
-    removeBtn.addEventListener('click', async () => {
-      const confirmed = await confirmDialog({
-        title: `Remove ${name} from the pantry?`,
-        message: 'The item itself is kept, so you can add it back later.',
-        confirmLabel: 'Remove',
-        cancelLabel: 'Keep it'
-      });
-      if (!confirmed || destroyed) return;
-      const result = await removeStock(row.id);
-      if (destroyed) return;
-      if (!result.ok) {
-        console.error('Failed to remove stock:', result.error);
-        showToast("Couldn't remove that — try again.");
-        return;
-      }
-      announce(`${name} removed from the pantry.`);
-      openRows.delete(row.id);
-      await loadStock();
-    }, { signal });
-    actions.appendChild(removeBtn);
-
-    detail.append(actions, editWrap);
-    item.append(toggle, detail);
+    item.appendChild(open);
     return item;
+  }
+
+  /** Everything about one item, with room to actually read it. */
+  function openStockSheet(row, returnFocusTo) {
+    const food = row.foods || {};
+    const name = food.name || 'Unknown';
+
+    openDetailSheet({
+      title: name,
+      subtitle: categoryLabel(food.category || 'food_ambient'),
+      returnFocusTo,
+      build: (body, { close }) => {
+        // ---- What you have -------------------------------------------
+        const amountSection = el('section', { class: 'sheet-section' });
+        amountSection.appendChild(el('h3', { class: 'sheet-section-title', text: 'What you have' }));
+
+        const qtyInput = numberInput(`sheet-qty-${row.id}`, { min: '0', step: 'any' });
+        qtyInput.value = row.current_qty == null ? '' : String(row.current_qty);
+        const qtyLabel = el('label', {
+          for: qtyInput.id, class: 'sheet-fact-label',
+          text: `Amount in ${unitWord(row.unit)}`
+        });
+        const qtyRow = el('div', { class: 'sheet-fact' });
+        qtyRow.append(qtyLabel, el('span', { class: 'stock-qty-row' }, [
+          qtyInput, el('span', { class: 'ingredient-unit', text: unitWord(row.unit) })
+        ]));
+        qtyInput.addEventListener('change', () => saveQuantity(row, qtyInput), { signal });
+        amountSection.appendChild(qtyRow);
+
+        amountSection.appendChild(sheetFact('Where it lives', row.default_location || 'Not recorded'));
+        amountSection.appendChild(sheetFact('Freshness', describeFreshness(freshness(row))));
+        amountSection.appendChild(sheetFact('Usually keeps',
+          row.shelf_life_days == null ? 'Not recorded' : `${row.shelf_life_days} days`));
+        body.appendChild(amountSection);
+
+        // ---- What it is ----------------------------------------------
+        // The reason this sheet exists: the macros were captured by the
+        // scan and then had nowhere to be read.
+        const factsSection = el('section', { class: 'sheet-section' });
+        factsSection.appendChild(el('h3', { class: 'sheet-section-title', text: 'Per 100 g' }));
+        const macro = (value, unit) => (value == null || value === '' ? 'Not recorded' : `${value} ${unit}`);
+        factsSection.append(
+          sheetFact('Calories', macro(food.calories_per_100g, 'kcal')),
+          sheetFact('Protein', macro(food.protein_g, 'g')),
+          sheetFact('Fat', macro(food.fat_g, 'g')),
+          sheetFact('Carbohydrate', macro(food.carbs_g, 'g'))
+        );
+        if (food.barcode) factsSection.appendChild(sheetFact('Barcode', food.barcode));
+        if (food.calories_per_100g == null) {
+          factsSection.appendChild(el('p', {
+            class: 'field-hint',
+            text: 'Nothing was recorded for this one. Adding it on the item in Meals '
+              + 'lets it count towards a recipe.'
+          }));
+        }
+        body.appendChild(factsSection);
+
+        // ---- Actions --------------------------------------------------
+        const actions = el('div', { class: 'sheet-actions' });
+
+        // Restocking is a one-tap action: it is what you do when you get home.
+        const restockBtn = el('button', { type: 'button', class: 'btn', text: 'Restocked today' });
+        restockBtn.setAttribute('aria-label', `Mark ${name} as restocked today`);
+        restockBtn.addEventListener('click', async () => {
+          const result = await updateStock(row.id, { last_restocked: todayIso() });
+          if (destroyed) return;
+          if (!result.ok) {
+            console.error('Failed to mark restocked:', result.error);
+            showToast("Couldn't save that — try again.");
+            return;
+          }
+          announce(`${name} marked as restocked today.`);
+          close();
+          await loadStock();
+        }, { signal });
+        actions.appendChild(restockBtn);
+
+        const editWrap = el('div');
+        const editBtn = el('button', { type: 'button', class: 'btn', 'aria-expanded': 'false', text: 'Edit details' });
+        editBtn.setAttribute('aria-label', `Edit details for ${name}`);
+        editBtn.addEventListener('click', () => {
+          const isOpen = editBtn.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            editWrap.replaceChildren();
+            editBtn.setAttribute('aria-expanded', 'false');
+            return;
+          }
+          editWrap.replaceChildren(buildStockEditForm(row, food, () => {
+            editWrap.replaceChildren();
+            editBtn.setAttribute('aria-expanded', 'false');
+          }));
+          editBtn.setAttribute('aria-expanded', 'true');
+        }, { signal });
+        actions.appendChild(editBtn);
+
+        const removeBtn = el('button', { type: 'button', class: 'btn btn-danger', text: 'Remove' });
+        removeBtn.setAttribute('aria-label', `Remove ${name} from the pantry`);
+        removeBtn.addEventListener('click', async () => {
+          const confirmed = await confirmDialog({
+            title: `Remove ${name} from the pantry?`,
+            message: 'The item itself is kept, so you can add it back later.',
+            confirmLabel: 'Remove',
+            cancelLabel: 'Keep it'
+          });
+          if (!confirmed || destroyed) return;
+          const result = await removeStock(row.id);
+          if (destroyed) return;
+          if (!result.ok) {
+            console.error('Failed to remove stock:', result.error);
+            showToast("Couldn't remove that — try again.");
+            return;
+          }
+          announce(`${name} removed from the pantry.`);
+          close();
+          await loadStock();
+        }, { signal });
+        actions.appendChild(removeBtn);
+
+        body.append(actions, editWrap);
+      }
+    });
   }
 
   function buildStockEditForm(row, food, onDone) {
@@ -759,16 +805,11 @@ export function render(mountEl) {
       // one — a duplicate splits the count and breaks the shortfall.
       const alreadyStocked = stock.find((row) => row.food_id === food.id);
       if (alreadyStocked) {
-        openRows.add(alreadyStocked.id);
         if (!justAdded.includes(alreadyStocked.id)) justAdded.unshift(alreadyStocked.id);
         renderJustAdded();
-        scanNote.textContent = `${food.name} is already in the pantry. Its amount is open below.`;
+        scanNote.textContent = `${food.name} is already in the pantry — opening it so you can change the amount.`;
         announce(scanNote.textContent);
-        const input = document.getElementById(`stock-qty-${alreadyStocked.id}`);
-        if (input) {
-          input.focus();
-          input.select();
-        }
+        openStockSheet(alreadyStocked);
         return;
       }
       // Known but not stocked: preselect it and jump to the amount, which is

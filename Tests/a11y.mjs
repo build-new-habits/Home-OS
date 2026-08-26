@@ -356,6 +356,33 @@ check('pantry: quantities are shown with a unit',
 check('pantry: freshness is stated in words',
   /Stocked .* days ago|Freshness unknown/.test(panMount.textContent), '');
 
+// ---- Opening an item must actually show what is known about it ---------
+// The macros are captured by the scan and then had nowhere to be read. A row
+// that cannot be opened makes the app a worse record than the jar's label.
+const panRowOpen = panMount.querySelector('.stock-row-open');
+check('pantry: a row can be opened', !!panRowOpen);
+if (panRowOpen) panRowOpen.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+
+const sheet = window.document.querySelector('.sheet[role="dialog"]');
+check('pantry: opening a row opens a labelled dialog',
+  !!sheet && sheet.getAttribute('aria-modal') === 'true'
+  && !!window.document.getElementById(sheet.getAttribute('aria-labelledby')));
+check('pantry: the sheet shows the macros', !!sheet && /Per 100 g/.test(sheet.textContent));
+check('pantry: a missing macro says so rather than showing blank',
+  !!sheet && /Not recorded/.test(sheet.textContent));
+check('pantry: the sheet keeps a text-labelled way out',
+  !!sheet && [...sheet.querySelectorAll('button')].some((b) => /Close/.test(b.textContent)));
+check('pantry: focus moves into the sheet on open',
+  !!sheet && sheet.contains(window.document.activeElement));
+
+// Escape must work, and focus must come back to where it started (3.2.1).
+window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+check('pantry: escape closes the sheet', !window.document.querySelector('.sheet[role="dialog"]'));
+check('pantry: focus returns to the row that opened it',
+  window.document.activeElement === panRowOpen);
+
 const panLevels = [...panMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
 let panOrdered = true;
 for (let i = 1; i < panLevels.length; i++) if (panLevels[i] - panLevels[i - 1] > 1) panOrdered = false;

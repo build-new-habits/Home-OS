@@ -1,4 +1,8 @@
-// service-worker.js — 26 Aug 2026 v27
+// service-worker.js — 26 Aug 2026 v28
+// v28: ONE new path, js/components/detailSheet.js. Also fixes install() to
+// fetch every precache entry with { cache: 'reload' } — see the comment on
+// the install listener. A precache that trusts the HTTP cache can freeze a
+// mix of old and new files, which is exactly what shipped in v27.
 // v27: no path changes. Bumped for the pantry rework — views/pantry.js v3,
 // data/pantry.js v2, components.css v15 all changed content.
 // v26: no path changes. CACHE_NAME bumped because css/base.css content
@@ -81,7 +85,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v27';
+const CACHE_NAME = 'home-os-shell-v28';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -125,6 +129,7 @@ const SHELL_FILES = [
   './js/components/liveRegion.js',
   './js/components/card.js',
   './js/components/scannerDialog.js',
+  './js/components/detailSheet.js',
   './js/components/completionStamp.js',
   './js/views/signin.js',
   './js/views/settings.js',
@@ -140,7 +145,18 @@ const SHELL_FILES = [
 ];
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_FILES))
+    // ---- Every precache fetch MUST bypass the HTTP cache ----
+    // cache.addAll() goes through the browser's normal HTTP cache, and
+    // GitHub Pages serves these files with a ten-minute max-age. Bump
+    // CACHE_NAME and redeploy inside that window and the "new" cache is
+    // filled with whatever the HTTP cache still holds — so the app can end
+    // up running new JavaScript against an old stylesheet, frozen that way
+    // until the next bump. That happened: the pantry shipped with v15 CSS
+    // and rendered with v14, as unstyled boxes and default bullets.
+    // { cache: 'reload' } makes each precache request go to the network.
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.addAll(SHELL_FILES.map((url) => new Request(url, { cache: 'reload' })))
+    )
   );
   self.skipWaiting();
 });

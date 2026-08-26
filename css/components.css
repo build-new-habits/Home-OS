@@ -1,6 +1,7 @@
-/* css/components.css — 26 Aug 2026 v15 */
-/* v15: pantry modes, rows and location groups. Appended only — diffed
-   against v14, no existing rule changed, no new colour pair introduced. */
+/* css/components.css — 26 Aug 2026 v16 */
+/* v16: rewrites the v15 pantry block (spacing, two-line rows) and adds the
+   slide-out sheet. Only v15's own rules changed; nothing from v14 or
+   earlier is touched, and no new colour pair is introduced. */
 /* v14: adds the Phase 7 pantry classes. Appended, diffed against v13. */
 /* v13: breathing room in <select> lists. See the note in the option rules:
    Android's popup is native and only partly stylable, so the larger win was
@@ -1235,15 +1236,16 @@ select optgroup {
   color: var(--color-text);
 }
 
-/* ---- Pantry at scale (v15) ----
-   Seven items filled a phone screen, so the pantry now has modes and rows
-   rather than one flat list of cards. Colours are existing tokens only —
-   no new pairs, so Tests/contrast.mjs needs no new entries. */
+/* ---- Pantry at scale (v16) ----
+   v15 shipped rows that ran a name into its own status text and relied on a
+   <ul> reset that never reached the device. Rewritten with explicit spacing
+   and a two-line row, plus the slide-out sheet. Colours are existing tokens
+   only — no new pairs, so Tests/contrast.mjs needs no new entries. */
 
 .segmented {
   display: flex;
-  gap: var(--space-1);
-  margin: var(--space-4) 0;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 var(--space-4);
 }
 
 .segmented-btn {
@@ -1251,35 +1253,39 @@ select optgroup {
   min-height: var(--tap-min);
 }
 
-/* The pressed state is carried by a border and a fill, never by colour
-   alone — aria-pressed says it in words for anyone not seeing either. */
+/* Pressed state carries a fill AND a border, never colour alone;
+   aria-pressed says it in words for anyone seeing neither. */
 .segmented-btn[aria-pressed="true"] {
   background: var(--color-accent);
   color: var(--color-accent-contrast);
   border-color: var(--color-accent);
 }
 
-.stock-rows {
+/* The reset is on the items as well as the list. A marker is the browser's
+   default and must not be what shows if one selector fails to match. */
+.stock-rows,
+.stock-rows > li {
   list-style: none;
-  margin: 0 0 var(--space-4);
+}
+
+.stock-rows {
+  margin: 0 0 var(--space-5);
   padding: 0;
 }
 
-.stock-row {
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-2) 0;
+.stock-rows > li + li {
+  border-top: 1px solid var(--color-border);
 }
 
-/* One row, one target. Four buttons per item is 240 tap targets at sixty
-   items, which is what made the card list unusable. */
-.stock-row-main {
+/* One row, one target, one job: open the thing. */
+.stock-row-open {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-1);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
   width: 100%;
   min-height: var(--tap-min);
-  padding: var(--space-2);
+  padding: var(--space-3) var(--space-2);
   background: none;
   border: 0;
   border-radius: var(--radius-md);
@@ -1289,32 +1295,64 @@ select optgroup {
   cursor: pointer;
 }
 
+/* Name above, detail below — never the two run together on one line. */
+.stock-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
 .stock-row-name {
   font-weight: 700;
   color: var(--color-text);
+  line-height: var(--leading-tight);
 }
 
-.stock-row-detail {
-  padding: var(--space-2) var(--space-2) var(--space-3);
+.stock-row-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.stock-row-chevron {
+  flex: 0 0 auto;
+  font-size: var(--text-xl);
+  color: var(--color-text-muted);
 }
 
 .stock-row-fix {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+}
+
+.stock-row-fix .stock-qty-row {
+  display: flex;
+  align-items: center;
   gap: var(--space-2);
 }
 
+.stock-row-fix input {
+  max-width: 7rem;
+}
+
 .location-list {
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 .location-heading {
   margin: 0;
+  font-size: var(--text-base);
 }
 
 .location-toggle {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
   width: 100%;
   min-height: var(--tap-min);
   padding: var(--space-3) var(--space-2);
@@ -1329,5 +1367,98 @@ select optgroup {
 }
 
 .location-body {
-  padding-left: var(--space-2);
+  padding: var(--space-2) 0 var(--space-4) var(--space-2);
+}
+
+/* ---- Slide-out detail sheet ---- */
+
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: min(28rem, 100%);
+  max-height: 100%;
+  padding: var(--space-5) var(--space-4) calc(var(--space-5) + var(--tap-min));
+  overflow-y: auto;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.sheet-header {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sheet-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-xl);
+}
+
+/* The heading takes focus on open so it is read first; the outline stays. */
+.sheet-title:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+}
+
+.sheet-subtitle {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.sheet-section {
+  margin-bottom: var(--space-5);
+}
+
+.sheet-section-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sheet-fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sheet-fact-label {
+  color: var(--color-text-muted);
+}
+
+.sheet-fact-value {
+  font-weight: 700;
+  text-align: right;
+}
+
+.sheet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.sheet-close {
+  margin-top: auto;
+  min-height: var(--tap-min);
+}
+
+/* The page behind must not scroll under the panel. */
+body.sheet-open {
+  overflow: hidden;
 }
