@@ -1,4 +1,6 @@
-// service-worker.js — 26 Aug 2026 v28
+// service-worker.js — 26 Aug 2026 v29
+// v29: no path changes. Bumped for views/settings.js v6, which reports the
+// installed build so an out-of-date device can be identified by looking.
 // v28: ONE new path, js/components/detailSheet.js. Also fixes install() to
 // fetch every precache entry with { cache: 'reload' } — see the comment on
 // the install listener. A precache that trusts the HTTP cache can freeze a
@@ -85,7 +87,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v28';
+const CACHE_NAME = 'home-os-shell-v29';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

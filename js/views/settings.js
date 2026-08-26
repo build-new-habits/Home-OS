@@ -1,4 +1,6 @@
-// js/views/settings.js — 18 Aug 2026 v5
+// js/views/settings.js — 26 Aug 2026 v6
+// v6: states the installed build, so "is this the new version?" stops being
+// guesswork — twice now a bug report has been an older build still serving.
 // v5: fixes a ReferenceError introduced in v4 — an el() helper was used
 // here that only exists in other views. This file builds nodes with
 // document.createElement directly; that idiom is kept rather than importing
@@ -392,6 +394,57 @@ export function render(mountEl) {
     accountFieldset.appendChild(pwDetails);
 
     bodyContainer.appendChild(accountFieldset);
+
+    bodyContainer.appendChild(buildBuildSection());
+  }
+
+  // ---- Which build is actually on this device -------------------------
+  // Twice now, a bug report has turned out to be an older build still being
+  // served: the app updates in the background and there is no way to tell by
+  // looking. The active cache name IS the build, so it is stated plainly
+  // rather than left to be inferred from whether a feature is present.
+  function buildBuildSection() {
+    const fieldset = document.createElement('fieldset');
+
+    const legend = document.createElement('legend');
+    legend.textContent = 'This device';
+    fieldset.appendChild(legend);
+
+    const status = document.createElement('p');
+    status.className = 'field-hint';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    status.textContent = 'Checking which version is installed…';
+    fieldset.appendChild(status);
+
+    const hint = document.createElement('p');
+    hint.className = 'field-hint';
+    hint.textContent = 'If an update is not showing, close the app fully and reopen it twice — '
+      + 'the first reopen installs the new version, the second uses it.';
+    fieldset.appendChild(hint);
+
+    activeBuildName().then((name) => {
+      status.textContent = name
+        ? `Installed version: ${name}`
+        : 'No offline version installed yet. This page is coming straight from the network.';
+    });
+
+    return fieldset;
+  }
+
+  /** The active shell cache, which is the build identifier. */
+  async function activeBuildName() {
+    try {
+      if (!('caches' in window)) return null;
+      const names = await caches.keys();
+      const shells = names.filter((n) => n.startsWith('home-os-shell-'));
+      // More than one only happens mid-update; the newest is the one that
+      // will serve, so report that rather than an arbitrary first entry.
+      return shells.sort().pop() || null;
+    } catch (err) {
+      console.error('Could not read the installed version:', err);
+      return null;
+    }
   }
 
   renderBody();
