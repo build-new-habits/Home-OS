@@ -1,6 +1,20 @@
-/* css/base.css — 14 Jul 2026 v1 */
+/* css/base.css — 26 Aug 2026 v2 */
 
 *, *::before, *::after { box-sizing: border-box; }
+
+/* ---- The hidden attribute must win ----
+   The UA sheet's [hidden] { display: none } is an author-sheet loss waiting
+   to happen: any component rule that sets display on the same element beats
+   it. That is exactly how "Day of month" stayed on screen under FREQ=DAILY
+   — .field { display: flex } silently defeated monthDayField.hidden = true.
+   No automated gate can catch this: jsdom does not compute the cascade, so
+   the attribute reads as set and the element reads as hidden while the
+   phone shows it plainly.
+   !important is deliberate. hidden is a state assertion, not a style hint;
+   nothing should be able to overrule it. */
+[hidden] {
+  display: none !important;
+}
 
 html, body {
   margin: 0;

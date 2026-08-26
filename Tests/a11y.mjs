@@ -5,6 +5,7 @@
 import { JSDOM } from 'jsdom';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import fs from 'node:fs';
 
 const REPO = process.env.GATE_REPO || '/tmp/gate-repo';
 const dom = new JSDOM('<!doctype html><html><body><main id="app-main"></main></body></html>', {
@@ -327,6 +328,20 @@ let panOrdered = true;
 for (let i = 1; i < panLevels.length; i++) if (panLevels[i] - panLevels[i - 1] > 1) panOrdered = false;
 check('pantry: heading levels never skip', panOrdered, panLevels.join(','));
 check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
+
+// ---- The hidden attribute must not be defeated by the cascade ----------
+// `el.hidden = true` is the app's only mechanism for conditional fields, and
+// the UA sheet's [hidden] { display: none } loses to ANY author rule that
+// sets display on the same element. `.field { display: flex }` did exactly
+// that: "Day of month" stayed on screen under FREQ=DAILY while the DOM
+// reported it hidden. jsdom does not compute the cascade, so no rendered-DOM
+// assertion can see this — it is checked structurally on the stylesheet.
+{
+  const baseCss = fs.readFileSync(path.join(REPO, 'css/base.css'), 'utf8');
+  const hasGlobalRule = /\[hidden\]\s*\{[^}]*display\s*:\s*none\s*!important/.test(baseCss);
+  check('css: [hidden] is enforced globally with !important', hasGlobalRule,
+    'without it, any display rule silently un-hides a hidden element');
+}
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
