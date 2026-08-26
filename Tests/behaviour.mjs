@@ -38,7 +38,7 @@ const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
 const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/js/data/calendar.js`);
 const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
 const { expand } = await import(`${REPO}/js/lib/rrule.js`);
-const { freshness, describeFreshness, useSoon, defaultShelfLife } = await import(`${REPO}/js/data/pantry.js`);
+const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
 // ============ Macros, against a hand calculation ============
@@ -355,6 +355,29 @@ eq('fresh food gets a short default shelf life', defaultShelfLife('food_fresh'),
 eq('cupboard food gets a long one', defaultShelfLife('food_ambient'), 365);
 eq('things that do not expire get no default', defaultShelfLife('home'), null);
 eq('an unknown category gets no default', defaultShelfLife('nonsense'), null);
+
+console.log('\nA missing amount is not zero');
+// This shipped: "How much" was left blank on seven scanned jars and every one
+// was stored as 0. To the shortfall, 0 and "no pantry row" mean the same
+// thing — you have none — so a captured shelf would have been rebought in
+// full. NULL is a third state and has to survive as one.
+const noneRecorded = { id: 'a', current_qty: null, unit: 'item' };
+const explicitZero = { id: 'b', current_qty: 0, unit: 'item' };
+const hasSome = { id: 'c', current_qty: 2, unit: 'item' };
+eq('a null amount is flagged as needing one', needsAmount([noneRecorded]).length, 1);
+eq('a zero amount is flagged too — it may be the old bug', needsAmount([explicitZero]).length, 1);
+eq('a real amount is not flagged', needsAmount([hasSome]).length, 0);
+eq('only the incomplete rows come back', needsAmount([noneRecorded, explicitZero, hasSome]).length, 2);
+eq('an empty pantry flags nothing', needsAmount([]).length, 0);
+check('null is not silently read as zero', needsAmount([noneRecorded])[0].current_qty === null);
+
+console.log('\nNew stock starts in the unit you buy it in');
+// You buy a JAR of harissa, not 180 grams of it — the pack size is already
+// in the name. Loose fresh food is the exception worth weighing.
+eq('a cupboard item starts as items', defaultUnitFor('food_ambient'), 'item');
+eq('a household item starts as items', defaultUnitFor('household'), 'item');
+eq('fresh food starts in grams', defaultUnitFor('food_fresh'), 'g');
+eq('an unknown category still gets a usable unit', defaultUnitFor('nonsense'), 'item');
 
 console.log('\nQuantity formatting');
 eq('grams below a kilo stay grams', formatQuantity(250, 'g'), '250 g');

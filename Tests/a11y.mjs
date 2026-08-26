@@ -36,7 +36,12 @@ function fixture(t) {
       foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient', grams_per_ml:null, grams_per_item:25 } },
     { id:'st-2', food_id:'food-2', default_location:'Bathroom', shelf_life_days:5,
       current_qty:2, unit:'item', last_restocked:'2026-08-19',
-      foods:{ id:'food-2', name:'Home-made stock', category:'personal', grams_per_ml:null, grams_per_item:null } }];
+      foods:{ id:'food-2', name:'Home-made stock', category:'personal', grams_per_ml:null, grams_per_item:null } },
+    // A row whose amount was never recorded. NULL, not 0: 0 means "you have
+    // none" to the shortfall, and a scanned shelf saved as 0 would be rebought.
+    { id:'st-3', food_id:'food-3', default_location:'Kitchen cupboard', shelf_life_days:365,
+      current_qty:null, unit:'item', last_restocked:'2026-08-26',
+      foods:{ id:'food-3', name:'Harissa', category:'food_ambient', grams_per_ml:null, grams_per_item:null } }];
   if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
     { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete' },
@@ -315,6 +320,34 @@ const panDesc = [...panMount.querySelectorAll('[aria-describedby]')]
   .flatMap((n) => n.getAttribute('aria-describedby').split(/\s+/))
   .filter((id) => id && !panMount.querySelector(`#${CSS.escape(id)}`));
 check('pantry: every aria-describedby target exists', panDesc.length === 0, panDesc.join(', '));
+
+// ---- A missing amount must be visible and fixable ----------------------
+// Blank used to be written as 0, and 0 reads as "you have none", so a
+// stocktake that skipped the amount would have been silently rebought.
+check('pantry: rows with no amount are surfaced for fixing',
+  /Needs an amount/.test(panMount.textContent));
+check('pantry: a missing amount says so rather than showing a bare 0',
+  /Amount not recorded/.test(panMount.textContent));
+
+// ---- The default view is never "everything" ----------------------------
+// Seven items filled a phone screen. Quantities and freshness therefore live
+// behind Browse, so the assertions have to walk there like a user does.
+const panBrowseBtn = [...panMount.querySelectorAll('button')]
+  .find((b) => b.getAttribute('aria-label') === 'Browse the pantry by where things live');
+check('pantry: a browse mode is offered', !!panBrowseBtn);
+if (panBrowseBtn) panBrowseBtn.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+
+// Named explicitly rather than taking the first: locations sort
+// alphabetically, and the row under test lives in the kitchen.
+const panLocationToggle = [...panMount.querySelectorAll('.location-toggle')]
+  .find((b) => /Kitchen cupboard/.test(b.textContent));
+check('pantry: browse groups by where things live', !!panLocationToggle,
+  'locations collapse so sixty rows never render at once');
+check('pantry: a location is collapsed until it is opened',
+  panLocationToggle && panLocationToggle.getAttribute('aria-expanded') === 'false');
+if (panLocationToggle) panLocationToggle.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
 
 // Quantities must carry their unit as text, never a bare number.
 check('pantry: quantities are shown with a unit',

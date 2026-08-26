@@ -1,35 +1,45 @@
-// js/views/pantry.js — 21 Aug 2026 v2
-// v2: SCANNING. Typing names for a cupboard of packaged goods is exactly the
-// friction this screen was meant to remove, and v1 shipped without it.
+// js/views/pantry.js — 26 Aug 2026 v3
+// v3: THE SCREEN HAD TO SURVIVE A REAL CUPBOARD. Seven items filled a phone
+// screen and a third of one shelf produced them, so the flat list was never
+// going to hold sixty. Three things changed:
 //
-// A scan does the tedious part and stops at every point where it would have
-// to guess: an item already in the pantry sends you to its card rather than
-// making a second row; a new item still requires the category to be chosen,
-// because Open Food Facts cannot know it and a wrong one puts shower gel in
-// your recipes.
-// Replaces the Phase 2 stub, whole.
+//   1. A blank amount was being saved as 0, and 0 means "you have none" to
+//      the shortfall — a scanned shelf would have gone straight back onto
+//      the shopping list. The amount is now required, prefilled, and a
+//      missing one is a visible state rather than a silent zero.
+//   2. New rows start as 1 item, not 0 grams. You buy a JAR of harissa; the
+//      pack size is already in the name.
+//   3. The screen has three modes. Capture is for stocktaking, Browse is for
+//      finding a cupboard, Search is for finding one thing. The default list
+//      is never "everything".
 //
-// ---- Designed for STOCKTAKING, not for adding one thing ----
-// The first real use of this screen is capturing a cupboard: dozens of items
-// in one sitting, one-handed, standing up. That shapes everything here.
+// ---- Grouped by LOCATION first, category second ----
+// Category exists for aisle order in the shop. Standing at a cupboard, the
+// question is "what is in THIS cupboard", so location leads here and
+// category orders what is inside it.
 //
-//   * The add form does NOT reset its location or restock date after a save,
-//     because the next twelve things are in the same cupboard, bought the
-//     same day. Only the item and quantity clear. Re-typing "Kitchen
-//     cupboard" sixty times is the friction that stops a stocktake finishing.
-//   * A new thing can be created WITHOUT leaving this screen. Bouncing to
-//     Meals to add a food, then back, would make capture unusable.
-//   * Shelf life is pre-filled from the category and stays editable — a
-//     visible default, never a silent one.
+// ---- One row per item, actions behind a disclosure ----
+// Four buttons on every card is 240 tap targets at sixty items. The row
+// carries the name, the amount and — only when it matters — the freshness.
+// The full accessible name stays on every control; only the visible text
+// shortens, so nothing is lost to a screen reader.
 //
 // ---- Freshness is information, not a warning ----
 // "Stocked 3 days ago — about 2 days left. Good one to use up." Never red,
 // never an alarm. This is food you have, not a mistake you made
 // (principle 1). "Freshness unknown" is a first-class, unembarrassing state.
+//
+// ---- Designed for STOCKTAKING, not for adding one thing ----
+// The add form keeps its location and restock date between saves, because
+// the next twelve things are in the same cupboard, bought the same day. Only
+// the item and amount clear. A new thing can be created without leaving the
+// screen. Shelf life is pre-filled from the category and stays editable — a
+// visible default, never a silent one.
 
 import {
   listStock, findByFood, addStock, updateStock, removeStock,
-  STOCK_UNITS, defaultShelfLife, freshness, describeFreshness, useSoon, todayIso
+  STOCK_UNITS, defaultShelfLife, defaultUnitFor, needsAmount,
+  freshness, describeFreshness, useSoon, todayIso
 } from '../data/pantry.js';
 import {
   listFoods, createFood, findByBarcode, FOOD_CATEGORIES, categoryLabel, groupByCategory
@@ -39,10 +49,11 @@ import { openScanner, describeScanFailure } from '../components/scannerDialog.js
 import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { formatQuantity } from '../lib/units.js';
 import { isOffline } from '../lib/net.js';
-import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+
+const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
 function el(tag, props = {}, children = []) {
@@ -78,6 +89,16 @@ function selectFrom(id, options, { includeBlank = null } = {}) {
   return select;
 }
 
+/** "500 g" or, when nothing was recorded, a phrase that says so plainly. */
+function describeAmount(row) {
+  if (row.current_qty == null) return 'Amount not recorded';
+  return formatQuantity(row.current_qty, row.unit);
+}
+
+function unitWord(unit) {
+  return unit === 'item' ? 'items' : unit;
+}
+
 export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
@@ -85,6 +106,10 @@ export function render(mountEl) {
 
   let stock = [];
   let foods = [];
+  let mode = 'capture';
+  let openLocation = null;
+  const justAdded = [];       // stock ids added this session, newest first
+  const openRows = new Set(); // stock ids whose actions are expanded
 
   mountEl.appendChild(el('h1', { text: 'Pantry' }));
 
@@ -101,22 +126,83 @@ export function render(mountEl) {
     }
   }
 
-  // ======================= Use these up =======================
+  // ============== Amounts that were never recorded =====================
+  // Shown first and only when there is something to fix. A row with no
+  // amount cannot be diffed against a recipe, so without this the shopping
+  // list quietly rebuys a cupboard you have already filled.
+
+  const fixSection = el('section');
+  fixSection.hidden = true;
+  fixSection.appendChild(el('h2', { text: 'Needs an amount' }));
+  fixSection.appendChild(el('p', {
+    class: 'field-hint',
+    text: 'The shopping list treats a missing amount as none, so these would be bought again. '
+      + 'Set how much you have and they drop off this list.'
+  }));
+  const fixList = el('ul', { class: 'stock-rows' });
+  fixSection.appendChild(fixList);
+
+  function renderNeedsAmount() {
+    const rows = needsAmount(stock);
+    fixSection.hidden = rows.length === 0;
+    fixList.replaceChildren();
+    for (const row of rows) {
+      const food = row.foods || {};
+      const item = el('li', { class: 'stock-row stock-row-fix' });
+      const name = el('span', { class: 'stock-row-name', text: food.name || 'Unknown' });
+      // Said per row, not only in the heading above: the state is a property
+      // of this item, and a bare empty box does not communicate it.
+      const state = el('span', {
+        class: 'field-hint',
+        text: row.current_qty == null
+          ? 'Amount not recorded'
+          : `Recorded as none — ${describeAmount(row)}`
+      });
+
+      const input = numberInput(`fix-qty-${row.id}`, { min: '0', step: 'any' });
+      input.value = row.current_qty == null ? '' : String(row.current_qty);
+      const label = el('label', {
+        for: input.id, class: 'visually-hidden',
+        text: `How much ${food.name || 'this'} you have, in ${unitWord(row.unit)}`
+      });
+      const unitText = el('span', { class: 'ingredient-unit', text: unitWord(row.unit) });
+
+      input.addEventListener('change', () => saveQuantity(row, input), { signal });
+
+      item.append(name, state, el('span', { class: 'stock-qty-row' }, [label, input, unitText]));
+      fixList.appendChild(item);
+    }
+  }
+
+  async function saveQuantity(row, input) {
+    const food = row.foods || {};
+    const result = await updateStock(row.id, { current_qty: input.value });
+    if (destroyed) return;
+    if (!result.ok) {
+      console.error('Failed to update stock:', result.error);
+      showToast((result.error && result.error.message) || "Couldn't save that — try again.");
+      input.value = row.current_qty == null ? '' : String(row.current_qty);
+      return;
+    }
+    announce(`${food.name || 'Item'} set to ${describeAmount(result.data)}.`);
+    await loadStock();
+  }
+
+  // ======================= Worth using up ==============================
+  // Rendered only when there IS something. A section that mostly says
+  // "nothing to report" is a screenful of nothing on a phone.
 
   const useSoonSection = el('section');
+  useSoonSection.hidden = true;
   useSoonSection.appendChild(el('h2', { text: 'Worth using up' }));
   const useSoonList = el('div', { class: 'card-list' });
   useSoonSection.appendChild(useSoonList);
 
   function renderUseSoon() {
-    useSoonList.replaceChildren();
     const soon = useSoon(stock);
-    if (soon.length === 0) {
-      useSoonList.appendChild(el('p', {
-        text: 'Nothing needs using up. Anything without a stocked date or shelf life is not counted here.'
-      }));
-      return;
-    }
+    useSoonSection.hidden = soon.length === 0;
+    useSoonList.replaceChildren();
+    if (soon.length === 0) return;
     const list = el('ul', { class: 'use-soon-list' });
     for (const { row, freshness: fresh } of soon) {
       const food = row.foods || {};
@@ -124,67 +210,101 @@ export function render(mountEl) {
       item.appendChild(el('span', { class: 'use-soon-name', text: food.name || 'Unknown' }));
       item.appendChild(el('span', {
         class: 'field-hint',
-        text: `${formatQuantity(row.current_qty, row.unit)} · ${describeFreshness(fresh)}`
+        text: `${describeAmount(row)} · ${describeFreshness(fresh)}`
       }));
       list.appendChild(item);
     }
     useSoonList.appendChild(list);
   }
 
-  // ======================= What's in ==========================
+  // ============================ Modes ==================================
 
-  const stockSection = el('section');
-  stockSection.appendChild(el('h2', { text: "What's in" }));
-  const stockList = el('div', { class: 'card-list' });
-  stockSection.appendChild(stockList);
+  const modeGroup = el('div', { class: 'segmented', role: 'group' });
+  modeGroup.setAttribute('aria-label', 'How to view the pantry');
+  const MODES = [
+    { value: 'capture', label: 'Add', hint: 'Add things to the pantry' },
+    { value: 'browse', label: 'Browse', hint: 'Browse the pantry by where things live' },
+    { value: 'search', label: 'Find', hint: 'Search everything in the pantry' }
+  ];
+  const modeButtons = new Map();
+  for (const m of MODES) {
+    const btn = el('button', { type: 'button', class: 'btn segmented-btn', text: m.label });
+    btn.setAttribute('aria-label', m.hint);
+    btn.setAttribute('aria-pressed', String(m === MODES[0]));
+    btn.addEventListener('click', () => setMode(m.value), { signal });
+    modeButtons.set(m.value, btn);
+    modeGroup.appendChild(btn);
+  }
 
-  function buildStockCard(row) {
+  function setMode(next) {
+    mode = next;
+    for (const [value, btn] of modeButtons) btn.setAttribute('aria-pressed', String(value === next));
+    capturePanel.hidden = next !== 'capture';
+    browsePanel.hidden = next !== 'browse';
+    searchPanel.hidden = next !== 'search';
+    const chosen = MODES.find((m) => m.value === next);
+    if (chosen) announce(`${chosen.label} mode.`);
+    if (next === 'browse') renderBrowse();
+    if (next === 'search') renderSearchResults();
+  }
+
+  // ==================== One row, actions on demand =====================
+
+  function buildStockRow(row) {
     const food = row.foods || {};
-    const { article, body, actions } = createCard({
-      title: food.name || 'Unknown', headingLevel: 4, className: 'stock-card'
-    });
-    article.dataset.stockId = row.id;
+    const fresh = freshness(row);
+    const name = food.name || 'Unknown';
 
-    body.appendChild(el('p', {
-      class: 'chip',
-      text: `${formatQuantity(row.current_qty, row.unit)}${row.default_location ? ` · ${row.default_location}` : ''}`
-    }));
-    // Words, never a colour alone.
-    body.appendChild(el('p', { class: 'field-hint', text: describeFreshness(freshness(row)) }));
+    const item = el('li', { class: 'stock-row' });
+    item.dataset.stockId = row.id;
 
-    // Quantity is the thing that changes most, so it is editable in place
-    // rather than behind an edit form.
-    const qtyInput = numberInput(`stock-qty-${row.id}`, { min: '0', step: 'any' });
-    qtyInput.value = String(row.current_qty ?? 0);
-    const qtyLabel = el('label', {
-      for: qtyInput.id, class: 'sr-only',
-      text: `How much ${food.name || 'this'} you have, in ${row.unit === 'item' ? 'items' : row.unit}`
-    });
-    const qtyRow = el('div', { class: 'stock-qty-row' });
-    qtyRow.append(qtyLabel, qtyInput, el('span', { class: 'ingredient-unit', text: row.unit === 'item' ? 'items' : row.unit }));
-    body.appendChild(qtyRow);
+    const summaryBits = [describeAmount(row)];
+    // Freshness earns a place on the collapsed row only when it is close.
+    // "about 365 days left" on sixty rows is noise.
+    if (fresh.state === 'soon' || fresh.state === 'past') summaryBits.push(describeFreshness(fresh));
 
-    qtyInput.addEventListener('change', async () => {
-      const result = await updateStock(row.id, { current_qty: qtyInput.value });
-      if (destroyed) return;
-      if (!result.ok) {
-        console.error('Failed to update stock:', result.error);
-        showToast((result.error && result.error.message) || "Couldn't save that — try again.");
-        qtyInput.value = String(row.current_qty ?? 0);
-        return;
-      }
-      announce(`${food.name || 'Item'} set to ${formatQuantity(result.data.current_qty, result.data.unit)}.`);
-      await loadStock();
-      if (!destroyed) {
-        const again = document.getElementById(`stock-qty-${row.id}`);
-        if (again) again.focus();
-      }
+    const toggle = el('button', { type: 'button', class: 'stock-row-main' });
+    toggle.setAttribute('aria-expanded', String(openRows.has(row.id)));
+    toggle.append(
+      el('span', { class: 'stock-row-name', text: name }),
+      el('span', { class: 'field-hint', text: summaryBits.join(' · ') })
+    );
+    toggle.setAttribute('aria-label', `${name}, ${summaryBits.join(', ')}. Show actions.`);
+
+    const detail = el('div', { class: 'stock-row-detail' });
+    detail.hidden = !openRows.has(row.id);
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      detail.hidden = open;
+      if (open) openRows.delete(row.id); else openRows.add(row.id);
     }, { signal });
 
+    // The full freshness sentence always exists here, so the words are
+    // available even when the collapsed row stays quiet.
+    detail.appendChild(el('p', { class: 'field-hint', text: describeFreshness(fresh) }));
+    if (row.default_location) {
+      detail.appendChild(el('p', { class: 'field-hint', text: `Lives in ${row.default_location}.` }));
+    }
+
+    // The amount is what changes most, so it stays editable in place.
+    const qtyInput = numberInput(`stock-qty-${row.id}`, { min: '0', step: 'any' });
+    qtyInput.value = row.current_qty == null ? '' : String(row.current_qty);
+    const qtyLabel = el('label', {
+      for: qtyInput.id, class: 'visually-hidden',
+      text: `How much ${name} you have, in ${unitWord(row.unit)}`
+    });
+    const qtyRow = el('div', { class: 'stock-qty-row' });
+    qtyRow.append(qtyLabel, qtyInput, el('span', { class: 'ingredient-unit', text: unitWord(row.unit) }));
+    detail.appendChild(qtyRow);
+    qtyInput.addEventListener('change', () => saveQuantity(row, qtyInput), { signal });
+
+    const actions = el('div', { class: 'card-actions' });
+
     // Restocking is a one-tap action: it is what you do when you get home.
-    const restockBtn = el('button', { type: 'button', class: 'btn' });
-    restockBtn.textContent = 'Restocked today';
-    restockBtn.setAttribute('aria-label', `Mark ${food.name || 'this'} as restocked today`);
+    const restockBtn = el('button', { type: 'button', class: 'btn', text: 'Restocked today' });
+    restockBtn.setAttribute('aria-label', `Mark ${name} as restocked today`);
     restockBtn.addEventListener('click', async () => {
       const result = await updateStock(row.id, { last_restocked: todayIso() });
       if (destroyed) return;
@@ -193,16 +313,14 @@ export function render(mountEl) {
         showToast("Couldn't save that — try again.");
         return;
       }
-      announce(`${food.name || 'Item'} marked as restocked today.`);
+      announce(`${name} marked as restocked today.`);
       await loadStock();
     }, { signal });
     actions.appendChild(restockBtn);
 
     const editWrap = el('div');
-    body.appendChild(editWrap);
-    const editBtn = el('button', { type: 'button', class: 'btn', 'aria-expanded': 'false' });
-    editBtn.textContent = 'Details';
-    editBtn.setAttribute('aria-label', `Details for ${food.name || 'this item'}`);
+    const editBtn = el('button', { type: 'button', class: 'btn', 'aria-expanded': 'false', text: 'Details' });
+    editBtn.setAttribute('aria-label', `Details for ${name}`);
     editBtn.addEventListener('click', () => {
       const open = editBtn.getAttribute('aria-expanded') === 'true';
       if (open) {
@@ -218,12 +336,11 @@ export function render(mountEl) {
     }, { signal });
     actions.appendChild(editBtn);
 
-    const removeBtn = el('button', { type: 'button', class: 'btn btn-danger' });
-    removeBtn.textContent = 'Remove';
-    removeBtn.setAttribute('aria-label', `Remove ${food.name || 'this'} from the pantry`);
+    const removeBtn = el('button', { type: 'button', class: 'btn btn-danger', text: 'Remove' });
+    removeBtn.setAttribute('aria-label', `Remove ${name} from the pantry`);
     removeBtn.addEventListener('click', async () => {
       const confirmed = await confirmDialog({
-        title: `Remove ${food.name || 'this'} from the pantry?`,
+        title: `Remove ${name} from the pantry?`,
         message: 'The item itself is kept, so you can add it back later.',
         confirmLabel: 'Remove',
         cancelLabel: 'Keep it'
@@ -236,12 +353,15 @@ export function render(mountEl) {
         showToast("Couldn't remove that — try again.");
         return;
       }
-      announce(`${food.name || 'Item'} removed from the pantry.`);
+      announce(`${name} removed from the pantry.`);
+      openRows.delete(row.id);
       await loadStock();
     }, { signal });
     actions.appendChild(removeBtn);
 
-    return article;
+    detail.append(actions, editWrap);
+    item.append(toggle, detail);
+    return item;
   }
 
   function buildStockEditForm(row, food, onDone) {
@@ -250,7 +370,7 @@ export function render(mountEl) {
     const prefix = `stock-edit-${row.id}`;
 
     const unitSelect = selectFrom(`${prefix}-unit`, STOCK_UNITS);
-    unitSelect.value = row.unit || 'g';
+    unitSelect.value = row.unit || 'item';
     const locationInput = el('input', { id: `${prefix}-location`, type: 'text' });
     locationInput.value = row.default_location || '';
     const shelfInput = numberInput(`${prefix}-shelf`, { min: '1', step: '1' });
@@ -306,11 +426,153 @@ export function render(mountEl) {
     return form;
   }
 
-  // ======================= Add to the pantry ==================
+  // ========================= Browse by location ========================
 
-  const addSection = el('section');
-  addSection.appendChild(el('h2', { text: 'Add to the pantry' }));
-  addSection.appendChild(el('p', {
+  const browsePanel = el('section');
+  browsePanel.hidden = true;
+  browsePanel.appendChild(el('h2', { text: "What's in" }));
+  const browseSummary = el('p', { class: 'field-hint', role: 'status' });
+  browseSummary.setAttribute('aria-live', 'polite');
+  browsePanel.appendChild(browseSummary);
+  const browseList = el('div', { class: 'location-list' });
+  browsePanel.appendChild(browseList);
+
+  function locationsOf(rows) {
+    const map = new Map();
+    for (const row of rows) {
+      const key = row.default_location || UNPLACED;
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(row);
+    }
+    return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+  }
+
+  function renderBrowse() {
+    browseList.replaceChildren();
+    if (stock.length === 0) {
+      browseSummary.textContent = '';
+      browseList.appendChild(el('p', {
+        text: 'Nothing in the pantry yet. Use Add to capture what is in your cupboards — '
+          + 'the shopping list uses it to work out what you actually need.'
+      }));
+      return;
+    }
+    const groups = locationsOf(stock);
+    browseSummary.textContent =
+      `${stock.length} item${stock.length === 1 ? '' : 's'} across ${groups.length} `
+      + `place${groups.length === 1 ? '' : 's'}. Open one at a time.`;
+
+    for (const [location, rows] of groups) {
+      // One location's contents in the DOM at a time: sixty rows rendered at
+      // once is what made the flat list unusable.
+      const isOpen = openLocation === location;
+      const heading = el('h3', { class: 'location-heading' });
+      const toggle = el('button', { type: 'button', class: 'location-toggle' });
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.textContent = `${location} (${rows.length})`;
+      toggle.setAttribute('aria-label',
+        `${location}, ${rows.length} item${rows.length === 1 ? '' : 's'}`);
+      heading.appendChild(toggle);
+      browseList.appendChild(heading);
+
+      const body = el('div', { class: 'location-body' });
+      body.hidden = !isOpen;
+      if (isOpen) body.appendChild(renderGroupedRows(rows));
+      browseList.appendChild(body);
+
+      toggle.addEventListener('click', () => {
+        openLocation = isOpen ? null : location;
+        renderBrowse();
+        if (!destroyed && openLocation) {
+          announce(`${location} open, ${rows.length} item${rows.length === 1 ? '' : 's'}.`);
+        }
+      }, { signal });
+    }
+  }
+
+  /** Within a location, category orders what is inside it. */
+  function renderGroupedRows(rows) {
+    const wrap = el('div');
+    const byCategory = groupByCategory(rows.map((row) => ({
+      ...row,
+      category: (row.foods && row.foods.category) || 'food_ambient'
+    })));
+    for (const group of byCategory) {
+      wrap.appendChild(el('h4', { class: 'group-heading', text: `${group.label} (${group.foods.length})` }));
+      const list = el('ul', { class: 'stock-rows' });
+      for (const row of group.foods) list.appendChild(buildStockRow(row));
+      wrap.appendChild(list);
+    }
+    return wrap;
+  }
+
+  // ============================== Find =================================
+
+  const searchPanel = el('section');
+  searchPanel.hidden = true;
+  searchPanel.appendChild(el('h2', { text: 'Find something' }));
+
+  const findInput = el('input', { id: 'pantry-find', type: 'search', autocomplete: 'off' });
+  findInput.placeholder = 'Type part of a name';
+  const findCategory = selectFrom('pantry-find-category',
+    FOOD_CATEGORIES.map((c) => ({ value: c.value, label: c.label })), { includeBlank: 'Any kind' });
+  const findLocation = selectFrom('pantry-find-location', [], { includeBlank: 'Anywhere' });
+  const findCount = el('p', { class: 'field-hint', id: 'pantry-find-count', role: 'status' });
+  findCount.setAttribute('aria-live', 'polite');
+  findInput.setAttribute('aria-describedby', findCount.id);
+  const findResults = el('ul', { class: 'stock-rows' });
+
+  searchPanel.append(
+    field('Search', findInput),
+    field('Kind of thing', findCategory),
+    field('Where it lives', findLocation),
+    findCount,
+    findResults
+  );
+
+  findInput.addEventListener('input', renderSearchResults, { signal });
+  findCategory.addEventListener('change', renderSearchResults, { signal });
+  findLocation.addEventListener('change', renderSearchResults, { signal });
+
+  function rebuildLocationFilter() {
+    const chosen = findLocation.value;
+    const names = [...new Set(stock.map((row) => row.default_location || UNPLACED))].sort();
+    findLocation.replaceChildren(el('option', { value: '', text: 'Anywhere' }));
+    for (const name of names) {
+      const option = el('option', { value: name, text: name });
+      if (name === chosen) option.selected = true;
+      findLocation.appendChild(option);
+    }
+  }
+
+  function renderSearchResults() {
+    const term = findInput.value.trim().toLowerCase();
+    const category = findCategory.value;
+    const location = findLocation.value;
+
+    const matching = stock.filter((row) => {
+      const food = row.foods || {};
+      if (term && !(food.name || '').toLowerCase().includes(term)) return false;
+      if (category && (food.category || 'food_ambient') !== category) return false;
+      if (location && (row.default_location || UNPLACED) !== location) return false;
+      return true;
+    });
+
+    findResults.replaceChildren();
+    for (const row of matching) findResults.appendChild(buildStockRow(row));
+
+    const filtered = term || category || location;
+    findCount.textContent = matching.length === 0
+      ? (stock.length === 0 ? 'The pantry is empty.' : 'Nothing matches those filters.')
+      : `${matching.length} of ${stock.length} item${stock.length === 1 ? '' : 's'}`
+        + `${filtered ? ' match' : ''}.`;
+  }
+
+  // ======================= Add to the pantry ===========================
+
+  const capturePanel = el('section');
+  capturePanel.appendChild(el('h2', { text: 'Add to the pantry' }));
+  capturePanel.appendChild(el('p', {
     class: 'field-hint',
     text: 'Stocktaking a whole cupboard? Where it lives and the date stay put between saves, '
       + 'so you only change the item and the amount.'
@@ -330,7 +592,7 @@ export function render(mountEl) {
     scanNote.hidden = false;
     scanNote.textContent = 'This browser cannot use the camera, so add items with the form below.';
   }
-  addSection.appendChild(scanWrap);
+  capturePanel.appendChild(scanWrap);
 
   const addForm = el('form');
   addForm.setAttribute('aria-label', 'Add something to the pantry');
@@ -372,8 +634,19 @@ export function render(mountEl) {
   );
   newWrap.hidden = true;
 
+  // REQUIRED, and prefilled with 1. A blank amount became 0, and 0 means
+  // "you have none" to the shortfall — seven scanned jars would have been
+  // rebought. Prefilling makes "required" cost nothing during a stocktake.
   const qtyInput = numberInput('pantry-qty', { min: '0', step: 'any' });
+  qtyInput.value = '1';
+  qtyInput.required = true;
+  const qtyHint = el('p', {
+    class: 'field-hint', id: 'pantry-qty-hint',
+    text: 'One jar, one tin, one packet — count the things, not the grams inside them.'
+  });
+  qtyInput.setAttribute('aria-describedby', qtyHint.id);
   const unitSelect = selectFrom('pantry-unit', STOCK_UNITS);
+  unitSelect.value = 'item';
   const locationInput = el('input', { id: 'pantry-location', type: 'text' });
   locationInput.placeholder = 'Kitchen cupboard';
   const shelfInput = numberInput('pantry-shelf', { min: '1', step: '1' });
@@ -396,14 +669,34 @@ export function render(mountEl) {
 
   addForm.append(
     modeFieldset, existingWrap, newWrap,
-    field('How much', qtyInput),
+    field('How much', qtyInput, qtyHint),
     field('Measured in', unitSelect),
     field('Where it lives', locationInput),
     field('Usually keeps (days)', shelfInput, shelfHint),
     field('Last restocked', restockedInput, restockedHint),
     addError, addSubmit
   );
-  addSection.appendChild(addForm);
+  capturePanel.appendChild(addForm);
+
+  // ---- Just added -------------------------------------------------------
+  // During a stocktake the only list worth seeing is what you just entered,
+  // so a double-scan is caught while you still remember doing it.
+  const justAddedSection = el('div');
+  justAddedSection.hidden = true;
+  justAddedSection.appendChild(el('h3', { text: 'Just added' }));
+  const justAddedList = el('ul', { class: 'stock-rows' });
+  justAddedSection.appendChild(justAddedList);
+  capturePanel.appendChild(justAddedSection);
+
+  function renderJustAdded() {
+    const rows = justAdded
+      .map((id) => stock.find((row) => row.id === id))
+      .filter(Boolean)
+      .slice(0, 5);
+    justAddedSection.hidden = rows.length === 0;
+    justAddedList.replaceChildren();
+    for (const row of rows) justAddedList.appendChild(buildStockRow(row));
+  }
 
   // ---- Category confirmation after a scan -------------------------------
   // Same sentinel discipline as views/meals.js v7: a boolean flag was
@@ -462,11 +755,14 @@ export function render(mountEl) {
 
     if (existing.ok && existing.data && !existing.pending) {
       const food = existing.data;
-      // Already stocked? Send them to the card rather than making a second
-      // row — a duplicate splits the count and breaks the shortfall.
+      // Already stocked? Send them to the row rather than making a second
+      // one — a duplicate splits the count and breaks the shortfall.
       const alreadyStocked = stock.find((row) => row.food_id === food.id);
       if (alreadyStocked) {
-        scanNote.textContent = `${food.name} is already in the pantry. Change its amount on its card above.`;
+        openRows.add(alreadyStocked.id);
+        if (!justAdded.includes(alreadyStocked.id)) justAdded.unshift(alreadyStocked.id);
+        renderJustAdded();
+        scanNote.textContent = `${food.name} is already in the pantry. Its amount is open below.`;
         announce(scanNote.textContent);
         const input = document.getElementById(`stock-qty-${alreadyStocked.id}`);
         if (input) {
@@ -482,10 +778,11 @@ export function render(mountEl) {
       searchInput.value = '';
       rebuildFoodSelect();
       foodSelect.value = food.id;
-      syncShelfDefault();
-      scanNote.textContent = `${food.name} recognised. How much have you got?`;
+      syncDefaults();
+      scanNote.textContent = `${food.name} recognised. How many have you got?`;
       announce(scanNote.textContent);
       qtyInput.focus();
+      qtyInput.select();
       return;
     }
 
@@ -532,7 +829,7 @@ export function render(mountEl) {
     const isNew = modeNew.checked;
     existingWrap.hidden = isNew;
     newWrap.hidden = !isNew;
-    syncShelfDefault();
+    syncDefaults();
   }
 
   function chosenCategory() {
@@ -541,19 +838,25 @@ export function render(mountEl) {
     return (food && food.category) || 'food_ambient';
   }
 
-  function syncShelfDefault() {
-    // A VISIBLE default: it fills the box so the user sees and can change it,
-    // rather than a value written silently on save.
-    if (shelfInput.dataset.touched === 'true') return;
-    const days = defaultShelfLife(chosenCategory());
-    shelfInput.value = days == null ? '' : String(days);
+  function syncDefaults() {
+    // VISIBLE defaults: they fill the boxes so the user sees and can change
+    // them, rather than values written silently on save.
+    const category = chosenCategory();
+    if (shelfInput.dataset.touched !== 'true') {
+      const days = defaultShelfLife(category);
+      shelfInput.value = days == null ? '' : String(days);
+    }
+    if (unitSelect.dataset.touched !== 'true') {
+      unitSelect.value = defaultUnitFor(category);
+    }
   }
 
   shelfInput.addEventListener('input', () => { shelfInput.dataset.touched = 'true'; }, { signal });
+  unitSelect.addEventListener('change', () => { unitSelect.dataset.touched = 'true'; }, { signal });
   modeExisting.addEventListener('change', syncMode, { signal });
   modeNew.addEventListener('change', syncMode, { signal });
-  newCategorySelect.addEventListener('change', syncShelfDefault, { signal });
-  foodSelect.addEventListener('change', syncShelfDefault, { signal });
+  newCategorySelect.addEventListener('change', syncDefaults, { signal });
+  foodSelect.addEventListener('change', syncDefaults, { signal });
   searchInput.addEventListener('input', rebuildFoodSelect, { signal });
 
   function rebuildFoodSelect() {
@@ -590,6 +893,17 @@ export function render(mountEl) {
   addForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     addError.hidden = true;
+
+    // Checked here as well as by the attribute: constraint validation is a
+    // browser behaviour, and this path must not depend on it.
+    if (qtyInput.value.trim() === '') {
+      addError.textContent =
+        'Say how much you have. A blank amount reads as "none", and the shopping list '
+        + 'would buy it all over again.';
+      addError.hidden = false;
+      qtyInput.focus();
+      return;
+    }
 
     let foodId = foodSelect.value;
     let itemName = '';
@@ -675,13 +989,15 @@ export function render(mountEl) {
     // Deliberately NOT a full reset. Location and date persist because the
     // next twelve things are in the same cupboard, bought the same day.
     // Re-typing them is what stops a stocktake finishing.
-    announce(`${itemName} added: ${formatQuantity(result.data.current_qty, result.data.unit)}.`);
+    announce(`${itemName} added: ${describeAmount(result.data)}.`);
+    justAdded.unshift(result.data.id);
     newNameInput.value = '';
-    qtyInput.value = '';
+    qtyInput.value = '1';
     scannedExtras = null;
     clearCategorySentinel();
     searchInput.value = '';
     shelfInput.dataset.touched = 'false';
+    unitSelect.dataset.touched = 'false';
     await loadAll();
     if (destroyed) return;
     if (modeNew.checked) newNameInput.focus();
@@ -691,25 +1007,12 @@ export function render(mountEl) {
   // ============================ Loading =======================
 
   function renderStock() {
-    stockList.replaceChildren();
-    if (stock.length === 0) {
-      stockList.appendChild(el('p', {
-        text: 'Nothing in the pantry yet. Add what is in your cupboards below — '
-          + 'the shopping list uses it to work out what you actually need.'
-      }));
-      return;
-    }
-    // Grouped by category so a full cupboard stays navigable by heading.
-    const byCategory = groupByCategory(stock.map((row) => ({
-      ...row,
-      category: (row.foods && row.foods.category) || 'food_ambient'
-    })));
-    for (const group of byCategory) {
-      const heading = el('h3', { class: 'group-heading' });
-      heading.textContent = `${group.label} (${group.foods.length})`;
-      stockList.appendChild(heading);
-      for (const row of group.foods) stockList.appendChild(buildStockCard(row));
-    }
+    renderNeedsAmount();
+    renderUseSoon();
+    renderJustAdded();
+    rebuildLocationFilter();
+    if (mode === 'browse') renderBrowse();
+    if (mode === 'search') renderSearchResults();
   }
 
   async function loadStock() {
@@ -717,7 +1020,7 @@ export function render(mountEl) {
     if (destroyed) return;
     if (!result.ok) {
       console.error('Failed to load the pantry:', result.error);
-      stockList.replaceChildren(el('p', {
+      browseList.replaceChildren(el('p', {
         class: 'view-status',
         text: "Couldn't load your pantry. Check your connection, then reload this page."
       }));
@@ -725,7 +1028,6 @@ export function render(mountEl) {
     }
     stock = result.data;
     renderStock();
-    renderUseSoon();
     rebuildFoodSelect();
   }
 
@@ -738,7 +1040,7 @@ export function render(mountEl) {
     }
     foods = result.data;
     rebuildFoodSelect();
-    syncShelfDefault();
+    syncDefaults();
   }
 
   async function loadAll() {
@@ -746,7 +1048,7 @@ export function render(mountEl) {
     if (!destroyed) await loadStock();
   }
 
-  mountEl.append(useSoonSection, stockSection, addSection);
+  mountEl.append(fixSection, useSoonSection, modeGroup, capturePanel, browsePanel, searchPanel);
   syncMode();
   paintOfflineNote();
 

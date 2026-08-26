@@ -1,4 +1,6 @@
-// service-worker.js — 26 Aug 2026 v26
+// service-worker.js — 26 Aug 2026 v27
+// v27: no path changes. Bumped for the pantry rework — views/pantry.js v3,
+// data/pantry.js v2, components.css v15 all changed content.
 // v26: no path changes. CACHE_NAME bumped because css/base.css content
 // changed (the global [hidden] rule). Bumping on precached *content*
 // changes, not just script changes, is the standing rule.
@@ -79,7 +81,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v26';
+const CACHE_NAME = 'home-os-shell-v27';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

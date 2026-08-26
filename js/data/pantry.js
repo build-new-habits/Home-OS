@@ -1,4 +1,6 @@
-// js/data/pantry.js — 21 Aug 2026 v1
+// js/data/pantry.js — 26 Aug 2026 v2
+// v2: a blank amount is NULL ("not recorded"), never 0. See normaliseQty.
+//     Adds needsAmount() and defaultUnitFor().
 // All Supabase access for `pantry_stock`. Shared data-access contract:
 // { ok, data|error } returns, error always checked, nothing thrown at views,
 // no user_id on inserts (the column defaults to auth.uid(); RLS scopes it).
@@ -95,19 +97,54 @@ function normaliseDate(value) {
   return Number.isNaN(Date.parse(`${text}T00:00:00Z`)) ? null : text;
 }
 
+// ---- "How much" has three answers, not two ----
+// A blank amount used to be written as 0, and 0 means "you have none": the
+// shortfall treats it exactly like no pantry row at all, so a scanned shelf
+// of jars would have gone straight back onto the shopping list. Blank now
+// stores NULL — "amount not recorded" — which is a third, visible state.
+// Only a deliberately typed 0 means none.
+function normaliseQty(value) {
+  if (value === '' || value === null || value === undefined) return null;
+  const qty = Number(value);
+  if (!Number.isFinite(qty) || qty < 0) return null;
+  return Math.round(qty * 100) / 100;
+}
+
 function buildPayload(input) {
-  const qty = Number(input.current_qty);
   const shelf = input.shelf_life_days === '' || input.shelf_life_days == null
     ? null
     : Number(input.shelf_life_days);
   return {
     food_id: input.food_id,
-    current_qty: Number.isFinite(qty) && qty >= 0 ? Math.round(qty * 100) / 100 : 0,
+    current_qty: normaliseQty(input.current_qty),
     unit: isValidUnit(input.unit) ? input.unit : 'g',
     default_location: String(input.default_location || '').trim() || null,
     shelf_life_days: Number.isInteger(shelf) && shelf > 0 ? shelf : null,
     last_restocked: normaliseDate(input.last_restocked)
   };
+}
+
+/**
+ * Stock whose amount is missing or zero — nothing usable to diff against.
+ *
+ * Surfaced at the top of the pantry so a stocktake that skipped the amount
+ * can be finished, rather than quietly producing a shopping list that
+ * rebuys everything.
+ */
+export function needsAmount(rows) {
+  return (rows || []).filter((row) => row.current_qty == null || Number(row.current_qty) === 0);
+}
+
+/**
+ * The unit a new pantry row should start in, by category.
+ *
+ * You buy a JAR of harissa, not 180 grams of it — the pack size is already
+ * in the name. `item` is right for almost everything on a shelf; loose fresh
+ * food is the exception worth weighing. A starting point the user can
+ * change, never a silent decision.
+ */
+export function defaultUnitFor(category) {
+  return category === 'food_fresh' ? 'g' : 'item';
 }
 
 export async function addStock(input) {
@@ -129,11 +166,16 @@ export async function addStock(input) {
 export async function updateStock(stockId, patch = {}) {
   const next = {};
   if (patch.current_qty !== undefined) {
-    const qty = Number(patch.current_qty);
-    if (!Number.isFinite(qty) || qty < 0) {
-      return { ok: false, error: new Error('Enter a quantity of zero or more.') };
+    // '' clears the amount back to "not recorded" rather than to zero.
+    if (patch.current_qty === '' || patch.current_qty === null) {
+      next.current_qty = null;
+    } else {
+      const qty = Number(patch.current_qty);
+      if (!Number.isFinite(qty) || qty < 0) {
+        return { ok: false, error: new Error('Enter a quantity of zero or more.') };
+      }
+      next.current_qty = Math.round(qty * 100) / 100;
     }
-    next.current_qty = Math.round(qty * 100) / 100;
   }
   if (patch.unit !== undefined) {
     if (!isValidUnit(patch.unit)) {
