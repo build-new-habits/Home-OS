@@ -1,4 +1,6 @@
-// service-worker.js — 27 Aug 2026 v41
+// service-worker.js — 27 Aug 2026 v42
+// v42: no path changes. Bumped for views/meals.js v11 — ingredients can be
+// created from the recipe.
 // v41: no path changes. Bumped for the Phase 9 dashboard — views/dashboard.js
 // v3 and components.css v23.
 // v40: no path changes. Bumped for the holiday bridge and the per-recipe
@@ -109,7 +111,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v41';
+const CACHE_NAME = 'home-os-shell-v42';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

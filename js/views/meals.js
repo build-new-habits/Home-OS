@@ -1,4 +1,8 @@
-// js/views/meals.js — 27 Aug 2026 v10
+// js/views/meals.js — 27 Aug 2026 v11
+// v11: an ingredient can be created FROM the recipe. Writing a recipe is
+// not the moment to go and maintain a food library — a name and a category
+// is enough, macros are nullable, and the totals already say what is not
+// counted yet.
 // v10: a recipe says whether you have the ingredients. That was the whole
 // point of keeping a pantry, and until now nothing asked it.
 // v9: RECIPES, and only recipes.
@@ -106,7 +110,7 @@ import {
   // Recipes need only the list, plus updateFood for the inline conversion
   // factor prompt — filling that in at the moment it is needed beats
   // sending the user to another page and back.
-  listFoods, updateFood, isEdible, groupByCategory
+  listFoods, updateFood, createFood, isEdible, groupByCategory, FOOD_CATEGORIES
 } from '../data/foods.js';
 import {
   listMeals, listIngredients, groupByMeal, createMeal, updateMeal,
@@ -728,8 +732,47 @@ export function render(mountEl) {
     error.hidden = true;
     const submit = el('button', { type: 'submit', class: 'btn', text: 'Add ingredient' });
 
+    // ---- Something not on the list yet ----
+    // Writing a recipe is not the moment to go and maintain a food library.
+    // A name and a category is enough to be a real ingredient: macros are
+    // nullable, the totals already say "N of M not counted here", and they
+    // start counting the moment the numbers are filled in.
+    const newWrap = el('div');
+    newWrap.hidden = true;
+    const newNameInput = el('input', { id: `new-ingredient-name-${meal.id}`, type: 'text' });
+    // Edible categories only — this is being added AS an ingredient, so
+    // offering shampoo would be nonsense. Still a visible choice, never
+    // silent: storage state decides shelf life later.
+    const newCategorySelect = selectFrom(
+      `new-ingredient-category-${meal.id}`,
+      FOOD_CATEGORIES.filter((c) => isEdible({ category: c.value }))
+        .map((c) => ({ value: c.value, label: c.label }))
+    );
+    const newHint = el('p', {
+      class: 'field-hint', id: `new-ingredient-hint-${meal.id}`,
+      text: 'Just a name is enough. It goes on the shopping list if it is not in the pantry, '
+        + 'and the recipe says its nutrition is not counted yet — add the numbers whenever you like.'
+    });
+    newNameInput.setAttribute('aria-describedby', newHint.id);
+    newWrap.append(field('Name', newNameInput), field('Kind of food', newCategorySelect), newHint);
+
+    const newToggle = el('button', {
+      type: 'button', class: 'btn btn-small', 'aria-expanded': 'false',
+      text: 'It is not on the list yet'
+    });
+    newToggle.addEventListener('click', () => {
+      const open = newToggle.getAttribute('aria-expanded') === 'true';
+      newToggle.setAttribute('aria-expanded', String(!open));
+      newWrap.hidden = open;
+      picker.wrapper.hidden = !open;
+      newToggle.textContent = open ? 'It is not on the list yet' : 'Choose from the list instead';
+      if (!open) newNameInput.focus();
+    }, { signal });
+
     form.append(
       picker.wrapper,
+      newToggle,
+      newWrap,
       field('Quantity', qtyInput),
       field('Measured in', unitSelect),
       error,
@@ -739,20 +782,60 @@ export function render(mountEl) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       error.hidden = true;
-      if (!foodSelect.value) {
-        const edibleCount = foods.filter(isEdible).length;
-        error.textContent = edibleCount === 0
-          ? 'No foods to add yet. Add one further down this page, and give it a food category.'
-          : 'Choose a food to add.';
-        error.hidden = false;
-        foodSelect.focus();
-        return;
+
+      const creatingNew = newToggle.getAttribute('aria-expanded') === 'true';
+      let foodId = foodSelect.value;
+      let foodName = '';
+
+      if (creatingNew) {
+        const name = newNameInput.value.trim();
+        if (!name) {
+          error.textContent = 'Give the ingredient a name.';
+          error.hidden = false;
+          newNameInput.focus();
+          return;
+        }
+        // Match before creating, or every recipe adds another "Onion".
+        const existing = foods.find(
+          (food) => String(food.name || '').trim().toLowerCase() === name.toLowerCase()
+        );
+        if (existing) {
+          foodId = existing.id;
+          foodName = existing.name;
+        } else {
+          submit.disabled = true;
+          const created = await createFood({
+            name, category: newCategorySelect.value, source: 'manual'
+          });
+          submit.disabled = false;
+          if (destroyed) return;
+          if (!created.ok || created.queued) {
+            error.textContent = created.queued
+              ? 'That saved on this device, but a recipe ingredient needs it saved online first.'
+              : (created.error && created.error.message) || "Couldn't create that ingredient.";
+            error.hidden = false;
+            return;
+          }
+          foodId = created.data.id;
+          foodName = created.data.name;
+        }
+      } else {
+        if (!foodSelect.value) {
+          const edibleCount = foods.filter(isEdible).length;
+          error.textContent = edibleCount === 0
+            ? 'Nothing to choose yet — use "It is not on the list yet" to add one here.'
+            : 'Choose a food to add.';
+          error.hidden = false;
+          foodSelect.focus();
+          return;
+        }
+        foodName = foodSelect.options[foodSelect.selectedIndex].textContent;
       }
-      const foodName = foodSelect.options[foodSelect.selectedIndex].textContent;
+
       submit.disabled = true;
       const result = await addIngredient({
         meal_id: meal.id,
-        food_id: foodSelect.value,
+        food_id: foodId,
         quantity_g: qtyInput.value,
         unit: unitSelect.value
       });
@@ -767,6 +850,16 @@ export function render(mountEl) {
         return;
       }
       announce(`${foodName} added to ${meal.name}.`);
+      if (creatingNew) {
+        newNameInput.value = '';
+        // Back to the list: the thing just created is now ON it, and
+        // leaving the form in "create" mode invites a duplicate next time.
+        newToggle.setAttribute('aria-expanded', 'false');
+        newWrap.hidden = true;
+        picker.wrapper.hidden = false;
+        newToggle.textContent = 'It is not on the list yet';
+        await loadFoods();
+      }
       await loadMeals();
     }, { signal });
 

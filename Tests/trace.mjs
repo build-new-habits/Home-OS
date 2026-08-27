@@ -209,6 +209,56 @@ check('a blank meal name issues NO write', writes().length === 0, JSON.stringify
 check('and shows an error the user can read',
   !mealsMount.querySelector('#new-meal-error').hidden);
 
+// --- an ingredient can be created FROM the recipe ---
+// Writing a recipe is not the moment to go and maintain a food library.
+// A name and a category is enough: macros are nullable and the totals
+// already say what is not counted yet.
+clearCalls();
+// The ingredient form lives inside the recipe panel, so open a recipe —
+// the same journey a user makes.
+const recipeOpen = mealsMount.querySelector('.recipe-row-open');
+check('a recipe can be opened', !!recipeOpen);
+if (recipeOpen) click(recipeOpen);
+await settle(80);
+const recipePanel = window.document.querySelector('.sheet[role="dialog"]') || mealsMount;
+
+const newToggle = [...recipePanel.querySelectorAll('button')]
+  .find((b) => /not on the list yet/.test(b.textContent));
+check('a recipe offers to create an unknown ingredient', !!newToggle);
+if (newToggle) {
+  click(newToggle);
+  await settle(20);
+  const newName = recipePanel.querySelector('[id^="new-ingredient-name-"]');
+  check('the new-ingredient name field appears', !!newName);
+  if (newName) {
+    setValue(newName, 'Harissa paste');
+    const qty = recipePanel.querySelector('[id^="add-ingredient-qty-"]');
+    if (qty) setValue(qty, '30');
+    submit(newName.closest('form'));
+    await settle(120);
+
+    const foodWrite = writes().find((c) => c.table === 'foods' && c.op === 'insert');
+    check('it creates the food', !!foodWrite, JSON.stringify(writes()));
+    check('with no macros — they are filled in whenever, not now',
+      foodWrite && foodWrite.payload.calories_per_100g == null,
+      JSON.stringify(foodWrite && foodWrite.payload));
+    check('and an EDIBLE category, since it is being used as an ingredient',
+      foodWrite && /^food_/.test(foodWrite.payload.category || ''),
+      JSON.stringify(foodWrite && foodWrite.payload.category));
+    check('no user_id is ever sent (RLS supplies it)',
+      !foodWrite || !('user_id' in foodWrite.payload));
+
+    const ingWrite = writes().find((c) => c.table === 'meal_ingredients' && c.op === 'insert');
+    check('and links it to the recipe in the same action', !!ingWrite,
+      'otherwise the user has created a food and still has no ingredient');
+  }
+}
+// Leave no panel open for the blocks that follow.
+while (window.document.querySelector('.sheet[role="dialog"]')) {
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  await settle(20);
+}
+
 cleanupMeals();
 await settle(20);
 mealsMount.replaceChildren();
