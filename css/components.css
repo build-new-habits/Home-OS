@@ -1,4 +1,5 @@
-/* css/components.css — 27 Aug 2026 v22 */
+/* css/components.css — 27 Aug 2026 v23 */
+/* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
 /* v20: recipe rows, favourite star, servings scaler. Appended only. */
@@ -1932,6 +1933,57 @@ body.sheet-open {
 }
 
 .shopping-line .check-toggle {
+  flex: 0 0 auto;
+  min-height: var(--tap-min);
+}
+
+/* ---- Dashboard today cards (v23) ---- */
+
+.today-card {
+  margin-bottom: var(--space-4);
+}
+
+.today-list,
+.today-list > li {
+  list-style: none;
+}
+
+.today-list {
+  margin: 0 0 var(--space-2);
+  padding: 0;
+}
+
+.today-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.today-row:last-child {
+  border-bottom: 0;
+}
+
+/* Title above, detail below — never run together on one line. */
+.today-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.today-row-title {
+  font-weight: 700;
+}
+
+.today-row-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.today-row .check-toggle {
   flex: 0 0 auto;
   min-height: var(--tap-min);
 }

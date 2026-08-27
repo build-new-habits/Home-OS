@@ -640,6 +640,39 @@ check('dashboard: the button is never disabled mid-write',
   !!waterBtn && waterBtn.disabled === false,
   'a dead control reads as a crash on a tap-heavy action');
 
+// ---- Sections appear only when they have something to say --------------
+// Six cards each reporting their own emptiness is worse than no cards.
+const dueSection = [...dashMount.querySelectorAll('.today-card')]
+  .find((c) => /Chores due today/.test(c.textContent));
+check('dashboard: chores due today are surfaced', !!dueSection && !dueSection.hidden,
+  'the fixture has a daily chore anchored before today and no completion');
+check('dashboard: a due chore names its project, not just its title',
+  !!dueSection && /Kitchen/.test(dueSection.textContent));
+
+// Ticking here writes a completion for TODAY, never chore_tasks.status.
+const dueTick = dueSection && dueSection.querySelector('.check-toggle');
+check('dashboard: a due chore can be ticked from here', !!dueTick);
+check('dashboard: the tick states what it is and that it is not done',
+  !!dueTick && /due today, not done/.test(dueTick.getAttribute('aria-label') || ''));
+
+const eatingSection = [...dashMount.querySelectorAll('.today-card')]
+  .find((c) => /Eating today/.test(c.textContent));
+// The fixture plans Porridge on MONDAY only, so this section is present or
+// absent depending on the day the gate runs. Either is correct; what must
+// never happen is a visible card with nothing in it.
+const emptyCards = [...dashMount.querySelectorAll('.today-card')]
+  .filter((c) => !c.hidden && c.querySelectorAll('li, p, a').length === 0);
+check('dashboard: no visible card is empty', emptyCards.length === 0,
+  `${emptyCards.length} empty card(s) on screen`);
+void eatingSection;
+
+check('dashboard: every heading level is used in order',
+  (() => {
+    const levels = [...dashMount.querySelectorAll('h1,h2,h3')].map((h) => Number(h.tagName[1]));
+    for (let i = 1; i < levels.length; i++) if (levels[i] - levels[i - 1] > 1) return false;
+    return true;
+  })());
+
 // The bottom-bar four must not be duplicated in the list below.
 const dashHrefs = [...dashMount.querySelectorAll('.hub-link')]
   .map((a) => a.getAttribute('href'));
