@@ -1,4 +1,5 @@
-// service-worker.js — 26 Aug 2026 v31
+// service-worker.js — 26 Aug 2026 v32
+// v32: ONE new path, js/views/kitchen.js.
 // v31: no path changes. Bumped for dashboard v2 (one-tap water, curated
 // link list), navConfig v2 and components.css v18.
 // v30: FOUR new paths — navConfig.js, data/completions.js,
@@ -92,7 +93,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v31';
+const CACHE_NAME = 'home-os-shell-v32';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -152,7 +153,8 @@ const SHELL_FILES = [
   './js/views/shopping.js',
   './js/views/holidays.js',
   './js/views/calendar.js',
-  './js/views/health.js'
+  './js/views/health.js',
+  './js/views/kitchen.js'
 ];
 self.addEventListener('install', (event) => {
   event.waitUntil(

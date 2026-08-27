@@ -425,10 +425,44 @@ check('dashboard: no duplicate links to what is already in the nav bar',
 check('dashboard: no duplicate links to what is behind Health',
   !dashHrefs.some((h) => ['#/water', '#/weight', '#/exercises'].includes(h)),
   dashHrefs.join(' '));
-check('dashboard: the rest of the app is still reachable',
-  ['#/meals', '#/pantry', '#/shopping', '#/holidays', '#/settings']
-    .every((h) => dashHrefs.includes(h)));
+check('dashboard: what is left is still reachable from here',
+  ['#/holidays', '#/settings'].every((h) => dashHrefs.includes(h)));
+
+// ---- No route may become an orphan -------------------------------------
+// Consolidating into hubs is how a page quietly stops being reachable at
+// all: it is removed from the dashboard and nobody adds it to the hub. This
+// asserts the whole route table is reachable from SOMEWHERE, so the next
+// consolidation cannot strand a page.
+const navMod = await import(pathToFileURL(path.join(REPO, 'js/navConfig.js')).href);
+const routesMod = await import(pathToFileURL(path.join(REPO, 'js/routes.js')).href);
+const reachable = new Set([
+  ...navMod.NAV_ITEMS.map((i) => i.path),
+  ...navMod.DASHBOARD_LINKS.map((i) => i.path),
+  ...navMod.HEALTH_PAGES.map((i) => i.path),
+  ...navMod.KITCHEN_PAGES.map((i) => i.path)
+]);
+const orphans = routesMod.routes.map((r) => r.path).filter((p) => !reachable.has(p));
+check('every route is reachable from the nav bar or a hub',
+  orphans.length === 0, orphans.length ? `orphaned: ${orphans.join(', ')}` : '');
 check('dashboard: exactly one h1', dashMount.querySelectorAll('h1').length === 1);
+
+// ================= Kitchen hub =================
+console.log('');
+const kitMount = window.document.createElement('main');
+window.document.body.appendChild(kitMount);
+const kitMod = await import(pathToFileURL(path.join(REPO, 'js/views/kitchen.js')).href);
+kitMod.render(kitMount, {});
+await new Promise((r) => setTimeout(r, 60));
+
+const kitLinks = [...kitMount.querySelectorAll('.hub-link')];
+check('kitchen: the hub links to all three pages', kitLinks.length === 3);
+check('kitchen: links point at real routes',
+  kitLinks.every((a) => /^#\/(meals|pantry|shopping)$/.test(a.getAttribute('href') || '')));
+check('kitchen: shopping comes first — it is what you open in a shop',
+  (kitLinks[0] || {}).getAttribute && kitLinks[0].getAttribute('href') === '#/shopping');
+check('kitchen: every link has an accessible name',
+  kitLinks.every((a) => (a.getAttribute('aria-label') || a.textContent.trim()).length > 0));
+check('kitchen: exactly one h1', kitMount.querySelectorAll('h1').length === 1);
 
 // ================= Calendar =================
 console.log('');
@@ -511,4 +545,4 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, calendar, health)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, calendar, health, kitchen)`);

@@ -93,6 +93,11 @@ export const routes = [
     path: 'health',
     title: 'Health',
     load: () => import('./views/health.js')
+  },
+  {
+    path: 'kitchen',
+    title: 'Kitchen',
+    load: () => import('./views/kitchen.js')
   }
 ];
 

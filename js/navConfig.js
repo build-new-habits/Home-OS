@@ -1,4 +1,7 @@
-// js/navConfig.js — 26 Aug 2026 v2
+// js/navConfig.js — 26 Aug 2026 v3
+// v3: adds Kitchen. Meals, pantry and shopping are not three peers — they
+// are one pipeline (plan a week, diff it against the cupboards, buy the
+// difference, stock the cupboards, cook), so they sit behind one entry.
 // v2: adds DASHBOARD_LINKS.
 // Which four things sit in the bottom bar.
 //
@@ -23,6 +26,7 @@
 export const NAV_ITEMS = [
   { path: 'dashboard', label: 'Dashboard', icon: '⌂' },
   { path: 'health', label: 'Health', icon: '♡' },
+  { path: 'kitchen', label: 'Kitchen', icon: '☰' },
   { path: 'chores', label: 'Chores', icon: '✓' },
   { path: 'calendar', label: 'Calendar', icon: '▤' }
 ];
@@ -37,11 +41,23 @@ export const NAV_ITEMS = [
  * judgement, not "everything that exists".
  */
 export const DASHBOARD_LINKS = [
-  { path: 'meals', title: 'Meals', blurb: 'Recipes and the weekly plan.' },
-  { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' },
-  { path: 'shopping', title: 'Shopping list', blurb: 'What you still need to buy.' },
   { path: 'holidays', title: 'Holidays', blurb: 'Trips and their checklists.' },
   { path: 'settings', title: 'Settings', blurb: 'Themes, units and your account.' }
+];
+
+/**
+ * Pages behind the Kitchen hub.
+ *
+ * THE COST, STATED: the shopping list becomes two taps while you are
+ * standing in a shop. Judged acceptable where water was not — water is
+ * eight times a day, a shop is twice a week, and ticking items is fast once
+ * you are there. If it grates in the aisle, promote Shopping back out
+ * rather than defend the structure.
+ */
+export const KITCHEN_PAGES = [
+  { path: 'shopping', title: 'Shopping list', blurb: 'What you still need to buy.' },
+  { path: 'meals', title: 'Meals', blurb: 'Recipes and the weekly plan.' },
+  { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' }
 ];
 
 /**
