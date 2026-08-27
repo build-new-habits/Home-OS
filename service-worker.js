@@ -1,4 +1,6 @@
-// service-worker.js — 27 Aug 2026 v38
+// service-worker.js — 27 Aug 2026 v39
+// v39: TWO new paths — lib/shortfall.js and data/shopping.js. The shopping
+// list stub is replaced by the real view (same path, new content).
 // v38: no path changes. Bumped for use_by (revision 7) — data/pantry.js v3,
 // views/pantry.js, lib/openFoodFacts.js pack-size parsing.
 // v37: no path changes. Bumped for the holidays rework — views/holidays.js
@@ -103,7 +105,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v38';
+const CACHE_NAME = 'home-os-shell-v39';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -128,6 +130,7 @@ const SHELL_FILES = [
   './js/lib/net.js',
   './js/lib/dates.js',
   './js/lib/units.js',
+  './js/lib/shortfall.js',
   './js/lib/rrule.js',
   './js/lib/barcode.js',
   './js/lib/openFoodFacts.js',
@@ -136,6 +139,7 @@ const SHELL_FILES = [
   './js/data/chores.js',
   './js/data/calendar.js',
   './js/data/completions.js',
+  './js/data/shopping.js',
   './js/data/weight.js',
   './js/data/holidays.js',
   './js/data/pantry.js',

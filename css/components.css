@@ -1,4 +1,5 @@
-/* css/components.css — 26 Aug 2026 v21 */
+/* css/components.css — 27 Aug 2026 v22 */
+/* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
 /* v20: recipe rows, favourite star, servings scaler. Appended only. */
 /* v19: chores project accordion and task rows. Appended only. */
@@ -1863,4 +1864,74 @@ body.sheet-open {
 
 .item-group + .item-group {
   margin-top: var(--space-4);
+}
+
+/* ---- Shopping list (v22) ----
+   Used in a shop: one hand, moving, no signal. Full-size targets, and the
+   amount never runs into the label beside it. */
+
+.shopping-rows,
+.shopping-rows > li {
+  list-style: none;
+}
+
+.shopping-rows {
+  margin: 0 0 var(--space-5);
+  padding: 0;
+}
+
+.shopping-entry {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.shopping-entry-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.shopping-entry-name {
+  font-weight: 700;
+}
+
+.shopping-entry-total {
+  color: var(--color-text-muted);
+}
+
+.shopping-lines,
+.shopping-lines > li {
+  list-style: none;
+}
+
+.shopping-lines {
+  margin: var(--space-2) 0 0;
+  padding: 0;
+}
+
+.shopping-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+}
+
+/* Amount above, source beneath — never the two run together on one line. */
+.shopping-line-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.shopping-line-source {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.shopping-line .check-toggle {
+  flex: 0 0 auto;
+  min-height: var(--tap-min);
 }

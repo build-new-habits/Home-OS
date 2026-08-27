@@ -40,6 +40,7 @@ const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/j
 const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
+const { computeShortfall, describeShortfall } = await import(`${REPO}/js/lib/shortfall.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
 // ============ Macros, against a hand calculation ============
@@ -393,6 +394,68 @@ check('an estimate KEEPS the word "about"',
   /about/i.test(describeFreshness(freshness({ last_restocked: '2026-08-20', shelf_life_days: 40 }, '2026-08-21'))));
 check('a real date is written unambiguously, never 03/09',
   /3 September 2026/.test(describeFreshness(freshness({ use_by: '2026-09-03' }, '2026-08-21'))));
+
+console.log('\nShortfall — the meal plan minus the pantry');
+// Hand-calculated. Porridge serves 2: 100 g oats, 200 ml milk, 2 eggs.
+const sfOats = { id: 'f1', name: 'Oats' };
+const sfMilk = { id: 'f2', name: 'Milk', grams_per_ml: 1.03 };
+const sfEggs = { id: 'f3', name: 'Eggs' };
+const sfFoods = [sfOats, sfMilk, sfEggs];
+const sfPlan = [{ meal_id: 'm1', serves_override: null, meals: { id: 'm1', name: 'Porridge', default_serves: 2 } }];
+const sfIngredients = [
+  { meal_id: 'm1', food_id: 'f1', quantity_g: 100, unit: 'g', foods: sfOats },
+  { meal_id: 'm1', food_id: 'f2', quantity_g: 200, unit: 'ml', foods: sfMilk },
+  { meal_id: 'm1', food_id: 'f3', quantity_g: 2, unit: 'item', foods: sfEggs }
+];
+const sf = (pantry, plan = sfPlan) => computeShortfall({
+  plan, ingredients: sfIngredients, pantry, foods: sfFoods, todayISO: '2026-08-27'
+});
+const find = (result, name) => result.items.find((i) => i.food.name === name);
+
+eq('an empty pantry needs all three', sf([]).items.length, 3);
+
+// RULE 1: enough stock produces NO line. This is the difference between a
+// shopping list and an inventory printout.
+check('a food with enough stock does not appear at all',
+  !find(sf([{ food_id: 'f1', current_qty: 500, unit: 'g', foods: sfOats }]), 'Oats'));
+
+// RULE 2: no pantry row means zero, not unknown.
+eq('a food with no pantry row is needed in full', find(sf([]), 'Oats').shortfall, 100);
+
+eq('partial stock is subtracted',
+  find(sf([{ food_id: 'f1', current_qty: 60, unit: 'g', foods: sfOats }]), 'Oats').shortfall, 40);
+
+// RULE 3: NULL is "not recorded" and is NOT zero and NOT enough.
+const unrecorded = find(sf([{ food_id: 'f1', current_qty: null, unit: 'g', foods: sfOats }]), 'Oats');
+check('an unrecorded amount is listed but flagged as not comparable', !unrecorded.comparable);
+check('and the line says why', /never recorded/.test(describeShortfall(unrecorded)));
+
+// RULE 5: past its use-by is not stock — you cannot cook with it.
+const expired = find(sf([{ food_id: 'f1', current_qty: 500, unit: 'g', use_by: '2026-08-20', foods: sfOats }]), 'Oats');
+check('stock past its use-by is not counted', !!expired && expired.shortfall === 100);
+check('and the line says it is out of date rather than pretending the cupboard is empty',
+  /past its use-by/.test(describeShortfall(expired)));
+
+// A serves_override scales the requirement.
+eq('doubling the servings doubles what is needed',
+  find(sf([], [{ meal_id: 'm1', serves_override: 4, meals: { id: 'm1', name: 'Porridge', default_serves: 2 } }]), 'Oats').shortfall, 200);
+
+// THE POISON CASE: dividing by zero would make every figure Infinity.
+const broken = sf([], [{ meal_id: 'm1', serves_override: null, meals: { id: 'm1', name: 'Broken', default_serves: 0 } }]);
+eq('a meal with zero servings poisons nothing', broken.items.length, 0);
+eq('and it is reported as skipped rather than dropped', broken.skipped.length, 1);
+
+// Arithmetic in grams, shopping in the unit you buy in.
+const milkShort = find(sf([{ food_id: 'f2', current_qty: 50, unit: 'ml', foods: sfMilk }]), 'Milk');
+eq('milk is shopped for in millilitres, not grams', milkShort.unit, 'ml');
+eq('and the shortfall is right', milkShort.shortfall, 150);
+check('what you already hold is stated, not reported as none',
+  /you have 50 ml/.test(describeShortfall(milkShort)), describeShortfall(milkShort));
+
+// No conversion factor: list the full amount and SAY SO. Never guess.
+const sfNoFactor = find(sf([{ food_id: 'f3', current_qty: 6, unit: 'item', foods: sfEggs }]), 'Eggs');
+check('a unit that cannot be converted is flagged, never silently converted',
+  !sfNoFactor || !sfNoFactor.comparable || sfNoFactor.unit === 'item');
 
 console.log('\nPack size is read from the label, or refused');
 // A wrong pack size becomes the amount you are recorded as having, and the

@@ -1,4 +1,5 @@
-// js/views/kitchen.js — 26 Aug 2026 v1
+// js/views/kitchen.js — 27 Aug 2026 v2
+// v2: the shopping card carries a real count now the list exists.
 // Meals, pantry and shopping behind one entry.
 //
 // These three are not peers the way exercises, weight and water are. They
@@ -23,6 +24,7 @@ import { KITCHEN_PAGES } from '../navConfig.js';
 import { listPlan, DAYS } from '../data/mealPlan.js';
 import { listMeals } from '../data/meals.js';
 import { listStock, useSoon, needsAmount } from '../data/pantry.js';
+import { listItems as listShoppingItems } from '../data/shopping.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -126,15 +128,21 @@ export function render(mountEl) {
     setStatus('pantry', bits.join(' · '));
   }
 
-  function loadShopping() {
-    // No count offered, deliberately. data/shopping.js does not exist yet
-    // (Phase 7, part two), and inventing a number here would be trusted in
-    // a shop and be wrong.
-    setStatus('shopping', 'Not built yet — arriving with the shortfall diff');
+  async function loadShopping() {
+    const result = await listShoppingItems();
+    if (destroyed || !result.ok) return;
+    const rows = result.data || [];
+    if (rows.length === 0) {
+      setStatus('shopping', 'Nothing on the list');
+      return;
+    }
+    const outstanding = rows.filter((row) => row.status === 'needed').length;
+    setStatus('shopping', outstanding === 0
+      ? `${rows.length} item${rows.length === 1 ? '' : 's'}, all got`
+      : `${outstanding} still to get`);
   }
 
-  loadShopping();
-  Promise.allSettled([loadMeals(), loadPantry()]).then((results) => {
+  Promise.allSettled([loadShopping(), loadMeals(), loadPantry()]).then((results) => {
     for (const result of results) {
       if (result.status === 'rejected') console.error('Kitchen summary failed:', result.reason);
     }

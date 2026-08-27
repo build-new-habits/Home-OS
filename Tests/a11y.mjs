@@ -42,6 +42,15 @@ function fixture(t) {
     { id:'st-3', food_id:'food-3', default_location:'Kitchen cupboard', shelf_life_days:365,
       current_qty:null, unit:'item', last_restocked:'2026-08-26',
       foods:{ id:'food-3', name:'Harissa', category:'food_ambient', grams_per_ml:null, grams_per_item:null } }];
+  if (t === 'shopping_list_items') return [
+    // The same food twice — once generated, once a staple. Separate rows on
+    // purpose: `source` is what makes regeneration safe.
+    { id:'sh-1', food_id:'food-1', qty_needed:400, unit:'g', source:'meal_plan', status:'needed',
+      foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient' } },
+    { id:'sh-2', food_id:'food-1', qty_needed:100, unit:'g', source:'usual', status:'needed',
+      foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient' } },
+    { id:'sh-3', food_id:'food-2', qty_needed:1, unit:'item', source:'holiday', status:'bought',
+      foods:{ id:'food-2', name:'Sun cream', category:'personal' } }];
   if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
     { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete', kind:'pack' },
@@ -262,6 +271,70 @@ let ordered = true;
 for (let i = 1; i < levels.length; i++) if (levels[i] - levels[i - 1] > 1) ordered = false;
 check('heading levels never skip a level', ordered, levels.join(','));
 check('exactly one h1', mount.querySelectorAll('h1').length === 1);
+
+// ================= Shopping list =================
+// Used in a shop: no signal, one hand, moving.
+await closeAnySheet();
+const shopMount = window.document.createElement('main');
+window.document.body.appendChild(shopMount);
+const shopMod = await import(pathToFileURL(path.join(REPO, 'js/views/shopping.js')).href);
+shopMod.render(shopMount, {});
+await new Promise((r) => setTimeout(r, 80));
+
+// AISLE ORDER, never alphabetical. Cupboard food before toiletries.
+const shopHeadings = [...shopMount.querySelectorAll('.group-heading')].map((h) => h.textContent);
+check('shopping: the list is grouped into aisles', shopHeadings.length === 2, shopHeadings.join(' | '));
+check('shopping: aisle order puts food before toiletries',
+  /Cupboard|food/i.test(shopHeadings[0] || ''), shopHeadings.join(' | '));
+check('shopping: each aisle heading carries its count',
+  shopHeadings.every((h) => /\(\d+\)/.test(h)), shopHeadings.join(' | '));
+
+// One food, one entry, even though it arrived as two rows.
+const entries = [...shopMount.querySelectorAll('.shopping-entry')];
+check('shopping: one food is one entry', entries.length === 2, `found ${entries.length}`);
+const oatEntry = entries.find((e) => /Rolled oats/.test(e.textContent));
+check('shopping: a food arriving twice shows its name once',
+  !!oatEntry && oatEntry.querySelectorAll('.shopping-entry-name').length === 1);
+check('shopping: with a line for each source', !!oatEntry
+  && oatEntry.querySelectorAll('.shopping-line').length === 2);
+check('shopping: and each line SAYS where it came from',
+  !!oatEntry && /weekly plan/.test(oatEntry.textContent) && /staple/.test(oatEntry.textContent),
+  'two rows for one food read as a bug unless the reason is stated');
+// Matching units may be totalled. Grams must never be added to items.
+check('shopping: matching units are totalled',
+  !!oatEntry && /500 g/.test(oatEntry.textContent), oatEntry && oatEntry.textContent);
+
+// Every quantity carries its unit as text — never a bare number.
+const shopLines = [...shopMount.querySelectorAll('.shopping-line-text')];
+// Read per-span, not per-block: textContent concatenates the amount and the
+// source with no separator, which is a fact about textContent rather than
+// about the rendering. The layout puts them on separate lines.
+check('shopping: every amount states its unit',
+  shopLines.every((l) => /^\s*\d+(\.\d+)?\s*(g|ml|items?)\b/.test(l.firstChild.textContent)
+    || /Amount not set/.test(l.firstChild.textContent)),
+  shopLines.map((l) => l.firstChild.textContent).join(' | '));
+check('shopping: the amount and its source are separate elements',
+  shopLines.every((l) => l.children.length >= 1),
+  'run together, they read as "400 gfrom your weekly plan"');
+
+// Status is a word and aria-pressed, never a colour.
+const shopToggle = shopMount.querySelector('.check-toggle');
+check('shopping: items can be ticked off', !!shopToggle);
+check('shopping: the tick states its status in words',
+  !!shopToggle && /Still to get|Already have|Bought/.test(shopToggle.textContent));
+check('shopping: and reports it to assistive tech',
+  !!shopToggle && shopToggle.getAttribute('aria-pressed') !== null);
+check('shopping: the tick says what the next tap will do',
+  !!shopToggle && /Tap for/.test(shopToggle.getAttribute('aria-label') || ''));
+check('shopping: the tick is never disabled',
+  !!shopToggle && shopToggle.disabled === false,
+  'a dead control in a shop reads as a crash');
+
+check('shopping: exactly one h1', shopMount.querySelectorAll('h1').length === 1);
+const shopLevels = [...shopMount.querySelectorAll('h1,h2,h3')].map((h) => Number(h.tagName[1]));
+let shopOrdered = true;
+for (let i = 1; i < shopLevels.length; i++) if (shopLevels[i] - shopLevels[i - 1] > 1) shopOrdered = false;
+check('shopping: heading levels never skip', shopOrdered, shopLevels.join(','));
 
 // ================= Things you buy =================
 await closeAnySheet();
@@ -808,4 +881,4 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, foods, holidays, pantry, chores, calendar, health, kitchen)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, foods, shopping, holidays, pantry, chores, calendar, health, kitchen)`);
