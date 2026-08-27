@@ -1,4 +1,17 @@
-// js/views/meals.js — 21 Aug 2026 v8
+// js/views/meals.js — 26 Aug 2026 v9
+// v9: RECIPES, and only recipes.
+//
+//   * The weekly-plan code is deleted. It lives in views/mealPlan.js.
+//   * Recipes are one compact row each, opened in the slide-out panel with
+//     their ingredients inside. A wall of full cards, each with a macro
+//     table and an ingredient list, was unreadable past about six recipes.
+//   * Favourites, so the ten things you actually cook are reachable.
+//   * breakfast / lunch / dinner / snack / drink, filtered from the panel.
+//   * Macros scale to a chosen number of servings, not just the recipe's
+//     own default.
+//
+// The foods library is still in this file and comes out next; it is a
+// separate concern with its own scanner and offline queue.
 //
 // ---- The weekly plan moved out (26 Aug 2026) ----
 // It lives in views/mealPlan.js and its own route. This file no longer
@@ -95,12 +108,9 @@ import {
   listMeals, listIngredients, groupByMeal, createMeal, updateMeal,
   countPlanEntries, countIngredients, deleteMeal,
   addIngredient, updateIngredient, removeIngredient,
-  computeMacros, MACROS, INGREDIENT_UNITS, formatIngredientQuantity
+  computeMacros, MACROS, INGREDIENT_UNITS, formatIngredientQuantity,
+  MEAL_TYPES, mealTypeLabel, setFavourite
 } from '../data/meals.js';
-import {
-  DAYS, SLOTS, listPlan, groupByCell, addPlanEntry, updatePlanEntry,
-  removePlanEntry, servesFor
-} from '../data/mealPlan.js';
 import { isScanSupported, normaliseBarcode } from '../lib/barcode.js';
 import { openScanner as openScannerDialog } from '../components/scannerDialog.js';
 import { lookupBarcode } from '../lib/openFoodFacts.js';
@@ -108,6 +118,7 @@ import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
+import { openDetailSheet } from '../components/detailSheet.js';
 import { announce } from '../lib/a11y.js';
 
 // Local element helper. Deliberately defined here rather than copied in from
@@ -232,16 +243,6 @@ function formatMacro(value, unit, known) {
   return `${Math.round(Number(value) * 10) / 10} ${unit}`;
 }
 
-function labelForDay(value) {
-  const found = DAYS.find((day) => day.value === value);
-  return found ? found.label : value;
-}
-
-function labelForSlot(value) {
-  const found = SLOTS.find((slot) => slot.value === value);
-  return found ? found.label : value;
-}
-
 export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
@@ -255,7 +256,6 @@ export function render(mountEl) {
   let pendingFoods = [];
   let meals = [];
   let ingredientsByMeal = new Map();
-  let planByCell = new Map();
 
   mountEl.appendChild(el('h1', { text: 'Meals' }));
 
@@ -273,238 +273,24 @@ export function render(mountEl) {
     }
   }
 
-  // ================= Section: the weekly plan =================
-
-  const planSection = el('section');
-  planSection.appendChild(el('h2', { text: 'This week' }));
-  planSection.appendChild(el('p', {
-    class: 'field-hint',
-    text: 'The same plan repeats each week until you change it. Days run down, meal times run across.'
-  }));
-
-  // A focusable, labelled scroll region: when the table is wider than the
-  // screen it must still be reachable and scrollable from the keyboard.
-  const planScroll = el('div', {
-    class: 'plan-scroll',
-    role: 'region',
-    'aria-label': 'Weekly meal plan, scrollable',
-    tabindex: '0'
-  });
-  const planTable = el('table', { class: 'plan-table' });
-  planScroll.appendChild(planTable);
-  planSection.appendChild(planScroll);
-
-  const planFormWrap = el('div');
-  planSection.appendChild(planFormWrap);
-
-  function buildPlanTable() {
-    planTable.replaceChildren();
-    planTable.appendChild(el('caption', {
-      class: 'sr-only',
-      text: 'Weekly meal plan. Each row is a day of the week, each column a meal time.'
-    }));
-
-    const thead = el('thead');
-    const headRow = el('tr');
-    // The corner cell heads the row-header column, so it is a real header.
-    headRow.appendChild(el('th', { scope: 'col', text: 'Day' }));
-    for (const slot of SLOTS) {
-      headRow.appendChild(el('th', { scope: 'col', text: slot.label }));
-    }
-    thead.appendChild(headRow);
-    planTable.appendChild(thead);
-
-    const tbody = el('tbody');
-    for (const day of DAYS) {
-      const row = el('tr');
-      row.appendChild(el('th', { scope: 'row', text: day.label }));
-      for (const slot of SLOTS) {
-        row.appendChild(buildPlanCell(day, slot));
-      }
-      tbody.appendChild(row);
-    }
-    planTable.appendChild(tbody);
-  }
-
-  function buildPlanCell(day, slot) {
-    const cell = el('td');
-    const entries = planByCell.get(`${day.value}:${slot.value}`) || [];
-
-    if (entries.length === 0) {
-      // Stated as a fact, not as a gap someone failed to fill.
-      cell.appendChild(el('p', { class: 'plan-empty', text: 'Nothing planned' }));
-    } else {
-      const list = el('ul', { class: 'plan-entries' });
-      for (const entry of entries) {
-        list.appendChild(buildPlanEntry(entry, day, slot));
-      }
-      cell.appendChild(list);
-    }
-
-    const addBtn = el('button', { type: 'button', class: 'btn btn-small', text: 'Add' });
-    addBtn.setAttribute('aria-label', `Add a meal to ${day.label} ${slot.label.toLowerCase()}`);
-    addBtn.addEventListener('click', () => {
-      planDaySelect.value = day.value;
-      planSlotSelect.value = slot.value;
-      planMealSelect.focus();
-      announce(`Adding a meal to ${day.label} ${slot.label.toLowerCase()}. Choose a meal below.`);
-    }, { signal });
-    cell.appendChild(addBtn);
-
-    return cell;
-  }
-
-  function buildPlanEntry(entry, day, slot) {
-    const item = el('li', { class: 'plan-entry' });
-    const meal = entry.meals || entry.meal || {};
-    const mealName = meal.name || 'Meal';
-    const serves = servesFor(entry);
-    const overridden = entry.serves_override !== null && entry.serves_override !== undefined;
-
-    item.appendChild(el('span', { class: 'plan-entry-name', text: mealName }));
-    item.appendChild(el('span', {
-      class: 'plan-entry-serves',
-      text: `Serves ${serves}${overridden ? ' (this one only)' : ''}`
-    }));
-
-    const servesInput = el('input', {
-      id: `plan-serves-${entry.id}`,
-      type: 'number',
-      min: '1',
-      step: '1',
-      inputmode: 'numeric',
-      class: 'plan-serves-input'
-    });
-    servesInput.value = overridden ? String(entry.serves_override) : '';
-    servesInput.placeholder = String(meal.default_serves || 1);
-    const servesLabel = el('label', {
-      for: servesInput.id,
-      class: 'sr-only',
-      text: `Servings for ${mealName} on ${day.label} ${slot.label.toLowerCase()}. `
-        + `Leave blank to use the meal's usual ${meal.default_serves || 1}.`
-    });
-    item.append(servesLabel, servesInput);
-
-    servesInput.addEventListener('change', async () => {
-      // serves_override is per-entry and must never touch meals.default_serves.
-      const result = await updatePlanEntry(entry.id, { serves_override: servesInput.value });
-      if (destroyed) return;
-      if (!result.ok) {
-        console.error('Failed to update servings:', result.error);
-        showToast("Couldn't change the servings — check your connection and try again.");
-        return;
-      }
-      announce(`Servings updated for ${mealName}.`);
-      // loadPlan() rebuilds the whole table, destroying the input the user
-      // is standing in and dropping focus to <body>. Ids are stable, so put
-      // focus back where it was (WCAG 3.2.2 — a change of setting must not
-      // disorientate).
-      await loadPlan();
-      if (!destroyed) restoreFocus(`plan-serves-${entry.id}`);
-    }, { signal });
-
-    const removeBtn = el('button', { type: 'button', class: 'btn btn-small btn-danger', text: 'Remove' });
-    removeBtn.setAttribute(
-      'aria-label',
-      `Remove ${mealName} from ${day.label} ${slot.label.toLowerCase()}`
-    );
-    removeBtn.addEventListener('click', async () => {
-      const confirmed = await confirmDialog({
-        title: `Remove ${mealName}?`,
-        message: `This takes it off ${day.label} ${slot.label.toLowerCase()}. The meal itself is kept.`,
-        confirmLabel: 'Remove',
-        cancelLabel: 'Keep it'
-      });
-      if (!confirmed || destroyed) return;
-      const result = await removePlanEntry(entry.id);
-      if (destroyed) return;
-      if (!result.ok) {
-        console.error('Failed to remove a plan entry:', result.error);
-        showToast("Couldn't remove that — check your connection and try again.");
-        return;
-      }
-      announce(`${mealName} removed from ${day.label} ${slot.label.toLowerCase()}.`);
-      await loadPlan();
-    }, { signal });
-    item.appendChild(removeBtn);
-
-    return item;
-  }
-
-  // ---- Add-to-plan form ----
-  // One form under the table rather than 28 inline ones. Day and slot are
-  // <select> because both columns carry CHECK constraints (standing rule 1).
-  const planForm = el('form');
-  planForm.setAttribute('aria-label', 'Add a meal to the weekly plan');
-
-  const planDaySelect = selectFrom('plan-day', DAYS.map((day) => ({ value: day.value, label: day.label })));
-  const planSlotSelect = selectFrom('plan-slot', SLOTS.map((slot) => ({ value: slot.value, label: slot.label })));
-  const planMealSelect = selectFrom('plan-meal', [], { includeBlank: 'Choose a meal' });
-  const planServesInput = numberInput('plan-serves-new', { min: '1', step: '1' });
-  const planServesHint = el('p', {
-    class: 'field-hint',
-    id: 'plan-serves-new-hint',
-    text: "Leave blank to use the meal's usual servings."
-  });
-  planServesInput.setAttribute('aria-describedby', 'plan-serves-new-hint');
-
-  const planError = el('p', { class: 'field-error', id: 'plan-error', role: 'alert' });
-  planError.hidden = true;
-
-  const planSubmit = el('button', {
-    type: 'submit', class: 'btn btn-primary btn-block', text: 'Add to plan'
-  });
-
-  planForm.append(
-    el('h3', { text: 'Add a meal to the plan' }),
-    field('Day', planDaySelect),
-    field('Meal time', planSlotSelect),
-    field('Meal', planMealSelect),
-    field('Servings for this one time (optional)', planServesInput, planServesHint),
-    planError,
-    planSubmit
-  );
-  planFormWrap.appendChild(planForm);
-
-  planForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    planError.hidden = true;
-    if (!planMealSelect.value) {
-      planError.textContent =
-        'Choose a meal to add. If the list is empty, add a meal further down this page first.';
-      planError.hidden = false;
-      planMealSelect.focus();
-      return;
-    }
-    const mealName = planMealSelect.options[planMealSelect.selectedIndex].textContent;
-    planSubmit.disabled = true;
-    const result = await addPlanEntry({
-      meal_id: planMealSelect.value,
-      day_of_week: planDaySelect.value,
-      slot: planSlotSelect.value,
-      serves_override: planServesInput.value
-    });
-    planSubmit.disabled = false;
-    if (destroyed) return;
-    if (!result.ok) {
-      console.error('Failed to add a plan entry:', result.error);
-      planError.textContent = isOffline()
-        ? 'The weekly plan needs a connection. This will work once you are back online.'
-        : "Couldn't add that to the plan — try again.";
-      planError.hidden = false;
-      return;
-    }
-    announce(`${mealName} added to ${labelForDay(planDaySelect.value)} `
-      + `${labelForSlot(planSlotSelect.value).toLowerCase()}.`);
-    planServesInput.value = '';
-    await loadPlan();
-  }, { signal });
-
   // ================= Section: meals =================
 
   const mealsSection = el('section');
   mealsSection.appendChild(el('h2', { text: 'Meals' }));
-  const mealsList = el('div', { class: 'card-list' });
+
+  // ---- Filter ----
+  // In the panel, not on the screen. The COUNT on the button is what keeps
+  // hidden state from being silent — a filtered list that looks unfiltered
+  // is how you conclude a recipe has vanished.
+  const mealFilterRow = el('div', { class: 'filter-row' });
+  const mealFilterBtn = el('button', { type: 'button', class: 'btn' });
+  const mealFilterSummary = el('p', { class: 'field-hint', role: 'status' });
+  mealFilterSummary.setAttribute('aria-live', 'polite');
+  mealFilterRow.append(mealFilterBtn, mealFilterSummary);
+  mealsSection.appendChild(mealFilterRow);
+  mealFilterBtn.addEventListener('click', () => openMealFilterSheet(mealFilterBtn), { signal });
+
+  const mealsList = el('ul', { class: 'recipe-rows' });
   mealsSection.appendChild(mealsList);
 
   const addMealForm = el('form');
@@ -518,10 +304,23 @@ export function render(mountEl) {
   mealFormError.hidden = true;
   const mealSubmit = el('button', { type: 'submit', class: 'btn btn-primary btn-block', text: 'Add meal' });
 
+  // A <select>, never free text: meal_type carries a CHECK constraint, and
+  // a rejected value comes back as an opaque database error.
+  const mealTypeSelect = selectFrom('new-meal-type',
+    MEAL_TYPES.map((t) => ({ value: t.value, label: t.label })),
+    { includeBlank: 'Not said yet' });
+  const mealTypeHint = el('p', {
+    class: 'field-hint', id: 'new-meal-type-hint',
+    text: 'What the recipe IS, not when you happen to eat it. Leave blank if unsure — '
+      + 'half-filled labels filter worse than none.'
+  });
+  mealTypeSelect.setAttribute('aria-describedby', mealTypeHint.id);
+
   addMealForm.append(
     el('h3', { text: 'Add a meal' }),
     field('Meal name', mealNameInput),
     field('Usually serves', mealServesInput),
+    field('Kind of meal', mealTypeSelect, mealTypeHint),
     mealFormError,
     mealSubmit
   );
@@ -539,7 +338,8 @@ export function render(mountEl) {
     mealSubmit.disabled = true;
     const result = await createMeal({
       name: mealNameInput.value,
-      default_serves: mealServesInput.value
+      default_serves: mealServesInput.value,
+      meal_type: mealTypeSelect.value || null
     });
     mealSubmit.disabled = false;
     if (destroyed) return;
@@ -553,6 +353,7 @@ export function render(mountEl) {
     }
     addMealForm.reset();
     mealServesInput.value = '4';
+    mealTypeSelect.value = '';
     announce(`${result.data.name} added.`);
     await loadMeals();
   }, { signal });
@@ -564,12 +365,33 @@ export function render(mountEl) {
     article.dataset.mealId = meal.id;
 
     const rows = ingredientsByMeal.get(meal.id) || [];
-    const macros = computeMacros(rows, { serves: meal.default_serves });
+    // How many you are cooking THIS time. Starts at the recipe's own
+    // default and never writes back to it — that is a different fact.
+    let serves = servesChoice.get(meal.id) || meal.default_serves;
+    let macros = computeMacros(rows, { serves });
 
     body.appendChild(el('p', {
       class: 'chip',
-      text: `Serves ${meal.default_serves} · ${rows.length} ingredient${rows.length === 1 ? '' : 's'}`
+      text: `Usually serves ${meal.default_serves} · ${rows.length} ingredient${rows.length === 1 ? '' : 's'}`
     }));
+
+    // ---- How many are you cooking for? ----
+    // The recipe's own default_serves is what it MAKES. This is how many you
+    // want this time, and it only rescales the figures below — it never
+    // writes back, because that would re-serve the recipe everywhere it is
+    // planned.
+    const scaler = el('div', { class: 'serves-scaler' });
+    const scalerInput = numberInput(`serves-scale-${meal.id}`, { min: '1', step: '1' });
+    scalerInput.value = String(serves);
+    const scalerLabel = el('label', { for: scalerInput.id, text: 'Show figures for' });
+    const scalerUnit = el('span', { class: 'field-hint', text: 'servings' });
+    const scalerReset = el('button', {
+      type: 'button', class: 'btn btn-small',
+      text: `Back to ${meal.default_serves}`
+    });
+    scalerReset.setAttribute('aria-label', `Show figures for the usual ${meal.default_serves} servings`);
+    scaler.append(scalerLabel, scalerInput, scalerUnit, scalerReset);
+    body.appendChild(scaler);
 
     // ---- Macros, as a real table with units in the text ----
     const macroTable = el('table', { class: 'data-table' });
@@ -578,26 +400,63 @@ export function render(mountEl) {
     }));
     const macroHead = el('thead');
     const macroHeadRow = el('tr');
+    const perServingHead = el('th', { scope: 'col', text: `Per serving (of ${macros.serves})` });
     macroHeadRow.append(
       el('th', { scope: 'col', text: 'Nutrient' }),
       el('th', { scope: 'col', text: 'Whole meal' }),
-      el('th', { scope: 'col', text: `Per serving (of ${macros.serves})` })
+      perServingHead
     );
     macroHead.appendChild(macroHeadRow);
     macroTable.appendChild(macroHead);
 
     const macroBody = el('tbody');
+    const macroCells = new Map();
     for (const macro of MACROS) {
       const tr = el('tr');
-      tr.append(
-        el('th', { scope: 'row', text: macro.label }),
-        el('td', { text: formatMacro(macros.totals[macro.key], macro.unit, macros.complete[macro.key]) }),
-        el('td', { text: formatMacro(macros.perServing[macro.key], macro.unit, macros.complete[macro.key]) })
-      );
+      const total = el('td', {
+        text: formatMacro(macros.totals[macro.key], macro.unit, macros.complete[macro.key])
+      });
+      const each = el('td', {
+        text: formatMacro(macros.perServing[macro.key], macro.unit, macros.complete[macro.key])
+      });
+      tr.append(el('th', { scope: 'row', text: macro.label }), total, each);
+      macroCells.set(macro.key, { total, each });
       macroBody.appendChild(tr);
     }
     macroTable.appendChild(macroBody);
     body.appendChild(macroTable);
+
+    function repaintMacros() {
+      macros = computeMacros(rows, { serves });
+      perServingHead.textContent = `Per serving (of ${macros.serves})`;
+      for (const macro of MACROS) {
+        const cells = macroCells.get(macro.key);
+        if (!cells) continue;
+        cells.total.textContent =
+          formatMacro(macros.totals[macro.key], macro.unit, macros.complete[macro.key]);
+        cells.each.textContent =
+          formatMacro(macros.perServing[macro.key], macro.unit, macros.complete[macro.key]);
+      }
+    }
+
+    function setServes(next) {
+      const value = Number(next);
+      if (!Number.isInteger(value) || value < 1) {
+        // Refuse rather than silently substitute: dividing by a bad number
+        // would produce confident, wrong figures.
+        scalerInput.value = String(serves);
+        showToast('Servings must be a whole number, 1 or more.');
+        return;
+      }
+      serves = value;
+      servesChoice.set(meal.id, value);
+      scalerInput.value = String(value);
+      repaintMacros();
+      announce(`Showing figures for ${value} serving${value === 1 ? '' : 's'}.`);
+    }
+
+    scalerInput.addEventListener('change', () => setServes(scalerInput.value), { signal });
+    scalerReset.addEventListener('click', () => setServes(meal.default_serves), { signal });
 
     // Incomplete is stated plainly. A missing macro is never rounded to zero.
     if (rows.length === 0) {
@@ -899,9 +758,15 @@ export function render(mountEl) {
     const cancel = el('button', { type: 'button', class: 'btn', text: 'Cancel' });
     cancel.addEventListener('click', () => onDone(), { signal });
 
+    const typeSelect = selectFrom(`edit-meal-type-${meal.id}`,
+      MEAL_TYPES.map((t) => ({ value: t.value, label: t.label })),
+      { includeBlank: 'Not said yet' });
+    typeSelect.value = meal.meal_type || '';
+
     form.append(
       field('Meal name', nameInput),
       field('Usually serves', servesInput),
+      field('Kind of meal', typeSelect),
       error,
       el('div', { class: 'card-actions' }, [save, cancel])
     );
@@ -912,7 +777,8 @@ export function render(mountEl) {
       save.disabled = true;
       const result = await updateMeal(meal.id, {
         name: nameInput.value,
-        default_serves: servesInput.value
+        default_serves: servesInput.value,
+        meal_type: typeSelect.value || null
       });
       save.disabled = false;
       if (destroyed) return;
@@ -1602,13 +1468,197 @@ export function render(mountEl) {
     }
   }
 
+  // ================= Recipes: rows, filters, favourites =================
+
+  /** Servings chosen for a recipe in this session, keyed by meal id. */
+  const servesChoice = new Map();
+
+  const mealFilters = { types: new Set(), favouritesOnly: false, term: '' };
+
+  function activeMealFilterCount() {
+    return mealFilters.types.size
+      + (mealFilters.favouritesOnly ? 1 : 0)
+      + (mealFilters.term ? 1 : 0);
+  }
+
+  function paintMealFilterButton() {
+    const count = activeMealFilterCount();
+    mealFilterBtn.textContent = count === 0 ? 'Filter' : `Filter (${count})`;
+    mealFilterBtn.setAttribute('aria-label', count === 0
+      ? 'Filter recipes'
+      : `Filter recipes, ${count} filter${count === 1 ? '' : 's'} on`);
+  }
+
+  function openMealFilterSheet(returnFocusTo) {
+    openDetailSheet({
+      title: 'Filter recipes',
+      subtitle: 'Nothing is deleted — this only changes what is shown.',
+      returnFocusTo,
+      build: (body, { close }) => {
+        const search = el('input', { id: 'meal-filter-search', type: 'search', autocomplete: 'off' });
+        search.value = mealFilters.term;
+        search.placeholder = 'Type part of a name';
+        search.addEventListener('input', () => {
+          mealFilters.term = search.value.trim();
+          paintMealFilterButton();
+          renderMeals();
+        }, { signal });
+        body.appendChild(field('Search by name', search));
+
+        const favRow = el('div', { class: 'field field-checkbox' });
+        const favCb = el('input', { id: 'meal-filter-fav', type: 'checkbox' });
+        favCb.checked = mealFilters.favouritesOnly;
+        const favLabel = el('label', { for: favCb.id, text: 'Favourites only' });
+        favCb.addEventListener('change', () => {
+          mealFilters.favouritesOnly = favCb.checked;
+          paintMealFilterButton();
+          renderMeals();
+        }, { signal });
+        favRow.append(favCb, favLabel);
+        body.appendChild(favRow);
+
+        const typeSet = el('fieldset');
+        typeSet.appendChild(el('legend', { text: 'Kind of meal' }));
+        // "Unclassified" is offered as a filter of its own: it is a real
+        // state, and being able to find what still needs labelling is how a
+        // half-filled classification gets finished.
+        const options = [...MEAL_TYPES, { value: '', label: 'Unclassified' }];
+        for (const option of options) {
+          const row = el('div', { class: 'field field-checkbox' });
+          const cb = el('input', { id: `meal-filter-type-${option.value || 'none'}`, type: 'checkbox' });
+          cb.checked = mealFilters.types.has(option.value);
+          const label = el('label', { for: cb.id, text: option.label });
+          cb.addEventListener('change', () => {
+            if (cb.checked) mealFilters.types.add(option.value);
+            else mealFilters.types.delete(option.value);
+            paintMealFilterButton();
+            renderMeals();
+          }, { signal });
+          row.append(cb, label);
+          typeSet.appendChild(row);
+        }
+        body.appendChild(typeSet);
+
+        const clear = el('button', { type: 'button', class: 'btn', text: 'Clear all filters' });
+        clear.addEventListener('click', () => {
+          mealFilters.types.clear();
+          mealFilters.favouritesOnly = false;
+          mealFilters.term = '';
+          paintMealFilterButton();
+          renderMeals();
+          announce('Filters cleared.');
+          close();
+        }, { signal });
+        body.appendChild(clear);
+      }
+    });
+  }
+
+  function mealPasses(meal) {
+    if (mealFilters.favouritesOnly && !meal.is_favourite) return false;
+    if (mealFilters.types.size > 0 && !mealFilters.types.has(meal.meal_type || '')) return false;
+    if (mealFilters.term && !(meal.name || '').toLowerCase().includes(mealFilters.term.toLowerCase())) {
+      return false;
+    }
+    return true;
+  }
+
   function renderMeals() {
     mealsList.replaceChildren();
+    paintMealFilterButton();
+
     if (meals.length === 0) {
-      mealsList.appendChild(el('p', { text: 'No meals yet — add one below.' }));
+      mealsList.appendChild(el('li', { class: 'recipe-row', text: 'No recipes yet — add one below.' }));
+      mealFilterSummary.textContent = '';
       return;
     }
-    for (const meal of meals) mealsList.appendChild(buildMealCard(meal));
+
+    // Favourites first, then alphabetical. Being quick to reach is the whole
+    // point of marking one.
+    const visible = meals.filter(mealPasses).sort((a, b) => {
+      if (!!b.is_favourite !== !!a.is_favourite) return b.is_favourite ? 1 : -1;
+      return (a.name || '').localeCompare(b.name || '');
+    });
+
+    if (visible.length === 0) {
+      mealsList.appendChild(el('li', {
+        class: 'recipe-row',
+        text: 'Nothing matches the current filters.'
+      }));
+    }
+
+    for (const meal of visible) mealsList.appendChild(buildRecipeRow(meal));
+
+    mealFilterSummary.textContent = activeMealFilterCount() > 0
+      ? `${visible.length} of ${meals.length} recipe${meals.length === 1 ? '' : 's'} shown.`
+      : `${meals.length} recipe${meals.length === 1 ? '' : 's'}.`;
+  }
+
+  /** One line per recipe: name, kind, ingredient count, and a star. */
+  function buildRecipeRow(meal) {
+    const rows = ingredientsByMeal.get(meal.id) || [];
+    const item = el('li', { class: 'recipe-row' });
+
+    const open = el('button', { type: 'button', class: 'recipe-row-open' });
+    const text = el('span', { class: 'recipe-row-text' });
+    text.appendChild(el('span', { class: 'recipe-row-name', text: meal.name }));
+    const bits = [mealTypeLabel(meal.meal_type), `serves ${meal.default_serves}`];
+    bits.push(rows.length === 0
+      ? 'no ingredients yet'
+      : `${rows.length} ingredient${rows.length === 1 ? '' : 's'}`);
+    text.appendChild(el('span', { class: 'recipe-row-meta', text: bits.join(' · ') }));
+    open.append(text, el('span', { class: 'stock-row-chevron', 'aria-hidden': 'true', text: '›' }));
+    open.setAttribute('aria-label', `${meal.name}, ${bits.join(', ')}. Open recipe.`);
+    open.addEventListener('click', () => openMealSheet(meal, open), { signal });
+
+    // The star is a toggle with a spoken state, never a colour on its own.
+    const star = el('button', { type: 'button', class: 'btn favourite-toggle' });
+    paintStar(star, meal);
+    star.addEventListener('click', () => toggleFavourite(meal, star), { signal });
+
+    item.append(open, star);
+    return item;
+  }
+
+  function paintStar(btn, meal) {
+    const on = !!meal.is_favourite;
+    btn.textContent = on ? '★' : '☆';
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', on
+      ? `${meal.name} is a favourite. Remove it from favourites.`
+      : `Make ${meal.name} a favourite.`);
+  }
+
+  async function toggleFavourite(meal, btn) {
+    const next = !meal.is_favourite;
+    // Optimistic: a star tap is trivial and should feel instant. Rolled back
+    // only if the write outright fails.
+    meal.is_favourite = next;
+    paintStar(btn, meal);
+
+    const result = await setFavourite(meal.id, next);
+    if (destroyed) return;
+    if (!result.ok) {
+      meal.is_favourite = !next;
+      paintStar(btn, meal);
+      console.error('Failed to change a favourite:', result.error);
+      showToast("Couldn't save that — try again.");
+      return;
+    }
+    announce(next ? `${meal.name} added to favourites.` : `${meal.name} removed from favourites.`);
+    renderMeals();
+  }
+
+  /** The whole recipe — macros, ingredients, edit, delete — in the panel. */
+  function openMealSheet(meal, returnFocusTo) {
+    openDetailSheet({
+      title: meal.name,
+      subtitle: `${mealTypeLabel(meal.meal_type)} · serves ${meal.default_serves}`,
+      returnFocusTo,
+      build: (body) => {
+        body.appendChild(buildMealCard(meal));
+      }
+    });
   }
 
   function renderPendingFoods() {
@@ -1679,22 +1729,7 @@ export function render(mountEl) {
       console.error('Failed to load ingredients:', ingredientResult.error);
       ingredientsByMeal = new Map();
     }
-    repopulateMealSelect();
     renderMeals();
-  }
-
-  async function loadPlan() {
-    const result = await listPlan();
-    if (destroyed) return;
-    if (!result.ok) {
-      console.error('Failed to load the meal plan:', result.error);
-      planByCell = new Map();
-      buildPlanTable();
-      showToast("Couldn't load the weekly plan — check your connection and try again.");
-      return;
-    }
-    planByCell = groupByCell(result.data);
-    buildPlanTable();
   }
 
   mountEl.append(mealsSection, foodsSection);

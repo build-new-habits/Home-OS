@@ -78,6 +78,7 @@ mod.render(mount, {});
 await new Promise((r) => setTimeout(r, 80));
 
 
+
 // ---- Number inputs must accept ordinary numbers ------------------------
 // HTML constraint validation requires (value - min) % step === 0. So
 // min="0.1" with step="1" permits ONLY 0.1, 1.1, 2.1 ... and a browser
@@ -113,6 +114,51 @@ function checkNumberInputs(root, label) {
 let pass = 0; const fails = [];
 const check = (n, c, d='') => { if (c) { pass++; console.log(`  PASS  ${n}`); } else { fails.push(`${n}${d?' — '+d:''}`); console.log(`  FAIL  ${n}  ${d}`); } };
 
+/**
+ * Dismiss any open slide-out panel before examining the next view.
+ *
+ * Panels are appended to document.body, so one left open by an earlier
+ * block is what every later `.sheet[role="dialog"]` query finds — the
+ * pantry's macro checks passed against the MEALS panel until this existed.
+ */
+async function closeAnySheet() {
+  while (window.document.querySelector('.sheet[role="dialog"]')) {
+    window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await new Promise((r) => setTimeout(r, 20));
+  }
+}
+
+// ---- The recipe list is rows now, not a wall of cards -------------------
+// A full card each — macro table, ingredient list, add form — was
+// unreadable past about six recipes.
+const recipeRows = [...mount.querySelectorAll('.recipe-row-open')];
+check('recipes are one row each', recipeRows.length === 1);
+check('a recipe row says what kind of meal it is and how many ingredients',
+  !!recipeRows[0] && /Unclassified|Breakfast|Lunch|Dinner|Snack|Drink/.test(recipeRows[0].textContent)
+  && /ingredient/.test(recipeRows[0].textContent));
+
+// The favourite star must speak its state; a filled glyph alone is colour-
+// and-shape only, which is not enough (1.4.1).
+const star = mount.querySelector('.favourite-toggle');
+check('a recipe can be favourited', !!star);
+check('the star reports its state in words',
+  !!star && star.getAttribute('aria-pressed') === 'false'
+  && /favourite/i.test(star.getAttribute('aria-label') || ''));
+
+// The filter button must carry its count, or hidden state is silent.
+const mealFilterBtn = [...mount.querySelectorAll('button')].find((b) => /^Filter/.test(b.textContent));
+check('recipes can be filtered', !!mealFilterBtn);
+check('with nothing filtered the button carries no count',
+  !!mealFilterBtn && mealFilterBtn.textContent.trim() === 'Filter');
+
+// Everything below lives inside the recipe panel now, so open it — the same
+// journey a user makes.
+if (recipeRows[0]) recipeRows[0].dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 60));
+const mealSheet = window.document.querySelector('.sheet[role="dialog"]');
+check('opening a recipe opens the panel', !!mealSheet);
+const sheetScope = mealSheet || mount;
+
 // ---- Every form control has a real, resolvable label ----
 const controls = [...mount.querySelectorAll('input, select, textarea')];
 const unlabelled = controls.filter((c) => {
@@ -129,9 +175,9 @@ checkNumberInputs(mount, 'meals');
 // A real kitchen has hundreds of ingredients; a flat <select> of hundreds is
 // unusable one-handed. And the whole point of foods.category is that shower
 // gel is never offered mid-recipe.
-const picker = mount.querySelector('.food-picker');
+const picker = sheetScope.querySelector('.food-picker');
 check('the ingredient picker has a type-ahead box', !!picker && !!picker.querySelector('input[type="search"]'));
-check('the search box is labelled', !!picker && !!mount.querySelector(`label[for="${CSS.escape(picker.querySelector('input[type="search"]').id)}"]`));
+check('the search box is labelled', !!picker && !!sheetScope.querySelector(`label[for="${CSS.escape(picker.querySelector('input[type="search"]').id)}"]`));
 check('the match count is announced politely',
   !!picker && picker.querySelector('[role="status"]')
   && picker.querySelector('[role="status"]').getAttribute('aria-live') === 'polite');
@@ -154,13 +200,13 @@ check('each group heading states its count',
   groupHeadings.map((h) => h.textContent).join(' | '));
 // ---- The missing conversion factor is offered where it is needed --------
 // The fixture's second ingredient is 200 ml of a food with no grams_per_ml.
-const prompt = mount.querySelector('.factor-prompt');
+const prompt = sheetScope.querySelector('.factor-prompt');
 check('a missing conversion factor is offered inline on the row', !!prompt);
 check('the prompt says which food and which unit',
   !!prompt && /Home-made stock/.test(prompt.textContent) && /millilitre/.test(prompt.textContent),
   prompt ? prompt.textContent.slice(0, 90) : '');
 check('the prompt input is labelled',
-  !!prompt && !!mount.querySelector(`label[for="${CSS.escape(prompt.querySelector('input').id)}"]`));
+  !!prompt && !!sheetScope.querySelector(`label[for="${CSS.escape(prompt.querySelector('input').id)}"]`));
 check('the prompt offers a worked example rather than assuming knowledge',
   !!prompt && /about 1.03|about 60 g/.test(prompt.textContent));
 
@@ -183,8 +229,25 @@ const buttons = [...mount.querySelectorAll('button')];
 const nameless = buttons.filter((b) => !(b.getAttribute('aria-label') || b.textContent.trim()));
 check(`all ${buttons.length} buttons have an accessible name`, nameless.length === 0);
 
+// ---- Figures scale to how many you are cooking for ---------------------
+// default_serves is what the recipe MAKES; this is how many you want this
+// time. Rescaling here must never write back — that would re-serve the
+// recipe everywhere it is planned.
+const scaler = sheetScope.querySelector('.serves-scaler input');
+check('a recipe can be shown for a different number of servings', !!scaler);
+check('the servings box is labelled',
+  !!scaler && !!sheetScope.querySelector(`label[for="${CSS.escape(scaler.id)}"]`));
+if (scaler) {
+  const before = sheetScope.querySelector('.data-table thead th:last-child').textContent;
+  scaler.value = '8';
+  scaler.dispatchEvent(new window.Event('change', { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 20));
+  const after = sheetScope.querySelector('.data-table thead th:last-child').textContent;
+  check('changing it restates the per-serving column', before !== after && /8/.test(after), after);
+}
+
 // ---- Macro figures carry units as text ----
-const macroTable = mount.querySelector('.meal-card .data-table');
+const macroTable = sheetScope.querySelector('.data-table');
 check('meal macros are a real table with a caption', !!macroTable && !!macroTable.querySelector('caption'));
 const macroRowHeaders = [...macroTable.querySelectorAll('tbody th')];
 check('each nutrient is a scoped row header', macroRowHeaders.length === 4 && macroRowHeaders.every((t) => t.getAttribute('scope') === 'row'));
@@ -193,12 +256,12 @@ check('every macro figure states a unit or says it is not known',
   macroCells.every((t) => /\b(kcal|g)\b/.test(t) || t === 'not known'), macroCells.join(' | '));
 // The fixture deliberately includes a food with no nutrition data.
 check('the incomplete ingredient count is stated in words',
-  /1 of 2 ingredients? (is|are) not counted here/.test(mount.textContent), '');
+  /1 of 2 ingredients? (is|are) not counted here/.test(sheetScope.textContent), '');
 // The fixture's second ingredient is 200 ml of a food with no grams_per_ml,
 // so the view must say WHAT to fill in, not merely that something is amiss.
 check('an unconvertible unit is explained, not just flagged',
-  /no weight per millilitre is recorded/.test(mount.textContent), '');
-check('the incomplete ingredient is named', mount.textContent.includes('Home-made stock'));
+  /no weight per millilitre is recorded/.test(sheetScope.textContent), '');
+check('the incomplete ingredient is named', sheetScope.textContent.includes('Home-made stock'));
 
 // ---- Headings are ordered ----
 const levels = [...mount.querySelectorAll('h1,h2,h3')].map((h) => Number(h.tagName[1]));
@@ -208,6 +271,7 @@ check('heading levels never skip a level', ordered, levels.join(','));
 check('exactly one h1', mount.querySelectorAll('h1').length === 1);
 
 // ================= Phase 8: holidays & work =================
+await closeAnySheet();
 // A second view, rendered into its own mount, checked the same way.
 console.log('');
 const holMount = window.document.createElement('main');
@@ -268,6 +332,7 @@ check('holidays: the weekday chooser is a labelled fieldset',
   !!holMount.querySelector('fieldset.weekday-set legend'));
 
 // ================= Phase 7: pantry =================
+await closeAnySheet();
 console.log('');
 const panMount = window.document.createElement('main');
 window.document.body.appendChild(panMount);
@@ -377,6 +442,7 @@ check('pantry: heading levels never skip', panOrdered, panLevels.join(','));
 check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
 
 // ================= Dashboard =================
+await closeAnySheet();
 // The water control here is load-bearing: it is the whole justification for
 // putting Water behind the Health hub. If it disappears, the most frequent
 // action in the app quietly becomes three taps deep.
@@ -434,6 +500,7 @@ check('every route is reachable from the nav bar or a hub',
 check('dashboard: exactly one h1', dashMount.querySelectorAll('h1').length === 1);
 
 // ================= Kitchen hub =================
+await closeAnySheet();
 console.log('');
 const kitMount = window.document.createElement('main');
 window.document.body.appendChild(kitMount);
@@ -452,6 +519,7 @@ check('kitchen: every link has an accessible name',
 check('kitchen: exactly one h1', kitMount.querySelectorAll('h1').length === 1);
 
 // ================= Weekly plan =================
+await closeAnySheet();
 // Moved off the Meals screen onto its own page. These checks moved with it:
 // a check that silently stops covering the thing it names is worse than no
 // check, and this one failed loudly the moment the table left, which is
@@ -500,6 +568,7 @@ check('empty plan cells say "Nothing planned" in text',
 check('weekly plan: exactly one h1', planMount.querySelectorAll('h1').length === 1);
 
 // ================= Chores =================
+await closeAnySheet();
 console.log('');
 const choMount = window.document.createElement('main');
 window.document.body.appendChild(choMount);
@@ -568,6 +637,7 @@ check('chores: heading levels never skip', choOrdered, choLevels.join(','));
 check('chores: exactly one h1', choMount.querySelectorAll('h1').length === 1);
 
 // ================= Calendar =================
+await closeAnySheet();
 console.log('');
 const calMount = window.document.createElement('main');
 window.document.body.appendChild(calMount);
@@ -617,6 +687,7 @@ check('calendar: heading levels never skip', calOrdered, calLevels.join(','));
 check('calendar: exactly one h1', calMount.querySelectorAll('h1').length === 1);
 
 // ================= Health hub =================
+await closeAnySheet();
 console.log('');
 const hubMount = window.document.createElement('main');
 window.document.body.appendChild(hubMount);

@@ -1,4 +1,5 @@
-/* css/components.css — 26 Aug 2026 v19 */
+/* css/components.css — 26 Aug 2026 v20 */
+/* v20: recipe rows, favourite star, servings scaler. Appended only. */
 /* v19: chores project accordion and task rows. Appended only. */
 /* v18: .card-link for the dashboard. Appended only. */
 /* v17: calendar page, Health hub, day items. Appended only. */
@@ -1768,4 +1769,76 @@ body.sheet-open {
 
 .task-row .check-toggle {
   flex: 0 0 auto;
+}
+
+/* ---- Recipe rows (v20) ---- */
+
+.recipe-rows,
+.recipe-rows > li {
+  list-style: none;
+}
+
+.recipe-rows {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+}
+
+.recipe-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.recipe-row-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: var(--tap-min);
+  padding: var(--space-3) var(--space-1);
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.recipe-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.recipe-row-name {
+  font-weight: 700;
+}
+
+.recipe-row-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* The star is a glyph, but aria-pressed and the label carry the state —
+   the shape alone is never the only signal (1.4.1). */
+.favourite-toggle {
+  flex: 0 0 auto;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  font-size: var(--text-lg);
+}
+
+.serves-scaler {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.serves-scaler input {
+  max-width: 5rem;
 }
