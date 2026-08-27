@@ -1,4 +1,7 @@
-// js/views/meals.js — 27 Aug 2026 v11
+// js/views/meals.js — 27 Aug 2026 v12
+// v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
+// own DOM, so re-rendering the rows behind it changed nothing visible —
+// indistinguishable from a button that does not work. See refreshOpenSheet.
 // v11: an ingredient can be created FROM the recipe. Writing a recipe is
 // not the moment to go and maintain a food library — a name and a category
 // is enough, macros are nullable, and the totals already say what is not
@@ -371,7 +374,50 @@ export function render(mountEl) {
   }, { signal });
 
   /** Stock lines to repaint when the servings change. */
-  const stockRepaints = [];
+  let stockRepaints = [];
+
+  // ---- The open panel has to be rebuilt too -----------------------------
+  // THE BUG THIS FIXES: adding an ingredient called loadMeals(), which
+  // re-renders the ROWS BEHIND the panel. The panel holds its own DOM, so
+  // nothing visibly changed until it was closed and reopened — which reads
+  // exactly like a button that did not work.
+  //
+  // Third time this pattern has bitten (holidays twice, here once).
+  // Anything that changes a meal must end with refreshOpenSheet().
+  let openSheetMealId = null;
+  let openSheetBody = null;
+
+  function refreshOpenSheet() {
+    // isConnected, not a flag: the panel can be dismissed by Escape or by
+    // the backdrop, neither of which runs code in this view.
+    if (!openSheetBody || !openSheetBody.isConnected) {
+      openSheetMealId = null;
+      openSheetBody = null;
+      return;
+    }
+    const meal = meals.find((m) => m.id === openSheetMealId);
+    if (!meal) return;
+
+    // Where the user was, so a rebuild does not throw them to the top of
+    // the panel mid-task (3.2.2).
+    const active = document.activeElement;
+    const activeId = active && active.id ? active.id : null;
+
+    stockRepaints = [];
+    openSheetBody.replaceChildren(buildMealCard(meal));
+
+    if (activeId) {
+      const again = document.getElementById(activeId);
+      if (again && again.focus) {
+        again.focus();
+        return;
+      }
+    }
+    // The field that had focus is gone — the add form clears after a save.
+    // Land on the search box, where the next ingredient starts.
+    const search = openSheetBody.querySelector('[id^="add-ingredient-"][id$="-filter"]');
+    if (search && search.focus) search.focus();
+  }
 
   function buildMealCard(meal) {
     const { article, body, actions } = createCard({
@@ -1165,6 +1211,12 @@ export function render(mountEl) {
       subtitle: `${mealTypeLabel(meal.meal_type)} · serves ${meal.default_serves}`,
       returnFocusTo,
       build: (body) => {
+        // Tracked so refreshOpenSheet() can rebuild THIS panel when the
+        // meal changes. Without it, a saved change is invisible until the
+        // panel is closed and reopened.
+        openSheetMealId = meal.id;
+        openSheetBody = body;
+        stockRepaints = [];
         body.appendChild(buildMealCard(meal));
       }
     });
@@ -1193,6 +1245,9 @@ export function render(mountEl) {
     }
     foods = result.data;
     renderMeals();
+    // A food created from inside the panel must appear in the panel's own
+    // picker, not only in the list behind it.
+    refreshOpenSheet();
   }
 
   async function loadMeals() {
@@ -1214,6 +1269,9 @@ export function render(mountEl) {
       ingredientsByMeal = new Map();
     }
     renderMeals();
+    // The panel holds its own DOM. Without this, a change made inside it is
+    // invisible until it is closed and reopened.
+    refreshOpenSheet();
   }
 
   // A pointer, not a duplicate: the library lives on its own page, and the

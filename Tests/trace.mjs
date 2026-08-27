@@ -232,6 +232,8 @@ if (newToggle) {
   check('the new-ingredient name field appears', !!newName);
   if (newName) {
     setValue(newName, 'Harissa paste');
+    // Held so the rebuild can be detected by node identity below.
+    const cardBefore = recipePanel.querySelector('.meal-card');
     const qty = recipePanel.querySelector('[id^="add-ingredient-qty-"]');
     if (qty) setValue(qty, '30');
     submit(newName.closest('form'));
@@ -251,6 +253,23 @@ if (newToggle) {
     const ingWrite = writes().find((c) => c.table === 'meal_ingredients' && c.op === 'insert');
     check('and links it to the recipe in the same action', !!ingWrite,
       'otherwise the user has created a food and still has no ingredient');
+
+    // THE REGRESSION THIS GUARDS: the panel keeps its own DOM, so
+    // re-rendering the rows behind it changed nothing visible. The
+    // ingredient was saved and the screen did not move — indistinguishable
+    // from a button that does not work. Every gate passed while it was
+    // broken, which is why this one exists.
+    await settle(60);
+    const panelNow = window.document.querySelector('.sheet[role="dialog"]');
+    check('the panel is still open after adding', !!panelNow);
+    // Node IDENTITY, not content: the stub returns fixed fixture rows, so a
+    // newly added name can never show up here however correct the code is.
+    // What IS observable — and what was broken — is whether the panel's
+    // contents were rebuilt at all, or only the rows behind it.
+    const cardAfter = panelNow && panelNow.querySelector('.meal-card');
+    check('and the panel itself is rebuilt, not just the rows behind it',
+      !!cardAfter && cardAfter !== cardBefore,
+      'otherwise a saved change is invisible until the panel is closed and reopened');
   }
 }
 // Leave no panel open for the blocks that follow.
