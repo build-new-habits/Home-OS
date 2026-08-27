@@ -41,10 +41,14 @@ export const ITEM_STATUSES = ['pending', 'complete'];
 export const ITEM_TABLES = { checklist: CHECKLIST, purchase: PURCHASES };
 
 function tableFor(kind) {
-  const table = ITEM_TABLES[kind];
-  if (!table) throw new Error(`Unknown holiday item kind: ${kind}`);
-  return table;
+  // 'pack' and 'do' are both rows in the checklist table, told apart by the
+  // `kind` column. 'checklist' is kept as an alias so any older caller that
+  // has not been updated still resolves rather than throwing.
+  if (kind === 'purchase') return PURCHASES;
+  if (kind === 'checklist' || kind === 'pack' || kind === 'do') return CHECKLIST;
+  throw new Error(`Unknown holiday item kind: ${kind}`);
 }
+
 
 async function applyItemOp(op) {
   // Throwing, not returning: flush() removes an op as soon as the handler
@@ -203,12 +207,35 @@ export async function deleteHoliday(holidayId) {
 
 // ------------------------------------------------------------------- items
 
+/**
+ * The three lists a holiday has.
+ *
+ * `purchase` is its own table because it carries send_to_shopping, which
+ * bridges into the shopping list. `pack` and `do` share
+ * holiday_checklist_items and are told apart by its `kind` column
+ * (revision 6) — same shape, one code path, one RLS policy.
+ */
+export const ITEM_KINDS = [
+  { value: 'purchase', label: 'Things to buy', singular: 'thing to buy' },
+  { value: 'pack', label: 'Things to pack', singular: 'thing to pack' },
+  { value: 'do', label: 'Things to do there', singular: 'thing to do' }
+];
+
+export function itemKindLabel(kind) {
+  const found = ITEM_KINDS.find((k) => k.value === kind);
+  return found ? found.label : kind;
+}
+
 export async function listItems(holidayId, kind) {
-  const { data, error } = await supabase
+  let query = supabase
     .from(tableFor(kind))
     .select('*')
     .eq('holiday_id', holidayId)
     .order('created_at', { ascending: true });
+  // Checklist rows are split by `kind`. Filtering in SQL rather than after
+  // the fact keeps the index on (holiday_id, kind) doing the work.
+  if (kind === 'pack' || kind === 'do') query = query.eq('kind', kind);
+  const { data, error } = await query;
   if (error) return { ok: false, error };
   return { ok: true, data };
 }
@@ -222,6 +249,10 @@ export async function addItem(kind, { holiday_id, title, send_to_shopping = fals
   // send_to_shopping is stored ONLY on purchase items — the checklist table
   // has no such column and would reject it.
   if (kind === 'purchase') payload.send_to_shopping = Boolean(send_to_shopping);
+  // `kind` is only meaningful on the shared checklist table. Sent explicitly
+  // rather than relying on the column default, so a packing item is a
+  // packing item because the code said so, not by accident.
+  if (kind === 'pack' || kind === 'do') payload.kind = kind;
 
   const { data, error } = await supabase.from(tableFor(kind)).insert(payload).select().single();
   if (error) return { ok: false, error };

@@ -1,4 +1,5 @@
-/* css/components.css — 26 Aug 2026 v20 */
+/* css/components.css — 26 Aug 2026 v21 */
+/* v21: holiday sub-list cards. Appended only. */
 /* v20: recipe rows, favourite star, servings scaler. Appended only. */
 /* v19: chores project accordion and task rows. Appended only. */
 /* v18: .card-link for the dashboard. Appended only. */
@@ -1841,4 +1842,25 @@ body.sheet-open {
 
 .serves-scaler input {
   max-width: 5rem;
+}
+
+/* ---- Holiday sub-lists (v21) ---- */
+
+/* Buy / pack / do are separate sub-cards: they are done at different times,
+   and merging them means scrolling past a fortnight of activities to find
+   the passports. */
+.item-group-card {
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.item-group-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-base);
+}
+
+.item-group + .item-group {
+  margin-top: var(--space-4);
 }

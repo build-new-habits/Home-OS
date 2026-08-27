@@ -1,4 +1,6 @@
-// service-worker.js — 26 Aug 2026 v36
+// service-worker.js — 26 Aug 2026 v37
+// v37: no path changes. Bumped for the holidays rework — views/holidays.js
+// v3, data/holidays.js, components.css v21.
 // v36: ONE new path, js/views/foods.js — the library is its own page.
 // v35: no path changes. Bumped for the recipe rework — views/meals.js v9,
 // data/meals.js v3, components.css v20.
@@ -99,7 +101,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v36';
+const CACHE_NAME = 'home-os-shell-v37';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

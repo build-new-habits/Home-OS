@@ -364,13 +364,23 @@ check('the projection has a NULL recurrence rule (UNTIL/COUNT are ignored by rru
   JSON.stringify(evWrite && evWrite.payload.recurrence_rule));
 
 // --- optimistic tick: UI updates first, write follows ---
+// The lists live in the panel now, so open a holiday first — the same
+// journey a user makes.
+const holRowOpen = holMount.querySelector('.recipe-row-open');
+check('a holiday can be opened', !!holRowOpen);
+if (holRowOpen) click(holRowOpen);
+await settle(60);
+const holPanel = window.document.querySelector('.sheet[role="dialog"]');
+check('opening a holiday reveals its lists', !!holPanel);
+const holCtx = holPanel || holMount;
+
 clearCalls();
-const toggle = holMount.querySelector('.check-toggle');
+const toggle = holCtx.querySelector('.check-toggle');
 const beforeLabel = toggle.textContent;
 const beforePressed = toggle.getAttribute('aria-pressed');
 click(toggle);
 await settle(10); // inside the write window, which is 40ms in this stub
-const midToggle = holMount.querySelector('.check-toggle');
+const midToggle = holCtx.querySelector('.check-toggle');
 check('a tick changes the UI immediately, before the write resolves',
   midToggle.textContent !== beforeLabel || midToggle.getAttribute('aria-pressed') !== beforePressed,
   `${beforeLabel}/${beforePressed} -> ${midToggle.textContent}/${midToggle.getAttribute('aria-pressed')}`);
@@ -384,16 +394,22 @@ check('and sends a status the CHECK constraint allows',
 
 // --- rollback when the write fails ---
 clearCalls();
-const toggle2 = holMount.querySelector('.check-toggle');
+const toggle2 = holCtx.querySelector('.check-toggle');
 const labelBefore = toggle2.textContent;
 failNextWrite = true;
 click(toggle2);
 await settle(200);
-const after = holMount.querySelector('.check-toggle');
+const after = holCtx.querySelector('.check-toggle');
 check('a FAILED tick rolls the UI back rather than lying',
   after.textContent === labelBefore, `${labelBefore} -> ${after.textContent}`);
 
 // --- work location: weekly pattern ---
+// The work form is on the PAGE, not in the holiday panel. Close the panel
+// first, or a stray dialog sits over the controls being clicked.
+while (window.document.querySelector('.sheet[role="dialog"]')) {
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  await settle(20);
+}
 clearCalls();
 setValue(holMount.querySelector('#work-title'), 'Office');
 setValue(holMount.querySelector('#work-place'), 'Head office');
@@ -426,8 +442,15 @@ await settle();
 check('a weekly pattern with no days issues NO write', writes().length === 0, JSON.stringify(writes()));
 
 // --- send_to_shopping stores the flag and nothing else ---
+// These two live in the holiday panel, so reopen it — the work block above
+// deliberately closed it.
+const holRow2 = holMount.querySelector('.recipe-row-open');
+if (holRow2) click(holRow2);
+await settle(60);
+const holCtx2 = window.document.querySelector('.sheet[role="dialog"]') || holMount;
+
 clearCalls();
-const shopBox = holMount.querySelector('.send-shopping input[type="checkbox"]');
+const shopBox = holCtx2.querySelector('.send-shopping input[type="checkbox"]');
 check('the purchase item offers a send-to-shopping control', !!shopBox);
 if (shopBox) {
   shopBox.checked = true;
@@ -443,7 +466,7 @@ if (shopBox) {
 
 // --- deleting a holiday cleans up its soft-pointer calendar row ---
 clearCalls();
-const holDelete = [...holMount.querySelectorAll('.holiday-card button')]
+const holDelete = [...holCtx2.querySelectorAll('button')]
   .find((b) => /^Delete /.test(b.textContent));
 check('a holiday card has a delete button', !!holDelete);
 if (holDelete) {

@@ -44,8 +44,10 @@ function fixture(t) {
       foods:{ id:'food-3', name:'Harissa', category:'food_ambient', grams_per_ml:null, grams_per_item:null } }];
   if (t === 'holidays') return [{ id:'hol-1', title:'Cornwall', start_date:'2026-09-05', end_date:'2026-09-12' }];
   if (t === 'holiday_checklist_items') return [
-    { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete' },
-    { id:'chk-2', holiday_id:'hol-1', title:'Chargers', status:'pending' }];
+    { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete', kind:'pack' },
+    { id:'chk-2', holiday_id:'hol-1', title:'Chargers', status:'pending', kind:'pack' },
+    // Revision 6: same table, told apart by `kind`.
+    { id:'chk-3', holiday_id:'hol-1', title:'Walk the coast path', status:'pending', kind:'do' }];
   if (t === 'holiday_purchase_items') return [{ id:'buy-1', holiday_id:'hol-1', title:'Sun cream', status:'pending', send_to_shopping:true }];
   if (t === 'calendar_events') return [
     { id:'ev-1', event_type:'work_location', source_id:null, title:'Office', start_date:'2026-08-24', recurrence_rule:'FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH', location_label:'Head office' },
@@ -65,9 +67,24 @@ function fixture(t) {
   if (t === 'chore_task_completions') return [];
   return [];
 }
-function builder(t) { const st={}; const b={}; for (const m of CHAIN) b[m]=(...a)=>{ if(m==='select'&&a[1]&&a[1].head) st.head=true; return b; };
+// The stub HONOURS .eq() filters. It did not, and that mattered: the packing
+// and to-do lists are the same table told apart by `kind`, so an unfiltered
+// stub handed both lists every row and the gate counted five toggles where
+// the app shows three. A stub that ignores the filter cannot tell a working
+// split from a broken one.
+function builder(t) { const st={eq:[]}; const b={};
+  for (const m of CHAIN) b[m]=(...a)=>{ if(m==='select'&&a[1]&&a[1].head) st.head=true;
+    if(m==='eq') st.eq.push([a[0],a[1]]); return b; };
   b.single=()=>{st.single=true;return b;}; b.maybeSingle=b.single;
-  b.then=(res)=>{ const rows=fixture(t); if(st.head) return Promise.resolve({count:rows.length,error:null}).then(res);
+  b.then=(res)=>{ let rows=fixture(t);
+    for (const [col,val] of st.eq) {
+      // Only filter on a column the fixture actually models; an unknown
+      // column would silently empty every result.
+      if (rows.length && Object.prototype.hasOwnProperty.call(rows[0], col)) {
+        rows = rows.filter((r) => String(r[col]) === String(val));
+      }
+    }
+    if(st.head) return Promise.resolve({count:rows.length,error:null}).then(res);
     return Promise.resolve({ data: st.single ? rows[0] : rows, error:null, count:rows.length }).then(res); };
   return b; }
 globalThis.__HOME_OS_SUPABASE_STUB__ = { from: builder, auth: {} };
@@ -311,9 +328,48 @@ const holButtons = [...holMount.querySelectorAll('button')];
 check(`holidays: all ${holButtons.length} buttons have an accessible name`,
   holButtons.every((b) => b.getAttribute('aria-label') || b.textContent.trim()));
 
+// ---- A holiday is a row that opens a panel ----------------------------
+// Two holidays, each carrying two whole checklists, filled a phone screen.
+const holRows = [...holMount.querySelectorAll('.recipe-row-open')];
+check('holidays: each holiday is one row', holRows.length === 1);
+check('holidays: the row says the dates and what is outstanding',
+  !!holRows[0] && /\d{4}/.test(holRows[0].textContent)
+  && /outstanding|to sort/.test(holRows[0].textContent));
+check('holidays: no checklist items render while the row is shut',
+  holMount.querySelectorAll('.check-toggle').length === 0,
+  'the whole point of the row is that the lists are behind it');
+
+if (holRows[0]) holRows[0].dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 60));
+const holSheet = window.document.querySelector('.sheet[role="dialog"]');
+check('holidays: opening a holiday opens the panel', !!holSheet);
+const holScope = holSheet || holMount;
+
+// THREE lists, each its own sub-card with its own count and add box.
+const groupTitles = [...holScope.querySelectorAll('.item-group-title')].map((h) => h.textContent);
+check('holidays: there are three lists', groupTitles.length === 3, groupTitles.join(' | '));
+check('holidays: buy, pack and do are all offered',
+  /buy/i.test(groupTitles.join(' ')) && /pack/i.test(groupTitles.join(' '))
+  && /do/i.test(groupTitles.join(' ')), groupTitles.join(' | '));
+check('holidays: each list has its own add box',
+  holScope.querySelectorAll('form.add-item').length === 3);
+// "done" means something different on each list and must say so.
+check('holidays: each list counts in its own words',
+  /packed|bought|done|Nothing on this list/.test(holScope.textContent));
+
 // State must be carried by aria-pressed AND by words, never colour alone.
-const toggles = [...holMount.querySelectorAll('.check-toggle')];
-check('holidays: item toggles exist', toggles.length === 3, `found ${toggles.length}`);
+const toggles = [...holScope.querySelectorAll('.check-toggle')];
+// 2 to pack, 1 to do, 1 to buy. Counting them proves the `kind` split
+// actually splits — before the stub honoured .eq() this read 5, with both
+// checklist lists showing every row.
+check('holidays: every item across all three lists has a toggle',
+  toggles.length === 4, `found ${toggles.length}`);
+const doGroup = [...holScope.querySelectorAll('.item-group')]
+  .find((g) => /do/i.test((g.querySelector('.item-group-title') || {}).textContent || ''));
+check('holidays: the to-do list holds only to-dos',
+  !!doGroup && doGroup.querySelectorAll('.check-toggle').length === 1
+  && /coast path/i.test(doGroup.textContent),
+  'a packing item leaking in here means the kind filter is not applied');
 check('holidays: every toggle reports pressed state',
   toggles.every((t) => ['true', 'false'].includes(t.getAttribute('aria-pressed'))));
 check('holidays: toggle state is readable as a word',
@@ -324,11 +380,11 @@ check('holidays: the completed item is marked pressed',
 
 // The date range must be text, not a bar.
 check('holidays: the date range is readable text',
-  /5 to 12 September 2026/.test(holMount.textContent), '');
+  /5 to 12 September 2026/.test(holScope.textContent), '');
 
 // The recurrence pattern must be described in words.
 check('holidays: the work pattern is described in words, not an RRULE',
-  !/FREQ=/.test(holMount.textContent), 'a raw RRULE string leaked into the page');
+  !/FREQ=/.test(holScope.textContent), 'a raw RRULE string leaked into the page');
 
 // No end-date field: rrule.js would silently ignore it.
 const dateInputs = [...holMount.querySelectorAll('input[type="date"]')].map((i) => i.id);

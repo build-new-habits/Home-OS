@@ -1,4 +1,21 @@
-// js/views/holidays.js — 21 Aug 2026 v2
+// js/views/holidays.js — 26 Aug 2026 v3
+// v3: same treatment as everywhere else.
+//
+//   * A holiday is one compact row, opened in the slide-out panel. Full
+//     cards carrying two whole checklists each meant two holidays filled a
+//     phone screen.
+//   * THREE lists inside, not two: things to buy, things to pack, and —
+//     new — things to DO there. Each is its own sub-card with its own
+//     count and its own add box.
+//
+// `do` and `pack` are the same table told apart by `kind` (revision 6).
+// Buying stays separate because it carries send_to_shopping, which bridges
+// into the shopping list.
+//
+// ---- A missing migration degrades honestly ----
+// Without revision 6 the to-do query fails. The other two lists still work
+// and the panel SAYS the third is unavailable, rather than showing an empty
+// list that reads as "nothing to do".
 // Replaces the Phase 2 stub, whole. Two sections: holidays (with checklist
 // and purchase items) and the work-location calendar.
 //
@@ -23,7 +40,7 @@
 import {
   listHolidays, createHoliday, updateHoliday, deleteHoliday,
   countHolidayChildren, describeChildren,
-  listItems, addItem, setItemStatus, setSendToShopping, removeItem,
+  listItems, addItem, setItemStatus, setSendToShopping, removeItem, ITEM_KINDS,
   pendingItemStatuses, formatRange, nightsBetween
 } from '../data/holidays.js';
 import {
@@ -36,6 +53,7 @@ import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { openDetailSheet } from '../components/detailSheet.js';
 
 // Local element helper, defined here rather than copied in — the 18 Aug
 // ReferenceError came from moving a helper without checking the destination.
@@ -103,7 +121,10 @@ export function render(mountEl) {
 
   const holidaySection = el('section');
   holidaySection.appendChild(el('h2', { text: 'Holidays' }));
-  const holidayList = el('div', { class: 'card-list' });
+  const holidaySummary = el('p', { class: 'field-hint', role: 'status' });
+  holidaySummary.setAttribute('aria-live', 'polite');
+  holidaySection.appendChild(holidaySummary);
+  const holidayList = el('ul', { class: 'recipe-rows' });
   holidaySection.appendChild(holidayList);
 
   const addForm = el('form');
@@ -123,7 +144,18 @@ export function render(mountEl) {
     addError,
     addSubmit
   );
-  holidaySection.appendChild(addForm);
+  const addToggle = el('button', {
+    type: 'button', class: 'btn', text: 'Add a holiday', 'aria-expanded': 'false'
+  });
+  const addWrap = el('div');
+  addWrap.hidden = true;
+  addWrap.appendChild(addForm);
+  addToggle.addEventListener('click', () => {
+    const open = addToggle.getAttribute('aria-expanded') === 'true';
+    addToggle.setAttribute('aria-expanded', String(!open));
+    addWrap.hidden = open;
+  }, { signal });
+  holidaySection.append(addToggle, addWrap);
 
   addForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -159,29 +191,77 @@ export function render(mountEl) {
     await loadHolidays();
   }, { signal });
 
-  function buildHolidayCard(holiday) {
-    const { article, body, actions } = createCard({
-      title: holiday.title, headingLevel: 3, className: 'holiday-card'
-    });
-    article.dataset.holidayId = holiday.id;
+  /** One line per holiday. Everything else is behind it. */
+  function buildHolidayRow(holiday) {
+    const item = el('li', { class: 'recipe-row' });
+    item.dataset.holidayId = holiday.id;
 
     const nights = nightsBetween(holiday.start_date, holiday.end_date);
+    const bundle = itemsByHoliday.get(holiday.id) || { purchase: [], pack: [], do: [] };
+    const outstanding = ['purchase', 'pack', 'do'].reduce((sum, kind) =>
+      sum + (bundle[kind] || []).filter((row) => statusOf(row) !== 'complete').length, 0);
+
     // The range is always readable as text, never a coloured bar alone.
-    body.appendChild(el('p', {
-      class: 'chip',
-      text: `${formatRange(holiday.start_date, holiday.end_date)}${nights ? ` · ${nights} day${nights === 1 ? '' : 's'}` : ''}`
-    }));
+    const meta = [`${formatRange(holiday.start_date, holiday.end_date)}`];
+    if (nights) meta.push(`${nights} day${nights === 1 ? '' : 's'}`);
+    meta.push(outstanding === 0 ? 'nothing outstanding' : `${outstanding} still to sort`);
 
-    const bundle = itemsByHoliday.get(holiday.id) || { checklist: [], purchase: [] };
-    body.appendChild(buildItemGroup(holiday, 'checklist', 'Packing list', bundle.checklist));
-    body.appendChild(buildItemGroup(holiday, 'purchase', 'Things to buy', bundle.purchase));
+    const open = el('button', { type: 'button', class: 'recipe-row-open' });
+    const text = el('span', { class: 'recipe-row-text' });
+    text.append(
+      el('span', { class: 'recipe-row-name', text: holiday.title }),
+      el('span', { class: 'recipe-row-meta', text: meta.join(' · ') })
+    );
+    open.append(text, el('span', { class: 'stock-row-chevron', 'aria-hidden': 'true', text: '›' }));
+    open.setAttribute('aria-label', `${holiday.title}, ${meta.join(', ')}. Open holiday.`);
+    open.addEventListener('click', () => openHolidaySheet(holiday, open), { signal });
 
-    const deleteBtn = el('button', { type: 'button', class: 'btn btn-danger' });
-    deleteBtn.textContent = `Delete ${holiday.title}`;
-    deleteBtn.addEventListener('click', () => onDeleteHoliday(holiday), { signal });
-    actions.appendChild(deleteBtn);
+    item.appendChild(open);
+    return item;
+  }
 
-    return article;
+  /**
+   * A holiday's three lists, in the panel.
+   *
+   * Buy / pack / do are separate sub-cards rather than one long list: they
+   * are done at different times — buying before you go, packing the night
+   * before, doing while you are there — and merging them would mean
+   * scrolling past a fortnight of activities to find the passports.
+   */
+  function openHolidaySheet(holiday, returnFocusTo) {
+    const nights = nightsBetween(holiday.start_date, holiday.end_date);
+    const bundle = itemsByHoliday.get(holiday.id) || { purchase: [], pack: [], do: [] };
+
+    openDetailSheet({
+      title: holiday.title,
+      subtitle: `${formatRange(holiday.start_date, holiday.end_date)}`
+        + `${nights ? ` · ${nights} day${nights === 1 ? '' : 's'}` : ''}`,
+      returnFocusTo,
+      build: (body) => {
+        for (const kind of ITEM_KINDS) {
+          const section = el('section', { class: 'sheet-section item-group-card' });
+          section.appendChild(buildItemGroup(holiday, kind.value, kind.label, bundle[kind.value] || []));
+          body.appendChild(section);
+        }
+
+        if (bundle.todoUnavailable) {
+          // Said plainly rather than showing an empty list that looks like
+          // there is nothing to do.
+          body.appendChild(el('p', {
+            class: 'field-error',
+            text: 'The things-to-do list is not available yet — database migration 006 '
+              + 'has not been run. The other two lists are unaffected.'
+          }));
+        }
+
+        const actions = el('div', { class: 'sheet-actions' });
+        const deleteBtn = el('button', { type: 'button', class: 'btn btn-danger' });
+        deleteBtn.textContent = `Delete ${holiday.title}`;
+        deleteBtn.addEventListener('click', () => onDeleteHoliday(holiday), { signal });
+        actions.appendChild(deleteBtn);
+        body.appendChild(actions);
+      }
+    });
   }
 
   function statusOf(item) {
@@ -191,9 +271,12 @@ export function render(mountEl) {
     return queuedStatuses.has(item.id) ? queuedStatuses.get(item.id) : item.status;
   }
 
+  /** What "done" means for each list, in the user's words. */
+  const DONE_WORD = { purchase: 'bought', pack: 'packed', do: 'done' };
+
   function buildItemGroup(holiday, kind, heading, items) {
     const wrap = el('div', { class: 'item-group' });
-    wrap.appendChild(el('h4', { text: heading }));
+    wrap.appendChild(el('h3', { class: 'item-group-title', text: heading }));
 
     const done = items.filter((item) => statusOf(item) === 'complete').length;
     wrap.appendChild(el('p', {
@@ -201,7 +284,8 @@ export function render(mountEl) {
       // A fact, not a scoreboard. Nothing counts down at the user.
       text: items.length === 0
         ? 'Nothing on this list yet.'
-        : `${done} of ${items.length} ${kind === 'checklist' ? 'packed' : 'bought'}`
+        // A fact, never a scoreboard counting down at you.
+        : `${done} of ${items.length} ${DONE_WORD[kind] || 'done'}`
     }));
 
     if (items.length > 0) {
@@ -247,6 +331,15 @@ export function render(mountEl) {
     return wrap;
   }
 
+  /** One place that decides how a toggle looks, so panel and row agree. */
+  function paintToggle(btn, item, status, verb) {
+    const done = status === 'complete';
+    btn.classList.toggle('is-complete', done);
+    btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+    btn.textContent = done ? verb : 'To do';
+    btn.setAttribute('aria-label', `${item.title} — ${done ? verb.toLowerCase() : 'to do'}`);
+  }
+
   function buildItemRow(holiday, kind, item) {
     const row = el('li', { class: 'check-row' });
     const current = statusOf(item);
@@ -259,16 +352,29 @@ export function render(mountEl) {
       class: `btn check-toggle${complete ? ' is-complete' : ''}`,
       'aria-pressed': complete ? 'true' : 'false'
     });
-    const verb = kind === 'checklist' ? 'Packed' : 'Bought';
+    const verb = { purchase: 'Bought', pack: 'Packed', do: 'Done' }[kind] || 'Done';
     toggle.textContent = complete ? verb : 'To do';
     toggle.setAttribute('aria-label', `${item.title} — ${complete ? verb.toLowerCase() : 'to do'}`);
 
+    // The panel keeps its DOM between ticks, so a value captured when the
+    // row was BUILT goes stale after the first one — the second tap would
+    // compute the same "next" again and roll back to the wrong label. The
+    // displayed state is tracked here instead.
+    let displayed = current;
+
     toggle.addEventListener('click', async () => {
-      const next = complete ? 'pending' : 'complete';
+      const wasShowing = displayed;
+      const next = displayed === 'complete' ? 'pending' : 'complete';
       // OPTIMISTIC: the tap counts now, the write happens behind it. The
       // button is never disabled — a disabled button defeats the one-tap
       // premise, and this happens while packing, often with no signal.
       queuedStatuses.set(item.id, next);
+      displayed = next;
+      // Repaint THIS button directly. renderHolidays() rebuilds the rows
+      // behind the panel, not the panel itself, so without this the tick
+      // showed nothing until the panel was closed and reopened — which
+      // reads exactly like a tap that did not count.
+      paintToggle(toggle, item, next, verb);
       renderHolidays();
       announce(`${item.title} — ${next === 'complete' ? verb.toLowerCase() : 'to do'}.`);
 
@@ -277,12 +383,19 @@ export function render(mountEl) {
       if (!result.ok) {
         // Only an outright failure rolls back, and it says so.
         queuedStatuses.delete(item.id);
+        displayed = wasShowing;
+        paintToggle(toggle, item, wasShowing, verb);
         console.error('Failed to set a holiday item status:', result.error);
         showToast("That didn't save — tap it again.");
         renderHolidays();
         return;
       }
-      if (!result.queued) queuedStatuses.delete(item.id);
+      if (!result.queued) {
+        queuedStatuses.delete(item.id);
+        // Keep the snapshot honest, or a re-render behind the panel would
+        // repaint this row from a status the server has already changed.
+        item.status = next;
+      }
       await loadItems();
       if (!destroyed) restoreFocus(`item-toggle-${item.id}`);
     }, { signal });
@@ -584,10 +697,24 @@ export function render(mountEl) {
   function renderHolidays() {
     holidayList.replaceChildren();
     if (holidays.length === 0) {
-      holidayList.appendChild(el('p', { text: 'No holidays yet — add one below.' }));
+      holidayList.appendChild(el('li', {
+        class: 'recipe-row',
+        text: 'No holidays yet. Add one and it appears on the calendar too.'
+      }));
+      holidaySummary.textContent = '';
       return;
     }
-    for (const holiday of holidays) holidayList.appendChild(buildHolidayCard(holiday));
+    for (const holiday of holidays) holidayList.appendChild(buildHolidayRow(holiday));
+
+    const outstanding = holidays.reduce((sum, holiday) => {
+      const bundle = itemsByHoliday.get(holiday.id) || {};
+      return sum + ['purchase', 'pack', 'do'].reduce((inner, kind) =>
+        inner + (bundle[kind] || []).filter((row) => statusOf(row) !== 'complete').length, 0);
+    }, 0);
+    holidaySummary.textContent = outstanding === 0
+      ? `${holidays.length} holiday${holidays.length === 1 ? '' : 's'}, nothing outstanding.`
+      : `${holidays.length} holiday${holidays.length === 1 ? '' : 's'}, `
+        + `${outstanding} thing${outstanding === 1 ? '' : 's'} still to sort.`;
   }
 
   function renderWork() {
@@ -624,16 +751,26 @@ export function render(mountEl) {
     }
     const next = new Map();
     for (const holiday of holidays) {
-      const [checklist, purchase] = await Promise.all([
-        listItems(holiday.id, 'checklist'),
-        listItems(holiday.id, 'purchase')
+      const [purchase, pack, todo] = await Promise.all([
+        listItems(holiday.id, 'purchase'),
+        listItems(holiday.id, 'pack'),
+        listItems(holiday.id, 'do')
       ]);
       if (destroyed) return;
-      if (!checklist.ok || !purchase.ok) {
-        console.error('Failed to load holiday items:', checklist.error || purchase.error);
+      if (!purchase.ok || !pack.ok) {
+        console.error('Failed to load holiday items:', purchase.error || pack.error);
         continue;
       }
-      next.set(holiday.id, { checklist: checklist.data, purchase: purchase.data });
+      // `do` is the only list that needs revision 6. If that migration has
+      // not run the query fails, and the honest response is an empty list
+      // plus a note — not a broken page and not a silent nothing.
+      next.set(holiday.id, {
+        purchase: purchase.data,
+        pack: pack.data,
+        do: todo.ok ? todo.data : [],
+        todoUnavailable: !todo.ok
+      });
+      if (!todo.ok) console.error('Things-to-do list unavailable:', todo.error);
     }
     itemsByHoliday = next;
     queuedStatuses = await pendingItemStatuses();

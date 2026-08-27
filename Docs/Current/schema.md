@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-26 Aug 2026 v5
+26 Aug 2026 v6
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -9,6 +9,32 @@ added, renamed, or removed anywhere without changing it here first.
 Backend: Supabase (PostgreSQL, **EU region**, fresh project). **18 tables,
 18 RLS policies**, 1 trigger function, 18 update triggers, single owner.
 (17 until revision 5, which added the first new table since Phase 1.)
+
+---
+
+## 0d. Revision 6 — things to DO on holiday (26 Aug 2026)
+
+A holiday now has three lists: things to **buy**, things to **pack**, and
+things to **do** while you are there.
+
+`holiday_checklist_items` gains **`kind`** — `pack` / `do`, not null,
+**default `pack`**, CHECK-constrained.
+
+**Why a column rather than a third table.** Buying is genuinely different:
+`holiday_purchase_items` carries `send_to_shopping`, which bridges into the
+shopping list, and nothing else does. Packing and doing are the *same
+shape* — a title and whether it is done. A separate table would mean a
+fourth RLS policy, a fourth trigger, a fourth branch in every loader, and
+two code paths that must be kept identical forever.
+
+**`default 'pack'` is what makes it safe**: every row written before now was
+a packing item, and that is exactly what it stays.
+
+**The table name becomes historical** — it now holds two kinds of checklist.
+Not renamed, for the same reason `quantity_g` was not in revision 4: a
+rename breaks any client still running cached JavaScript from before the
+deploy, and additive-only is the property that has kept every migration here
+safe. Recorded as debt.
 
 ---
 
@@ -395,6 +421,7 @@ the list by creating (or matching) a `foods` row with the right `category` —
 | holiday_id | uuid | not null; references holidays(id) **on delete cascade** |
 | title | text | not null |
 | status | text | check in ('pending','complete'); default 'pending' |
+| kind | text | not null; default 'pack'; check in ('pack','do') (revision 6) — packing list vs things to do there |
 
 ### holiday_purchase_items
 | Column | Type | Notes |
