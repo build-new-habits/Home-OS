@@ -1,4 +1,12 @@
 // js/views/meals.js — 21 Aug 2026 v8
+//
+// ---- The weekly plan moved out (26 Aug 2026) ----
+// It lives in views/mealPlan.js and its own route. This file no longer
+// mounts or loads it. The plan-building functions below are DEAD CODE for
+// exactly one commit — they come out with the recipe-card rework, which
+// restructures this file anyway. Deleting 250 interleaved lines by hand in
+// the same change that adds new behaviour is how a file gets corrupted;
+// separating the two keeps each step verifiable.
 // v8: the scanner dialog moved to components/scannerDialog.js so the pantry
 // can scan a shelf too. Behaviour here is unchanged; only the dialog's
 // construction left this file.
@@ -1689,9 +1697,8 @@ export function render(mountEl) {
     buildPlanTable();
   }
 
-  mountEl.append(planSection, mealsSection, foodsSection);
+  mountEl.append(mealsSection, foodsSection);
 
-  buildPlanTable();
   paintOfflineNote();
 
   function onConnectionChange() {
@@ -1716,8 +1723,6 @@ export function render(mountEl) {
     await loadFoods();
     if (destroyed) return;
     await loadMeals();
-    if (destroyed) return;
-    await loadPlan();
   })();
 
   return () => {

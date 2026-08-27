@@ -1,4 +1,7 @@
-// js/data/meals.js — 21 Aug 2026 v2
+// js/data/meals.js — 26 Aug 2026 v3
+// v3: meal_type and is_favourite (schema revision 5). meal_type is
+// normalised here rather than sent raw — a CHECK violation surfaces as an
+// opaque database error and tells the user nothing.
 // v2 (schema revision 4): ingredients carry a UNIT. quantity_g is a
 // historical column name — read `unit` before using it.
 // All Supabase access for `meals` and `meal_ingredients`, plus the macro
@@ -145,23 +148,74 @@ export function groupByMeal(ingredients) {
   return map;
 }
 
-export async function createMeal({ name, default_serves = 4 }) {
+/**
+ * What a recipe IS, distinct from weekly_meal_plan.slot, which is where it
+ * sits in one week. Porridge is a breakfast whether or not it is planned
+ * for Tuesday, and eating it at 9pm does not reclassify it.
+ *
+ * `drink` has no matching plan slot — the slot CHECK is unchanged — so a
+ * drink can be classified and found without being plannable yet.
+ */
+export const MEAL_TYPES = [
+  { value: 'breakfast', label: 'Breakfast' },
+  { value: 'lunch', label: 'Lunch' },
+  { value: 'dinner', label: 'Dinner' },
+  { value: 'snack', label: 'Snack' },
+  { value: 'drink', label: 'Drink' }
+];
+
+const MEAL_TYPE_VALUES = MEAL_TYPES.map((t) => t.value);
+
+export function isValidMealType(value) {
+  return MEAL_TYPE_VALUES.includes(value);
+}
+
+/** "Not said yet" is a real state and reads as such, never as an error. */
+export function mealTypeLabel(value) {
+  const found = MEAL_TYPES.find((t) => t.value === value);
+  return found ? found.label : 'Unclassified';
+}
+
+/**
+ * Normalises meal_type for a write.
+ *
+ * A value the CHECK constraint would reject is refused HERE rather than
+ * sent: a constraint violation surfaces as an opaque database error, and
+ * the user gets told nothing useful. Defensive normalisation on enum
+ * columns is a standing rule after the Phase 6 category defect.
+ */
+function normaliseMealType(value) {
+  if (value === null || value === undefined || value === '') return { ok: true, value: null };
+  if (!isValidMealType(value)) {
+    return { ok: false, error: new Error(`"${value}" is not a kind of meal this app knows.`) };
+  }
+  return { ok: true, value };
+}
+
+export async function createMeal({ name, default_serves = 4, meal_type = null, is_favourite = false }) {
   const title = String(name || '').trim();
   if (!title) return { ok: false, error: new Error('A meal needs a name.') };
   const serves = Number(default_serves);
   if (!Number.isInteger(serves) || serves < 1) {
     return { ok: false, error: new Error('Servings must be a whole number, 1 or more.') };
   }
+  const type = normaliseMealType(meal_type);
+  if (!type.ok) return { ok: false, error: type.error };
   const { data, error } = await supabase
     .from(MEALS)
-    .insert({ name: title, default_serves: serves })
+    .insert({
+      name: title,
+      default_serves: serves,
+      meal_type: type.value,
+      is_favourite: !!is_favourite
+    })
     .select()
     .single();
   if (error) return { ok: false, error };
   return { ok: true, data };
 }
 
-export async function updateMeal(mealId, { name, default_serves } = {}) {
+export async function updateMeal(mealId, { name, default_serves, meal_type, is_favourite } = {}) {
   const patch = {};
   if (name !== undefined) {
     const title = String(name).trim();
@@ -175,9 +229,30 @@ export async function updateMeal(mealId, { name, default_serves } = {}) {
     }
     patch.default_serves = serves;
   }
+  if (meal_type !== undefined) {
+    const type = normaliseMealType(meal_type);
+    if (!type.ok) return { ok: false, error: type.error };
+    patch.meal_type = type.value;
+  }
+  if (is_favourite !== undefined) patch.is_favourite = !!is_favourite;
   const { data, error } = await supabase
     .from(MEALS)
     .update(patch)
+    .eq('id', mealId)
+    .select()
+    .single();
+  if (error) return { ok: false, error };
+  return { ok: true, data };
+}
+
+/**
+ * Favourite or un-favourite, on its own so a star tap is one small write
+ * rather than a full update carrying every other field back to the server.
+ */
+export async function setFavourite(mealId, isFavourite) {
+  const { data, error } = await supabase
+    .from(MEALS)
+    .update({ is_favourite: !!isFavourite })
     .eq('id', mealId)
     .select()
     .single();

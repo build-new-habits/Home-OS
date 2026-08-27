@@ -1,4 +1,5 @@
-// js/navConfig.js — 26 Aug 2026 v3
+// js/navConfig.js — 26 Aug 2026 v4
+// v4: the weekly plan is its own page under Kitchen.
 // v3: adds Kitchen. Meals, pantry and shopping are not three peers — they
 // are one pipeline (plan a week, diff it against the cupboards, buy the
 // difference, stock the cupboards, cook), so they sit behind one entry.
@@ -56,6 +57,7 @@ export const DASHBOARD_LINKS = [
  */
 export const KITCHEN_PAGES = [
   { path: 'shopping', title: 'Shopping list', blurb: 'What you still need to buy.' },
+  { path: 'meal-plan', title: 'Weekly plan', blurb: 'What you are eating this week.' },
   { path: 'meals', title: 'Meals', blurb: 'Recipes and the weekly plan.' },
   { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' }
 ];

@@ -1,4 +1,5 @@
-// service-worker.js — 26 Aug 2026 v33
+// service-worker.js — 26 Aug 2026 v34
+// v34: ONE new path, js/views/mealPlan.js — the weekly plan is its own page.
 // v33: no path changes. Bumped for the chores rework — views/chores.js v4,
 // lib/rrule.js v2, components.css v19.
 // v32: ONE new path, js/views/kitchen.js.
@@ -95,7 +96,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v33';
+const CACHE_NAME = 'home-os-shell-v34';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -156,7 +157,8 @@ const SHELL_FILES = [
   './js/views/holidays.js',
   './js/views/calendar.js',
   './js/views/health.js',
-  './js/views/kitchen.js'
+  './js/views/kitchen.js',
+  './js/views/mealPlan.js'
 ];
 self.addEventListener('install', (event) => {
   event.waitUntil(

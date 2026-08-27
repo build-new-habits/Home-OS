@@ -183,30 +183,6 @@ const buttons = [...mount.querySelectorAll('button')];
 const nameless = buttons.filter((b) => !(b.getAttribute('aria-label') || b.textContent.trim()));
 check(`all ${buttons.length} buttons have an accessible name`, nameless.length === 0);
 
-// ---- The plan is a real table with scoped headers ----
-const planTable = mount.querySelector('.plan-table');
-check('the weekly plan is a real <table>', !!planTable && planTable.tagName === 'TABLE');
-check('the plan table has a caption', !!planTable.querySelector('caption'));
-const ths = [...planTable.querySelectorAll('th')];
-check(`all ${ths.length} plan headers carry scope`, ths.every((t) => t.getAttribute('scope')));
-check('slots are column headers', planTable.querySelectorAll('thead th[scope="col"]').length === 5);
-check('all 7 days are row headers', planTable.querySelectorAll('tbody th[scope="row"]').length === 7);
-check('the grid is 7 days x 4 slots', planTable.querySelectorAll('tbody tr').length === 7
-  && planTable.querySelectorAll('tbody tr')[0].querySelectorAll('td').length === 4);
-
-// ---- Cell buttons name day AND slot, not just "Add" ----
-const addBtns = [...planTable.querySelectorAll('td button')].filter((b) => b.textContent.trim() === 'Add');
-check('every cell has an Add button', addBtns.length === 28, `found ${addBtns.length}`);
-check('Add buttons name both the day and the meal time',
-  addBtns.every((b) => { const l = (b.getAttribute('aria-label') || '').toLowerCase();
-    return l.includes('add a meal to') && /monday|tuesday|wednesday|thursday|friday|saturday|sunday/.test(l)
-      && /breakfast|lunch|dinner|snack/.test(l); }));
-
-// ---- The scroll region is reachable and named ----
-const scroll = mount.querySelector('.plan-scroll');
-check('the scrollable plan region is keyboard reachable', scroll && scroll.getAttribute('tabindex') === '0');
-check('the scrollable plan region is named', scroll && !!scroll.getAttribute('aria-label'));
-
 // ---- Macro figures carry units as text ----
 const macroTable = mount.querySelector('.meal-card .data-table');
 check('meal macros are a real table with a caption', !!macroTable && !!macroTable.querySelector('caption'));
@@ -223,10 +199,6 @@ check('the incomplete ingredient count is stated in words',
 check('an unconvertible unit is explained, not just flagged',
   /no weight per millilitre is recorded/.test(mount.textContent), '');
 check('the incomplete ingredient is named', mount.textContent.includes('Home-made stock'));
-
-// ---- No colour-only meaning: the empty cell says so in text ----
-check('empty plan cells say "Nothing planned" in text',
-  mount.querySelectorAll('.plan-empty').length === 27, `found ${mount.querySelectorAll('.plan-empty').length}`);
 
 // ---- Headings are ordered ----
 const levels = [...mount.querySelectorAll('h1,h2,h3')].map((h) => Number(h.tagName[1]));
@@ -470,14 +442,62 @@ kitMod.render(kitMount, {});
 await new Promise((r) => setTimeout(r, 60));
 
 const kitLinks = [...kitMount.querySelectorAll('.hub-link')];
-check('kitchen: the hub links to all three pages', kitLinks.length === 3);
+check('kitchen: the hub links to every kitchen page', kitLinks.length === 4);
 check('kitchen: links point at real routes',
-  kitLinks.every((a) => /^#\/(meals|pantry|shopping)$/.test(a.getAttribute('href') || '')));
+  kitLinks.every((a) => /^#\/(meals|pantry|shopping|meal-plan)$/.test(a.getAttribute('href') || '')));
 check('kitchen: shopping comes first — it is what you open in a shop',
   (kitLinks[0] || {}).getAttribute && kitLinks[0].getAttribute('href') === '#/shopping');
 check('kitchen: every link has an accessible name',
   kitLinks.every((a) => (a.getAttribute('aria-label') || a.textContent.trim()).length > 0));
 check('kitchen: exactly one h1', kitMount.querySelectorAll('h1').length === 1);
+
+// ================= Weekly plan =================
+// Moved off the Meals screen onto its own page. These checks moved with it:
+// a check that silently stops covering the thing it names is worse than no
+// check, and this one failed loudly the moment the table left, which is
+// exactly what it should do.
+console.log('');
+const planMount = window.document.createElement('main');
+window.document.body.appendChild(planMount);
+const planMod = await import(pathToFileURL(path.join(REPO, 'js/views/mealPlan.js')).href);
+planMod.render(planMount, {});
+await new Promise((r) => setTimeout(r, 80));
+
+const planTable = planMount.querySelector('.plan-table');
+check('the weekly plan is a real <table>', !!planTable && planTable.tagName === 'TABLE');
+check('the plan table has a caption', !!planTable && !!planTable.querySelector('caption'));
+const planThs = planTable ? [...planTable.querySelectorAll('th')] : [];
+check(`all ${planThs.length} plan headers carry scope`, planThs.every((t) => t.getAttribute('scope')));
+check('slots are column headers',
+  !!planTable && planTable.querySelectorAll('thead th[scope="col"]').length === 5);
+check('all 7 days are row headers',
+  !!planTable && planTable.querySelectorAll('tbody th[scope="row"]').length === 7);
+check('the grid is 7 days x 4 slots', !!planTable
+  && planTable.querySelectorAll('tbody tr').length === 7
+  && planTable.querySelectorAll('tbody tr')[0].querySelectorAll('td').length === 4);
+
+const planAddBtns = planTable
+  ? [...planTable.querySelectorAll('td button')].filter((b) => b.textContent.trim() === 'Add')
+  : [];
+check('every cell has an Add button', planAddBtns.length === 28, `found ${planAddBtns.length}`);
+check('Add buttons name both the day and the meal time',
+  planAddBtns.every((b) => { const l = (b.getAttribute('aria-label') || '').toLowerCase();
+    return l.includes('add a meal to') && /monday|tuesday|wednesday|thursday|friday|saturday|sunday/.test(l)
+      && /breakfast|lunch|dinner|snack/.test(l); }));
+
+// A per-entry servings box must never read as the recipe's own default.
+const overrideInput = planMount.querySelector('.plan-serves-input');
+check('a planned meal can be re-served for this time only', !!overrideInput);
+check('the servings box says it applies to this day and meal time',
+  !!overrideInput && /on \w+day/i.test(
+    (planMount.querySelector(`label[for="${overrideInput.id}"]`) || {}).textContent || ''));
+// No colour-only meaning: an empty cell says so in words. The fixture
+// plans one meal, so 27 of the 28 cells are empty.
+check('empty plan cells say "Nothing planned" in text',
+  planMount.querySelectorAll('.plan-empty').length === 27,
+  `found ${planMount.querySelectorAll('.plan-empty').length}`);
+
+check('weekly plan: exactly one h1', planMount.querySelectorAll('h1').length === 1);
 
 // ================= Chores =================
 console.log('');

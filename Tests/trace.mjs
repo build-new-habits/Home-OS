@@ -187,8 +187,15 @@ submit(mealsMount.querySelector('#new-meal-name').closest('form'));
 await settle();
 let w = lastWrite();
 check('add meal issues an insert on `meals`', w && w.table === 'meals' && w.op === 'insert', JSON.stringify(w));
-check('add meal sends name and default_serves only',
-  w && JSON.stringify(Object.keys(w.payload).sort()) === '["default_serves","name"]', JSON.stringify(w && w.payload));
+// Revision 5 added meal_type and is_favourite, so the insert legitimately
+// carries four columns. The assertion still pins the SET exactly — an
+// unexpected extra column is how a stray field reaches the database.
+check('add meal sends exactly the four columns it should',
+  w && JSON.stringify(Object.keys(w.payload).sort())
+    === '["default_serves","is_favourite","meal_type","name"]', JSON.stringify(w && w.payload));
+check('an unclassified meal sends NULL, not a guessed type',
+  w && w.payload.meal_type === null, JSON.stringify(w && w.payload.meal_type));
+check('a new meal is not silently a favourite', w && w.payload.is_favourite === false);
 check('default_serves is sent as a NUMBER, not a string',
   w && typeof w.payload.default_serves === 'number', typeof (w && w.payload.default_serves));
 check('no user_id is ever sent (RLS supplies it)', !w || !('user_id' in w.payload));
@@ -201,42 +208,6 @@ await settle();
 check('a blank meal name issues NO write', writes().length === 0, JSON.stringify(writes()));
 check('and shows an error the user can read',
   !mealsMount.querySelector('#new-meal-error').hidden);
-
-// --- add to plan, blank meal, refused ---
-clearCalls();
-const planForm = mealsMount.querySelector('#plan-meal').closest('form');
-setValue(mealsMount.querySelector('#plan-meal'), '');
-submit(planForm);
-await settle();
-check('adding to the plan with no meal chosen issues NO write', writes().length === 0);
-check('and explains what to do', !mealsMount.querySelector('#plan-error').hidden);
-
-// --- add to plan properly ---
-clearCalls();
-setValue(mealsMount.querySelector('#plan-day'), 'thu');
-setValue(mealsMount.querySelector('#plan-slot'), 'dinner');
-setValue(mealsMount.querySelector('#plan-meal'), 'meal-1');
-setValue(mealsMount.querySelector('#plan-serves-new'), '5');
-submit(planForm);
-await settle();
-w = writes().find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
-check('add to plan inserts into `weekly_meal_plan`', !!w, JSON.stringify(writes()));
-check('the chosen day and slot are what get sent',
-  w && w.payload.day_of_week === 'thu' && w.payload.slot === 'dinner', JSON.stringify(w && w.payload));
-check('serves_override is sent as a number', w && w.payload.serves_override === 5);
-
-// --- a plan cell Add button targets the right cell ---
-const cellBtn = [...mealsMount.querySelectorAll('.plan-table td button')]
-  .find((b) => (b.getAttribute('aria-label') || '').includes('Wednesday lunch'));
-check('a plan cell Add button exists for Wednesday lunch', !!cellBtn);
-if (cellBtn) {
-  click(cellBtn);
-  await settle(20);
-  check('pressing it preselects that day and slot in the form',
-    mealsMount.querySelector('#plan-day').value === 'wed'
-    && mealsMount.querySelector('#plan-slot').value === 'lunch',
-    `${mealsMount.querySelector('#plan-day').value}/${mealsMount.querySelector('#plan-slot').value}`);
-}
 
 // --- barcode validation stops a silent null ---
 clearCalls();
@@ -490,3 +461,55 @@ if (fails.length) {
   process.exit(1);
 }
 console.log(`INTERACTION TRACE PASSED — ${pass}/${pass} interactions, every write inspected`);
+
+// ================= Weekly plan =================
+// These interactions moved with the view. The gate failed loudly when the
+// form left this page, which is the behaviour worth keeping: a trace that
+// quietly stops covering a write is worse than no trace.
+const planMount = window.document.createElement('main');
+window.document.body.appendChild(planMount);
+const mealPlanView = await import(pathToFileURL(path.join(REPO, 'js/views/mealPlan.js')).href);
+const cleanupPlan = mealPlanView.render(planMount, {});
+await settle(80);
+
+// --- add to plan, blank meal, refused ---
+clearCalls();
+const planForm = planMount.querySelector('#plan-meal').closest('form');
+setValue(planMount.querySelector('#plan-meal'), '');
+submit(planForm);
+await settle();
+check('adding to the plan with no meal chosen issues NO write', writes().length === 0);
+check('and explains what to do', !planMount.querySelector('#plan-error').hidden);
+
+// --- add to plan properly ---
+clearCalls();
+setValue(planMount.querySelector('#plan-day'), 'thu');
+setValue(planMount.querySelector('#plan-slot'), 'dinner');
+setValue(planMount.querySelector('#plan-meal'), 'meal-1');
+setValue(planMount.querySelector('#plan-serves-new'), '5');
+submit(planForm);
+await settle();
+w = writes().find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
+check('add to plan inserts into `weekly_meal_plan`', !!w, JSON.stringify(writes()));
+check('the chosen day and slot are what get sent',
+  w && w.payload.day_of_week === 'thu' && w.payload.slot === 'dinner', JSON.stringify(w && w.payload));
+check('serves_override is sent as a number', w && w.payload.serves_override === 5);
+// serves_override is per ENTRY. Touching meals.default_serves here would
+// silently re-serve every other week the recipe appears in.
+check('changing a planned serving never writes to `meals`',
+  !writes().some((c) => c.table === 'meals'), JSON.stringify(writes()));
+
+// --- a plan cell Add button targets the right cell ---
+const cellBtn = [...planMount.querySelectorAll('.plan-table td button')]
+  .find((b) => (b.getAttribute('aria-label') || '').includes('Wednesday lunch'));
+check('a plan cell Add button exists for Wednesday lunch', !!cellBtn);
+if (cellBtn) {
+  click(cellBtn);
+  await settle(20);
+  check('pressing it preselects that day and slot in the form',
+    planMount.querySelector('#plan-day').value === 'wed'
+    && planMount.querySelector('#plan-slot').value === 'lunch',
+    `${planMount.querySelector('#plan-day').value}/${planMount.querySelector('#plan-slot').value}`);
+}
+if (typeof cleanupPlan === 'function') cleanupPlan();
+
