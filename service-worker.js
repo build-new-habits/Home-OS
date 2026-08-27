@@ -1,4 +1,6 @@
-// service-worker.js — 26 Aug 2026 v32
+// service-worker.js — 26 Aug 2026 v33
+// v33: no path changes. Bumped for the chores rework — views/chores.js v4,
+// lib/rrule.js v2, components.css v19.
 // v32: ONE new path, js/views/kitchen.js.
 // v31: no path changes. Bumped for dashboard v2 (one-tap water, curated
 // link list), navConfig v2 and components.css v18.
@@ -93,7 +95,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v32';
+const CACHE_NAME = 'home-os-shell-v33';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

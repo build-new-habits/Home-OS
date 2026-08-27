@@ -47,7 +47,22 @@ function fixture(t) {
     { id:'chk-1', holiday_id:'hol-1', title:'Passports', status:'complete' },
     { id:'chk-2', holiday_id:'hol-1', title:'Chargers', status:'pending' }];
   if (t === 'holiday_purchase_items') return [{ id:'buy-1', holiday_id:'hol-1', title:'Sun cream', status:'pending', send_to_shopping:true }];
-  if (t === 'calendar_events') return [{ id:'ev-1', event_type:'work_location', source_id:null, title:'Office', start_date:'2026-08-24', recurrence_rule:'FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH', location_label:'Head office' }];
+  if (t === 'calendar_events') return [
+    { id:'ev-1', event_type:'work_location', source_id:null, title:'Office', start_date:'2026-08-24', recurrence_rule:'FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,TH', location_label:'Head office' },
+    // The recurrence ANCHOR for task-1. It lives only here, never on
+    // chore_tasks — the Phase 4 debt the chores screen has to join across.
+    { id:'ev-2', event_type:'chore', source_id:'task-1', title:'Clean the fridge', start_date:'2026-08-01', recurrence_rule:'FREQ=DAILY;INTERVAL=1', location_label:null }];
+  if (t === 'chore_projects') return [
+    { id:'proj-1', title:'Kitchen', colour:'#2f6f4f', sort_order:0 },
+    { id:'proj-2', title:'Garden', colour:'#7a4f2f', sort_order:1 }];
+  if (t === 'chore_tasks') return [
+    // Repeating daily, anchored 1 Aug, so an occurrence is outstanding today.
+    { id:'task-1', project_id:'proj-1', title:'Clean the fridge', details:'Take everything out first', is_repeatable:true, recurrence_rule:'FREQ=DAILY;INTERVAL=1', status:'pending', completed_at:null, created_at:'2026-08-01T00:00:00Z' },
+    // Seasonal — quarterly — so the cadence filter has something to catch.
+    { id:'task-2', project_id:'proj-1', title:'Descale the kettle', details:null, is_repeatable:true, recurrence_rule:'FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=1', status:'pending', completed_at:null, created_at:'2026-08-01T00:00:00Z' },
+    // A one-off, which still uses chore_tasks.status.
+    { id:'task-3', project_id:'proj-2', title:'Fix the gate', details:null, is_repeatable:false, recurrence_rule:null, status:'pending', completed_at:null, created_at:'2026-08-20T00:00:00Z' }];
+  if (t === 'chore_task_completions') return [];
   return [];
 }
 function builder(t) { const st={}; const b={}; for (const m of CHAIN) b[m]=(...a)=>{ if(m==='select'&&a[1]&&a[1].head) st.head=true; return b; };
@@ -464,6 +479,74 @@ check('kitchen: every link has an accessible name',
   kitLinks.every((a) => (a.getAttribute('aria-label') || a.textContent.trim()).length > 0));
 check('kitchen: exactly one h1', kitMount.querySelectorAll('h1').length === 1);
 
+// ================= Chores =================
+console.log('');
+const choMount = window.document.createElement('main');
+window.document.body.appendChild(choMount);
+const choMod = await import(pathToFileURL(path.join(REPO, 'js/views/chores.js')).href);
+choMod.render(choMount, {});
+await new Promise((r) => setTimeout(r, 120));
+
+// Projects collapse. A hundred tasks in one list is the thing this replaces.
+const choToggles = [...choMount.querySelectorAll('.project-toggle')];
+check('chores: projects are collapsible', choToggles.length === 2);
+check('chores: a project is collapsed until opened',
+  choToggles.every((b) => b.getAttribute('aria-expanded') === 'false'));
+check('chores: a project says how much is to do, not just its name',
+  choToggles.some((b) => /to do/.test(b.getAttribute('aria-label') || '')));
+check('chores: no task rows are rendered while every project is shut',
+  choMount.querySelectorAll('.task-row').length === 0);
+
+// The filter button must SAY how many filters are on, or hidden state is
+// silent and a task looks like it has vanished.
+const choFilterBtn = [...choMount.querySelectorAll('button')]
+  .find((b) => /^Filter/.test(b.textContent));
+check('chores: a filter control exists', !!choFilterBtn);
+check('chores: with nothing filtered the button carries no count',
+  !!choFilterBtn && choFilterBtn.textContent.trim() === 'Filter');
+
+if (choToggles[0]) choToggles[0].dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 40));
+const choRows = [...choMount.querySelectorAll('.task-row')];
+check('chores: opening a project reveals its tasks', choRows.length === 2);
+check('chores: only the open project renders rows',
+  !choMount.textContent.includes('Fix the gate'));
+
+// Cadence is derived from the rule and shown, so a filter by it makes sense.
+check('chores: a task row states how often it repeats',
+  /Daily/.test(choMount.textContent) && /Seasonally/.test(choMount.textContent));
+check('chores: a task row states when it is due',
+  /Due today|Was due|Next /.test(choMount.textContent));
+
+// The tick is per OCCURRENCE. Its label has to name the date, or a repeating
+// chore's "done" is ambiguous about what exactly was done.
+const choTick = choMount.querySelector('.task-row .check-toggle');
+check('chores: each row has a tick', !!choTick);
+check('chores: the tick names the date it applies to',
+  !!choTick && /\d{4}-\d{2}-\d{2}/.test(choTick.getAttribute('aria-label') || ''),
+  'a repeating chore marked "done" must say done WHEN');
+check('chores: the tick reports its state, not just its colour',
+  !!choTick && choTick.getAttribute('aria-pressed') === 'false');
+
+// Opening a task uses the same panel as everything else.
+const choOpen = choMount.querySelector('.task-row-open');
+if (choOpen) choOpen.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 30));
+const choSheet = window.document.querySelector('.sheet[role="dialog"]');
+check('chores: opening a task opens the panel', !!choSheet);
+check('chores: the panel states the repeat in words',
+  !!choSheet && /Every day/.test(choSheet.textContent));
+if (choSheet) {
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  await new Promise((r) => setTimeout(r, 20));
+}
+
+const choLevels = [...choMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
+let choOrdered = true;
+for (let i = 1; i < choLevels.length; i++) if (choLevels[i] - choLevels[i - 1] > 1) choOrdered = false;
+check('chores: heading levels never skip', choOrdered, choLevels.join(','));
+check('chores: exactly one h1', choMount.querySelectorAll('h1').length === 1);
+
 // ================= Calendar =================
 console.log('');
 const calMount = window.document.createElement('main');
@@ -545,4 +628,4 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, calendar, health, kitchen)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, chores, calendar, health, kitchen)`);
