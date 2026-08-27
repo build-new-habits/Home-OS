@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-26 Aug 2026 v6
+27 Aug 2026 v7
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -9,6 +9,37 @@ added, renamed, or removed anywhere without changing it here first.
 Backend: Supabase (PostgreSQL, **EU region**, fresh project). **18 tables,
 18 RLS policies**, 1 trigger function, 18 update triggers, single owner.
 (17 until revision 5, which added the first new table since Phase 1.)
+
+---
+
+## 0e. Revision 7 — a real use-by date (27 Aug 2026)
+
+`pantry_stock` gains **`use_by`** — a nullable `date`.
+
+`shelf_life_days` is a guess dressed as data: 365 days from whenever you
+happened to stock it. The jar has the real answer printed on it.
+
+**Both are kept, and freshness prefers the fact:**
+
+| State | Reads as |
+|---|---|
+| `use_by` present | "Use by 3 September — 7 days left" |
+| `use_by` absent | "Stocked today — about 365 days left" |
+
+**The two must never read the same.** That wording is not decoration: the
+moment an estimate is displayed as a hard date it gets trusted in front of
+an open fridge. "About" is doing real work in that sentence.
+
+**Deliberately not backfilled.** Filling `use_by` with
+`last_restocked + shelf_life_days` would store a fabricated date that is
+then indistinguishable from one read off a label — and it would flow into
+the shopping shortfall, where "this expires before you would cook it" would
+rest on a number the app invented. NULL means "not recorded", exactly as it
+does for `current_qty`.
+
+A CHECK refuses a use-by earlier than `last_restocked`; that is a typo, not
+a fact. A partial index on non-null `use_by` serves "what is going off
+soon", which is asked on every pantry load.
 
 ---
 
