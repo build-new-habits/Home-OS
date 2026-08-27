@@ -389,6 +389,47 @@ for (let i = 1; i < panLevels.length; i++) if (panLevels[i] - panLevels[i - 1] >
 check('pantry: heading levels never skip', panOrdered, panLevels.join(','));
 check('pantry: exactly one h1', panMount.querySelectorAll('h1').length === 1);
 
+// ================= Dashboard =================
+// The water control here is load-bearing: it is the whole justification for
+// putting Water behind the Health hub. If it disappears, the most frequent
+// action in the app quietly becomes three taps deep.
+console.log('');
+const dashMount = window.document.createElement('main');
+window.document.body.appendChild(dashMount);
+const dashMod = await import(pathToFileURL(path.join(REPO, 'js/views/dashboard.js')).href);
+dashMod.render(dashMount, {});
+await new Promise((r) => setTimeout(r, 60));
+
+const waterBtn = [...dashMount.querySelectorAll('button')]
+  .find((b) => /glass/i.test(b.getAttribute('aria-label') || b.textContent));
+check('dashboard: water can be logged in one tap', !!waterBtn,
+  'Health hub only works if logging stays on the dashboard');
+check('dashboard: the water button says the amount, not just "add"',
+  !!waterBtn && /\d/.test(waterBtn.getAttribute('aria-label') || ''));
+check('dashboard: the running total is announced politely',
+  !!dashMount.querySelector('[role="status"][aria-live="polite"]'));
+
+// Tapping must move the count immediately and must not disable the control.
+if (waterBtn) waterBtn.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+check('dashboard: the button is never disabled mid-write',
+  !!waterBtn && waterBtn.disabled === false,
+  'a dead control reads as a crash on a tap-heavy action');
+
+// The bottom-bar four must not be duplicated in the list below.
+const dashHrefs = [...dashMount.querySelectorAll('.hub-link')]
+  .map((a) => a.getAttribute('href'));
+check('dashboard: no duplicate links to what is already in the nav bar',
+  !dashHrefs.some((h) => ['#/chores', '#/calendar', '#/health', '#/dashboard'].includes(h)),
+  dashHrefs.join(' '));
+check('dashboard: no duplicate links to what is behind Health',
+  !dashHrefs.some((h) => ['#/water', '#/weight', '#/exercises'].includes(h)),
+  dashHrefs.join(' '));
+check('dashboard: the rest of the app is still reachable',
+  ['#/meals', '#/pantry', '#/shopping', '#/holidays', '#/settings']
+    .every((h) => dashHrefs.includes(h)));
+check('dashboard: exactly one h1', dashMount.querySelectorAll('h1').length === 1);
+
 // ================= Calendar =================
 console.log('');
 const calMount = window.document.createElement('main');
@@ -470,4 +511,4 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (meals, holidays, pantry, calendar, health)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, calendar, health)`);

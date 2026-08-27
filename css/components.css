@@ -1,4 +1,5 @@
-/* css/components.css — 26 Aug 2026 v17 */
+/* css/components.css — 26 Aug 2026 v18 */
+/* v18: .card-link for the dashboard. Appended only. */
 /* v17: calendar page, Health hub, day items. Appended only. */
 /* v16: rewrites the v15 pantry block (spacing, two-line rows) and adds the
    slide-out sheet. Only v15's own rules changed; nothing from v14 or
@@ -1641,4 +1642,15 @@ body.sheet-open {
   flex: 0 0 auto;
   font-size: var(--text-xl);
   color: var(--color-text-muted);
+}
+
+/* ---- Dashboard (v18) ---- */
+
+/* A link inside a card still needs a full tap target of its own. */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  margin-top: var(--space-2);
+  color: var(--color-accent-strong);
 }

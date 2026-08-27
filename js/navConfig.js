@@ -1,4 +1,5 @@
-// js/navConfig.js — 26 Aug 2026 v1
+// js/navConfig.js — 26 Aug 2026 v2
+// v2: adds DASHBOARD_LINKS.
 // Which four things sit in the bottom bar.
 //
 // This used to be a `nav: true` flag inside routes.js, which meant changing
@@ -24,6 +25,23 @@ export const NAV_ITEMS = [
   { path: 'health', label: 'Health', icon: '♡' },
   { path: 'chores', label: 'Chores', icon: '✓' },
   { path: 'calendar', label: 'Calendar', icon: '▤' }
+];
+
+/**
+ * The dashboard's link list.
+ *
+ * It used to be generated from every route, which meant the dashboard grew
+ * a duplicate link every time anything was added — including the four
+ * things already one tap away in the bottom bar, and the three now behind
+ * Health. Listed explicitly instead: what belongs on the dashboard is a
+ * judgement, not "everything that exists".
+ */
+export const DASHBOARD_LINKS = [
+  { path: 'meals', title: 'Meals', blurb: 'Recipes and the weekly plan.' },
+  { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' },
+  { path: 'shopping', title: 'Shopping list', blurb: 'What you still need to buy.' },
+  { path: 'holidays', title: 'Holidays', blurb: 'Trips and their checklists.' },
+  { path: 'settings', title: 'Settings', blurb: 'Themes, units and your account.' }
 ];
 
 /**
