@@ -420,8 +420,9 @@ Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | default_location | text | which cupboard. Distinct from `foods.category`: category is *what the thing is*, location is *where it lives*, and non-food needs locations like "bathroom cabinet" and "garage" |
-| shelf_life_days | int | how long it keeps once bought |
-| current_qty | numeric | default 0; **interpret with `unit`** |
+| shelf_life_days | int | the ESTIMATE — how long it usually keeps once bought. Used only when `use_by` is null |
+| use_by | date | nullable (revision 7). The FACT, read off the label. Never backfilled from restocked + shelf life |
+| current_qty | numeric | **nullable — NULL means "amount not recorded"**, which is distinct from 0 ("you have none"). Interpret with `unit` |
 | unit | text | not null; check in ('g','ml','item'); default `'g'` |
 | last_restocked | date | nullable. When it was actually bought. **Near-expiry is `last_restocked + shelf_life_days`** — never `updated_at`, which moves whenever the row is edited for any reason |
 

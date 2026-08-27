@@ -1,4 +1,7 @@
-// js/data/pantry.js — 26 Aug 2026 v2
+// js/data/pantry.js — 27 Aug 2026 v3
+// v3: use_by (revision 7). freshness() prefers the printed date over the
+// shelf-life estimate, and describeFreshness() words them differently on
+// purpose — see the comment there.
 // v2: a blank amount is NULL ("not recorded"), never 0. See normaliseQty.
 //     Adds needsAmount() and defaultUnitFor().
 // All Supabase access for `pantry_stock`. Shared data-access contract:
@@ -120,7 +123,11 @@ function buildPayload(input) {
     unit: isValidUnit(input.unit) ? input.unit : 'g',
     default_location: String(input.default_location || '').trim() || null,
     shelf_life_days: Number.isInteger(shelf) && shelf > 0 ? shelf : null,
-    last_restocked: normaliseDate(input.last_restocked)
+    last_restocked: normaliseDate(input.last_restocked),
+    // Null means "not recorded" and the estimate is used instead. Never
+    // filled in from restocked + shelf life: a fabricated date is
+    // indistinguishable from one read off a label once it is stored.
+    use_by: normaliseDate(input.use_by)
   };
 }
 
@@ -197,6 +204,9 @@ export async function updateStock(stockId, patch = {}) {
       next.shelf_life_days = days;
     }
   }
+  if (patch.use_by !== undefined) {
+    next.use_by = normaliseDate(patch.use_by);
+  }
   if (patch.last_restocked !== undefined) {
     next.last_restocked = normaliseDate(patch.last_restocked);
   }
@@ -237,18 +247,39 @@ export function todayIso() {
 export function freshness(row, todayISO = todayIso()) {
   const restocked = normaliseDate(row && row.last_restocked);
   const shelf = row && Number(row.shelf_life_days);
+  const useBy = normaliseDate(row && row.use_by);
+  const day = 86400000;
+
+  // ---- A printed date beats a calculation, always ----
+  // shelf_life_days is a guess: N days from whenever you happened to stock
+  // it. use_by is what the jar says. When both exist the jar wins, and
+  // `source` travels with the result so the wording can stay honest about
+  // which one it is — an estimate shown as a hard date gets trusted in
+  // front of an open fridge.
+  if (useBy) {
+    const daysLeft = Math.round((Date.parse(`${useBy}T00:00:00Z`) - Date.parse(`${todayISO}T00:00:00Z`)) / day);
+    const daysSince = restocked
+      ? Math.round((Date.parse(`${todayISO}T00:00:00Z`) - Date.parse(`${restocked}T00:00:00Z`)) / day)
+      : null;
+    // A fixed five-day window, not a fifth of the shelf life: with a real
+    // date there is no shelf life to take a fifth OF, and five days is
+    // about one shop.
+    let state = 'fresh';
+    if (daysLeft < 0) state = 'past';
+    else if (daysLeft <= 5) state = 'soon';
+    return { state, daysLeft, daysSince, useBy, source: 'label', reason: '' };
+  }
 
   if (!restocked && !Number.isFinite(shelf)) {
-    return { state: 'unknown', daysLeft: null, daysSince: null, reason: 'no date or shelf life recorded' };
+    return { state: 'unknown', daysLeft: null, daysSince: null, source: 'none', reason: 'no use-by date or shelf life recorded' };
   }
   if (!restocked) {
-    return { state: 'unknown', daysLeft: null, daysSince: null, reason: 'date not recorded' };
+    return { state: 'unknown', daysLeft: null, daysSince: null, source: 'none', reason: 'no use-by date, and no date stocked' };
   }
   if (!Number.isFinite(shelf) || shelf <= 0) {
-    return { state: 'unknown', daysLeft: null, daysSince: null, reason: 'no shelf life recorded' };
+    return { state: 'unknown', daysLeft: null, daysSince: null, source: 'none', reason: 'no use-by date or shelf life recorded' };
   }
 
-  const day = 86400000;
   const daysSince = Math.round((Date.parse(`${todayISO}T00:00:00Z`) - Date.parse(`${restocked}T00:00:00Z`)) / day);
   const daysLeft = shelf - daysSince;
 
@@ -259,7 +290,7 @@ export function freshness(row, todayISO = todayIso()) {
   if (daysLeft < 0) state = 'past';
   else if (daysLeft <= window) state = 'soon';
 
-  return { state, daysLeft, daysSince, reason: '' };
+  return { state, daysLeft, daysSince, useBy: null, source: 'estimate', reason: '' };
 }
 
 /**
@@ -272,6 +303,22 @@ export function describeFreshness(result) {
     return result && result.reason ? `Freshness unknown — ${result.reason}` : 'Freshness unknown';
   }
   const { state, daysSince, daysLeft } = result;
+
+  // A real date is stated as one. NO "about" anywhere in this branch: the
+  // whole point of reading it off the label is that it is not a guess.
+  if (result.source === 'label') {
+    const on = `Use by ${formatUseBy(result.useBy)}`;
+    if (state === 'past') {
+      const over = Math.abs(daysLeft);
+      return `${on} — that was ${over} day${over === 1 ? '' : 's'} ago. Worth a look.`;
+    }
+    if (daysLeft === 0) return `${on} — that is today. Good one to use up.`;
+    if (state === 'soon') {
+      return `${on} — ${daysLeft} day${daysLeft === 1 ? '' : 's'} left. Good one to use up.`;
+    }
+    return `${on} — ${daysLeft} days left.`;
+  }
+
   const since = `Stocked ${daysSince === 0 ? 'today' : `${daysSince} day${daysSince === 1 ? '' : 's'} ago`}`;
   if (state === 'past') {
     const over = Math.abs(daysLeft);
@@ -281,6 +328,15 @@ export function describeFreshness(result) {
     return `${since} — about ${daysLeft} day${daysLeft === 1 ? '' : 's'} left. Good one to use up.`;
   }
   return `${since} — about ${daysLeft} days left.`;
+}
+
+/** "3 September 2026", so a date is never ambiguous between 03/09 and 09/03. */
+function formatUseBy(iso) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+  const [y, m, d] = String(iso).split('-').map(Number);
+  if (!y || !m || !d) return iso;
+  return `${d} ${months[m - 1]} ${y}`;
 }
 
 /** Stock worth using up soon, most urgent first. The Phase 7 "use soon" signal. */

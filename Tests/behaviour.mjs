@@ -39,6 +39,7 @@ const { listEvents, EVENT_TYPES, assertSupportedRule } = await import(`${REPO}/j
 const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/js/data/holidays.js`);
 const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
+const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
 // ============ Macros, against a hand calculation ============
@@ -369,7 +370,42 @@ eq('no restock date is UNKNOWN, not fresh',
 eq('no shelf life is UNKNOWN, not fresh',
   freshness({ last_restocked: '2026-08-20', shelf_life_days: null }, '2026-08-21').state, 'unknown');
 check('unknown says WHICH piece is missing',
-  /date not recorded/.test(freshness({ last_restocked: null, shelf_life_days: 5 }, '2026-08-21').reason));
+  /no date stocked/.test(freshness({ last_restocked: null, shelf_life_days: 5 }, '2026-08-21').reason));
+
+// ---- A printed use-by beats a calculated one, and reads differently -----
+// shelf_life_days is a guess: N days from whenever it was stocked. use_by
+// is what the jar says. The wording must never let one pass for the other,
+// because an estimate shown as a hard date gets trusted at the fridge.
+eq('a use-by date wins over the shelf-life estimate',
+  freshness({ use_by: '2026-08-24', last_restocked: '2026-08-01', shelf_life_days: 365 }, '2026-08-21').daysLeft, 3);
+eq('and it is reported as coming from the label',
+  freshness({ use_by: '2026-08-24', last_restocked: '2026-08-01', shelf_life_days: 365 }, '2026-08-21').source, 'label');
+eq('with no use-by, the estimate is used and says so',
+  freshness({ last_restocked: '2026-08-20', shelf_life_days: 5 }, '2026-08-21').source, 'estimate');
+eq('a use-by in the past is PAST even with shelf life left',
+  freshness({ use_by: '2026-08-19', last_restocked: '2026-08-01', shelf_life_days: 365 }, '2026-08-21').state, 'past');
+eq('a use-by today is worth using up, not past',
+  freshness({ use_by: '2026-08-21' }, '2026-08-21').state, 'soon');
+check('a real date is stated WITHOUT the word "about"',
+  !/about/i.test(describeFreshness(freshness({ use_by: '2026-09-03' }, '2026-08-21'))),
+  describeFreshness(freshness({ use_by: '2026-09-03' }, '2026-08-21')));
+check('an estimate KEEPS the word "about"',
+  /about/i.test(describeFreshness(freshness({ last_restocked: '2026-08-20', shelf_life_days: 40 }, '2026-08-21'))));
+check('a real date is written unambiguously, never 03/09',
+  /3 September 2026/.test(describeFreshness(freshness({ use_by: '2026-09-03' }, '2026-08-21'))));
+
+console.log('\nPack size is read from the label, or refused');
+// A wrong pack size becomes the amount you are recorded as having, and the
+// shopping list then buys the wrong quantity. Refusing beats guessing.
+eq('grams', parsePackSize('330g').amount, 330);
+eq('millilitres, with the estimate mark', parsePackSize('150 ml e').unit, 'ml');
+eq('litres become millilitres', parsePackSize('1L').amount, 1000);
+eq('kilos become grams', parsePackSize('0,5 kg').amount, 500);
+eq('centilitres become millilitres', parsePackSize('75cl').amount, 750);
+eq('a multipack is REFUSED, not multiplied', parsePackSize('4 x 125g'), null);
+eq('two numbers is refused — which one is the size?', parsePackSize('330g (drained 240g)'), null);
+eq('"1 pack" is not a measurement', parsePackSize('1 pack'), null);
+eq('nothing at all is refused', parsePackSize(''), null);
 eq('days left is exact',
   freshness({ last_restocked: '2026-08-18', shelf_life_days: 5 }, '2026-08-21').daysLeft, 2);
 // A long shelf life needs a proportionally longer warning than two days.

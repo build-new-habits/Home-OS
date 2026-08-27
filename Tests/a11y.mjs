@@ -35,7 +35,7 @@ function fixture(t) {
       current_qty:500, unit:'g', last_restocked:'2026-08-01',
       foods:{ id:'food-1', name:'Rolled oats', category:'food_ambient', grams_per_ml:null, grams_per_item:25 } },
     { id:'st-2', food_id:'food-2', default_location:'Bathroom', shelf_life_days:5,
-      current_qty:2, unit:'item', last_restocked:'2026-08-19',
+      current_qty:2, unit:'item', last_restocked:'2026-08-19', use_by:'2026-08-28',
       foods:{ id:'food-2', name:'Home-made stock', category:'personal', grams_per_ml:null, grams_per_item:null } },
     // A row whose amount was never recorded. NULL, not 0: 0 means "you have
     // none" to the shortfall, and a scanned shelf saved as 0 would be rebought.
@@ -456,6 +456,18 @@ check('pantry: a missing amount says so rather than showing a bare 0',
 // behind Browse, so the assertions have to walk there like a user does.
 const panBrowseBtn = [...panMount.querySelectorAll('button')]
   .find((b) => b.getAttribute('aria-label') === 'Browse the pantry by where things live');
+// ---- The use-by date is a picker, not a typed string --------------------
+// A typed date is ambiguous (03/09 is March in half the world) and is work.
+// type="date" opens the native calendar and the OS handles the format.
+const useByField = panMount.querySelector('#pantry-use-by');
+check('pantry: a use-by date can be recorded', !!useByField);
+check('pantry: it is a date picker, not a text box',
+  !!useByField && useByField.type === 'date');
+check('pantry: the use-by field is labelled',
+  !!useByField && !!panMount.querySelector(`label[for="${CSS.escape(useByField.id)}"]`));
+check('pantry: leaving it blank is explained, not left to guesswork',
+  /estimate/i.test(panMount.textContent));
+
 check('pantry: a browse mode is offered', !!panBrowseBtn);
 if (panBrowseBtn) panBrowseBtn.dispatchEvent(new window.Event('click', { bubbles: true }));
 await new Promise((r) => setTimeout(r, 20));
@@ -475,8 +487,15 @@ await new Promise((r) => setTimeout(r, 20));
 check('pantry: quantities are shown with a unit',
   /500 g|0.5 kg/.test(panMount.textContent), '');
 // Freshness in words, and "unknown" must be an unembarrassed state.
+// Both wordings count — the fixture now has one row with a real use-by and
+// one relying on the shelf-life estimate.
 check('pantry: freshness is stated in words',
-  /Stocked .* days ago|Freshness unknown/.test(panMount.textContent), '');
+  /Stocked .* days? ago|Stocked today|Use by \d|Freshness unknown/.test(panMount.textContent), '');
+// The distinction is the point: a guess must not read like a printed date.
+check('pantry: a printed use-by is stated as a date, with no "about"',
+  /Use by \d+ \w+ \d{4} — \d+ days? left\./.test(panMount.textContent)
+  || /Use by \d+ \w+ \d{4} — that/.test(panMount.textContent),
+  'an estimate shown as a hard date gets trusted at the fridge');
 
 // ---- Opening an item must actually show what is known about it ---------
 // The macros are captured by the scan and then had nowhere to be read. A row

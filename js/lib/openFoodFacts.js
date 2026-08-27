@@ -79,6 +79,48 @@ export function energyKcalPer100g(nutriments) {
 }
 
 /** First non-empty trimmed string from the arguments, or null. */
+/**
+ * Open Food Facts' free-text `quantity` into { amount, unit }, or null.
+ *
+ * Handles the forms that actually appear: "330g", "150 ml e", "1L",
+ * "0,5 kg" (comma decimals are normal across most of Europe), "1.5 l".
+ *
+ * DELIBERATELY REFUSES anything ambiguous rather than guessing:
+ *   "4 x 125g"        -> null. Is that 500 g, or four things to count?
+ *   "330g (drained 240g)" -> null. Two numbers, no way to know which.
+ *   "1 pack", "large" -> null. Not a measurement.
+ * A wrong pack size is worse than none: it becomes the amount you are
+ * recorded as having, and the shopping list then buys the wrong quantity.
+ * The caller prefills it VISIBLY so a bad parse is correctable, but the
+ * best defence is not parsing what cannot be read.
+ */
+export function parsePackSize(text) {
+  if (!text) return null;
+  const raw = String(text).trim().toLowerCase();
+
+  // Multipacks and ranges: refuse outright.
+  if (/[x×]/.test(raw)) return null;
+  // More than one number means more than one claim about the size.
+  const numbers = raw.match(/\d+(?:[.,]\d+)?/g) || [];
+  if (numbers.length !== 1) return null;
+
+  const match = raw.match(/^\s*(\d+(?:[.,]\d+)?)\s*(kg|g|l|cl|ml)\b/);
+  if (!match) return null;
+
+  const amount = Number(match[1].replace(',', '.'));
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+
+  // Normalised to the two units pantry_stock actually stores.
+  switch (match[2]) {
+    case 'kg': return { amount: round2(amount * 1000), unit: 'g' };
+    case 'g': return { amount: round2(amount), unit: 'g' };
+    case 'l': return { amount: round2(amount * 1000), unit: 'ml' };
+    case 'cl': return { amount: round2(amount * 10), unit: 'ml' };
+    case 'ml': return { amount: round2(amount), unit: 'ml' };
+    default: return null;
+  }
+}
+
 function firstText(...values) {
   for (const value of values) {
     if (typeof value !== 'string') continue;
@@ -110,6 +152,7 @@ export function mapProductToFood(product, barcode) {
   }
   const quantity = firstText(product.quantity);
   if (quantity) name = `${name} (${quantity})`;
+  const pack = parsePackSize(quantity);
 
   const n = product.nutriments || {};
   return {
@@ -122,6 +165,10 @@ export function mapProductToFood(product, barcode) {
     protein_g: round2(toNumber(n.proteins_100g)),
     fat_g: round2(toNumber(n.fat_100g)),
     carbs_g: round2(toNumber(n.carbohydrates_100g)),
+    // How much is in the pack, when it can be read CONFIDENTLY. Null
+    // otherwise — the caller falls back to "1 item", which is always true
+    // of a jar even when its size is unknown.
+    packSize: pack,
     source: 'openfoodfacts'
   };
 }

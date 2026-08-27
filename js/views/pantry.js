@@ -318,6 +318,8 @@ export function render(mountEl) {
 
         amountSection.appendChild(sheetFact('Where it lives', row.default_location || 'Not recorded'));
         amountSection.appendChild(sheetFact('Freshness', describeFreshness(freshness(row))));
+        amountSection.appendChild(sheetFact('Use by',
+          row.use_by ? row.use_by : 'Not recorded — estimated from shelf life'));
         amountSection.appendChild(sheetFact('Usually keeps',
           row.shelf_life_days == null ? 'Not recorded' : `${row.shelf_life_days} days`));
         body.appendChild(amountSection);
@@ -419,6 +421,14 @@ export function render(mountEl) {
     unitSelect.value = row.unit || 'item';
     const locationInput = el('input', { id: `${prefix}-location`, type: 'text' });
     locationInput.value = row.default_location || '';
+    const useByEdit = el('input', { id: `${prefix}-use-by`, type: 'date' });
+    useByEdit.value = row.use_by || '';
+    const useByEditHint = el('p', {
+      class: 'field-hint', id: `${prefix}-use-by-hint`,
+      text: 'Blank means the app estimates from the shelf life instead.'
+    });
+    useByEdit.setAttribute('aria-describedby', useByEditHint.id);
+
     const shelfInput = numberInput(`${prefix}-shelf`, { min: '1', step: '1' });
     shelfInput.value = row.shelf_life_days != null ? String(row.shelf_life_days) : '';
     const restockedInput = el('input', { id: `${prefix}-restocked`, type: 'date' });
@@ -438,6 +448,7 @@ export function render(mountEl) {
     form.append(
       field('Measured in', unitSelect),
       field('Where it lives', locationInput),
+      field('Use by', useByEdit, useByEditHint),
       field('Usually keeps (days)', shelfInput),
       field('Last restocked', restockedInput, restockedHint),
       error,
@@ -448,11 +459,20 @@ export function render(mountEl) {
       event.preventDefault();
       error.hidden = true;
       save.disabled = true;
+      if (useByEdit.value && restockedInput.value && useByEdit.value < restockedInput.value) {
+        error.textContent =
+          'That use-by date is before the day you bought it. Check the date, or clear it.';
+        error.hidden = false;
+        save.disabled = false;
+        useByEdit.focus();
+        return;
+      }
       const result = await updateStock(row.id, {
         unit: unitSelect.value,
         default_location: locationInput.value,
         shelf_life_days: shelfInput.value,
-        last_restocked: restockedInput.value
+        last_restocked: restockedInput.value,
+        use_by: useByEdit.value
       });
       save.disabled = false;
       if (destroyed) return;
@@ -695,10 +715,22 @@ export function render(mountEl) {
   unitSelect.value = 'item';
   const locationInput = el('input', { id: 'pantry-location', type: 'text' });
   locationInput.placeholder = 'Kitchen cupboard';
+  // The real date, off the label. type="date" opens the native calendar on
+  // Android — no typing, and the OS handles the format so 03/09 can never
+  // be read as March.
+  const useByInput = el('input', { id: 'pantry-use-by', type: 'date' });
+  const useByHint = el('p', {
+    class: 'field-hint', id: 'pantry-use-by-hint',
+    text: 'Off the label, if it has one. Leave it blank and the app falls back to '
+      + 'an estimate from the shelf life below — and says that it is an estimate.'
+  });
+  useByInput.setAttribute('aria-describedby', useByHint.id);
+
   const shelfInput = numberInput('pantry-shelf', { min: '1', step: '1' });
   const shelfHint = el('p', {
     class: 'field-hint', id: 'pantry-shelf-hint',
-    text: 'Filled in from the kind of thing it is. Change it if you know better, or clear it.'
+    text: 'Only used when there is no use-by date above. Filled in from the kind of '
+      + 'thing it is; change it if you know better, or clear it.'
   });
   shelfInput.setAttribute('aria-describedby', shelfHint.id);
   const restockedInput = el('input', { id: 'pantry-restocked', type: 'date' });
@@ -718,6 +750,7 @@ export function render(mountEl) {
     field('How much', qtyInput, qtyHint),
     field('Measured in', unitSelect),
     field('Where it lives', locationInput),
+    field('Use by', useByInput, useByHint),
     field('Usually keeps (days)', shelfInput, shelfHint),
     field('Last restocked', restockedInput, restockedHint),
     addError, addSubmit
@@ -838,6 +871,11 @@ export function render(mountEl) {
 
     if (lookup.ok) {
       newNameInput.value = lookup.data.name || '';
+      // Pack size, when Open Food Facts stated one unambiguously. Prefilled
+      // VISIBLY so a bad read is correctable; when it cannot be parsed the
+      // form stays on "1 item", which is always true of a jar even when its
+      // size is unknown.
+      applyPackSize(lookup.data.packSize);
       scannedExtras = {
         barcode,
         calories_per_100g: lookup.data.calories_per_100g,
@@ -846,10 +884,13 @@ export function render(mountEl) {
         carbs_g: lookup.data.carbs_g
       };
       requireCategoryChoice(lookup.data.suggestedCategory);
-      scanNote.textContent = lookup.data.suggestedCategory
+      const sized = lookup.data.packSize
+        ? ` Pack size read as ${lookup.data.packSize.amount} ${lookup.data.packSize.unit} — change it if that is wrong.`
+        : '';
+      scanNote.textContent = (lookup.data.suggestedCategory
         ? `Found: ${lookup.data.name}. From the barcode this looks like `
           + `${categoryLabel(lookup.data.suggestedCategory)} — pick it to confirm, or choose another.`
-        : `Found: ${lookup.data.name}. Choose what kind of thing it is before saving.`;
+        : `Found: ${lookup.data.name}. Choose what kind of thing it is before saving.`) + sized;
     } else {
       newNameInput.value = '';
       requireCategoryChoice(null);
@@ -864,6 +905,16 @@ export function render(mountEl) {
     announce(scanNote.textContent);
     if (newNameInput.value) newCategorySelect.focus();
     else newNameInput.focus();
+  }
+
+  /** Prefill the amount from a parsed pack size, or leave the default alone. */
+  function applyPackSize(pack) {
+    if (!pack || !pack.amount || !pack.unit) return;
+    qtyInput.value = String(pack.amount);
+    unitSelect.value = pack.unit;
+    // Marked as touched so syncDefaults() does not overwrite the unit when
+    // the category is chosen a moment later.
+    unitSelect.dataset.touched = 'true';
   }
 
   function syncMode() {
@@ -1008,13 +1059,24 @@ export function render(mountEl) {
       addSubmit.disabled = true;
     }
 
+    // A use-by earlier than the restock date is a typo, and the database
+    // CHECK would refuse it as an opaque error. Caught here with words.
+    if (useByInput.value && restockedInput.value && useByInput.value < restockedInput.value) {
+      addError.textContent =
+        'That use-by date is before the day you bought it. Check the date, or clear it.';
+      addError.hidden = false;
+      useByInput.focus();
+      return;
+    }
+
     const result = await addStock({
       food_id: foodId,
       current_qty: qtyInput.value,
       unit: unitSelect.value,
       default_location: locationInput.value,
       shelf_life_days: shelfInput.value,
-      last_restocked: restockedInput.value
+      last_restocked: restockedInput.value,
+      use_by: useByInput.value
     });
     addSubmit.disabled = false;
     if (destroyed) return;
@@ -1034,6 +1096,10 @@ export function render(mountEl) {
     justAdded.unshift(result.data.id);
     newNameInput.value = '';
     qtyInput.value = '1';
+    // Cleared between saves, unlike location and restock date: every jar has
+    // its own use-by, and carrying the last one over would silently stamp
+    // the wrong date on the next twelve things.
+    useByInput.value = '';
     scannedExtras = null;
     clearCategorySentinel();
     searchInput.value = '';
