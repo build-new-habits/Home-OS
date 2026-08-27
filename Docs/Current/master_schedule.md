@@ -1,7 +1,7 @@
 # Home-OS: Master Schedule
-21 Aug 2026 v23
+27 Aug 2026 v24
 
-Supersedes v22. Older versions live in `Docs/Archive/`.
+Supersedes v23. Older versions live in `Docs/Archive/`.
 
 **This file now lives in the repo** (`Docs/Current/master_schedule.md`), not
 only in project knowledge. The repo copy is canonical — if the two disagree,
@@ -28,16 +28,26 @@ All in `Docs/Current/`:
 | 3 | Exercise cards + logging | **Complete** | phase3_build_brief.md |
 | 4 | Chores: projects, tasks, calendar, recurrence | **Complete** | phase4_build_brief.md |
 | 5 | Weight + water tracker | **Complete — cleared 18 Aug** | phase5_build_brief.md |
-| 6 | Meal planner + barcode scanning | **Built — awaiting smoke test** | phase6_build_brief.md |
-| 7 | Pantry stock + shopping list | **Pantry built**; shopping list next | phase7_build_brief.md |
-| 8 | Holidays + work-location calendar | Brief written — **buildable now, ahead of Phase 7** | phase8_build_brief.md |
-| 9 | Dashboard | Ready | to write |
-| 10 | Notifications (opt-in, per-type) | Ready | to write |
+| 6 | Meal planner + barcode scanning | **Complete** — exercised hard on device | phase6_build_brief.md |
+| 7 | Pantry stock + shopping list | **Complete** — shortfall, list and holiday bridge built 27 Aug | phase7_build_brief.md |
+| 8 | Holidays + work-location calendar | **Complete** — reworked 27 Aug, three lists | phase8_build_brief.md |
+| 9 | Dashboard | **Built 27 Aug — awaiting device test** | PHASE7_PHASE9_HANDOFF.md |
+| 10 | Notifications (opt-in, per-type) | Not started, never briefed | to write |
+
+**Every phase except 10 now exists in code.** What separates "built" from
+"cleared" is a device pass, and NONE of the 27 Aug work has had one — ten
+screens changed. Every previous session, real use found something no
+automated gate could see. That record is unbroken, so treat the gates as
+necessary and nowhere near sufficient.
 
 Phase 5 cleared 18 Aug 2026 after three rounds of smoke testing. Phase 6 was
-built 21 Aug and is **awaiting the coordinator's smoke test** — built is not
-cleared. Phase 7's **brief** is written (21 Aug); Phase 7's **build** is gated on
-Phase 6 clearing, because Phase 7 reads straight through four Phase 6 tables
+built 21 Aug and exercised hard on device on 26 Aug, which is what found the
+zero-amount defect. Phase 7 part two, Phase 9, schema revisions 5–7 and a
+six-screen rework all landed 27 Aug — see `PHASE7_PHASE9_HANDOFF.md`.
+
+Historical note, kept because the reasoning still applies: Phase 7's build
+was originally gated on Phase 6 clearing, because Phase 7 reads straight
+through four Phase 6 tables
 and would inherit any defect the smoke test finds.
 
 ## Completion log

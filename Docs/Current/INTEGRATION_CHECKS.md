@@ -1,5 +1,5 @@
 # Home PWA: Integration Checks
-03 Jul 2026 v2
+27 Aug 2026 v3
 
 Run the relevant block at the **end of each phase**, before marking it
 complete in `master_schedule.md`. The point is to catch broken *connections*
@@ -200,69 +200,60 @@ below is meaningful.
   deliberately UPC/EAN only.
 
 ## Phase 7 — Pantry + shopping
+Pantry built 21 Aug, reworked 26 Aug. Shortfall, list and bridge built
+27 Aug. None of the 26–27 Aug work has been run on a device.
 
-**Before testing:** hard-refresh and confirm cache **`home-os-shell-v25`**,
-**52 entries**. Quick check without DevTools: the Pantry screen has a
-**"Scan a barcode"** button. That only exists from v25.
+### Pantry
+- [ ] Cache Storage shows the expected `home-os-shell-vNN`.
+- [ ] **"Needs an amount"** lists every row saved with a blank or zero
+      amount, and setting one removes it from that list. A missing amount
+      reads as "you have none" to the shortfall, so this is not cosmetic.
+- [ ] Scanning a packaged good prefills the **pack size** (`330 g`), not
+      `1 item`. An unparseable size (`4 x 125g`) falls back to `1 item`
+      rather than guessing.
+- [ ] The **use-by** control opens the native calendar. Leaving it blank
+      falls back to the shelf-life estimate, and the two read differently:
+      "Use by 3 September 2026 — 7 days left" versus "about 365 days left".
+- [ ] Browse groups by **location** first, category second, one open at a
+      time. Sixty rows must never render at once.
+- [ ] Opening a row shows its **macros** — the reason the sheet exists.
 
-Reach it from **Dashboard → Everything → Pantry**.
+### Shopping list
+- [ ] Generate → **only the shortfall**. Verify ONE line by hand against the
+      plan and the pantry.
+- [ ] A food with enough stock does **not** appear at all.
+- [ ] A food with no pantry row appears at its full required amount.
+- [ ] A food whose amount was never recorded appears **and says so**.
+- [ ] A food **past its use-by** is listed, and the line says it is out of
+      date rather than pretending the cupboard is empty.
+- [ ] Change a `serves_override`, regenerate → the quantity moves the right
+      way.
+- [ ] Regenerate **twice** → no duplicates.
+- [ ] Mark an item bought, regenerate → **still bought**, not resurrected.
+- [ ] A `usual` staple survives regeneration untouched.
+- [ ] A food that is both planned and a staple shows **one name, two
+      labelled lines**, and reads as intentional rather than as a bug.
+- [ ] Grouped by category in **aisle order**, not alphabetically.
+- [ ] A non-food item lists with the right category and reads "3 items",
+      never "3 g".
+- [ ] **In a shop, on real mobile data or offline:** tick three items. Each
+      counts immediately, no button disables, all sync on reconnect.
+- [ ] Deleting a food that is on the list names the shopping entry in the
+      confirm and is refused cleanly.
 
-### Part one — the pantry (BUILT, awaiting test)
+### The holiday bridge
+- [ ] A holiday purchase item ticked for shopping reaches the list with
+      `source = 'holiday'`.
+- [ ] A **new** item asks for a category before creating the food, and does
+      not default to cupboard food.
+- [ ] Ticking, unticking and re-ticking produces **one** line, never three.
+- [ ] Declining the category keeps the tick and says the list entry is
+      deferred.
 
-The real test is a stocktake, not a single item. Do one shelf, back to back.
-
-**The scan loop — this decides whether the feature is usable**
-- [ ] Scan → enter amount → save → scan again. How many seconds per item?
-      If it is slow or breaks rhythm, say where.
-- [ ] **Scan the same item twice.** The second scan must send you to its
-      existing card with the amount selected — **not** create a second row.
-      A duplicate splits the count and makes the shortfall wrong later.
-- [ ] Scan something already on your list but not in the pantry → it is
-      preselected and focus jumps to "How much".
-- [ ] Scan something unknown → name and macros fill in, and it **refuses to
-      save until you choose a category**. Open the category dropdown and
-      close it without changing anything — it must still refuse.
-
-**Stocktaking ergonomics**
-- [ ] Location and restock date **stay put** between saves. Does that help,
-      or get in the way when you move to a different cupboard?
-- [ ] "Something new" is fast enough for bulk entry.
-- [ ] Shelf life pre-fills from the category (fresh 5, cupboard 365, home
-      blank) and can be changed or cleared.
-
-**The scale question — the one that has never been answered**
-- [ ] Once you are past twenty items, **does the search picker hold up?**
-      Type three letters — does it narrow usefully? This is the test one
-      food could not provide.
-- [ ] Is the food list still navigable, grouped by category?
-
-**Freshness**
-- [ ] An item with a date and a shelf life shows "Stocked N days ago — about
-      N days left".
-- [ ] An item with **no** date says "Freshness unknown — date not recorded",
-      and does **not** appear under "Worth using up".
-- [ ] Nothing reads as a warning or shows red. This is food you have, not a
-      mistake you made.
-- [ ] "Restocked today" updates the date and the freshness line.
-
-**Basics**
-- [ ] Quantities always show a unit — "500 g", "1.5 kg", "3 items", never a
-      bare number.
-- [ ] Editing an amount in place saves and keeps focus.
-- [ ] Removing from the pantry keeps the item itself.
-- [ ] Offline: the pantry says plainly it needs a connection rather than
-      failing silently.
-
-- *Ignore:* the native dropdown's line spacing — Android draws that popup
-  itself and honours option styling inconsistently. Option labels were
-  shortened, which was the real fix.
-
-### Part two — shopping list (NOT BUILT)
-
-Not started. The brief is `phase7_build_brief.md` v3. Checks to come:
-the shortfall listing only what is short; regeneration not destroying
-have/bought/usual rows; aisle-order grouping; the holiday → shopping bridge;
-ticking items offline in a shop.
+### Recipes
+- [ ] A recipe row reads "N of M in the pantry".
+- [ ] Opening it **names** what is short, and the count changes when the
+      servings control changes.
 
 ## Phase 8 — Holidays + work location
 
@@ -318,14 +309,31 @@ and there is no work-location route. Not a bug.
   tick "Add to shopping list", reload, confirm it stuck.
 
 ## Phase 9 — Dashboard (the everything-connects moment)
+Built 27 Aug 2026. Not yet run on a device.
+
 - [ ] Each section reflects **today's real data** from its source phase
       (cross-check two or three against the underlying views).
-- [ ] Water, exercise tick, and chore tick each work **in one tap from the
-      dashboard**, offline-capable.
+- [ ] Water works **in one tap**, offline-capable. This is the condition on
+      which Water was moved behind the Health hub — if it ever stops being
+      one tap, that decision was wrong and should be revisited rather than
+      defended.
+- [ ] A chore due today can be ticked here, and reopening the dashboard
+      shows it done **for that day only**. Check the following day: a
+      repeating chore must come back.
+- [ ] A section with nothing to say is **absent**, not showing "nothing to
+      report". Six cards each announcing their own emptiness is worse than
+      no cards.
 - [ ] Framing is neutral throughout — counts, no streaks, no red-for-missed.
 - [ ] Sticky bottom nav never obscures focused content.
+- [ ] **Turn the connection off and reload.** Every section should either
+      show cached data or stay quiet; none should blank the page.
 - *If a section is wrong here, the bug is almost always in that section's own
   data module, not the dashboard* — check the source view first.
+
+### The one known gap that shows up here
+A repeatable chore created **offline** may not get its paired
+`calendar_events` row, and "due today" reads through that join — so it will
+not appear until it is re-saved online. Tracked debt, not a mystery.
 
 ## Phase 10 — Notifications
 - [ ] All types **off by default**; toggling one persists in

@@ -1,5 +1,5 @@
 # Home-OS — session start
-21 Aug 2026
+27 Aug 2026
 
 Paste the short version below into a new chat, then read this whole file.
 
@@ -19,7 +19,8 @@ Paste the short version below into a new chat, then read this whole file.
 > canonical, versioned documentation and it is NEWER than the copies in this
 > project's knowledge. Where they disagree, the repo wins. Start with
 > `SESSION_START.md`, then `master_schedule.md`, then the newest
-> `PHASEn_HANDOFF.md`, then `schema.md` and `GEMINI_BUILD_CONVENTIONS.md`.
+>  `PHASEn_HANDOFF.md` (newest is `PHASE7_PHASE9_HANDOFF.md`), then
+> `schema.md` and `GEMINI_BUILD_CONVENTIONS.md`.
 >
 > **Read existing code before extending it.** Every significant defect this
 > project has hit was found that way. Don't trust my summary of the code,
@@ -29,19 +30,19 @@ Paste the short version below into a new chat, then read this whole file.
 
 ---
 
-## Current state, 21 Aug 2026
+## Current state, 27 Aug 2026
 
-- `main` @ `0cb4a8e`. Service worker cache **`home-os-shell-v25`**,
-  **52 precache paths**.
-- **Schema is at revision 4.** Both migrations applied and verified against
-  the live database.
-- Phases 1–5 cleared. **Phases 6, 8 and half of 7 are BUILT and only
-  partly smoke-tested.** See "What is actually verified" below — that
-  distinction matters more than the phase numbers.
+- `main` @ **`4a808fe`**. Cache **`home-os-shell-v41`**, **63 precache
+  entries**.
+- **Schema is at revision 7.** Migrations 003–007 all applied and verified.
+  18 tables.
+- **Every phase except 10 (notifications) exists in code.**
 
-**Before testing anything:** hard-refresh, and check the app is on v25. On
-Android without DevTools, the quick check is whether the Pantry screen has a
-**"Scan a barcode"** button — that only exists from v25.
+**Before testing anything: Settings → This device names the installed
+build.** Twice in one session a bug report turned out to be an older build
+still being served. If a fix looks missing, check that first — force-close
+the app and reopen twice, since the first reopen installs and the second
+serves.
 
 **Supabase:** project `vkjwwnjhizrlqcovpdco`, named **"Home OS"** in the
 dashboard. There is a second, unrelated project called **`Alongside-Learn`**
@@ -52,32 +53,49 @@ once. **Confirm the project name in the editor before running anything.**
 
 ## What is actually verified, and what is not
 
-Graeme has tested on a real Android device. This list is the honest state.
-
 **Confirmed working on device:**
 - Meals: create, ingredients, quantities, units (g/ml/item)
 - Unit conversion — 2 items × 25 g = 50 g → 25 kcal, checked by hand
 - Food categories, the searchable grouped ingredient picker
 - Barcode scanning: reads a real product, fills name and macros
-- Migration 003 and 004 applied; RLS `true`; 17 tables
+- Capturing a real cupboard — 65 pantry rows exist
+- Migrations 003–007 applied; RLS `true`; 18 tables
 
-**Built but NOT yet confirmed on device:**
-- The scan **category-confirm** path after the v23 sentinel fix
-- Barcode **duplicate detection** (scan the same product twice)
-- The whole **pantry** screen (v24) and **scanning into it** (v25)
-- Phase 8 holidays and work location — never smoke-tested at all
-- The search picker **at scale**. It has only ever been tried with one or
-  two foods, and Graeme's point stands: a flat list of hundreds is the real
-  test. Capturing a cupboard is what will answer it.
+**Built but NOT confirmed on device — this is most of the app right now:**
+Everything from 27 Aug. Ten screens changed: pantry, chores, meals, foods,
+holidays, shopping, dashboard, calendar, weekly plan, and the two hubs.
 
-**Not started:** the shopping list, the shortfall diff, the holiday →
-shopping bridge. That is the rest of Phase 7 and the obvious next build.
+**The record that matters:** every previous session, a device pass found
+something no gate could see — `[hidden]` defeated by the CSS cascade, a
+stale stylesheet served against new JavaScript, seven scanned jars saved as
+`0 g`. That record is unbroken. All seven gates passing is necessary and
+nowhere near sufficient.
+
+`PHASE7_PHASE9_HANDOFF.md` §8 lists what to test first, in dependency order.
 
 ---
 
 ## Gotchas that have already cost time
 
 1. **Wrong Supabase project.** See above. `relation "foods" does not exist`
+
+0. **A passing gate is not evidence until you have watched it fail.** Four
+   harness defects were found on 27 Aug alone, including a trace that
+   printed PASS before its last block ran — so a failure there printed FAIL
+   and still exited 0. When you change a gate, make it fail on purpose and
+   check it still fails for the right reason.
+
+0b. **Precache must bypass the HTTP cache.** `cache.addAll()` uses the
+   browser's HTTP cache, and GitHub Pages serves with a ten-minute max-age.
+   Bump `CACHE_NAME` and redeploy inside that window and the "new" cache
+   fills with stale files — new JavaScript against an old stylesheet, frozen
+   until the next bump. `install()` uses `{ cache: 'reload' }` for this
+   reason; do not remove it.
+
+0c. **Never patch a large file with unasserted `replace()` calls.** That
+   corrupted `views/chores.js` on 27 Aug: an anchor matched in the wrong
+   place and duplicated a block. Restore from `main` and re-apply in ONE
+   script where every replacement asserts its anchor is present AND unique.
    means you are in `Alongside-Learn`.
 2. **`begin;`/`commit;` in the Supabase SQL editor silently rolls back.**
    The editor wraps each execution in its own transaction; the explicit

@@ -1,5 +1,5 @@
 # Home PWA: Build Conventions (for every code session)
-02 Jul 2026 v1
+27 Aug 2026 v2
 
 Read this before writing any code, in every phase. These rules are fixed
 across the whole build so that code produced in separate sessions slots
@@ -154,3 +154,75 @@ checks; these are the always-on baseline:
 A phase is complete only when: code runs on GitHub Pages, its a11y checklist
 passes, the behavioural principles it touches are honoured, a
 `session_handoff.md` is produced, and `master_schedule.md` is updated.
+
+---
+
+## 12. The shared interaction pattern (added 27 Aug 2026)
+
+Every list screen follows one shape. A flat list stops working at about
+thirty rows, and by 27 Aug every screen was heading there.
+
+- **One compact row per thing.** Name on one line, detail beneath — never
+  two spans run together, which produced "Amoy Dark soy sauce (150 ml e)
+  Recorded as none" and "400 gfrom your weekly plan" on separate occasions.
+- **Detail opens in the slide-out panel** (`components/detailSheet.js`).
+  Pass `returnFocusTo` explicitly; do NOT let it infer from
+  `document.activeElement`, because a tap does not reliably focus a button
+  on mobile and focus then lands on `<body>`.
+- **Filters live in the panel, and the button carries the active count.**
+  A filtered list that looks unfiltered is how a user concludes something
+  has vanished.
+- **Groups collapse, one open at a time**, so a hundred rows never render.
+
+### The panel keeps its DOM
+A re-render that rebuilds the rows **behind** the panel does not touch the
+panel. Two real bugs came from forgetting this: a tick that appeared to do
+nothing, and a handler holding state captured when its row was *built*,
+which went stale after the first tap. Repaint the control directly, and
+track displayed state in the closure.
+
+---
+
+## 13. Reading data honestly (added 27 Aug 2026)
+
+Three states, not two. `NULL` is not zero and not "fine".
+
+| Column | NULL means | Never |
+|---|---|---|
+| `pantry_stock.current_qty` | amount not recorded | ...silently 0, which reads as "you have none" |
+| `pantry_stock.use_by` | no printed date; use the estimate | ...backfilled from restocked + shelf life |
+| `meals.meal_type` | not classified yet | ...defaulted to `dinner` |
+
+**A guess must never be displayed in the same words as a fact.** "Use by 3
+September 2026 — 7 days left" versus "Stocked today — about 365 days left".
+The word *about* is load-bearing: an estimate shown as a hard date gets
+trusted in front of an open fridge.
+
+**Absent data reads as zero in exactly one place** — a food with no pantry
+row, in the shortfall — and it carries a comment saying why, because the
+macro rule is the opposite.
+
+---
+
+## 14. Patching large files (added 27 Aug 2026)
+
+Applying edits one at a time to a file of over a thousand lines corrupted
+`views/chores.js`: an anchor matched in the wrong place and duplicated a
+block. Restoring from `main` and re-applying in ONE script, where every
+replacement asserts its anchor is **present and unique**, is the working
+method. An unasserted `replace()` also slipped a schema change past
+`schema.md`'s table, which only the schema gate caught.
+
+---
+
+## 15. Changing a gate (added 27 Aug 2026)
+
+**A passing gate is not evidence until you have watched it fail.** Four
+harness defects were found on 27 Aug, including a trace that printed its
+PASS summary before its final block ran — so a failure there printed FAIL
+and still exited 0.
+
+When a gate changes, make it fail deliberately and confirm it fails for the
+right reason. When code moves to a new view, **move its checks with it**
+rather than deleting them; they should fail loudly at the moment the code
+leaves, and that is the gate working.
