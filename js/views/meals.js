@@ -1,4 +1,6 @@
-// js/views/meals.js — 26 Aug 2026 v9
+// js/views/meals.js — 27 Aug 2026 v10
+// v10: a recipe says whether you have the ingredients. That was the whole
+// point of keeping a pantry, and until now nothing asked it.
 // v9: RECIPES, and only recipes.
 //
 //   * The weekly-plan code is deleted. It lives in views/mealPlan.js.
@@ -117,12 +119,18 @@ import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
+import { listStock } from '../data/pantry.js';
+import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { announce } from '../lib/a11y.js';
 
 // Local element helper. Deliberately defined here rather than copied in from
 // another view — the 18 Aug ReferenceError came from moving a helper between
 // files without checking the destination defined it.
+function todayIso() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(props).forEach(([key, value]) => {
@@ -252,6 +260,7 @@ export function render(mountEl) {
   let cameraRefused = false;
 
   let foods = [];
+  let pantry = [];
   let pendingFoods = [];
   let meals = [];
   let ingredientsByMeal = new Map();
@@ -357,6 +366,9 @@ export function render(mountEl) {
     await loadMeals();
   }, { signal });
 
+  /** Stock lines to repaint when the servings change. */
+  const stockRepaints = [];
+
   function buildMealCard(meal) {
     const { article, body, actions } = createCard({
       title: meal.name, headingLevel: 3, className: 'meal-card'
@@ -425,6 +437,21 @@ export function render(mountEl) {
     macroTable.appendChild(macroBody);
     body.appendChild(macroTable);
 
+    if (rows.length > 0) {
+      // Named, not counted. "Short of milk" saves a trip to the cupboard;
+      // "2 missing" does not.
+      const stockLine = el('p', { class: 'field-hint' });
+      const paintStock = () => {
+        stockLine.textContent = describeStockForMeal(stockForMeal({
+          ingredients: rows, pantry, foods,
+          serves, defaultServes: meal.default_serves, todayISO: todayIso()
+        }));
+      };
+      paintStock();
+      body.appendChild(stockLine);
+      stockRepaints.push(paintStock);
+    }
+
     function repaintMacros() {
       macros = computeMacros(rows, { serves });
       perServingHead.textContent = `Per serving (of ${macros.serves})`;
@@ -451,6 +478,9 @@ export function render(mountEl) {
       servesChoice.set(meal.id, value);
       scalerInput.value = String(value);
       repaintMacros();
+      // Cooking for more people changes what you are short of, so the stock
+      // line has to move with it.
+      for (const repaint of stockRepaints) repaint();
       announce(`Showing figures for ${value} serving${value === 1 ? '' : 's'}.`);
     }
 
@@ -981,9 +1011,17 @@ export function render(mountEl) {
     const text = el('span', { class: 'recipe-row-text' });
     text.appendChild(el('span', { class: 'recipe-row-name', text: meal.name }));
     const bits = [mealTypeLabel(meal.meal_type), `serves ${meal.default_serves}`];
-    bits.push(rows.length === 0
-      ? 'no ingredients yet'
-      : `${rows.length} ingredient${rows.length === 1 ? '' : 's'}`);
+    if (rows.length === 0) {
+      bits.push('no ingredients yet');
+    } else {
+      const stock = stockForMeal({
+        ingredients: rows, pantry, foods,
+        serves: meal.default_serves, defaultServes: meal.default_serves,
+        todayISO: todayIso()
+      });
+      // The one fact worth knowing before you commit to cooking it.
+      bits.push(`${stock.inStock} of ${stock.total} in the pantry`);
+    }
     text.appendChild(el('span', { class: 'recipe-row-meta', text: bits.join(' · ') }));
     open.append(text, el('span', { class: 'stock-row-chevron', 'aria-hidden': 'true', text: '›' }));
     open.setAttribute('aria-label', `${meal.name}, ${bits.join(', ')}. Open recipe.`);
@@ -1048,8 +1086,12 @@ export function render(mountEl) {
    * so an ingredient could not reference one.
    */
   async function loadFoods() {
-    const result = await listFoods();
+    // The pantry is fetched alongside, so a recipe can answer "do I have
+    // this?" without a request per recipe.
+    const [result, stock] = await Promise.all([listFoods(), listStock()]);
     if (destroyed) return;
+    pantry = stock.ok ? stock.data : [];
+    if (!stock.ok) console.error('Failed to load the pantry for stock checks:', stock.error);
     if (!result.ok) {
       console.error('Failed to load foods:', result.error);
       foods = [];

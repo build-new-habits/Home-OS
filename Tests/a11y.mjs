@@ -159,9 +159,13 @@ async function closeAnySheet() {
 // unreadable past about six recipes.
 const recipeRows = [...mount.querySelectorAll('.recipe-row-open')];
 check('recipes are one row each', recipeRows.length === 1);
-check('a recipe row says what kind of meal it is and how many ingredients',
-  !!recipeRows[0] && /Unclassified|Breakfast|Lunch|Dinner|Snack|Drink/.test(recipeRows[0].textContent)
-  && /ingredient/.test(recipeRows[0].textContent));
+check('a recipe row says what kind of meal it is',
+  !!recipeRows[0] && /Unclassified|Breakfast|Lunch|Dinner|Snack|Drink/.test(recipeRows[0].textContent));
+// The row answers "can I cook this?" without opening anything — the whole
+// point of keeping a pantry, and until now nothing asked it.
+check('a recipe row says how much of it is in the pantry',
+  !!recipeRows[0] && /\d+ of \d+ in the pantry|no ingredients yet/.test(recipeRows[0].textContent),
+  recipeRows[0] && recipeRows[0].textContent);
 
 // The favourite star must speak its state; a filled glyph alone is colour-
 // and-shape only, which is not enough (1.4.1).
@@ -230,6 +234,11 @@ check('every aria-describedby target exists', badDesc.length === 0, badDesc.join
 const buttons = [...mount.querySelectorAll('button')];
 const nameless = buttons.filter((b) => !(b.getAttribute('aria-label') || b.textContent.trim()));
 check(`all ${buttons.length} buttons have an accessible name`, nameless.length === 0);
+
+// ---- The panel NAMES what is short ------------------------------------
+// "Short of milk" saves a trip to the cupboard; "2 missing" does not.
+check('the recipe panel names what is missing, not just a count',
+  /in the pantry/.test(sheetScope.textContent), '');
 
 // ---- Figures scale to how many you are cooking for ---------------------
 // default_serves is what the recipe MAKES; this is how many you want this

@@ -40,7 +40,7 @@ const { formatRange, nightsBetween, describeChildren } = await import(`${REPO}/j
 const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
-const { computeShortfall, describeShortfall } = await import(`${REPO}/js/lib/shortfall.js`);
+const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal } = await import(`${REPO}/js/lib/shortfall.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 
 // ============ Macros, against a hand calculation ============
@@ -456,6 +456,28 @@ check('what you already hold is stated, not reported as none',
 const sfNoFactor = find(sf([{ food_id: 'f3', current_qty: 6, unit: 'item', foods: sfEggs }]), 'Eggs');
 check('a unit that cannot be converted is flagged, never silently converted',
   !sfNoFactor || !sfNoFactor.comparable || sfNoFactor.unit === 'item');
+
+console.log('\nCan I cook this? — per-recipe stock');
+const smStock = (pantry, serves = 2) => stockForMeal({
+  ingredients: sfIngredients, pantry, foods: sfFoods,
+  serves, defaultServes: 2, todayISO: '2026-08-27'
+});
+eq('an empty pantry has none of it', smStock([]).inStock, 0);
+eq('and names every missing ingredient', smStock([]).missing.length, 3);
+eq('enough of one ingredient counts it',
+  smStock([{ food_id: 'f1', current_qty: 500, unit: 'g', foods: sfOats }]).inStock, 1);
+eq('not enough of one does NOT count it',
+  smStock([{ food_id: 'f1', current_qty: 10, unit: 'g', foods: sfOats }]).inStock, 0);
+// Cooking for more people changes the answer — that is the point of scaling.
+eq('doubling the servings can turn "have it" into "short"',
+  smStock([{ food_id: 'f1', current_qty: 150, unit: 'g', foods: sfOats }], 4).inStock, 0);
+// Same rules as the shortfall, answered per recipe.
+eq('stock past its use-by is not counted as had',
+  smStock([{ food_id: 'f1', current_qty: 500, unit: 'g', use_by: '2026-08-01', foods: sfOats }]).expiring.length, 1);
+eq('an unrecorded amount is "cannot be counted", not "missing"',
+  smStock([{ food_id: 'f1', current_qty: null, unit: 'g', foods: sfOats }]).unknown.length, 1);
+check('the line NAMES what is short rather than only counting it',
+  /short of/.test(describeStockForMeal(smStock([]))), describeStockForMeal(smStock([])));
 
 console.log('\nPack size is read from the label, or refused');
 // A wrong pack size becomes the amount you are recorded as having, and the

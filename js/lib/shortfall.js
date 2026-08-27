@@ -252,6 +252,74 @@ function round2(value) {
 }
 
 /**
+ * Whether one recipe's ingredients are in the cupboard right now.
+ *
+ * The same rules as the shortfall — an unrecorded amount is not zero, and
+ * anything past its use-by does not count — but answered per RECIPE, so a
+ * meal can say "4 of 6 in stock" before you commit to cooking it.
+ *
+ * Returns { total, inStock, missing, expiring, unknown } where the three
+ * arrays hold food names, so the caller can NAME what is short rather than
+ * making the user go and look.
+ */
+export function stockForMeal({ ingredients = [], pantry = [], foods = [], serves, defaultServes, todayISO } = {}) {
+  const foodById = new Map(foods.map((food) => [food.id, food]));
+  const stockByFood = new Map(pantry.map((row) => [row.food_id, row]));
+
+  const base = Number(defaultServes);
+  const wanted = Number(serves);
+  const scale = Number.isFinite(base) && base > 0 && Number.isFinite(wanted) && wanted > 0
+    ? wanted / base
+    : 1;
+
+  const missing = [];
+  const expiring = [];
+  const unknown = [];
+  let inStock = 0;
+
+  for (const row of ingredients) {
+    const food = row.foods || foodById.get(row.food_id) || {};
+    const name = food.name || 'Something';
+    const stock = stockByFood.get(row.food_id);
+
+    if (!stock) { missing.push(name); continue; }
+
+    const fresh = freshness(stock, todayISO);
+    if (fresh.state === 'past') { expiring.push(name); continue; }
+
+    if (stock.current_qty == null) { unknown.push(name); continue; }
+
+    const needGrams = toGrams(Number(row.quantity_g) * scale, row.unit || 'g', food);
+    const haveGrams = toGrams(Number(stock.current_qty), stock.unit || 'g', food);
+    if (needGrams.grams == null || haveGrams.grams == null) {
+      // No common ground. Counted as unknown rather than guessed either way.
+      unknown.push(name);
+      continue;
+    }
+    if (haveGrams.grams >= needGrams.grams) inStock += 1;
+    else missing.push(name);
+  }
+
+  return { total: ingredients.length, inStock, missing, expiring, unknown };
+}
+
+/** The recipe's stock position as one line. */
+export function describeStockForMeal(result) {
+  if (!result || result.total === 0) return 'No ingredients yet.';
+  const bits = [`${result.inStock} of ${result.total} in the pantry`];
+  if (result.expiring.length > 0) {
+    bits.push(`${result.expiring.length} past its use-by (${result.expiring.join(', ')})`);
+  }
+  if (result.unknown.length > 0) {
+    bits.push(`${result.unknown.length} you have but cannot be counted (${result.unknown.join(', ')})`);
+  }
+  if (result.missing.length > 0) {
+    bits.push(`short of ${result.missing.join(', ')}`);
+  }
+  return `${bits.join(' · ')}.`;
+}
+
+/**
  * A shortfall item as a sentence, for the line under the food's name.
  * Never a bare number, never colour alone.
  */

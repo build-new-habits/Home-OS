@@ -54,6 +54,8 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { openDetailSheet } from '../components/detailSheet.js';
+import { listFoods, createFood, FOOD_CATEGORIES, categoryLabel } from '../data/foods.js';
+import { addItem as addShoppingItem, findHolidayItem, removeHolidayItem } from '../data/shopping.js';
 
 // Local element helper, defined here rather than copied in — the 18 Aug
 // ReferenceError came from moving a helper without checking the destination.
@@ -331,6 +333,142 @@ export function render(mountEl) {
     return wrap;
   }
 
+  // ================= The holiday -> shopping bridge =================
+  //
+  // Phase 8 stored send_to_shopping and deliberately consumed nothing. This
+  // completes it.
+  //
+  // MATCH BEFORE CREATING. Without this, every holiday adds another "Sun
+  // cream" to the foods library and the shopping list slowly fills with
+  // near-duplicates. Matching is case-insensitive and trimmed, because
+  // "Sun cream", "sun cream " and "Sun Cream" are one thing.
+  //
+  // ASK FOR A CATEGORY when creating. Defaulting to food_ambient would put
+  // sun cream in the recipe ingredient picker, which is the exact failure
+  // `category` exists to prevent.
+
+  async function sendToShoppingList(item, checkbox) {
+    const wanted = String(item.title || '').trim();
+    if (!wanted) return;
+
+    const foodResult = await listFoods();
+    if (destroyed) return;
+    if (!foodResult.ok) {
+      console.error('Could not read the items library:', foodResult.error);
+      showToast("Saved, but couldn't reach your items list to add it to shopping.");
+      return;
+    }
+    const match = (foodResult.data || []).find(
+      (food) => String(food.name || '').trim().toLowerCase() === wanted.toLowerCase()
+    );
+
+    if (match) {
+      await placeOnList(match, item);
+      return;
+    }
+
+    // Unknown thing: ask what it is before creating it.
+    openDetailSheet({
+      title: `What kind of thing is "${wanted}"?`,
+      subtitle: 'It needs a category before it can go on the shopping list.',
+      returnFocusTo: checkbox,
+      build: (body, { close }) => {
+        body.appendChild(el('p', {
+          class: 'field-hint',
+          text: 'This decides which aisle it appears under, and whether it can be used as a '
+            + 'recipe ingredient. Sun cream is Toiletries, not food.'
+        }));
+
+        const select = el('select', { id: `holiday-category-${item.id}` });
+        select.appendChild(el('option', { value: '', text: 'Choose one' }));
+        for (const category of FOOD_CATEGORIES) {
+          select.appendChild(el('option', { value: category.value, text: category.label }));
+        }
+        const label = el('label', { for: select.id, text: 'Kind of thing' });
+        const wrap = el('div', { class: 'field' });
+        wrap.append(label, select);
+        body.appendChild(wrap);
+
+        const error = el('p', { class: 'field-error', role: 'alert' });
+        error.hidden = true;
+        body.appendChild(error);
+
+        const save = el('button', { type: 'button', class: 'btn btn-primary', text: 'Add to the list' });
+        save.addEventListener('click', async () => {
+          if (!select.value) {
+            error.textContent = 'Choose what kind of thing it is first.';
+            error.hidden = false;
+            select.focus();
+            return;
+          }
+          save.disabled = true;
+          const created = await createFood({ name: wanted, category: select.value, source: 'manual' });
+          save.disabled = false;
+          if (destroyed) return;
+          if (!created.ok || created.queued) {
+            error.textContent = created.queued
+              ? 'That saved on this device, but the shopping list needs a connection.'
+              : (created.error && created.error.message) || "Couldn't create that item.";
+            error.hidden = false;
+            return;
+          }
+          close();
+          await placeOnList(created.data, item);
+        }, { signal });
+        body.appendChild(save);
+
+        const cancel = el('button', { type: 'button', class: 'btn', text: 'Not now' });
+        cancel.addEventListener('click', () => {
+          // The tick stays saved — it is a fact about the holiday. Only the
+          // list entry is deferred, and the message says so.
+          close();
+          showToast(`"${wanted}" is still marked for shopping. Tick it again to choose a category.`);
+        }, { signal });
+        body.appendChild(cancel);
+      }
+    });
+  }
+
+  async function placeOnList(food, item) {
+    const existing = await findHolidayItem(food.id);
+    if (destroyed) return;
+    if (existing.ok && existing.data) {
+      // Already there. Re-ticking must not stack a second identical line.
+      announce(`${item.title} is already on the shopping list.`);
+      return;
+    }
+    // One of it, counted as an item: a holiday purchase is "buy sun cream",
+    // not a weight.
+    const added = await addShoppingItem({
+      food_id: food.id, qty_needed: 1, unit: 'item', source: 'holiday'
+    });
+    if (destroyed) return;
+    if (!added.ok) {
+      console.error('Failed to add a holiday item to the shopping list:', added.error);
+      showToast(`Saved, but "${item.title}" could not be added to the shopping list.`);
+      return;
+    }
+    announce(`${item.title} added to the shopping list as ${categoryLabel(food.category)}.`);
+  }
+
+  async function unsendFromShoppingList(item) {
+    const wanted = String(item.title || '').trim().toLowerCase();
+    const foodResult = await listFoods();
+    if (destroyed || !foodResult.ok) return;
+    const match = (foodResult.data || []).find(
+      (food) => String(food.name || '').trim().toLowerCase() === wanted
+    );
+    if (!match) return;
+    const removed = await removeHolidayItem(match.id);
+    if (destroyed) return;
+    if (!removed.ok) {
+      console.error('Failed to remove a holiday item from the shopping list:', removed.error);
+      showToast("Unticked, but it could not be taken off the shopping list.");
+      return;
+    }
+    announce(`${item.title} taken off the shopping list.`);
+  }
+
   /** One place that decides how a toggle looks, so panel and row agree. */
   function paintToggle(btn, item, status, verb) {
     const done = status === 'complete';
@@ -409,7 +547,7 @@ export function render(mountEl) {
       const checkbox = el('input', { id: shopId, type: 'checkbox' });
       checkbox.checked = Boolean(item.send_to_shopping);
       const label = el('label', { for: shopId, text: 'Add to shopping list' });
-      const note = el('span', { class: 'field-hint', text: '(saved now, list arrives with Phase 7)' });
+      const note = el('span', { class: 'field-hint', text: 'It appears under "for a holiday"' });
       checkbox.addEventListener('change', async () => {
         const result = await setSendToShopping(item.id, checkbox.checked);
         if (destroyed) return;
@@ -419,7 +557,10 @@ export function render(mountEl) {
           showToast("Couldn't change that — try again.");
           return;
         }
-        announce(`${item.title} ${checkbox.checked ? 'marked for' : 'removed from'} the shopping list.`);
+        // The flag was stored from Phase 8 onwards and nothing consumed it.
+        // This is the bridge: the tick now actually puts it on the list.
+        if (checkbox.checked) await sendToShoppingList(item, checkbox);
+        else await unsendFromShoppingList(item);
       }, { signal });
       row.append(el('span', { class: 'send-shopping' }, [checkbox, label, note]));
     }

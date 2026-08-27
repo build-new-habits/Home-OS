@@ -105,6 +105,37 @@ export async function setStatus(itemId, status) {
   }
 }
 
+/**
+ * Is this food already on the list from a holiday?
+ *
+ * The bridge is idempotent through this: ticking, unticking and re-ticking
+ * a holiday purchase must not stack up three identical lines. There is no
+ * foreign key from a list item back to the holiday item — deliberately, so
+ * deleting a holiday cannot cascade away something you still need to buy —
+ * so identity is (food, source).
+ */
+export async function findHolidayItem(foodId) {
+  const { data, error } = await supabase
+    .from(TABLE)
+    .select('id, status')
+    .eq('food_id', foodId)
+    .eq('source', 'holiday')
+    .limit(1);
+  if (error) return { ok: false, error };
+  return { ok: true, data: (data && data[0]) || null };
+}
+
+/** Remove a holiday-sourced line for one food, when its tick is undone. */
+export async function removeHolidayItem(foodId) {
+  const { error } = await supabase
+    .from(TABLE)
+    .delete()
+    .eq('food_id', foodId)
+    .eq('source', 'holiday');
+  if (error) return { ok: false, error };
+  return { ok: true };
+}
+
 export async function removeItem(itemId) {
   const { error } = await supabase.from(TABLE).delete().eq('id', itemId);
   if (error) return { ok: false, error };

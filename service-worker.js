@@ -1,4 +1,6 @@
-// service-worker.js — 27 Aug 2026 v39
+// service-worker.js — 27 Aug 2026 v40
+// v40: no path changes. Bumped for the holiday bridge and the per-recipe
+// stock check — views/holidays.js, views/meals.js v10, lib/shortfall.js.
 // v39: TWO new paths — lib/shortfall.js and data/shopping.js. The shopping
 // list stub is replaced by the real view (same path, new content).
 // v38: no path changes. Bumped for use_by (revision 7) — data/pantry.js v3,
@@ -105,7 +107,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v39';
+const CACHE_NAME = 'home-os-shell-v40';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
