@@ -209,23 +209,43 @@ check('a blank meal name issues NO write', writes().length === 0, JSON.stringify
 check('and shows an error the user can read',
   !mealsMount.querySelector('#new-meal-error').hidden);
 
+cleanupMeals();
+await settle(20);
+mealsMount.replaceChildren();
+
+// =====================================================================
+// THINGS YOU BUY (the foods library, now its own view)
+// =====================================================================
+// These traces MOVED with the code rather than being deleted. They cover
+// the barcode normalisation, the category sentinel that survives Android
+// firing `change` on a dismissed select, and the three-table restrict count
+// before a delete — all found on a real device, none of them re-derivable
+// from reading the source.
+console.log('\nThings you buy — every control');
+
+const foodsMount = window.document.createElement('main');
+window.document.body.appendChild(foodsMount);
+const foodsView = await import(pathToFileURL(path.join(REPO, 'js/views/foods.js')).href);
+const cleanupFoods = foodsView.render(foodsMount, {});
+await settle(120);
+
 // --- barcode validation stops a silent null ---
 clearCalls();
-mealsMount.querySelector('#new-food-name').value = 'Trace food';
-mealsMount.querySelector('#new-food-barcode').value = '12345';
-submit(mealsMount.querySelector('#new-food-name').closest('form'));
+foodsMount.querySelector('#new-food-name').value = 'Trace food';
+foodsMount.querySelector('#new-food-barcode').value = '12345';
+submit(foodsMount.querySelector('#new-food-name').closest('form'));
 await settle();
 check('an unusable typed barcode issues NO write', writes().length === 0, JSON.stringify(writes()));
 check('and says so rather than dropping it silently',
-  !mealsMount.querySelector('#new-food-error').hidden
-  && /barcode/i.test(mealsMount.querySelector('#new-food-error').textContent));
+  !foodsMount.querySelector('#new-food-error').hidden
+  && /barcode/i.test(foodsMount.querySelector('#new-food-error').textContent));
 
 // --- a valid food saves, normalised ---
 clearCalls();
-mealsMount.querySelector('#new-food-name').value = 'Trace food';
-mealsMount.querySelector('#new-food-barcode').value = '123456789050'; // UPC-A, 12 digits
-setValue(mealsMount.querySelector('#new-food-calories'), '250');
-submit(mealsMount.querySelector('#new-food-name').closest('form'));
+foodsMount.querySelector('#new-food-name').value = 'Trace food';
+foodsMount.querySelector('#new-food-barcode').value = '123456789050'; // UPC-A, 12 digits
+setValue(foodsMount.querySelector('#new-food-calories'), '250');
+submit(foodsMount.querySelector('#new-food-name').closest('form'));
 await settle();
 w = writes().find((c) => c.table === 'foods' && c.op === 'insert');
 check('saving a food inserts into `foods`', !!w, JSON.stringify(writes()));
@@ -240,8 +260,8 @@ check('a filled macro is sent as a number', w && w.payload.calories_per_100g ===
 // native select fires `change` on dismissal, so merely OPENING the dropdown
 // satisfied it. Now a sentinel option leaves the select genuinely empty.
 clearCalls();
-const foodFormEl = mealsMount.querySelector('#new-food-name').closest('form');
-const catSelect = mealsMount.querySelector('#new-food-category');
+const foodFormEl = foodsMount.querySelector('#new-food-name').closest('form');
+const catSelect = foodsMount.querySelector('#new-food-category');
 check('the food form has a category control', !!catSelect);
 
 if (catSelect) {
@@ -262,7 +282,7 @@ if (catSelect) {
   check('a stray change event does NOT satisfy the requirement',
     catSelect.value === '', `value became "${catSelect.value}"`);
 
-  mealsMount.querySelector('#new-food-name').value = 'Scanned shampoo';
+  foodsMount.querySelector('#new-food-name').value = 'Scanned shampoo';
   submit(foodFormEl);
   await settle();
   check('saving with no category chosen issues NO write',
@@ -283,7 +303,7 @@ if (catSelect) {
 
 // --- delete a food that is in use: counts first, then refuses ---
 clearCalls();
-const foodDelete = [...mealsMount.querySelectorAll('.food-card button')]
+const foodDelete = [...foodsMount.querySelectorAll('.food-card button')]
   .find((b) => /^Delete /.test(b.textContent));
 check('a food card has a delete button', !!foodDelete);
 if (foodDelete) {
@@ -300,9 +320,9 @@ if (foodDelete) {
   check('the dialog can be dismissed', await answerDialog('cancel'));
 }
 
-cleanupMeals();
+cleanupFoods();
 await settle(20);
-mealsMount.replaceChildren();
+foodsMount.replaceChildren();
 
 // =====================================================================
 // HOLIDAYS
@@ -454,13 +474,6 @@ await settle(60);
 check('after cleanup, a connectivity event triggers no further reads',
   calls.length === 0, `${calls.length} call(s) after teardown`);
 
-console.log('');
-if (fails.length) {
-  console.log(`INTERACTION TRACE FAILED — ${fails.length} of ${pass + fails.length}`);
-  for (const f of fails) console.log('  - ' + f);
-  process.exit(1);
-}
-console.log(`INTERACTION TRACE PASSED — ${pass}/${pass} interactions, every write inspected`);
 
 // ================= Weekly plan =================
 // These interactions moved with the view. The gate failed loudly when the
@@ -513,3 +526,14 @@ if (cellBtn) {
 }
 if (typeof cleanupPlan === 'function') cleanupPlan();
 
+// ---- The report goes LAST ----
+// It used to sit above the weekly-plan block, which meant those checks ran
+// after the gate had already declared itself passed: a failure there would
+// have printed FAIL and still exited 0.
+console.log('');
+if (fails.length) {
+  console.log(`INTERACTION TRACE FAILED — ${fails.length} of ${pass + fails.length}`);
+  for (const f of fails) console.log('  - ' + f);
+  process.exit(1);
+}
+console.log(`INTERACTION TRACE PASSED — ${pass}/${pass} interactions, every write inspected`);

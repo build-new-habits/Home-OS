@@ -193,30 +193,6 @@ check('a NON-FOOD is not offered as an ingredient',
 check('an edible food IS offered', pickerNames.includes('Rolled oats'), pickerNames.join(' | '));
 
 // ---- The food list is grouped so it stays navigable at scale ----
-const groupHeadings = [...mount.querySelectorAll('.group-heading')];
-check('the food list is grouped under category headings', groupHeadings.length > 0);
-check('each group heading states its count',
-  groupHeadings.every((h) => /\(\d+\)/.test(h.textContent)),
-  groupHeadings.map((h) => h.textContent).join(' | '));
-// ---- The missing conversion factor is offered where it is needed --------
-// The fixture's second ingredient is 200 ml of a food with no grams_per_ml.
-const prompt = sheetScope.querySelector('.factor-prompt');
-check('a missing conversion factor is offered inline on the row', !!prompt);
-check('the prompt says which food and which unit',
-  !!prompt && /Home-made stock/.test(prompt.textContent) && /millilitre/.test(prompt.textContent),
-  prompt ? prompt.textContent.slice(0, 90) : '');
-check('the prompt input is labelled',
-  !!prompt && !!sheetScope.querySelector(`label[for="${CSS.escape(prompt.querySelector('input').id)}"]`));
-check('the prompt offers a worked example rather than assuming knowledge',
-  !!prompt && /about 1.03|about 60 g/.test(prompt.textContent));
-
-check('a non-food food card says it will not be offered as an ingredient',
-  /will not be offered as a recipe ingredient/.test(mount.textContent));
-
-// ---- No duplicate ids (a duplicate silently breaks label association) ----
-const ids = [...mount.querySelectorAll('[id]')].map((n) => n.id);
-const dupes = [...new Set(ids.filter((i, n) => ids.indexOf(i) !== n))];
-check('no duplicate element ids', dupes.length === 0, dupes.join(', '));
 
 // ---- Every aria-describedby points at something that exists ----
 const badDesc = [...mount.querySelectorAll('[aria-describedby]')]
@@ -269,6 +245,44 @@ let ordered = true;
 for (let i = 1; i < levels.length; i++) if (levels[i] - levels[i - 1] > 1) ordered = false;
 check('heading levels never skip a level', ordered, levels.join(','));
 check('exactly one h1', mount.querySelectorAll('h1').length === 1);
+
+// ================= Things you buy =================
+await closeAnySheet();
+const foodMount = window.document.createElement('main');
+window.document.body.appendChild(foodMount);
+const foodMod = await import(pathToFileURL(path.join(REPO, 'js/views/foods.js')).href);
+foodMod.render(foodMount, {});
+await new Promise((r) => setTimeout(r, 80));
+
+// A long library stays navigable by heading rather than by scrolling.
+const groupHeadings = [...foodMount.querySelectorAll('.group-heading')];
+check('the food list is grouped under category headings', groupHeadings.length > 0);
+check('each group heading states its count',
+  groupHeadings.every((h) => /\(\d+\)/.test(h.textContent)),
+  groupHeadings.map((h) => h.textContent).join(' | '));
+// ---- The missing conversion factor is offered where it is needed --------
+// The fixture's second ingredient is 200 ml of a food with no grams_per_ml.
+const prompt = sheetScope.querySelector('.factor-prompt');
+check('a missing conversion factor is offered inline on the row', !!prompt);
+check('the prompt says which food and which unit',
+  !!prompt && /Home-made stock/.test(prompt.textContent) && /millilitre/.test(prompt.textContent),
+  prompt ? prompt.textContent.slice(0, 90) : '');
+check('the prompt input is labelled',
+  !!prompt && !!sheetScope.querySelector(`label[for="${CSS.escape(prompt.querySelector('input').id)}"]`));
+check('the prompt offers a worked example rather than assuming knowledge',
+  !!prompt && /about 1.03|about 60 g/.test(prompt.textContent));
+
+check('a non-food food card says it will not be offered as an ingredient',
+  /will not be offered as a recipe ingredient/.test(foodMount.textContent));
+
+// ---- No duplicate ids (a duplicate silently breaks label association) ----
+const ids = [...foodMount.querySelectorAll('[id]')].map((n) => n.id);
+const dupes = [...new Set(ids.filter((i, n) => ids.indexOf(i) !== n))];
+check('no duplicate element ids', dupes.length === 0, dupes.join(', '));
+check('foods: exactly one h1', foodMount.querySelectorAll('h1').length === 1);
+check('foods: the manual add form exists regardless of the scanner',
+  !!foodMount.querySelector('.food-form'),
+  'a browser without a camera must still be able to add something');
 
 // ================= Phase 8: holidays & work =================
 await closeAnySheet();
@@ -509,9 +523,9 @@ kitMod.render(kitMount, {});
 await new Promise((r) => setTimeout(r, 60));
 
 const kitLinks = [...kitMount.querySelectorAll('.hub-link')];
-check('kitchen: the hub links to every kitchen page', kitLinks.length === 4);
+check('kitchen: the hub links to every kitchen page', kitLinks.length === 5);
 check('kitchen: links point at real routes',
-  kitLinks.every((a) => /^#\/(meals|pantry|shopping|meal-plan)$/.test(a.getAttribute('href') || '')));
+  kitLinks.every((a) => /^#\/(meals|pantry|shopping|meal-plan|foods)$/.test(a.getAttribute('href') || '')));
 check('kitchen: shopping comes first — it is what you open in a shop',
   (kitLinks[0] || {}).getAttribute && kitLinks[0].getAttribute('href') === '#/shopping');
 check('kitchen: every link has an accessible name',
@@ -719,4 +733,4 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
 console.log('');
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
-console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, holidays, pantry, chores, calendar, health, kitchen)`);
+console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, foods, holidays, pantry, chores, calendar, health, kitchen)`);

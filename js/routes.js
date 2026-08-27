@@ -103,6 +103,11 @@ export const routes = [
     path: 'meal-plan',
     title: 'Weekly plan',
     load: () => import('./views/mealPlan.js')
+  },
+  {
+    path: 'foods',
+    title: 'Things you buy',
+    load: () => import('./views/foods.js')
   }
 ];
 
