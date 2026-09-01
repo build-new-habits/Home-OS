@@ -571,6 +571,36 @@ the list by creating (or matching) a `foods` row with the right `category` —
 App **upserts** this single row, keyed on the unique `user_id`. Settings
 apply immediately, no save step (principle 7).
 
+### households
+| Column | Type | Notes |
+|---|---|---|
+| name | text | not null, default 'My household' |
+
+No `user_id`. Membership is what grants access, and it lives in
+`household_members`. Access policy keys on `id in (select
+my_household_ids())` rather than on the universal owner pattern.
+
+### household_members
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, references households, on delete cascade |
+| user_id | uuid | **nullable**, references auth.users, on delete cascade — a member does not need a sign-in |
+| display_name | text | not null |
+| role | text | not null, check in ('owner','adult','child'); default 'adult' |
+| portion_factor | numeric | not null default 1.0; check > 0 and <= 3 |
+| dietary_tags | text[] | not null default '{}' |
+
+`unique (household_id, user_id)`.
+
+**`household_id` is passed explicitly on insert here**, and only here. This
+row *defines* membership rather than depending on it, so the column
+deliberately carries no `my_household_id()` default — a default would be
+circular. Everywhere else the standing rule holds: inserts pass nothing.
+
+`portion_factor` scales the shopping list, never a nutrition target.
+Members with `role = 'child'` are not offered macro targets at all
+(Phase 20).
+
 ---
 
 ## 4. Row-level security

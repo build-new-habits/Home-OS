@@ -1,4 +1,8 @@
-// js/views/settings.js — 26 Aug 2026 v6
+// js/views/settings.js — 01 Sep 2026 v7
+// v7 (Phase 18): a Household section. The cupboard, shopping list, meal
+// plan, chores, calendar and holidays are shared by everyone here; weight,
+// water and exercises are not, and the section says so out loud rather
+// than leaving people to guess what a housemate can see.
 // v6: states the installed build, so "is this the new version?" stops being
 // guesswork — twice now a bug report has been an older build still serving.
 // v5: fixes a ReferenceError introduced in v4 — an el() helper was used
@@ -15,6 +19,11 @@ import { upsertSettings, exportAllData, downloadJson, signOutUser, changePasswor
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
+import {
+  getHousehold, renameHousehold, addMember, updateMember, removeMember,
+  describeMember, ROLES, DIETARY_TAGS
+} from '../data/household.js';
+import { confirmDialog } from '../components/confirmDialog.js';
 
 const THEME_OPTIONS = [
   { value: 'default', label: 'Default' },
@@ -152,6 +161,295 @@ function buildSwitch({ label, checked, onChange }) {
   return row;
 }
 
+
+/**
+ * Phase 18. The household section.
+ *
+ * ---- Why it states what is shared ----
+ * Adding someone to a household changes what another human being can see
+ * about you. Leaving that implicit would be a privacy decision made by
+ * omission. The list is short and it is spelled out before the Add button,
+ * not after it.
+ */
+function buildHouseholdSection({ household, onChanged, signal }) {
+  const fieldset = document.createElement('fieldset');
+  const legend = document.createElement('legend');
+  legend.textContent = 'Household';
+  fieldset.appendChild(legend);
+
+  const shared = document.createElement('p');
+  shared.className = 'field-hint';
+  shared.textContent = 'Everyone here shares the cupboard, shopping list, meal plan, '
+    + 'chores, calendar and holidays. Weight, water and exercises stay private to each person.';
+  fieldset.appendChild(shared);
+
+  // ---- Name ----
+  const nameWrap = document.createElement('div');
+  nameWrap.className = 'field';
+  const nameLabel = document.createElement('label');
+  nameLabel.setAttribute('for', 'household-name');
+  nameLabel.textContent = 'Household name';
+  const nameInput = document.createElement('input');
+  nameInput.id = 'household-name';
+  nameInput.type = 'text';
+  nameInput.value = household.name || '';
+  nameInput.addEventListener('change', async () => {
+    const result = await renameHousehold(nameInput.value);
+    if (!result.ok) {
+      showToast(result.error.message);
+      nameInput.value = household.name || '';
+      return;
+    }
+    announce('Household renamed.');
+    onChanged();
+  }, { signal });
+  nameWrap.append(nameLabel, nameInput);
+  fieldset.appendChild(nameWrap);
+
+  // ---- Members ----
+  const list = document.createElement('ul');
+  list.className = 'plain-list member-list';
+
+  for (const member of household.members) {
+    const item = document.createElement('li');
+    item.className = 'member-row';
+
+    const text = document.createElement('div');
+    text.className = 'member-text';
+    const name = document.createElement('span');
+    name.className = 'member-name';
+    name.textContent = member.display_name;
+    const detail = document.createElement('span');
+    detail.className = 'member-detail';
+    detail.textContent = describeMember(member);
+    text.append(name, detail);
+    item.appendChild(text);
+
+    const actions = document.createElement('div');
+    actions.className = 'member-actions';
+
+    const edit = document.createElement('button');
+    edit.type = 'button';
+    edit.className = 'btn btn-small';
+    edit.textContent = 'Edit';
+    edit.setAttribute('aria-label', `Edit ${member.display_name}`);
+    edit.setAttribute('aria-expanded', 'false');
+    actions.appendChild(edit);
+    item.appendChild(actions);
+
+    const form = buildMemberForm({
+      member,
+      signal,
+      onDone: onChanged,
+      onCancel: () => {
+        form.hidden = true;
+        edit.setAttribute('aria-expanded', 'false');
+        edit.focus();
+      }
+    });
+    form.hidden = true;
+    item.appendChild(form);
+
+    edit.addEventListener('click', () => {
+      const open = edit.getAttribute('aria-expanded') === 'true';
+      edit.setAttribute('aria-expanded', String(!open));
+      form.hidden = open;
+      if (!open) form.querySelector('input, select').focus();
+    }, { signal });
+
+    list.appendChild(item);
+  }
+  fieldset.appendChild(list);
+
+  // ---- Add someone ----
+  // Behind a details, so the everyday view is a list rather than a form.
+  const details = document.createElement('details');
+  const summary = document.createElement('summary');
+  summary.textContent = 'Add someone';
+  details.appendChild(summary);
+
+  const addHint = document.createElement('p');
+  addHint.className = 'field-hint';
+  addHint.textContent = 'Someone added here does not need a sign-in. '
+    + 'That is how children get their own portions and meals without an account.';
+  details.appendChild(addHint);
+
+  details.appendChild(buildMemberForm({
+    member: null,
+    signal,
+    onDone: onChanged,
+    onCancel: () => { details.open = false; }
+  }));
+  fieldset.appendChild(details);
+
+  return fieldset;
+}
+
+/** One form, used for both adding and editing. */
+function buildMemberForm({ member, onDone, onCancel, signal }) {
+  const form = document.createElement('form');
+  form.className = 'member-form';
+  form.setAttribute('aria-label', member ? `Edit ${member.display_name}` : 'Add a household member');
+  const uid = member ? member.id : 'new';
+
+  const nameWrap = document.createElement('div');
+  nameWrap.className = 'field';
+  const nameLabel = document.createElement('label');
+  nameLabel.setAttribute('for', `member-name-${uid}`);
+  nameLabel.textContent = 'Name';
+  const nameInput = document.createElement('input');
+  nameInput.id = `member-name-${uid}`;
+  nameInput.type = 'text';
+  nameInput.value = member ? member.display_name : '';
+  nameWrap.append(nameLabel, nameInput);
+  form.appendChild(nameWrap);
+
+  // A CHECK-constrained column, so a select and never free text.
+  const roleWrap = document.createElement('div');
+  roleWrap.className = 'field';
+  const roleLabel = document.createElement('label');
+  roleLabel.setAttribute('for', `member-role-${uid}`);
+  roleLabel.textContent = 'Role';
+  const roleSelect = document.createElement('select');
+  roleSelect.id = `member-role-${uid}`;
+  for (const role of ROLES) {
+    const opt = document.createElement('option');
+    opt.value = role.value;
+    opt.textContent = role.label;
+    if (member && member.role === role.value) opt.selected = true;
+    roleSelect.appendChild(opt);
+  }
+  roleWrap.append(roleLabel, roleSelect);
+  form.appendChild(roleWrap);
+
+  const portionWrap = document.createElement('div');
+  portionWrap.className = 'field';
+  const portionLabel = document.createElement('label');
+  portionLabel.setAttribute('for', `member-portion-${uid}`);
+  portionLabel.textContent = 'Portion size';
+  const portionInput = document.createElement('input');
+  portionInput.id = `member-portion-${uid}`;
+  portionInput.type = 'number';
+  portionInput.min = '0.1';
+  portionInput.max = '3';
+  portionInput.step = '0.1';
+  portionInput.inputMode = 'decimal';
+  portionInput.value = member ? String(member.portion_factor) : '1';
+  const portionHint = document.createElement('p');
+  portionHint.className = 'field-hint';
+  portionHint.id = `member-portion-hint-${uid}`;
+  // Says what the number DOES. "0.6" means nothing without this line.
+  portionHint.textContent = '1 is an adult portion. Around 0.6 suits a younger child. '
+    + 'This scales the shopping list, not anyone\'s target.';
+  portionInput.setAttribute('aria-describedby', portionHint.id);
+  portionWrap.append(portionLabel, portionInput, portionHint);
+  form.appendChild(portionWrap);
+
+  const dietFieldset = document.createElement('fieldset');
+  dietFieldset.className = 'diet-tags';
+  const dietLegend = document.createElement('legend');
+  dietLegend.textContent = 'Does not eat';
+  dietFieldset.appendChild(dietLegend);
+  const boxes = [];
+  for (const tag of DIETARY_TAGS) {
+    const row = document.createElement('div');
+    row.className = 'checkbox-row';
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.id = `member-tag-${uid}-${tag.value}`;
+    box.value = tag.value;
+    if (member && (member.dietary_tags || []).includes(tag.value)) box.checked = true;
+    const label = document.createElement('label');
+    label.setAttribute('for', box.id);
+    label.textContent = tag.label;
+    row.append(box, label);
+    dietFieldset.appendChild(row);
+    boxes.push(box);
+  }
+  form.appendChild(dietFieldset);
+
+  const error = document.createElement('p');
+  error.className = 'field-error';
+  error.setAttribute('role', 'alert');
+  error.hidden = true;
+  form.appendChild(error);
+
+  const actions = document.createElement('div');
+  actions.className = 'form-actions';
+
+  const save = document.createElement('button');
+  save.type = 'submit';
+  save.className = 'btn btn-primary';
+  save.textContent = member ? 'Save' : 'Add to household';
+  actions.appendChild(save);
+
+  const cancel = document.createElement('button');
+  cancel.type = 'button';
+  cancel.className = 'btn';
+  cancel.textContent = 'Cancel';
+  cancel.addEventListener('click', onCancel, { signal });
+  actions.appendChild(cancel);
+
+  if (member) {
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'btn btn-danger';
+    remove.textContent = 'Remove';
+    remove.addEventListener('click', async () => {
+      // Principle 9: a removal goes through a confirm, and the confirm
+      // says what is NOT lost as well as what is.
+      const yes = await confirmDialog({
+        title: `Remove ${member.display_name}?`,
+        message: 'They come off the meal plan and shopping list from now on. '
+          + 'Nothing in the cupboard, the shopping list or past plans is deleted.',
+        confirmLabel: 'Remove'
+      });
+      if (!yes) return;
+      const result = await removeMember(member.id);
+      if (!result.ok) {
+        error.textContent = result.error.message;
+        error.hidden = false;
+        return;
+      }
+      announce(`${member.display_name} removed from the household.`);
+      onDone();
+    }, { signal });
+    actions.appendChild(remove);
+  }
+
+  form.appendChild(actions);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    error.hidden = true;
+    save.disabled = true;
+
+    const payload = {
+      display_name: nameInput.value,
+      role: roleSelect.value,
+      portion_factor: portionInput.value,
+      dietary_tags: boxes.filter((b) => b.checked).map((b) => b.value)
+    };
+
+    const result = member
+      ? await updateMember(member.id, payload)
+      : await addMember(payload);
+    save.disabled = false;
+
+    if (!result.ok) {
+      error.textContent = result.error.message;
+      error.hidden = false;
+      nameInput.focus();
+      return;
+    }
+    announce(member ? `${result.data.display_name} updated.` : `${result.data.display_name} added to the household.`);
+    if (!member) nameInput.value = '';
+    onDone();
+  }, { signal });
+
+  return form;
+}
+
 export function render(mountEl) {
   const controller = new AbortController();
   let settings = getState().settings || {
@@ -182,6 +480,35 @@ export function render(mountEl) {
 
   const bodyContainer = document.createElement('div');
   mountEl.appendChild(bodyContainer);
+
+  /**
+   * Fills the household slot. Never throws and never blocks the rest of
+   * Settings: a household read that fails must not cost you the ability to
+   * change the contrast or sign out.
+   */
+  async function loadHousehold(slot) {
+    const result = await getHousehold({ force: true });
+    if (controller.signal.aborted) return;
+    slot.replaceChildren();
+
+    if (!result.ok) {
+      const fieldset = document.createElement('fieldset');
+      const legend = document.createElement('legend');
+      legend.textContent = 'Household';
+      const message = document.createElement('p');
+      message.className = 'field-hint';
+      message.textContent = result.error.message;
+      fieldset.append(legend, message);
+      slot.appendChild(fieldset);
+      return;
+    }
+
+    slot.appendChild(buildHouseholdSection({
+      household: result.data,
+      signal: controller.signal,
+      onChanged: () => loadHousehold(slot)
+    }));
+  }
 
   function renderBody() {
     bodyContainer.replaceChildren();
@@ -262,6 +589,15 @@ export function render(mountEl) {
     });
     dataFieldset.appendChild(exportBtn);
     bodyContainer.appendChild(dataFieldset);
+
+    // ---- Household ----
+    // A placeholder appended synchronously, filled when the read returns.
+    // Appending after the await would put Household BELOW Account on a slow
+    // connection and above it on a fast one, which is the kind of layout
+    // that makes people think they tapped the wrong thing.
+    const householdSlot = document.createElement('div');
+    bodyContainer.appendChild(householdSlot);
+    loadHousehold(householdSlot);
 
     const accountFieldset = document.createElement('fieldset');
     const accountLegend = document.createElement('legend');

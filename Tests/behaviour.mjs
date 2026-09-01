@@ -44,6 +44,7 @@ const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal 
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
+const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -628,6 +629,41 @@ check('a missing amount still says the date was recorded',
 check('every outcome produces a sentence',
   Object.values(RESTOCK).every((o) => typeof describeRestock(o, { foodName: 'X' }) === 'string'
     && describeRestock(o, { foodName: 'X' }).length > 0));
+
+console.log('');
+
+// ============ Phase 18: households ============
+console.log('\nServings across a household');
+
+// Cooking slightly too much is a leftover. Cooking slightly too little is
+// someone going without. The rounding is asymmetric on purpose.
+const adult = { portion_factor: 1, role: 'adult', dietary_tags: [] };
+const child = { portion_factor: 0.6, role: 'child', dietary_tags: [] };
+
+eq('two adults need two servings', servingsFor([adult, adult]), 2);
+eq('two adults and a child round UP, never down', servingsFor([adult, adult, child]), 3);
+eq('one adult and one child land on a half', servingsFor([adult, child]), 2);
+eq('a lone child still gets a whole serving', servingsFor([child]), 1);
+eq('nobody named means cook for one, not for nobody', servingsFor([]), 1);
+check('a missing portion_factor is treated as a full adult',
+  servingsFor([{ }, { }]) === 2, 'a null must never silently shrink the shop');
+
+console.log('\nDescribing a member');
+check('a member with no sign-in says so',
+  describeMember({ display_name: 'Sam', role: 'child', portion_factor: 0.6, user_id: null,
+    dietary_tags: [] }).includes('No sign-in'));
+check('a non-standard portion is spelled out, not left as a bare number',
+  describeMember({ display_name: 'Sam', role: 'child', portion_factor: 0.6, user_id: null,
+    dietary_tags: [] }).includes('adult portion'));
+check('a full portion is not mentioned at all',
+  !describeMember({ display_name: 'A', role: 'adult', portion_factor: 1, user_id: 'u1',
+    dietary_tags: [] }).includes('portion'),
+  'stating the default is noise');
+check('dietary tags are named in plain words',
+  describeMember({ display_name: 'A', role: 'adult', portion_factor: 1, user_id: 'u1',
+    dietary_tags: ['vegetarian'] }).includes('Vegetarian'));
+check('the three roles are exactly owner, adult, child',
+  ROLES.map((r) => r.value).join(',') === 'owner,adult,child');
 
 console.log('');
 

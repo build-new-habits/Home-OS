@@ -1,4 +1,4 @@
-// js/data/settings.js — 18 Aug 2026 v4
+// js/data/settings.js — 01 Sep 2026 v5
 // v4: changePassword() no longer assumes the account HAS a password. A user
 // who signed in by magic link may never have set one, so requiring the
 // current password locked out exactly the people who most needed to set it.
@@ -10,6 +10,7 @@
 // session; recorded in PHASE5_HANDOFF.md as an addition outside that
 // brief. No schema change — Supabase Auth owns credentials, not our tables.
 import { supabase } from '../supabaseClient.js';
+import { clearHouseholdCache } from './household.js';
 
 // The 17 tables, per schema.md / PROJECT_BLUEPRINT.md §4. Frozen list —
 // do not add a table here without it existing in the schema first.
@@ -96,8 +97,16 @@ export async function exportAllData() {
   return { ok: true, data: result };
 }
 
-/** Signs the single user out. Views never call supabase directly (§2). */
+/**
+ * Signs the user out. Views never call supabase directly (§2).
+ *
+ * The household cache is cleared FIRST. It is module-scoped and survives a
+ * sign-out, so on a shared device the next person to sign in would briefly
+ * see the previous household's name and members before the read returned.
+ * Cheap to prevent, unpleasant to discover.
+ */
 export async function signOutUser() {
+  clearHouseholdCache();
   const { error } = await supabase.auth.signOut();
   if (error) return { ok: false, error };
   return { ok: true };

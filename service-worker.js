@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v45
+// service-worker.js — 01 Sep 2026 v46
+// v46 (Phase 18): ONE new path, js/data/household.js. Also bumped for
+// views/settings.js v7, data/settings.js v5 and components.css v26.
 // v45: no path changes. Bumped for the conversion-factor prompt —
 // views/meals.js v13, data/meals.js v4, components.css v25.
 // v44 (Phase 11): THREE new paths — js/data/foodClaim.js, js/data/restock.js
@@ -118,7 +120,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v45';
+const CACHE_NAME = 'home-os-shell-v46';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -160,6 +162,7 @@ const SHELL_FILES = [
   './js/data/foods.js',
   './js/data/meals.js',
   './js/data/mealPlan.js',
+  './js/data/household.js',
   './js/data/foodClaim.js',
   './js/data/restock.js',
   './js/components/bottomNav.js',

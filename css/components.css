@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v25 */
+/* css/components.css — 01 Sep 2026 v26 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2129,4 +2129,94 @@ body.sheet-open {
   background: var(--color-surface-raised);
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-2);
+}
+
+/* ---- Phase 18: household members ------------------------------------- */
+
+.member-list {
+  margin: var(--space-3) 0;
+}
+
+.member-row {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.member-row:last-child {
+  border-bottom: none;
+}
+
+.member-row > .member-text,
+.member-row > .member-actions {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.member-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: calc(100% - 5.5rem);
+}
+
+.member-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Role, portion and dietary tags, run together on one quiet line. */
+.member-detail {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.member-actions {
+  width: 5rem;
+  text-align: right;
+}
+
+.member-form {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.diet-tags {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-3);
+}
+
+.diet-tags legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* Tapped with a thumb, so the row is the target, not the 20px box. */
+  min-height: 44px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.checkbox-row label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
