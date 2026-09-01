@@ -711,6 +711,12 @@ eq('two hundred millilitres of milk stays millilitres',
 check('a non-multiple is not forced into spoons', toSpoons(23) === null);
 check('nothing at or above the ceiling becomes spoons', toSpoons(60) === null);
 
+// Regression, found on a real pantry screen 01 Sep: the form label said
+// "Amount in items" while the list above it said "4 tins". The label has to
+// reach the form, not only the summary line.
+eq('the unit word beside an input uses the label too',
+  pluraliseLabel('tin', 2), 'tins');
+
 check('the original two-argument call still works',
   formatQuantity(2400, 'g') === '2.4 kg', 'three views still call it');
 

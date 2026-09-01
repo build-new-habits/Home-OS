@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v47
+// service-worker.js — 01 Sep 2026 v48
+// v48: no path changes. Bumped for views/pantry.js v7 — the pantry FORM
+// label now uses item_label, which v47 missed.
 // v47 (Phase 12): no path changes. Bumped for pack labels — lib/units.js v4,
 // data/foods.js v4, data/pantry.js v4, data/shopping.js v2, views/foods.js
 // v2, views/pantry.js v6, views/shopping.js v4, views/meals.js v14.
@@ -123,7 +125,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v47';
+const CACHE_NAME = 'home-os-shell-v48';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v6
+// js/views/pantry.js — 01 Sep 2026 v7
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -54,7 +54,7 @@ import {
 import { isScanSupported } from '../lib/barcode.js';
 import { openScanner, describeScanFailure } from '../components/scannerDialog.js';
 import { lookupBarcode } from '../lib/openFoodFacts.js';
-import { formatQuantity, formatPackQuantity, itemNoun } from '../lib/units.js';
+import { formatQuantity, formatPackQuantity, pluraliseLabel } from '../lib/units.js';
 import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
@@ -110,8 +110,17 @@ function describeAmount(row, food = null) {
   return formatPackQuantity(row.current_qty, row.unit, food || row.foods || null);
 }
 
-function unitWord(unit) {
-  return unit === 'item' ? 'items' : unit;
+/**
+ * The word beside the number: "tins", "items", "g", "ml".
+ *
+ * Phase 12 defect, caught on a real screen: this hardcoded 'items', so a
+ * food with item_label = 'tin' still had a form reading "Amount in items"
+ * next to a list reading "4 tins". The label has to reach the FORM, not
+ * just the summary line, or the two disagree in the same view.
+ */
+function unitWord(unit, food = null) {
+  if (unit !== 'item') return unit;
+  return pluraliseLabel(food && food.item_label, 2);
 }
 
 export function render(mountEl) {
@@ -180,9 +189,9 @@ export function render(mountEl) {
       input.value = row.current_qty == null ? '' : String(row.current_qty);
       const label = el('label', {
         for: input.id, class: 'visually-hidden',
-        text: `How much ${food.name || 'this'} you have, in ${unitWord(row.unit)}`
+        text: `How much ${food.name || 'this'} you have, in ${unitWord(row.unit, row.foods)}`
       });
-      const unitText = el('span', { class: 'ingredient-unit', text: unitWord(row.unit) });
+      const unitText = el('span', { class: 'ingredient-unit', text: unitWord(row.unit, row.foods) });
 
       input.addEventListener('change', () => saveQuantity(row, input), { signal });
 
@@ -314,11 +323,11 @@ export function render(mountEl) {
         qtyInput.value = row.current_qty == null ? '' : String(row.current_qty);
         const qtyLabel = el('label', {
           for: qtyInput.id, class: 'sheet-fact-label',
-          text: `Amount in ${unitWord(row.unit)}`
+          text: `Amount in ${unitWord(row.unit, row.foods)}`
         });
         const qtyRow = el('div', { class: 'sheet-fact' });
         qtyRow.append(qtyLabel, el('span', { class: 'stock-qty-row' }, [
-          qtyInput, el('span', { class: 'ingredient-unit', text: unitWord(row.unit) })
+          qtyInput, el('span', { class: 'ingredient-unit', text: unitWord(row.unit, row.foods) })
         ]));
         qtyInput.addEventListener('change', () => saveQuantity(row, qtyInput), { signal });
         amountSection.appendChild(qtyRow);
