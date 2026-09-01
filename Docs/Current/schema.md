@@ -1,14 +1,109 @@
 # Home PWA: Schema (Canonical)
-27 Aug 2026 v7
+01 Sep 2026 v8
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
 reconcile before writing anything (PROJECT_BLUEPRINT.md §3). No field is
 added, renamed, or removed anywhere without changing it here first.
 
-Backend: Supabase (PostgreSQL, **EU region**, fresh project). **18 tables,
-18 RLS policies**, 1 trigger function, 18 update triggers, single owner.
-(17 until revision 5, which added the first new table since Phase 1.)
+Backend: Supabase (PostgreSQL, **EU region**). **20 tables, 20 RLS
+policies**, 3 trigger functions, 20 update triggers.
+
+**No longer single-owner.** Revision 8 moved 13 tables to household
+ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0f. Revision 8 — households (01 Sep 2026)
+
+Home-OS is being built as a product with families in it. A family shares a
+cupboard, a shopping list and a meal plan. It does **not** share a weight
+log.
+
+Two new tables — `households` and `household_members` — and `household_id`
+on thirteen existing ones.
+
+### The split
+
+**Household-scoped (13).** Access is `household_id in (select
+my_household_ids())`:
+
+`foods`, `pantry_stock`, `shopping_list_items`, `meals`, `meal_ingredients`,
+`weekly_meal_plan`, `chore_projects`, `chore_tasks`,
+`chore_task_completions`, `calendar_events`, `holidays`,
+`holiday_checklist_items`, `holiday_purchase_items`
+
+**Person-scoped (5).** Unchanged, still `auth.uid() = user_id`:
+
+`weight_logs`, `water_logs`, `exercises`, `exercise_logs`, `user_settings`
+
+Weight is the clearest case. A shared cupboard is a feature; a shared weight
+log would be a betrayal of principle 1. Rehab exercises are personal medical
+information and stay personal.
+
+### `user_id` stays on all 18
+
+On the personal five it remains the access key. On the household thirteen it
+becomes **provenance** — who added this — which is worth having in a shared
+house and costs nothing to keep.
+
+### `household_members.user_id` is nullable, deliberately
+
+A child who eats the meals and has portions planned for them is a real
+member. They do not need a login. A member without an account simply cannot
+sign in.
+
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, references households, on delete cascade |
+| user_id | uuid | **nullable**, references auth.users, on delete cascade |
+| display_name | text | not null |
+| role | text | check in ('owner','adult','child'); default 'adult' |
+| portion_factor | numeric | not null default 1.0; check > 0 and <= 3 |
+| dietary_tags | text[] | not null default '{}' |
+
+`unique (household_id, user_id)`.
+
+`portion_factor` and `dietary_tags` land here now rather than in Phase 20,
+because adding two columns to a table created in this migration is free and
+a second migration over the same table is not.
+
+### Inserts still pass nothing
+
+`household_id` carries `default my_household_id()`, exactly mirroring
+`default auth.uid()` on `user_id`. The standing rule — **no `user_id` on
+inserts, RLS supplies it** — now covers `household_id` too, and no data
+module changed shape.
+
+### `my_household_ids()` is SECURITY DEFINER, and that is load-bearing
+
+`household_members` carries a policy expressed in terms of this function.
+Without definer rights the policy consults the function, which consults the
+policy, and Postgres raises infinite recursion. `search_path` is pinned,
+because a definer function with a mutable search path is a
+privilege-escalation hole. `STABLE` lets the planner evaluate it once per
+statement rather than once per row.
+
+### Every shared table is indexed on `household_id`
+
+Not optional. Without it every policy check is a sequential scan through the
+subquery, on every read, on every screen.
+
+### Signup creates a household of one
+
+A trigger on `auth.users`, not client code. A client that fails halfway
+leaves an account belonging to no household, and no household means
+`my_household_ids()` returns empty, which denies everything. The account
+would be alive and unable to see a single row.
+
+### What the SQL editor cannot prove
+
+`auth.uid()` is null in the Supabase SQL editor and RLS is bypassed there.
+The verification query proves **structure** only. Household isolation must
+be proven from two real signed-in accounts — see PHASE18_HANDOFF.md.
+
+Migration: `migrations/008_household_foundation.sql`, verified with
+`008_household_foundation_VERIFY.sql`.
 
 ---
 
@@ -480,11 +575,25 @@ apply immediately, no save step (principle 7).
 
 ## 4. Row-level security
 
-For all 17 tables:
+**Two patterns since revision 8.** Which one a table uses is not a
+judgement call — see the lists in §0f.
+
+**Household-scoped (13 tables):**
 
 ```sql
 alter table <table_name> enable row level security;
 
+create policy "household access only"
+on <table_name>
+for all
+using (household_id in (select my_household_ids()))
+with check (household_id in (select my_household_ids()));
+```
+
+**Person-scoped (5 tables), plus `households` and `household_members`
+which key on their own id:**
+
+```sql
 create policy "owner access only"
 on <table_name>
 for all
@@ -492,7 +601,7 @@ using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 ```
 
-17 tables → 17 policies. Never `WITH CHECK (true)`.
+20 tables → 20 policies. **Never `WITH CHECK (true)`.**
 
 ---
 
