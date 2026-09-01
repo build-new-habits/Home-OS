@@ -1,4 +1,4 @@
-/* css/components.css — 27 Aug 2026 v23 */
+/* css/components.css — 01 Sep 2026 v25 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -1986,4 +1986,147 @@ body.sheet-open {
 .today-row .check-toggle {
   flex: 0 0 auto;
   min-height: var(--tap-min);
+}
+
+/* ---- Phase 11: claim dialog, macro gap sheet -------------------------- */
+/* Shown when a scanned barcode matches nothing but you have unbarcoded
+   foods on your list. The options are radios, not buttons: one question,
+   one answer, and a mis-tap is recoverable before you commit. */
+
+.dialog-desc {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.claim-options {
+  border: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+}
+
+.claim-options legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.claim-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  /* 44px minimum target with room to spare — this is tapped in a shop,
+     one-handed, often in a coat. (WCAG 2.5.8) */
+  min-height: 44px;
+  padding: var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+  background: var(--color-surface);
+}
+
+.claim-option input[type="radio"] {
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.claim-option label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.claim-option-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Why this food is being suggested. A recommendation you cannot account
+   for is one people stop trusting. */
+.claim-option-why {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.claim-option-new {
+  border-style: dashed;
+}
+
+/* The whole row is a hit target, but the visible focus ring must follow
+   the radio rather than the box, or keyboard focus goes unlocated. */
+.claim-option:focus-within {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Macro gap sheet ---- */
+/* The "3 of 5 ingredients have no nutrition data" line, made actionable. */
+
+.macro-gap-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2) 0;
+  min-height: 44px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.macro-gap-link:hover {
+  color: var(--color-text);
+}
+
+.macro-gap-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.macro-gap-row:last-child {
+  border-bottom: none;
+}
+
+.macro-gap-name {
+  flex: 1;
+  color: var(--color-text);
+}
+
+.macro-gap-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+}
+
+.plain-list {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+}
+
+/* The conversion-factor prompt, shown inline when an ingredient is measured
+   in ml or items and its food has no weight recorded. Set apart so it reads
+   as an optional aside rather than a required field you have missed. */
+.factor-prompt {
+  padding: var(--space-2);
+  border-left: 3px solid var(--control-border);
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
 }

@@ -1,4 +1,4 @@
-// js/views/pantry.js — 26 Aug 2026 v4
+// js/views/pantry.js — 01 Sep 2026 v5
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -60,6 +60,8 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
+import { claimDialog } from '../components/claimDialog.js';
 
 const UNPLACED = 'No location recorded';
 
@@ -865,6 +867,13 @@ export function render(mountEl) {
     const lookup = await lookupBarcode(barcode);
     if (destroyed) return;
 
+    // ---- Phase 11: claim before create ----
+    // Before making a new row, ask whether this barcode belongs to a food
+    // you were already expecting. Getting this wrong is what produced two
+    // rows for one sausage and left every recipe pointed at the empty one.
+    const claimed = await offerClaim(barcode, lookup);
+    if (destroyed || claimed) return;
+
     modeNew.checked = true;
     syncMode();
     scannedExtras = { barcode };
@@ -905,6 +914,83 @@ export function render(mountEl) {
     announce(scanNote.textContent);
     if (newNameInput.value) newCategorySelect.focus();
     else newNameInput.focus();
+  }
+
+  /**
+   * Phase 11. Offers the unbarcoded foods this scan might belong to, and
+   * merges into the chosen one.
+   *
+   * Returns true when the scan was absorbed by an existing food, meaning
+   * the caller must NOT fall through to the create-new form.
+   *
+   * Every failure path here returns false. A candidate lookup that breaks
+   * must never block you from adding your shopping — the claim step is an
+   * accelerator sitting in front of a route that already worked.
+   */
+  async function offerClaim(barcode, lookup) {
+    const productName = lookup.ok ? (lookup.data.name || '') : '';
+
+    const found = await findClaimCandidates({ productName });
+    if (destroyed) return false;
+    if (!found.ok || found.data.length === 0) return false;
+
+    const choice = await claimDialog({
+      productName,
+      barcode,
+      candidates: found.data
+    });
+    if (destroyed) return false;
+    if (choice.action !== 'claim') return false;
+
+    const scanned = { barcode, source: 'openfoodfacts' };
+    if (lookup.ok) {
+      scanned.calories_per_100g = lookup.data.calories_per_100g;
+      scanned.protein_g = lookup.data.protein_g;
+      scanned.fat_g = lookup.data.fat_g;
+      scanned.carbs_g = lookup.data.carbs_g;
+      // A pack size read from the barcode is exactly grams_per_item, and it
+      // is the number that makes "1 tin" mean 400g later on.
+      const pack = lookup.data.packSize;
+      if (pack && pack.unit === 'g' && Number(pack.amount) > 0) {
+        scanned.grams_per_item = Number(pack.amount);
+      }
+    }
+
+    const merged = await claimFood(choice.food.id, scanned);
+    if (destroyed) return false;
+
+    if (!merged.ok) {
+      scanNote.textContent = 'That could not be saved just now. You can still add it below.';
+      announce(scanNote.textContent);
+      return false;
+    }
+
+    await loadAll();
+    if (destroyed) return true;
+
+    scanNote.textContent = describeClaim(merged.data, merged.filled);
+    announce(scanNote.textContent);
+
+    // The food is now known, so finish the job you actually came to do:
+    // put it in the cupboard. Either open the row you already had, or
+    // preselect it and ask for the amount.
+    const alreadyStocked = stock.find((row) => row.food_id === merged.data.id);
+    if (alreadyStocked) {
+      if (!justAdded.includes(alreadyStocked.id)) justAdded.unshift(alreadyStocked.id);
+      renderJustAdded();
+      openStockSheet(alreadyStocked);
+      return true;
+    }
+
+    modeExisting.checked = true;
+    syncMode();
+    searchInput.value = '';
+    rebuildFoodSelect();
+    foodSelect.value = merged.data.id;
+    syncDefaults();
+    qtyInput.focus();
+    qtyInput.select();
+    return true;
   }
 
   /** Prefill the amount from a parsed pack size, or leave the default alone. */

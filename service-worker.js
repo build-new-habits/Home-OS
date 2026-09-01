@@ -1,4 +1,9 @@
-// service-worker.js — 27 Aug 2026 v43
+// service-worker.js — 01 Sep 2026 v45
+// v45: no path changes. Bumped for the conversion-factor prompt —
+// views/meals.js v13, data/meals.js v4, components.css v25.
+// v44 (Phase 11): THREE new paths — js/data/foodClaim.js, js/data/restock.js
+// and js/components/claimDialog.js. The precache is all-or-nothing, so all
+// three were verified to return 200 before this was bumped.
 // v43: no path changes. Bumped for views/meals.js v12 — the open panel now
 // rebuilds when the meal changes.
 // v42: no path changes. Bumped for views/meals.js v11 — ingredients can be
@@ -113,7 +118,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v43';
+const CACHE_NAME = 'home-os-shell-v45';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -155,12 +160,15 @@ const SHELL_FILES = [
   './js/data/foods.js',
   './js/data/meals.js',
   './js/data/mealPlan.js',
+  './js/data/foodClaim.js',
+  './js/data/restock.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',
   './js/components/liveRegion.js',
   './js/components/card.js',
   './js/components/scannerDialog.js',
+  './js/components/claimDialog.js',
   './js/components/detailSheet.js',
   './js/components/completionStamp.js',
   './js/views/signin.js',

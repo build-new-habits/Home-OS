@@ -1,4 +1,4 @@
-// js/data/meals.js — 26 Aug 2026 v3
+// js/data/meals.js — 01 Sep 2026 v4
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
 // opaque database error and tells the user nothing.
@@ -378,6 +378,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
   }
 
   const incompleteNames = [];
+  const incompleteFoods = [];
   // Ingredients whose quantity could not be turned into grams at all, with
   // the reason, so the view can say what to fill in rather than just
   // reporting a gap.
@@ -431,6 +432,9 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
 
     if (rowMissing) {
       incompleteNames.push(food.name || 'an unnamed food');
+      // Phase 11: the id as well as the name. Naming a gap and then giving
+      // no way to close it is how a helpful line becomes wallpaper.
+      incompleteFoods.push({ id: food.id || null, name: food.name || 'an unnamed food' });
     }
   }
 
@@ -449,6 +453,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
     missingByField,
     incompleteCount: incompleteNames.length,
     incompleteNames,
+    incompleteFoods,
     unconvertible
   };
 }

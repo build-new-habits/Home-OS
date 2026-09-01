@@ -1,4 +1,4 @@
-// js/views/meals.js — 27 Aug 2026 v12
+// js/views/meals.js — 01 Sep 2026 v13
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -544,13 +544,20 @@ export function render(mountEl) {
         text: 'No ingredients yet, so there is nothing to add up.'
       }));
     } else if (macros.incompleteCount > 0) {
-      body.appendChild(el('p', {
-        class: 'field-hint',
+      // Phase 11: the line is a BUTTON. Naming a gap and offering no way to
+      // close it is how an honest sentence turns into wallpaper you stop
+      // reading. Fix it where you noticed it.
+      const gapBtn = el('button', {
+        type: 'button',
+        class: 'macro-gap-link',
         text: `${macros.incompleteCount} of ${macros.ingredientCount} ingredient`
           + `${macros.ingredientCount === 1 ? '' : 's'} `
           + `${macros.incompleteCount === 1 ? 'is' : 'are'} not counted here `
-          + `(${macros.incompleteNames.join(', ')}), so these figures are incomplete rather than final.`
-      }));
+          + `(${macros.incompleteNames.join(', ')}), so these figures are incomplete `
+          + 'rather than final. Tap to fill them in.'
+      });
+      gapBtn.addEventListener('click', () => openMacroGapSheet(macros, gapBtn), { signal });
+      body.appendChild(gapBtn);
       // Say WHAT to fill in, not just that something is missing.
       for (const gap of macros.unconvertible) {
         body.appendChild(el('p', {
@@ -661,6 +668,57 @@ export function render(mountEl) {
       save
     );
     return wrap;
+  }
+
+  /**
+   * Phase 11. Lists exactly the ingredients whose food has no nutrition
+   * data, each with a way to fix it.
+   *
+   * Two routes out, because there are two reasons a food is empty: nobody
+   * has typed the figures (Edit), or nobody has scanned the packet (Scan,
+   * which is faster and more accurate when the thing has a barcode).
+   */
+  function openMacroGapSheet(macros, returnFocusTo) {
+    openDetailSheet({
+      title: 'Missing nutrition data',
+      subtitle: `${macros.incompleteCount} of ${macros.ingredientCount} ingredients`,
+      returnFocusTo,
+      build(sheetBody) {
+        sheetBody.appendChild(el('p', {
+          class: 'field-hint',
+          text: 'These are left out of the totals rather than counted as zero. '
+            + 'Filling any of them in updates every meal that uses it.'
+        }));
+
+        const list = el('ul', { class: 'plain-list' });
+        for (const gap of macros.incompleteFoods) {
+          const item = el('li', { class: 'macro-gap-row' });
+          item.appendChild(el('span', { class: 'macro-gap-name', text: gap.name }));
+
+          const actions = el('div', { class: 'macro-gap-actions' });
+          const edit = el('button', {
+            type: 'button', class: 'btn btn-small',
+            text: 'Edit'
+          });
+          edit.setAttribute('aria-label', `Edit ${gap.name}`);
+          edit.addEventListener('click', () => {
+            // The Foods screen owns the food form. Sending you there beats
+            // a second, subtly different editor living in here.
+            window.location.hash = gap.id ? `#/foods?food=${gap.id}` : '#/foods';
+          }, { signal });
+          actions.appendChild(edit);
+          item.appendChild(actions);
+          list.appendChild(item);
+        }
+        sheetBody.appendChild(list);
+
+        sheetBody.appendChild(el('p', {
+          class: 'field-hint',
+          text: 'On the Foods screen you can scan the packet instead of typing, '
+            + 'which fills the figures in for you.'
+        }));
+      }
+    });
   }
 
   function buildIngredientRow(meal, row) {
@@ -812,8 +870,58 @@ export function render(mountEl) {
       newWrap.hidden = open;
       picker.wrapper.hidden = !open;
       newToggle.textContent = open ? 'It is not on the list yet' : 'Choose from the list instead';
+      syncFactorPrompt();
       if (!open) newNameInput.focus();
     }, { signal });
+
+    // ---- Phase 11: the conversion factor, asked for where it is needed ----
+    // An ingredient measured in ml or items contributes NOTHING to the
+    // macro totals unless its food carries grams_per_ml / grams_per_item.
+    // That refusal to guess is correct and stays. But it meant a recipe of
+    // "2 eggs, 200ml milk" reported almost nothing and never said why in a
+    // place you could act on.
+    //
+    // So ask here, once, at the exact moment the gap is created. Optional:
+    // skipping leaves today's correct-but-empty behaviour untouched.
+    const factorWrap = el('div', { class: 'factor-prompt' });
+    factorWrap.hidden = true;
+    const factorInput = numberInput(`add-ingredient-factor-${meal.id}`, { min: '0.01', step: 'any' });
+    const factorHint = el('p', {
+      class: 'field-hint', id: `add-ingredient-factor-hint-${meal.id}`,
+      text: 'Optional. Without it this ingredient is left out of the nutrition totals '
+        + 'rather than counted as zero.'
+    });
+    factorInput.setAttribute('aria-describedby', factorHint.id);
+    const factorField = field('Weight', factorInput, factorHint);
+    factorWrap.appendChild(factorField);
+    const factorLabel = factorField.querySelector('label');
+
+    /**
+     * Shows the prompt only when this specific food is missing the factor
+     * this specific unit needs. Asking for a number the app already has
+     * would be noise, and noise is how a useful prompt gets ignored.
+     */
+    function syncFactorPrompt() {
+      const unit = unitSelect.value;
+      const creating = newToggle.getAttribute('aria-expanded') === 'true';
+      const food = creating ? null : foods.find((f) => f.id === foodSelect.value);
+
+      if (unit === 'ml') {
+        const known = food && food.grams_per_ml !== null && food.grams_per_ml !== undefined;
+        factorWrap.hidden = Boolean(known);
+        factorLabel.textContent = 'How much does 100 ml of this weigh, in grams?';
+      } else if (unit === 'item') {
+        const known = food && food.grams_per_item !== null && food.grams_per_item !== undefined;
+        factorWrap.hidden = Boolean(known);
+        factorLabel.textContent = 'How much does one of these weigh, in grams?';
+      } else {
+        factorWrap.hidden = true;
+        factorInput.value = '';
+      }
+    }
+
+    unitSelect.addEventListener('change', syncFactorPrompt, { signal });
+    foodSelect.addEventListener('change', syncFactorPrompt, { signal });
 
     form.append(
       picker.wrapper,
@@ -821,9 +929,12 @@ export function render(mountEl) {
       newWrap,
       field('Quantity', qtyInput),
       field('Measured in', unitSelect),
+      factorWrap,
       error,
       submit
     );
+
+    syncFactorPrompt();
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -876,6 +987,27 @@ export function render(mountEl) {
           return;
         }
         foodName = foodSelect.options[foodSelect.selectedIndex].textContent;
+      }
+
+      // ---- Phase 11: save the conversion factor, if one was offered ----
+      // Written to the FOOD, so every other recipe using it benefits too.
+      // Deliberately before the ingredient insert: getting the factor in
+      // means the totals are right the first time the card renders.
+      // A failure here is not fatal — you asked to add an ingredient, not
+      // to maintain a food library, and the ingredient still goes in.
+      if (!factorWrap.hidden && factorInput.value !== '') {
+        const factor = Number(factorInput.value);
+        if (Number.isFinite(factor) && factor > 0) {
+          // Named factorKey, not `field`: `field()` is a helper used all
+          // over this file and shadowing it inside a block is a trap.
+          const factorKey = unitSelect.value === 'ml' ? 'grams_per_ml' : 'grams_per_item';
+          // grams_per_ml is stored per millilitre; the question asked for
+          // 100 ml because that is the number people can actually estimate.
+          const value = factorKey === 'grams_per_ml' ? factor / 100 : factor;
+          const saved = await updateFood(foodId, { [factorKey]: value });
+          if (destroyed) return;
+          if (!saved.ok) console.error('Could not save a conversion factor:', saved.error);
+        }
       }
 
       submit.disabled = true;

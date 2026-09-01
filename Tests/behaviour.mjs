@@ -42,6 +42,8 @@ const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, de
 const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal } = await import(`${REPO}/js/lib/shortfall.js`);
 const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
+const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
+const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -549,7 +551,86 @@ eq('one item is singular', formatQuantity(1, 'item'), '1 item');
 eq('items pluralise', formatQuantity(3, 'item'), '3 items');
 check('a unit is ALWAYS present', /[a-z]/.test(formatQuantity(500, 'g')));
 
+// ============ Phase 11: claiming a scan into an existing food ============
+console.log('\nClaim ranking');
+
+// The food you typed is nearly always shorter than the name on the packet.
+// Scoring against the smaller token set is what stops that being punished.
+check('a typed name matches a longer packet name',
+  similarity('Chorizo', 'Unearthed Spanish Cooking Chorizo Ring') === 1);
+check('an unrelated food scores nothing',
+  similarity('Chorizo', 'Semi Skimmed Milk') === 0);
+check('the supermarket name alone is not a match',
+  similarity('Tesco Chopped Tomatoes', 'Tesco Semi Skimmed Milk') === 0,
+  'stopwords must strip the retailer');
+check('a partial match scores between the two',
+  similarity('Chopped tomatoes', 'Napolina Chopped Tomatoes Tin') === 1);
+check('short filler words are dropped', !tokenise('Tin of the Best Ham').includes('the'));
+check('an empty name cannot match anything', similarity('', 'Chorizo') === 0);
+eq('the list stays short enough to glance at', MAX_CANDIDATES, 5);
+
+console.log('\nClaim merges, and never overwrites');
+
+const typedFood = {
+  id: 'f1', name: 'Chorizo', barcode: null,
+  calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null,
+  grams_per_item: null, grams_per_ml: null
+};
+const scan = {
+  barcode: '5012345678900', source: 'openfoodfacts',
+  calories_per_100g: 455, protein_g: 24.1, fat_g: 38.2, carbs_g: 1.9
+};
+const filled = buildClaimPatch(typedFood, scan);
+eq('the barcode is attached', filled.barcode, '5012345678900');
+eq('calories are filled in', filled.calories_per_100g, 455);
+eq('the source becomes Open Food Facts', filled.source, 'openfoodfacts');
+
+// The failure this guards against: Open Food Facts has gaps, and a merge
+// that wrote null over a real figure would make scanning something you
+// learn to avoid.
+const partlyKnown = { ...typedFood, protein_g: 25, calories_per_100g: 450 };
+const gapped = buildClaimPatch(partlyKnown, {
+  barcode: '5012345678900', source: 'openfoodfacts',
+  calories_per_100g: null, protein_g: undefined, fat_g: 38.2, carbs_g: 1.9
+});
+check('an existing figure is never overwritten', gapped.protein_g === undefined);
+check('a null from the scan does not clear a real value', gapped.calories_per_100g === undefined);
+eq('a genuinely missing figure is still filled', gapped.fat_g, 38.2);
+
+const barcodeOnly = buildClaimPatch(typedFood, { barcode: '5012345678900', source: 'openfoodfacts' });
+eq('a barcode-only scan still attaches the barcode', barcodeOnly.barcode, '5012345678900');
+check('but does not claim Open Food Facts as a source', barcodeOnly.source === undefined,
+  'source must only change when data actually arrived');
+
+const packSized = buildClaimPatch(typedFood, { barcode: '5012345678900', grams_per_item: 400 });
+eq('a pack size lands as grams per item', packSized.grams_per_item, 400);
+check('a negative figure is rejected outright',
+  buildClaimPatch(typedFood, { barcode: '5012345678900', protein_g: -3 }).protein_g === undefined);
+
+check('the claim is described in plain words',
+  describeClaim({ name: 'Chorizo' }, ['calories_per_100g', 'protein_g']).includes('Chorizo'));
+check('a barcode-only claim says the nutrition is unchanged',
+  describeClaim({ name: 'Chorizo' }, []).includes('unchanged'));
+
+console.log('\nBought means it is in the cupboard');
+
+// Units disagreeing is the corruption case: 4 items added to 1600 grams is
+// silently wrong and only surfaces weeks later as a nonsense list.
+const mismatch = describeRestock(RESTOCK.UNIT_MISMATCH, {
+  foodName: 'Chopped tomatoes', listUnit: 'item', stockUnit: 'g'
+});
+check('a unit mismatch names both units', mismatch.includes('item') && mismatch.includes('g'));
+check('and says the pantry was left alone', /left alone/.test(mismatch));
+check('an increase reads as a fact, not a congratulation',
+  !/well done|great|nice/i.test(describeRestock(RESTOCK.INCREASED, { foodName: 'Rice' })));
+check('a missing amount still says the date was recorded',
+  describeRestock(RESTOCK.NO_AMOUNT, { foodName: 'Rice' }).includes('restocked'));
+check('every outcome produces a sentence',
+  Object.values(RESTOCK).every((o) => typeof describeRestock(o, { foodName: 'X' }) === 'string'
+    && describeRestock(o, { foodName: 'X' }).length > 0));
+
 console.log('');
+
 if (failures.length) {
   console.log(`BEHAVIOUR TESTS FAILED — ${failures.length} of ${pass + failures.length}`);
   for (const f of failures) console.log('  - ' + f);

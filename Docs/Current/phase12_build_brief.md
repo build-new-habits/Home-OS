@@ -1,5 +1,5 @@
 # Home-OS: Phase 12 Build Brief — Pack Sizes and Household Measures
-01 Sep 2026 v1
+01 Sep 2026 v2
 
 **Schema revision 8.** Update `schema.md` first, then run the migration,
 then write code.
@@ -62,10 +62,14 @@ special-casing of solids.
 
 ## Where this lands
 
-- `js/lib/units.js` — **new file, write-once.** `formatQuantity(qty, unit,
-  food)`, `pluraliseLabel(label, n)`, `toStorage(qty, displayUnit)`,
-  `toDisplay(qtyMl)`. Pure functions, no imports beyond nothing. Every view
-  formats through this and none rolls its own.
+- `js/lib/units.js` — **already exists** and already carries
+  `formatQuantity(value, unit)` plus the weight helpers. Correction to v1 of
+  this brief, which called it a new write-once file: it is not, and this
+  phase EXTENDS it. Add `pluraliseLabel(label, n)`, `toStorage(qty,
+  displayUnit)`, `toDisplay(qtyMl)`, and widen `formatQuantity` to take an
+  optional food so it can reach `item_label` and `grams_per_item`. The
+  existing two-argument signature must keep working — it is called from
+  pantry, shopping and meals today.
 - `views/pantry.js` — item entry leads with the item count when
   `grams_per_item` is known, grams second.
 - `views/meals.js` — the ingredient row and the ingredient form.
