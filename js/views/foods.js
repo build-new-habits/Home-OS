@@ -1,4 +1,4 @@
-// js/views/foods.js — 01 Sep 2026 v2
+// js/views/foods.js — 01 Sep 2026 v3
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -29,6 +29,7 @@ import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { lookup, describeOffer, referencePatch, warmFoodReference } from '../data/foodReference.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -67,6 +68,10 @@ export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
+
+  // Fetch the reference file in the background: by the time anyone has
+  // typed three letters it is already parsed and indexed.
+  warmFoodReference();
 
   let foods = [];
   let pendingFoods = [];
@@ -111,6 +116,15 @@ export function render(mountEl) {
   foodForm.setAttribute('aria-label', 'Add a food');
 
   const foodNameInput = el('input', { id: 'new-food-name', type: 'text' });
+
+  // ---- Phase 13: typical values, offered but never applied on their own ----
+  // A published average is a good guess and still a guess, so it goes in
+  // only on a tap. The offer is a live region so it is announced when it
+  // appears, rather than being a visual-only nudge.
+  const referenceOffer = el('div', { class: 'reference-offer' });
+  referenceOffer.setAttribute('role', 'status');
+  referenceOffer.hidden = true;
+  let referenceMatch = null;
   const foodBarcodeInput = el('input', { id: 'new-food-barcode', type: 'text', inputmode: 'numeric' });
   const foodBarcodeHint = el('p', {
     class: 'field-hint', id: 'new-food-barcode-hint', text: 'Optional. Filled in for you after a scan.'
@@ -191,6 +205,62 @@ export function render(mountEl) {
     field('One of these is called a', labelInput, labelHint)
   );
 
+  /**
+   * Looks the typed name up and offers to fill the blanks.
+   *
+   * Only ever fills fields that are EMPTY, and only on the button. If the
+   * user has typed their own calories, a reference average must not quietly
+   * replace them.
+   */
+  async function syncReferenceOffer() {
+    const entry = await lookup(foodNameInput.value);
+    if (destroyed) return;
+    referenceMatch = entry;
+
+    if (!entry) {
+      referenceOffer.hidden = true;
+      referenceOffer.replaceChildren();
+      return;
+    }
+
+    referenceOffer.replaceChildren();
+    referenceOffer.appendChild(el('p', {
+      class: 'field-hint', text: describeOffer(entry)
+    }));
+    const apply = el('button', {
+      type: 'button', class: 'btn btn-small', text: `Use typical values`
+    });
+    apply.addEventListener('click', () => {
+      const patch = referencePatch(referenceMatch, {
+        calories_per_100g: caloriesInput.value,
+        protein_g: proteinInput.value,
+        fat_g: fatInput.value,
+        carbs_g: carbsInput.value,
+        grams_per_ml: perMlInput.value,
+        grams_per_item: perItemInput.value,
+        item_label: labelInput.value,
+        category: foodCategorySelect.value
+      });
+      if (patch.calories_per_100g !== undefined) caloriesInput.value = patch.calories_per_100g;
+      if (patch.protein_g !== undefined) proteinInput.value = patch.protein_g;
+      if (patch.fat_g !== undefined) fatInput.value = patch.fat_g;
+      if (patch.carbs_g !== undefined) carbsInput.value = patch.carbs_g;
+      if (patch.grams_per_ml !== undefined) perMlInput.value = patch.grams_per_ml;
+      if (patch.grams_per_item !== undefined) perItemInput.value = patch.grams_per_item;
+      if (patch.item_label !== undefined) labelInput.value = patch.item_label;
+      if (patch.category !== undefined && !foodCategorySelect.value) {
+        foodCategorySelect.value = patch.category;
+      }
+      if (patch.source) pendingSource = patch.source;
+      referenceOffer.hidden = true;
+      announce(`Typical values filled in for ${referenceMatch.name}. Change any of them.`);
+    }, { signal });
+    referenceOffer.appendChild(apply);
+    referenceOffer.hidden = false;
+  }
+
+  foodNameInput.addEventListener('input', syncReferenceOffer, { signal });
+
   const foodSourceNote = el('p', { class: 'field-hint' });
   foodSourceNote.hidden = true;
   let pendingSource = 'manual';
@@ -201,6 +271,7 @@ export function render(mountEl) {
 
   foodForm.append(
     field('Food name', foodNameInput),
+    referenceOffer,
     field('Barcode', foodBarcodeInput, foodBarcodeHint),
     field('What kind of thing is it?', foodCategorySelect, foodCategoryHint),
     macroFieldset,

@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v26 */
+/* css/components.css — 01 Sep 2026 v27 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2219,4 +2219,18 @@ body.sheet-open {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/* The typical-values offer under the food name. Set apart as an aside,
+   because it is a suggestion and must not read as a required field. */
+.reference-offer {
+  padding: var(--space-2);
+  margin-bottom: var(--space-3);
+  border-left: 3px solid var(--control-border);
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-sm);
+}
+
+.reference-offer p {
+  margin: 0 0 var(--space-2);
 }

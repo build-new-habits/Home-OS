@@ -45,6 +45,8 @@ const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons,
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
+const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
+const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
 console.log('\nMacros');
@@ -719,6 +721,71 @@ eq('the unit word beside an input uses the label too',
 
 check('the original two-argument call still works',
   formatQuantity(2400, 'g') === '2.4 kg', 'three views still call it');
+
+console.log('');
+
+// ============ Phase 13: reference food data ============
+console.log('\nThe reference file itself');
+
+check('the file parses and has entries', Array.isArray(refDoc.foods) && refDoc.foods.length > 150);
+check('every entry has a slug and a name',
+  refDoc.foods.every((f) => f.slug && f.name));
+check('slugs are unique',
+  new Set(refDoc.foods.map((f) => f.slug)).size === refDoc.foods.length);
+// An alias matching two foods would make the app pick one silently. It
+// must pick neither, so the collision has to be designed out of the data.
+const aliasIndex = new Map();
+let collisions = 0;
+for (const f of refDoc.foods) {
+  for (const a of f.aliases || []) {
+    const k = a.toLowerCase();
+    if (aliasIndex.has(k)) collisions += 1;
+    aliasIndex.set(k, f.slug);
+  }
+}
+eq('no alias points at two different foods', collisions, 0);
+check('an item weight always comes with a word for the item',
+  refDoc.foods.every((f) => f.grams_per_item === undefined || f.item_label !== undefined));
+check('macros are all-or-nothing per entry',
+  refDoc.foods.every((f) => f.calories_per_100g === undefined
+    || (f.protein_g !== undefined && f.fat_g !== undefined && f.carbs_g !== undefined)),
+  'a half-filled entry would report a false total');
+check('non-food entries carry no calories',
+  refDoc.foods.filter((f) => ['household', 'personal', 'home', 'pet'].includes(f.category))
+    .every((f) => f.calories_per_100g === undefined));
+
+console.log('\nReference values fill blanks only');
+
+const eggEntry = {
+  slug: 'egg-medium', name: 'Egg, medium', category: 'food_fresh',
+  grams_per_item: 58, item_label: 'egg',
+  calories_per_100g: 143, protein_g: 12.6, fat_g: 9.5, carbs_g: 0.7
+};
+
+const onEmpty = referencePatch(eggEntry, {});
+eq('an empty food gets the calories', onEmpty.calories_per_100g, 143);
+eq('and the item weight', onEmpty.grams_per_item, 58);
+eq('and the word for one of them', onEmpty.item_label, 'egg');
+eq('and is marked as an estimate', onEmpty.source, 'reference');
+
+// A published average must never overwrite a figure read off a real packet.
+const onScanned = referencePatch(eggEntry, { calories_per_100g: 139, protein_g: 12 });
+check('a scanned calorie figure survives', onScanned.calories_per_100g === undefined);
+check('a scanned protein figure survives', onScanned.protein_g === undefined);
+eq('but a genuinely empty field is still filled', onScanned.fat_g, 9.5);
+check('an empty string counts as empty, not as data',
+  referencePatch(eggEntry, { calories_per_100g: '' }).calories_per_100g === 143);
+
+// Copying a category says nothing about where numbers came from.
+const labelOnly = { slug: 'x', name: 'Toilet roll', category: 'household', item_label: 'roll' };
+check('a non-food entry does not claim a nutrition source',
+  referencePatch(labelOnly, {}).source === undefined);
+check('hasMacros is false for a non-food', hasMacros(labelOnly) === false);
+
+check('the offer says the values are averages',
+  /average|typical/i.test(describeOffer(eggEntry)));
+check('the offer says how to replace them',
+  /scan/i.test(describeOffer(eggEntry)));
 
 console.log('');
 

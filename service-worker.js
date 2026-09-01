@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v48
+// service-worker.js — 01 Sep 2026 v49
+// v49 (Phase 13): TWO new paths — js/data/foodReference.js and
+// data/food_reference.json. The JSON is precached deliberately: it is the
+// thing that makes the food form useful with no signal, and it is one file.
 // v48: no path changes. Bumped for views/pantry.js v7 — the pantry FORM
 // label now uses item_label, which v47 missed.
 // v47 (Phase 12): no path changes. Bumped for pack labels — lib/units.js v4,
@@ -125,7 +128,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v48';
+const CACHE_NAME = 'home-os-shell-v49';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -168,6 +171,8 @@ const SHELL_FILES = [
   './js/data/meals.js',
   './js/data/mealPlan.js',
   './js/data/household.js',
+  './js/data/foodReference.js',
+  './data/food_reference.json',
   './js/data/foodClaim.js',
   './js/data/restock.js',
   './js/components/bottomNav.js',

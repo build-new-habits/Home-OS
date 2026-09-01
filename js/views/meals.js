@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v14
+// js/views/meals.js — 01 Sep 2026 v15
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -567,6 +567,17 @@ export function render(mountEl) {
             + `${gap.reason}. Add it on that food to include it in these totals.`
         }));
       }
+    }
+
+    // Phase 13: averages are stated as fact, in the same quiet style as
+    // everything else. No warning colour: an estimate is not a mistake.
+    if (macros.estimatedCount > 0) {
+      body.appendChild(el('p', {
+        class: 'field-hint',
+        text: `${macros.estimatedCount} of ${macros.ingredientCount} ingredient`
+          + `${macros.ingredientCount === 1 ? '' : 's'} use typical values `
+          + `(${macros.estimatedNames.join(', ')}). Scanning the packet replaces them with the real figures.`
+      }));
     }
 
     if (rows.length > 0) {

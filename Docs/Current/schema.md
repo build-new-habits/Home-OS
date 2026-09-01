@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v9
+01 Sep 2026 v10
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,32 @@ policies**, 3 trigger functions, 20 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0h. Revision 10 — reference averages (01 Sep 2026)
+
+`foods.source` CHECK widened to `('manual','openfoodfacts','reference')`.
+Widening only; no existing row becomes invalid.
+
+A food filled from `data/food_reference.json` is neither manual (nobody
+typed it) nor Open Food Facts (no barcode was scanned). It is a **published
+average**, and the app marks estimates as estimates, so the column has to be
+able to say so.
+
+`computeMacros()` returns `estimatedCount` and `estimatedNames` alongside
+the incomplete counts. The meal card states them as a fact in the same quiet
+style as everything else — an estimate is not a mistake and gets no warning
+colour. Scanning the real packet rewrites `source` to `openfoodfacts` via
+the Phase 11 merge, and the line disappears on its own.
+
+Estimated figures **do** contribute to the totals. Excluding them would put
+us back where Phase 13 started.
+
+Reference data fills **blanks only**. A published average never overwrites a
+figure read off a packet or typed by hand.
+
+Migration: `migrations/010_reference_source.sql`.
 
 ---
 
@@ -500,7 +526,7 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | protein_g | numeric | **per 100 g** |
 | fat_g | numeric | **per 100 g** |
 | carbs_g | numeric | **per 100 g** |
-| source | text | check in ('manual','openfoodfacts'); default 'manual' |
+| source | text | check in ('manual','openfoodfacts','reference'); default 'manual' (revision 10) |
 
 **`category` values** (order is display order; `other` sits last so it does
 not become the lazy default):

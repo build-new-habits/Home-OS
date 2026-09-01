@@ -1,4 +1,4 @@
-// js/data/meals.js — 01 Sep 2026 v4
+// js/data/meals.js — 01 Sep 2026 v5
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
 // opaque database error and tells the user nothing.
@@ -130,7 +130,7 @@ export async function listMeals() {
 export async function listIngredients(mealId) {
   let query = supabase
     .from(INGREDIENTS)
-    .select('id, meal_id, food_id, quantity_g, unit, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item)')
+    .select('id, meal_id, food_id, quantity_g, unit, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label, source)')
     .order('created_at', { ascending: true });
   if (mealId) query = query.eq('meal_id', mealId);
   const { data, error } = await query;
@@ -379,6 +379,10 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
 
   const incompleteNames = [];
   const incompleteFoods = [];
+  // Phase 13: contributing ingredients whose figures are published averages
+  // rather than measured. Counted, never hidden, and never excluded — a
+  // refusal to count them would put us back where Phase 13 started.
+  const estimatedNames = [];
   // Ingredients whose quantity could not be turned into grams at all, with
   // the reason, so the view can say what to fill in rather than just
   // reporting a gap.
@@ -430,6 +434,10 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
       totals[macro.key] += (usableGrams / 100) * value;
     }
 
+    if (!rowMissing && food.source === 'reference') {
+      estimatedNames.push(food.name || 'an unnamed food');
+    }
+
     if (rowMissing) {
       incompleteNames.push(food.name || 'an unnamed food');
       // Phase 11: the id as well as the name. Naming a gap and then giving
@@ -454,6 +462,8 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
     incompleteCount: incompleteNames.length,
     incompleteNames,
     incompleteFoods,
+    estimatedCount: estimatedNames.length,
+    estimatedNames,
     unconvertible
   };
 }
