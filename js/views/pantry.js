@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v5
+// js/views/pantry.js — 01 Sep 2026 v6
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -54,7 +54,7 @@ import {
 import { isScanSupported } from '../lib/barcode.js';
 import { openScanner, describeScanFailure } from '../components/scannerDialog.js';
 import { lookupBarcode } from '../lib/openFoodFacts.js';
-import { formatQuantity } from '../lib/units.js';
+import { formatQuantity, formatPackQuantity, itemNoun } from '../lib/units.js';
 import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
@@ -99,10 +99,15 @@ function selectFrom(id, options, { includeBlank = null } = {}) {
   return select;
 }
 
-/** "500 g" or, when nothing was recorded, a phrase that says so plainly. */
-function describeAmount(row) {
+/**
+ * "4 tins (1.6 kg)", "500 g", or a phrase saying nothing was recorded.
+ *
+ * Phase 12: takes the food so it can reach item_label and grams_per_item.
+ * Without the food it degrades to "4 items", which is what it said before.
+ */
+function describeAmount(row, food = null) {
   if (row.current_qty == null) return 'Amount not recorded';
-  return formatQuantity(row.current_qty, row.unit);
+  return formatPackQuantity(row.current_qty, row.unit, food || row.foods || null);
 }
 
 function unitWord(unit) {
@@ -167,7 +172,7 @@ export function render(mountEl) {
           class: 'stock-row-meta',
           text: row.current_qty == null
             ? 'Amount not recorded'
-            : `Recorded as none — ${describeAmount(row)}`
+            : `Recorded as none — ${describeAmount(row, row.foods)}`
         })
       );
 
@@ -222,7 +227,7 @@ export function render(mountEl) {
       item.appendChild(el('span', { class: 'use-soon-name', text: food.name || 'Unknown' }));
       item.appendChild(el('span', {
         class: 'field-hint',
-        text: `${describeAmount(row)} · ${describeFreshness(fresh)}`
+        text: `${describeAmount(row, row.foods)} · ${describeFreshness(fresh)}`
       }));
       list.appendChild(item);
     }
@@ -272,7 +277,7 @@ export function render(mountEl) {
 
     // Freshness earns a place on the collapsed row only when it is close.
     // "about 365 days left" on sixty rows is noise, not information.
-    const meta = [describeAmount(row)];
+    const meta = [describeAmount(row, row.foods)];
     if (fresh.state === 'soon' || fresh.state === 'past') meta.push(describeFreshness(fresh));
 
     const open = el('button', { type: 'button', class: 'stock-row-open' });

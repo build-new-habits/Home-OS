@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v46
+// service-worker.js — 01 Sep 2026 v47
+// v47 (Phase 12): no path changes. Bumped for pack labels — lib/units.js v4,
+// data/foods.js v4, data/pantry.js v4, data/shopping.js v2, views/foods.js
+// v2, views/pantry.js v6, views/shopping.js v4, views/meals.js v14.
 // v46 (Phase 18): ONE new path, js/data/household.js. Also bumped for
 // views/settings.js v7, data/settings.js v5 and components.css v26.
 // v45: no path changes. Bumped for the conversion-factor prompt —
@@ -120,7 +123,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v46';
+const CACHE_NAME = 'home-os-shell-v47';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

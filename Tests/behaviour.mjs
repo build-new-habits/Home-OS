@@ -41,7 +41,7 @@ const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal } = await import(`${REPO}/js/lib/shortfall.js`);
-const { formatQuantity } = await import(`${REPO}/js/lib/units.js`);
+const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons, ENTRY_UNITS } = await import(`${REPO}/js/lib/units.js`);
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
@@ -664,6 +664,55 @@ check('dietary tags are named in plain words',
     dietary_tags: ['vegetarian'] }).includes('Vegetarian'));
 check('the three roles are exactly owner, adult, child',
   ROLES.map((r) => r.value).join(',') === 'owner,adult,child');
+
+console.log('');
+
+// ============ Phase 12: pack labels and household measures ============
+console.log('\nPack labels');
+
+const tin = { item_label: 'tin', grams_per_item: 400 };
+
+eq('four tins say tins, and say what they weigh',
+  formatPackQuantity(4, 'item', tin), '4 tins (1.6 kg)');
+eq('one tin is singular', formatPackQuantity(1, 'item', tin), '1 tin (400 g)');
+eq('no label falls back to the old wording',
+  formatPackQuantity(4, 'item', {}), '4 items');
+// The bracket is DERIVED. Without a weight there is nothing honest to put
+// in it, and an invented total gets trusted standing in an aisle.
+eq('an unknown item weight omits the total, never guesses it',
+  formatPackQuantity(4, 'item', { item_label: 'jar' }), '4 jars');
+eq('irregular plurals are looked up, not inferred',
+  pluraliseLabel('loaf', 2), 'loaves');
+eq('a label already plural is left alone', pluraliseLabel('greens', 3), 'greens');
+eq('one of anything stays singular', pluraliseLabel('slice', 1), 'slice');
+eq('a blank label still produces a word', pluraliseLabel('', 3), 'items');
+
+console.log('\nTeaspoons and tablespoons are display units');
+
+eq('two tablespoons are stored as thirty millilitres',
+  JSON.stringify(toStorage(2, 'tbsp')), '{"value":30,"unit":"ml"}');
+eq('two teaspoons are stored as ten millilitres',
+  JSON.stringify(toStorage(2, 'tsp')), '{"value":10,"unit":"ml"}');
+eq('grams pass through untouched',
+  JSON.stringify(toStorage(250, 'g')), '{"value":250,"unit":"g"}');
+check('a non-number is refused rather than stored as NaN', toStorage('abc', 'g') === null);
+check('no entry unit is ever stored as itself',
+  ENTRY_UNITS.every((u) => ['g', 'ml', 'item'].includes(u.store)),
+  'schema.md forbids storing display units');
+
+eq('thirty millilitres reads back as two tablespoons',
+  formatPackQuantity(30, 'ml'), '2 tbsp');
+eq('ten millilitres reads back as two teaspoons',
+  formatPackQuantity(10, 'ml'), '2 tsp');
+// A conversion producing a fraction nobody would measure is a worse label
+// than the number it replaced.
+eq('two hundred millilitres of milk stays millilitres',
+  formatPackQuantity(200, 'ml'), '200 ml');
+check('a non-multiple is not forced into spoons', toSpoons(23) === null);
+check('nothing at or above the ceiling becomes spoons', toSpoons(60) === null);
+
+check('the original two-argument call still works',
+  formatQuantity(2400, 'g') === '2.4 kg', 'three views still call it');
 
 console.log('');
 

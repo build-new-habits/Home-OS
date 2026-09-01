@@ -1,4 +1,4 @@
-// js/data/pantry.js — 27 Aug 2026 v3
+// js/data/pantry.js — 01 Sep 2026 v4
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
 // purpose — see the comment there.
@@ -76,7 +76,7 @@ export async function listStock() {
   const { data, error } = await supabase
     .from(TABLE)
     .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, '
-      + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item)')
+      + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };

@@ -1,4 +1,4 @@
-// js/data/foods.js — 21 Aug 2026 v3
+// js/data/foods.js — 01 Sep 2026 v4
 // v3: `category` is now written and read. Revision 3 added the column but
 // nothing set it, so every food defaulted to food_ambient and the value was
 // dead weight — grouping or filtering by it would have been meaningless.
@@ -191,11 +191,13 @@ export async function findByBarcode(rawBarcode) {
 
 function buildFoodPayload(input = {}) {
   const { name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, source } = input;
+  const itemLabel = String(input.item_label || '').trim().slice(0, 30) || null;
   const payload = {
     name: String(name || '').trim(),
     // Empty string would be a distinct value from null and would break
     // barcode matching, so an absent barcode is stored as null.
     barcode: normaliseBarcode(barcode),
+    item_label: itemLabel,
     // A CHECK-constrained column: an invalid value comes back as an opaque
     // database error, so it is normalised here rather than sent through.
     category: isValidCategory(input.category) ? input.category : 'food_ambient',
@@ -253,6 +255,13 @@ export async function updateFood(foodId, patch) {
     next.name = name;
   }
   if (patch.barcode !== undefined) next.barcode = normaliseBarcode(patch.barcode);
+  if (patch.item_label !== undefined) {
+    // Trimmed to null rather than stored as '': an empty string would pass
+    // the NOT NULL-less column but fail the length CHECK, and would read as
+    // a label that exists and is blank.
+    const label = String(patch.item_label || '').trim().slice(0, 30);
+    next.item_label = label || null;
+  }
   if (patch.category !== undefined) {
     if (!isValidCategory(patch.category)) {
       return { ok: false, error: new Error(`"${patch.category}" is not a category.`) };

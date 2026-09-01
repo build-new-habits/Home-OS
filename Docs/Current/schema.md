@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v8
+01 Sep 2026 v9
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,49 @@ policies**, 3 trigger functions, 20 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0g. Revision 9 — the word for one of them (01 Sep 2026)
+
+`foods` gains **`item_label`** — nullable `text`, the singular noun for one
+item of this food.
+
+Everything needed to say "4 tins of tomatoes, 1.6 kg" already existed.
+`grams_per_item` has been there since Phase 1 and `computeMacros()` already
+converts a recipe's "1 item" into 400 g correctly. The only missing piece
+was the **word**, so the screen said `4 item`, which reads as broken, and
+the pantry form pushed people toward grams to avoid it.
+
+| Column | Type | Notes |
+|---|---|---|
+| item_label | text | nullable; check length 1–30 when present |
+
+NULL means the generic word "item" — which is exactly what every existing
+row already displays, so there is **no backfill and no behaviour change**
+until a label is typed.
+
+The length CHECK is not fussiness. This string is pluralised and
+concatenated into shopping list lines; a 200-character "label" would wreck
+every row it appeared in.
+
+### Teaspoons and tablespoons add nothing to the schema
+
+A teaspoon is 5 ml and a tablespoon is 15 ml, always. They are **display
+units for ml**, in exactly the way stone/lb is a display unit for kg, and §8
+forbids storing display units. So:
+
+- No new value in any `unit` CHECK. Stored unit stays `ml`.
+- Entry converts on the way in: 2 tbsp is written as `30` with unit `ml`.
+- Display converts on the way out, and **only** when the stored value is an
+  exact multiple of 15 or 5 and under 60 ml. 200 ml of milk stays 200 ml; it
+  is not 13⅓ tbsp.
+
+Density does the rest. Soy sauce at `grams_per_ml` 1.2 makes a tablespoon
+18 g; peanut butter at 1.07 makes it 16 g. Both correct, with no
+special-casing of solids.
+
+Migration: `migrations/009_pack_labels.sql`.
 
 ---
 
@@ -452,6 +495,7 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | category | text | not null; check in the 9 values below; default `'food_ambient'` |
 | calories_per_100g | numeric | **canonical unit kcal per 100 g** |
 | grams_per_ml | numeric | nullable; `> 0`. How many grams one millilitre weighs (milk ~1.03, oil ~0.92). **Null means ml cannot be converted** — the ingredient is reported incomplete, never guessed |
+| item_label | text | nullable; singular noun for one item ('tin', 'egg', 'slice'). NULL reads as "item" (revision 9) |
 | grams_per_item | numeric | nullable; `> 0`. How many grams one item weighs (egg ~60, onion ~150). Same rule when null |
 | protein_g | numeric | **per 100 g** |
 | fat_g | numeric | **per 100 g** |

@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v13
+// js/views/meals.js — 01 Sep 2026 v14
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -129,6 +129,7 @@ import { showToast } from '../components/toast.js';
 import { listStock } from '../data/pantry.js';
 import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
+import { ENTRY_UNITS, toStorage } from '../lib/units.js';
 import { announce } from '../lib/a11y.js';
 
 // Local element helper. Deliberately defined here rather than copied in from
@@ -828,9 +829,12 @@ export function render(mountEl) {
     const qtyInput = numberInput(`add-ingredient-qty-${meal.id}`, { min: '0.1', step: 'any' });
     // A CHECK-constrained column, so a constrained control, never free text
     // (standing rule 1).
+    // Phase 12: ENTRY_UNITS, not INGREDIENT_UNITS. Teaspoons and
+    // tablespoons are offered here and converted to ml on the way in —
+    // they are display units and schema.md §8 forbids storing them.
     const unitSelect = selectFrom(
       `add-ingredient-unit-${meal.id}`,
-      INGREDIENT_UNITS.map((u) => ({ value: u.value, label: u.label }))
+      ENTRY_UNITS.map((u) => ({ value: u.value, label: u.label }))
     );
     const error = el('p', { class: 'field-error', id: `add-ingredient-error-${meal.id}`, role: 'alert' });
     error.hidden = true;
@@ -902,7 +906,10 @@ export function render(mountEl) {
      * would be noise, and noise is how a useful prompt gets ignored.
      */
     function syncFactorPrompt() {
-      const unit = unitSelect.value;
+      // The stored unit, not the entry unit: tsp and tbsp are both ml, and
+      // both need grams_per_ml.
+      const entry = ENTRY_UNITS.find((u) => u.value === unitSelect.value);
+      const unit = entry ? entry.store : unitSelect.value;
       const creating = newToggle.getAttribute('aria-expanded') === 'true';
       const food = creating ? null : foods.find((f) => f.id === foodSelect.value);
 
@@ -1000,7 +1007,9 @@ export function render(mountEl) {
         if (Number.isFinite(factor) && factor > 0) {
           // Named factorKey, not `field`: `field()` is a helper used all
           // over this file and shadowing it inside a block is a trap.
-          const factorKey = unitSelect.value === 'ml' ? 'grams_per_ml' : 'grams_per_item';
+          const entryUnit = ENTRY_UNITS.find((u) => u.value === unitSelect.value);
+          const storedUnit = entryUnit ? entryUnit.store : unitSelect.value;
+          const factorKey = storedUnit === 'ml' ? 'grams_per_ml' : 'grams_per_item';
           // grams_per_ml is stored per millilitre; the question asked for
           // 100 ml because that is the number people can actually estimate.
           const value = factorKey === 'grams_per_ml' ? factor / 100 : factor;
@@ -1010,12 +1019,21 @@ export function render(mountEl) {
         }
       }
 
+      // Spoons become millilitres here and nowhere else.
+      const stored = toStorage(qtyInput.value, unitSelect.value);
+      if (!stored) {
+        error.textContent = 'Enter how much of it the recipe needs.';
+        error.hidden = false;
+        qtyInput.focus();
+        return;
+      }
+
       submit.disabled = true;
       const result = await addIngredient({
         meal_id: meal.id,
         food_id: foodId,
-        quantity_g: qtyInput.value,
-        unit: unitSelect.value
+        quantity_g: stored.value,
+        unit: stored.unit
       });
       submit.disabled = false;
       if (destroyed) return;

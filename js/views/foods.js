@@ -1,4 +1,4 @@
-// js/views/foods.js — 26 Aug 2026 v1
+// js/views/foods.js — 01 Sep 2026 v2
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -175,9 +175,20 @@ export function render(mountEl) {
     text: 'One egg is about 60 g, one onion about 150 g.'
   });
   perItemInput.setAttribute('aria-describedby', 'new-food-per-item-hint');
+
+  // Phase 12: the WORD for one of them. Without it the pantry says
+  // "4 item", which reads as broken, and a recipe cannot say "1 tin".
+  const labelInput = el('input', { id: 'new-food-item-label', type: 'text', maxlength: '30' });
+  const labelHint = el('p', {
+    class: 'field-hint', id: 'new-food-item-label-hint',
+    text: 'Singular, as in one tin, one egg, one slice. Leave blank and it just says "item".'
+  });
+  labelInput.setAttribute('aria-describedby', 'new-food-item-label-hint');
+
   convertFieldset.append(
     field('Grams per millilitre', perMlInput, perMlHint),
-    field('Grams per item', perItemInput, perItemHint)
+    field('Grams per item', perItemInput, perItemHint),
+    field('One of these is called a', labelInput, labelHint)
   );
 
   const foodSourceNote = el('p', { class: 'field-hint' });
@@ -259,6 +270,7 @@ export function render(mountEl) {
     carbsInput.value = food && food.carbs_g != null ? food.carbs_g : '';
     perMlInput.value = food && food.grams_per_ml != null ? food.grams_per_ml : '';
     perItemInput.value = food && food.grams_per_item != null ? food.grams_per_item : '';
+    labelInput.value = food && food.item_label ? food.item_label : '';
     const suggestion = food && food.suggestedCategory;
     if (fromScan) {
       // A scan cannot know the category, and a filled-looking field does not
@@ -334,6 +346,7 @@ export function render(mountEl) {
       carbs_g: carbsInput.value,
       grams_per_ml: perMlInput.value,
       grams_per_item: perItemInput.value,
+      item_label: labelInput.value,
       source: pendingSource
     });
     foodSubmit.disabled = false;
@@ -396,7 +409,9 @@ export function render(mountEl) {
 
     const conversions = [];
     if (food.grams_per_ml != null) conversions.push(`1 ml weighs ${food.grams_per_ml} g`);
-    if (food.grams_per_item != null) conversions.push(`1 item weighs ${food.grams_per_item} g`);
+    if (food.grams_per_item != null) {
+      conversions.push(`1 ${food.item_label || 'item'} weighs ${food.grams_per_item} g`);
+    }
     if (conversions.length > 0) {
       body.appendChild(el('p', { class: 'field-hint', text: conversions.join(' · ') }));
     }
@@ -472,9 +487,17 @@ export function render(mountEl) {
     const perItem = numberInput(`${prefix}-per-item`);
     perMl.value = food.grams_per_ml != null ? food.grams_per_ml : '';
     perItem.value = food.grams_per_item != null ? food.grams_per_item : '';
+    const label = el('input', { id: `${prefix}-item-label`, type: 'text', maxlength: '30' });
+    label.value = food.item_label || '';
+    const labelEditHint = el('p', {
+      class: 'field-hint', id: `${prefix}-item-label-hint`,
+      text: 'Singular: tin, egg, slice. Blank just says "item".'
+    });
+    label.setAttribute('aria-describedby', `${prefix}-item-label-hint`);
     convSet.append(
       field('Grams per millilitre', perMl),
-      field('Grams per item', perItem)
+      field('Grams per item', perItem),
+      field('One of these is called a', label, labelEditHint)
     );
 
     const error = el('p', { class: 'field-error', role: 'alert' });
@@ -516,7 +539,8 @@ export function render(mountEl) {
         fat_g: fat.value,
         carbs_g: carb.value,
         grams_per_ml: perMl.value,
-        grams_per_item: perItem.value
+        grams_per_item: perItem.value,
+        item_label: label.value
       });
       save.disabled = false;
       if (destroyed) return;
