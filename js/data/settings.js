@@ -1,4 +1,4 @@
-// js/data/settings.js — 01 Sep 2026 v5
+// js/data/settings.js — 01 Sep 2026 v6
 // v4: changePassword() no longer assumes the account HAS a password. A user
 // who signed in by magic link may never have set one, so requiring the
 // current password locked out exactly the people who most needed to set it.
@@ -37,6 +37,7 @@ export const ALL_TABLES = [
 const DEFAULT_SETTINGS = {
   theme: 'default',
   contrast_mode: 'standard',
+  density: 'comfortable',
   brightness_pref: 'standard',
   weight_unit_display: 'stone_lb',
   notification_prefs: {}

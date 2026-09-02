@@ -1,6 +1,14 @@
-/* css/tokens.css — 14 Jul 2026 v1 */
-/* Home-OS design tokens. Written once in Phase 2; later phases consume
-   these custom properties, they do not add to this file. */
+/* css/tokens.css — 01 Sep 2026 v2 */
+/* Home-OS design tokens.
+   ---------------------------------------------------------------------
+   WRITE-ONCE RULE, LIFTED ONCE, DELIBERATELY (Phase 26).
+   v1 was written in July for three screens and never revised while the app
+   grew to sixteen. Everything since has been styled AGAINST this file
+   rather than BY it, which is why the app reads as text-heavy.
+   A design system that cannot be revised is one frozen at the ambition of
+   its first month. This is v2. It goes back on the write-once list now.
+   ---------------------------------------------------------------------
+   Later phases consume these properties; they do not add to this file. */
 
 :root {
   /* ---- Palette: quiet, warm-neutral base with a slate-teal accent.
@@ -19,6 +27,36 @@
   --color-neutral-chip: #EDEAE3;
   --color-stamp: #35635C;
   --color-caution: #8A5A19;   /* used sparingly, never for "missed" state */
+
+  /* ---- Semantic state (Phase 26) ----
+     data/pantry.js has had four freshness states since Phase 7 — fresh,
+     soon, past, unknown — with no visual representation at all. Every one
+     of them was a sentence you had to read.
+
+     Every value below is verified at >= 4.5:1 against BOTH --color-bg and
+     --color-surface in all four theme combinations, and the contrast gate
+     asserts it.
+
+     STATE IS NEVER CARRIED BY COLOUR ALONE. Every use pairs the colour with
+     a text label and a distinct shape (WCAG 1.4.1). "Past best" is amber-red
+     because that is a fact about the food, not a judgement about you —
+     principle 1 still forbids alarm colour for anything a person did or
+     did not do. */
+  --state-fresh: #2F5C54;
+  --state-soon: #7A4E12;
+  --state-past: #8C3A2A;
+  --state-unknown: #5B5F55;
+
+  /* Interactive control borders. Lived in components.css until Phase 26,
+     which is a layering error: it is a token and 21 rules depend on it.
+     Must stay >= 3:1 against the card surface (WCAG 1.4.11). */
+  --control-border: var(--color-text-muted);
+
+  /* ---- Density (Phase 26) ----
+     Sensory needs vary, and a fixed density serves half the audience.
+     Comfortable is the default because generous spacing is the safer
+     failure: too tight is unusable, too loose is only more scrolling. */
+  --density-scale: 1;
 
   /* ---- Type ---- */
   --font-display: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
@@ -80,6 +118,10 @@
   --color-neutral-chip: #2E3227;
   --color-stamp: #7FB6AA;
   --color-caution: #D6A25C;
+  --state-fresh: #8CC4B7;
+  --state-soon: #E0B173;
+  --state-past: #E8A091;
+  --state-unknown: #B3B3A6;
   color-scheme: dark;
 }
 
@@ -101,6 +143,10 @@
   --color-neutral-chip: #E7E7E7;
   --color-stamp: #0B3D37;
   --color-caution: #5C3B00;
+  --state-fresh: #0B3D37;
+  --state-soon: #5C3B00;
+  --state-past: #7A1E10;
+  --state-unknown: #2B2B2B;
 }
 
 [data-theme="dusk"][data-contrast="high"] {
@@ -117,6 +163,10 @@
   --color-neutral-chip: #1A1A1A;
   --color-stamp: #9FE0D2;
   --color-caution: #F0C285;
+  --state-fresh: #9FE0D2;
+  --state-soon: #F0C285;
+  --state-past: #FFB3A3;
+  --state-unknown: #E6E6E6;
 }
 
 /* ============ Brightness: standard (default) — no override needed ============ */
@@ -129,6 +179,22 @@
 /* ============ Brightness: bright ============ */
 [data-brightness="bright"] {
   filter: brightness(1.08);
+}
+
+/* ============ Density: comfortable (default) — no override needed ============ */
+
+/* ============ Density: compact ============
+   Scales SPACING only. Type size, tap targets and line height are
+   untouched: a compact mode that shrinks text or drops below 44px targets
+   is an accessibility regression wearing a preference's clothes. */
+[data-density="compact"] {
+  --space-2: 0.375rem;
+  --space-3: 0.5rem;
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --density-scale: 0.75;
 }
 
 /* Reduced motion respected globally — see base.css */

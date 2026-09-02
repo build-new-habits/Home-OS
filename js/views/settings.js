@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v7
+// js/views/settings.js — 01 Sep 2026 v8
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -38,6 +38,11 @@ const BRIGHTNESS_OPTIONS = [
   { value: 'dim', label: 'Dim' },
   { value: 'bright', label: 'Bright' }
 ];
+
+const DENSITY_OPTIONS = [
+  { value: 'comfortable', label: 'Comfortable' },
+  { value: 'compact', label: 'Compact' }
+];
 const WEIGHT_UNIT_OPTIONS = [
   { value: 'stone_lb', label: 'Stone & lb' },
   { value: 'kg', label: 'Kilograms' }
@@ -54,6 +59,7 @@ function applyThemeAttrs(settings) {
   root.setAttribute('data-theme', settings.theme || 'default');
   root.setAttribute('data-contrast', settings.contrast_mode || 'standard');
   root.setAttribute('data-brightness', settings.brightness_pref || 'standard');
+  root.setAttribute('data-density', settings.density || 'comfortable');
 }
 
 function buildToggleGroup({ legend, name, options, current, onChange }) {
@@ -456,6 +462,7 @@ export function render(mountEl) {
     theme: 'default',
     contrast_mode: 'standard',
     brightness_pref: 'standard',
+    density: 'comfortable',
     weight_unit_display: 'stone_lb',
     notification_prefs: {}
   };
@@ -533,6 +540,22 @@ export function render(mountEl) {
       current: settings.brightness_pref || 'standard',
       onChange: (value) => saveAndRerender({ brightness_pref: value }, 'Brightness updated')
     }));
+
+    // Phase 26. Sensory needs vary and a fixed density serves half the
+    // audience. The hint says what compact does NOT change, because the
+    // fear with any "compact" control is that it will shrink the text.
+    const densityGroup = buildToggleGroup({
+      legend: 'Spacing',
+      options: DENSITY_OPTIONS,
+      current: settings.density || 'comfortable',
+      onChange: (value) => saveAndRerender({ density: value }, 'Spacing updated')
+    });
+    const densityHint = document.createElement('p');
+    densityHint.className = 'field-hint';
+    densityHint.textContent = 'Compact tightens the space between things. '
+      + 'Text size and button sizes stay exactly the same.';
+    densityGroup.appendChild(densityHint);
+    bodyContainer.appendChild(densityGroup);
 
     bodyContainer.appendChild(buildToggleGroup({
       legend: 'Weight display',

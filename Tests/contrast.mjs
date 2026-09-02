@@ -7,26 +7,31 @@ const THEMES = {
   'default / standard': {
     bg: '#F7F5F1', surface: '#FFFFFF', surfaceRaised: '#FCFBF9', border: '#DEDAD2',
     text: '#23261F', textMuted: '#5B5F55', accent: '#35635C', accentStrong: '#234641',
-    accentContrast: '#FFFFFF', neutralChip: '#EDEAE3'
+    accentContrast: '#FFFFFF', neutralChip: '#EDEAE3',
+    stateFresh: '#2F5C54', stateSoon: '#7A4E12', statePast: '#8C3A2A', stateUnknown: '#5B5F55'
   },
   'dusk / standard': {
     bg: '#1B1E19', surface: '#23261F', surfaceRaised: '#2A2E24', border: '#3A3F33',
     text: '#EDEAE1', textMuted: '#B3B3A6', accent: '#7FB6AA', accentStrong: '#A6D2C6',
-    accentContrast: '#12201C', neutralChip: '#2E3227'
+    accentContrast: '#12201C', neutralChip: '#2E3227',
+    stateFresh: '#8CC4B7', stateSoon: '#E0B173', statePast: '#E8A091', stateUnknown: '#B3B3A6'
   },
   'default / high': {
     bg: '#FFFFFF', surface: '#FFFFFF', surfaceRaised: '#FFFFFF', border: '#000000',
     text: '#000000', textMuted: '#2B2B2B', accent: '#0B3D37', accentStrong: '#04211D',
-    accentContrast: '#FFFFFF', neutralChip: '#E7E7E7'
+    accentContrast: '#FFFFFF', neutralChip: '#E7E7E7',
+    stateFresh: '#0B3D37', stateSoon: '#5C3B00', statePast: '#7A1E10', stateUnknown: '#2B2B2B'
   },
   'dusk / high': {
     bg: '#000000', surface: '#000000', surfaceRaised: '#000000', border: '#FFFFFF',
     text: '#FFFFFF', textMuted: '#E6E6E6', accent: '#9FE0D2', accentStrong: '#C9EFE5',
-    accentContrast: '#000000', neutralChip: '#1A1A1A'
+    accentContrast: '#000000', neutralChip: '#1A1A1A',
+    stateFresh: '#9FE0D2', stateSoon: '#F0C285', statePast: '#FFB3A3', stateUnknown: '#E6E6E6'
   }
 };
 
-// --control-border is an alias for --color-text-muted (components.css v6).
+// --control-border is an alias for --color-text-muted (moved to tokens.css
+// in Phase 26; it is a token, and 21 rules depend on it).
 for (const t of Object.values(THEMES)) t.controlBorder = t.textMuted;
 
 const lum = (hex) => {
@@ -41,6 +46,19 @@ const ratio = (a, b) => {
 
 // [description, foreground key, background key, required ratio]
 const PAIRS = [
+  // ---- Phase 26 semantic state ----
+  // These carry meaning, so they are held to text contrast (4.5:1), not the
+  // 3:1 that would be allowed for a decorative graphic. Each is checked on
+  // BOTH the page and a card, because state badges appear on both.
+  ['.state-fresh on page',                     'stateFresh',    'bg',          4.5],
+  ['.state-fresh on card',                     'stateFresh',    'surface',     4.5],
+  ['.state-soon on page',                      'stateSoon',     'bg',          4.5],
+  ['.state-soon on card',                      'stateSoon',     'surface',     4.5],
+  ['.state-past on page',                      'statePast',     'bg',          4.5],
+  ['.state-past on card',                      'statePast',     'surface',     4.5],
+  ['.state-unknown on page',                   'stateUnknown',  'bg',          4.5],
+  ['.state-unknown on card',                   'stateUnknown',  'surface',     4.5],
+  ['.count-chip number on its chip',           'text',          'neutralChip', 4.5],
   ['.plan-table thead th text on chip',        'text',          'neutralChip', 4.5],
   ['.plan-table tbody th (day) text on chip',  'text',          'neutralChip', 4.5],
   ['.plan-empty "Nothing planned" on page',    'textMuted',     'bg',          4.5],

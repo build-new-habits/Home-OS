@@ -51,6 +51,10 @@ const { groupIngredientOptions, optionLabel, shoppableIngredients } = await impo
 const { servingsForEntry, describeDiners, membersFor, remainingMembers, dietaryConflicts } = await import(`${REPO}/js/data/mealPlan.js`);
 const { scoreMeals, classifyIngredient, filterByIngredient, describeGaps, describeAssumptions, STATE, BAND } = await import(`${REPO}/js/data/pantryMatch.js`);
 const { filterRecipes, describeAdd } = await import(`${REPO}/js/data/recipeLibrary.js`);
+// icons.js builds DOM. Only its PURE surface is testable here: this gate
+// runs in plain node with no `document`, and importing was fine but calling
+// was not. The DOM assertions moved to the a11y gate, which has jsdom.
+const { iconNames } = await import(`${REPO}/js/lib/icons.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -1110,6 +1114,18 @@ check('the sentence names the recipe', added.includes('Puttanesca'));
 check('and says what was reused', added.includes('3'));
 check('and what was created', added.includes('4'));
 check('a failed add produces nothing', describeAdd({ ok: false }) === '');
+
+console.log('');
+
+// ============ Phase 26: design foundations ============
+console.log('\nIcon set');
+
+// The DOM-building assertions for icons live in the a11y gate. What is
+// testable without a document is the catalogue itself.
+check('the icon set is not empty', iconNames().length > 0);
+check('every freshness state has an icon',
+  ['fresh', 'soon', 'past', 'unknown'].every((n) => iconNames().includes(n)));
+check('names are unique', new Set(iconNames()).size === iconNames().length);
 
 console.log('');
 

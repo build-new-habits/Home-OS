@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v32 */
+/* css/components.css — 01 Sep 2026 v33 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -55,6 +55,8 @@
 
 :root {
   /* Alias, not a new design token — tokens.css stays untouched. */
+  /* Moved to tokens.css in Phase 26. Kept here as a fallback only for a
+     cached stylesheet pair mid-deploy; tokens.css wins when both load. */
   --control-border: var(--color-text-muted);
 }
 /* v5: adds Phase 5 (weight + water) sections at the end. Everything
@@ -2552,3 +2554,64 @@ body.sheet-open {
   align-self: flex-start;
   margin-top: var(--space-2);
 }
+
+/* ---- Phase 26: design foundations ------------------------------------ */
+/* State made visible. Every one of these pairs colour with a shape AND a
+   word — colour alone fails WCAG 1.4.1, and shape alone is a puzzle. */
+
+.icon {
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
+.state-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.state-badge-text { color: inherit; }
+
+/* Verified >= 4.5:1 against both --color-bg and --color-surface in all
+   four theme combinations. The contrast gate asserts it. */
+.state-fresh { color: var(--state-fresh); }
+.state-soon { color: var(--state-soon); }
+.state-past { color: var(--state-past); }
+.state-unknown { color: var(--state-unknown); }
+
+/* A count, so hidden state is never silent. */
+.count-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-lg);
+  background: var(--color-neutral-chip);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A row that leads with its state, for lists you scan rather than read. */
+.state-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.state-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Compact density scales spacing only. Type size, tap targets and line
+   height are deliberately untouched — a compact mode that shrinks text or
+   drops below 44px is an accessibility regression in a preference's
+   clothing. */
+[data-density="compact"] .card { padding: var(--space-3); }
+[data-density="compact"] .state-row { gap: var(--space-1); }

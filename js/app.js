@@ -1,4 +1,4 @@
-// js/app.js — 17 Aug 2026 v4
+// js/app.js — 01 Sep 2026 v5
 // WRITE-ONCE RULE AMENDED (17 Aug 2026, architect decision). This file was
 // declared write-once in Phase 2, but it also owned the entire sign-in UI —
 // so every change to authentication forced an edit here anyway. Rather than
@@ -31,6 +31,10 @@ function applyTheme(settings) {
   root.setAttribute('data-theme', settings?.theme || 'default');
   root.setAttribute('data-contrast', settings?.contrast_mode || 'standard');
   root.setAttribute('data-brightness', settings?.brightness_pref || 'standard');
+  // Phase 26. A fourth display attribute of exactly the same kind as the
+  // three above — applying it here is this function doing its job, not a
+  // break of the write-once rule, which reads "app.js owns bootstrap".
+  root.setAttribute('data-density', settings?.density || 'comfortable');
 }
 
 function buildAppShell() {

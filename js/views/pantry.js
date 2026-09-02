@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v7
+// js/views/pantry.js — 01 Sep 2026 v8
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -60,6 +60,7 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { stateBadge, countChip } from '../lib/icons.js';
 import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
 import { claimDialog } from '../components/claimDialog.js';
 
@@ -234,10 +235,11 @@ export function render(mountEl) {
       const food = row.foods || {};
       const item = el('li', { class: 'use-soon-item' });
       item.appendChild(el('span', { class: 'use-soon-name', text: food.name || 'Unknown' }));
-      item.appendChild(el('span', {
-        class: 'field-hint',
-        text: `${describeAmount(row, row.foods)} · ${describeFreshness(fresh)}`
-      }));
+      item.appendChild(el('span', { class: 'field-hint', text: describeAmount(row, row.foods) }));
+      // Phase 26: the state gets a shape and a colour as well as its words.
+      // These four states have existed in the data since Phase 7 and have
+      // never been anything but a sentence you had to read.
+      item.appendChild(stateBadge(fresh.state, describeFreshness(fresh)));
       list.appendChild(item);
     }
     useSoonList.appendChild(list);
@@ -287,7 +289,7 @@ export function render(mountEl) {
     // Freshness earns a place on the collapsed row only when it is close.
     // "about 365 days left" on sixty rows is noise, not information.
     const meta = [describeAmount(row, row.foods)];
-    if (fresh.state === 'soon' || fresh.state === 'past') meta.push(describeFreshness(fresh));
+    // Left out of the joined meta line so it can render as a badge below.
 
     const open = el('button', { type: 'button', class: 'stock-row-open' });
     const text = el('span', { class: 'stock-row-text' });
@@ -295,6 +297,12 @@ export function render(mountEl) {
       el('span', { class: 'stock-row-name', text: name }),
       el('span', { class: 'stock-row-meta', text: meta.join(' · ') })
     );
+    // Freshness earns a place on the collapsed row only when it is close.
+    // "about 365 days left" on sixty rows is noise, not information — so
+    // the badge appears for soon and past, and nothing else.
+    if (fresh.state === 'soon' || fresh.state === 'past') {
+      text.appendChild(stateBadge(fresh.state, describeFreshness(fresh)));
+    }
     // A chevron is decoration; the accessible name says what the control does.
     const chevron = el('span', { class: 'stock-row-chevron', 'aria-hidden': 'true', text: '›' });
     open.append(text, chevron);

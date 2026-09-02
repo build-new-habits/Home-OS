@@ -921,6 +921,46 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
     'without it, any display rule silently un-hides a hidden element');
 }
 
+// ---- Phase 26: icons and state badges ----------------------------------
+// Moved here from the behaviour gate, which runs in plain node: these need
+// a document. The rule that matters is WCAG 1.4.1 — meaning must never be
+// carried by colour alone.
+{
+  const { icon, iconNames, stateBadge, countChip } = await import(`${REPO}/js/lib/icons.js`);
+
+  check('icons: every named icon builds', iconNames().every((n) => icon(n) !== null));
+  check('icons: an unknown name returns null rather than a broken box',
+    icon('nope') === null);
+  check('icons: an unlabelled icon is hidden from assistive tech',
+    icon('scan').getAttribute('aria-hidden') === 'true');
+  check('icons: a labelled icon is exposed as an image with a title',
+    icon('scan', { label: 'Scan a barcode' }).getAttribute('role') === 'img'
+    && icon('scan', { label: 'Scan a barcode' }).querySelector('title').textContent === 'Scan a barcode');
+  check('icons: never focusable', icon('add').getAttribute('focusable') === 'false');
+
+  // The four freshness states must be distinguishable in greyscale, which
+  // is the real test of 1.4.1. Different colour is not enough.
+  const shapes = ['fresh', 'soon', 'past', 'unknown'].map((n) => icon(n).innerHTML);
+  check('icons: every freshness state is a DIFFERENT shape',
+    new Set(shapes).size === 4,
+    'colour alone fails WCAG 1.4.1');
+
+  const badge = stateBadge('soon', 'Use within 3 days');
+  check('state badge: carries its state class', badge.classList.contains('state-soon'));
+  check('state badge: contains a shape', badge.querySelector('svg') !== null);
+  check('state badge: contains the words too',
+    badge.textContent.includes('Use within 3 days'),
+    'shape alone is a puzzle; words alone is what we had');
+  check('state badge: an unrecognised state falls back rather than vanishing',
+    stateBadge('nonsense', 'Not recorded').classList.contains('state-unknown'));
+
+  const chip = countChip(12, 'items not put away');
+  check('count chip: shows the number', chip.textContent === '12');
+  check('count chip: reads properly aloud',
+    chip.getAttribute('aria-label') === '12 items not put away');
+}
+
 console.log('');
+
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }
 console.log(`A11Y STRUCTURE PASSED — ${pass}/${pass} checks on the rendered DOM (dashboard, meals, foods, shopping, holidays, pantry, chores, calendar, health, kitchen)`);

@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v14
+01 Sep 2026 v15
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,24 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0m. Revision 15 — density (01 Sep 2026)
+
+`user_settings.density text not null default 'comfortable'`, check in
+`('comfortable','compact')`.
+
+A fourth display preference alongside theme, contrast and brightness.
+Sensory needs vary, and a fixed density serves half the audience.
+
+**Compact scales spacing only.** Type size, tap targets and line height are
+untouched. A compact mode that shrinks text or drops below 44px targets is
+an accessibility regression wearing a preference's clothes — and the
+Settings hint says so out loud, because the fear with any "compact" control
+is exactly that.
+
+Migration: `migrations/015_density.sql`.
 
 ---
 
@@ -828,6 +846,7 @@ the list by creating (or matching) a `foods` row with the right `category` —
 | theme | text | default 'default' |
 | contrast_mode | text | default 'standard' |
 | brightness_pref | text | default 'standard' |
+| density | text | not null; check in ('comfortable','compact'); default 'comfortable' (revision 15) |
 | weight_unit_display | text | check in ('stone_lb','kg'); default 'stone_lb' |
 | notification_prefs | jsonb | default '{}'::jsonb — every notification type off by default (principle 8) |
 

@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v54
+// service-worker.js — 01 Sep 2026 v55
+// v55 (Phase 26): ONE new path, js/lib/icons.js. Bumped for tokens.css v2 —
+// the first revision to that file since July — plus components.css v33,
+// app.js v5, views/pantry.js v8 and views/settings.js v8.
 // v54 (Phase 16): TWO new paths — js/data/recipeLibrary.js and
 // data/recipe_library/index.json. The CUISINE FILES ARE NOT PRECACHED:
 // the precache is all-or-nothing, and putting a growing library inside it
@@ -144,7 +147,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v54';
+const CACHE_NAME = 'home-os-shell-v55';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -169,6 +172,7 @@ const SHELL_FILES = [
   './js/lib/net.js',
   './js/lib/dates.js',
   './js/lib/units.js',
+  './js/lib/icons.js',
   './js/lib/shortfall.js',
   './js/lib/rrule.js',
   './js/lib/barcode.js',
