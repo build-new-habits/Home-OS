@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v15
+// js/views/meals.js — 01 Sep 2026 v16
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -130,6 +130,11 @@ import { listStock } from '../data/pantry.js';
 import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
+import {
+  listStepsForMeals, addStep, removeStep, moveStep,
+  checkStyle, resolveTokens, unresolvedTokens
+} from '../data/mealSteps.js';
+import { openCookMode, readProgress } from '../components/cookMode.js';
 import { announce } from '../lib/a11y.js';
 
 // Local element helper. Deliberately defined here rather than copied in from
@@ -272,6 +277,8 @@ export function render(mountEl) {
   let pendingFoods = [];
   let meals = [];
   let ingredientsByMeal = new Map();
+  // Phase 15: one read for every meal's steps, never one per meal.
+  let stepsByMeal = new Map();
 
   mountEl.appendChild(el('h1', { text: 'Meals' }));
 
@@ -587,6 +594,7 @@ export function render(mountEl) {
     }
 
     body.appendChild(buildAddIngredientForm(meal));
+    body.appendChild(buildMethodSection(meal, rows));
 
     const editWrap = el('div');
     body.appendChild(editWrap);
@@ -731,6 +739,198 @@ export function render(mountEl) {
         }));
       }
     });
+  }
+
+
+  /**
+   * Phase 15. The method: a cook button, the step list, and an editor.
+   *
+   * Collapsed behind a <details> because most visits to a meal card are to
+   * check an ingredient or plan a week, not to read eleven steps.
+   */
+  function buildMethodSection(meal, ingredientRows) {
+    const wrap = el('section', { class: 'method-section' });
+    const steps = stepsByMeal.get(meal.id) || [];
+
+    const heading = el('h4', { text: 'Method' });
+    wrap.appendChild(heading);
+
+    if (steps.length === 0) {
+      wrap.appendChild(el('p', {
+        class: 'field-hint',
+        text: 'No steps yet. Add them one action at a time — short steps are easier to follow with a pan on the go.'
+      }));
+    } else {
+      const cook = el('button', {
+        type: 'button', class: 'btn btn-primary btn-large', text: `Cook this (${steps.length} steps)`
+      });
+      const resumed = readProgress(meal.id);
+      if (resumed) cook.textContent = `Carry on from step ${resumed.stepIndex + 1}`;
+      cook.addEventListener('click', async () => {
+        await openCookMode({ meal, steps, ingredients: ingredientRows, scale: 1 });
+        if (destroyed) return;
+        renderMeals();
+      }, { signal });
+      wrap.appendChild(cook);
+
+      const list = el('ol', { class: 'step-list' });
+      for (const step of steps) list.appendChild(buildStepRow(meal, step, ingredientRows));
+      wrap.appendChild(list);
+    }
+
+    if (meal.method_note) {
+      wrap.appendChild(el('p', { class: 'field-hint', text: meal.method_note }));
+    }
+
+    const details = el('details', { class: 'step-editor' });
+    details.appendChild(el('summary', { text: steps.length ? 'Add a step' : 'Add the first step' }));
+    details.appendChild(buildAddStepForm(meal, ingredientRows));
+    wrap.appendChild(details);
+
+    return wrap;
+  }
+
+  function buildStepRow(meal, step, ingredientRows) {
+    const item = el('li', { class: 'step-row' });
+
+    const text = el('div', { class: 'step-text' });
+    text.appendChild(el('span', {
+      class: 'step-instruction',
+      text: resolveTokens(step.instruction, ingredientRows, 1)
+    }));
+    if (step.note) text.appendChild(el('span', { class: 'step-note', text: step.note }));
+    const meta = [];
+    if (step.duration_min) meta.push(`${step.duration_min} min`);
+    if (step.while_waiting) meta.push('while waiting');
+    if (step.step_group) meta.push(step.step_group);
+    if (meta.length) text.appendChild(el('span', { class: 'step-meta', text: meta.join(' · ') }));
+    item.appendChild(text);
+
+    const actions = el('div', { class: 'step-actions' });
+
+    // Up/down buttons, NOT drag and drop. Dragging is poor with a screen
+    // reader and awkward with wet hands, and this is a kitchen.
+    const up = el('button', { type: 'button', class: 'btn btn-small', text: '\u2191' });
+    up.setAttribute('aria-label', `Move step ${step.step_number} up`);
+    up.disabled = step.step_number === 1;
+    up.addEventListener('click', () => reorder(meal, step, 'up'), { signal });
+
+    const down = el('button', { type: 'button', class: 'btn btn-small', text: '\u2193' });
+    down.setAttribute('aria-label', `Move step ${step.step_number} down`);
+    down.disabled = step.step_number === (stepsByMeal.get(meal.id) || []).length;
+    down.addEventListener('click', () => reorder(meal, step, 'down'), { signal });
+
+    const del = el('button', { type: 'button', class: 'btn btn-small', text: 'Delete' });
+    del.setAttribute('aria-label', `Delete step ${step.step_number}`);
+    del.addEventListener('click', async () => {
+      const yes = await confirmDialog({
+        title: `Delete step ${step.step_number}?`,
+        message: 'The steps after it move up a number.',
+        confirmLabel: 'Delete'
+      });
+      if (!yes || destroyed) return;
+      const result = await removeStep(step.id, meal.id);
+      if (destroyed) return;
+      if (!result.ok) { showToast('That step could not be deleted.'); return; }
+      announce('Step deleted.');
+      await loadMeals();
+    }, { signal });
+
+    actions.append(up, down, del);
+    item.appendChild(actions);
+    return item;
+  }
+
+  async function reorder(meal, step, direction) {
+    const result = await moveStep(step.id, meal.id, direction);
+    if (destroyed) return;
+    if (!result.ok) { showToast('That step could not be moved.'); return; }
+    announce(`Step moved ${direction}.`);
+    await loadMeals();
+  }
+
+  function buildAddStepForm(meal, ingredientRows) {
+    const form = el('form', { class: 'add-step-form' });
+
+    const instruction = el('textarea', { id: `step-instruction-${meal.id}`, rows: '2' });
+    const styleNote = el('p', { class: 'field-hint style-check', role: 'status' });
+
+    // Live, advisory, and never blocking. A checker that refuses your
+    // sentence is a checker you learn to turn off.
+    instruction.addEventListener('input', () => {
+      const issues = checkStyle(instruction.value);
+      const unresolved = unresolvedTokens(instruction.value, ingredientRows);
+      const lines = issues.map((i) => `Rule ${i.rule}: ${i.text}`);
+      if (unresolved.length) {
+        lines.push(`No ingredient called "${unresolved.join('", "')}" in this recipe.`);
+      }
+      styleNote.textContent = lines.join(' ');
+      styleNote.hidden = lines.length === 0;
+    }, { signal });
+
+    const note = el('input', { id: `step-note-${meal.id}`, type: 'text' });
+    const noteHint = el('p', {
+      class: 'field-hint',
+      text: 'Optional. Why, what it should look like, or what to do if it goes wrong.'
+    });
+
+    const duration = el('input', {
+      id: `step-duration-${meal.id}`, type: 'number', min: '1', max: '1440', inputmode: 'numeric'
+    });
+    const group = el('input', { id: `step-group-${meal.id}`, type: 'text' });
+
+    const waitingWrap = el('div', { class: 'checkbox-row' });
+    const waiting = el('input', { id: `step-waiting-${meal.id}`, type: 'checkbox' });
+    const waitingLabel = el('label', {
+      for: waiting.id, text: 'This is done while something else cooks'
+    });
+    waitingWrap.append(waiting, waitingLabel);
+
+    const error = el('p', { class: 'field-error', role: 'alert' });
+    error.hidden = true;
+    const submit = el('button', { type: 'submit', class: 'btn btn-primary', text: 'Add step' });
+
+    form.append(
+      field('Instruction', instruction),
+      styleNote,
+      field('Note', note, noteHint),
+      field('Timer, in minutes', duration),
+      field('Part of', group),
+      waitingWrap,
+      error,
+      submit
+    );
+    styleNote.hidden = true;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      submit.disabled = true;
+      const result = await addStep({
+        meal_id: meal.id,
+        instruction: instruction.value,
+        note: note.value,
+        duration_min: duration.value,
+        step_group: group.value,
+        while_waiting: waiting.checked
+      });
+      submit.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        error.textContent = result.error.message;
+        error.hidden = false;
+        instruction.focus();
+        return;
+      }
+      announce(`Step ${result.data.step_number} added.`);
+      instruction.value = '';
+      note.value = '';
+      duration.value = '';
+      styleNote.hidden = true;
+      await loadMeals();
+    }, { signal });
+
+    return form;
   }
 
   function buildIngredientRow(meal, row) {
@@ -1423,6 +1623,19 @@ export function render(mountEl) {
       return;
     }
     meals = mealResult.data;
+
+    // Steps come after the meals, because the query needs their ids. One
+    // read for all of them — a query per meal would not survive a library
+    // of 300 recipes.
+    const stepResult = await listStepsForMeals(meals.map((m) => m.id));
+    if (destroyed) return;
+    if (stepResult.ok) {
+      stepsByMeal = stepResult.data;
+    } else {
+      console.error('Failed to load method steps:', stepResult.error);
+      stepsByMeal = new Map();
+    }
+
     if (ingredientResult.ok) {
       ingredientsByMeal = groupByMeal(ingredientResult.data);
     } else {

@@ -46,6 +46,7 @@ const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } =
 const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
+const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -786,6 +787,64 @@ check('the offer says the values are averages',
   /average|typical/i.test(describeOffer(eggEntry)));
 check('the offer says how to replace them',
   /scan/i.test(describeOffer(eggEntry)));
+
+console.log('');
+
+// ============ Phase 15: method steps ============
+console.log('\nStep style checks (advisory, never blocking)');
+
+eq('a short single-action step is clean',
+  checkStyle('Add the 400 g tin of chopped tomatoes.').length, 0);
+check('two actions joined by "and" are flagged',
+  checkStyle('Chop the onion and fry it in oil').some((i) => i.rule === 1));
+check('"meanwhile" is flagged',
+  checkStyle('Meanwhile cook the spaghetti').some((i) => i.rule === 2));
+check('an over-long step is flagged',
+  checkStyle('one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone')
+    .some((i) => i.rule === 6));
+eq('the ceiling is twenty words', MAX_STEP_WORDS, 20);
+// Rule 11: these all tell someone that struggling is their fault.
+for (const word of ['simply', 'just', 'obviously', 'quickly', 'easy']) {
+  check(`"${word}" is flagged as shaming`,
+    checkStyle(`${word} stir the sauce`).some((i) => i.rule === 11));
+}
+check('the checker returns issues, never throws on empty input',
+  Array.isArray(checkStyle('')));
+
+console.log('\nIngredient tokens');
+
+const stepIngredients = [
+  { quantity_g: 400, unit: 'g', foods: { name: 'Chopped tomatoes', item_label: 'tin', grams_per_item: 400 } },
+  { quantity_g: 2, unit: 'item', foods: { name: 'Egg, medium', item_label: 'egg', grams_per_item: 58 } }
+];
+
+eq('a token becomes a real quantity and name',
+  resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 1),
+  'Add the 400 g chopped tomatoes.');
+// The label is already the noun. "2 eggs" is the whole phrase; appending
+// the food name gives "2 eggs (116 g) egg, medium", which is unreadable.
+eq('an item label stands alone as the phrase',
+  resolveTokens('Crack in {{ing:egg-medium}}.', stepIngredients, 1),
+  'Crack in 2 eggs.');
+eq('and scales without picking up the gram total',
+  resolveTokens('Crack in {{ing:egg-medium}}.', stepIngredients, 2),
+  'Crack in 4 eggs.');
+eq('scaling a recipe scales the step text too',
+  resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 2),
+  'Add the 800 g chopped tomatoes.');
+
+// Showing {{ing:butter}} to someone mid-cook is worse than showing "butter".
+eq('an unknown token degrades to a plain name, never to braces',
+  resolveTokens('Melt the {{ing:butter}}.', stepIngredients, 1),
+  'Melt the butter.');
+check('no raw braces ever survive rendering',
+  !resolveTokens('{{ing:nope}} and {{ing:chopped-tomatoes}}', stepIngredients, 1).includes('{{'));
+eq('the editor can name what did not resolve',
+  unresolvedTokens('Melt the {{ing:butter}}.', stepIngredients).join(','), 'butter');
+eq('a resolvable token is not reported as missing',
+  unresolvedTokens('{{ing:chopped-tomatoes}}', stepIngredients).length, 0);
+eq('slugs are stable across punctuation and case',
+  slugifyFoodName('Egg, medium'), 'egg-medium');
 
 console.log('');
 

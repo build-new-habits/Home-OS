@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v49
+// service-worker.js — 01 Sep 2026 v50
+// v50 (Phase 15): TWO new paths — js/data/mealSteps.js and
+// js/components/cookMode.js. Also bumped for views/meals.js v16,
+// data/meals.js v5 and components.css v28.
 // v49 (Phase 13): TWO new paths — js/data/foodReference.js and
 // data/food_reference.json. The JSON is precached deliberately: it is the
 // thing that makes the food form useful with no signal, and it is one file.
@@ -128,7 +131,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v49';
+const CACHE_NAME = 'home-os-shell-v50';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -172,6 +175,7 @@ const SHELL_FILES = [
   './js/data/mealPlan.js',
   './js/data/household.js',
   './js/data/foodReference.js',
+  './js/data/mealSteps.js',
   './data/food_reference.json',
   './js/data/foodClaim.js',
   './js/data/restock.js',
@@ -182,6 +186,7 @@ const SHELL_FILES = [
   './js/components/card.js',
   './js/components/scannerDialog.js',
   './js/components/claimDialog.js',
+  './js/components/cookMode.js',
   './js/components/detailSheet.js',
   './js/components/completionStamp.js',
   './js/views/signin.js',

@@ -1,16 +1,52 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v10
+01 Sep 2026 v11
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
 reconcile before writing anything (PROJECT_BLUEPRINT.md §3). No field is
 added, renamed, or removed anywhere without changing it here first.
 
-Backend: Supabase (PostgreSQL, **EU region**). **20 tables, 20 RLS
-policies**, 3 trigger functions, 20 update triggers.
+Backend: Supabase (PostgreSQL, **EU region**). **21 tables, 21 RLS
+policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0i. Revision 11 — method steps (01 Sep 2026)
+
+New table **`meal_steps`**, one row per instruction, plus
+`meals.method_note`. **21 tables, 21 policies, 21 triggers.**
+
+A text column cannot be ticked off, cannot hold a timer, and cannot keep
+your place when the screen locks. The requirement — small, clear,
+followable steps — needs each step to be something the app knows about
+individually.
+
+`meal_steps` is **household-scoped**, because `meals` is (revision 8). A
+recipe your partner wrote has to be one you can cook.
+
+`step_number` is **not** unique-constrained. Reordering under a unique
+constraint means a temporary gap or a deferred constraint, and the app
+renumbers contiguously on every save anyway. Enforced in code.
+
+`on delete cascade` on `meal_id`: steps are part of the meal, matching
+`meal_ingredients` (§2).
+
+### Ingredient tokens
+
+`instruction` may contain `{{ing:<slugified-food-name>}}`. It resolves
+against that meal's `meal_ingredients` at render time, formats through
+`lib/units.js`, and scales with the serving size — so rule 3 of
+`RECIPE_STEP_STYLE.md` ("restate the quantity inside the step") survives a
+recipe being scaled from 4 to 6.
+
+An unresolvable token renders as the plain name with no quantity. **Never**
+as raw braces: showing `{{ing:butter}}` to someone mid-cook is worse than
+showing "butter".
+
+Migration: `migrations/011_meal_steps.sql`.
 
 ---
 
@@ -551,6 +587,7 @@ this column exists to prevent.
 | Column | Type | Notes |
 |---|---|---|
 | name | text | not null |
+| method_note | text | nullable — the one-line caveat belonging to no single step (revision 11) |
 | default_serves | int | not null; default 4 |
 | is_favourite | boolean | not null; default false (revision 5) |
 | meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
@@ -670,6 +707,21 @@ circular. Everywhere else the standing rule holds: inserts pass nothing.
 `portion_factor` scales the shopping list, never a nutrition target.
 Members with `role = 'child'` are not offered macro targets at all
 (Phase 20).
+
+### meal_steps
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, default my_household_id() (revision 8 pattern) |
+| meal_id | uuid | not null, references meals, **on delete cascade** |
+| step_number | int | not null; contiguous from 1, renumbered in code, **not** unique-constrained |
+| instruction | text | not null; check length 1–300 |
+| note | text | nullable — why, what it looks like, what to do if wrong. Kept out of the instruction |
+| duration_min | int | nullable; check 1–1440. Drives the timer button |
+| step_group | text | nullable — 'Prep', 'Sauce', 'To serve' |
+| while_waiting | boolean | not null default false — rule 2, no "meanwhile" |
+
+Style is canonical in `RECIPE_STEP_STYLE.md` and applies to every recipe in
+the app, seeded or typed.
 
 ---
 
