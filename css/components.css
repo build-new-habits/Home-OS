@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v28 */
+/* css/components.css — 01 Sep 2026 v29 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2378,3 +2378,26 @@ body.sheet-open {
 }
 
 .cook-nav .btn { min-height: 56px; }
+
+/* ---- Phase 19: ingredient options ------------------------------------ */
+/* A slot with alternatives renders as one row, not five radios. */
+
+.option-group-row {
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.option-group-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.option-control {
+  flex: 0 0 auto;
+  max-width: 55%;
+}
+
+.option-select {
+  width: 100%;
+  min-height: 44px;
+}

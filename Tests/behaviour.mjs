@@ -47,6 +47,7 @@ const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
+const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -845,6 +846,61 @@ eq('a resolvable token is not reported as missing',
   unresolvedTokens('{{ing:chopped-tomatoes}}', stepIngredients).length, 0);
 eq('slugs are stable across punctuation and case',
   slugifyFoodName('Egg, medium'), 'egg-medium');
+
+console.log('');
+
+// ============ Phase 19: ingredient options and swaps ============
+console.log('\nGrouping options');
+
+const bagel = { id: 'a', option_group: 'Base', is_selected: true,
+  foods: { name: 'Bagel, plain', calories_per_100g: 257 } };
+const pitta = { id: 'b', option_group: 'Base', is_selected: false,
+  foods: { name: 'Pitta bread', calories_per_100g: 275 } };
+const cheese = { id: 'c', option_group: null, is_selected: true,
+  foods: { name: 'Cottage cheese', calories_per_100g: 98 } };
+
+const grouped = groupIngredientOptions([bagel, pitta, cheese]);
+eq('a group collapses to one row plus the plain ingredient', grouped.length, 2);
+eq('the group keeps both options', grouped[0].options.length, 2);
+eq('and knows which is chosen', grouped[0].selected.id, 'a');
+eq('a plain ingredient stays plain', grouped[1].kind, 'single');
+
+// A group whose chosen row was deleted must not leave the recipe with no
+// base at all.
+const orphaned = groupIngredientOptions([
+  { ...bagel, is_selected: false }, { ...pitta, is_selected: false }
+]);
+check('a group with nothing selected falls back to its first option',
+  orphaned[0].selected !== null && orphaned[0].selected.id === 'a');
+
+eq('option_label wins over the food name',
+  optionLabel({ option_label: 'Cottage cheese', foods: { name: 'Cottage cheese, plain' } }),
+  'Cottage cheese');
+eq('the food name is the fallback',
+  optionLabel({ foods: { name: 'Pitta bread' } }), 'Pitta bread');
+
+console.log('\nOnly the chosen option counts');
+
+const withOptions = [bagel, pitta, cheese];
+eq('the shopping list gets the chosen option only',
+  shoppableIngredients(withOptions).length, 2);
+check('and specifically not the unchosen one',
+  !shoppableIngredients(withOptions).some((r) => r.id === 'b'));
+
+// Two ideas that must stay apart: an unselected option is not missing
+// data, it is a road not taken. Counting it as incomplete would fill the
+// gap line with noise until people stopped reading it.
+const macroRows = [
+  { quantity_g: 100, unit: 'g', option_group: 'Base', is_selected: true,
+    foods: { name: 'Bagel', calories_per_100g: 257, protein_g: 10, fat_g: 1.5, carbs_g: 50 } },
+  { quantity_g: 100, unit: 'g', option_group: 'Base', is_selected: false,
+    foods: { name: 'Pitta', calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null } }
+];
+const optMacros = computeMacros(macroRows, { serves: 1 });
+eq('only the chosen option is counted', optMacros.ingredientCount, 1);
+eq('an unchosen option with no data is NOT reported as incomplete',
+  optMacros.incompleteCount, 0);
+eq('the totals come from the chosen option', Math.round(optMacros.totals.calories), 257);
 
 console.log('');
 

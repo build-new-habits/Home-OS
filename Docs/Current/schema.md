@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v11
+01 Sep 2026 v12
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,46 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0j. Revision 12 — ingredient options (01 Sep 2026)
+
+`meal_ingredients` gains `option_group`, `is_selected`, `option_label`.
+
+"Build your own lunch" and "swap the tuna for hummus" are the same feature:
+a named slot with alternatives, one chosen. One mechanism, three columns.
+
+| Column | Type | Notes |
+|---|---|---|
+| option_group | text | nullable; check length 1–40. **Null = an ordinary required ingredient** |
+| is_selected | boolean | not null default true |
+| option_label | text | nullable; check length 1–60. Overrides the food name for display |
+
+Every existing row defaults to `option_group = null, is_selected = true`,
+which is exactly how it behaves today. **No behaviour change** until a group
+is created.
+
+### No unique constraint on the selection
+
+Tempting and wrong. A partial unique index on
+`(meal_id, option_group) where is_selected` would make swapping two
+statements with a window between them where the recipe has **no base at
+all**. Under a constraint that window is a failed write; without one it is a
+moment nobody sees. Enforced in application code (`selectOption` clears
+siblings first, then sets).
+
+### Two ideas kept apart
+
+An unselected option contributes nothing to the macro totals **and is not
+counted as incomplete**. It is not missing data, it is a road not taken.
+Conflating them would fill the incomplete line with noise until people
+stopped reading it.
+
+Only selected options reach the shopping list, or planning one lunch would
+add five things to the shop.
+
+Migration: `migrations/012_ingredient_options.sql`.
 
 ---
 
@@ -603,6 +643,9 @@ migrations are what have kept this app safe. Read `unit` before using it.
 |---|---|---|
 | unit | text | not null; check in ('g','ml','item'); default `'g'` |
 | meal_id | uuid | not null; references meals(id) **on delete cascade** |
+| option_group | text | nullable; check length 1–40. **Null = ordinary required ingredient** (revision 12) |
+| is_selected | boolean | not null default true; exactly one true per group, enforced in code (revision 12) |
+| option_label | text | nullable; check length 1–60; overrides the food name for display (revision 12) |
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | quantity_g | numeric | not null |
 

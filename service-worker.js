@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v50
+// service-worker.js — 01 Sep 2026 v51
+// v51 (Phase 19): no path changes. Bumped for ingredient options —
+// data/meals.js v6, views/meals.js v17, lib/shortfall.js v2,
+// components.css v29.
 // v50 (Phase 15): TWO new paths — js/data/mealSteps.js and
 // js/components/cookMode.js. Also bumped for views/meals.js v16,
 // data/meals.js v5 and components.css v28.
@@ -131,7 +134,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v50';
+const CACHE_NAME = 'home-os-shell-v51';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

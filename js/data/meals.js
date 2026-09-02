@@ -1,4 +1,4 @@
-// js/data/meals.js — 01 Sep 2026 v5
+// js/data/meals.js — 01 Sep 2026 v6
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
 // opaque database error and tells the user nothing.
@@ -130,7 +130,7 @@ export async function listMeals() {
 export async function listIngredients(mealId) {
   let query = supabase
     .from(INGREDIENTS)
-    .select('id, meal_id, food_id, quantity_g, unit, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label, source)')
+    .select('id, meal_id, food_id, quantity_g, unit, option_group, is_selected, option_label, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label, source)')
     .order('created_at', { ascending: true });
   if (mealId) query = query.eq('meal_id', mealId);
   const { data, error } = await query;
@@ -365,7 +365,7 @@ export async function removeIngredient(ingredientId) {
  * }}
  */
 export function computeMacros(ingredients, { serves = 1 } = {}) {
-  const rows = Array.isArray(ingredients) ? ingredients : [];
+  const allRows = Array.isArray(ingredients) ? ingredients : [];
   const divisor = Number.isFinite(Number(serves)) && Number(serves) > 0 ? Number(serves) : 1;
 
   const totals = {};
@@ -387,6 +387,13 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
   // the reason, so the view can say what to fill in rather than just
   // reporting a gap.
   const unconvertible = [];
+
+  // ---- Phase 19: selected options only ----
+  // An unselected alternative contributes nothing AND is not counted as
+  // incomplete. Those two ideas have to stay apart: an unselected option is
+  // not missing data, it is a road not taken. Counting it as a gap would
+  // fill the incomplete line with noise until people stopped reading it.
+  const rows = allRows.filter((r) => r.option_group == null || r.is_selected !== false);
 
   for (const row of rows) {
     const food = row.foods || row.food || {};
@@ -466,4 +473,129 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
     estimatedNames,
     unconvertible
   };
+}
+
+
+// ---- Phase 19: ingredient options -------------------------------------
+// A "build your own lunch" and a "swap the tuna for hummus" are the same
+// thing: a named slot with alternatives, one of them chosen. Built once.
+
+/**
+ * Groups a meal's ingredients into rows for display.
+ *
+ * A group renders as ONE row naming the selected option, not as five rows
+ * of radio buttons — that turns a six-ingredient lunch into a wall of
+ * thirty and buries the ingredients that are not choices.
+ *
+ * @returns {Array<{ kind: 'single', row } | { kind: 'group', name, options, selected }>}
+ */
+export function groupIngredientOptions(rows = []) {
+  const out = [];
+  const groups = new Map();
+
+  for (const row of rows) {
+    if (row.option_group == null) {
+      out.push({ kind: 'single', row });
+      continue;
+    }
+    if (!groups.has(row.option_group)) {
+      const entry = { kind: 'group', name: row.option_group, options: [], selected: null };
+      groups.set(row.option_group, entry);
+      out.push(entry);
+    }
+    const entry = groups.get(row.option_group);
+    entry.options.push(row);
+    if (row.is_selected) entry.selected = row;
+  }
+
+  // A group whose selected row was deleted must not leave the recipe with
+  // no base at all. Fall back to the first option rather than rendering an
+  // empty slot the user cannot act on.
+  for (const entry of groups.values()) {
+    if (!entry.selected && entry.options.length > 0) entry.selected = entry.options[0];
+  }
+
+  return out;
+}
+
+/** What to call an option on screen. option_label wins; food name otherwise. */
+export function optionLabel(row) {
+  if (!row) return '';
+  if (row.option_label) return row.option_label;
+  const food = row.foods || row.food || {};
+  return food.name || 'Unnamed';
+}
+
+/**
+ * Selects one option within a group, deselecting its siblings.
+ *
+ * Deselect-then-select, in that order. The reverse would briefly have two
+ * selected rows, which the shortfall diff would read as two things to buy.
+ * There is no unique constraint precisely so this is safe — see the
+ * migration for why a constraint here would be worse.
+ */
+export async function selectOption(mealId, optionGroup, chosenId) {
+  const clear = await supabase
+    .from(INGREDIENTS)
+    .update({ is_selected: false })
+    .eq('meal_id', mealId)
+    .eq('option_group', optionGroup)
+    .neq('id', chosenId);
+  if (clear.error) return { ok: false, error: clear.error };
+
+  const { data, error } = await supabase
+    .from(INGREDIENTS)
+    .update({ is_selected: true })
+    .eq('id', chosenId)
+    .select()
+    .single();
+  if (error) return { ok: false, error };
+  return { ok: true, data };
+}
+
+/**
+ * Turns an ordinary ingredient into a group, or adds to an existing one.
+ *
+ * One action from the ingredient row: "Add an alternative". No mode, no
+ * separate screen. The existing row keeps its selection, so the recipe
+ * never changes meaning just because you offered yourself a choice.
+ */
+export async function addAlternative(existingRow, alternative = {}) {
+  const groupName = existingRow.option_group
+    || String(alternative.option_group || '').trim()
+    || optionLabel(existingRow);
+
+  if (!existingRow.option_group) {
+    const promote = await supabase
+      .from(INGREDIENTS)
+      .update({ option_group: groupName, is_selected: true })
+      .eq('id', existingRow.id);
+    if (promote.error) return { ok: false, error: promote.error };
+  }
+
+  const { data, error } = await supabase
+    .from(INGREDIENTS)
+    .insert({
+      meal_id: existingRow.meal_id,
+      food_id: alternative.food_id,
+      quantity_g: alternative.quantity_g,
+      unit: alternative.unit,
+      option_group: groupName,
+      option_label: alternative.option_label || null,
+      is_selected: false
+    })
+    .select()
+    .single();
+  if (error) return { ok: false, error };
+  return { ok: true, data };
+}
+
+/**
+ * The ingredients that should reach the shopping list.
+ *
+ * Only selected options. Otherwise planning one build-your-own lunch adds
+ * five things to your shop, four of which you decided against.
+ */
+export function shoppableIngredients(rows = []) {
+  return rows.filter((r) => r.option_group == null || r.is_selected !== false);
 }

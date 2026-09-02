@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v16
+// js/views/meals.js — 01 Sep 2026 v17
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -120,6 +120,7 @@ import {
   countPlanEntries, countIngredients, deleteMeal,
   addIngredient, updateIngredient, removeIngredient,
   computeMacros, MACROS, INGREDIENT_UNITS, formatIngredientQuantity,
+  groupIngredientOptions, optionLabel, selectOption,
   MEAL_TYPES, mealTypeLabel, setFavourite
 } from '../data/meals.js';
 import { isOffline } from '../lib/net.js';
@@ -132,7 +133,7 @@ import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
 import {
   listStepsForMeals, addStep, removeStep, moveStep,
-  checkStyle, resolveTokens, unresolvedTokens
+  checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
 } from '../data/mealSteps.js';
 import { openCookMode, readProgress } from '../components/cookMode.js';
 import { announce } from '../lib/a11y.js';
@@ -589,7 +590,15 @@ export function render(mountEl) {
 
     if (rows.length > 0) {
       const list = el('ul', { class: 'ingredient-list' });
-      for (const row of rows) list.appendChild(buildIngredientRow(meal, row));
+      // Phase 19: a group is ONE row naming the selected option, with a
+      // control to change it. Five radio buttons per slot would turn a
+      // six-ingredient lunch into a wall of thirty and bury the
+      // ingredients that are not choices.
+      for (const entry of groupIngredientOptions(rows)) {
+        list.appendChild(entry.kind === 'group'
+          ? buildOptionGroupRow(meal, entry)
+          : buildIngredientRow(meal, entry.row));
+      }
       body.appendChild(list);
     }
 
@@ -748,6 +757,62 @@ export function render(mountEl) {
    * Collapsed behind a <details> because most visits to a meal card are to
    * check an ingredient or plan a week, not to read eleven steps.
    */
+
+  /**
+   * One collapsed row for a slot with alternatives.
+   *
+   * The picker shows each option's calorie figure alongside, so the choice
+   * is informed rather than a name-only guess. Selecting recomputes
+   * immediately with no save step — watching protein move when you pick
+   * tuna over hummus is the feature.
+   */
+  function buildOptionGroupRow(meal, entry) {
+    const item = el('li', { class: 'ingredient-row option-group-row' });
+
+    const text = el('div', { class: 'ingredient-text' });
+    text.appendChild(el('span', { class: 'option-group-name', text: entry.name }));
+    text.appendChild(el('span', {
+      class: 'ingredient-detail',
+      text: entry.selected
+        ? `${formatIngredientQuantity(entry.selected)} ${optionLabel(entry.selected)}`
+        : 'Nothing chosen'
+    }));
+    item.appendChild(text);
+
+    const select = el('select', { id: `option-${meal.id}-${slugifyFoodName(entry.name)}` });
+    select.className = 'option-select';
+    for (const option of entry.options) {
+      const food = option.foods || {};
+      const kcal = food.calories_per_100g;
+      const suffix = kcal === null || kcal === undefined ? '' : ` — ${Math.round(kcal)} kcal/100 g`;
+      const opt = el('option', {
+        value: option.id,
+        text: `${optionLabel(option)}${suffix}`
+      });
+      if (entry.selected && option.id === entry.selected.id) opt.selected = true;
+      select.appendChild(opt);
+    }
+    const label = el('label', { for: select.id, class: 'sr-only', text: `Choose the ${entry.name}` });
+
+    select.addEventListener('change', async () => {
+      select.disabled = true;
+      const result = await selectOption(meal.id, entry.name, select.value);
+      select.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        showToast('That swap could not be saved.');
+        return;
+      }
+      announce(`${entry.name} changed to ${optionLabel(result.data)}.`);
+      await loadMeals();
+    }, { signal });
+
+    const control = el('div', { class: 'option-control' });
+    control.append(label, select);
+    item.appendChild(control);
+    return item;
+  }
+
   function buildMethodSection(meal, ingredientRows) {
     const wrap = el('section', { class: 'method-section' });
     const steps = stepsByMeal.get(meal.id) || [];

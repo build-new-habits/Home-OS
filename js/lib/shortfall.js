@@ -1,4 +1,4 @@
-// js/lib/shortfall.js — 27 Aug 2026 v1
+// js/lib/shortfall.js — 01 Sep 2026 v2
 // What you need, minus what you already have.
 //
 // This is principle 5 made real: the shopping list diffs the meal plan
@@ -48,6 +48,10 @@ export function computeShortfall({
   const foodById = new Map(foods.map((food) => [food.id, food]));
   const ingredientsByMeal = new Map();
   for (const row of ingredients) {
+    // Phase 19: only the SELECTED option reaches the shop. Otherwise
+    // planning one build-your-own lunch adds five things to your list,
+    // four of which you decided against.
+    if (row.option_group != null && row.is_selected === false) continue;
     if (!ingredientsByMeal.has(row.meal_id)) ingredientsByMeal.set(row.meal_id, []);
     ingredientsByMeal.get(row.meal_id).push(row);
   }
