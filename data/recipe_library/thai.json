@@ -1,0 +1,313 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Thai",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "thai-green-veg-curry",
+   "name": "Green vegetable curry",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "curry-paste",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:aubergine}} and {{ing:pepper-bell}} into chunks.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:vegetable-oil}}.",
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add {{ing:curry-paste}}. Fry 2 minutes, until it smells strong.",
+     "duration_min": 2,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Pour in {{ing:coconut-milk-tinned}}. Stir until smooth.",
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add the aubergine. Simmer 10 minutes.",
+     "duration_min": 10,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add the pepper and {{ing:green-beans}}. Cook 6 minutes.",
+     "duration_min": 6,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 600 ml water, covered, 12 minutes.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:fish-sauce}} to the curry. Taste.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Squeeze {{ing:lime}} in.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "pad-thai-style-noodles",
+   "name": "Prawn noodles",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Everything happens fast at the end. Have it all chopped first.",
+   "ingredients": [
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} in hot water 8 minutes. Drain.",
+     "duration_min": 8,
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and {{ing:garlic-clove}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Crush {{ing:peanuts}} roughly.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Mix {{ing:fish-sauce}} and {{ing:sugar-soft-brown}} in a cup.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:vegetable-oil}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add the garlic. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Push it aside. Crack in {{ing:egg-medium}} and scramble.",
+     "duration_min": 2,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add the noodles and the sauce. Toss 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add {{ing:prawns-cooked}} and the spring onions. Toss 1 minute.",
+     "duration_min": 1,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Squeeze {{ing:lime}} over. Scatter the peanuts.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "thai-coconut-soup",
+   "name": "Coconut and chicken soup",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 20,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Slice {{ing:ginger-fresh}}, {{ing:chilli-fresh}} and {{ing:mushroom-chestnut}}."
+    },
+    {
+     "instruction": "Put {{ing:stock-chicken}} and the ginger in a pan. Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Add the chicken. Simmer 8 minutes, until white through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add the mushrooms and chilli. Cook 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:fish-sauce}} and squeeze in {{ing:lime}}."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-coriander}} over."
+    }
+   ]
+  }
+ ]
+}

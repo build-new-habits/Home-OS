@@ -1,0 +1,328 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Chinese",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "egg-fried-rice",
+   "name": "Egg fried rice",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Cold, day-old rice works best. Fresh rice goes sticky.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 600 ml water, covered, 12 minutes.",
+     "duration_min": 12,
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Spread it on a tray to cool.",
+     "note": "Steaming hot rice will clump in the pan.",
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and {{ing:garlic-clove}}.",
+     "step_group": "Prep",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} in a bowl.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:vegetable-oil}}.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Pour in the egg. Scramble 1 minute. Lift it out.",
+     "duration_min": 1,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Add the garlic. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Add the rice and {{ing:peas-frozen}}. Fry 4 minutes.",
+     "duration_min": 4,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Put the egg back. Add {{ing:soy-sauce}} and {{ing:sesame-oil}}.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Scatter the spring onions over.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-stir-fry",
+   "name": "Chicken and vegetable stir fry",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Chop everything before the pan goes on. It cooks in six minutes.",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:carrot-medium}} and {{ing:broccoli-head}} into small pieces.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and grate {{ing:ginger-fresh}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}} and {{ing:honey}} in a cup.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Boil {{ing:egg-noodles-dry}} for the time on the packet.",
+     "duration_min": 4,
+     "step_group": "Noodles"
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:vegetable-oil}}.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Fry the chicken 4 minutes, until white through.",
+     "duration_min": 4,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Add the vegetables. Fry 3 minutes.",
+     "note": "They should still have a bite.",
+     "duration_min": 3,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Add the garlic and ginger. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Add the sauce and the drained noodles. Toss 1 minute.",
+     "duration_min": 1,
+     "step_group": "Fry"
+    }
+   ]
+  },
+  {
+   "slug": "sweet-sour-tofu",
+   "name": "Sweet and sour tofu",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}} between two plates for 15 minutes.",
+     "note": "Drier tofu crisps instead of steaming.",
+     "duration_min": 15,
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut it into cubes and toss in {{ing:cornflour}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} and {{ing:pineapple}} into chunks.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Mix {{ing:tomato-ketchup}}, {{ing:white-wine-vinegar}} and {{ing:sugar-soft-brown}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 600 ml water, covered, 12 minutes.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Fry the tofu in {{ing:vegetable-oil}} 8 minutes, until golden.",
+     "duration_min": 8,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Lift it out. Fry the peppers 3 minutes.",
+     "duration_min": 3,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add the pineapple and the sauce. Simmer 3 minutes.",
+     "duration_min": 3,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Put the tofu back and turn to coat.",
+     "step_group": "Finish"
+    }
+   ]
+  }
+ ]
+}

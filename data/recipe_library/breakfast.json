@@ -1,0 +1,382 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Breakfast",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "overnight-oats",
+   "name": "Overnight oats",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Made the night before. Nothing to do in the morning.",
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 20,
+     "unit": "ml"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chia-seeds",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:oats-rolled}} and {{ing:chia-seeds}} in a jar."
+    },
+    {
+     "instruction": "Add {{ing:natural-yoghurt}} and {{ing:milk-semi-skimmed}}."
+    },
+    {
+     "instruction": "Stir in {{ing:honey}}."
+    },
+    {
+     "instruction": "Cover and chill overnight."
+    },
+    {
+     "instruction": "In the morning, top with {{ing:blueberries}}."
+    }
+   ]
+  },
+  {
+   "slug": "banana-pancakes",
+   "name": "Banana pancakes",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 40,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mash {{ing:banana-medium}} in a bowl."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Add {{ing:flour-self-raising}} and {{ing:milk-semi-skimmed}}. Whisk smooth."
+    },
+    {
+     "instruction": "Melt a little {{ing:butter-block}} in a pan on a medium heat."
+    },
+    {
+     "instruction": "Drop in spoonfuls. Cook 2 minutes, until bubbles form on top.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Turn them over. Cook 1 minute more.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Serve with {{ing:maple-syrup}}."
+    }
+   ]
+  },
+  {
+   "slug": "avocado-toast-egg",
+   "name": "Avocado toast with egg",
+   "cuisine": "Breakfast",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Bring a small pan of water to a bare simmer."
+    },
+    {
+     "instruction": "Crack {{ing:egg-medium}} in one at a time. Poach 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Mash {{ing:avocado}} with {{ing:salt}} and a squeeze of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Spread it on the toast."
+    },
+    {
+     "instruction": "Lift the eggs out with a slotted spoon and put them on top."
+    },
+    {
+     "instruction": "Scatter {{ing:chilli-powder}} over."
+    }
+   ]
+  },
+  {
+   "slug": "breakfast-burrito",
+   "name": "Breakfast burrito",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry {{ing:bacon-rasher-back}} 6 minutes, until crisp. Chop it.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} in a bowl."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a pan on a LOW heat."
+    },
+    {
+     "instruction": "Scramble the eggs slowly, 3 minutes, until softly set.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Warm {{ing:tortilla-wrap}} in a dry pan."
+    },
+    {
+     "instruction": "Pile on the eggs and bacon. Grate {{ing:cheddar-cheese}} over."
+    },
+    {
+     "instruction": "Add {{ing:tomato-ketchup}} and roll it up."
+    }
+   ]
+  },
+  {
+   "slug": "greek-yoghurt-bowl",
+   "name": "Yoghurt and granola bowl",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A three-step breakfast. It is meant to stay that way.",
+   "ingredients": [
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "raisin-and-oat-granola",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Spoon {{ing:greek-yoghurt}} into a bowl."
+    },
+    {
+     "instruction": "Scatter {{ing:raisin-and-oat-granola}} over."
+    },
+    {
+     "instruction": "Add {{ing:strawberries}} and drizzle {{ing:honey}} on top."
+    }
+   ]
+  },
+  {
+   "slug": "cinnamon-french-toast",
+   "name": "Cinnamon French toast",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 120,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 40,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:cinnamon-ground}} in a shallow dish."
+    },
+    {
+     "instruction": "Soak {{ing:bread-slice-medium}} for 30 seconds a side.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a pan on a medium heat."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until golden.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Serve with {{ing:maple-syrup}}."
+    }
+   ]
+  }
+ ]
+}

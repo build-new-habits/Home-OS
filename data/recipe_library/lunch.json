@@ -1,0 +1,495 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Lunch",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "cottage-cheese-bagel",
+   "name": "Cottage cheese bagel",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "An assembly, not a recipe. It is meant to be this short.",
+   "ingredients": [
+    {
+     "ref": "bagel-plain",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cottage-cheese",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Split and toast {{ing:bagel-plain}}."
+    },
+    {
+     "instruction": "Spread {{ing:cottage-cheese}} over both halves."
+    },
+    {
+     "instruction": "Slice {{ing:cucumber}} on top. Add {{ing:black-pepper-ground}}."
+    }
+   ]
+  },
+  {
+   "slug": "hummus-crudites",
+   "name": "Hummus and crudit\u00e9s",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "hummus",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:carrot-medium}}, {{ing:cucumber}} and {{ing:pepper-bell}} into sticks."
+    },
+    {
+     "instruction": "Warm {{ing:pitta-bread}} and cut into strips."
+    },
+    {
+     "instruction": "Put {{ing:hummus}} in a bowl in the middle."
+    }
+   ]
+  },
+  {
+   "slug": "tuna-mayo-wrap",
+   "name": "Tuna mayo wrap",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 40,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:tuna-tinned-in-spring-water}}."
+    },
+    {
+     "instruction": "Mix it with {{ing:mayonnaise}}."
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and stir it in."
+    },
+    {
+     "instruction": "Shred {{ing:lettuce-iceberg}}."
+    },
+    {
+     "instruction": "Spread the tuna down the middle of {{ing:tortilla-wrap}}. Add lettuce."
+    },
+    {
+     "instruction": "Fold the ends in, then roll it up."
+    }
+   ]
+  },
+  {
+   "slug": "cheese-pickle-sandwich",
+   "name": "Cheese and salad sandwich",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 20,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter {{ing:bread-slice-medium}} with {{ing:butter-block}}."
+    },
+    {
+     "instruction": "Slice {{ing:cheddar-cheese}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Spread {{ing:mayonnaise}} on one slice."
+    },
+    {
+     "instruction": "Layer the cheese, tomato and {{ing:lettuce-iceberg}}."
+    },
+    {
+     "instruction": "Close it and cut in half."
+    }
+   ]
+  },
+  {
+   "slug": "tomato-soup",
+   "name": "Tomato soup",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:stock-vegetable}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Blend until smooth."
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} in."
+    }
+   ]
+  },
+  {
+   "slug": "jacket-potato-beans",
+   "name": "Jacket potato with beans",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Bake 60 minutes, until a knife slides in.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Heat {{ing:baked-beans}} in a pan 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Split the potatoes and add {{ing:butter-block}}."
+    },
+    {
+     "instruction": "Spoon the beans over. Grate {{ing:cheddar-cheese}} on top."
+    }
+   ]
+  },
+  {
+   "slug": "egg-mayo-sandwich",
+   "name": "Egg mayonnaise sandwich",
+   "cuisine": "Lunch",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 50,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:egg-medium}} for 9 minutes.",
+     "duration_min": 9
+    },
+    {
+     "instruction": "Cool them under the cold tap and peel."
+    },
+    {
+     "instruction": "Mash them with {{ing:mayonnaise}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and stir it in."
+    },
+    {
+     "instruction": "Spread onto {{ing:bread-slice-medium}} and close."
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-salad",
+   "name": "Halloumi and couscous salad",
+   "cuisine": "Lunch",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl. Pour over 200 ml boiling water."
+    },
+    {
+     "instruction": "Cover and leave 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}} and fry 3 minutes a side, until golden.",
+     "duration_min": 6,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}} and chop {{ing:cucumber}}."
+    },
+    {
+     "instruction": "Fluff the couscous. Mix in the vegetables."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}} and squeeze in {{ing:lemon}}."
+    },
+    {
+     "instruction": "Lay the halloumi on top. Chop {{ing:fresh-parsley}} over."
+    }
+   ]
+  }
+ ]
+}

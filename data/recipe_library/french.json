@@ -1,0 +1,331 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "French",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "croque-monsieur",
+   "name": "Croque monsieur",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ham-slice",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 10,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Melt {{ing:butter-block}} in a small pan.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} slowly, whisking, until smooth.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook 5 minutes. Stir in {{ing:mustard-dijon}}.",
+     "duration_min": 5,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Heat the grill to high.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Lay {{ing:ham-slice}} on two slices of {{ing:bread-slice-medium}}.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Top with the other slices. Spoon the sauce over.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} on top.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Grill 5 minutes, until bubbling and browned.",
+     "duration_min": 5,
+     "step_group": "Assemble"
+    }
+   ]
+  },
+  {
+   "slug": "french-onion-soup",
+   "name": "French onion soup",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The onions take 40 minutes and cannot be hurried. That is the recipe.",
+   "ingredients": [
+    {
+     "ref": "onion-large",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:onion-large}} thinly.",
+     "step_group": "Onions"
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a large pan on a low heat.",
+     "step_group": "Onions"
+    },
+    {
+     "instruction": "Add the onions and {{ing:dried-thyme}}. Stir to coat.",
+     "step_group": "Onions"
+    },
+    {
+     "instruction": "Cook 40 minutes, stirring every few minutes.",
+     "note": "Deep brown and jammy. Low heat throughout.",
+     "duration_min": 40,
+     "step_group": "Onions"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}}. Simmer 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} and grate {{ing:cheddar-cheese}} on top.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Grill until bubbling, then float on the soup.",
+     "duration_min": 3,
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "ratatouille",
+   "name": "Ratatouille",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:aubergine}}, {{ing:courgette}} and {{ing:pepper-bell}} into chunks."
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry the aubergine 8 minutes, until browned. Lift it out.",
+     "note": "Aubergine drinks oil. Do it alone.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:onion-large}} and cook 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add the courgette and pepper. Cook 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:dried-thyme}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and the aubergine."
+    },
+    {
+     "instruction": "Simmer 25 minutes, until thick.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "omelette",
+   "name": "Cheese omelette",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Two minutes, start to finish. Have the plate ready.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:egg-medium}} with {{ing:salt}} until no streaks are left."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a small pan on a medium heat."
+    },
+    {
+     "instruction": "Pour the eggs in. Leave 20 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Push the set edges into the middle. Tilt to fill the gaps."
+    },
+    {
+     "instruction": "Cook 1 minute more, until the top is barely wet.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} over one half."
+    },
+    {
+     "instruction": "Fold it over and slide onto the plate."
+    }
+   ]
+  }
+ ]
+}

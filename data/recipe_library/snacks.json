@@ -1,0 +1,381 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Snacks",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "flapjacks",
+   "name": "Flapjacks",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 170C. Line a tin."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}}, {{ing:golden-syrup}} and {{ing:sugar-soft-brown}} in a pan."
+    },
+    {
+     "instruction": "Stir until the sugar has dissolved."
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:oats-rolled}}."
+    },
+    {
+     "instruction": "Press into the tin firmly.",
+     "note": "Loose flapjack crumbles when you cut it."
+    },
+    {
+     "instruction": "Bake 25 minutes, until golden at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cut into squares while warm. Cool in the tin."
+    }
+   ]
+  },
+  {
+   "slug": "energy-balls",
+   "name": "Date and oat energy balls",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "dates-pitted",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "desiccated-coconut",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Blitz {{ing:dates-pitted}} until they form a paste."
+    },
+    {
+     "instruction": "Add {{ing:oats-rolled}}, {{ing:peanut-butter}} and {{ing:cocoa-powder}}."
+    },
+    {
+     "instruction": "Blitz again until it holds together when pressed."
+    },
+    {
+     "instruction": "Roll into balls the size of a walnut."
+    },
+    {
+     "instruction": "Roll them in {{ing:desiccated-coconut}}."
+    },
+    {
+     "instruction": "Chill 30 minutes before eating.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "granola",
+   "name": "Homemade granola",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 10,
+   "dietary_tags": [
+    "vegetarian",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "pumpkin-seeds",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 120,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C."
+    },
+    {
+     "instruction": "Chop {{ing:almonds}} roughly."
+    },
+    {
+     "instruction": "Mix {{ing:oats-rolled}}, the almonds, {{ing:pumpkin-seeds}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Warm {{ing:honey}} and {{ing:vegetable-oil}} together in a pan."
+    },
+    {
+     "instruction": "Pour over the oats and stir until coated."
+    },
+    {
+     "instruction": "Spread on a tray. Bake 25 minutes, stirring twice.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Stir in {{ing:raisins}} after it comes out.",
+     "note": "Raisins burn if they go in the oven."
+    },
+    {
+     "instruction": "Cool completely before storing."
+    }
+   ]
+  },
+  {
+   "slug": "peanut-butter-oat-bars",
+   "name": "Peanut butter oat bars",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 120,
+     "unit": "ml"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sunflower-seeds",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Line a small tin."
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} and {{ing:honey}} in a pan until loose."
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:oats-rolled}} and {{ing:sunflower-seeds}}."
+    },
+    {
+     "instruction": "Press firmly into the tin."
+    },
+    {
+     "instruction": "Melt {{ing:dark-chocolate}} in a bowl over hot water."
+    },
+    {
+     "instruction": "Pour it over and spread flat."
+    },
+    {
+     "instruction": "Chill 2 hours, then cut into bars.",
+     "duration_min": 120
+    }
+   ]
+  },
+  {
+   "slug": "cheese-oatcakes",
+   "name": "Cheese and apple plate",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Not a recipe. A reminder that this counts.",
+   "ingredients": [
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:cheddar-cheese}} and {{ing:apple-medium}}."
+    },
+    {
+     "instruction": "Put them on a plate with {{ing:walnuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "banana-oat-muffins",
+   "name": "Banana oat muffins",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "banana-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 80,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a muffin tin."
+    },
+    {
+     "instruction": "Mash {{ing:banana-medium}} in a bowl."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:vegetable-oil}} and {{ing:sugar-soft-brown}}."
+    },
+    {
+     "instruction": "Stir in {{ing:flour-self-raising}}, {{ing:oats-rolled}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Stop stirring as soon as it comes together.",
+     "note": "Overmixing makes them tough."
+    },
+    {
+     "instruction": "Spoon into the tin. Bake 22 minutes.",
+     "duration_min": 22
+    },
+    {
+     "instruction": "A skewer should come out clean."
+    }
+   ]
+  }
+ ]
+}

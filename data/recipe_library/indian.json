@@ -1,0 +1,609 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Indian",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "red-lentil-dhal",
+   "name": "Red lentil dhal",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Thick, not soupy. Add water at the end if you want it looser.",
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 700,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} finely.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Grate {{ing:ginger-fresh}} and chop {{ing:garlic-clove}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}.",
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "Cook the onion 8 minutes, until golden.",
+     "duration_min": 8,
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "Add the garlic and ginger. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}} and {{ing:turmeric-ground}}. Stir 30 seconds.",
+     "note": "Spices in hot oil bloom. Do not let them burn.",
+     "duration_min": 1,
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "Add {{ing:lentils-red-dry}}, {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}.",
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "Simmer 25 minutes, stirring now and then.",
+     "duration_min": 25,
+     "step_group": "Dhal"
+    },
+    {
+     "instruction": "The lentils should collapse into a thick sauce.",
+     "step_group": "Dhal"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-curry",
+   "name": "Chicken curry",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into bite-sized pieces.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-large}}, {{ing:garlic-clove}} and grate {{ing:ginger-fresh}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}.",
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Cook the onion 10 minutes, until deep golden.",
+     "note": "This is where the flavour comes from.",
+     "duration_min": 10,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add the garlic and ginger. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add {{ing:garam-masala}} and {{ing:turmeric-ground}}. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add the chicken. Stir to coat. Cook 5 minutes.",
+     "duration_min": 5,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:natural-yoghurt}}.",
+     "note": "Off the heat, or it will split.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Chop {{ing:fresh-coriander}} over.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "chana-masala",
+   "name": "Chana masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "coriander-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} finely."
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 10 minutes, until golden.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and grate {{ing:ginger-fresh}}. Add them.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}} and {{ing:coriander-ground}}. Stir 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Cook 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}} and add them."
+    },
+    {
+     "instruction": "Simmer 15 minutes, until thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze {{ing:lemon}} over before serving."
+    }
+   ]
+  },
+  {
+   "slug": "saag-paneer-style",
+   "name": "Spinach and halloumi curry",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into cubes.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Fry the halloumi in {{ing:vegetable-oil}} 5 minutes, until golden.",
+     "duration_min": 5,
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Lift it out and set aside.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Cook in the same pan 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and grate {{ing:ginger-fresh}}. Add them.",
+     "duration_min": 1,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add {{ing:garam-masala}}. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Add {{ing:spinach}} a handful at a time until it wilts.",
+     "duration_min": 4,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Simmer 3 minutes.",
+     "duration_min": 3,
+     "step_group": "Curry"
+    },
+    {
+     "instruction": "Put the halloumi back in.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "bombay-potatoes",
+   "name": "Bombay potatoes",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 3,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}} and cut into chunks."
+    },
+    {
+     "instruction": "Boil 12 minutes, until nearly tender. Drain.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}}, {{ing:turmeric-ground}} and {{ing:chilli-powder}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the potatoes. Turn to coat."
+    },
+    {
+     "instruction": "Fry 10 minutes, turning now and then, until crisp at the edges.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:fresh-coriander}} over."
+    }
+   ]
+  },
+  {
+   "slug": "kedgeree",
+   "name": "Kedgeree",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:cod-fillet}} in a pan with {{ing:milk-whole}}.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Bring to a bare simmer. Cook 6 minutes, until it flakes.",
+     "duration_min": 6,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Lift the fish out and keep it.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} for 8 minutes. Cool under the tap and peel.",
+     "duration_min": 8,
+     "step_group": "Eggs",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}.",
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a wide pan. Cook the onion 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Add {{ing:curry-powder}}. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Add {{ing:rice-basmati-dry}} and 600 ml water. Simmer 12 minutes, covered.",
+     "duration_min": 12,
+     "step_group": "Rice"
+    },
+    {
+     "instruction": "Flake the fish in. Quarter the eggs on top.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} over.",
+     "step_group": "Finish"
+    }
+   ]
+  }
+ ]
+}

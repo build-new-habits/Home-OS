@@ -518,6 +518,1122 @@
      "step_group": "Soup"
     }
    ]
+  },
+  {
+   "slug": "carbonara",
+   "name": "Spaghetti carbonara",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "No cream. The egg and cheese make the sauce, off the heat.",
+   "ingredients": [
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-yolk",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of water on a high heat.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:bacon-rasher-back}} into strips.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Beat {{ing:egg-yolk}} in a bowl. Grate in {{ing:parmesan}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:black-pepper-ground}} and mix to a paste.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Fry the bacon on a medium heat 6 minutes, until crisp.",
+     "duration_min": 6,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add {{ing:spaghetti-dry}} to the boiling water. Cook per the packet.",
+     "duration_min": 10,
+     "step_group": "Cook",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain the pasta. Keep a mugful of the water.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Take the bacon pan OFF the heat.",
+     "note": "This is the step that decides whether it works.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Tip the pasta in. Stir for 20 seconds to cool it.",
+     "duration_min": 1,
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Pour in the egg mixture. Stir hard until glossy.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Loosen with pasta water a splash at a time.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "lasagne",
+   "name": "Lasagne",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "A long one. The ragu is most of the work and can be made ahead.",
+   "ingredients": [
+    {
+     "ref": "beef-mince-20-fat",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:celery-stick}} small.",
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:olive-oil}}.",
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Cook the vegetables 10 minutes, until soft.",
+     "duration_min": 10,
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Add {{ing:beef-mince-20-fat}}. Break it up. Cook 10 minutes.",
+     "duration_min": 10,
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 40 minutes.",
+     "note": "Longer is better if you have it.",
+     "duration_min": 40,
+     "step_group": "Ragu"
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a clean pan.",
+     "step_group": "White sauce"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "White sauce"
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} a splash at a time, whisking, until smooth.",
+     "step_group": "White sauce"
+    },
+    {
+     "instruction": "Cook 6 minutes, until it coats a spoon.",
+     "duration_min": 6,
+     "step_group": "White sauce"
+    },
+    {
+     "instruction": "Heat the oven to 190C.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Layer ragu, pasta sheets and white sauce twice in a dish.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} over the top.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Bake 40 minutes, until browned and bubbling.",
+     "duration_min": 40,
+     "step_group": "Assemble"
+    }
+   ]
+  },
+  {
+   "slug": "pasta-pesto",
+   "name": "Pasta with pesto",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "pumpkin-seeds",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of water on a high heat."
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}. Cook for the time on the packet.",
+     "duration_min": 11
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Toast {{ing:pumpkin-seeds}} in a dry pan 3 minutes.",
+     "note": "Shake the pan so they do not catch.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Drain the pasta. Keep a mugful of the water."
+    },
+    {
+     "instruction": "Stir {{ing:pesto}} through the pasta off the heat."
+    },
+    {
+     "instruction": "Loosen with pasta water if it looks dry."
+    },
+    {
+     "instruction": "Add the tomatoes and seeds. Grate {{ing:parmesan}} over."
+    }
+   ]
+  },
+  {
+   "slug": "margherita-pizza",
+   "name": "Margherita pizza",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The dough needs an hour to rise. Start early.",
+   "ingredients": [
+    {
+     "ref": "flour-strong-white-bread",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 20,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "water",
+     "quantity": 180,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:flour-strong-white-bread}} and {{ing:salt}} in a bowl.",
+     "step_group": "Dough"
+    },
+    {
+     "instruction": "Add {{ing:water}} and {{ing:olive-oil}}. Mix to a rough dough.",
+     "step_group": "Dough"
+    },
+    {
+     "instruction": "Knead 8 minutes, until smooth and springy.",
+     "duration_min": 8,
+     "step_group": "Dough"
+    },
+    {
+     "instruction": "Cover and leave 60 minutes, until doubled.",
+     "duration_min": 60,
+     "step_group": "Dough"
+    },
+    {
+     "instruction": "Heat the oven as high as it goes.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Stretch the dough onto a floured tray.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Spread {{ing:passata}} to the edges.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Tear {{ing:mozzarella}} over.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Bake 10 minutes, until the edges are blistered.",
+     "duration_min": 10,
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} over after it comes out.",
+     "note": "Basil burns in the oven.",
+     "step_group": "Bake"
+    }
+   ]
+  },
+  {
+   "slug": "tomato-lentil-ragu",
+   "name": "Lentil ragu",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}} small.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:olive-oil}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook the vegetables 10 minutes, until soft.",
+     "duration_min": 10,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:dried-oregano}}.",
+     "duration_min": 1,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:lentils-red-dry}}, {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Simmer 25 minutes, until the lentils collapse.",
+     "duration_min": 25,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook {{ing:spaghetti-dry}} for the time on the packet.",
+     "duration_min": 10,
+     "step_group": "Pasta",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain and stir through the ragu.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "aubergine-parmigiana",
+   "name": "Aubergine parmigiana",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Slice {{ing:aubergine}} into rounds about 1 cm thick.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Brush with {{ing:olive-oil}} and lay on a tray.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Roast 25 minutes, until soft and golden.",
+     "duration_min": 25,
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and cook in a pan 1 minute.",
+     "duration_min": 1,
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:passata}}. Simmer 15 minutes, until thick.",
+     "duration_min": 15,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} into the sauce.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Layer aubergine, sauce and torn {{ing:mozzarella}} in a dish.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} over the top.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Bake 25 minutes, until bubbling.",
+     "duration_min": 25,
+     "step_group": "Assemble"
+    }
+   ]
+  },
+  {
+   "slug": "risotto-lemon-pea",
+   "name": "Lemon and pea risotto",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Risotto needs stirring. Put something on to listen to.",
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:stock-vegetable}} in a pan and keep it warm.",
+     "note": "Cold stock stalls the rice each time.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} finely.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:olive-oil}}.",
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Cook the onion 6 minutes, until see-through.",
+     "duration_min": 6,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir 1 minute, until glassy at the edges.",
+     "duration_min": 1,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add a ladle of stock. Stir until it has almost gone.",
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Keep adding stock a ladle at a time for 16 minutes.",
+     "duration_min": 16,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Stir in {{ing:peas-frozen}}. Cook 3 minutes more.",
+     "duration_min": 3,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Take off the heat. Add {{ing:butter-block}} and grate in {{ing:parmesan}}.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Zest and squeeze {{ing:lemon}} in. Rest 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "minestrone-bean",
+   "name": "Bean minestrone",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "kale",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:celery-stick}} small.",
+     "note": "Small pieces eat better in a spoon."
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the vegetables 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}. Cook 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Drain {{ing:cannellini-beans-tinned}} and add them."
+    },
+    {
+     "instruction": "Shred {{ing:kale}} and stir it in. Cook 3 minutes.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "gnocchi-tomato-bake",
+   "name": "Gnocchi and tomato bake",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 20,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and boil {{ing:potato-large}} 20 minutes. Drain and mash.",
+     "duration_min": 20,
+     "step_group": "Gnocchi"
+    },
+    {
+     "instruction": "Let the mash cool 10 minutes.",
+     "note": "Hot mash makes gluey gnocchi.",
+     "duration_min": 10,
+     "step_group": "Gnocchi"
+    },
+    {
+     "instruction": "Mix in {{ing:flour-plain}} and {{ing:egg-medium}} to a soft dough.",
+     "step_group": "Gnocchi"
+    },
+    {
+     "instruction": "Roll into ropes and cut into thumb-sized pieces.",
+     "step_group": "Gnocchi"
+    },
+    {
+     "instruction": "Boil them 2 minutes, until they float. Lift out.",
+     "duration_min": 2,
+     "step_group": "Gnocchi"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}}. Cook in {{ing:olive-oil}} 1 minute.",
+     "duration_min": 1,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:passata}}. Simmer 12 minutes.",
+     "duration_min": 12,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Mix the gnocchi into the sauce in a dish.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Tear {{ing:mozzarella}} over. Bake 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Bake"
+    }
+   ]
+  },
+  {
+   "slug": "tuna-pasta-bake",
+   "name": "Tuna pasta bake",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 120,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Boil {{ing:penne-dry}} for two minutes less than the packet says.",
+     "note": "It finishes cooking in the oven.",
+     "duration_min": 9,
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a pan on a medium heat.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} a splash at a time, whisking.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook 5 minutes, until thick. Grate in half the {{ing:cheddar-cheese}}.",
+     "duration_min": 5,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Drain {{ing:tuna-tinned-in-spring-water}} and {{ing:sweetcorn-tinned}}.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Mix everything in an oven dish.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Grate the rest of the cheese over. Bake 25 minutes.",
+     "duration_min": 25,
+     "step_group": "Assemble"
+    }
+   ]
+  },
+  {
+   "slug": "bruschetta",
+   "name": "Tomato bruschetta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:tomato-medium}} small and put in a bowl."
+    },
+    {
+     "instruction": "Add {{ing:salt}} and {{ing:olive-oil}}. Leave 10 minutes.",
+     "note": "The salt draws the juice out.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} until crisp."
+    },
+    {
+     "instruction": "Cut {{ing:garlic-clove}} in half. Rub it over the hot toast."
+    },
+    {
+     "instruction": "Spoon the tomatoes on."
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} over."
+    }
+   ]
+  },
+  {
+   "slug": "mushroom-tagliatelle",
+   "name": "Creamy mushroom pasta",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of water on a high heat."
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}."
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry the mushrooms 8 minutes, until browned at the edges.",
+     "note": "Do not crowd the pan or they steam.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:spaghetti-dry}} to the water. Cook per the packet.",
+     "duration_min": 10,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Pour {{ing:double-cream}} into the mushrooms. Simmer 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Drain the pasta and stir it through."
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} in. Chop {{ing:fresh-parsley}} over."
+    }
+   ]
   }
  ]
 }

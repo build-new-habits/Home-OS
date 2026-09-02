@@ -3,14 +3,74 @@
  "updated": "2026-09-01",
  "files": [
   {
+   "cuisine": "Breakfast",
+   "path": "data/recipe_library/breakfast.json",
+   "count": 6
+  },
+  {
    "cuisine": "British",
    "path": "data/recipe_library/british.json",
-   "count": 5
+   "count": 15
+  },
+  {
+   "cuisine": "Budget",
+   "path": "data/recipe_library/budget.json",
+   "count": 8
+  },
+  {
+   "cuisine": "Caribbean",
+   "path": "data/recipe_library/caribbean.json",
+   "count": 3
+  },
+  {
+   "cuisine": "Chinese",
+   "path": "data/recipe_library/chinese.json",
+   "count": 3
+  },
+  {
+   "cuisine": "French",
+   "path": "data/recipe_library/french.json",
+   "count": 4
+  },
+  {
+   "cuisine": "Indian",
+   "path": "data/recipe_library/indian.json",
+   "count": 6
   },
   {
    "cuisine": "Italian",
    "path": "data/recipe_library/italian.json",
-   "count": 5
+   "count": 17
+  },
+  {
+   "cuisine": "Lunch",
+   "path": "data/recipe_library/lunch.json",
+   "count": 8
+  },
+  {
+   "cuisine": "Mexican",
+   "path": "data/recipe_library/mexican.json",
+   "count": 4
+  },
+  {
+   "cuisine": "Middle Eastern",
+   "path": "data/recipe_library/middle_eastern.json",
+   "count": 4
+  },
+  {
+   "cuisine": "Snacks",
+   "path": "data/recipe_library/snacks.json",
+   "count": 6
+  },
+  {
+   "cuisine": "Thai",
+   "path": "data/recipe_library/thai.json",
+   "count": 3
+  },
+  {
+   "cuisine": "Vegetarian",
+   "path": "data/recipe_library/vegetarian.json",
+   "count": 13
   }
  ]
 }

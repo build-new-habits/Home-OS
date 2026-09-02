@@ -1,0 +1,1098 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Vegetarian",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "mushroom-stroganoff",
+   "name": "Mushroom stroganoff",
+   "cuisine": "Vegetarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}."
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry the mushrooms 8 minutes, until browned.",
+     "note": "Do not crowd the pan or they steam.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and add it. Cook 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:paprika}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 600 ml water, covered, 12 minutes.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:double-cream}} and {{ing:mustard-dijon}}. Simmer 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} over."
+    }
+   ]
+  },
+  {
+   "slug": "chickpea-curry-coconut",
+   "name": "Coconut chickpea curry",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:curry-powder}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}} and add them."
+    },
+    {
+     "instruction": "Simmer 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until it wilts.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "veg-chilli",
+   "name": "Vegetable chilli",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-large}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook them 10 minutes, until soft.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add {{ing:chilli-powder}} and {{ing:cumin-ground}}. Stir 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Drain and add {{ing:kidney-beans-tinned}} and {{ing:black-beans-tinned}}."
+    },
+    {
+     "instruction": "Drain {{ing:sweetcorn-tinned}} and add it. Cook 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "stuffed-peppers",
+   "name": "Stuffed peppers",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Halve {{ing:pepper-bell}} and scoop out the seeds."
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 400 ml water, covered, 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and cook in {{ing:olive-oil}} 8 minutes.",
+     "duration_min": 8,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:dried-oregano}}. Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix the rice into the sauce."
+    },
+    {
+     "instruction": "Fill the pepper halves. Crumble {{ing:feta}} on top."
+    },
+    {
+     "instruction": "Bake 30 minutes, until the peppers are soft.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "sweet-potato-dhal",
+   "name": "Sweet potato dhal",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:sweet-potato}} and cut into cubes."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Cook the onion in {{ing:vegetable-oil}} 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:curry-powder}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the sweet potato, {{ing:lentils-red-dry}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}}. Cook 10 minutes more.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-traybake",
+   "name": "Halloumi and vegetable traybake",
+   "cuisine": "Vegetarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tray. Nothing to watch.",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:courgette}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss on a tray with {{ing:olive-oil}} and {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Roast 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cube {{ing:halloumi}} and add it with {{ing:cherry-tomato}}."
+    },
+    {
+     "instruction": "Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "veg-noodle-soup",
+   "name": "Vegetable noodle soup",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 10,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Put {{ing:stock-vegetable}} and the ginger in a pan. Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Cut {{ing:carrot-medium}} into batons and {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Add them to the stock. Cook 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:egg-noodles-dry}}. Cook 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:soy-sauce}} and {{ing:sesame-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} over."
+    }
+   ]
+  },
+  {
+   "slug": "spinach-ricotta-style-pasta",
+   "name": "Spinach and cream cheese pasta",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 20,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:penne-dry}} for the time on the packet.",
+     "duration_min": 11
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cook it in {{ing:olive-oil}} on a low heat 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:spinach}} a handful at a time until wilted.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir in {{ing:cream-cheese}} until melted."
+    },
+    {
+     "instruction": "Drain the pasta, keeping a mugful of water."
+    },
+    {
+     "instruction": "Stir the pasta through, loosening with the water."
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} in. Zest {{ing:lemon}} over."
+    }
+   ]
+  },
+  {
+   "slug": "roasted-veg-couscous",
+   "name": "Roasted vegetable couscous",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:courgette}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss on a tray with half the {{ing:olive-oil}}. Roast 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl with 300 ml boiling water.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cover and leave 10 minutes, then fluff with a fork.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}} with the rest of the oil."
+    },
+    {
+     "instruction": "Stir the vegetables and harissa through the couscous."
+    },
+    {
+     "instruction": "Squeeze {{ing:lemon}} in. Chop {{ing:fresh-coriander}} over."
+    }
+   ]
+  },
+  {
+   "slug": "bean-burgers",
+   "name": "Black bean burgers",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "bagel-plain",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:black-beans-tinned}} and pat dry.",
+     "note": "Wet beans make a burger that falls apart."
+    },
+    {
+     "instruction": "Mash them roughly, leaving some texture."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:garlic-clove}} finely."
+    },
+    {
+     "instruction": "Mix in the onion, garlic, {{ing:breadcrumbs-dried}}, {{ing:cumin-ground}} and {{ing:paprika}}."
+    },
+    {
+     "instruction": "Shape into four patties. Chill 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} 4 minutes a side.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Split and toast {{ing:bagel-plain}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "leek-and-potato-gratin",
+   "name": "Leek and potato gratin",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "single-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Slice {{ing:leek}} into rounds and rinse them."
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and slice thinly."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} and cook the leeks 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Layer the potato and leeks in a dish."
+    },
+    {
+     "instruction": "Pour {{ing:single-cream}} over."
+    },
+    {
+     "instruction": "Cover with foil. Bake 45 minutes.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Uncover, grate {{ing:cheddar-cheese}} on top, bake 20 minutes.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "quinoa-salad",
+   "name": "Quinoa and feta salad",
+   "cuisine": "Vegetarian",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "quinoa-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "feta",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rinse {{ing:quinoa-dry}} under cold water.",
+     "note": "Rinsing takes the bitterness off."
+    },
+    {
+     "instruction": "Cook it in 400 ml water 15 minutes, until the grains uncurl.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}} and chop {{ing:cucumber}} and {{ing:red-onion}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain the quinoa and cool it 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix in the vegetables."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}} and squeeze in {{ing:lemon}}."
+    },
+    {
+     "instruction": "Crumble {{ing:feta}} over. Chop {{ing:fresh-parsley}} on top."
+    }
+   ]
+  },
+  {
+   "slug": "veg-samosa-style-pie",
+   "name": "Spiced potato and pea pie",
+   "cuisine": "Vegetarian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 120,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-large}} and boil 15 minutes. Drain and mash roughly.",
+     "duration_min": 15,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and cook in half the {{ing:vegetable-oil}} 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add {{ing:garam-masala}} and {{ing:cumin-ground}}. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Mix in the potato and {{ing:peas-frozen}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Rub the rest of the oil into {{ing:flour-plain}}.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Add {{ing:water}} and bring together into a dough.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Roll the pastry out and line a dish. Add the filling.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Bake 35 minutes, until golden.",
+     "duration_min": 35,
+     "step_group": "Bake"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,361 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Mexican",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "chilli-con-carne",
+   "name": "Chilli con carne",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Better the next day. Make double if you have the pan.",
+   "ingredients": [
+    {
+     "ref": "beef-mince-20-fat",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-large}} and {{ing:pepper-bell}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:vegetable-oil}}.",
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Cook the onion and pepper 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Add {{ing:beef-mince-20-fat}}. Break it up. Cook 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Add {{ing:chilli-powder}} and {{ing:cumin-ground}}. Stir 30 seconds.",
+     "duration_min": 1,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Drain {{ing:kidney-beans-tinned}} and add them. Cook 10 minutes.",
+     "duration_min": 10,
+     "step_group": "Chilli"
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} in 600 ml water, covered, 12 minutes.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    }
+   ]
+  },
+  {
+   "slug": "bean-quesadillas",
+   "name": "Bean quesadillas",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:black-beans-tinned}} and mash roughly in a bowl."
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}} and mix."
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and stir it in."
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}}."
+    },
+    {
+     "instruction": "Spread the beans over half of each {{ing:tortilla-wrap}}."
+    },
+    {
+     "instruction": "Scatter cheese on top and fold each one over."
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} 3 minutes a side, until crisp.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Cut into wedges."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-fajitas",
+   "name": "Chicken fajitas",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} into strips.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Slice {{ing:pepper-bell}} and {{ing:onion-large}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Toss the chicken with {{ing:paprika}} and {{ing:cumin-ground}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a high heat with {{ing:vegetable-oil}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Fry the chicken 6 minutes, until white through and browned.",
+     "duration_min": 6,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add the peppers and onion. Fry 5 minutes.",
+     "duration_min": 5,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Squeeze {{ing:lime}} over.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Warm {{ing:tortilla-wrap}} in a dry pan for 20 seconds each.",
+     "duration_min": 1,
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "huevos-rancheros",
+   "name": "Eggs with beans and tomato",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 20,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} small."
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}} and {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 10 minutes, until thick.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Drain {{ing:black-beans-tinned}} and stir them in."
+    },
+    {
+     "instruction": "Make four dips in the sauce. Crack {{ing:egg-medium}} into them."
+    },
+    {
+     "instruction": "Cover and cook 6 minutes, until the whites are set.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Warm {{ing:tortilla-wrap}} and serve alongside."
+    }
+   ]
+  }
+ ]
+}

@@ -66,7 +66,41 @@ undoing Phase 13 one recipe at a time); at least one step; and per step —
 Plus: a recipe with three or more ingredients must use at least two tokens,
 because rule 3 exists so nobody has to scroll back mid-cook.
 
-## Content — the honest position
+## Content update — 100 recipes (01 Sep 2026)
+
+The library is now **100 recipes across 14 files**, up from 10.
+
+| Split | |
+|---|---|
+| Budget / everyday | 73 / 27 |
+| Breakfast / lunch / dinner / snack | 14 / 25 / 54 / 7 |
+| Vegetarian / vegan / gluten free / dairy free | 72 / 28 / 25 / 37 |
+
+Cuisines: British 15, Italian 17, Vegetarian 13, Budget 8, Lunch 8,
+Indian 6, Breakfast 6, Snacks 6, Mexican 4, Middle Eastern 4, French 4,
+Caribbean 3, Thai 3, Chinese 3.
+
+**Weighted to budget deliberately** — 73 of 100. The personas said so
+plainly: Marcus (single parent, £60/week) ran out of Budget recipes on day
+four, and Jodie was on £30/week. An evenly-spread library serves the people
+who need it least.
+
+**Gate 8 now runs 8,119 checks** and every recipe passed on its first
+submission. Not one needed a fix for word count, banned words, "meanwhile",
+an unresolvable `{{ing:}}` token, or a `ref` missing from the reference
+file. The style guide being machine-enforced is why writing ninety in one
+sitting was safe.
+
+**The precache did not grow.** Only `index.json` is precached; cuisine files
+are fetched when the library panel is opened. Growing the library tenfold
+cost the precache nothing — that decision from the original phase paid off
+exactly as intended.
+
+**Assemblies stayed short.** The cottage cheese bagel is three steps and the
+cheese-and-apple plate is two. There was a real pull to pad them out so they
+looked like proper recipes; the note in each one says why they are not.
+
+## Content — the honest position (original, superseded above)
 
 **10 recipes: 5 Italian, 5 British.** The plan is 300 across eight batches
 of 40–60.

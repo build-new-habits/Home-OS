@@ -5,17 +5,17 @@
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
   {
-   "slug": "cottage-pie",
-   "name": "Cottage pie",
+   "slug": "shepherds-pie",
+   "name": "Shepherd's pie",
    "cuisine": "British",
    "budget_tier": "everyday",
    "default_slot": "dinner",
    "default_serves": 4,
    "dietary_tags": [],
-   "method_note": "The mash goes on hot mince, so it sits on top rather than sinking.",
+   "method_note": "Lamb makes it shepherd's; beef makes it cottage.",
    "ingredients": [
     {
-     "ref": "beef-mince-20-fat",
+     "ref": "lamb-mince",
      "quantity": 500,
      "unit": "g"
     },
@@ -35,11 +35,6 @@
      "unit": "item"
     },
     {
-     "ref": "chopped-tomatoes-tinned",
-     "quantity": 1,
-     "unit": "item"
-    },
-    {
      "ref": "stock-chicken",
      "quantity": 300,
      "unit": "ml"
@@ -55,11 +50,6 @@
      "unit": "ml"
     },
     {
-     "ref": "worcestershire-sauce",
-     "quantity": 15,
-     "unit": "ml"
-    },
-    {
      "ref": "vegetable-oil",
      "quantity": 15,
      "unit": "ml"
@@ -71,15 +61,11 @@
      "step_group": "Prep"
     },
     {
-     "instruction": "Peel {{ing:potato-large}} and cut into rough chunks.",
+     "instruction": "Peel {{ing:potato-large}} and cut into chunks.",
      "step_group": "Mash"
     },
     {
-     "instruction": "Put them in a pan of cold water. Bring to the boil.",
-     "step_group": "Mash"
-    },
-    {
-     "instruction": "Cook 18 minutes, until a knife slides in with no resistance.",
+     "instruction": "Boil them 18 minutes, until a knife slides in with no resistance.",
      "duration_min": 18,
      "step_group": "Mash"
     },
@@ -89,29 +75,22 @@
      "while_waiting": true
     },
     {
-     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}.",
+     "instruction": "Put a pan on a medium heat with {{ing:vegetable-oil}}.",
      "step_group": "Filling"
     },
     {
-     "instruction": "Add the onion and carrot. Cook 8 minutes, until soft.",
+     "instruction": "Cook the onion and carrot 8 minutes, until soft.",
      "duration_min": 8,
      "step_group": "Filling"
     },
     {
-     "instruction": "Add {{ing:beef-mince-20-fat}}. Break it up with a spoon.",
-     "step_group": "Filling"
-    },
-    {
-     "instruction": "Cook 8 minutes, until no pink is left.",
+     "instruction": "Add {{ing:lamb-mince}}. Break it up. Cook 8 minutes.",
+     "note": "Until no pink is left.",
      "duration_min": 8,
      "step_group": "Filling"
     },
     {
-     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:stock-chicken}} and {{ing:worcestershire-sauce}}.",
-     "step_group": "Filling"
-    },
-    {
-     "instruction": "Simmer 20 minutes, until thick enough to hold a spoon mark.",
+     "instruction": "Pour in {{ing:stock-chicken}}. Simmer 20 minutes, until thick.",
      "duration_min": 20,
      "step_group": "Filling"
     },
@@ -124,26 +103,26 @@
      "step_group": "Mash"
     },
     {
-     "instruction": "Tip the mince into an oven dish. Spread the mash over the top.",
-     "note": "Work from the edges inwards so the mash does not sink.",
+     "instruction": "Spread the mash over the lamb in an oven dish.",
+     "note": "Work from the edges in so it does not sink.",
      "step_group": "Assemble"
     },
     {
-     "instruction": "Bake 25 minutes, until the top is browned in patches.",
+     "instruction": "Bake 25 minutes, until browned in patches.",
      "duration_min": 25,
      "step_group": "Assemble"
     }
    ]
   },
   {
-   "slug": "toad-in-the-hole",
-   "name": "Toad in the hole",
+   "slug": "bangers-and-mash",
+   "name": "Bangers and mash",
    "cuisine": "British",
    "budget_tier": "budget",
    "default_slot": "dinner",
    "default_serves": 4,
    "dietary_tags": [],
-   "method_note": "Do not open the oven while it rises. It will drop and not come back.",
+   "method_note": null,
    "ingredients": [
     {
      "ref": "sausage-pork",
@@ -151,78 +130,617 @@
      "unit": "item"
     },
     {
-     "ref": "flour-plain",
-     "quantity": 140,
-     "unit": "g"
-    },
-    {
-     "ref": "egg-medium",
+     "ref": "potato-large",
      "quantity": 4,
      "unit": "item"
     },
     {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
      "ref": "milk-semi-skimmed",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put {{ing:sausage-pork}} on a tray. Roast 30 minutes, turning once.",
+     "duration_min": 30,
+     "step_group": "Sausages"
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and cut into chunks. Boil 18 minutes.",
+     "duration_min": 18,
+     "step_group": "Mash",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:onion-large}} thinly.",
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Melt half of {{ing:butter-block}} in a pan on a low heat.",
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Add the onion. Cook 15 minutes, until deep golden and sweet.",
+     "note": "Low and slow is the whole trick.",
+     "duration_min": 15,
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}} a splash at a time, stirring, until smooth.",
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Simmer 5 minutes, until it coats a spoon.",
+     "duration_min": 5,
+     "step_group": "Gravy"
+    },
+    {
+     "instruction": "Drain and mash the potatoes with the rest of the butter and {{ing:milk-semi-skimmed}}.",
+     "step_group": "Mash"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-and-leek-pie",
+   "name": "Chicken and leek pie",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The filling should be thick before the pastry goes on.",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "leek",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
      "quantity": 200,
      "unit": "ml"
     },
     {
+     "ref": "mustard-dijon",
+     "quantity": 10,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Slice {{ing:leek}} into rounds. Rinse them.",
+     "note": "Grit hides between the layers.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut {{ing:chicken-breast-skinless}} into bite-sized pieces.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a wide pan on a medium heat.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add the leeks. Cook 8 minutes, until soft.",
+     "duration_min": 8,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add the chicken. Cook 6 minutes, until white all over.",
+     "duration_min": 6,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "note": "It should look like wet sand.",
+     "duration_min": 2,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} and {{ing:stock-chicken}} slowly, stirring.",
+     "note": "Slowly is what stops lumps.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add {{ing:mustard-dijon}}. Simmer 8 minutes, until thick.",
+     "duration_min": 8,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Tip into an oven dish. Bake 25 minutes.",
+     "duration_min": 25,
+     "step_group": "Bake"
+    }
+   ]
+  },
+  {
+   "slug": "full-english",
+   "name": "Full English breakfast",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [],
+   "method_note": "Everything wants a different pan. Start what takes longest.",
+   "ingredients": [
+    {
+     "ref": "sausage-pork",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
      "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put {{ing:sausage-pork}} on a tray. Roast 25 minutes.",
+     "duration_min": 25,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Halve {{ing:tomato-medium}} and slice {{ing:mushroom-chestnut}}.",
+     "step_group": "Prep",
+     "while_waiting": true
+    },
+    {
+     "instruction": "After 10 minutes, add {{ing:bacon-rasher-back}} to the tray.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat with {{ing:vegetable-oil}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Fry the mushrooms and tomatoes 6 minutes.",
+     "duration_min": 6,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Heat {{ing:baked-beans}} in a small pan for 5 minutes.",
+     "duration_min": 5,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Fry {{ing:egg-medium}} to your liking in the same pan.",
+     "step_group": "Cook"
+    }
+   ]
+  },
+  {
+   "slug": "porridge",
+   "name": "Porridge",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
      "quantity": 30,
      "unit": "ml"
     },
     {
-     "ref": "salt",
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:oats-rolled}} and {{ing:milk-semi-skimmed}} in a pan."
+    },
+    {
+     "instruction": "Bring to a gentle simmer on a medium heat.",
+     "note": "Small bubbles, not a rolling boil."
+    },
+    {
+     "instruction": "Cook 6 minutes, stirring, until it thickens.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Slice {{ing:banana-medium}} on top."
+    },
+    {
+     "instruction": "Drizzle over {{ing:honey}}."
+    }
+   ]
+  },
+  {
+   "slug": "beans-on-toast",
+   "name": "Beans on toast",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A whole meal in five minutes. No apology needed.",
+   "ingredients": [
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:baked-beans}} in a small pan on a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cook the beans 5 minutes, stirring now and then.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Butter the toast with {{ing:butter-block}}."
+    },
+    {
+     "instruction": "Spoon the beans over. Grate {{ing:cheddar-cheese}} on top."
+    }
+   ]
+  },
+  {
+   "slug": "jacket-potato-tuna",
+   "name": "Jacket potato with tuna",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 40,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork.",
+     "note": "Steam needs somewhere to go."
+    },
+    {
+     "instruction": "Bake 60 minutes, until the skin is crisp and a knife slides in.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Drain {{ing:tuna-tinned-in-spring-water}} and mix with {{ing:mayonnaise}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:spring-onion}} and stir it in."
+    },
+    {
+     "instruction": "Split the potatoes. Spoon the tuna in."
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} over."
+    }
+   ]
+  },
+  {
+   "slug": "sunday-roast-chicken",
+   "name": "Roast chicken with potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Rest the chicken before carving. It matters more than any other step.",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 300,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and cut into large chunks.",
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Boil them 8 minutes, then drain.",
+     "duration_min": 8,
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Shake the colander to rough up the edges.",
+     "note": "Rough edges are what go crisp.",
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Tip onto a tray with {{ing:vegetable-oil}}. Roast 40 minutes.",
+     "duration_min": 40,
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Cut {{ing:carrot-large}} into batons.",
+     "step_group": "Veg",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Put {{ing:chicken-breast-skinless}} on a second tray with {{ing:dried-thyme}}.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Roast 25 minutes, until white all the way through.",
+     "duration_min": 25,
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Rest the chicken 10 minutes before slicing.",
+     "duration_min": 10,
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Heat {{ing:stock-chicken}} in a pan for the gravy.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "cauliflower-cheese",
+   "name": "Cauliflower cheese",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
      "quantity": 5,
      "unit": "ml"
     }
    ],
    "steps": [
     {
-     "instruction": "Heat the oven to 220C.",
+     "instruction": "Heat the oven to 200C.",
      "step_group": "Prep"
     },
     {
-     "instruction": "Put {{ing:flour-plain}} and {{ing:salt}} in a bowl.",
-     "step_group": "Batter"
+     "instruction": "Break {{ing:cauliflower-head}} into florets.",
+     "step_group": "Prep"
     },
     {
-     "instruction": "Crack in {{ing:egg-medium}}. Whisk to a thick paste.",
-     "step_group": "Batter"
+     "instruction": "Boil them 6 minutes, then drain well.",
+     "note": "Wet cauliflower waters down the sauce.",
+     "duration_min": 6,
+     "step_group": "Prep"
     },
     {
-     "instruction": "Add {{ing:milk-semi-skimmed}} slowly, whisking, until smooth.",
-     "note": "Lumps come from adding the milk all at once.",
-     "step_group": "Batter"
+     "instruction": "Melt {{ing:butter-block}} in a pan on a medium heat.",
+     "step_group": "Sauce"
     },
     {
-     "instruction": "Rest the batter 30 minutes.",
-     "duration_min": 30,
-     "step_group": "Batter"
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Sauce"
     },
     {
-     "instruction": "Put {{ing:vegetable-oil}} in a roasting tin. Add {{ing:sausage-pork}}.",
-     "step_group": "Cook"
+     "instruction": "Add {{ing:milk-whole}} a splash at a time, whisking.",
+     "step_group": "Sauce"
     },
     {
-     "instruction": "Roast 15 minutes, until the sausages are browned and the oil is smoking.",
-     "duration_min": 15,
-     "step_group": "Cook"
+     "instruction": "Cook 5 minutes, until it coats a spoon.",
+     "duration_min": 5,
+     "step_group": "Sauce"
     },
     {
-     "instruction": "Take the tin out. Pour the batter around the sausages.",
-     "note": "It should hiss. That is what makes it rise.",
-     "step_group": "Cook"
+     "instruction": "Grate {{ing:cheddar-cheese}} in. Add {{ing:mustard-dijon}}. Stir.",
+     "step_group": "Sauce"
     },
     {
-     "instruction": "Put it straight back in. Bake 30 minutes.",
-     "duration_min": 30,
-     "step_group": "Cook"
+     "instruction": "Pour over the cauliflower in a dish. Bake 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Bake"
     }
    ]
   },
   {
-   "slug": "fish-pie",
-   "name": "Fish pie",
+   "slug": "fish-and-chips-oven",
+   "name": "Oven fish and chips",
    "cuisine": "British",
    "budget_tier": "everyday",
    "default_slot": "dinner",
@@ -232,13 +750,8 @@
    "ingredients": [
     {
      "ref": "cod-fillet",
-     "quantity": 400,
-     "unit": "g"
-    },
-    {
-     "ref": "salmon-fillet",
-     "quantity": 200,
-     "unit": "g"
+     "quantity": 4,
+     "unit": "item"
     },
     {
      "ref": "potato-large",
@@ -246,214 +759,29 @@
      "unit": "item"
     },
     {
-     "ref": "milk-whole",
-     "quantity": 500,
-     "unit": "ml"
-    },
-    {
-     "ref": "butter-block",
-     "quantity": 70,
+     "ref": "breadcrumbs-dried",
+     "quantity": 100,
      "unit": "g"
     },
     {
      "ref": "flour-plain",
-     "quantity": 50,
-     "unit": "g"
-    },
-    {
-     "ref": "cheddar-cheese",
      "quantity": 60,
      "unit": "g"
     },
     {
-     "ref": "fresh-parsley",
-     "quantity": 15,
-     "unit": "g"
-    }
-   ],
-   "steps": [
-    {
-     "instruction": "Heat the oven to 200C.",
-     "step_group": "Prep"
-    },
-    {
-     "instruction": "Peel {{ing:potato-large}} and cut into chunks. Boil 18 minutes.",
-     "duration_min": 18,
-     "step_group": "Mash"
-    },
-    {
-     "instruction": "Put {{ing:cod-fillet}} and {{ing:salmon-fillet}} in a wide pan.",
-     "step_group": "Fish",
-     "while_waiting": true
-    },
-    {
-     "instruction": "Pour {{ing:milk-whole}} over. Bring to a bare simmer.",
-     "step_group": "Fish"
-    },
-    {
-     "instruction": "Cook 5 minutes, until the fish flakes with a fork.",
-     "duration_min": 5,
-     "step_group": "Fish"
-    },
-    {
-     "instruction": "Lift the fish out. Keep the milk.",
-     "step_group": "Fish"
-    },
-    {
-     "instruction": "Melt {{ing:butter-block}} in a clean pan.",
-     "step_group": "Sauce"
-    },
-    {
-     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
-     "note": "It should look like wet sand.",
-     "duration_min": 2,
-     "step_group": "Sauce"
-    },
-    {
-     "instruction": "Add the fishy milk a splash at a time, whisking, until smooth.",
-     "note": "Adding it slowly is what stops lumps.",
-     "step_group": "Sauce"
-    },
-    {
-     "instruction": "Cook 5 minutes, until it coats the back of a spoon.",
-     "duration_min": 5,
-     "step_group": "Sauce"
-    },
-    {
-     "instruction": "Chop {{ing:fresh-parsley}} and stir it in.",
-     "step_group": "Sauce"
-    },
-    {
-     "instruction": "Break the fish into large pieces in an oven dish.",
-     "step_group": "Assemble"
-    },
-    {
-     "instruction": "Pour the sauce over.",
-     "step_group": "Assemble"
-    },
-    {
-     "instruction": "Drain and mash the potatoes. Spread over the top.",
-     "step_group": "Assemble"
-    },
-    {
-     "instruction": "Grate {{ing:cheddar-cheese}} over. Bake 25 minutes.",
-     "duration_min": 25,
-     "step_group": "Assemble"
-    }
-   ]
-  },
-  {
-   "slug": "leek-potato-soup",
-   "name": "Leek and potato soup",
-   "cuisine": "British",
-   "budget_tier": "budget",
-   "default_slot": "lunch",
-   "default_serves": 4,
-   "dietary_tags": [
-    "vegetarian",
-    "gluten_free"
-   ],
-   "method_note": null,
-   "ingredients": [
-    {
-     "ref": "leek",
-     "quantity": 3,
-     "unit": "item"
-    },
-    {
-     "ref": "potato-medium",
-     "quantity": 3,
-     "unit": "item"
-    },
-    {
-     "ref": "onion-medium",
-     "quantity": 1,
-     "unit": "item"
-    },
-    {
-     "ref": "stock-vegetable",
-     "quantity": 1000,
-     "unit": "ml"
-    },
-    {
-     "ref": "butter-block",
-     "quantity": 40,
-     "unit": "g"
-    },
-    {
-     "ref": "double-cream",
-     "quantity": 60,
-     "unit": "ml"
-    }
-   ],
-   "steps": [
-    {
-     "instruction": "Slice {{ing:leek}} into rounds. Rinse them in a colander.",
-     "note": "Grit hides between the layers.",
-     "step_group": "Prep"
-    },
-    {
-     "instruction": "Peel and chop {{ing:potato-medium}} and {{ing:onion-medium}}.",
-     "step_group": "Prep"
-    },
-    {
-     "instruction": "Melt {{ing:butter-block}} in a large pan on a low heat.",
-     "step_group": "Soup"
-    },
-    {
-     "instruction": "Add the leeks and onion. Cook 10 minutes, until soft but not coloured.",
-     "duration_min": 10,
-     "step_group": "Soup"
-    },
-    {
-     "instruction": "Add the potatoes and {{ing:stock-vegetable}}.",
-     "step_group": "Soup"
-    },
-    {
-     "instruction": "Simmer 20 minutes, until the potato falls apart when pressed.",
-     "duration_min": 20,
-     "step_group": "Soup"
-    },
-    {
-     "instruction": "Blend until smooth.",
-     "note": "If using a stick blender, take the pan off the heat first.",
-     "step_group": "Soup"
-    },
-    {
-     "instruction": "Stir in {{ing:double-cream}}.",
-     "step_group": "To serve"
-    }
-   ]
-  },
-  {
-   "slug": "sausage-beans-chips",
-   "name": "Sausages, beans and chips",
-   "cuisine": "British",
-   "budget_tier": "budget",
-   "default_slot": "dinner",
-   "default_serves": 4,
-   "dietary_tags": [],
-   "method_note": "A whole meal from the freezer and a tin. No apology needed.",
-   "ingredients": [
-    {
-     "ref": "sausage-pork",
-     "quantity": 8,
-     "unit": "item"
-    },
-    {
-     "ref": "baked-beans",
-     "quantity": 1,
-     "unit": "item"
-    },
-    {
-     "ref": "potato-large",
-     "quantity": 4,
+     "ref": "egg-medium",
+     "quantity": 2,
      "unit": "item"
     },
     {
      "ref": "vegetable-oil",
-     "quantity": 30,
+     "quantity": 45,
      "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 300,
+     "unit": "g"
     }
    ],
    "steps": [
@@ -466,32 +794,394 @@
      "step_group": "Chips"
     },
     {
-     "instruction": "Toss the chips with {{ing:vegetable-oil}} on a baking tray.",
-     "step_group": "Chips"
-    },
-    {
-     "instruction": "Spread them out so they are not touching.",
+     "instruction": "Toss with {{ing:vegetable-oil}} and spread out on a tray.",
      "note": "Piled chips steam instead of crisping.",
      "step_group": "Chips"
     },
     {
-     "instruction": "Bake 30 minutes, turning once halfway.",
-     "duration_min": 30,
+     "instruction": "Bake 35 minutes, turning once.",
+     "duration_min": 35,
      "step_group": "Chips"
     },
     {
-     "instruction": "Put {{ing:sausage-pork}} on a second tray. Add them to the oven after 10 minutes.",
-     "step_group": "Sausages",
+     "instruction": "Put {{ing:flour-plain}} on one plate and {{ing:breadcrumbs-dried}} on another.",
+     "step_group": "Fish",
      "while_waiting": true
     },
     {
-     "instruction": "Heat {{ing:baked-beans}} in a small pan for 5 minutes.",
-     "duration_min": 5,
-     "step_group": "Beans"
+     "instruction": "Beat {{ing:egg-medium}} in a bowl.",
+     "step_group": "Fish"
     },
     {
-     "instruction": "Check the sausages are browned all over before serving.",
+     "instruction": "Coat {{ing:cod-fillet}} in flour, then egg, then crumbs.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Add to the oven for the last 18 minutes.",
+     "duration_min": 18,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Boil {{ing:peas-frozen}} for 4 minutes.",
+     "duration_min": 4,
      "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "welsh-rarebit",
+   "name": "Welsh rarebit",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "worcestershire-sauce",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the grill to high."
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} into a bowl."
+    },
+    {
+     "instruction": "Add {{ing:mustard-dijon}}, {{ing:worcestershire-sauce}} and {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Mix to a thick paste."
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} on one side under the grill."
+    },
+    {
+     "instruction": "Spread the paste on the untoasted side."
+    },
+    {
+     "instruction": "Grill 3 minutes, until bubbling and browned in patches.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pea-and-ham-soup",
+   "name": "Pea and ham soup",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "peas-frozen",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "ham-slice",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} small."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a large pan on a low heat."
+    },
+    {
+     "instruction": "Add the onion. Cook 8 minutes, until soft but not coloured.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}} and bring to a simmer."
+    },
+    {
+     "instruction": "Add {{ing:peas-frozen}}. Cook 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Blend until smooth.",
+     "note": "Take the pan off the heat first if using a stick blender."
+    },
+    {
+     "instruction": "Chop {{ing:ham-slice}} and stir it in."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} over the top."
+    }
+   ]
+  },
+  {
+   "slug": "bubble-and-squeak",
+   "name": "Bubble and squeak",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Built for leftovers. Any cooked veg works.",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cabbage-white",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and boil {{ing:potato-medium}} for 18 minutes. Drain and mash.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Shred {{ing:cabbage-white}} and boil 5 minutes. Drain well.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} small."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a frying pan on a medium heat."
+    },
+    {
+     "instruction": "Cook the onion 6 minutes, until soft.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Mix the mash, cabbage and onion. Season with {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Press into the pan. Cook 6 minutes, until browned underneath.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Turn it over in pieces. Cook 5 minutes more.",
+     "note": "It will break up. That is fine.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "scrambled-eggs-toast",
+   "name": "Scrambled eggs on toast",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Low heat and patience. High heat makes rubber.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crack {{ing:egg-medium}} into a bowl."
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} and {{ing:salt}}. Beat with a fork."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a pan on a LOW heat."
+    },
+    {
+     "instruction": "Pour the eggs in. Leave them 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir slowly, pushing the set egg into the middle."
+    },
+    {
+     "instruction": "Keep going 3 minutes, until softly set.",
+     "note": "Take them off looking slightly underdone.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} and spoon the eggs over."
+    }
+   ]
+  },
+  {
+   "slug": "sausage-casserole",
+   "name": "Sausage casserole",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Brown {{ing:sausage-pork}} all over, about 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Lift them out and set aside."
+    },
+    {
+     "instruction": "Chop {{ing:onion-large}} and {{ing:carrot-medium}}. Add to the pan."
+    },
+    {
+     "instruction": "Cook 8 minutes, until softening.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:paprika}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-chicken}}."
+    },
+    {
+     "instruction": "Put the sausages back. Simmer 25 minutes.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}} and add them. Cook 5 minutes.",
+     "duration_min": 5
     }
    ]
   }

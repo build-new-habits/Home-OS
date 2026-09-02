@@ -1,0 +1,361 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Middle Eastern",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "shakshuka",
+   "name": "Shakshuka",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "The whites should be set and the yolks soft.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the onion and pepper 10 minutes, until soft.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}} and {{ing:paprika}}. Stir 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 12 minutes, until thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Make four dips. Crack {{ing:egg-medium}} into them."
+    },
+    {
+     "instruction": "Cover and cook 7 minutes, until the whites set.",
+     "duration_min": 7
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} over."
+    }
+   ]
+  },
+  {
+   "slug": "falafel-bowl",
+   "name": "Chickpea falafel bowl",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Dried chickpeas, not tinned. Tinned ones fall apart.",
+   "ingredients": [
+    {
+     "ref": "chickpeas-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "coriander-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "hummus",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:chickpeas-dry}} in cold water overnight.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Drain them well and pat dry.",
+     "step_group": "Falafel"
+    },
+    {
+     "instruction": "Blitz with {{ing:onion-medium}}, {{ing:garlic-clove}} and {{ing:fresh-coriander}}.",
+     "step_group": "Falafel"
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}}, {{ing:coriander-ground}} and {{ing:flour-plain}}.",
+     "step_group": "Falafel"
+    },
+    {
+     "instruction": "Shape into small patties. Chill 20 minutes.",
+     "note": "Chilling stops them breaking up in the pan.",
+     "duration_min": 20,
+     "step_group": "Falafel"
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} 4 minutes a side, until deep brown.",
+     "duration_min": 8,
+     "step_group": "Falafel"
+    },
+    {
+     "instruction": "Slice {{ing:cucumber}}.",
+     "step_group": "Bowl"
+    },
+    {
+     "instruction": "Serve with {{ing:hummus}} and the cucumber.",
+     "step_group": "Bowl"
+    }
+   ]
+  },
+  {
+   "slug": "lamb-koftas",
+   "name": "Lamb koftas",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "coriander-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 20,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:onion-medium}} and squeeze out the liquid.",
+     "note": "Wet onion makes koftas fall apart."
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and {{ing:fresh-parsley}} finely."
+    },
+    {
+     "instruction": "Mix with {{ing:lamb-mince}}, {{ing:cumin-ground}} and {{ing:coriander-ground}}."
+    },
+    {
+     "instruction": "Shape into eight sausages around your hand."
+    },
+    {
+     "instruction": "Chill 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} 10 minutes, turning, until browned all over.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Warm {{ing:pitta-bread}} and split them open."
+    }
+   ]
+  },
+  {
+   "slug": "tabbouleh",
+   "name": "Herb and couscous salad",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "couscous-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl. Pour over 250 ml boiling water."
+    },
+    {
+     "instruction": "Cover and leave 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} finely.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:tomato-medium}}, {{ing:cucumber}} and {{ing:spring-onion}} small."
+    },
+    {
+     "instruction": "Fluff the couscous with a fork."
+    },
+    {
+     "instruction": "Mix everything together."
+    },
+    {
+     "instruction": "Squeeze {{ing:lemon}} in and add {{ing:olive-oil}}."
+    }
+   ]
+  }
+ ]
+}

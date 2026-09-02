@@ -1,0 +1,613 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Budget",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "lentil-cottage-pie",
+   "name": "Lentil cottage pie",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "lentils-green-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and boil 18 minutes. Drain.",
+     "duration_min": 18,
+     "step_group": "Mash"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}}.",
+     "step_group": "Filling",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cook them in half the {{ing:olive-oil}} 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add {{ing:lentils-green-dry}}, {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Simmer 30 minutes, until the lentils are tender.",
+     "duration_min": 30,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Mash the potatoes with the rest of the oil.",
+     "step_group": "Mash"
+    },
+    {
+     "instruction": "Spread the mash over the lentils in a dish.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Bake 25 minutes.",
+     "duration_min": 25,
+     "step_group": "Assemble"
+    }
+   ]
+  },
+  {
+   "slug": "baked-bean-pasta",
+   "name": "Baked bean pasta",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Cheap, fast, and better than it sounds.",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "worcestershire-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:penne-dry}} for the time on the packet.",
+     "duration_min": 11
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cook it in {{ing:vegetable-oil}} 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:baked-beans}} and {{ing:worcestershire-sauce}}."
+    },
+    {
+     "instruction": "Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Drain the pasta and stir it through."
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} over."
+    }
+   ]
+  },
+  {
+   "slug": "potato-and-onion-soup",
+   "name": "Potato and onion soup",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 3,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-large}} and peel and chop {{ing:potato-large}}."
+    },
+    {
+     "instruction": "Put a large pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 10 minutes, until soft.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the potato and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, until the potato falls apart.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Blend until smooth. Add {{ing:black-pepper-ground}}."
+    }
+   ]
+  },
+  {
+   "slug": "egg-and-chips",
+   "name": "Egg and chips",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-large}} into chips, skin on."
+    },
+    {
+     "instruction": "Toss with {{ing:vegetable-oil}} and spread on a tray."
+    },
+    {
+     "instruction": "Bake 35 minutes, turning once.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Heat {{ing:baked-beans}} in a pan 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Fry {{ing:egg-medium}} to your liking."
+    }
+   ]
+  },
+  {
+   "slug": "tomato-rice",
+   "name": "One-pan tomato rice",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One pan. Nothing to drain.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:paprika}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:rice-basmati-dry}}. Stir to coat."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Cover and cook 15 minutes on a low heat.",
+     "note": "Do not lift the lid.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:peas-frozen}}. Cover and rest 5 minutes.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "carrot-lentil-soup",
+   "name": "Carrot and lentil soup",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "carrot-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-large}}."
+    },
+    {
+     "instruction": "Put a pan on a medium heat with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cook the onion 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:cumin-ground}}. Stir 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the carrots, {{ing:lentils-red-dry}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, until everything is soft.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Blend until smooth."
+    }
+   ]
+  },
+  {
+   "slug": "cheesy-baked-potatoes",
+   "name": "Cheesy potato bake",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and slice thinly."
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}} thinly."
+    },
+    {
+     "instruction": "Butter a dish with {{ing:butter-block}}."
+    },
+    {
+     "instruction": "Layer the potato and onion with {{ing:dried-thyme}}."
+    },
+    {
+     "instruction": "Pour {{ing:milk-whole}} over."
+    },
+    {
+     "instruction": "Cover with foil. Bake 50 minutes.",
+     "duration_min": 50
+    },
+    {
+     "instruction": "Uncover, grate {{ing:cheddar-cheese}} on top, bake 20 minutes.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "frittata",
+   "name": "Potato and pea frittata",
+   "cuisine": "Budget",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Good hot or cold. Half of it is tomorrow's lunch.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}} and cut into small cubes."
+    },
+    {
+     "instruction": "Boil 10 minutes, until tender. Drain.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in an ovenproof pan. Cook the onion 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add the potatoes and {{ing:peas-frozen}}. Warm through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} and pour over."
+    },
+    {
+     "instruction": "Cook on a low heat 8 minutes, until the edges set.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}} over. Grill 4 minutes to set the top.",
+     "duration_min": 4
+    }
+   ]
+  }
+ ]
+}

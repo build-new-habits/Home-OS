@@ -1,0 +1,269 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Caribbean",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "rice-and-peas",
+   "name": "Rice and peas",
+   "cuisine": "Caribbean",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 3,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:kidney-beans-tinned}}."
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Put {{ing:coconut-milk-tinned}} in a pan with 300 ml water."
+    },
+    {
+     "instruction": "Add the beans, spring onion, garlic and {{ing:dried-thyme}}."
+    },
+    {
+     "instruction": "Bring to a simmer. Cook 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:rice-basmati-dry}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Cover and cook 15 minutes on a low heat.",
+     "note": "Do not lift the lid. The steam is doing the work.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Rest 5 minutes, then fluff with a fork.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "jerk-style-chicken",
+   "name": "Spiced grilled chicken",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Marinate overnight if you can. Two hours will do.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Blitz {{ing:spring-onion}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}.",
+     "step_group": "Marinade"
+    },
+    {
+     "instruction": "Add {{ing:chilli-fresh}}, {{ing:dried-thyme}} and {{ing:sugar-soft-brown}}.",
+     "step_group": "Marinade"
+    },
+    {
+     "instruction": "Add {{ing:soy-sauce}}, {{ing:vegetable-oil}} and the juice of {{ing:lime}}.",
+     "step_group": "Marinade"
+    },
+    {
+     "instruction": "Coat {{ing:chicken-thigh-boneless}} in it.",
+     "step_group": "Marinade"
+    },
+    {
+     "instruction": "Cover and chill at least 2 hours.",
+     "duration_min": 120,
+     "step_group": "Marinade"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Lay the chicken on a tray. Roast 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Turn the grill on for the last 4 minutes to char the edges.",
+     "duration_min": 4,
+     "step_group": "Cook"
+    }
+   ]
+  },
+  {
+   "slug": "saltfish-style-fritters",
+   "name": "Fish fritters",
+   "cuisine": "Caribbean",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "baking-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 180,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Poach {{ing:cod-fillet}} in simmering water 6 minutes. Drain and flake.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:spring-onion}} and {{ing:chilli-fresh}} finely."
+    },
+    {
+     "instruction": "Mix {{ing:flour-plain}} and {{ing:baking-powder}} in a bowl."
+    },
+    {
+     "instruction": "Add {{ing:water}} slowly to make a thick batter."
+    },
+    {
+     "instruction": "Stir in the fish, spring onion and chilli."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a medium heat."
+    },
+    {
+     "instruction": "Drop in spoonfuls. Fry 3 minutes a side, until golden.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Lift onto kitchen paper."
+    }
+   ]
+  }
+ ]
+}

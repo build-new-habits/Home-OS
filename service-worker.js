@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v63
+// service-worker.js — 01 Sep 2026 v64
+// v64: recipe library 10 -> 100 across 14 cuisine files. Only index.json is
+// precached; the cuisine files are still fetched on demand, which is why
+// growing the library tenfold costs the precache nothing.
 // v63 (Phase 25): ONE new path, js/data/staples.js. Also bumped for
 // food_reference.json v2 (241 entries, +31 drinks and non-food),
 // data/pantry.js v5, data/listSync.js v2, views/pantry.js v11,
@@ -170,7 +173,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v63';
+const CACHE_NAME = 'home-os-shell-v64';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
