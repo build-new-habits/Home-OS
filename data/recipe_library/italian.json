@@ -1,0 +1,523 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Italian",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "spaghetti-puttanesca",
+   "name": "Spaghetti puttanesca",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The sauce should look thick, not watery. Give it the full time.",
+   "ingredients": [
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "anchovy-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of water on a high heat.",
+     "note": "It takes a while to boil, so it goes on first.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide frying pan on a low heat. Add {{ing:olive-oil}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} finely.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add the garlic to the oil. Cook 2 minutes, until it smells sweet.",
+     "note": "Low heat. Browned garlic turns bitter.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:anchovy-fillet}}. Stir 2 minutes, until they fall apart.",
+     "note": "They dissolve into the oil. This is meant to happen.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:olives-pitted}} and {{ing:capers}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Turn the heat to medium. Cook 12 minutes, until it looks thick rather than watery.",
+     "duration_min": 12,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:spaghetti-dry}} to the boiling water. Cook for the time on the packet.",
+     "duration_min": 10,
+     "step_group": "Pasta",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain the spaghetti. Keep a mugful of the water.",
+     "step_group": "Pasta"
+    },
+    {
+     "instruction": "Tip the spaghetti into the sauce. Stir.",
+     "note": "If it looks dry, add the pasta water a splash at a time.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "tomato-basil-pasta",
+   "name": "Tomato and basil pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of water on a high heat.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a frying pan on a low heat. Add {{ing:olive-oil}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} finely. Add to the oil.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook 2 minutes, until it smells sweet.",
+     "note": "Do not let it brown.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:salt}} and {{ing:sugar-caster}}.",
+     "note": "The sugar takes the sharp edge off tinned tomatoes.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook 15 minutes on a medium heat, until thick.",
+     "duration_min": 15,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}} to the boiling water. Cook for the time on the packet.",
+     "duration_min": 11,
+     "step_group": "Pasta",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain the pasta.",
+     "step_group": "Pasta"
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} into the sauce. Stir once.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Tip the pasta into the sauce. Stir to coat.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "mushroom-risotto",
+   "name": "Mushroom risotto",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Risotto needs stirring. Put a podcast on.",
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:stock-vegetable}} in a pan. Keep it on a low heat.",
+     "note": "Cold stock stops the rice cooking each time you add it.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} finely.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat. Add {{ing:olive-oil}}.",
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add the onion. Cook 6 minutes, until soft and see-through.",
+     "duration_min": 6,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add the mushrooms. Cook 5 minutes, until they release their liquid.",
+     "duration_min": 5,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir 1 minute, until the grains look glassy at the edges.",
+     "duration_min": 1,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add a ladle of hot stock. Stir until it has almost gone.",
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Keep adding stock a ladle at a time, stirring, for about 18 minutes.",
+     "note": "The rice should be soft with a slight bite. You may not need all the stock.",
+     "duration_min": 18,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Take the pan off the heat. Stir in {{ing:butter-block}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} in. Stir once and rest 2 minutes.",
+     "duration_min": 2,
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-milanese",
+   "name": "Chicken milanese",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:chicken-breast-skinless}} between two sheets of baking paper.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Bash each one flat with a rolling pin, to about 1 cm thick.",
+     "note": "Even thickness is what stops the thin end drying out.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put {{ing:flour-plain}} on a plate. Add {{ing:salt}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} in a shallow bowl.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put {{ing:breadcrumbs-dried}} on a third plate.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Coat each piece in flour, then egg, then breadcrumbs.",
+     "note": "Press the crumbs on firmly.",
+     "step_group": "Coat"
+    },
+    {
+     "instruction": "Put a large frying pan on a medium heat. Add {{ing:vegetable-oil}}.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Fry two pieces for 4 minutes, until deep golden underneath.",
+     "duration_min": 4,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Turn them over. Fry 4 minutes more.",
+     "note": "The chicken is done when it is white all the way through.",
+     "duration_min": 4,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Lift onto kitchen paper. Fry the other two.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Cut {{ing:lemon}} into wedges and serve alongside.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "minestrone",
+   "name": "Minestrone",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Thick soup, not broth. Add water at the end if you want it looser.",
+   "ingredients": [
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:celery-stick}} small.",
+     "note": "Small pieces cook evenly and eat better in a spoon.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}.",
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Add the chopped vegetables. Cook 10 minutes, until softened.",
+     "duration_min": 10,
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}.",
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Bring to a simmer. Small bubbles, not a rolling boil.",
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Cook 15 minutes.",
+     "duration_min": 15,
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Drain {{ing:cannellini-beans-tinned}} and add them.",
+     "step_group": "Soup"
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}. Cook 10 minutes more.",
+     "duration_min": 10,
+     "step_group": "Soup"
+    }
+   ]
+  }
+ ]
+}

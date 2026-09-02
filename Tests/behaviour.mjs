@@ -50,6 +50,7 @@ const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_W
 const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
 const { servingsForEntry, describeDiners, membersFor, remainingMembers, dietaryConflicts } = await import(`${REPO}/js/data/mealPlan.js`);
 const { scoreMeals, classifyIngredient, filterByIngredient, describeGaps, describeAssumptions, STATE, BAND } = await import(`${REPO}/js/data/pantryMatch.js`);
+const { filterRecipes, describeAdd } = await import(`${REPO}/js/data/recipeLibrary.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -1067,6 +1068,48 @@ eq('no unknowns means no footnote at all',
 eq('filtering by ingredient narrows the list',
   filterByIngredient(ranked, 'capers').length, 1);
 eq('a one-letter term does not filter', filterByIngredient(ranked, 'c').length, ranked.length);
+
+console.log('');
+
+// ============ Phase 16: recipe library ============
+console.log('\nFiltering the library');
+
+const libRecipes = [
+  { slug: 'a', name: 'Spaghetti puttanesca', cuisine: 'Italian', budget_tier: 'budget',
+    default_slot: 'dinner', dietary_tags: [],
+    ingredients: [{ ref: 'chopped-tomatoes-tinned' }, { ref: 'spaghetti-dry' }] },
+  { slug: 'b', name: 'Dhal', cuisine: 'Indian', budget_tier: 'budget',
+    default_slot: 'dinner', dietary_tags: ['vegetarian', 'vegan', 'gluten_free'],
+    ingredients: [{ ref: 'lentils-red-dry' }] },
+  { slug: 'c', name: 'Leek and potato soup', cuisine: 'British', budget_tier: 'budget',
+    default_slot: 'lunch', dietary_tags: ['vegetarian'],
+    ingredients: [{ ref: 'leek' }] }
+];
+
+eq('no filters returns everything', filterRecipes(libRecipes, {}).length, 3);
+eq('cuisine narrows', filterRecipes(libRecipes, { cuisine: 'Italian' }).length, 1);
+eq('slot narrows', filterRecipes(libRecipes, { default_slot: 'lunch' }).length, 1);
+eq('filters combine', filterRecipes(libRecipes, { cuisine: 'Indian', default_slot: 'dinner' }).length, 1);
+
+// Asking for vegan means vegan, not "vegan or vegetarian". A recipe must
+// carry EVERY tag asked for, or the filter would serve someone a soup with
+// cream in it.
+eq('a dietary filter requires the tag', filterRecipes(libRecipes, { dietary: ['vegan'] }).length, 1);
+eq('several dietary tags must ALL be present',
+  filterRecipes(libRecipes, { dietary: ['vegan', 'gluten_free'] }).length, 1);
+eq('a vegetarian-only recipe is excluded from a vegan search',
+  filterRecipes(libRecipes, { dietary: ['vegan'] })[0].slug, 'b');
+
+eq('search matches the name', filterRecipes(libRecipes, { term: 'puttanesca' }).length, 1);
+eq('search also matches an ingredient', filterRecipes(libRecipes, { term: 'leek' }).length, 1);
+eq('a one-letter term does not filter', filterRecipes(libRecipes, { term: 'p' }).length, 3);
+
+console.log('\nAdding says what it did');
+const added = describeAdd({ ok: true, data: { name: 'Puttanesca' }, reused: 3, created: 4, steps: 11 });
+check('the sentence names the recipe', added.includes('Puttanesca'));
+check('and says what was reused', added.includes('3'));
+check('and what was created', added.includes('4'));
+check('a failed add produces nothing', describeAdd({ ok: false }) === '');
 
 console.log('');
 

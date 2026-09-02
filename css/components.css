@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v31 */
+/* css/components.css — 01 Sep 2026 v32 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2483,6 +2483,72 @@ body.sheet-open {
 }
 
 .cook-row .btn {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}
+
+/* ---- Phase 16: the recipe library ------------------------------------ */
+
+.library-section {
+  margin-top: var(--space-4, 1rem);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.library-section summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.library-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.library-filters .field {
+  flex: 1 1 45%;
+  min-width: 8rem;
+}
+
+.library-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.library-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.library-row:last-child { border-bottom: none; }
+
+.library-row-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.library-row-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Marked, not hidden. Seeing that you already own it is information;
+   making it vanish just looks like a bug. */
+.library-row-owned {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.library-row .btn {
   align-self: flex-start;
   margin-top: var(--space-2);
 }

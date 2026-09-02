@@ -1,4 +1,9 @@
-// service-worker.js — 01 Sep 2026 v53
+// service-worker.js — 01 Sep 2026 v54
+// v54 (Phase 16): TWO new paths — js/data/recipeLibrary.js and
+// data/recipe_library/index.json. The CUISINE FILES ARE NOT PRECACHED:
+// the precache is all-or-nothing, and putting a growing library inside it
+// would mean one bad path breaks the entire app. They are fetched on
+// demand when the library panel is opened.
 // v53 (Phase 14): ONE new path, js/data/pantryMatch.js. Also bumped for
 // views/meals.js v18 and components.css v31.
 // v52 (Phase 20): no path changes. Bumped for who-is-eating —
@@ -139,7 +144,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v53';
+const CACHE_NAME = 'home-os-shell-v54';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -185,7 +190,9 @@ const SHELL_FILES = [
   './js/data/foodReference.js',
   './js/data/mealSteps.js',
   './js/data/pantryMatch.js',
+  './js/data/recipeLibrary.js',
   './data/food_reference.json',
+  './data/recipe_library/index.json',
   './js/data/foodClaim.js',
   './js/data/restock.js',
   './js/components/bottomNav.js',

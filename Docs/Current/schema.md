@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v13
+01 Sep 2026 v14
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,61 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0l. Revision 14 — the recipe library (01 Sep 2026)
+
+Five columns on `meals`, so a browsable catalogue can be filtered and so
+adding a recipe twice is impossible.
+
+| Column | Type | Notes |
+|---|---|---|
+| cuisine | text | free text with a suggested list; **deliberately not a CHECK** |
+| budget_tier | text | check in ('budget','everyday','special') |
+| default_slot | text | check in ('breakfast','lunch','dinner','snack') |
+| dietary_tags | text[] | not null default '{}' |
+| library_ref | text | the seed slug; null for your own recipes |
+
+`cuisine` carries no CHECK on purpose. The set of cuisines is open, and a
+constraint you have to migrate every time you cook something new is a
+constraint working against you.
+
+`dietary_tags` says what a meal **is**. Absence is not a claim that it is
+not — see revision 13's dietary rule.
+
+### The library is not in the database
+
+It ships as static JSON under `data/recipe_library/`: free to serve at any
+number of users, cacheable, offline-capable, and needing no RLS reasoning.
+Database rows would cost a read per browse per user for content identical
+for everyone.
+
+**Nothing is bulk-loaded.** Seeding 300 recipes would create roughly 1,200
+`foods` rows for things you will never buy, wrecking the shortfall diff and
+burying the pantry. A recipe becomes rows only when you tap add.
+
+### Ingredient resolution order, on add
+
+1. An existing food with the same name — **this is what makes your already
+   scanned tin of tomatoes get reused rather than duplicated.** Phase 11's
+   principle applied to seeding; skipping it would reintroduce the exact
+   defect Phase 11 fixed.
+2. The reference file (revision 10), creating the food complete with macros
+   and `source = 'reference'`.
+3. A bare row from the recipe's own wording.
+
+Adding needs connectivity: a meal insert must return a real id before its
+ingredients and steps can reference it, so queueing it offline would orphan
+the children.
+
+### Gate 8
+
+`Tests/library.mjs` validates every seeded recipe against
+`RECIPE_STEP_STYLE.md` and against the reference file. A malformed recipe
+fails the build rather than reaching a phone.
+
+Migration: `migrations/014_recipe_library.sql`.
 
 ---
 
@@ -680,6 +735,11 @@ this column exists to prevent.
 |---|---|---|
 | name | text | not null |
 | method_note | text | nullable — the one-line caveat belonging to no single step (revision 11) |
+| cuisine | text | nullable; free text, no CHECK — the set is open (revision 14) |
+| budget_tier | text | nullable; check in ('budget','everyday','special') (revision 14) |
+| default_slot | text | nullable; check in ('breakfast','lunch','dinner','snack') (revision 14) |
+| dietary_tags | text[] | not null default '{}'; what the meal IS (revision 14) |
+| library_ref | text | nullable; seed slug, stops a recipe being added twice (revision 14) |
 | default_serves | int | not null; default 4 |
 | is_favourite | boolean | not null; default false (revision 5) |
 | meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
