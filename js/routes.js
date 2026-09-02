@@ -1,4 +1,4 @@
-// js/routes.js — 01 Sep 2026 v3
+// js/routes.js — 01 Sep 2026 v4
 // Declarative route registry.
 //
 // ---- The rule is now APPEND-ONLY, not write-once ----
@@ -115,6 +115,12 @@ export const routes = [
     path: 'plan-week',
     title: 'Plan the week',
     load: () => import('./views/planWeek.js')
+  },
+  // Phase 27. Appended, per the append-only rule.
+  {
+    path: 'first-run',
+    title: 'Getting started',
+    load: () => import('./views/firstRun.js')
   }
 ];
 

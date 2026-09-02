@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v37 */
+/* css/components.css — 01 Sep 2026 v38 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2755,4 +2755,46 @@ body.sheet-open {
   flex-wrap: wrap;
   gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+/* ---- Phase 27: first run --------------------------------------------- */
+
+.first-run-body { min-height: 12rem; }
+
+.first-run-pick { margin-bottom: var(--space-2); }
+
+/* A recipe choice is a target you tap while half-reading it, so the whole
+   card is the control rather than a link inside it. */
+.first-run-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  min-height: var(--tap-min);
+  text-align: left;
+  padding: var(--space-3);
+}
+
+.first-run-recipe-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.first-run-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.first-run-days .btn {
+  flex: 1 1 8rem;
+  min-height: var(--tap-min);
+}
+
+/* Dismissing forever is offered on every step, not buried at the end. */
+.first-run-dismiss {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-3);
 }

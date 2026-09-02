@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v58
+// service-worker.js — 01 Sep 2026 v59
+// v59 (Phase 27): ONE new path, js/views/firstRun.js. Also bumped for
+// routes.js v4, navConfig.js v7, views/dashboard.js v5,
+// views/settings.js v9, data/settings.js v7, components.css v38.
 // v58 (Phase 23): no path changes. Bumped for the pantry restructure —
 // views/pantry.js v9 and components.css v37.
 // v57 (Phase 22): ONE new path, js/data/listSync.js. Also bumped for
@@ -154,7 +157,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v58';
+const CACHE_NAME = 'home-os-shell-v59';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

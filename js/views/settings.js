@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v8
+// js/views/settings.js — 01 Sep 2026 v9
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -621,6 +621,23 @@ export function render(mountEl) {
     const householdSlot = document.createElement('div');
     bodyContainer.appendChild(householdSlot);
     loadHousehold(householdSlot);
+
+    // Phase 27. People forget, and re-finding it should not require
+    // reinstalling. Offered plainly, never as a prompt to finish something.
+    const helpFieldset = document.createElement('fieldset');
+    const helpLegend = document.createElement('legend');
+    helpLegend.textContent = 'Getting started';
+    helpFieldset.appendChild(helpLegend);
+    const helpLink = document.createElement('a');
+    helpLink.className = 'btn';
+    helpLink.href = '#/first-run';
+    helpLink.textContent = 'Walk me through it again';
+    helpFieldset.appendChild(helpLink);
+    const helpHint = document.createElement('p');
+    helpHint.className = 'field-hint';
+    helpHint.textContent = 'Plans one meal with you, start to finish. Nothing is reset.';
+    helpFieldset.appendChild(helpHint);
+    bodyContainer.appendChild(helpFieldset);
 
     const accountFieldset = document.createElement('fieldset');
     const accountLegend = document.createElement('legend');

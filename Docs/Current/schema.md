@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v15
+01 Sep 2026 v16
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,24 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0n. Revision 16 — onboarding (01 Sep 2026)
+
+`user_settings.onboarded_at timestamptz`, nullable, **no default**.
+
+Deliberately not localStorage. Onboarding state belongs to the person, not
+the device: reinstalling or switching phones should not put you back through
+it, and a second household member joining **should** get their own first run
+rather than inheriting yours.
+
+Null means "not yet", which is the honest reading for every existing row and
+every new account. A default would make every account read as finished.
+
+Used only to stop offering. **Never to nag.**
+
+Migration: `migrations/016_onboarding.sql`.
 
 ---
 
@@ -847,6 +865,7 @@ the list by creating (or matching) a `foods` row with the right `category` —
 | contrast_mode | text | default 'standard' |
 | brightness_pref | text | default 'standard' |
 | density | text | not null; check in ('comfortable','compact'); default 'comfortable' (revision 15) |
+| onboarded_at | timestamptz | nullable, no default. Null = not yet (revision 16) |
 | weight_unit_display | text | check in ('stone_lb','kg'); default 'stone_lb' |
 | notification_prefs | jsonb | default '{}'::jsonb — every notification type off by default (principle 8) |
 

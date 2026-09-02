@@ -1,4 +1,4 @@
-// js/views/dashboard.js — 01 Sep 2026 v4
+// js/views/dashboard.js — 01 Sep 2026 v5
 // Phase 9: what is actually happening today.
 //
 // v1 was a link list. v2 added one-tap water. This is the screen the whole
@@ -38,7 +38,8 @@ import { formatMl } from '../lib/units.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { readPlanProgress } from './planWeek.js';
-import { PRIMARY_ACTION } from '../navConfig.js';
+import { PRIMARY_ACTION, FIRST_RUN_ACTION } from '../navConfig.js';
+import { getState } from '../lib/store.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -73,21 +74,49 @@ export function render(mountEl) {
   // Phase 9 flagged that this screen was becoming a wall of tiles. The
   // answer is not fewer tiles, it is one obvious thing to do at the top —
   // a task, not a menu. Everything below stays exactly where it was.
-  {
+  const primaryWrap = el('div');
+  mountEl.appendChild(primaryWrap);
+
+  /**
+   * The one obvious thing to do.
+   *
+   * Until an account has been through the first run, that is the first run.
+   * Phase 27 deliberately does NOT redirect: forcing someone into a wizard
+   * they did not ask for is hostile, and an offer they can ignore is the
+   * same feature without the hostility.
+   */
+  function renderPrimary(settings) {
+    primaryWrap.replaceChildren();
+    const onboarded = Boolean(settings && settings.onboarded_at);
+
+    if (!onboarded) {
+      primaryWrap.appendChild(el('a', {
+        class: 'btn btn-primary btn-large dashboard-primary',
+        href: `#/${FIRST_RUN_ACTION.path}`,
+        text: FIRST_RUN_ACTION.label
+      }));
+      primaryWrap.appendChild(el('p', {
+        class: 'field-hint',
+        text: 'About a minute. You will end up with a meal planned and a shopping list.'
+      }));
+      return;
+    }
+
     const resumed = readPlanProgress();
-    const primary = el('a', {
+    primaryWrap.appendChild(el('a', {
       class: 'btn btn-primary btn-large dashboard-primary',
       href: `#/${PRIMARY_ACTION.path}`,
       text: resumed ? PRIMARY_ACTION.resumeLabel : PRIMARY_ACTION.label
-    });
-    mountEl.appendChild(primary);
+    }));
     if (resumed) {
-      mountEl.appendChild(el('p', {
+      primaryWrap.appendChild(el('p', {
         class: 'field-hint',
         text: `You were on step ${resumed.stepIndex + 1} of 4. Nothing was lost.`
       }));
     }
   }
+
+  renderPrimary(getState().settings);
 
   /**
    * A section that starts hidden and only appears once it has something to

@@ -1,4 +1,5 @@
-// js/navConfig.js — 01 Sep 2026 v6
+// js/navConfig.js — 01 Sep 2026 v7
+// v7: adds FIRST_RUN_ACTION.
 // v6: adds PRIMARY_ACTION — the one task at the top of the dashboard.
 // v5: the foods library is its own page under Kitchen.
 // v4: the weekly plan is its own page under Kitchen.
@@ -58,6 +59,17 @@ export const PRIMARY_ACTION = {
   path: 'plan-week',
   label: 'Plan the week',
   resumeLabel: 'Carry on planning the week'
+};
+
+/**
+ * Offered instead of PRIMARY_ACTION until an account has been through the
+ * first run. Declared here rather than hardcoded in the view for the same
+ * reason as PRIMARY_ACTION: navigation stays checkable, and the a11y gate
+ * caught exactly this when a link was hardcoded in Phase 24.
+ */
+export const FIRST_RUN_ACTION = {
+  path: 'first-run',
+  label: 'Show me how this works'
 };
 
 export const DASHBOARD_LINKS = [

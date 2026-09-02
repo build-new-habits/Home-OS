@@ -728,7 +728,8 @@ const reachable = new Set([
   ...navMod.DASHBOARD_LINKS.map((i) => i.path),
   ...navMod.HEALTH_PAGES.map((i) => i.path),
   ...navMod.KITCHEN_PAGES.map((i) => i.path),
-  navMod.PRIMARY_ACTION.path
+  navMod.PRIMARY_ACTION.path,
+  navMod.FIRST_RUN_ACTION.path
 ]);
 const orphans = routesMod.routes.map((r) => r.path).filter((p) => !reachable.has(p));
 check('every route is reachable from the nav bar or a hub',
@@ -979,6 +980,37 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   check('plan-week: leaving is offered as a normal option, not a cancel',
     [...mount.querySelectorAll('button')].some((b) => /finish later/i.test(b.textContent))
     && ![...mount.querySelectorAll('button')].some((b) => /^cancel$/i.test(b.textContent)));
+
+  if (typeof teardown === 'function') teardown();
+  mount.remove();
+}
+
+// ---- Phase 27: first run ------------------------------------------------
+// A first-run flow is where an app most easily becomes coercive. These
+// assertions are about that, not about layout.
+{
+  const mod = await import(pathToFileURL(path.join(REPO, 'js/views/firstRun.js')).href);
+  const mount = document.createElement('div');
+  document.body.appendChild(mount);
+  const teardown = mod.render(mount);
+  await new Promise((r) => setTimeout(r, 30));
+
+  check('first run: exactly one h1', mount.querySelectorAll('h1').length === 1);
+  check('first run: the heading is focusable so focus can move on each step',
+    mount.querySelector('h1').getAttribute('tabindex') === '-1');
+  check('first run: position is stated in words',
+    /step \d+ of \d+/i.test(mount.textContent));
+  check('first run: no progress bar',
+    mount.querySelector('progress, [role="progressbar"]') === null);
+  check('first run: skippable from the very first step',
+    [...mount.querySelectorAll('button')].some((b) => /skip/i.test(b.textContent)));
+  // Dismissing forever must be available immediately, not buried at the end
+  // after someone has already sat through it.
+  check('first run: dismissible forever from the first step',
+    !!mount.querySelector('.first-run-dismiss'));
+  // Nothing here may imply you are behind for skipping.
+  check('first run: no language implying you are behind',
+    !/you should|you need to|don't forget|incomplete|finish setting/i.test(mount.textContent));
 
   if (typeof teardown === 'function') teardown();
   mount.remove();
