@@ -42,24 +42,7 @@ import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.j
 import { getHousehold } from '../data/household.js';
 import { emptyState } from '../components/emptyState.js';
 
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
-function field(labelText, inputEl, hintEl) {
-  const wrap = el('div', { class: 'field' });
-  wrap.append(el('label', { for: inputEl.id, text: labelText }), inputEl);
-  if (hintEl) wrap.appendChild(hintEl);
-  return wrap;
-}
-
+import { el, field } from '../lib/dom.js';
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }

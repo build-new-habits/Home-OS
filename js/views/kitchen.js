@@ -27,17 +27,7 @@ import { listStock, useSoon, needsAmount } from '../data/pantry.js';
 import { listItems as listShoppingItems } from '../data/shopping.js';
 import { icon } from '../lib/icons.js';
 
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
+import { el } from '../lib/dom.js';
 /** Monday-first index of today, matching mealPlan.DAYS. */
 function todayDayIndex() {
   const day = new Date().getDay(); // 0 = Sunday

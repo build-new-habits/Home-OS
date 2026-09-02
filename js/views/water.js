@@ -32,6 +32,9 @@ import {
   logWater, totalForDate, listForDate, GLASS_ML, DAILY_TARGET_ML
 } from '../data/water.js';
 
+// NOT the shared el() from lib/dom.js. This one has no null/undefined
+// guard. Harmless here, but not provably equivalent, so it was left alone
+// in Phase 29 rather than unified — see lib/dom.js.
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(props).forEach(([k, v]) => {

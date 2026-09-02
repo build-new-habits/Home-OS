@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v61
+// service-worker.js — 01 Sep 2026 v62
+// v62 (Phase 29): ONE new path, js/lib/dom.js. Twelve views changed to
+// import from it rather than carrying their own copy.
 // v61 (Phase 28, part two): no path changes. Bumped for the visual pass —
 // lib/icons.js v2, views/health.js v3, kitchen.js v3, chores.js v5,
 // pantry.js v10, components.css v40.
@@ -164,7 +166,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v61';
+const CACHE_NAME = 'home-os-shell-v62';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -190,6 +192,7 @@ const SHELL_FILES = [
   './js/lib/dates.js',
   './js/lib/units.js',
   './js/lib/icons.js',
+  './js/lib/dom.js',
   './js/lib/shortfall.js',
   './js/lib/rrule.js',
   './js/lib/barcode.js',

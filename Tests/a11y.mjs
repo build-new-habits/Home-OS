@@ -985,6 +985,35 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Phase 29: no new copies of the shared helpers ---------------------
+// Fifteen views each had their own el(). Twelve were identical and moved to
+// lib/dom.js; three genuinely differ and are marked as such in place. This
+// stops a sixteenth copy appearing by habit.
+{
+  // el(): weight, signin and water have genuinely different behaviour.
+  // field(): weight.js has a DIFFERENT FUNCTION that happens to share the
+  //   name — different signature, builds its own input, and wires
+  //   aria-describedby for a hint and an error. Not a duplicate.
+  // meals.js keeps documented variants of field and selectFrom.
+  const ALLOWED_EL = new Set(['weight.js', 'signin.js', 'water.js']);
+  const ALLOWED_OTHER = new Set(['meals.js', 'weight.js']);
+  const viewsDir = path.join(REPO, 'js/views');
+  const strays = [];
+  for (const f of fs.readdirSync(viewsDir).filter((n) => n.endsWith('.js'))) {
+    const src = fs.readFileSync(path.join(viewsDir, f), 'utf8');
+    for (const fn of ['el', 'field', 'selectFrom']) {
+      if (new RegExp(`^function ${fn}\\(`, 'm').test(src)) {
+        // meals.js keeps documented variants of field and selectFrom.
+        if (fn === 'el' && ALLOWED_EL.has(f)) continue;
+        if (fn !== 'el' && ALLOWED_OTHER.has(f)) continue;
+        strays.push(`${f}: ${fn}()`);
+      }
+    }
+  }
+  check('no view redefines a helper that lives in lib/dom.js',
+    strays.length === 0, strays.join(' | '));
+}
+
 // ---- Phase 28: selectors that match nothing ----------------------------
 // Twice in one phase an empty-state action pointed at an id I had invented.
 // Every gate passed: nothing checked that a querySelector RESOLVES, so the

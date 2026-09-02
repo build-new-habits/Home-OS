@@ -23,6 +23,9 @@ import { listLogs, logWeight, getCurrentTarget, setTarget } from '../data/weight
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
+// NOT the shared el() from lib/dom.js. This one supports an `html` prop
+// that sets innerHTML, which the shared one deliberately does not. Left
+// alone in Phase 29 rather than unified — see lib/dom.js.
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(props).forEach(([k, v]) => {
@@ -67,6 +70,10 @@ function buildUnitChoice(current, onChange) {
 }
 
 /** Labelled field. The unit is named in the label, not just the placeholder. */
+// NOT the shared field() from lib/dom.js despite the name: this one takes
+// an id rather than an element, builds its own input, and wires
+// aria-describedby for both a hint and an error. Arguably the better of the
+// two — worth revisiting — but unifying them is not a rename.
 function field(id, labelText, inputProps = {}, hintText = '') {
   const wrap = el('div', { class: 'field' });
   const label = el('label', { for: id, text: labelText });

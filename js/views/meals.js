@@ -148,22 +148,12 @@ import {
 import { addItem } from '../data/shopping.js';
 import { announce } from '../lib/a11y.js';
 
+import { el } from '../lib/dom.js';
 // Local element helper. Deliberately defined here rather than copied in from
 // another view — the 18 Aug ReferenceError came from moving a helper between
 // files without checking the destination defined it.
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
-}
-
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
 }
 
 function field(labelText, inputEl, hintEl) {

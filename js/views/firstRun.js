@@ -25,17 +25,7 @@ import { addPlanEntry, DAYS, SLOTS } from '../data/mealPlan.js';
 import { flushListSync, describeListSync } from '../data/listSync.js';
 import { upsertSettings } from '../data/settings.js';
 
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
+import { el } from '../lib/dom.js';
 /** Marks it done. Failing to record it is not worth interrupting anyone. */
 async function markDone() {
   const result = await upsertSettings({ onboarded_at: new Date().toISOString() });

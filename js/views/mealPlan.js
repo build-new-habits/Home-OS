@@ -38,33 +38,7 @@ import {
   requestListSync, flushListSync, onListSync, describeListSync
 } from '../data/listSync.js';
 
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
-function field(labelText, inputEl, hintEl) {
-  const wrap = el('div', { class: 'field' });
-  wrap.append(el('label', { for: inputEl.id, text: labelText }), inputEl);
-  if (hintEl) wrap.appendChild(hintEl);
-  return wrap;
-}
-
-function selectFrom(id, options, { includeBlank = null } = {}) {
-  const select = el('select', { id });
-  if (includeBlank !== null) select.appendChild(el('option', { value: '', text: includeBlank }));
-  for (const option of options) {
-    select.appendChild(el('option', { value: option.value, text: option.label }));
-  }
-  return select;
-}
-
+import { el, field, selectFrom } from '../lib/dom.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
   return found ? found.label : value;

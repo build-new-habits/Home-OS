@@ -33,6 +33,7 @@ import { showToast } from '../components/toast.js';
 import { isOffline } from '../lib/net.js';
 import { announce } from '../lib/a11y.js';
 
+import { el } from '../lib/dom.js';
 const DAY_HEADERS = [
   { short: 'Mon', full: 'Monday' },
   { short: 'Tue', full: 'Tuesday' },
@@ -45,17 +46,6 @@ const DAY_HEADERS = [
 
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
-
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
 
 function isoOf(year, monthIndex, day) {
   return `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;

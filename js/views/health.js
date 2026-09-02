@@ -22,17 +22,7 @@ import { formatMl, formatWeight } from '../lib/units.js';
 import { getState } from '../lib/store.js';
 import { icon } from '../lib/icons.js';
 
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
+import { el } from '../lib/dom.js';
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }

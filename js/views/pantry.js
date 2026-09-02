@@ -64,40 +64,14 @@ import { stateBadge, countChip } from '../lib/icons.js';
 import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
 import { claimDialog } from '../components/claimDialog.js';
 
+import { el, field, selectFrom } from '../lib/dom.js';
 const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
-function field(labelText, inputEl, hintEl) {
-  const wrap = el('div', { class: 'field' });
-  wrap.append(el('label', { for: inputEl.id, text: labelText }), inputEl);
-  if (hintEl) wrap.appendChild(hintEl);
-  return wrap;
-}
-
 function numberInput(id, { min = '0', step = 'any' } = {}) {
   // step 'any' deliberately: min="0.1" with step="1" made every round number
   // unenterable in Phase 6 and shipped. See Tests/a11y.mjs.
   return el('input', { id, type: 'number', min, step, inputmode: 'decimal' });
-}
-
-function selectFrom(id, options, { includeBlank = null } = {}) {
-  const select = el('select', { id });
-  if (includeBlank !== null) select.appendChild(el('option', { value: '', text: includeBlank }));
-  for (const option of options) {
-    select.appendChild(el('option', { value: option.value, text: option.label }));
-  }
-  return select;
 }
 
 /**

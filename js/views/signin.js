@@ -23,6 +23,9 @@ import { announce } from '../lib/a11y.js';
 
 const REDIRECT_TO = new URL('./', window.location.href).href;
 
+// NOT the shared el() from lib/dom.js. This one assigns PROPERTIES when
+// `k in node`, which is how it sets tabIndex. The shared one always uses
+// setAttribute. Left alone in Phase 29 rather than unified.
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
   Object.entries(props).forEach(([k, v]) => {

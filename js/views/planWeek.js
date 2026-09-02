@@ -37,18 +37,8 @@ import { replaceGeneratedItems } from '../data/shopping.js';
 import { scoreMeals, BAND } from '../data/pantryMatch.js';
 import { todayIso } from '../data/pantry.js';
 
+import { el } from '../lib/dom.js';
 /** Local, matching every other view in this codebase. */
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
 const PROGRESS_KEY = 'home-os:plan-week';
 const PROGRESS_MAX_AGE_MS = 6 * 60 * 60 * 1000;
 

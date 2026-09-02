@@ -57,26 +57,9 @@ import { openDetailSheet } from '../components/detailSheet.js';
 import { listFoods, createFood, FOOD_CATEGORIES, categoryLabel } from '../data/foods.js';
 import { addItem as addShoppingItem, findHolidayItem, removeHolidayItem } from '../data/shopping.js';
 
+import { el, field } from '../lib/dom.js';
 // Local element helper, defined here rather than copied in — the 18 Aug
 // ReferenceError came from moving a helper without checking the destination.
-function el(tag, props = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'class') node.className = value;
-    else if (key === 'text') node.textContent = value;
-    else if (value !== null && value !== undefined) node.setAttribute(key, value);
-  });
-  children.forEach((child) => node.appendChild(child));
-  return node;
-}
-
-function field(labelText, inputEl, hintEl) {
-  const wrap = el('div', { class: 'field' });
-  wrap.append(el('label', { for: inputEl.id, text: labelText }), inputEl);
-  if (hintEl) wrap.appendChild(hintEl);
-  return wrap;
-}
-
 const WEEKDAYS = [
   { code: 'MO', label: 'Monday' }, { code: 'TU', label: 'Tuesday' },
   { code: 'WE', label: 'Wednesday' }, { code: 'TH', label: 'Thursday' },
