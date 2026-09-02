@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v19
+// js/views/meals.js — 01 Sep 2026 v20
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -139,6 +139,7 @@ import {
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
 } from '../data/mealSteps.js';
 import { openCookMode, readProgress } from '../components/cookMode.js';
+import { planDepletion, applyDepletion, describeDepletion } from '../data/restock.js';
 import {
   scoreMeals, filterByIngredient, describeGaps, describeAssumptions,
   gapsToShoppingItems, BAND
@@ -1109,9 +1110,14 @@ export function render(mountEl) {
       const resumed = readProgress(meal.id);
       if (resumed) cook.textContent = `Carry on from step ${resumed.stepIndex + 1}`;
       cook.addEventListener('click', async () => {
-        await openCookMode({ meal, steps, ingredients: ingredientRows, scale: 1 });
+        const finished = await openCookMode({ meal, steps, ingredients: ingredientRows, scale: 1 });
         if (destroyed) return;
         renderMeals();
+        // Phase 22. Offered, never automatic: you may have used the bag from
+        // the shop rather than the one in the cupboard, and a pantry that
+        // silently empties itself is worse than one that lags. Only offered
+        // when the recipe was actually finished.
+        if (finished) await offerDepletion(meal, ingredientRows);
       }, { signal });
       wrap.appendChild(cook);
 
@@ -1130,6 +1136,30 @@ export function render(mountEl) {
     wrap.appendChild(details);
 
     return wrap;
+  }
+
+  /**
+   * Asks once whether to take the ingredients out of the cupboard.
+   *
+   * Declining is fine and is never mentioned again. Nothing here nags.
+   */
+  async function offerDepletion(meal, ingredientRows) {
+    const changes = planDepletion(ingredientRows, pantryStock || [], 1);
+    if (changes.length === 0 || destroyed) return;
+
+    const yes = await confirmDialog({
+      title: `Cooked ${meal.name}?`,
+      message: describeDepletion(changes)
+        + ' This keeps the cupboard roughly right without you having to think about it.',
+      confirmLabel: 'Take them out'
+    });
+    if (!yes || destroyed) return;
+
+    const done = await applyDepletion(changes);
+    if (destroyed) return;
+    if (!done.ok) { showToast('The pantry could not be updated.'); return; }
+    showToast(`Pantry updated — ${done.applied} item${done.applied === 1 ? '' : 's'}.`);
+    await loadMeals();
   }
 
   function buildStepRow(meal, step, ingredientRows) {

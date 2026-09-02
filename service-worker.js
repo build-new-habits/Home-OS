@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v56
+// service-worker.js — 01 Sep 2026 v57
+// v57 (Phase 22): ONE new path, js/data/listSync.js. Also bumped for
+// toast.js v2, restock.js v2, cookMode.js v2, views/mealPlan.js v3,
+// views/shopping.js v6, views/meals.js v20, components.css v35.
 // v56 (Phase 24): ONE new path, js/views/planWeek.js. Also bumped for
 // routes.js v3, navConfig.js v6, views/dashboard.js v4, components.css v34.
 // v55 (Phase 26): ONE new path, js/lib/icons.js. Bumped for tokens.css v2 —
@@ -149,7 +152,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v56';
+const CACHE_NAME = 'home-os-shell-v57';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -201,6 +204,7 @@ const SHELL_FILES = [
   './data/recipe_library/index.json',
   './js/data/foodClaim.js',
   './js/data/restock.js',
+  './js/data/listSync.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',

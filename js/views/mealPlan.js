@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 01 Sep 2026 v2
+// js/views/mealPlan.js — 01 Sep 2026 v3
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -34,6 +34,9 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { getHousehold } from '../data/household.js';
+import {
+  requestListSync, flushListSync, onListSync, describeListSync
+} from '../data/listSync.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -87,6 +90,12 @@ export function render(mountEl) {
   // Phase 20. Empty is a safe default: every entry then means "everyone"
   // and servings fall back to the meal's own default, exactly as before.
   let members = [];
+
+  // Phase 22. The list follows the plan on its own now, and this line is
+  // how that stops being silent. A list that changes under you without
+  // saying so is worse than one you rebuild by hand.
+  const syncNote = el('p', { class: 'field-hint list-sync-note', role: 'status' });
+  syncNote.setAttribute('aria-live', 'polite');
   let meals = [];
 
   mountEl.appendChild(el('h1', { text: 'Weekly plan' }));
@@ -107,6 +116,13 @@ export function render(mountEl) {
   const summary = el('p', { class: 'field-hint', role: 'status' });
   summary.setAttribute('aria-live', 'polite');
   mountEl.appendChild(summary);
+  mountEl.appendChild(syncNote);
+
+  const stopListening = onListSync((result) => {
+    if (destroyed) return;
+    const message = describeListSync(result);
+    if (message) syncNote.textContent = message;
+  });
 
   const tableWrap = el('div', { class: 'plan-wrap' });
   const planTable = el('table', { class: 'plan-table' });
@@ -228,6 +244,7 @@ export function render(mountEl) {
       }
       announce(`${mealName} is now for ${describeDiners(result.data, members)}.`);
       await loadPlan();
+      requestListSync();
     }, { signal });
     set.appendChild(save);
 
@@ -289,6 +306,7 @@ export function render(mountEl) {
       }
       announce(`Servings updated for ${mealName}.`);
       await loadPlan();
+      requestListSync();
       if (!destroyed) restoreFocus(`plan-serves-${entry.id}`);
     }, { signal });
 
@@ -312,6 +330,7 @@ export function render(mountEl) {
       }
       announce(`${mealName} removed from ${day.label} ${slot.label.toLowerCase()}.`);
       await loadPlan();
+      requestListSync();
     }, { signal });
     item.appendChild(removeBtn);
 
@@ -447,7 +466,12 @@ export function render(mountEl) {
   loadMeals();
   loadPlan();
 
+  // Leaving the screen flushes immediately: you are on your way to the
+  // kitchen or the shop, and waiting out a debounce there is the moment the
+  // list would be wrong.
   return () => {
+    stopListening();
+    flushListSync();
     destroyed = true;
     window.removeEventListener('online', onConnectionChange);
     window.removeEventListener('offline', onConnectionChange);

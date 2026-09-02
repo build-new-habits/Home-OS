@@ -43,7 +43,8 @@ const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal } = await import(`${REPO}/js/lib/shortfall.js`);
 const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons, ENTRY_UNITS } = await import(`${REPO}/js/lib/units.js`);
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
-const { describeRestock, RESTOCK } = await import(`${REPO}/js/data/restock.js`);
+const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
+const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1126,6 +1127,72 @@ check('the icon set is not empty', iconNames().length > 0);
 check('every freshness state has an icon',
   ['fresh', 'soon', 'past', 'unknown'].every((n) => iconNames().includes(n)));
 check('names are unique', new Set(iconNames()).size === iconNames().length);
+
+console.log('');
+
+// ============ Phase 22: the list is never wrong ============
+console.log('\nWhat the list sync says');
+
+eq('a successful sync names the count',
+  describeListSync({ ok: true, count: 6 }), 'Shopping list updated — 6 things to buy.');
+eq('one thing is singular',
+  describeListSync({ ok: true, count: 1 }), 'Shopping list updated — 1 thing to buy.');
+eq('nothing to buy still says something',
+  describeListSync({ ok: true, count: 0 }), 'Shopping list updated — nothing to buy.');
+// Offline must never read as an error. The list will be right later.
+check('offline is stated as a delay, not a failure',
+  /back online/.test(describeListSync({ ok: false, reason: 'offline' })));
+check('and never as something you did wrong',
+  !/error|failed|wrong/i.test(describeListSync({ ok: false, reason: 'offline' })));
+eq('a coalesced call says nothing at all',
+  describeListSync({ ok: false, reason: 'busy' }), '');
+
+console.log('\nDepletion after cooking');
+
+const stockRowsForCook = [
+  { id: 's1', food_id: 'f1', current_qty: 1000, unit: 'g' },
+  { id: 's2', food_id: 'f2', current_qty: 4, unit: 'item' },
+  { id: 's3', food_id: 'f3', current_qty: null, unit: 'g' },
+  { id: 's4', food_id: 'f4', current_qty: 500, unit: 'g' }
+];
+const cooked = [
+  { food_id: 'f1', quantity_g: 300, unit: 'g', foods: { name: 'Rice' } },
+  { food_id: 'f2', quantity_g: 1, unit: 'item', foods: { name: 'Tin of tomatoes' } },
+  { food_id: 'f3', quantity_g: 100, unit: 'g', foods: { name: 'Flour' } },
+  // Units disagree: converting silently here is the same corruption the
+  // bought-to-pantry path refuses to commit.
+  { food_id: 'f4', quantity_g: 100, unit: 'ml', foods: { name: 'Oil' } },
+  { food_id: 'f9', quantity_g: 50, unit: 'g', foods: { name: 'Not in the pantry' } }
+];
+
+const plannedDepletion = planDepletion(cooked, stockRowsForCook, 1);
+eq('only the rows it can honestly change are touched', plannedDepletion.length, 2);
+eq('grams come off correctly', plannedDepletion[0].after, 700);
+eq('items come off correctly', plannedDepletion[1].after, 3);
+check('an unrecorded amount is left alone',
+  !plannedDepletion.some((c) => c.stockId === 's3'));
+check('a unit mismatch is left alone',
+  !plannedDepletion.some((c) => c.stockId === 's4'));
+
+// A negative cupboard is not a thing, and it would make the shortfall diff
+// ask for more than you need.
+const over = planDepletion(
+  [{ food_id: 'f1', quantity_g: 5000, unit: 'g', foods: { name: 'Rice' } }],
+  stockRowsForCook, 1);
+eq('you cannot go below zero', over[0].after, 0);
+
+// Phase 19: an option you did not choose was never cooked.
+const withUnchosen = planDepletion([
+  { food_id: 'f1', quantity_g: 100, unit: 'g', option_group: 'Base', is_selected: false, foods: { name: 'Rice' } }
+], stockRowsForCook, 1);
+eq('an unchosen option is not deducted', withUnchosen.length, 0);
+
+eq('scaling a recipe scales what comes out',
+  planDepletion([{ food_id: 'f1', quantity_g: 100, unit: 'g', foods: { name: 'Rice' } }],
+    stockRowsForCook, 2)[0].after, 800);
+
+check('the offer names what it would take', describeDepletion(plannedDepletion).includes('rice'));
+eq('nothing to take means no offer at all', describeDepletion([]), '');
 
 console.log('');
 

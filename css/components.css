@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v34 */
+/* css/components.css — 01 Sep 2026 v35 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2703,4 +2703,29 @@ body.sheet-open {
   margin: 0 0 var(--space-2);
   align-items: center;
   gap: var(--space-2);
+}
+
+/* ---- Phase 22: undo in a toast --------------------------------------- */
+/* A toast carrying an action must never fade out from under a thumb, so
+   these do not animate at all (see toast.js). */
+
+.toast-text { flex: 1; }
+
+.toast-undo {
+  flex: 0 0 auto;
+  min-height: var(--tap-min);
+  padding: 0 var(--space-3);
+  margin-left: var(--space-3);
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.list-sync-note {
+  margin: var(--space-1) 0 var(--space-3);
+  min-height: 1.25rem;
 }

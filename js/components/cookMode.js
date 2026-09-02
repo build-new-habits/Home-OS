@@ -1,4 +1,4 @@
-// js/components/cookMode.js — 01 Sep 2026 v1
+// js/components/cookMode.js — 01 Sep 2026 v2
 // Phase 15. One instruction at a time, on the counter, hands busy.
 //
 // ---- What this is for ----
@@ -47,7 +47,10 @@ export function clearProgress() {
 
 /**
  * @param {{ meal: object, steps: object[], ingredients: object[], scale?: number }} options
- * @returns {Promise<void>} Resolves when the user leaves.
+ * @returns {Promise<boolean>} True when the recipe was cooked through to
+ *   the end, false when it was left. Phase 22 uses this to decide whether
+ *   to offer to take the ingredients out of the cupboard: offering after
+ *   someone abandoned at step 2 would be wrong and annoying.
  */
 export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } = {}) {
   return new Promise((resolve) => {
@@ -194,7 +197,7 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
       document.body.classList.remove('cook-mode-open');
       overlay.remove();
       if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
-      resolve();
+      resolve(finished);
     }
 
     function onKeydown(event) {

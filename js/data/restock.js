@@ -1,4 +1,4 @@
-// js/data/restock.js — 01 Sep 2026 v1
+// js/data/restock.js — 01 Sep 2026 v2
 // Phase 11. Marking something bought puts it in the cupboard.
 //
 // ---- The gap this closes ----
@@ -141,4 +141,76 @@ export async function fetchFoodsFor(items = []) {
     .in('id', ids);
   if (error) return { ok: false, error };
   return { ok: true, data: new Map((data || []).map((f) => [f.id, f])) };
+}
+
+
+// ---- Phase 22: depletion after cooking ---------------------------------
+// The competitive review of this whole category repeats one failure mode:
+// "keeping quantities accurate takes discipline". That is a death sentence
+// for a user with executive-function differences, so every gram of upkeep
+// we can remove is worth more than a feature.
+//
+// Cooking is the one moment the app knows exactly what left the cupboard.
+
+/**
+ * Works out what cooking a meal would take out of the pantry.
+ *
+ * Pure: no queries, no writes. Returns what WOULD change so the offer can
+ * be honest about it before anything happens.
+ */
+export function planDepletion(ingredients = [], stock = [], scale = 1) {
+  const byFood = new Map();
+  for (const row of stock) if (row.food_id) byFood.set(row.food_id, row);
+
+  const changes = [];
+  for (const row of ingredients) {
+    // Phase 19: an option you did not choose was never cooked.
+    if (row.option_group != null && row.is_selected === false) continue;
+
+    const entry = byFood.get(row.food_id);
+    if (!entry) continue;
+    if (entry.current_qty === null || entry.current_qty === undefined) continue;
+    // Units must match. Converting silently here would be the same
+    // corruption the bought-to-pantry path refuses to commit.
+    if (entry.unit !== row.unit) continue;
+
+    const used = Number(row.quantity_g) * (Number(scale) || 1);
+    if (!Number.isFinite(used) || used <= 0) continue;
+
+    const before = Number(entry.current_qty);
+    // Floored at zero. A negative cupboard is not a thing, and it would
+    // make the shortfall diff ask for more than you need.
+    const after = Math.max(0, Math.round((before - used) * 100) / 100);
+    if (after === before) continue;
+
+    changes.push({
+      stockId: entry.id,
+      food: row.foods || row.food || {},
+      before,
+      after,
+      unit: entry.unit
+    });
+  }
+  return changes;
+}
+
+/** Applies what planDepletion worked out. */
+export async function applyDepletion(changes = []) {
+  let applied = 0;
+  for (const change of changes) {
+    const result = await updateStock(change.stockId, { current_qty: change.after });
+    if (!result.ok) return { ok: false, error: result.error, applied };
+    applied += 1;
+  }
+  return { ok: true, applied };
+}
+
+/** The offer, in plain words. */
+export function describeDepletion(changes = []) {
+  if (changes.length === 0) return '';
+  const names = changes.map((c) => (c.food.name || 'something').toLowerCase());
+  const list = names.length === 1
+    ? names[0]
+    : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+  return `Take ${list} out of the pantry?`;
 }
