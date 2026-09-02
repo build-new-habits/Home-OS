@@ -533,11 +533,10 @@ check('pantry: rows with no amount are surfaced for fixing',
 check('pantry: a missing amount says so rather than showing a bare 0',
   /Amount not recorded/.test(panMount.textContent));
 
-// ---- The default view is never "everything" ----------------------------
-// Seven items filled a phone screen. Quantities and freshness therefore live
-// behind Browse, so the assertions have to walk there like a user does.
-const panBrowseBtn = [...panMount.querySelectorAll('button')]
-  .find((b) => b.getAttribute('aria-label') === 'Browse the pantry by where things live');
+// ---- One screen since Phase 23 -----------------------------------------
+// Quantities and freshness used to live behind a "Browse" mode, so these
+// assertions had to walk there like a user did. Locations now render
+// directly, so they do not.
 // ---- The use-by date is a picker, not a typed string --------------------
 // A typed date is ambiguous (03/09 is March in half the world) and is work.
 // type="date" opens the native calendar and the OS handles the format.
@@ -550,8 +549,40 @@ check('pantry: the use-by field is labelled',
 check('pantry: leaving it blank is explained, not left to guesswork',
   /estimate/i.test(panMount.textContent));
 
-check('pantry: a browse mode is offered', !!panBrowseBtn);
-if (panBrowseBtn) panBrowseBtn.dispatchEvent(new window.Event('click', { bubbles: true }));
+// ---- Phase 23: one screen, no mode switcher ----
+// Looking for something is not a mode. These replace the old "a browse mode
+// is offered" check, which asserted the design that was the problem.
+check('pantry: there is no mode switcher',
+  panMount.querySelector('.segmented') === null,
+  'search was a mode you had to know existed');
+check('pantry: search is visible without switching to it',
+  (() => {
+    const find = panMount.querySelector('#pantry-find');
+    if (!find) return false;
+    // Visible means no hidden ancestor, not merely present in the DOM.
+    for (let n = find; n && n !== panMount; n = n.parentElement) {
+      if (n.hidden) return false;
+    }
+    return true;
+  })());
+check('pantry: the search input is labelled',
+  !!panMount.querySelector('label[for="pantry-find"]'));
+check('pantry: adding stock is behind one button, not the default view',
+  (() => {
+    const toggle = panMount.querySelector('.add-stock-toggle');
+    return !!toggle && toggle.getAttribute('aria-expanded') === 'false';
+  })());
+check('pantry: locations are browsable without switching to them',
+  panMount.querySelectorAll('.location-toggle').length > 0);
+// Unplaced items are a to-do, not a dustbin, so they sort first rather
+// than alphabetically to the bottom where nobody scrolls.
+check('pantry: unplaced items sort first, not last',
+  (() => {
+    const toggles = [...panMount.querySelectorAll('.location-toggle')];
+    const unplacedIndex = toggles.findIndex((t) => /not put away|no place set/i.test(t.textContent));
+    return unplacedIndex === -1 || unplacedIndex === 0;
+  })());
+
 await new Promise((r) => setTimeout(r, 20));
 
 // Named explicitly rather than taking the first: locations sort

@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v35 */
+/* css/components.css — 01 Sep 2026 v37 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2728,4 +2728,31 @@ body.sheet-open {
 .list-sync-note {
   margin: var(--space-1) 0 var(--space-3);
   min-height: 1.25rem;
+}
+
+/* ---- Phase 23: one pantry screen ------------------------------------- */
+
+/* Search is pinned above everything you would otherwise scroll past.
+   Looking for something is not a mode. */
+.pantry-search-panel { margin-bottom: var(--space-4); }
+
+.add-stock-toggle {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+/* A real empty state: what the screen is for, and one next action. */
+.empty-state {
+  margin: var(--space-3) 0;
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* One tap to put something away, from the places already in use. */
+.place-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
 }

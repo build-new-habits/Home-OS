@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v8
+// js/views/pantry.js — 01 Sep 2026 v9
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -131,7 +131,6 @@ export function render(mountEl) {
 
   let stock = [];
   let foods = [];
-  let mode = 'capture';
   let openLocation = null;
   const justAdded = [];  // stock ids added this session, newest first
 
@@ -247,38 +246,42 @@ export function render(mountEl) {
 
   // ============================ Modes ==================================
 
-  const modeGroup = el('div', { class: 'segmented', role: 'group' });
-  modeGroup.setAttribute('aria-label', 'How to view the pantry');
-  const MODES = [
-    { value: 'capture', label: 'Add', hint: 'Add things to the pantry' },
-    { value: 'browse', label: 'Browse', hint: 'Browse the pantry by where things live' },
-    { value: 'search', label: 'Find', hint: 'Search everything in the pantry' }
-  ];
-  const modeButtons = new Map();
-  for (const m of MODES) {
-    const btn = el('button', { type: 'button', class: 'btn segmented-btn', text: m.label });
-    btn.setAttribute('aria-label', m.hint);
-    btn.setAttribute('aria-pressed', String(m === MODES[0]));
-    btn.addEventListener('click', () => setMode(m.value), { signal });
-    modeButtons.set(m.value, btn);
-    modeGroup.appendChild(btn);
-  }
+  // ---- Phase 23: the mode switcher is gone ----
+  // The pantry used to open in "Add" mode behind a three-way segmented
+  // control, so the default screen was a form for adding stock — when most
+  // visits are "have I got X". Worse, search was a MODE you had to switch
+  // to, which means you had to know it was there.
+  //
+  // Looking for something is not a mode. It is what you came for. So search
+  // is pinned at the top, always, and Add is one button.
 
-  function setMode(next) {
-    mode = next;
-    for (const [value, btn] of modeButtons) btn.setAttribute('aria-pressed', String(value === next));
-    capturePanel.hidden = next !== 'capture';
-    browsePanel.hidden = next !== 'browse';
-    searchPanel.hidden = next !== 'search';
-    const chosen = MODES.find((m) => m.value === next);
-    if (chosen) announce(`${chosen.label} mode.`);
-    if (next === 'browse') renderBrowse();
-    if (next === 'search') renderSearchResults();
-  }
+  const addToggle = el('button', {
+    type: 'button', class: 'btn add-stock-toggle', text: 'Add something to the pantry'
+  });
+  addToggle.setAttribute('aria-expanded', 'false');
+  addToggle.addEventListener('click', () => {
+    const open = addToggle.getAttribute('aria-expanded') === 'true';
+    addToggle.setAttribute('aria-expanded', String(!open));
+    capturePanel.hidden = open;
+    if (!open) {
+      announce('Add to the pantry.');
+      const first = capturePanel.querySelector('input, select, button');
+      if (first) first.focus();
+    }
+  }, { signal });
 
   // ==================== One row, actions on demand =====================
 
-  function buildStockRow(row) {
+  /** Places already in use, so putting something away is a tap not a form. */
+  function knownLocations() {
+    const seen = new Set();
+    for (const row of stock) {
+      if (row.default_location) seen.add(row.default_location);
+    }
+    return [...seen].sort((a, b) => a.localeCompare(b));
+  }
+
+  function buildStockRow(row, { unplaced = false } = {}) {
     const food = row.foods || {};
     const fresh = freshness(row);
     const name = food.name || 'Unknown';
@@ -310,6 +313,32 @@ export function render(mountEl) {
     open.addEventListener('click', () => openStockSheet(row, open), { signal });
 
     item.appendChild(open);
+
+    // Phase 23. One tap to put it away, from the places you already use.
+    // No form, no sheet — a form here is why "No location recorded" stayed
+    // full for weeks.
+    if (unplaced) {
+      const places = knownLocations();
+      if (places.length > 0) {
+        const row2 = el('div', { class: 'place-buttons' });
+        for (const place of places.slice(0, 4)) {
+          const btn = el('button', { type: 'button', class: 'btn btn-small', text: place });
+          btn.setAttribute('aria-label', `Put ${name} in ${place}`);
+          btn.addEventListener('click', async () => {
+            btn.disabled = true;
+            const result = await updateStock(row.id, { default_location: place });
+            btn.disabled = false;
+            if (destroyed) return;
+            if (!result.ok) { showToast('That could not be saved.'); return; }
+            announce(`${name} put in ${place}.`);
+            await loadStock();
+          }, { signal });
+          row2.appendChild(btn);
+        }
+        item.appendChild(row2);
+      }
+    }
+
     return item;
   }
 
@@ -519,7 +548,7 @@ export function render(mountEl) {
   // ========================= Browse by location ========================
 
   const browsePanel = el('section');
-  browsePanel.hidden = true;
+  browsePanel.hidden = false;
   browsePanel.appendChild(el('h2', { text: "What's in" }));
   const browseSummary = el('p', { class: 'field-hint', role: 'status' });
   browseSummary.setAttribute('aria-live', 'polite');
@@ -527,6 +556,14 @@ export function render(mountEl) {
   const browseList = el('div', { class: 'location-list' });
   browsePanel.appendChild(browseList);
 
+  /**
+   * Groups by location, with unplaced items FIRST.
+   *
+   * Phase 23. Until locations are set, every item falls into "No location
+   * recorded" — which for a new pantry is everything, so it read as one
+   * enormous list sorted to the bottom alphabetically. Sorting it to the
+   * top and naming it as a to-do turns a dustbin into a task.
+   */
   function locationsOf(rows) {
     const map = new Map();
     for (const row of rows) {
@@ -534,17 +571,39 @@ export function render(mountEl) {
       if (!map.has(key)) map.set(key, []);
       map.get(key).push(row);
     }
-    return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    const groups = [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    const unplaced = groups.filter(([name]) => name === UNPLACED);
+    const placed = groups.filter(([name]) => name !== UNPLACED);
+    return [...unplaced, ...placed];
+  }
+
+  /** What to call a group. Unplaced items are a to-do, so they say so. */
+  function locationHeading(location, count) {
+    if (location !== UNPLACED) return location;
+    return count > 5 ? 'Not put away yet' : 'No place set';
   }
 
   function renderBrowse() {
     browseList.replaceChildren();
     if (stock.length === 0) {
       browseSummary.textContent = '';
+      // A real empty state: what this screen is for, and the ONE next
+      // action. Not an empty list under a form.
       browseList.appendChild(el('p', {
-        text: 'Nothing in the pantry yet. Use Add to capture what is in your cupboards — '
-          + 'the shopping list uses it to work out what you actually need.'
+        class: 'empty-state',
+        text: 'Nothing in your pantry yet. Scan or add a few things you already have, '
+          + 'and your shopping list will stop asking you to buy them again.'
       }));
+      const startBtn = el('button', {
+        type: 'button', class: 'btn btn-primary', text: 'Add the first thing'
+      });
+      startBtn.addEventListener('click', () => {
+        addToggle.setAttribute('aria-expanded', 'true');
+        capturePanel.hidden = false;
+        const first = capturePanel.querySelector('input, select, button');
+        if (first) first.focus();
+      }, { signal });
+      browseList.appendChild(startBtn);
       return;
     }
     const groups = locationsOf(stock);
@@ -559,15 +618,16 @@ export function render(mountEl) {
       const heading = el('h3', { class: 'location-heading' });
       const toggle = el('button', { type: 'button', class: 'location-toggle' });
       toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.textContent = `${location} (${rows.length})`;
+      const headingText = locationHeading(location, rows.length);
+      toggle.textContent = `${headingText} (${rows.length})`;
       toggle.setAttribute('aria-label',
-        `${location}, ${rows.length} item${rows.length === 1 ? '' : 's'}`);
+        `${headingText}, ${rows.length} item${rows.length === 1 ? '' : 's'}`);
       heading.appendChild(toggle);
       browseList.appendChild(heading);
 
       const body = el('div', { class: 'location-body' });
       body.hidden = !isOpen;
-      if (isOpen) body.appendChild(renderGroupedRows(rows));
+      if (isOpen) body.appendChild(renderGroupedRows(rows, { unplaced: location === UNPLACED }));
       browseList.appendChild(body);
 
       toggle.addEventListener('click', () => {
@@ -581,8 +641,20 @@ export function render(mountEl) {
   }
 
   /** Within a location, category orders what is inside it. */
-  function renderGroupedRows(rows) {
+  function renderGroupedRows(rows, { unplaced = false } = {}) {
     const wrap = el('div');
+
+    // Phase 23. Naming a to-do and then making it a form is how a to-do
+    // stops getting done. One tap, from the places you already use.
+    if (unplaced) {
+      const known = knownLocations();
+      if (known.length > 0) {
+        wrap.appendChild(el('p', {
+          class: 'field-hint',
+          text: 'Tap a place to put something away. You can always change it later.'
+        }));
+      }
+    }
     const byCategory = groupByCategory(rows.map((row) => ({
       ...row,
       category: (row.foods && row.foods.category) || 'food_ambient'
@@ -590,7 +662,7 @@ export function render(mountEl) {
     for (const group of byCategory) {
       wrap.appendChild(el('h4', { class: 'group-heading', text: `${group.label} (${group.foods.length})` }));
       const list = el('ul', { class: 'stock-rows' });
-      for (const row of group.foods) list.appendChild(buildStockRow(row));
+      for (const row of group.foods) list.appendChild(buildStockRow(row, { unplaced }));
       wrap.appendChild(list);
     }
     return wrap;
@@ -599,7 +671,8 @@ export function render(mountEl) {
   // ============================== Find =================================
 
   const searchPanel = el('section');
-  searchPanel.hidden = true;
+  searchPanel.hidden = false;
+  searchPanel.className = 'pantry-search-panel';
   searchPanel.appendChild(el('h2', { text: 'Find something' }));
 
   const findInput = el('input', { id: 'pantry-find', type: 'search', autocomplete: 'off' });
@@ -1226,8 +1299,8 @@ export function render(mountEl) {
     renderUseSoon();
     renderJustAdded();
     rebuildLocationFilter();
-    if (mode === 'browse') renderBrowse();
-    if (mode === 'search') renderSearchResults();
+    renderBrowse();
+    renderSearchResults();
   }
 
   async function loadStock() {
@@ -1263,7 +1336,10 @@ export function render(mountEl) {
     if (!destroyed) await loadStock();
   }
 
-  mountEl.append(fixSection, useSoonSection, modeGroup, capturePanel, browsePanel, searchPanel);
+  // Order: what needs fixing, then search, then what is about to go off,
+  // then where things live, then Add. Search sits above everything you
+  // would otherwise scroll through.
+  mountEl.append(fixSection, searchPanel, useSoonSection, browsePanel, addToggle, capturePanel);
   syncMode();
   paintOfflineNote();
 
