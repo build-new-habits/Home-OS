@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v30 */
+/* css/components.css — 01 Sep 2026 v31 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2427,4 +2427,62 @@ body.sheet-open {
   border: none;
   padding: 0;
   margin: 0;
+}
+
+/* ---- Phase 14: cook from what you have ------------------------------- */
+
+.cook-now {
+  margin-bottom: var(--space-4, 1rem);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cook-band {
+  margin-bottom: var(--space-2);
+}
+
+.cook-band summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.cook-band-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cook-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cook-row:last-child { border-bottom: none; }
+
+.cook-row-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cook-row-gaps {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* An unrecorded amount is an assumption the app is making, not a failure
+   on your part. Styled quieter than the gaps line to match. */
+.cook-row-assumption {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.cook-row .btn {
+  align-self: flex-start;
+  margin-top: var(--space-2);
 }

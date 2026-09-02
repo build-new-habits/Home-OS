@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v52
+// service-worker.js — 01 Sep 2026 v53
+// v53 (Phase 14): ONE new path, js/data/pantryMatch.js. Also bumped for
+// views/meals.js v18 and components.css v31.
 // v52 (Phase 20): no path changes. Bumped for who-is-eating —
 // data/mealPlan.js v2, views/mealPlan.js v2, lib/shortfall.js v3,
 // views/shopping.js v5, components.css v30.
@@ -137,7 +139,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v52';
+const CACHE_NAME = 'home-os-shell-v53';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -182,6 +184,7 @@ const SHELL_FILES = [
   './js/data/household.js',
   './js/data/foodReference.js',
   './js/data/mealSteps.js',
+  './js/data/pantryMatch.js',
   './data/food_reference.json',
   './js/data/foodClaim.js',
   './js/data/restock.js',

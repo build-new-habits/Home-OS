@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v17
+// js/views/meals.js — 01 Sep 2026 v18
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -136,6 +136,11 @@ import {
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
 } from '../data/mealSteps.js';
 import { openCookMode, readProgress } from '../components/cookMode.js';
+import {
+  scoreMeals, filterByIngredient, describeGaps, describeAssumptions,
+  gapsToShoppingItems, BAND
+} from '../data/pantryMatch.js';
+import { addItem } from '../data/shopping.js';
 import { announce } from '../lib/a11y.js';
 
 // Local element helper. Deliberately defined here rather than copied in from
@@ -280,6 +285,9 @@ export function render(mountEl) {
   let ingredientsByMeal = new Map();
   // Phase 15: one read for every meal's steps, never one per meal.
   let stepsByMeal = new Map();
+  // null until the first read, so the panel can say "reading" rather than
+  // claiming an empty cupboard.
+  let pantryStock = null;
 
   mountEl.appendChild(el('h1', { text: 'Meals' }));
 
@@ -313,6 +321,28 @@ export function render(mountEl) {
   mealFilterRow.append(mealFilterBtn, mealFilterSummary);
   mealsSection.appendChild(mealFilterRow);
   mealFilterBtn.addEventListener('click', () => openMealFilterSheet(mealFilterBtn), { signal });
+
+  // ---- Phase 14: cook from what you have ----
+  // Above the full list, because "what can I make tonight" is the question
+  // people actually arrive with; browsing every recipe is the rarer one.
+  const cookNowSection = el('section', { class: 'cook-now' });
+  cookNowSection.appendChild(el('h3', { text: 'What could I make?' }));
+
+  const cookSearchInput = el('input', {
+    id: 'cook-search', type: 'search', placeholder: 'salmon, chickpeas…'
+  });
+  const cookSearchLabel = el('label', {
+    for: 'cook-search', text: 'Search by an ingredient you have'
+  });
+  const cookSearchWrap = el('div', { class: 'field' });
+  cookSearchWrap.append(cookSearchLabel, cookSearchInput);
+  cookNowSection.appendChild(cookSearchWrap);
+
+  const cookResults = el('div', { class: 'cook-results' });
+  cookNowSection.appendChild(cookResults);
+  mealsSection.appendChild(cookNowSection);
+
+  cookSearchInput.addEventListener('input', () => renderCookNow(), { signal });
 
   const mealsList = el('ul', { class: 'recipe-rows' });
   mealsSection.appendChild(mealsList);
@@ -766,6 +796,99 @@ export function render(mountEl) {
    * immediately with no save step — watching protein move when you pick
    * tuna over hummus is the feature.
    */
+
+  /**
+   * Phase 14. Three bands, ranked by how little you would have to buy.
+   *
+   * Scoring happens in memory over data already fetched. A query per meal
+   * would not survive the 300-recipe library, and the Phase 9 dashboard
+   * already carries a flagged concern about volume.
+   */
+  function renderCookNow() {
+    cookResults.replaceChildren();
+
+    if (pantryStock === null) {
+      cookResults.appendChild(el('p', { class: 'field-hint', text: 'Reading your cupboard…' }));
+      return;
+    }
+
+    const scored = filterByIngredient(
+      scoreMeals(meals, ingredientsByMeal, pantryStock),
+      cookSearchInput.value
+    );
+
+    if (scored.length === 0) {
+      cookResults.appendChild(el('p', {
+        class: 'field-hint',
+        text: cookSearchInput.value.trim().length >= 2
+          ? 'No recipes use that. Try another ingredient.'
+          : 'Add ingredients to a recipe and this will tell you what you could cook.'
+      }));
+      return;
+    }
+
+    const bands = [
+      { key: BAND.READY, label: 'Ready now', open: true },
+      { key: BAND.NEARLY, label: 'Nearly there', open: true },
+      // Collapsed: if it needs three or more things it is a shopping trip,
+      // not a decision about tonight.
+      { key: BAND.SHOP, label: 'Needs a shop', open: false }
+    ];
+
+    for (const band of bands) {
+      const entries = scored.filter((e) => e.band === band.key);
+      if (entries.length === 0) continue;
+
+      const details = el('details', { class: `cook-band cook-band-${band.key}` });
+      details.open = band.open;
+      details.appendChild(el('summary', {
+        text: `${band.label} (${entries.length})`
+      }));
+
+      const list = el('ul', { class: 'cook-band-list' });
+      for (const entry of entries) list.appendChild(buildCookRow(entry));
+      details.appendChild(list);
+      cookResults.appendChild(details);
+    }
+  }
+
+  function buildCookRow(entry) {
+    const item = el('li', { class: 'cook-row' });
+    item.appendChild(el('span', { class: 'cook-row-name', text: entry.meal.name }));
+    item.appendChild(el('span', { class: 'cook-row-gaps', text: describeGaps(entry) }));
+
+    // An unrecorded amount is stated as an assumption the app is making,
+    // never as something you failed to do.
+    const assumption = describeAssumptions(entry);
+    if (assumption) {
+      item.appendChild(el('span', { class: 'cook-row-assumption', text: assumption }));
+    }
+
+    if (entry.gaps > 0) {
+      const add = el('button', {
+        type: 'button', class: 'btn btn-small', text: 'Add what is missing to the shopping list'
+      });
+      add.addEventListener('click', async () => {
+        add.disabled = true;
+        const items = gapsToShoppingItems(entry);
+        let failed = 0;
+        for (const line of items) {
+          const result = await addItem(line);
+          if (!result.ok) failed += 1;
+        }
+        add.disabled = false;
+        if (destroyed) return;
+        showToast(failed === 0
+          ? `${items.length} item${items.length === 1 ? '' : 's'} added to your shopping list.`
+          : `${items.length - failed} of ${items.length} added. Check your connection.`);
+        announce(`Added to your shopping list.`);
+      }, { signal });
+      item.appendChild(add);
+    }
+
+    return item;
+  }
+
   function buildOptionGroupRow(meal, entry) {
     const item = el('li', { class: 'ingredient-row option-group-row' });
 
@@ -1701,6 +1824,10 @@ export function render(mountEl) {
       stepsByMeal = new Map();
     }
 
+    const stockResult = await listStock();
+    if (destroyed) return;
+    pantryStock = stockResult.ok ? stockResult.data : [];
+
     if (ingredientResult.ok) {
       ingredientsByMeal = groupByMeal(ingredientResult.data);
     } else {
@@ -1708,6 +1835,7 @@ export function render(mountEl) {
       ingredientsByMeal = new Map();
     }
     renderMeals();
+    renderCookNow();
     // The panel holds its own DOM. Without this, a change made inside it is
     // invisible until it is closed and reopened.
     refreshOpenSheet();

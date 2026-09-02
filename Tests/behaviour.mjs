@@ -49,6 +49,7 @@ const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/da
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
 const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
 const { servingsForEntry, describeDiners, membersFor, remainingMembers, dietaryConflicts } = await import(`${REPO}/js/data/mealPlan.js`);
+const { scoreMeals, classifyIngredient, filterByIngredient, describeGaps, describeAssumptions, STATE, BAND } = await import(`${REPO}/js/data/pantryMatch.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -969,6 +970,103 @@ eq('a meal carrying the needed tag produces nothing',
   dietaryConflicts(family, house, ['vegetarian']).length, 0);
 eq('only the unmet tag is named',
   dietaryConflicts(family, house, ['gluten_free'])[0].unmet.join(','), 'vegetarian');
+
+console.log('');
+
+// ============ Phase 14: cook from what you have ============
+console.log('\nClassifying an ingredient against the cupboard');
+
+const salmonFood = { id: 'f1', name: 'Salmon fillet', grams_per_item: 130, item_label: 'fillet' };
+const riceFood = { id: 'f2', name: 'Rice, basmati' };
+const stockMap = new Map([
+  ['f1', { food_id: 'f1', current_qty: 4, unit: 'item' }],
+  // null is "amount not recorded" (schema.md) — a different and truer
+  // thing than zero.
+  ['f2', { food_id: 'f2', current_qty: null, unit: 'g' }]
+]);
+
+eq('enough in the cupboard reads as have',
+  classifyIngredient({ food_id: 'f1', quantity_g: 2, unit: 'item', foods: salmonFood }, stockMap).state,
+  STATE.HAVE);
+eq('not enough reads as short',
+  classifyIngredient({ food_id: 'f1', quantity_g: 6, unit: 'item', foods: salmonFood }, stockMap).state,
+  STATE.SHORT);
+eq('nothing in the pantry reads as missing',
+  classifyIngredient({ food_id: 'f9', quantity_g: 1, unit: 'item', foods: { id: 'f9' } }, stockMap).state,
+  STATE.MISSING);
+
+// You not having written down how much rice is in the jar is not evidence
+// that there is none.
+eq('an unrecorded amount is unknown, never missing',
+  classifyIngredient({ food_id: 'f2', quantity_g: 100, unit: 'g', foods: riceFood }, stockMap).state,
+  STATE.UNKNOWN);
+eq('units that cannot be reconciled are unknown, never missing',
+  classifyIngredient({ food_id: 'f1', quantity_g: 100, unit: 'ml', foods: salmonFood }, stockMap).state,
+  STATE.UNKNOWN);
+eq('a converted comparison works across units',
+  classifyIngredient({ food_id: 'f1', quantity_g: 200, unit: 'g', foods: salmonFood }, stockMap).state,
+  STATE.HAVE);
+
+console.log('\nRanking meals');
+
+const mealA = { id: 'ma', name: 'Salmon and rice' };
+const mealB = { id: 'mb', name: 'Something missing' };
+const mealC = { id: 'mc', name: 'A whole shop' };
+const ing = new Map([
+  ['ma', [
+    { food_id: 'f1', quantity_g: 2, unit: 'item', foods: salmonFood },
+    { food_id: 'f2', quantity_g: 100, unit: 'g', foods: riceFood }
+  ]],
+  ['mb', [
+    { food_id: 'f1', quantity_g: 2, unit: 'item', foods: salmonFood },
+    { food_id: 'f9', quantity_g: 1, unit: 'item', foods: { id: 'f9', name: 'Capers' } }
+  ]],
+  ['mc', [
+    { food_id: 'x1', quantity_g: 1, unit: 'item', foods: { id: 'x1', name: 'One' } },
+    { food_id: 'x2', quantity_g: 1, unit: 'item', foods: { id: 'x2', name: 'Two' } },
+    { food_id: 'x3', quantity_g: 1, unit: 'item', foods: { id: 'x3', name: 'Three' } }
+  ]]
+]);
+const stockRows = [...stockMap.values()];
+const ranked = scoreMeals([mealC, mealB, mealA], ing, stockRows);
+
+eq('the meal needing nothing comes first', ranked[0].meal.id, 'ma');
+// UNKNOWN must never demote. Assuming the worst about an unrecorded jar
+// would push half the recipes into "needs a shop" on paperwork alone.
+eq('and an unrecorded ingredient does not stop it being ready',
+  ranked[0].band, BAND.READY);
+eq('one gap is nearly there', ranked[1].band, BAND.NEARLY);
+eq('three gaps is a shop', ranked[2].band, BAND.SHOP);
+
+// A meal nobody has listed ingredients for is not "ready now" — nobody
+// said what it takes.
+eq('a meal with no ingredients is not scored at all',
+  scoreMeals([{ id: 'empty', name: 'Empty' }], new Map(), stockRows).length, 0);
+
+// Phase 19: an alternative you decided against is not a reason to say you
+// cannot cook something.
+const withOption = new Map([['mo', [
+  { food_id: 'f1', quantity_g: 2, unit: 'item', foods: salmonFood, option_group: 'Fish', is_selected: true },
+  { food_id: 'f9', quantity_g: 1, unit: 'item', foods: { id: 'f9', name: 'Cod' }, option_group: 'Fish', is_selected: false }
+]]]);
+eq('an unchosen option is not counted as a gap',
+  scoreMeals([{ id: 'mo', name: 'Fish thing' }], withOption, stockRows)[0].band, BAND.READY);
+
+console.log('\nHow it is worded');
+eq('nothing missing says so plainly', describeGaps(ranked[0]), 'You have everything.');
+check('a gap names the thing', describeGaps(ranked[1]).toLowerCase().includes('capers'));
+// The difference between "assumes you have rice" and "you have not
+// recorded your rice" is the whole no-shame principle in one sentence.
+check('an unrecorded amount is phrased as an assumption',
+  describeAssumptions(ranked[0]).startsWith('Assumes'));
+check('and never as something you failed to do',
+  !/you have not|you did not|missing/i.test(describeAssumptions(ranked[0])));
+eq('no unknowns means no footnote at all',
+  describeAssumptions({ unknown: [] }), '');
+
+eq('filtering by ingredient narrows the list',
+  filterByIngredient(ranked, 'capers').length, 1);
+eq('a one-letter term does not filter', filterByIngredient(ranked, 'c').length, ranked.length);
 
 console.log('');
 
