@@ -1,4 +1,4 @@
-// js/views/dashboard.js — 27 Aug 2026 v3
+// js/views/dashboard.js — 01 Sep 2026 v4
 // Phase 9: what is actually happening today.
 //
 // v1 was a link list. v2 added one-tap water. This is the screen the whole
@@ -37,6 +37,8 @@ import { listCleared, getLogsForDate } from '../data/exercises.js';
 import { formatMl } from '../lib/units.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { readPlanProgress } from './planWeek.js';
+import { PRIMARY_ACTION } from '../navConfig.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -66,6 +68,26 @@ export function render(mountEl) {
 
   mountEl.appendChild(el('h1', { text: 'Today' }));
   mountEl.appendChild(el('p', { class: 'field-hint', text: formatDateDisplay(today) }));
+
+  // ---- Phase 24: one primary action ----
+  // Phase 9 flagged that this screen was becoming a wall of tiles. The
+  // answer is not fewer tiles, it is one obvious thing to do at the top —
+  // a task, not a menu. Everything below stays exactly where it was.
+  {
+    const resumed = readPlanProgress();
+    const primary = el('a', {
+      class: 'btn btn-primary btn-large dashboard-primary',
+      href: `#/${PRIMARY_ACTION.path}`,
+      text: resumed ? PRIMARY_ACTION.resumeLabel : PRIMARY_ACTION.label
+    });
+    mountEl.appendChild(primary);
+    if (resumed) {
+      mountEl.appendChild(el('p', {
+        class: 'field-hint',
+        text: `You were on step ${resumed.stepIndex + 1} of 4. Nothing was lost.`
+      }));
+    }
+  }
 
   /**
    * A section that starts hidden and only appears once it has something to

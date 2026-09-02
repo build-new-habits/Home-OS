@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v55
+// service-worker.js — 01 Sep 2026 v56
+// v56 (Phase 24): ONE new path, js/views/planWeek.js. Also bumped for
+// routes.js v3, navConfig.js v6, views/dashboard.js v4, components.css v34.
 // v55 (Phase 26): ONE new path, js/lib/icons.js. Bumped for tokens.css v2 —
 // the first revision to that file since July — plus components.css v33,
 // app.js v5, views/pantry.js v8 and views/settings.js v8.
@@ -147,7 +149,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v55';
+const CACHE_NAME = 'home-os-shell-v56';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v33 */
+/* css/components.css — 01 Sep 2026 v34 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2615,3 +2615,92 @@ body.sheet-open {
    clothing. */
 [data-density="compact"] .card { padding: var(--space-3); }
 [data-density="compact"] .state-row { gap: var(--space-1); }
+
+/* ---- Phase 24: plan the week ----------------------------------------- */
+
+/* One obvious thing to do, at the top. Phase 9 flagged tile clutter; the
+   answer is a task, not fewer tiles. */
+.dashboard-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: var(--space-3) 0;
+  text-decoration: none;
+}
+
+.plan-week-header { margin-bottom: var(--space-3); }
+
+/* States position, never fills toward completion. A progress bar here
+   would be a small guilt machine. */
+.plan-week-position {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.plan-week-body { min-height: 12rem; }
+
+.plan-week-nav {
+  display: flex;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.plan-week-nav .btn { min-height: var(--tap-min); }
+.plan-week-nav .btn-primary { flex: 1; }
+
+/* Leaving is a normal thing to do, so it is styled as an ordinary option
+   rather than a destructive one. */
+.plan-week-leave {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-3);
+}
+
+.plan-week-ready,
+.plan-week-planned,
+.plan-week-all {
+  margin-top: var(--space-4);
+}
+
+.plan-week-ready h2,
+.plan-week-planned h2 {
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-1);
+}
+
+.plan-week-pick {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.plan-week-pick:last-child { border-bottom: none; }
+
+.plan-week-pick-name {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.plan-week-pick-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.plan-week-pick-controls select { min-height: var(--tap-min); }
+
+.plan-week-summary {
+  margin-bottom: var(--space-3);
+}
+
+.plan-week-summary .state-row {
+  margin: 0 0 var(--space-2);
+  align-items: center;
+  gap: var(--space-2);
+}

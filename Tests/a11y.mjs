@@ -696,7 +696,8 @@ const reachable = new Set([
   ...navMod.NAV_ITEMS.map((i) => i.path),
   ...navMod.DASHBOARD_LINKS.map((i) => i.path),
   ...navMod.HEALTH_PAGES.map((i) => i.path),
-  ...navMod.KITCHEN_PAGES.map((i) => i.path)
+  ...navMod.KITCHEN_PAGES.map((i) => i.path),
+  navMod.PRIMARY_ACTION.path
 ]);
 const orphans = routesMod.routes.map((r) => r.path).filter((p) => !reachable.has(p));
 check('every route is reachable from the nav bar or a hub',
@@ -919,6 +920,37 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   const hasGlobalRule = /\[hidden\]\s*\{[^}]*display\s*:\s*none\s*!important/.test(baseCss);
   check('css: [hidden] is enforced globally with !important', hasGlobalRule,
     'without it, any display rule silently un-hides a hidden element');
+}
+
+// ---- Phase 24: plan the week -------------------------------------------
+// A guided flow is exactly where structure goes wrong: a heading that does
+// not move, a Back button that traps you, a position nobody announces.
+{
+  const mod = await import(pathToFileURL(path.join(REPO, 'js/views/planWeek.js')).href);
+  const mount = document.createElement('div');
+  document.body.appendChild(mount);
+  const teardown = mod.render(mount);
+  await new Promise((r) => setTimeout(r, 30));
+
+  check('plan-week: exactly one h1', mount.querySelectorAll('h1').length === 1);
+  check('plan-week: the heading is focusable so focus can move to it on each step',
+    mount.querySelector('h1').getAttribute('tabindex') === '-1');
+  check('plan-week: position is stated in words',
+    /step \d+ of \d+/i.test(mount.textContent));
+  // A filling bar would be a guilt machine; position is a fact.
+  check('plan-week: no progress bar element',
+    mount.querySelector('progress, [role="progressbar"]') === null);
+  check('plan-week: Back exists and is disabled on the first step',
+    [...mount.querySelectorAll('button')].some((b) => b.textContent === 'Back' && b.disabled));
+  check('plan-week: every step is skippable',
+    [...mount.querySelectorAll('button')].some((b) => /skip/i.test(b.textContent)));
+  // Leaving must not read as discarding: everything is written as it happens.
+  check('plan-week: leaving is offered as a normal option, not a cancel',
+    [...mount.querySelectorAll('button')].some((b) => /finish later/i.test(b.textContent))
+    && ![...mount.querySelectorAll('button')].some((b) => /^cancel$/i.test(b.textContent)));
+
+  if (typeof teardown === 'function') teardown();
+  mount.remove();
 }
 
 // ---- Phase 26: icons and state badges ----------------------------------

@@ -1,4 +1,5 @@
-// js/navConfig.js — 26 Aug 2026 v5
+// js/navConfig.js — 01 Sep 2026 v6
+// v6: adds PRIMARY_ACTION — the one task at the top of the dashboard.
 // v5: the foods library is its own page under Kitchen.
 // v4: the weekly plan is its own page under Kitchen.
 // v3: adds Kitchen. Meals, pantry and shopping are not three peers — they
@@ -42,6 +43,23 @@ export const NAV_ITEMS = [
  * Health. Listed explicitly instead: what belongs on the dashboard is a
  * judgement, not "everything that exists".
  */
+/**
+ * The one task offered at the top of the dashboard.
+ *
+ * Phase 24. Separate from DASHBOARD_LINKS because it is not a link in the
+ * "everything else" grid — it is the single obvious thing to do, and Phase 9
+ * flagged that the answer to tile clutter is a task rather than fewer tiles.
+ *
+ * Declared here rather than hardcoded in the view so navigation stays
+ * declarative and the a11y gate's reachability check can see it. The gate
+ * caught exactly that when this was a hardcoded link.
+ */
+export const PRIMARY_ACTION = {
+  path: 'plan-week',
+  label: 'Plan the week',
+  resumeLabel: 'Carry on planning the week'
+};
+
 export const DASHBOARD_LINKS = [
   { path: 'holidays', title: 'Holidays', blurb: 'Trips and their checklists.' },
   { path: 'settings', title: 'Settings', blurb: 'Themes, units and your account.' }
