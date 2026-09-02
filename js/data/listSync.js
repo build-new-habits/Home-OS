@@ -1,4 +1,4 @@
-// js/data/listSync.js — 01 Sep 2026 v1
+// js/data/listSync.js — 01 Sep 2026 v2
 // Phase 22. The shopping list follows the plan on its own.
 //
 // ---- The defect ----
@@ -28,6 +28,7 @@ import { replaceGeneratedItems } from './shopping.js';
 import { getHousehold } from './household.js';
 import { computeShortfall } from '../lib/shortfall.js';
 import { isOffline } from '../lib/net.js';
+import { addDueStaples } from './staples.js';
 
 /** Long enough to swallow a burst of edits, short enough to feel immediate. */
 const DEBOUNCE_MS = 2500;
@@ -112,6 +113,15 @@ export async function syncNow() {
     });
 
     const written = await replaceGeneratedItems(items);
+
+    // Phase 25. Anything below its reorder point joins the list at the same
+    // moment. Written as `usual`, not `meal_plan`, so the next rebuild does
+    // not sweep it away again.
+    if (written.ok) {
+      const staples = await addDueStaples();
+      if (!staples.ok) console.error('Could not add running-low staples:', staples.error);
+    }
+
     if (!written.ok) {
       const result = { ok: false, reason: 'write-failed' };
       emit(result);

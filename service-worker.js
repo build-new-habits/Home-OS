@@ -1,4 +1,8 @@
-// service-worker.js — 01 Sep 2026 v62
+// service-worker.js — 01 Sep 2026 v63
+// v63 (Phase 25): ONE new path, js/data/staples.js. Also bumped for
+// food_reference.json v2 (241 entries, +31 drinks and non-food),
+// data/pantry.js v5, data/listSync.js v2, views/pantry.js v11,
+// views/shopping.js v8.
 // v62 (Phase 29): ONE new path, js/lib/dom.js. Twelve views changed to
 // import from it rather than carrying their own copy.
 // v61 (Phase 28, part two): no path changes. Bumped for the visual pass —
@@ -166,7 +170,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v62';
+const CACHE_NAME = 'home-os-shell-v63';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -220,6 +224,7 @@ const SHELL_FILES = [
   './js/data/foodClaim.js',
   './js/data/restock.js',
   './js/data/listSync.js',
+  './js/data/staples.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',

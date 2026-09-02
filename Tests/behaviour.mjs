@@ -45,6 +45,7 @@ const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons,
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
+const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1193,6 +1194,66 @@ eq('scaling a recipe scales what comes out',
 
 check('the offer names what it would take', describeDepletion(plannedDepletion).includes('rice'));
 eq('nothing to take means no offer at all', describeDepletion([]), '');
+
+console.log('');
+
+// ============ Phase 25: the whole home ============
+console.log('\nRunning low');
+
+const stapleStock = [
+  { food_id: 'a', current_qty: 1, reorder_at: 1, unit: 'item' },   // at the line
+  { food_id: 'b', current_qty: 0, reorder_at: 0, unit: 'item' },   // ran out
+  { food_id: 'c', current_qty: 5, reorder_at: 1, unit: 'item' },   // plenty
+  { food_id: 'd', current_qty: 0, reorder_at: null, unit: 'item' },// opted out
+  { food_id: 'e', current_qty: null, reorder_at: 1, unit: 'item' } // not recorded
+];
+const due = dueForReorder(stapleStock).map((r) => r.food_id);
+
+check('at the line counts as due', due.includes('a'));
+check('below the line counts as due', due.includes('b'));
+check('plenty left is not due', !due.includes('c'));
+// Null is the default and means never remind. If this ever returned true,
+// every pantry row in the app would land on the shopping list at once.
+check('null never triggers a reminder', !due.includes('d'));
+// Zero is a real threshold — "tell me when it is gone" — and must not be
+// collapsed into null by a falsy check.
+eq('zero is a threshold, not an opt-out', due.length, 2);
+// Not knowing is not evidence of running low, same as everywhere else.
+check('an unrecorded amount never triggers a reminder', !due.includes('e'));
+
+eq('opting out is stated plainly',
+  describeReorder({ reorder_at: null, unit: 'item' }, 'Shampoo'),
+  'Shampoo is not on the reminder list.');
+check('a zero threshold reads as "when it runs out"',
+  /runs out/.test(describeReorder({ reorder_at: 0, unit: 'item' }, 'Shampoo')));
+
+console.log('\nHow often you usually buy it');
+
+// A prediction from one or two data points is a fabrication.
+check('nothing is claimed from one restock',
+  describeUsualInterval(['2026-08-01'], '2026-09-01') === null);
+check('nothing is claimed from two',
+  describeUsualInterval(['2026-08-01', '2026-08-22'], '2026-09-01') === null);
+
+const weekly = describeUsualInterval(
+  ['2026-07-11', '2026-08-01', '2026-08-22'], '2026-09-01');
+check('three restocks produce a sentence', typeof weekly === 'string');
+check('a tidy interval reads in weeks', /every 3 weeks/.test(weekly));
+check('and it says when you last bought it', /last bought 10 days ago/i.test(weekly));
+
+const odd = describeUsualInterval(['2026-08-01', '2026-08-06', '2026-08-11'], '2026-08-15');
+check('an untidy interval reads in days, not a fraction of a week',
+  /every 5 days/.test(odd));
+check('duplicate restock dates do not distort the average',
+  describeUsualInterval(['2026-08-01', '2026-08-01', '2026-08-08', '2026-08-15'], '2026-08-16')
+    .includes('7 days'));
+
+console.log('\nStarter staples');
+check('the starter list is household-first, not a food list',
+  STARTER_STAPLES.filter((s) => s.category !== 'food_fresh').length > STARTER_STAPLES.length / 2);
+check('every staple has a category', STARTER_STAPLES.every((s) => s.category));
+check('names are unique',
+  new Set(STARTER_STAPLES.map((s) => s.name)).size === STARTER_STAPLES.length);
 
 console.log('');
 

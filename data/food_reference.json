@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "updated": "2026-09-01",
  "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned.",
  "foods": [
@@ -478,7 +478,7 @@
    "name": "Butternut squash",
    "category": "food_fresh",
    "aliases": [
-    "squash"
+    "butternut"
    ],
    "grams_per_item": 900,
    "item_label": "squash",
@@ -2683,6 +2683,300 @@
    "aliases": [
     "guinea pig food"
    ],
+   "item_label": "bag"
+  },
+  {
+   "slug": "tea-bags",
+   "name": "Tea bags",
+   "category": "drink",
+   "aliases": [
+    "tea",
+    "teabags"
+   ],
+   "grams_per_item": 3,
+   "item_label": "bag"
+  },
+  {
+   "slug": "coffee-instant",
+   "name": "Coffee, instant",
+   "category": "drink",
+   "aliases": [
+    "coffee",
+    "instant coffee"
+   ]
+  },
+  {
+   "slug": "coffee-ground",
+   "name": "Coffee, ground",
+   "category": "drink",
+   "aliases": [
+    "ground coffee"
+   ]
+  },
+  {
+   "slug": "squash-concentrated",
+   "name": "Squash, concentrated",
+   "category": "drink",
+   "aliases": [
+    "cordial"
+   ],
+   "grams_per_ml": 1.04,
+   "calories_per_100g": 10,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 2.4
+  },
+  {
+   "slug": "cola",
+   "name": "Cola",
+   "category": "drink",
+   "aliases": [
+    "coke",
+    "fizzy drink"
+   ],
+   "grams_per_item": 330,
+   "item_label": "can",
+   "grams_per_ml": 1.04,
+   "calories_per_100g": 42,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 10.6
+  },
+  {
+   "slug": "lemonade",
+   "name": "Lemonade",
+   "category": "drink",
+   "grams_per_item": 330,
+   "item_label": "can",
+   "grams_per_ml": 1.04,
+   "calories_per_100g": 38,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 9.5
+  },
+  {
+   "slug": "apple-juice",
+   "name": "Apple juice",
+   "category": "drink",
+   "grams_per_ml": 1.05,
+   "calories_per_100g": 46,
+   "protein_g": 0.1,
+   "fat_g": 0.1,
+   "carbs_g": 11.3
+  },
+  {
+   "slug": "beer-lager",
+   "name": "Beer, lager",
+   "category": "drink",
+   "aliases": [
+    "beer",
+    "lager"
+   ],
+   "grams_per_item": 440,
+   "item_label": "can",
+   "grams_per_ml": 1.01,
+   "calories_per_100g": 43,
+   "protein_g": 0.5,
+   "fat_g": 0.0,
+   "carbs_g": 3.6
+  },
+  {
+   "slug": "wine-red",
+   "name": "Wine, red",
+   "category": "drink",
+   "aliases": [
+    "red wine"
+   ],
+   "grams_per_item": 750,
+   "item_label": "bottle",
+   "grams_per_ml": 0.99,
+   "calories_per_100g": 85,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 2.6
+  },
+  {
+   "slug": "wine-white",
+   "name": "Wine, white",
+   "category": "drink",
+   "aliases": [
+    "white wine"
+   ],
+   "grams_per_item": 750,
+   "item_label": "bottle",
+   "grams_per_ml": 0.99,
+   "calories_per_100g": 82,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 2.6
+  },
+  {
+   "slug": "sparkling-water",
+   "name": "Sparkling water",
+   "category": "drink",
+   "aliases": [
+    "fizzy water"
+   ],
+   "grams_per_item": 500,
+   "item_label": "bottle",
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 0,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 0.0
+  },
+  {
+   "slug": "hot-chocolate-powder",
+   "name": "Hot chocolate powder",
+   "category": "drink",
+   "aliases": [
+    "hot chocolate"
+   ],
+   "calories_per_100g": 377,
+   "protein_g": 5.0,
+   "fat_g": 3.0,
+   "carbs_g": 80.0
+  },
+  {
+   "slug": "laundry-detergent",
+   "name": "Laundry detergent",
+   "category": "household",
+   "aliases": [
+    "washing powder",
+    "washing liquid"
+   ],
+   "item_label": "bottle"
+  },
+  {
+   "slug": "fabric-conditioner",
+   "name": "Fabric conditioner",
+   "category": "household",
+   "item_label": "bottle"
+  },
+  {
+   "slug": "surface-cleaner",
+   "name": "Surface cleaner",
+   "category": "household",
+   "aliases": [
+    "kitchen spray",
+    "cleaner"
+   ],
+   "item_label": "bottle"
+  },
+  {
+   "slug": "bleach",
+   "name": "Bleach",
+   "category": "household",
+   "item_label": "bottle"
+  },
+  {
+   "slug": "dishwasher-tablets",
+   "name": "Dishwasher tablets",
+   "category": "household",
+   "item_label": "box"
+  },
+  {
+   "slug": "sponges",
+   "name": "Sponges",
+   "category": "household",
+   "aliases": [
+    "scourer"
+   ],
+   "item_label": "sponge"
+  },
+  {
+   "slug": "tin-foil",
+   "name": "Tin foil",
+   "category": "household",
+   "aliases": [
+    "aluminium foil",
+    "foil"
+   ],
+   "item_label": "roll"
+  },
+  {
+   "slug": "cling-film",
+   "name": "Cling film",
+   "category": "household",
+   "item_label": "roll"
+  },
+  {
+   "slug": "baking-paper",
+   "name": "Baking paper",
+   "category": "household",
+   "aliases": [
+    "greaseproof paper"
+   ],
+   "item_label": "roll"
+  },
+  {
+   "slug": "deodorant",
+   "name": "Deodorant",
+   "category": "personal",
+   "item_label": "can"
+  },
+  {
+   "slug": "razor-blades",
+   "name": "Razor blades",
+   "category": "personal",
+   "aliases": [
+    "razors"
+   ],
+   "item_label": "pack"
+  },
+  {
+   "slug": "hand-soap",
+   "name": "Hand soap",
+   "category": "personal",
+   "aliases": [
+    "soap"
+   ],
+   "item_label": "bottle"
+  },
+  {
+   "slug": "moisturiser",
+   "name": "Moisturiser",
+   "category": "personal",
+   "item_label": "bottle"
+  },
+  {
+   "slug": "sun-cream",
+   "name": "Sun cream",
+   "category": "personal",
+   "aliases": [
+    "suncream",
+    "sunscreen"
+   ],
+   "item_label": "bottle"
+  },
+  {
+   "slug": "plasters",
+   "name": "Plasters",
+   "category": "personal",
+   "item_label": "box"
+  },
+  {
+   "slug": "paracetamol",
+   "name": "Paracetamol",
+   "category": "personal",
+   "item_label": "box"
+  },
+  {
+   "slug": "cat-food",
+   "name": "Cat food",
+   "category": "pet",
+   "item_label": "pouch"
+  },
+  {
+   "slug": "dog-food",
+   "name": "Dog food",
+   "category": "pet",
+   "item_label": "tin"
+  },
+  {
+   "slug": "cat-litter",
+   "name": "Cat litter",
+   "category": "pet",
    "item_label": "bag"
   }
  ]

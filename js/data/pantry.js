@@ -1,4 +1,4 @@
-// js/data/pantry.js — 01 Sep 2026 v4
+// js/data/pantry.js — 01 Sep 2026 v5
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
 // purpose — see the comment there.
@@ -75,7 +75,7 @@ export function defaultShelfLife(category) {
 export async function listStock() {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, '
+    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, '
       + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
@@ -192,6 +192,20 @@ export async function updateStock(stockId, patch = {}) {
   }
   if (patch.default_location !== undefined) {
     next.default_location = String(patch.default_location).trim() || null;
+  }
+  if (patch.reorder_at !== undefined) {
+    // Null means never remind, and that is the default. Zero is a real
+    // threshold — "tell me when it is gone" — so it must not be collapsed
+    // into null by a falsy check.
+    if (patch.reorder_at === '' || patch.reorder_at === null) {
+      next.reorder_at = null;
+    } else {
+      const at = Number(patch.reorder_at);
+      if (!Number.isFinite(at) || at < 0) {
+        return { ok: false, error: new Error('A reminder level cannot be negative.') };
+      }
+      next.reorder_at = Math.round(at * 100) / 100;
+    }
   }
   if (patch.shelf_life_days !== undefined) {
     if (patch.shelf_life_days === '' || patch.shelf_life_days === null) {

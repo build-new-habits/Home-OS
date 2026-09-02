@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v10
+// js/views/pantry.js — 01 Sep 2026 v11
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -480,6 +480,17 @@ export function render(mountEl) {
     });
     restockedInput.setAttribute('aria-describedby', restockedHint.id);
 
+    // Phase 25. Opt-in, always. Blank means never remind — an app that
+    // decides on its own that you need shampoo is an app that adds noise.
+    const reorderInput = numberInput(`${prefix}-reorder`, { min: '0', step: 'any' });
+    reorderInput.value = row.reorder_at != null ? String(row.reorder_at) : '';
+    const reorderHint = el('p', {
+      class: 'field-hint', id: `${prefix}-reorder-hint`,
+      text: 'Optional. Put it back on the shopping list when you are down to this many. '
+        + 'Leave blank and it will never remind you.'
+    });
+    reorderInput.setAttribute('aria-describedby', reorderHint.id);
+
     const error = el('p', { class: 'field-error', role: 'alert' });
     error.hidden = true;
     const save = el('button', { type: 'submit', class: 'btn btn-primary', text: 'Save' });
@@ -492,6 +503,7 @@ export function render(mountEl) {
       field('Use by', useByEdit, useByEditHint),
       field('Usually keeps (days)', shelfInput),
       field('Last restocked', restockedInput, restockedHint),
+      field('Remind me at', reorderInput, reorderHint),
       error,
       el('div', { class: 'card-actions' }, [save, cancel])
     );
@@ -513,7 +525,8 @@ export function render(mountEl) {
         default_location: locationInput.value,
         shelf_life_days: shelfInput.value,
         last_restocked: restockedInput.value,
-        use_by: useByEdit.value
+        use_by: useByEdit.value,
+        reorder_at: reorderInput.value
       });
       save.disabled = false;
       if (destroyed) return;

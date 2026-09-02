@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v16
+01 Sep 2026 v17
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,38 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0o. Revision 17 — reorder points (01 Sep 2026)
+
+`pantry_stock.reorder_at numeric`, nullable, **no default**, check `>= 0`.
+
+Non-food has worked since Phase 6: `drink`, `household`, `personal`, `home`
+and `pet` are all valid categories, the shopping list is not filtered to
+edible, and `usual` has always been a valid source. Shampoo and guinea pig
+hay could always go on the list.
+
+What was missing was a **reason for them to appear.** Food reaches the list
+because a meal plan needs it. Nothing plans your shampoo, so it only ever
+appeared if you remembered — which is precisely the thing this product
+exists not to require.
+
+### Null means never remind
+
+And null is the default. Opt-in, always: an app that decides on its own that
+you need shampoo is an app that adds noise, and noise is how a useful prompt
+gets ignored.
+
+**Zero is a real threshold**, meaning "tell me when it runs out". It must
+never be collapsed into null by a falsy check — the data module tests for
+`=== null` and `=== ''` explicitly.
+
+An unrecorded `current_qty` never triggers a reminder, for the same reason
+it never demotes a recipe in Phase 14: not knowing is not evidence of
+running low.
+
+Migration: `migrations/017_reorder_points.sql`.
 
 ---
 
@@ -814,6 +846,7 @@ Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | default_location | text | which cupboard. Distinct from `foods.category`: category is *what the thing is*, location is *where it lives*, and non-food needs locations like "bathroom cabinet" and "garage" |
+| reorder_at | numeric | nullable, no default; check >= 0. Null = never remind (revision 17) |
 | shelf_life_days | int | the ESTIMATE — how long it usually keeps once bought. Used only when `use_by` is null |
 | use_by | date | nullable (revision 7). The FACT, read off the label. Never backfilled from restocked + shelf life |
 | current_qty | numeric | **nullable — NULL means "amount not recorded"**, which is distinct from 0 ("you have none"). Interpret with `unit` |
