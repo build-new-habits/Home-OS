@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 26 Aug 2026 v1
+// js/views/mealPlan.js — 01 Sep 2026 v2
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -25,6 +25,7 @@
 
 import {
   listPlan, groupByCell, addPlanEntry, updatePlanEntry, removePlanEntry,
+  servingsForEntry, describeDiners, remainingMembers,
   servesFor, DAYS, SLOTS
 } from '../data/mealPlan.js';
 import { listMeals, mealTypeLabel } from '../data/meals.js';
@@ -32,6 +33,7 @@ import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { getHousehold } from '../data/household.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -82,6 +84,9 @@ export function render(mountEl) {
   let destroyed = false;
 
   let planByCell = new Map();
+  // Phase 20. Empty is a safe default: every entry then means "everyone"
+  // and servings fall back to the meal's own default, exactly as before.
+  let members = [];
   let meals = [];
 
   mountEl.appendChild(el('h1', { text: 'Weekly plan' }));
@@ -174,11 +179,68 @@ export function render(mountEl) {
     return cell;
   }
 
+
+  /**
+   * Who this meal is for.
+   *
+   * Hidden behind a details, because the common case — everyone — needs no
+   * interaction at all and must not be taxed with one.
+   */
+  function buildDinerPicker(entry, mealName) {
+    const details = el('details', { class: 'diner-picker' });
+    details.appendChild(el('summary', { text: 'Who it is for' }));
+
+    const set = el('fieldset', { class: 'diner-options' });
+    set.appendChild(el('legend', { class: 'sr-only', text: `Who is eating ${mealName}` }));
+
+    const hint = el('p', {
+      class: 'field-hint',
+      text: 'Leave all of them unticked for everyone.'
+    });
+    set.appendChild(hint);
+
+    const boxes = [];
+    const chosen = new Set(entry.member_ids || []);
+    for (const member of members) {
+      const row = el('div', { class: 'checkbox-row' });
+      const box = el('input', { type: 'checkbox', id: `diner-${entry.id}-${member.id}` });
+      box.value = member.id;
+      box.checked = chosen.has(member.id);
+      const label = el('label', { for: box.id, text: member.display_name });
+      row.append(box, label);
+      set.appendChild(row);
+      boxes.push(box);
+    }
+
+    const save = el('button', { type: 'button', class: 'btn btn-small', text: 'Save' });
+    save.addEventListener('click', async () => {
+      const ids = boxes.filter((b) => b.checked).map((b) => b.value);
+      save.disabled = true;
+      // Everyone ticked is the same as nobody ticked, and storing it as
+      // empty means a member added later is automatically included.
+      const normalised = ids.length === members.length ? [] : ids;
+      const result = await updatePlanEntry(entry.id, { member_ids: normalised });
+      save.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        showToast("Couldn't save who that meal is for.");
+        return;
+      }
+      announce(`${mealName} is now for ${describeDiners(result.data, members)}.`);
+      await loadPlan();
+    }, { signal });
+    set.appendChild(save);
+
+    details.appendChild(set);
+    return details;
+  }
+
   function buildPlanEntry(entry, day, slot) {
     const item = el('li', { class: 'plan-entry' });
     const meal = entry.meals || entry.meal || {};
     const mealName = meal.name || 'Meal';
-    const serves = servesFor(entry);
+    // Phase 20: servings follow whoever is eating, unless overridden.
+    const serves = servingsForEntry(entry, members);
     const overridden = entry.serves_override !== null && entry.serves_override !== undefined;
 
     item.appendChild(el('span', { class: 'plan-entry-name', text: mealName }));
@@ -186,6 +248,17 @@ export function render(mountEl) {
       class: 'plan-entry-serves',
       text: `Serves ${serves}${overridden ? ' (this one only)' : ''}`
     }));
+
+    // Only shown when the entry is NOT for everyone. Printing "Everyone" on
+    // six meals a day is noise that buries the one line that matters.
+    if ((entry.member_ids || []).length > 0) {
+      item.appendChild(el('span', {
+        class: 'plan-entry-diners',
+        text: describeDiners(entry, members)
+      }));
+    }
+
+    if (members.length > 1) item.appendChild(buildDinerPicker(entry, mealName));
 
     const servesInput = el('input', {
       id: `plan-serves-${entry.id}`,
@@ -335,8 +408,11 @@ export function render(mountEl) {
   }
 
   async function loadPlan() {
-    const result = await listPlan();
+    const [result, household] = await Promise.all([listPlan(), getHousehold()]);
     if (destroyed) return;
+    // A household read that fails must not cost you the plan. Falling back
+    // to an empty member list is the pre-Phase-20 behaviour, not an error.
+    members = household.ok ? household.data.members : [];
     if (!result.ok) {
       console.error('Failed to load the meal plan:', result.error);
       planByCell = new Map();

@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v29 */
+/* css/components.css — 01 Sep 2026 v30 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2400,4 +2400,31 @@ body.sheet-open {
 .option-select {
   width: 100%;
   min-height: 44px;
+}
+
+/* ---- Phase 20: who is eating ----------------------------------------- */
+/* Only rendered when an entry is NOT for everyone — printing "Everyone" on
+   six meals a day is noise that buries the one line that matters. */
+
+.plan-entry-diners {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.diner-picker {
+  margin-top: var(--space-2);
+}
+
+.diner-picker summary {
+  font-size: var(--text-sm);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.diner-options {
+  border: none;
+  padding: 0;
+  margin: 0;
 }

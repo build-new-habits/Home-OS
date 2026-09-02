@@ -1,4 +1,4 @@
-// js/data/mealPlan.js — 21 Aug 2026 v1
+// js/data/mealPlan.js — 01 Sep 2026 v2
 // All Supabase access for `weekly_meal_plan`. Shared data-access contract:
 // { ok, data|error }, error always checked, nothing thrown at views, no
 // user_id on inserts.
@@ -58,7 +58,7 @@ export function isValidSlot(value) {
 export async function listPlan() {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, day_of_week, slot, serves_override, meal_id, meals(id, name, default_serves)')
+    .select('id, day_of_week, slot, serves_override, member_ids, meal_id, meals(id, name, default_serves)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };
@@ -78,7 +78,7 @@ export function groupByCell(entries) {
   return map;
 }
 
-export async function addPlanEntry({ meal_id, day_of_week, slot, serves_override = null }) {
+export async function addPlanEntry({ meal_id, day_of_week, slot, serves_override = null, member_ids = [] }) {
   if (!meal_id) return { ok: false, error: new Error('Pick a meal first.') };
   // Guarded here as well as in the UI: a check-constraint violation comes
   // back as an opaque database error, which is not a useful thing to show.
@@ -88,7 +88,12 @@ export async function addPlanEntry({ meal_id, day_of_week, slot, serves_override
   if (!isValidSlot(slot)) {
     return { ok: false, error: new Error(`"${slot}" is not a meal slot.`) };
   }
-  const payload = { meal_id, day_of_week, slot, serves_override: normaliseServes(serves_override) };
+  const payload = {
+    meal_id, day_of_week, slot,
+    serves_override: normaliseServes(serves_override),
+    // Empty means everyone. That is the default and it stays the default.
+    member_ids: Array.isArray(member_ids) ? member_ids : []
+  };
   const { data, error } = await supabase.from(TABLE).insert(payload).select().single();
   if (error) return { ok: false, error };
   return { ok: true, data };
@@ -105,7 +110,7 @@ function normaliseServes(value) {
  * Updates one plan entry. Passing serves_override as null or '' clears the
  * override, so the entry falls back to meals.default_serves.
  */
-export async function updatePlanEntry(entryId, { day_of_week, slot, serves_override } = {}) {
+export async function updatePlanEntry(entryId, { day_of_week, slot, serves_override, member_ids } = {}) {
   const patch = {};
   if (day_of_week !== undefined) {
     if (!isValidDay(day_of_week)) {
@@ -120,6 +125,7 @@ export async function updatePlanEntry(entryId, { day_of_week, slot, serves_overr
     patch.slot = slot;
   }
   if (serves_override !== undefined) patch.serves_override = normaliseServes(serves_override);
+  if (member_ids !== undefined) patch.member_ids = Array.isArray(member_ids) ? member_ids : [];
 
   const { data, error } = await supabase
     .from(TABLE)
@@ -145,4 +151,102 @@ export function servesFor(entry) {
   }
   const meal = entry.meals || entry.meal;
   return (meal && meal.default_serves) || 1;
+}
+
+
+// ---- Phase 20: who is eating -------------------------------------------
+
+/**
+ * The members an entry is for.
+ *
+ * Empty member_ids means EVERYONE, which is the common case and stays free
+ * of any tap cost. A stale id — a member removed after the plan was made —
+ * is ignored rather than treated as a missing person: past plans keep their
+ * record of who ate what, and the id simply stops resolving.
+ */
+export function membersFor(entry, householdMembers = []) {
+  const ids = (entry && entry.member_ids) || [];
+  if (ids.length === 0) return householdMembers;
+  const byId = new Map(householdMembers.map((m) => [m.id, m]));
+  return ids.map((id) => byId.get(id)).filter(Boolean);
+}
+
+/**
+ * Servings to cook, given who is actually eating.
+ *
+ * serves_override wins outright — it is the manual escape hatch and this
+ * must never quietly overrule it.
+ *
+ * Otherwise: sum of portion_factor, rounded UP to the nearest half, floored
+ * at 1. The asymmetry is deliberate. Cooking slightly too much is a
+ * leftover; cooking slightly too little is somebody going without.
+ */
+export function servingsForEntry(entry, householdMembers = []) {
+  if (entry && entry.serves_override !== null && entry.serves_override !== undefined) {
+    return entry.serves_override;
+  }
+  const members = membersFor(entry, householdMembers);
+  if (members.length === 0) {
+    const meal = (entry && (entry.meals || entry.meal)) || {};
+    return meal.default_serves || 1;
+  }
+  const total = members.reduce((sum, m) => {
+    const factor = Number(m.portion_factor);
+    // A null portion must never silently shrink the shop.
+    return sum + (Number.isFinite(factor) && factor > 0 ? factor : 1);
+  }, 0);
+  return Math.max(1, Math.ceil(total * 2) / 2);
+}
+
+/** "Everyone" / "Ellie and Sam" / "Just you" — never a list of raw ids. */
+export function describeDiners(entry, householdMembers = []) {
+  const ids = (entry && entry.member_ids) || [];
+  if (ids.length === 0) return 'Everyone';
+  const members = membersFor(entry, householdMembers);
+  if (members.length === 0) return 'Nobody in the household any more';
+  if (members.length === householdMembers.length) return 'Everyone';
+  const names = members.map((m) => m.display_name);
+  if (names.length === 1) return names[0];
+  return `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+}
+
+/**
+ * Splitting a cell: the ids NOT in the new entry.
+ *
+ * When you add a second meal to a slot that already holds one and say who
+ * the new one is for, the existing meal should narrow to the remainder on
+ * its own. "Sausage and chips for the kids" should make the sea bass
+ * "the adults" without you having to go and edit it too. One action, not
+ * two.
+ */
+export function remainingMembers(householdMembers = [], takenIds = []) {
+  const taken = new Set(takenIds);
+  return householdMembers.filter((m) => !taken.has(m.id)).map((m) => m.id);
+}
+
+/**
+ * Dietary needs an entry does not visibly meet.
+ *
+ * ---- Tags say what a meal IS, not what it isn't ----
+ * A meal tagged ['gluten_free'] is not thereby "not vegetarian" — it may
+ * simply never have been tagged vegetarian. So this reports UNCONFIRMED,
+ * not CONFLICT, and the wording has to match: "not marked vegetarian",
+ * never "contains meat".
+ *
+ * An entirely untagged meal returns nothing. Otherwise this would fire on
+ * every meal in the app until the whole library were tagged, and a warning
+ * that appears everywhere is one nobody reads.
+ *
+ * It never blocks. It is your kitchen; maybe Sam is having something else.
+ */
+export function dietaryConflicts(entry, householdMembers = [], mealTags = []) {
+  if (mealTags.length === 0) return [];
+  const members = membersFor(entry, householdMembers);
+  const out = [];
+  for (const member of members) {
+    const needs = member.dietary_tags || [];
+    const unmet = needs.filter((tag) => !mealTags.includes(tag));
+    if (unmet.length > 0) out.push({ member, unmet });
+  }
+  return out;
 }

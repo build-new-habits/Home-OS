@@ -48,6 +48,7 @@ const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/hou
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
 const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
+const { servingsForEntry, describeDiners, membersFor, remainingMembers, dietaryConflicts } = await import(`${REPO}/js/data/mealPlan.js`);
 const refDoc = JSON.parse(await (await import('node:fs/promises')).readFile(`${REPO}/data/food_reference.json`, 'utf8'));
 
 // ============ Macros, against a hand calculation ============
@@ -901,6 +902,73 @@ eq('only the chosen option is counted', optMacros.ingredientCount, 1);
 eq('an unchosen option with no data is NOT reported as incomplete',
   optMacros.incompleteCount, 0);
 eq('the totals come from the chosen option', Math.round(optMacros.totals.calories), 257);
+
+console.log('');
+
+// ============ Phase 20: who is eating what ============
+console.log('\nServings follow the people');
+
+const mum = { id: 'm1', display_name: 'Alex', portion_factor: 1, role: 'adult', dietary_tags: [] };
+const dad = { id: 'm2', display_name: 'Graeme', portion_factor: 1, role: 'owner', dietary_tags: [] };
+const kid1 = { id: 'm3', display_name: 'Sam', portion_factor: 0.6, role: 'child', dietary_tags: ['vegetarian'] };
+const kid2 = { id: 'm4', display_name: 'Ellie', portion_factor: 0.6, role: 'child', dietary_tags: [] };
+const house = [mum, dad, kid1, kid2];
+
+const seaBass = { member_ids: ['m1', 'm2'], serves_override: null, meals: { default_serves: 4 } };
+const sausages = { member_ids: ['m3', 'm4'], serves_override: null, meals: { default_serves: 4 } };
+const family = { member_ids: [], serves_override: null, meals: { default_serves: 4 } };
+
+eq('two adults need two servings', servingsForEntry(seaBass, house), 2);
+// 1.2 rounds UP to 1.5, because too little means somebody goes without.
+eq('two children at 0.6 round up to a half', servingsForEntry(sausages, house), 1.5);
+eq('an unnamed entry feeds the whole household', servingsForEntry(family, house), 3.5);
+
+// The manual escape hatch must never be quietly overruled.
+eq('serves_override wins outright',
+  servingsForEntry({ ...seaBass, serves_override: 6 }, house), 6);
+eq('with no household loaded it falls back to the meal default',
+  servingsForEntry(family, []), 4);
+eq('a null portion counts as a full adult, never as nothing',
+  servingsForEntry({ member_ids: ['m1'], serves_override: null, meals: { default_serves: 4 } },
+    [{ id: 'm1', display_name: 'X', portion_factor: null }]), 1);
+eq('a lone child still gets a whole serving',
+  servingsForEntry({ member_ids: ['m3'], serves_override: null, meals: { default_serves: 4 } }, house), 1);
+
+console.log('\nStale members and naming');
+
+// A member removed after the plan was made must not become a missing
+// person. Past plans keep their record.
+const stale = { member_ids: ['m3', 'gone'], serves_override: null, meals: { default_serves: 4 } };
+eq('an unknown member id is ignored, not counted', membersFor(stale, house).length, 1);
+eq('and does not distort the servings', servingsForEntry(stale, house), 1);
+
+eq('an unnamed entry reads as everyone', describeDiners(family, house), 'Everyone');
+eq('naming every member also reads as everyone',
+  describeDiners({ member_ids: ['m1', 'm2', 'm3', 'm4'] }, house), 'Everyone');
+eq('two people are joined with "and"', describeDiners(sausages, house), 'Sam and Ellie');
+eq('one person is just their name', describeDiners({ member_ids: ['m1'] }, house), 'Alex');
+
+// Splitting a cell: naming the kids on the new meal should narrow the
+// existing one to the adults without a second edit.
+eq('the remainder is everyone not named',
+  remainingMembers(house, ['m3', 'm4']).join(','), 'm1,m2');
+
+console.log('\nDietary needs: reported as unconfirmed, never as blocked');
+
+// Tags say what a meal IS, not what it isn't. An untagged meal is absence
+// of information, not evidence of a problem — and flagging it would fire
+// on every meal until the whole library were tagged.
+eq('an untagged meal reports nothing', dietaryConflicts(family, house, []).length, 0);
+
+const unconfirmed = dietaryConflicts(family, house, ['gluten_free']);
+check('a vegetarian is flagged against a meal tagged something else',
+  unconfirmed.some((c) => c.member.id === 'm3'));
+check('and nobody without restrictions is ever flagged',
+  !unconfirmed.some((c) => c.member.id === 'm1'));
+eq('a meal carrying the needed tag produces nothing',
+  dietaryConflicts(family, house, ['vegetarian']).length, 0);
+eq('only the unmet tag is named',
+  dietaryConflicts(family, house, ['gluten_free'])[0].unmet.join(','), 'vegetarian');
 
 console.log('');
 

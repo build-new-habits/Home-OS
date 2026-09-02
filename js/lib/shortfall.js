@@ -1,4 +1,4 @@
-// js/lib/shortfall.js — 01 Sep 2026 v2
+// js/lib/shortfall.js — 01 Sep 2026 v3
 // What you need, minus what you already have.
 //
 // This is principle 5 made real: the shopping list diffs the meal plan
@@ -43,7 +43,11 @@ import { freshness } from '../data/pantry.js';
  *   { food, needed, unit, have, shortfall, comparable, reason, expired }
  */
 export function computeShortfall({
-  plan = [], ingredients = [], pantry = [], foods = [], todayISO
+  plan = [], ingredients = [], pantry = [], foods = [], todayISO,
+  // Phase 20. Passed in so the list scales to who is actually eating: two
+  // adults on the sea bass, two children at 0.6 on the sausages. Default
+  // empty keeps the pre-Phase-20 behaviour exactly.
+  householdMembers = []
 } = {}) {
   const foodById = new Map(foods.map((food) => [food.id, food]));
   const ingredientsByMeal = new Map();
@@ -72,7 +76,7 @@ export function computeShortfall({
       skipped.push({ meal: meal.name || 'A meal', reason: 'its usual servings are not a usable number' });
       continue;
     }
-    const serves = servesForEntry(entry, defaultServes);
+    const serves = servesForEntry(entry, defaultServes, householdMembers);
     const scale = serves / defaultServes;
 
     for (const row of rows) {
@@ -186,9 +190,33 @@ function displayUnitFor(bucket, food) {
   return { unit, factor };
 }
 
-function servesForEntry(entry, fallback) {
+/**
+ * Servings for one plan entry.
+ *
+ * Order matters. serves_override wins outright — it is the manual escape
+ * hatch and nothing here may quietly overrule it. Then the people it is
+ * planned for. Only then the meal's own default.
+ *
+ * Empty member_ids means everyone, so an unnamed entry scales to the whole
+ * household without anyone having had to say so.
+ */
+function servesForEntry(entry, fallback, householdMembers = []) {
   const override = Number(entry.serves_override);
-  return Number.isFinite(override) && override > 0 ? override : fallback;
+  if (Number.isFinite(override) && override > 0) return override;
+  if (householdMembers.length === 0) return fallback;
+
+  const ids = entry.member_ids || [];
+  const eating = ids.length === 0
+    ? householdMembers
+    : householdMembers.filter((m) => ids.includes(m.id));
+  if (eating.length === 0) return fallback;
+
+  const total = eating.reduce((sum, m) => {
+    const factor = Number(m.portion_factor);
+    // A null portion must never silently shrink the shop.
+    return sum + (Number.isFinite(factor) && factor > 0 ? factor : 1);
+  }, 0);
+  return Math.max(1, Math.ceil(total * 2) / 2);
 }
 
 function makeItem(food, needed, unit, have, shortfall, comparable, reason, stock) {

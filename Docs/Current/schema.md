@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v12
+01 Sep 2026 v13
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,58 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0k. Revision 13 — who is eating (01 Sep 2026)
+
+`weekly_meal_plan` gains **`member_ids uuid[] not null default '{}'`**.
+
+Several meals in one cell already worked: there is no unique constraint on
+day+slot and the view already rendered a list. Sea bass for the adults and
+sausage and chips for the children on the same Tuesday was already
+possible. What was missing is recording **who each one is for**, so the
+shopping list can scale to the people actually eating.
+
+`portion_factor` and `dietary_tags` were put on `household_members` back in
+revision 8 precisely so this is one column rather than three.
+
+### Empty means everyone, forever
+
+Most meals in a house are for the whole house. If planning required naming
+people, it would tax the common case six or seven times a day to capture
+information that only matters occasionally — which for most families is
+lunches. So the default is empty, and empty means everyone.
+
+Storing "everyone ticked" as an empty array rather than a full list also
+means a member added later is included automatically.
+
+### No foreign key is possible
+
+An array element cannot carry an FK. A member removed after a plan was made
+leaves a stale id, and reading code **ignores** unknown ids rather than
+treating them as a missing person. Past plans keep their record of who ate
+what.
+
+### Servings order
+
+1. `serves_override` — the manual escape hatch, wins outright.
+2. Sum of `portion_factor` across whoever it is for, **rounded up** to the
+   nearest half, floored at 1.
+3. The meal's own `default_serves`.
+
+Rounding up is deliberate and asymmetric: cooking slightly too much is a
+leftover, cooking slightly too little is somebody going without. A null
+`portion_factor` counts as a full adult — it must never silently shrink the
+shop.
+
+### Not built, deliberately
+
+No household view of everyone's intake, and no macro targets for children.
+`role = 'child'` members are never offered targets. Handing someone a number
+the app invented for them is the opposite of this project.
+
+Migration: `migrations/013_plan_members.sql`.
 
 ---
 
@@ -655,6 +707,7 @@ migrations are what have kept this app safe. Read `unit` before using it.
 | meal_id | uuid | not null; references meals(id) **on delete restrict** |
 | day_of_week | text | not null; check in ('mon','tue','wed','thu','fri','sat','sun') |
 | slot | text | not null; check in ('breakfast','lunch','dinner','snack') |
+| member_ids | uuid[] | not null default '{}'. **Empty = everyone.** No FK possible; unknown ids ignored on read (revision 13) |
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
 
 ### pantry_stock
