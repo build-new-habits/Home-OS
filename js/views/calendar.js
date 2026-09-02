@@ -1,4 +1,4 @@
-// js/views/calendar.js — 26 Aug 2026 v1
+// js/views/calendar.js — 01 Sep 2026 v2
 // The calendar as its own page.
 //
 // It used to sit at the bottom of the chores screen, below a form and a
@@ -242,7 +242,7 @@ export function render(mountEl) {
     gridWrap.appendChild(table);
 
     summary.textContent = busyDays === 0
-      ? 'Nothing on this month.'
+      ? 'Nothing on this month. Chores, holidays and work days appear here as you add them.'
       : `${busyDays} day${busyDays === 1 ? '' : 's'} with something on. Tap a date to see it.`;
   }
 

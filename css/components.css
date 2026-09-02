@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v38 */
+/* css/components.css — 01 Sep 2026 v39 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2797,4 +2797,30 @@ body.sheet-open {
   display: block;
   width: 100%;
   margin-top: var(--space-3);
+}
+
+/* ---- Phase 28: empty states and sign-in ------------------------------- */
+
+.empty-state-block {
+  padding: var(--space-4) 0;
+}
+
+.empty-state-title {
+  margin: 0 0 var(--space-1);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.empty-state-block .empty-state {
+  margin: 0 0 var(--space-3);
+}
+
+.empty-state-block .btn { display: inline-flex; }
+
+/* The first thing anyone ever sees. One plain line about what this is for. */
+.signin-strap {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 34rem;
 }

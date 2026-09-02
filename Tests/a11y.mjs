@@ -985,6 +985,43 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Phase 28: empty states --------------------------------------------
+// An empty state is the only onboarding that keeps working after week one.
+// These assert the two things that make one useful rather than decorative.
+{
+  const { emptyState, FORBIDDEN_EMPTY_WORDS } =
+    await import(pathToFileURL(path.join(REPO, 'js/components/emptyState.js')).href);
+
+  const withLink = emptyState({
+    body: 'Meals appear here once you add one.',
+    actionLabel: 'Add a meal', actionHref: '#/meals'
+  });
+  // A link for navigation, a button for an action. A button that navigates
+  // breaks opening in a new tab and lies about what will happen.
+  check('empty state: navigation uses a link, not a button',
+    withLink.querySelector('a[href]') !== null && withLink.querySelector('button') === null);
+
+  const withAction = emptyState({ body: 'Nothing yet.', actionLabel: 'Add', onAction: () => {} });
+  check('empty state: an in-place action uses a button',
+    withAction.querySelector('button') !== null);
+
+  check('empty state: renders without an action at all',
+    emptyState({ body: 'Nothing yet.' }).textContent.includes('Nothing yet.'));
+
+  // "You haven't logged anything" is a small accusation. Empty is not a
+  // failure and must never be worded as one.
+  const forbidden = FORBIDDEN_EMPTY_WORDS;
+  check('empty state: the forbidden list covers accusation and apology',
+    forbidden.includes("haven't") && forbidden.includes('sorry') && forbidden.includes('you should'));
+
+  // Every empty state rendered across the app, checked against that list.
+  const emptyTexts = [...document.querySelectorAll('.empty-state, .empty-state-block')]
+    .map((n) => n.textContent.toLowerCase());
+  const offenders = emptyTexts.filter((t) => forbidden.some((w) => t.includes(w)));
+  check('empty states: none accuse, apologise, or imply failure',
+    offenders.length === 0, offenders.join(' | '));
+}
+
 // ---- Phase 27: first run ------------------------------------------------
 // A first-run flow is where an app most easily becomes coercive. These
 // assertions are about that, not about layout.

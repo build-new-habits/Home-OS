@@ -1,4 +1,4 @@
-// js/views/holidays.js — 26 Aug 2026 v3
+// js/views/holidays.js — 01 Sep 2026 v4
 // v3: same treatment as everywhere else.
 //
 //   * A holiday is one compact row, opened in the slide-out panel. Full
@@ -840,7 +840,8 @@ export function render(mountEl) {
     if (holidays.length === 0) {
       holidayList.appendChild(el('li', {
         class: 'recipe-row',
-        text: 'No holidays yet. Add one and it appears on the calendar too.'
+        text: 'Holidays you add appear on the calendar, with a checklist and a '
+          + 'shopping list of their own.'
       }));
       holidaySummary.textContent = '';
       return;
@@ -861,7 +862,10 @@ export function render(mountEl) {
   function renderWork() {
     workList.replaceChildren();
     if (workLocations.length === 0) {
-      workList.appendChild(el('p', { text: 'No work patterns yet — add one below.' }));
+      workList.appendChild(el('p', {
+        class: 'empty-state',
+        text: 'A work pattern fills your calendar in automatically — set one up below.'
+      }));
       return;
     }
     for (const event of workLocations) workList.appendChild(buildWorkCard(event));

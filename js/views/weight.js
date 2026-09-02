@@ -1,4 +1,4 @@
-// js/views/weight.js — 18 Aug 2026 v2
+// js/views/weight.js — 01 Sep 2026 v3
 // v2: entry unit is now chosen independently of display unit. v1 tied them
 // together, so someone whose scale reads in kg but who thinks in stone had
 // to convert by hand — the exact job this app should be doing. The choice is
@@ -111,7 +111,7 @@ function buildTrend(logs, unitPref, targetKg) {
     wrap.appendChild(el('p', {
       class: 'trend-empty',
       text: logs.length === 0
-        ? 'No weights logged yet. The trend line appears once there are two entries.'
+        ? 'The trend line appears once there are two entries.'
         : 'One weight logged. The trend line appears once there are two entries.'
     }));
     return wrap;
@@ -169,7 +169,11 @@ function buildTrend(logs, unitPref, targetKg) {
 function buildSummary(logs, unitPref, target) {
   const list = el('ul', { class: 'summary-list' });
   if (logs.length === 0) {
-    list.appendChild(el('li', { text: 'No weights logged yet.' }));
+    // Phase 28. States what the screen is for, not that it is empty —
+    // which the person can already see.
+    list.appendChild(el('li', {
+      text: 'Your weight and its trend appear here once you log one.'
+    }));
     return list;
   }
   const latest = logs[logs.length - 1];

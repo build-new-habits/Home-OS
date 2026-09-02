@@ -1,4 +1,4 @@
-// js/views/health.js — 26 Aug 2026 v1
+// js/views/health.js — 01 Sep 2026 v2
 // A hub, not a screen full of controls.
 //
 // Exercises, weight and water occupied three of the four bottom-bar slots
@@ -84,8 +84,10 @@ export function render(mountEl) {
     const result = await totalForDate(todayIso());
     if (destroyed || !result.ok) return;
     const ml = Number(result.data) || 0;
+    // Phase 28. "Nothing logged today" tells you the page is empty, which
+    // you find out by opening it. This says what the page is for.
     setStatus('water', ml === 0
-      ? 'Nothing logged today'
+      ? `Tap to log a glass — ${formatMl(DAILY_TARGET_ML)} is a normal day`
       : `${formatMl(ml)} of ${formatMl(DAILY_TARGET_ML)} today`);
   }
 
@@ -94,7 +96,7 @@ export function render(mountEl) {
     if (destroyed || !result.ok) return;
     const rows = result.data || [];
     if (rows.length === 0) {
-      setStatus('weight', 'No weigh-ins yet');
+      setStatus('weight', 'Log a weight and the trend appears here');
       return;
     }
     // listLogs orders by date; take the most recent whichever way round.
@@ -110,7 +112,7 @@ export function render(mountEl) {
     // would silently return nothing if that contract ever changed shape.
     const cleared = all.data || [];
     if (cleared.length === 0) {
-      setStatus('exercises', 'Nothing set up yet');
+      setStatus('exercises', 'Add the exercises your physio has cleared');
       return;
     }
     const doneToday = logs.ok

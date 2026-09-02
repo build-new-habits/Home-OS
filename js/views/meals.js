@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v20
+// js/views/meals.js — 01 Sep 2026 v21
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -139,6 +139,7 @@ import {
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
 } from '../data/mealSteps.js';
 import { openCookMode, readProgress } from '../components/cookMode.js';
+import { emptyState } from '../components/emptyState.js';
 import { planDepletion, applyDepletion, describeDepletion } from '../data/restock.js';
 import {
   scoreMeals, filterByIngredient, describeGaps, describeAssumptions,
@@ -1848,7 +1849,21 @@ export function render(mountEl) {
     paintMealFilterButton();
 
     if (meals.length === 0) {
-      mealsList.appendChild(el('li', { class: 'recipe-row', text: 'No recipes yet — add one below.' }));
+      // Phase 28. Two ways in, and the cheaper one first: browsing the
+      // library is one tap, writing a recipe is a job.
+      const emptyItem = el('li', { class: 'recipe-row' });
+      emptyItem.appendChild(emptyState({
+        body: 'Your recipes live here. Each one knows its ingredients, '
+          + 'so the shopping list can work itself out.',
+        actionLabel: 'Browse the recipe library',
+        onAction: () => {
+          libraryDetails.open = true;
+          libraryDetails.scrollIntoView({ block: 'center' });
+          if (!libraryLoaded) { libraryLoaded = true; loadLibrary(); }
+        },
+        why: 'Or write your own below — there is no wrong way round.'
+      }));
+      mealsList.appendChild(emptyItem);
       mealFilterSummary.textContent = '';
       return;
     }

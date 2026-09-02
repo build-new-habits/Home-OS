@@ -1,4 +1,4 @@
-// js/views/signin.js — 17 Aug 2026 v1
+// js/views/signin.js — 01 Sep 2026 v2
 // The unauthenticated entry screen. Extracted whole from app.js's
 // buildSignInView() so that auth UI can change without repeatedly editing
 // a write-once gating file — app.js now imports and calls this instead.
@@ -67,7 +67,15 @@ export function buildSignInView() {
   document.body.replaceChildren();
 
   const wrap = el('div', { class: 'signin-wrap' });
-  const h1 = el('h1', { text: 'Sign in to Home-OS', tabIndex: -1 });
+  const h1 = el('h1', { text: 'Home-OS', tabIndex: -1 });
+
+  // Phase 28. This is the first thing anyone ever sees and it said nothing
+  // about what the app is for. One plain line, no marketing.
+  const strap = el('p', {
+    class: 'signin-strap',
+    text: 'Meals, shopping, the cupboard and the week — in one place, '
+      + 'without having to hold it all in your head.'
+  });
 
   // Single shared status line. role="status" rather than role="alert" so
   // success messages ("check your email") announce as calmly as failures.
@@ -186,7 +194,7 @@ export function buildSignInView() {
   });
   resetDetails.appendChild(resetBtn);
 
-  wrap.append(h1, form, magicDetails, resetDetails);
+  wrap.append(h1, strap, form, magicDetails, resetDetails);
   document.body.appendChild(wrap);
   h1.focus();
 }

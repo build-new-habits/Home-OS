@@ -1,4 +1,4 @@
-// js/views/exercises.js — 19 Jul 2026 v3
+// js/views/exercises.js — 01 Sep 2026 v4
 // Replaces the Phase 2 stub. Exercise cards + one-tap logging (principles
 // 1, 2, 3, 6, 10). v2: form fields wrapped in .field (spacing). v3: pending
 // cards now show full details (side/sets/reps/instructions/YouTube) via a
@@ -9,6 +9,7 @@ import { createCard } from '../components/card.js';
 import { showCompletionStamp, hideCompletionStamp } from '../components/completionStamp.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { emptyState } from '../components/emptyState.js';
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -161,9 +162,16 @@ export function render(mountEl) {
     }
     clearedList.replaceChildren();
     if (clearedResult.data.length === 0) {
-      const empty = document.createElement('p');
-      empty.textContent = 'No cleared exercises yet.';
-      clearedList.appendChild(empty);
+      // Phase 28. What the screen is for, plus the one next action.
+      clearedList.appendChild(emptyState({
+        body: 'Exercises your physio has cleared appear here, ready to log in one tap.',
+        actionLabel: 'Add an exercise',
+        onAction: () => {
+          const form = document.querySelector('#new-exercise-name');
+          if (form) { form.focus(); form.scrollIntoView({ block: 'center' }); }
+        },
+        why: 'Logging one takes a tap, and nothing here is a streak.'
+      }));
       return;
     }
     for (const exercise of clearedResult.data) {
@@ -179,9 +187,12 @@ export function render(mountEl) {
     }
     pendingList.replaceChildren();
     if (result.data.length === 0) {
-      const empty = document.createElement('p');
-      empty.textContent = 'Nothing pending.';
-      pendingList.appendChild(empty);
+      // Genuinely fine to be empty, so this one states the fact and stops.
+      // An action here would be inventing work.
+      const pendingEmpty = document.createElement('p');
+      pendingEmpty.className = 'empty-state';
+      pendingEmpty.textContent = 'Nothing waiting to be confirmed.';
+      pendingList.appendChild(pendingEmpty);
       return;
     }
     for (const exercise of result.data) {
