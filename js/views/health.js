@@ -1,4 +1,4 @@
-// js/views/health.js — 01 Sep 2026 v2
+// js/views/health.js — 01 Sep 2026 v3
 // A hub, not a screen full of controls.
 //
 // Exercises, weight and water occupied three of the four bottom-bar slots
@@ -20,6 +20,7 @@ import { listLogs } from '../data/weight.js';
 import { listCleared, getLogsForDate } from '../data/exercises.js';
 import { formatMl, formatWeight } from '../lib/units.js';
 import { getState } from '../lib/store.js';
+import { icon } from '../lib/icons.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -53,6 +54,12 @@ export function render(mountEl) {
   for (const page of HEALTH_PAGES) {
     const item = el('li', { class: 'hub-item' });
     const link = el('a', { class: 'hub-link', href: `#/${page.path}` });
+
+    // Phase 28. An icon per page, so the list is scannable by shape rather
+    // than read line by line. aria-hidden: the title beside it is the name,
+    // and announcing both would be noise.
+    const mark = icon(page.path, { size: 24 });
+    if (mark) link.appendChild(mark);
 
     const text = el('span', { class: 'hub-text' });
     text.appendChild(el('span', { class: 'hub-title', text: page.title }));

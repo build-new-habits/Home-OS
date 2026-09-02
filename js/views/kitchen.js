@@ -1,4 +1,4 @@
-// js/views/kitchen.js — 27 Aug 2026 v2
+// js/views/kitchen.js — 01 Sep 2026 v3
 // v2: the shopping card carries a real count now the list exists.
 // Meals, pantry and shopping behind one entry.
 //
@@ -25,6 +25,7 @@ import { listPlan, DAYS } from '../data/mealPlan.js';
 import { listMeals } from '../data/meals.js';
 import { listStock, useSoon, needsAmount } from '../data/pantry.js';
 import { listItems as listShoppingItems } from '../data/shopping.js';
+import { icon } from '../lib/icons.js';
 
 function el(tag, props = {}, children = []) {
   const node = document.createElement(tag);
@@ -59,6 +60,9 @@ export function render(mountEl) {
   for (const page of KITCHEN_PAGES) {
     const item = el('li', { class: 'hub-item' });
     const link = el('a', { class: 'hub-link', href: `#/${page.path}` });
+    const mark = icon(page.path === 'meal-plan' ? 'plan' : page.path, { size: 24 });
+    if (mark) link.appendChild(mark);
+
     const text = el('span', { class: 'hub-text' });
     text.appendChild(el('span', { class: 'hub-title', text: page.title }));
     text.appendChild(el('span', { class: 'hub-blurb', text: page.blurb }));

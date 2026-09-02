@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v60
+// service-worker.js — 01 Sep 2026 v61
+// v61 (Phase 28, part two): no path changes. Bumped for the visual pass —
+// lib/icons.js v2, views/health.js v3, kitchen.js v3, chores.js v5,
+// pantry.js v10, components.css v40.
 // v60 (Phase 28): ONE new path, js/components/emptyState.js. Also bumped
 // for views/signin.js v2, health.js v2, calendar.js v2, exercises.js v4,
 // weight.js v3, holidays.js v4, meals.js v21, shopping.js v7,
@@ -161,7 +164,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v60';
+const CACHE_NAME = 'home-os-shell-v61';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

@@ -1,4 +1,4 @@
-// js/views/chores.js — 26 Aug 2026 v4
+// js/views/chores.js — 01 Sep 2026 v5
 // v4: THE FLAT LIST DOES NOT SCALE, AND NEITHER DID COMPLETION.
 //
 //   1. A hundred tasks in one list is unreadable. Projects are cards you
@@ -44,6 +44,7 @@ import { showCompletionStamp, hideCompletionStamp } from '../components/completi
 import { confirmDialog } from '../components/confirmDialog.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { emptyState } from '../components/emptyState.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { listBetween, completionKeys, isDone, markDone, markNotDone }
   from '../data/completions.js';
@@ -697,9 +698,18 @@ export function render(mountEl) {
     }
 
     if (projects.length === 0) {
-      const empty = document.createElement('p');
-      empty.textContent = 'No projects yet. Add one to start grouping chores — Kitchen, Garden, Car.';
-      projectsList.appendChild(empty);
+      // Phase 28. What the screen is for, and the one next action. Naming
+      // three real examples beats explaining what a project is.
+      projectsList.appendChild(emptyState({
+        body: 'Chores live inside projects — Kitchen, Garden, Car — so a long list '
+          + 'stays something you can actually look at.',
+        actionLabel: 'Add a project',
+        onAction: () => {
+          const input = document.querySelector('#new-project-title');
+          if (input) { input.focus(); input.scrollIntoView({ block: 'center' }); }
+        },
+        why: 'Anything that repeats can be set to come back on its own.'
+      }));
       filterSummary.textContent = '';
       return;
     }

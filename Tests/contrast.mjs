@@ -46,6 +46,11 @@ const ratio = (a, b) => {
 
 // [description, foreground key, background key, required ratio]
 const PAIRS = [
+  // Phase 28. A hub icon carries meaning at a glance, so it is held to the
+  // 3:1 required of a meaningful graphic (WCAG 1.4.11), not left untested
+  // because it is "just an icon".
+  ['hub icon vs page background',              'accent',        'bg',          3.0],
+  ['hub icon vs card',                         'accent',        'surface',     3.0],
   // ---- Phase 26 semantic state ----
   // These carry meaning, so they are held to text contrast (4.5:1), not the
   // 3:1 that would be allowed for a decorative graphic. Each is checked on

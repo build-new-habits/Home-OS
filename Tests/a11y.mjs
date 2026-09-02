@@ -985,6 +985,41 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Phase 28: selectors that match nothing ----------------------------
+// Twice in one phase an empty-state action pointed at an id I had invented.
+// Every gate passed: nothing checked that a querySelector RESOLVES, so the
+// button would have silently done nothing. This closes that.
+//
+// Checked statically against the source, because the element may only exist
+// once a panel is open — asserting on the rendered DOM would produce false
+// failures for perfectly good code.
+{
+  const viewsDir = path.join(REPO, 'js/views');
+  const files = fs.readdirSync(viewsDir).filter((f) => f.endsWith('.js'));
+
+  // Every id the app ever assigns, however it does it.
+  const definedIds = new Set();
+  for (const dir of ['js/views', 'js/components']) {
+    for (const f of fs.readdirSync(path.join(REPO, dir)).filter((n) => n.endsWith('.js'))) {
+      const src = fs.readFileSync(path.join(REPO, dir, f), 'utf8');
+      for (const m of src.matchAll(/\.id\s*=\s*['\`]([a-zA-Z][\w-]*)['\`]/g)) definedIds.add(m[1]);
+      for (const m of src.matchAll(/id:\s*['\`]([a-zA-Z][\w-]*)['\`]/g)) definedIds.add(m[1]);
+      for (const m of src.matchAll(/labeledInput\(\s*['\`]([a-zA-Z][\w-]*)['\`]/g)) definedIds.add(m[1]);
+      for (const m of src.matchAll(/(?:nameId|idPrefix)\s*=\s*['\`]([a-zA-Z][\w-]*)['\`]/g)) definedIds.add(m[1]);
+    }
+  }
+
+  const unresolved = [];
+  for (const f of files) {
+    const src = fs.readFileSync(path.join(viewsDir, f), 'utf8');
+    for (const m of src.matchAll(/querySelector\(\s*['\`]#([a-zA-Z][\w-]*)['\`]\s*\)/g)) {
+      if (!definedIds.has(m[1])) unresolved.push(`${f}: #${m[1]}`);
+    }
+  }
+  check('no querySelector points at an id nothing creates',
+    unresolved.length === 0, unresolved.join(' | '));
+}
+
 // ---- Phase 28: empty states --------------------------------------------
 // An empty state is the only onboarding that keeps working after week one.
 // These assert the two things that make one useful rather than decorative.

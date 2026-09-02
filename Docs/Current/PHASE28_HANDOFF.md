@@ -80,17 +80,57 @@ Worth noting as a gap: **no gate catches a selector that matches nothing.**
 
 All eight gates. A11y 207 → **212**.
 
-## Not yet done
+## Part two — the visual pass (same day)
 
-- **Chores has no empty state.** It was the one screen I did not reach.
-- **Water has none either**, though it is arguably fine — the screen is four
-  buttons and their purpose is obvious.
-- **The six screens got copy, not a visual pass.** Health, Calendar,
-  Exercises, Water and Weight still do not use the Phase 26 icons or state
-  badges. That was the larger half of this brief and it is not done.
-- **No undo added.** The brief wanted it on destructive actions in these
-  screens; only shopping removal has it.
+The first commit landed the copy and left the visual half undone. This
+finishes it.
+
+**Hub icons.** `icons.js` v2 adds exercises, weight, water, chores and
+calendar, each a distinct silhouette rather than a variation on a circle —
+these sit in a list read at a glance, which is the whole reason for having
+them. Health and Kitchen hubs now lead each row with one.
+
+They are `aria-hidden`: the title beside them is the accessible name, and
+announcing both is noise.
+
+**Contrast covers them.** A hub icon carries meaning at a glance, so it is
+held to the 3:1 required of a meaningful graphic (WCAG 1.4.11) rather than
+left untested because it is "just an icon". Two new pairs, gate now
+**42 pairs x 4 themes = 168 checks**.
+
+**Chores has an empty state**, naming three real examples — Kitchen,
+Garden, Car — because that beats explaining what a project is.
+
+**Undo replaces the confirm on removing pantry stock.** The full row is
+snapshotted and re-inserted on undo, including location, shelf life and
+use-by.
+
+## The gate that should have existed
+
+I invented a non-existent element id **twice in one phase** — once in
+exercises, once in chores. Every gate passed both times, because nothing
+checked that a `querySelector` resolves. Both buttons would have silently
+done nothing.
+
+`Tests/a11y.mjs` now scans every view for `querySelector('#id')` and asserts
+the id is one the app actually creates somewhere. Checked **statically
+against the source**, not the rendered DOM, because an element may only
+exist once a panel is open — asserting on the DOM would fail perfectly good
+code.
+
+**Verified by deliberately breaking it**: pointing chores at a fake id fails
+the gate and names the file and the id. A gate that never fires is worthless,
+so it was proved before being trusted.
+
+## Still not done
+
+- **Water and Weight got copy but no icons.** Their screens are small and
+  the case is weaker, but it is an inconsistency.
+- **Calendar has no state colour.** Event types are distinguished by text.
+  The Phase 26 palette exists for this and is unused there.
+- **Undo is on shopping and pantry removal only.** Deleting a step, removing
+  a member and removing a chore project still confirm.
 
 ## Next
 
-Honestly: finish this one. The copy pass landed, the visual pass did not.
+Phase 29 — split `meals.js`, now 2,100 lines holding seven features.

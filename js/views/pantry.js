@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v9
+// js/views/pantry.js — 01 Sep 2026 v10
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -440,13 +440,18 @@ export function render(mountEl) {
         const removeBtn = el('button', { type: 'button', class: 'btn btn-danger', text: 'Remove' });
         removeBtn.setAttribute('aria-label', `Remove ${name} from the pantry`);
         removeBtn.addEventListener('click', async () => {
-          const confirmed = await confirmDialog({
-            title: `Remove ${name} from the pantry?`,
-            message: 'The item itself is kept, so you can add it back later.',
-            confirmLabel: 'Remove',
-            cancelLabel: 'Keep it'
-          });
-          if (!confirmed || destroyed) return;
+          // Phase 28. Undo instead of a confirm. A confirm asks you to
+          // predict your own mistake before making it; undo lets you notice
+          // it afterwards, which is how mistakes actually get noticed.
+          const snapshot = {
+            food_id: row.food_id,
+            current_qty: row.current_qty,
+            unit: row.unit,
+            default_location: row.default_location,
+            shelf_life_days: row.shelf_life_days,
+            last_restocked: row.last_restocked,
+            use_by: row.use_by
+          };
           const result = await removeStock(row.id);
           if (destroyed) return;
           if (!result.ok) {
@@ -454,9 +459,18 @@ export function render(mountEl) {
             showToast("Couldn't remove that — try again.");
             return;
           }
-          announce(`${name} removed from the pantry.`);
           close();
           await loadStock();
+          if (destroyed) return;
+          showToast(`${name} removed from the pantry.`, {
+            undo: async () => {
+              const back = await addStock(snapshot);
+              if (destroyed) return;
+              if (!back.ok) { showToast("That couldn't be put back."); return; }
+              announce(`${name} put back in the pantry.`);
+              await loadStock();
+            }
+          });
         }, { signal });
         actions.appendChild(removeBtn);
 

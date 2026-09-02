@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v39 */
+/* css/components.css — 01 Sep 2026 v40 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2823,4 +2823,11 @@ body.sheet-open {
   color: var(--color-text-muted);
   line-height: var(--leading-relaxed);
   max-width: 34rem;
+}
+
+/* Hub icons: scannable by shape rather than read line by line. */
+.hub-link .icon {
+  margin-right: var(--space-3);
+  color: var(--color-accent);
+  align-self: flex-start;
 }

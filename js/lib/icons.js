@@ -1,4 +1,5 @@
-// js/lib/icons.js — 01 Sep 2026 v1
+// js/lib/icons.js — 01 Sep 2026 v2
+// v2 (Phase 28): health and hub icons.
 // Phase 26. A small, consistent icon set.
 //
 // ---- Why icons are accessibility, not decoration ----
@@ -38,7 +39,16 @@ const PATHS = {
   meal: '<path d="M6 3v8a3 3 0 0 0 6 0V3M9 11v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17 3c-1.5 2-2 4-2 6a2 2 0 0 0 4 0c0-2-.5-4-2-6zM17 11v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>',
   pantry: '<rect x="4" y="3" width="16" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M10 7v2M10 16v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>',
   shopping: '<path d="M4 6h16l-1.5 11a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 6a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2"/>',
-  plan: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>'
+  plan: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>',
+
+  // ---- Health (Phase 28) ----
+  // Each is a distinct silhouette, not a variation on a circle: these sit
+  // in a list read at a glance, which is the whole reason for having them.
+  exercises: '<path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>',
+  weight: '<path d="M5 20h14l-2-9H7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/>',
+  water: '<path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+  chores: '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M2 7l1 1 2-2M2 12l1 1 2-2M2 17l1 1 2-2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="14" r="1.2" fill="currentColor"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/>'
 };
 
 /** Icons drawn as solid shapes rather than strokes. */
