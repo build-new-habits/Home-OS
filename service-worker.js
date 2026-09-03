@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v65
+// service-worker.js — 01 Sep 2026 v66
+// v66 (Phase 31): no path changes. Bumped for rough pantry levels —
+// data/pantry.js v6, data/pantryMatch.js v2, lib/shortfall.js v4,
+// views/pantry.js v13, components.css v41.
 // v65 (Phase 32): ONE new path, js/lib/notify.js. Bumped for
 // views/settings.js v10, views/pantry.js v12, data/listSync.js v3.
 // v64: recipe library 10 -> 100 across 14 cuisine files. Only index.json is
@@ -175,7 +178,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v65';
+const CACHE_NAME = 'home-os-shell-v66';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

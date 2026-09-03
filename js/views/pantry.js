@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v12
+// js/views/pantry.js — 01 Sep 2026 v13
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -44,7 +44,7 @@
 // visible default, never a silent one.
 
 import {
-  listStock, findByFood, addStock, updateStock, removeStock,
+  listStock, findByFood, addStock, updateStock, removeStock, LEVEL_LABELS,
   STOCK_UNITS, defaultShelfLife, defaultUnitFor, needsAmount,
   freshness, describeFreshness, useSoon, todayIso
 } from '../data/pantry.js';
@@ -83,7 +83,12 @@ function numberInput(id, { min = '0', step = 'any' } = {}) {
  * Without the food it degrades to "4 items", which is what it said before.
  */
 function describeAmount(row, food = null) {
-  if (row.current_qty == null) return 'Amount not recorded';
+  if (row.current_qty == null) {
+    // Phase 31. A rough level is a real answer and reads as one. Only
+    // "nothing said" gets the old wording.
+    const said = LEVEL_LABELS.find((l) => l.value === row.level);
+    return said ? said.label : 'Amount not recorded';
+  }
   return formatPackQuantity(row.current_qty, row.unit, food || row.foods || null);
 }
 
@@ -313,6 +318,40 @@ export function render(mountEl) {
     open.addEventListener('click', () => openStockSheet(row, open), { signal });
 
     item.appendChild(open);
+
+    // ---- Phase 31: one tap, no counting ----
+    // The entire point. A control behind a sheet behind a row is three
+    // taps, and three taps is why the cupboard drifts.
+    const levelRow = el('div', { class: 'level-buttons' });
+    levelRow.setAttribute('role', 'group');
+    levelRow.setAttribute('aria-label', `How much ${name} is left`);
+    for (const option of LEVEL_LABELS) {
+      const btn = el('button', {
+        type: 'button',
+        class: `btn btn-small level-btn${row.level === option.value ? ' level-btn-on' : ''}`,
+        text: option.label
+      });
+      // Pressed state, not just a colour — the current answer has to be
+      // readable without seeing it (WCAG 4.1.2).
+      btn.setAttribute('aria-pressed', String(row.level === option.value));
+      btn.setAttribute('aria-label', `${name}: ${option.label.toLowerCase()}`);
+      btn.addEventListener('click', async () => {
+        // Tapping the current answer clears it back to "nothing said",
+        // which is the only way to undo a mis-tap without a dialog.
+        const next = row.level === option.value ? null : option.value;
+        btn.disabled = true;
+        const result = await updateStock(row.id, { level: next });
+        btn.disabled = false;
+        if (destroyed) return;
+        if (!result.ok) { showToast('That could not be saved.'); return; }
+        announce(next ? `${name}: ${option.label.toLowerCase()}.` : `${name}: nothing recorded.`);
+        await loadStock();
+      }, { signal });
+      levelRow.appendChild(btn);
+    }
+    // Only offered when there is no number. A number is a better answer and
+    // showing both would ask the same question twice.
+    if (row.current_qty == null) item.appendChild(levelRow);
 
     // Phase 23. One tap to put it away, from the places you already use.
     // No form, no sheet — a form here is why "No location recorded" stayed

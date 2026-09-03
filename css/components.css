@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v40 */
+/* css/components.css — 01 Sep 2026 v41 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2830,4 +2830,28 @@ body.sheet-open {
   margin-right: var(--space-3);
   color: var(--color-accent);
   align-self: flex-start;
+}
+
+/* ---- Phase 31: rough pantry levels ----------------------------------- */
+/* Three buttons, one tap. If it takes more than one tap it does not get
+   done, which is the whole reason this exists. */
+
+.level-buttons {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.level-btn {
+  flex: 1;
+  min-height: var(--tap-min);
+}
+
+/* The chosen answer is marked by weight and border as well as colour —
+   aria-pressed carries it for anyone not seeing either. */
+.level-btn-on {
+  border-color: var(--color-accent);
+  border-width: 2px;
+  font-weight: 600;
+  color: var(--color-accent-strong);
 }

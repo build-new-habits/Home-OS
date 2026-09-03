@@ -1,4 +1,4 @@
-// js/data/pantryMatch.js — 01 Sep 2026 v1
+// js/data/pantryMatch.js — 01 Sep 2026 v2
 // Phase 14. "I've got salmon in the freezer. What can I make?"
 //
 // This is the Phase 7 shortfall engine run backwards. Instead of "here is
@@ -44,7 +44,16 @@ export function classifyIngredient(row, stockByFood, scale = 1) {
   const stock = stockByFood.get(row.food_id);
 
   if (!stock) return { state: STATE.MISSING, food };
+
+  // ---- Phase 31: precedence, decided once ----
+  // A number wins when there is one — precision beats approximation. When
+  // there is not, a rough level is far better than nothing, and it is what
+  // most people will actually keep up to date.
   if (stock.current_qty === null || stock.current_qty === undefined) {
+    if (stock.level === 'plenty') return { state: STATE.HAVE, food, rough: true };
+    if (stock.level === 'low') return { state: STATE.SHORT, food, rough: true };
+    if (stock.level === 'none') return { state: STATE.MISSING, food, rough: true };
+    // Null level is "nothing said", not "none".
     return { state: STATE.UNKNOWN, food };
   }
 

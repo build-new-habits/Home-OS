@@ -47,6 +47,7 @@ const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await imp
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported } = await import(`${REPO}/js/lib/notify.js`);
+const { LEVELS, LEVEL_LABELS } = await import(`${REPO}/js/data/pantry.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1302,6 +1303,54 @@ check('granted is a plain statement',
   && !/error|sorry|unfortunately/i.test(describePermission('granted')));
 check('feature detection does not throw without a window',
   typeof notificationsSupported() === 'boolean');
+
+console.log('');
+
+// ============ Phase 31: a pantry that can be vague ============
+console.log('\nRough levels');
+
+eq('three levels, worst to best', LEVELS.join(','), 'none,low,plenty');
+check('every level has a plain label',
+  LEVEL_LABELS.every((l) => LEVELS.includes(l.value) && l.label.length > 0));
+// "None left" must not read as a telling-off.
+check('no label blames anyone',
+  !LEVEL_LABELS.some((l) => /forgot|empty again|you/i.test(l.label)));
+
+const roughFood = { id: 'r1', name: 'Rice' };
+const roughStock = (level, qty = null) =>
+  new Map([['r1', { food_id: 'r1', current_qty: qty, unit: 'g', level }]]);
+const needsRice = { food_id: 'r1', quantity_g: 100, unit: 'g', foods: roughFood };
+
+eq('plenty means you have enough',
+  classifyIngredient(needsRice, roughStock('plenty')).state, STATE.HAVE);
+eq('low means it reaches the shopping list',
+  classifyIngredient(needsRice, roughStock('low')).state, STATE.SHORT);
+eq('none means missing',
+  classifyIngredient(needsRice, roughStock('none')).state, STATE.MISSING);
+
+// The mistake that would matter most: null level is "nothing said", NOT
+// "none". Collapsing them puts the whole cupboard on the shopping list.
+eq('nothing said stays unknown, never missing',
+  classifyIngredient(needsRice, roughStock(null)).state, STATE.UNKNOWN);
+
+// Precision beats approximation when both exist.
+eq('a real number overrides a rough level',
+  classifyIngredient(needsRice, roughStock('none', 500)).state, STATE.HAVE);
+eq('and does so even when the number is the worse answer',
+  classifyIngredient(needsRice, roughStock('plenty', 10)).state, STATE.SHORT);
+
+check('a rough answer is marked as rough',
+  classifyIngredient(needsRice, roughStock('plenty')).rough === true);
+check('and a counted one is not',
+  classifyIngredient(needsRice, roughStock(null, 500)).rough === undefined);
+
+// A rough level must not demote a meal that was otherwise ready.
+const roughMeal = scoreMeals(
+  [{ id: 'rm', name: 'Rice thing' }],
+  new Map([['rm', [needsRice]]]),
+  [{ food_id: 'r1', current_qty: null, unit: 'g', level: 'plenty' }]
+);
+eq('a meal whose ingredients are all "plenty" is ready now', roughMeal[0].band, BAND.READY);
 
 console.log('');
 

@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v17
+01 Sep 2026 v18
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,54 @@ policies**, 3 trigger functions, 21 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0p. Revision 18 — a pantry that can be vague (01 Sep 2026)
+
+`pantry_stock.level text`, nullable, **no default**, check in
+`('plenty','low','none')`.
+
+### Why
+
+The persona trace lost a user to this. Jodie, 24, ADHD, £30 a week,
+uninstalled on day 12:
+
+> *"When it was right it was brilliant. But keeping the cupboard right is a
+> job, and if I could reliably do that job I wouldn't have needed the app."*
+
+The competitive research found the whole category fails the same way:
+*"keeping quantities accurate takes discipline"*. Barcode scanning, the
+claim step, bought-to-pantry and depletion-after-cooking all **reduced** the
+upkeep. None removed it, because the model still asks for a **number**, and
+a number requires counting.
+
+### The change
+
+Let the pantry be vague on purpose. `plenty` / `low` / `none`. One tap.
+
+This is not a lesser mode for people who cannot manage the real one. For
+most cupboard items **"have I got enough" is the only question anyone
+actually asks**, and a number is a more precise answer to a question nobody
+had.
+
+### Precedence, decided once and honoured everywhere
+
+| State | Read as |
+|---|---|
+| `current_qty` set | The number wins. Precision beats approximation. |
+| `current_qty` null, `level` set | The level is used. |
+| Both null | Unknown — never demotes a recipe (Phase 14). |
+
+**NULL level means "nothing said". It is not `none`.** Collapsing those two
+would put every unrecorded item on the shopping list at once — the same
+mistake `reorder_at` avoids.
+
+`plenty` reports as **comparable and enough**, not as a quantity. That is
+what stops the list asking for things you already have without inventing a
+number nobody gave.
+
+Migration: `migrations/018_pantry_level.sql`.
 
 ---
 
@@ -846,6 +894,7 @@ Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | default_location | text | which cupboard. Distinct from `foods.category`: category is *what the thing is*, location is *where it lives*, and non-food needs locations like "bathroom cabinet" and "garage" |
+| level | text | nullable, no default; check in ('plenty','low','none'). NULL = nothing said, which is not 'none' (revision 18) |
 | reorder_at | numeric | nullable, no default; check >= 0. Null = never remind (revision 17) |
 | shelf_life_days | int | the ESTIMATE — how long it usually keeps once bought. Used only when `use_by` is null |
 | use_by | date | nullable (revision 7). The FACT, read off the label. Never backfilled from restocked + shelf life |

@@ -1,4 +1,4 @@
-// js/lib/shortfall.js — 01 Sep 2026 v3
+// js/lib/shortfall.js — 01 Sep 2026 v4
 // What you need, minus what you already have.
 //
 // This is principle 5 made real: the shopping list diffs the meal plan
@@ -242,10 +242,40 @@ function makeItem(food, needed, unit, have, shortfall, comparable, reason, stock
 }
 
 /** Pantry stock reduced to grams, or an honest refusal. */
+
+/**
+ * Phase 31. A rough level, read as an answer to "have I got enough".
+ *
+ * Only consulted when there is no number — precision beats approximation
+ * when both exist. Returns null when nothing was said, which keeps the
+ * existing "recorded as present, amount unknown" behaviour intact.
+ *
+ *   plenty -> treat as enough. Not a quantity, a verdict.
+ *   low    -> treat as present but not enough, so it reaches the list.
+ *   none   -> treat as absent.
+ */
+function levelVerdict(row) {
+  if (!row || row.current_qty != null) return null;
+  if (row.level === 'plenty') return { comparable: true, enough: true, reason: '' };
+  if (row.level === 'low') {
+    return { comparable: true, enough: false, reason: 'you said you were running low' };
+  }
+  if (row.level === 'none') {
+    return { comparable: true, enough: false, reason: 'you said you had none left' };
+  }
+  return null;
+}
+
 function stockInGrams(stock, food) {
   if (!stock) return { comparable: true, grams: 0, reason: '' };   // rule 2
   if (stock.expired) return { comparable: true, grams: 0, reason: '' }; // rule 5
   const row = stock.row;
+  const rough = levelVerdict(row);
+  if (rough) {
+    // A rough level is a real answer. "Plenty" is reported as comparable
+    // and enough, which is what stops the list asking for things you have.
+    return { comparable: true, grams: rough.enough ? Number.MAX_SAFE_INTEGER : 0, reason: rough.reason, rough: true };
+  }
   if (row.current_qty == null) {
     // rule 3 — recorded as present, amount unknown. NOT zero, NOT enough.
     return { comparable: false, grams: 0, reason: 'you have some, but the amount was never recorded' };
@@ -266,6 +296,10 @@ function stockInUnit(stock, unit) {
   if (!stock) return { comparable: true, amount: 0, reason: '' };
   if (stock.expired) return { comparable: true, amount: 0, reason: '' };
   const row = stock.row;
+  const rough = levelVerdict(row);
+  if (rough) {
+    return { comparable: true, amount: rough.enough ? Number.MAX_SAFE_INTEGER : 0, reason: rough.reason, rough: true };
+  }
   if (row.current_qty == null) {
     return { comparable: false, amount: 0, reason: 'you have some, but the amount was never recorded' };
   }

@@ -1,4 +1,4 @@
-// js/data/pantry.js — 01 Sep 2026 v5
+// js/data/pantry.js — 01 Sep 2026 v6
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
 // purpose — see the comment there.
@@ -30,6 +30,22 @@
 // offline rather than failing silently (conventions §9).
 
 import { supabase } from '../supabaseClient.js';
+
+/**
+ * Phase 31. A rough amount, for when a number is more precision than the
+ * question deserves.
+ *
+ * Ordered worst to best on purpose: several places want "is this at or
+ * below low", and an ordered list makes that a comparison rather than a
+ * set of special cases.
+ */
+export const LEVELS = ['none', 'low', 'plenty'];
+
+export const LEVEL_LABELS = [
+  { value: 'plenty', label: 'Plenty' },
+  { value: 'low', label: 'Running low' },
+  { value: 'none', label: 'None left' }
+];
 
 const TABLE = 'pantry_stock';
 
@@ -75,7 +91,7 @@ export function defaultShelfLife(category) {
 export async function listStock() {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, '
+    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, level, '
       + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
@@ -192,6 +208,17 @@ export async function updateStock(stockId, patch = {}) {
   }
   if (patch.default_location !== undefined) {
     next.default_location = String(patch.default_location).trim() || null;
+  }
+  if (patch.level !== undefined) {
+    // Null is "nothing said", and it is NOT 'none'. Collapsing those two
+    // would put the whole cupboard on the shopping list at once.
+    if (patch.level === '' || patch.level === null) {
+      next.level = null;
+    } else if (!LEVELS.includes(patch.level)) {
+      return { ok: false, error: new Error(`"${patch.level}" is not a level.`) };
+    } else {
+      next.level = patch.level;
+    }
   }
   if (patch.reorder_at !== undefined) {
     // Null means never remind, and that is the default. Zero is a real
