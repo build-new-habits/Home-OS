@@ -95,9 +95,53 @@ A11y gate 214 -> **219**, with checks that the sweep starts collapsed, each
 row is a labelled group, every level button carries `aria-pressed`, and the
 toggle never chides.
 
+## Part three — levels go stale (after the Round 1 re-trace)
+
+The re-trace found exactly what this handoff had feared. Jodie did not
+uninstall this time — a real change from day 12 — but by week three:
+
+> *"Everything I marked plenty in week one still says plenty. I've eaten
+> most of it."*
+
+The list started **under-buying**, which is worse than over-buying because
+you find out at the hob.
+
+**`level_set_at` is now written**, in the data module and nowhere else, so
+it always matches the value it describes.
+
+**Lifespan follows shelf life.** "Plenty" of tins is still roughly true in a
+month; "plenty" of milk is not true on Friday. Shelf life when known, capped
+at 28 days, 21 days when unknown.
+
+### What stale degrades TO, which is the whole design
+
+A stale level becomes **nothing-said**, never **none**.
+
+If stale became "none", every forgotten item would land on the shopping list
+at once, and the fix for under-buying would become a worse over-buying
+problem. Unknown never demotes a recipe and never reaches the list — that
+rule has held since Phase 14 and it holds here. **Not knowing is not
+evidence of absence.**
+
+There is a test named for it.
+
+### The sweep offers them
+
+"Quick stock check (12 worth a look)" now counts stale rows as well as
+never-said ones, and they sort first. Each shows *"You said plenty a while
+back. Still right?"* — a fact and a question, not a correction.
+
+A stale level is not shown as the current answer, or tapping it again would
+look like a no-op when it is the entire point.
+
+**Rows stamped before this shipped get the benefit of the doubt** rather
+than all expiring at once.
+
+Behaviour 432 → **446**.
+
 ## Not yet done
 
-- **Levels never decay.** Something marked `plenty` in March still says
+- **~~Levels never decay.~~ Done above.** Something marked `plenty` in March still says
   plenty in June. A number at least has `last_restocked` beside it. This may
   turn out to be the flaw that keeps drift alive in a new form.
 - **Cooking does not lower a level.** Depletion-after-cooking only touches

@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v14
+// js/views/pantry.js — 01 Sep 2026 v15
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -44,7 +44,7 @@
 // visible default, never a silent one.
 
 import {
-  listStock, findByFood, addStock, updateStock, removeStock, LEVEL_LABELS,
+  listStock, findByFood, addStock, updateStock, removeStock, LEVEL_LABELS, levelIsStale,
   STOCK_UNITS, defaultShelfLife, defaultUnitFor, needsAmount,
   freshness, describeFreshness, useSoon, todayIso
 } from '../data/pantry.js';
@@ -1384,18 +1384,26 @@ export function render(mountEl) {
     }
   }, { signal });
 
-  /** How many rows have neither a number nor a level. */
-  function unsaidCount() {
-    return stock.filter((row) => row.current_qty == null && !row.level).length;
+  /**
+   * Rows worth a look: never said, or said long enough ago that it is no
+   * longer worth acting on.
+   *
+   * Stale rows are counted here rather than left silent, because a level
+   * that has quietly stopped counting is exactly the drift this was meant
+   * to fix.
+   */
+  function needsCheck() {
+    return stock.filter((row) =>
+      (row.current_qty == null && !row.level) || levelIsStale(row));
   }
 
   function renderSweepToggle() {
-    const n = unsaidCount();
+    const n = needsCheck().length;
     sweepSection.hidden = stock.length === 0;
     // States the number, never chides. "12 you have not checked" would be
     // an accusation; this is a count and an offer.
     sweepToggle.textContent = n > 0
-      ? `Quick stock check (${n} without an amount)`
+      ? `Quick stock check (${n} worth a look)`
       : 'Quick stock check';
   }
 
@@ -1409,10 +1417,11 @@ export function render(mountEl) {
 
     // Unsaid items first: they are the ones this screen exists for, and
     // burying them under everything already answered defeats the point.
+    // Anything worth a look sorts first — never said, or said too long ago.
     const ordered = [...stock].sort((a, b) => {
-      const aSaid = a.current_qty != null || !!a.level;
-      const bSaid = b.current_qty != null || !!b.level;
-      if (aSaid !== bSaid) return aSaid ? 1 : -1;
+      const aNeeds = (a.current_qty == null && !a.level) || levelIsStale(a);
+      const bNeeds = (b.current_qty == null && !b.level) || levelIsStale(b);
+      if (aNeeds !== bNeeds) return aNeeds ? -1 : 1;
       return ((a.foods || {}).name || '').localeCompare(((b.foods || {}).name || ''));
     });
 
@@ -1437,19 +1446,33 @@ export function render(mountEl) {
       return item;
     }
 
+    // A stale answer is shown as a question, not as a wrong answer. "You
+    // said plenty three weeks ago" is a fact; "that was wrong" is not.
+    const stale = levelIsStale(row);
+    if (stale) {
+      const said = LEVEL_LABELS.find((l) => l.value === row.level);
+      item.appendChild(el('span', {
+        class: 'field-hint sweep-stale',
+        text: `You said ${(said ? said.label : row.level).toLowerCase()} a while back. Still right?`
+      }));
+    }
+
     const buttons = el('div', { class: 'level-buttons' });
     buttons.setAttribute('role', 'group');
     buttons.setAttribute('aria-label', `How much ${name} is left`);
     for (const option of LEVEL_LABELS) {
+      // A stale level is not shown as the current answer, or tapping it
+      // again would look like a no-op when it is the whole point.
+      const on = !stale && row.level === option.value;
       const btn = el('button', {
         type: 'button',
-        class: `btn btn-small level-btn${row.level === option.value ? ' level-btn-on' : ''}`,
+        class: `btn btn-small level-btn${on ? ' level-btn-on' : ''}`,
         text: option.label
       });
-      btn.setAttribute('aria-pressed', String(row.level === option.value));
+      btn.setAttribute('aria-pressed', String(on));
       btn.setAttribute('aria-label', `${name}: ${option.label.toLowerCase()}`);
       btn.addEventListener('click', async () => {
-        const next = row.level === option.value ? null : option.value;
+        const next = on ? null : option.value;
         btn.disabled = true;
         const result = await updateStock(row.id, { level: next });
         btn.disabled = false;

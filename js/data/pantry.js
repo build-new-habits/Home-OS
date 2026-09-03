@@ -1,4 +1,4 @@
-// js/data/pantry.js — 01 Sep 2026 v6
+// js/data/pantry.js — 01 Sep 2026 v7
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
 // purpose — see the comment there.
@@ -91,7 +91,7 @@ export function defaultShelfLife(category) {
 export async function listStock() {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, level, '
+    .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, level, level_set_at, '
       + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
@@ -210,6 +210,11 @@ export async function updateStock(stockId, patch = {}) {
     next.default_location = String(patch.default_location).trim() || null;
   }
   if (patch.level !== undefined) {
+    // Phase 31 part three. Stamped here and nowhere else, so it always
+    // matches the value it describes. updated_at cannot do this job:
+    // schema.md warns it moves on any edit, so changing an item's location
+    // would report its level as fresh.
+    next.level_set_at = patch.level ? new Date().toISOString() : null;
     // Null is "nothing said", and it is NOT 'none'. Collapsing those two
     // would put the whole cupboard on the shopping list at once.
     if (patch.level === '' || patch.level === null) {
@@ -386,4 +391,72 @@ export function useSoon(rows, todayISO = todayIso()) {
     .map((row) => ({ row, freshness: freshness(row, todayISO) }))
     .filter((entry) => entry.freshness.state === 'soon' || entry.freshness.state === 'past')
     .sort((a, b) => (a.freshness.daysLeft ?? 0) - (b.freshness.daysLeft ?? 0));
+}
+
+
+// ---- Phase 31 part three: levels go stale --------------------------------
+// The Round 1 re-trace found the flaw the handoff had feared. Jodie marked
+// everything "plenty" in week one, ate most of it, and by week three the
+// list was UNDER-buying — which is worse than over-buying, because you find
+// out at the hob.
+//
+// A level that never ages is drift wearing a different hat.
+
+/** How long a rough level stays believable, with no shelf life to go on. */
+const DEFAULT_LEVEL_DAYS = 21;
+
+/** Nothing stays believable longer than this, however long it keeps. */
+const MAX_LEVEL_DAYS = 28;
+
+/**
+ * How long this item's level should be trusted.
+ *
+ * Shelf life is the best available guide: "plenty" of tinned tomatoes is
+ * still roughly true in a month; "plenty" of milk is not true on Friday.
+ */
+export function levelLifespanDays(row) {
+  const shelf = Number(row && row.shelf_life_days);
+  if (Number.isFinite(shelf) && shelf > 0) return Math.min(shelf, MAX_LEVEL_DAYS);
+  return DEFAULT_LEVEL_DAYS;
+}
+
+/**
+ * Is this rough level too old to act on?
+ *
+ * False when there is no level at all — nothing said cannot go stale.
+ * False when it was never stamped: rows set before this shipped are given
+ * the benefit of the doubt rather than all expiring at once.
+ */
+export function levelIsStale(row, nowISO) {
+  if (!row || !row.level) return false;
+  if (!row.level_set_at) return false;
+  const set = Date.parse(row.level_set_at);
+  const now = Date.parse(nowISO || new Date().toISOString());
+  if (!Number.isFinite(set) || !Number.isFinite(now)) return false;
+  const days = (now - set) / 86400000;
+  return days > levelLifespanDays(row);
+}
+
+/**
+ * The level to actually act on: the stored one, or null once it is stale.
+ *
+ * ---- What stale degrades TO, and why it matters ----
+ * A stale "plenty" becomes UNKNOWN, never MISSING.
+ *
+ * Unknown never demotes a recipe and never reaches the shopping list
+ * (Phase 14), so nothing floods. If stale degraded to missing, every
+ * forgotten item would land on the list at once and the fix for
+ * under-buying would become a worse over-buying problem.
+ *
+ * Not knowing is not evidence of absence. That rule has held everywhere
+ * else in this app and it holds here.
+ */
+export function effectiveLevel(row, nowISO) {
+  if (!row || !row.level) return null;
+  return levelIsStale(row, nowISO) ? null : row.level;
+}
+
+/** Rows whose level has aged out, for the sweep to offer. */
+export function staleLevels(stock = [], nowISO) {
+  return stock.filter((row) => levelIsStale(row, nowISO));
 }

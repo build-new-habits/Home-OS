@@ -47,7 +47,7 @@ const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await imp
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported } = await import(`${REPO}/js/lib/notify.js`);
-const { LEVELS, LEVEL_LABELS } = await import(`${REPO}/js/data/pantry.js`);
+const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
 const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1390,6 +1390,60 @@ check('every reason produces a sentence',
 // Nothing here may blame the person holding the code.
 check('no message blames the person',
   ['not-found','expired','used'].every((r) => !/you should|you failed|invalid/i.test(describeRedeem(r))));
+
+console.log('');
+
+// ============ Phase 31 part three: levels go stale ============
+console.log('\nA level that never ages is drift in a different hat');
+
+const daysAgo = (n) => new Date(Date.now() - n * 86400000).toISOString();
+const NOW = new Date().toISOString();
+
+check('a level set today is not stale',
+  levelIsStale({ level: 'plenty', level_set_at: NOW }, NOW) === false);
+check('a level set three weeks ago is stale',
+  levelIsStale({ level: 'plenty', level_set_at: daysAgo(30) }, NOW) === true);
+
+// Shelf life is the best guide available: "plenty" of tins is still roughly
+// true in a month, "plenty" of milk is not true on Friday.
+eq('a short shelf life shortens the level too',
+  levelLifespanDays({ shelf_life_days: 5 }), 5);
+eq('a long shelf life is capped', levelLifespanDays({ shelf_life_days: 365 }), 28);
+eq('no shelf life falls back to three weeks', levelLifespanDays({}), 21);
+check('milk marked plenty a week ago is already stale',
+  levelIsStale({ level: 'plenty', level_set_at: daysAgo(7), shelf_life_days: 5 }, NOW));
+check('tins marked plenty a week ago are not',
+  !levelIsStale({ level: 'plenty', level_set_at: daysAgo(7), shelf_life_days: 365 }, NOW));
+
+// Nothing said cannot go out of date.
+check('no level is never stale', !levelIsStale({ level: null }, NOW));
+// Rows set before this shipped must not all expire at once.
+check('an unstamped level gets the benefit of the doubt',
+  !levelIsStale({ level: 'plenty', level_set_at: null }, NOW));
+
+console.log('\nWhat stale degrades TO');
+
+eq('a fresh level is acted on',
+  effectiveLevel({ level: 'plenty', level_set_at: NOW }, NOW), 'plenty');
+// The critical one. If stale became "none", every forgotten item would land
+// on the shopping list at once, and the fix for under-buying would become a
+// worse over-buying problem.
+eq('a stale level becomes nothing-said, never none',
+  effectiveLevel({ level: 'plenty', level_set_at: daysAgo(60) }, NOW), null);
+
+const staleStock = new Map([['r1', {
+  food_id: 'r1', current_qty: null, unit: 'g', level: 'plenty', level_set_at: daysAgo(60)
+}]]);
+const staleNeed = { food_id: 'r1', quantity_g: 100, unit: 'g', foods: { id: 'r1', name: 'Rice' } };
+eq('a stale level reads as unknown, not missing',
+  classifyIngredient(staleNeed, staleStock).state, STATE.UNKNOWN);
+// Unknown never demotes a recipe — that rule has held since Phase 14 and
+// holds here.
+eq('and so it still does not demote the meal',
+  scoreMeals([{ id: 'sm', name: 'Rice thing' }], new Map([['sm', [staleNeed]]]),
+    [...staleStock.values()])[0].band, BAND.READY);
+check('the staleness is reported so the sweep can offer it',
+  classifyIngredient(staleNeed, staleStock).stale === true);
 
 console.log('');
 

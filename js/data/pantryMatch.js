@@ -1,4 +1,4 @@
-// js/data/pantryMatch.js — 01 Sep 2026 v2
+// js/data/pantryMatch.js — 01 Sep 2026 v3
 // Phase 14. "I've got salmon in the freezer. What can I make?"
 //
 // This is the Phase 7 shortfall engine run backwards. Instead of "here is
@@ -12,6 +12,7 @@
 // fetching everything in ONE query rather than one per meal.
 
 import { toGrams } from './meals.js';
+import { effectiveLevel } from './pantry.js';
 
 /** How an ingredient stands against the pantry. */
 export const STATE = {
@@ -50,11 +51,15 @@ export function classifyIngredient(row, stockByFood, scale = 1) {
   // there is not, a rough level is far better than nothing, and it is what
   // most people will actually keep up to date.
   if (stock.current_qty === null || stock.current_qty === undefined) {
-    if (stock.level === 'plenty') return { state: STATE.HAVE, food, rough: true };
-    if (stock.level === 'low') return { state: STATE.SHORT, food, rough: true };
-    if (stock.level === 'none') return { state: STATE.MISSING, food, rough: true };
+    // Phase 31 part three: a level older than its lifespan is not acted on.
+    // effectiveLevel returns null once stale, so a forgotten "plenty"
+    // degrades to UNKNOWN — never to MISSING, which would flood the list.
+    const level = effectiveLevel(stock);
+    if (level === 'plenty') return { state: STATE.HAVE, food, rough: true };
+    if (level === 'low') return { state: STATE.SHORT, food, rough: true };
+    if (level === 'none') return { state: STATE.MISSING, food, rough: true };
     // Null level is "nothing said", not "none".
-    return { state: STATE.UNKNOWN, food };
+    return { state: STATE.UNKNOWN, food, stale: Boolean(stock.level) };
   }
 
   const haveQty = Number(stock.current_qty);

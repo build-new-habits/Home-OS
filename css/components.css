@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v43 */
+/* css/components.css — 01 Sep 2026 v44 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2927,4 +2927,11 @@ body.sheet-open {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* A stale answer is shown as a question, not as a wrong answer. */
+.sweep-stale {
+  display: block;
+  margin: 0 0 var(--space-2);
+  font-style: italic;
 }

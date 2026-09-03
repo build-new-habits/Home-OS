@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v68
+// service-worker.js — 01 Sep 2026 v69
+// v69 (Phase 31 part three): no path changes. Levels go stale —
+// data/pantry.js v7, data/pantryMatch.js v3, lib/shortfall.js v5,
+// views/pantry.js v15.
 // v68 (Phase 30): no path changes. Household invites —
 // data/household.js v2, views/settings.js v11, components.css v43.
 // v67 (Phase 31 part two): no path changes. The stock sweep —
@@ -182,7 +185,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v68';
+const CACHE_NAME = 'home-os-shell-v69';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

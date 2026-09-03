@@ -1,4 +1,4 @@
-// js/lib/shortfall.js — 01 Sep 2026 v4
+// js/lib/shortfall.js — 01 Sep 2026 v5
 // What you need, minus what you already have.
 //
 // This is principle 5 made real: the shopping list diffs the meal plan
@@ -29,7 +29,7 @@
 //    counting it would leave you short at the point of cooking.
 
 import { toGrams } from '../data/meals.js';
-import { freshness } from '../data/pantry.js';
+import { freshness, effectiveLevel } from '../data/pantry.js';
 
 /**
  * computeShortfall({ plan, ingredients, pantry, foods, todayISO })
@@ -256,11 +256,15 @@ function makeItem(food, needed, unit, have, shortfall, comparable, reason, stock
  */
 function levelVerdict(row) {
   if (!row || row.current_qty != null) return null;
-  if (row.level === 'plenty') return { comparable: true, enough: true, reason: '' };
-  if (row.level === 'low') {
+  // Phase 31 part three. A stale level returns null here, which drops
+  // through to the existing "amount was never recorded" path — present but
+  // not countable. It does NOT become zero.
+  const level = effectiveLevel(row);
+  if (level === 'plenty') return { comparable: true, enough: true, reason: '' };
+  if (level === 'low') {
     return { comparable: true, enough: false, reason: 'you said you were running low' };
   }
-  if (row.level === 'none') {
+  if (level === 'none') {
     return { comparable: true, enough: false, reason: 'you said you had none left' };
   }
   return null;
