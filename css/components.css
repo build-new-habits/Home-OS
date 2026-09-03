@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v41 */
+/* css/components.css — 01 Sep 2026 v42 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2854,4 +2854,37 @@ body.sheet-open {
   border-width: 2px;
   font-weight: 600;
   color: var(--color-accent-strong);
+}
+
+/* ---- Phase 31 part two: the stock sweep ------------------------------ */
+/* One list, three buttons a row. A different task from opening sixty rows,
+   and the one people will actually do. */
+
+.sweep-section { margin-bottom: var(--space-4); }
+
+.sweep-section > .btn {
+  width: 100%;
+  min-height: var(--tap-min);
+}
+
+.sweep-body { margin-top: var(--space-3); }
+
+.sweep-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sweep-row {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sweep-row:last-child { border-bottom: none; }
+
+.sweep-row-name {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
 }

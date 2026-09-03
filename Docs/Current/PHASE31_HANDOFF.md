@@ -69,12 +69,34 @@ right state; **nothing-said staying unknown**; a number overriding a level
 in both directions; rough answers marked as rough; a meal whose ingredients
 are all "plenty" landing in Ready now; no label blaming anyone.
 
-## Not yet done — and this matters
+## Part two — the stock sweep (same day)
 
-- **No quick pass screen.** The brief wanted one screen listing every pantry
-  item with three buttons each, for a two-minute sweep. The buttons exist
-  per row; the sweep does not. That is the difference between "possible"
-  and "actually done on a Sunday", and it is the first thing to add.
+The first commit made a level **possible**. This makes it **happen**.
+
+"Quick stock check" on the pantry screen opens one list: every item, three
+buttons each. Walking a cupboard tapping down a single list is a different
+task from opening sixty rows, and it is the one people will actually do.
+
+**Decisions worth knowing:**
+
+- **Unsaid items sort first.** They are what the screen exists for, and
+  burying them under everything already answered defeats the point.
+- **Counted items are left alone.** A number is a better answer, and
+  offering to overwrite it with a guess would be a downgrade.
+- **Rows update in place, no re-sort mid-sweep.** Re-sorting would move the
+  row somebody was about to tap.
+- **The count never chides.** "12 without an amount" is a count and an
+  offer. "12 you have not checked" would be an accusation, and there is a
+  test asserting the wording.
+- **Nothing to submit.** Skipping is not an incomplete form; it is a choice,
+  and the hint says so.
+
+A11y gate 214 -> **219**, with checks that the sweep starts collapsed, each
+row is a labelled group, every level button carries `aria-pressed`, and the
+toggle never chides.
+
+## Not yet done
+
 - **Levels never decay.** Something marked `plenty` in March still says
   plenty in June. A number at least has `last_restocked` beside it. This may
   turn out to be the flaw that keeps drift alive in a new form.
@@ -91,3 +113,8 @@ answer. **It needs real use before Round 1's re-trace can be trusted on it**
 ## Next
 
 Phase 30 — household invites. Needs voice direction.
+
+**Level decay** is now the one real gap left here, and it needs schema:
+a `level_set_at` timestamp. `updated_at` cannot be used — schema.md warns
+it moves on every change, so it would report a level as fresh because
+somebody edited the location. It should ride along with Phase 30.

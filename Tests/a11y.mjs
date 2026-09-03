@@ -985,6 +985,33 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Phase 31: the stock sweep -----------------------------------------
+// A screen whose whole purpose is being fast to tap through.
+{
+  const sweepToggle = [...panMount.querySelectorAll('button')]
+    .find((b) => /quick stock check/i.test(b.textContent));
+  check('pantry: a quick stock check is offered', !!sweepToggle);
+  if (sweepToggle) {
+    check('pantry: the stock check starts collapsed',
+      sweepToggle.getAttribute('aria-expanded') === 'false');
+    sweepToggle.dispatchEvent(new window.Event('click', { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 20));
+
+    const groups = panMount.querySelectorAll('.sweep-row .level-buttons');
+    check('pantry: each sweep row is a labelled group of choices',
+      groups.length === 0
+      || [...groups].every((g) => g.getAttribute('role') === 'group'
+        && !!g.getAttribute('aria-label')));
+    // The chosen answer must be readable without seeing the border.
+    check('pantry: level buttons carry aria-pressed',
+      [...panMount.querySelectorAll('.level-btn')]
+        .every((b) => b.getAttribute('aria-pressed') !== null));
+    // "12 you have not checked" would be an accusation. This is a count.
+    check('pantry: the stock check never chides',
+      !/you have not|you haven|forgot|should/i.test(sweepToggle.textContent));
+  }
+}
+
 // ---- Phase 29: no new copies of the shared helpers ---------------------
 // Fifteen views each had their own el(). Twelve were identical and moved to
 // lib/dom.js; three genuinely differ and are marked as such in place. This

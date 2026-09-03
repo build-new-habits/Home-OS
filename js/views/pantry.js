@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v13
+// js/views/pantry.js — 01 Sep 2026 v14
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -1360,6 +1360,118 @@ export function render(mountEl) {
 
   // ============================ Loading =======================
 
+
+  // ---- Phase 31, part two: the two-minute sweep ----
+  // Per-row buttons make a level POSSIBLE. This makes it happen. Walking a
+  // cupboard and tapping down a single list is a different task from
+  // opening sixty rows, and it is the one people will actually do on a
+  // Sunday.
+  const sweepSection = el('section', { class: 'card sweep-section' });
+  sweepSection.hidden = true;
+  const sweepToggle = el('button', { type: 'button', class: 'btn' });
+  sweepToggle.setAttribute('aria-expanded', 'false');
+  const sweepBody = el('div', { class: 'sweep-body' });
+  sweepBody.hidden = true;
+  sweepSection.append(sweepToggle, sweepBody);
+
+  sweepToggle.addEventListener('click', () => {
+    const open = sweepToggle.getAttribute('aria-expanded') === 'true';
+    sweepToggle.setAttribute('aria-expanded', String(!open));
+    sweepBody.hidden = open;
+    if (!open) {
+      renderSweep();
+      announce('Stock check. Tap how much is left of each one.');
+    }
+  }, { signal });
+
+  /** How many rows have neither a number nor a level. */
+  function unsaidCount() {
+    return stock.filter((row) => row.current_qty == null && !row.level).length;
+  }
+
+  function renderSweepToggle() {
+    const n = unsaidCount();
+    sweepSection.hidden = stock.length === 0;
+    // States the number, never chides. "12 you have not checked" would be
+    // an accusation; this is a count and an offer.
+    sweepToggle.textContent = n > 0
+      ? `Quick stock check (${n} without an amount)`
+      : 'Quick stock check';
+  }
+
+  function renderSweep() {
+    sweepBody.replaceChildren();
+    sweepBody.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Tap roughly how much is left. Anything you skip stays as it was — '
+        + 'this is not a form and there is nothing to submit.'
+    }));
+
+    // Unsaid items first: they are the ones this screen exists for, and
+    // burying them under everything already answered defeats the point.
+    const ordered = [...stock].sort((a, b) => {
+      const aSaid = a.current_qty != null || !!a.level;
+      const bSaid = b.current_qty != null || !!b.level;
+      if (aSaid !== bSaid) return aSaid ? 1 : -1;
+      return ((a.foods || {}).name || '').localeCompare(((b.foods || {}).name || ''));
+    });
+
+    const list = el('ul', { class: 'sweep-list' });
+    for (const row of ordered) list.appendChild(buildSweepRow(row));
+    sweepBody.appendChild(list);
+  }
+
+  function buildSweepRow(row) {
+    const food = row.foods || {};
+    const name = food.name || 'Unknown';
+    const item = el('li', { class: 'sweep-row' });
+
+    item.appendChild(el('span', { class: 'sweep-row-name', text: name }));
+
+    // A counted item is left alone: a number is a better answer, and
+    // offering to overwrite it with a guess would be a downgrade.
+    if (row.current_qty != null) {
+      item.appendChild(el('span', {
+        class: 'field-hint', text: describeAmount(row, food)
+      }));
+      return item;
+    }
+
+    const buttons = el('div', { class: 'level-buttons' });
+    buttons.setAttribute('role', 'group');
+    buttons.setAttribute('aria-label', `How much ${name} is left`);
+    for (const option of LEVEL_LABELS) {
+      const btn = el('button', {
+        type: 'button',
+        class: `btn btn-small level-btn${row.level === option.value ? ' level-btn-on' : ''}`,
+        text: option.label
+      });
+      btn.setAttribute('aria-pressed', String(row.level === option.value));
+      btn.setAttribute('aria-label', `${name}: ${option.label.toLowerCase()}`);
+      btn.addEventListener('click', async () => {
+        const next = row.level === option.value ? null : option.value;
+        btn.disabled = true;
+        const result = await updateStock(row.id, { level: next });
+        btn.disabled = false;
+        if (destroyed) return;
+        if (!result.ok) { showToast('That could not be saved.'); return; }
+        // Update in place. Re-sorting under someone mid-sweep would move
+        // the row they were about to tap.
+        row.level = next;
+        for (const sibling of buttons.querySelectorAll('.level-btn')) {
+          const on = sibling.textContent === option.label && next !== null;
+          sibling.classList.toggle('level-btn-on', on);
+          sibling.setAttribute('aria-pressed', String(on));
+        }
+        renderSweepToggle();
+        announce(next ? `${name}: ${option.label.toLowerCase()}.` : `${name}: cleared.`);
+      }, { signal });
+      buttons.appendChild(btn);
+    }
+    item.appendChild(buttons);
+    return item;
+  }
+
   function renderStock() {
     renderNeedsAmount();
     renderUseSoon();
@@ -1367,6 +1479,7 @@ export function render(mountEl) {
     rebuildLocationFilter();
     renderBrowse();
     renderSearchResults();
+    renderSweepToggle();
   }
 
   async function loadStock() {
@@ -1405,7 +1518,7 @@ export function render(mountEl) {
   // Order: what needs fixing, then search, then what is about to go off,
   // then where things live, then Add. Search sits above everything you
   // would otherwise scroll through.
-  mountEl.append(fixSection, searchPanel, useSoonSection, browsePanel, addToggle, capturePanel);
+  mountEl.append(fixSection, searchPanel, useSoonSection, sweepSection, browsePanel, addToggle, capturePanel);
   syncMode();
   paintOfflineNote();
 
