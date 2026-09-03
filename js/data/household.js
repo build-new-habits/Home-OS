@@ -1,4 +1,4 @@
-// js/data/household.js — 01 Sep 2026 v1
+// js/data/household.js — 01 Sep 2026 v2
 // Phase 18. Who is in this house.
 //
 // ---- What changed underneath this ----
@@ -103,9 +103,9 @@ export async function renameHousehold(name) {
 /**
  * Adds someone who does not have an account.
  *
- * There is no invite flow yet (Phase 21). This is how a child, or anyone
- * who is fed but does not use the app, becomes a member — which is the
- * case that actually matters for meal planning and shopping.
+ * This is how a child, or anyone who is fed but does not use the app,
+ * becomes a member. A second adult with their own phone uses an invite
+ * code instead — see createInvite / redeemInvite below.
  */
 export async function addMember({ display_name, role = 'adult', portion_factor = 1, dietary_tags = [] }) {
   const name = String(display_name || '').trim();
@@ -252,4 +252,132 @@ export function describeMember(member) {
 function cleanTags(tags) {
   const allowed = new Set(DIETARY_TAGS.map((t) => t.value));
   return [...new Set((tags || []).filter((t) => allowed.has(t)))];
+}
+
+
+// ---- Phase 30: invites -------------------------------------------------
+// The largest gap between what the app claimed and what it did. A partner
+// could not join without somebody running SQL, which left one person as the
+// household's bottleneck — the exact position they downloaded the app to
+// get out of.
+
+/**
+ * Alphabet without 0/O or 1/I/L.
+ *
+ * This code gets read aloud down a phone, written on a scrap of paper, and
+ * typed by somebody in a hurry. A character that looks like another
+ * character is a support ticket.
+ */
+const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const CODE_LENGTH = 8;
+
+export function generateCode() {
+  const bytes = new Uint32Array(CODE_LENGTH);
+  // crypto, not Math.random: a guessable invite is a stranger in your
+  // shopping list.
+  crypto.getRandomValues(bytes);
+  let out = '';
+  for (let i = 0; i < CODE_LENGTH; i += 1) {
+    out += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length];
+  }
+  return out;
+}
+
+/** Codes for this household that are still usable. */
+export async function listInvites() {
+  const { data, error } = await supabase
+    .from('household_invites')
+    .select('*')
+    .is('redeemed_at', null)
+    .order('created_at', { ascending: false });
+  if (error) return { ok: false, error };
+  const live = (data || []).filter((i) => new Date(i.expires_at) > new Date());
+  return { ok: true, data: live };
+}
+
+/**
+ * Makes a code.
+ *
+ * household_id and created_by both come from column defaults, so this
+ * follows the standing rule: inserts pass nothing the database can supply.
+ */
+export async function createInvite() {
+  const { data, error } = await supabase
+    .from('household_invites')
+    .insert({ code: generateCode() })
+    .select()
+    .single();
+  if (error) return { ok: false, error };
+  clearHouseholdCache();
+  return { ok: true, data };
+}
+
+/** Cancels a code that has not been used. */
+export async function revokeInvite(inviteId) {
+  const { error } = await supabase.from('household_invites').delete().eq('id', inviteId);
+  if (error) return { ok: false, error };
+  return { ok: true };
+}
+
+/**
+ * Redeems a code.
+ *
+ * Goes through a SECURITY DEFINER function because the caller is not yet a
+ * member of the household whose row they need to read. The function returns
+ * a reason, never the invite, so a wrong guess reveals nothing.
+ */
+export async function redeemInvite(code) {
+  const clean = String(code || '').trim().toUpperCase();
+  if (!clean) return { ok: false, reason: 'not-found', error: new Error('Enter the code you were sent.') };
+
+  const { data, error } = await supabase.rpc('redeem_household_invite', { invite_code: clean });
+  if (error) return { ok: false, reason: 'failed', error };
+
+  if (data === 'ok') {
+    clearHouseholdCache();
+    return { ok: true };
+  }
+  return { ok: false, reason: data, error: new Error(describeRedeem(data)) };
+}
+
+/**
+ * What went wrong, in words.
+ *
+ * Expired and used are told apart on purpose: someone typing a code needs
+ * to know which, and neither leaks anything — they already had the code.
+ */
+export function describeRedeem(reason) {
+  switch (reason) {
+    case 'ok': return 'You are in.';
+    case 'not-found': return "That code was not recognised. Check for a typo — it is eight characters.";
+    case 'expired': return 'That code has expired. Ask for a new one.';
+    case 'used': return 'That code has already been used. Ask for a new one.';
+    case 'already-a-member': return 'You are already in that household.';
+    case 'not-signed-in': return 'Sign in first, then use the code.';
+    default: return 'That code could not be used just now.';
+  }
+}
+
+/**
+ * Leaves the household you are in.
+ *
+ * Nothing shared is deleted. The cupboard, the list and the plan belong to
+ * the household, and a person leaving must not empty them.
+ */
+export async function leaveHousehold() {
+  const current = await getHousehold();
+  if (!current.ok) return current;
+
+  const me = current.data.members.find((m) => m.user_id);
+  if (!me) return { ok: false, error: new Error('You are not a member of this household.') };
+
+  const owners = current.data.members.filter((m) => m.role === 'owner');
+  if (me.role === 'owner' && owners.length <= 1) {
+    return { ok: false, error: new Error('You are the only owner. Make someone else an owner first.') };
+  }
+
+  const { error } = await supabase.from('household_members').delete().eq('id', me.id);
+  if (error) return { ok: false, error };
+  clearHouseholdCache();
+  return { ok: true };
 }

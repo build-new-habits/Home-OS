@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v10
+// js/views/settings.js — 01 Sep 2026 v11
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -18,11 +18,13 @@
 import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword, sendPasswordReset } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
 import { permissionState, requestPermission, describePermission } from '../lib/notify.js';
+import { el } from '../lib/dom.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
 import {
   getHousehold, renameHousehold, addMember, updateMember, removeMember,
-  describeMember, ROLES, DIETARY_TAGS
+  describeMember, ROLES, DIETARY_TAGS,
+  createInvite, listInvites, revokeInvite, redeemInvite
 } from '../data/household.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 
@@ -183,7 +185,7 @@ function buildSwitch({ label, checked, onChange }) {
  * omission. The list is short and it is spelled out before the Add button,
  * not after it.
  */
-function buildHouseholdSection({ household, onChanged, signal }) {
+function buildHouseholdSection({ household, onChanged, signal, controller }) {
   const fieldset = document.createElement('fieldset');
   const legend = document.createElement('legend');
   legend.textContent = 'Household';
@@ -272,6 +274,112 @@ function buildHouseholdSection({ household, onChanged, signal }) {
     list.appendChild(item);
   }
   fieldset.appendChild(list);
+
+  // ---- Phase 30: invite a second adult ----
+  // The fix for the persona who could not get in. Separate from "Add
+  // someone" because they are different acts: adding a member records a
+  // person who eats here; inviting gives another phone access to the same
+  // cupboard, list and plan. Conflating them would hide that difference.
+  const inviteDetails = el('details', { class: 'invite-section' });
+  inviteDetails.appendChild(el('summary', { text: 'Invite someone with their own phone' }));
+
+  const inviteHint = el('p', { class: 'field-hint' });
+  inviteHint.textContent = 'They will see the same cupboard, shopping list, meal plan, '
+    + 'chores and calendar. Weight, water and exercises stay private to each person.';
+  inviteDetails.appendChild(inviteHint);
+
+  const inviteList = el('div', { class: 'invite-codes', role: 'status' });
+  inviteDetails.appendChild(inviteList);
+
+  const makeCode = el('button', { type: 'button', class: 'btn btn-primary', text: 'Create a code' });
+  makeCode.addEventListener('click', async () => {
+    makeCode.disabled = true;
+    const result = await createInvite();
+    makeCode.disabled = false;
+    if (controller.signal.aborted) return;
+    if (!result.ok) { showToast('That code could not be created.'); return; }
+    announce(`Code ${result.data.code.split('').join(' ')} created.`);
+    await renderInvites();
+  }, { signal: controller.signal });
+  inviteDetails.appendChild(makeCode);
+
+  async function renderInvites() {
+    const result = await listInvites();
+    if (controller.signal.aborted) return;
+    inviteList.replaceChildren();
+    if (!result.ok || result.data.length === 0) return;
+
+    for (const invite of result.data) {
+      const row = el('div', { class: 'invite-code-row' });
+      // Spaced for reading aloud, and announced character by character —
+      // "8CKM" read as a word is a code typed wrong.
+      const code = el('span', { class: 'invite-code', text: invite.code });
+      code.setAttribute('aria-label', invite.code.split('').join(' '));
+      row.appendChild(code);
+
+      const days = Math.max(0, Math.ceil(
+        (new Date(invite.expires_at) - Date.now()) / 86400000));
+      row.appendChild(el('span', {
+        class: 'field-hint',
+        text: `Works for ${days} more day${days === 1 ? '' : 's'}, once.`
+      }));
+
+      const revoke = el('button', { type: 'button', class: 'btn btn-small', text: 'Cancel' });
+      revoke.setAttribute('aria-label', `Cancel code ${invite.code.split('').join(' ')}`);
+      revoke.addEventListener('click', async () => {
+        const gone = await revokeInvite(invite.id);
+        if (controller.signal.aborted) return;
+        if (!gone.ok) { showToast('That could not be cancelled.'); return; }
+        announce('Code cancelled.');
+        await renderInvites();
+      }, { signal: controller.signal });
+      row.appendChild(revoke);
+
+      inviteList.appendChild(row);
+    }
+  }
+  renderInvites();
+  fieldset.appendChild(inviteDetails);
+
+  // ---- Join a household ----
+  const joinDetails = el('details', { class: 'invite-section' });
+  joinDetails.appendChild(el('summary', { text: 'I have a code' }));
+  const joinInput = el('input', { id: 'join-code', type: 'text', autocomplete: 'off', maxlength: '12' });
+  joinInput.setAttribute('autocapitalize', 'characters');
+  const joinHint = el('p', {
+    class: 'field-hint', id: 'join-code-hint',
+    text: 'Eight characters. Capitals do not matter.'
+  });
+  joinInput.setAttribute('aria-describedby', joinHint.id);
+  const joinWrap = el('div', { class: 'field' });
+  joinWrap.append(el('label', { for: joinInput.id, text: 'Your code' }), joinInput, joinHint);
+  joinDetails.appendChild(joinWrap);
+
+  const joinError = el('p', { class: 'field-error', role: 'alert' });
+  joinError.hidden = true;
+  joinDetails.appendChild(joinError);
+
+  const joinBtn = el('button', { type: 'button', class: 'btn btn-primary', text: 'Join' });
+  joinBtn.addEventListener('click', async () => {
+    joinError.hidden = true;
+    joinBtn.disabled = true;
+    const result = await redeemInvite(joinInput.value);
+    joinBtn.disabled = false;
+    if (controller.signal.aborted) return;
+    if (!result.ok) {
+      // Expired and used are told apart on purpose: someone typing a code
+      // needs to know which, and they already had the code.
+      joinError.textContent = result.error.message;
+      joinError.hidden = false;
+      joinInput.focus();
+      return;
+    }
+    showToast('You are in. Everything shared is now on your phone too.');
+    announce('Joined the household.');
+    onChanged();
+  }, { signal: controller.signal });
+  joinDetails.appendChild(joinBtn);
+  fieldset.appendChild(joinDetails);
 
   // ---- Add someone ----
   // Behind a details, so the everyday view is a list rather than a form.
@@ -519,6 +627,7 @@ export function render(mountEl) {
     slot.appendChild(buildHouseholdSection({
       household: result.data,
       signal: controller.signal,
+      controller,
       onChanged: () => loadHousehold(slot)
     }));
   }

@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v42 */
+/* css/components.css — 01 Sep 2026 v43 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2887,4 +2887,44 @@ body.sheet-open {
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: var(--space-1);
+}
+
+/* ---- Phase 30: household invites ------------------------------------- */
+
+.invite-section {
+  margin-top: var(--space-3);
+}
+
+.invite-section summary {
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+}
+
+.invite-codes { margin: var(--space-2) 0; }
+
+.invite-code-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Read aloud down a phone and copied onto paper, so it is spaced,
+   monospaced and large. Letter-spacing is what stops "CKMN" being read as
+   a word. */
+.invite-code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-text);
+}
+
+#join-code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }

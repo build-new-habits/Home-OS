@@ -48,7 +48,7 @@ const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported } = await import(`${REPO}/js/lib/notify.js`);
 const { LEVELS, LEVEL_LABELS } = await import(`${REPO}/js/data/pantry.js`);
-const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
+const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
 const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
@@ -1351,6 +1351,45 @@ const roughMeal = scoreMeals(
   [{ food_id: 'r1', current_qty: null, unit: 'g', level: 'plenty' }]
 );
 eq('a meal whose ingredients are all "plenty" is ready now', roughMeal[0].band, BAND.READY);
+
+console.log('');
+
+// ============ Phase 30: household invites ============
+console.log('\nInvite codes');
+
+const codes = Array.from({ length: 200 }, () => generateCode());
+check('codes are eight characters', codes.every((c) => c.length === 8));
+
+// Read aloud down a phone, written on paper, typed in a hurry. A character
+// that looks like another character is a support ticket.
+check('no character can be misread as another',
+  codes.every((c) => !/[0O1IL]/.test(c)),
+  'the alphabet must exclude 0, O, 1, I and L');
+check('codes are upper case only', codes.every((c) => c === c.toUpperCase()));
+// A guessable invite is a stranger in your shopping list.
+check('codes do not repeat', new Set(codes).size === codes.length);
+check('the alphabet is actually varied',
+  new Set(codes.join('').split('')).size > 20,
+  'a narrow alphabet would make guessing cheap');
+
+console.log('\nWhat a failed redemption says');
+
+// Expired and used are told apart on purpose. Someone typing a code needs
+// to know which, and neither leaks anything — they already had the code.
+check('expired and used are different messages',
+  describeRedeem('expired') !== describeRedeem('used'));
+check('expired says to ask for a new one', /new one/.test(describeRedeem('expired')));
+check('used says so plainly', /already been used/.test(describeRedeem('used')));
+check('a typo is suggested before anything else',
+  /typo/i.test(describeRedeem('not-found')));
+check('already a member is not treated as an error to fix',
+  !/expired|used|typo/i.test(describeRedeem('already-a-member')));
+check('every reason produces a sentence',
+  ['ok','not-found','expired','used','already-a-member','not-signed-in','nonsense']
+    .every((r) => typeof describeRedeem(r) === 'string' && describeRedeem(r).length > 0));
+// Nothing here may blame the person holding the code.
+check('no message blames the person',
+  ['not-found','expired','used'].every((r) => !/you should|you failed|invalid/i.test(describeRedeem(r))));
 
 console.log('');
 

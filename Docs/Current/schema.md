@@ -1,16 +1,75 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v18
+01 Sep 2026 v19
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
 reconcile before writing anything (PROJECT_BLUEPRINT.md §3). No field is
 added, renamed, or removed anywhere without changing it here first.
 
-Backend: Supabase (PostgreSQL, **EU region**). **21 tables, 21 RLS
-policies**, 3 trigger functions, 21 update triggers.
+Backend: Supabase (PostgreSQL, **EU region**). **22 tables, 22 RLS
+policies**, 3 trigger functions, 22 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0q. Revision 19 — household invites (01 Sep 2026)
+
+New table **`household_invites`**, plus `pantry_stock.level_set_at`.
+**22 tables, 22 policies.**
+
+### Why
+
+The largest gap between what the app claimed and what it did. From the
+persona trace, Priya — the organised partner of an ADHD dad:
+
+> *"It looks good. I couldn't get in. So it's Dev's app, and that means the
+> shopping is still Dev's job, which was rather the problem."*
+
+Members without a sign-in have always worked, which is right for children. A
+second **adult** could not join without somebody running SQL.
+
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, default my_household_id(), on delete cascade |
+| created_by | uuid | not null, default auth.uid() |
+| code | text | **unique**; check length 6–12 |
+| expires_at | timestamptz | not null, default now() + 7 days |
+| redeemed_at | timestamptz | nullable — single use |
+| redeemed_by | uuid | nullable, references auth.users |
+
+### The RLS problem, and its answer
+
+To redeem a code you must read a row belonging to a household you are **not
+yet a member of**. No household-scoped policy can allow that, and a policy
+loose enough to allow it would let anyone enumerate invites.
+
+So the table is household-scoped for **management** — an owner sees and
+revokes their own codes — and redemption goes through
+`redeem_household_invite(text)`, a **SECURITY DEFINER** function with a
+pinned `search_path`. It takes a code and returns a **reason string, never
+the invite row**. A wrong guess reveals nothing.
+
+The code is marked used **after** the membership row lands, so a failed
+insert does not burn the code.
+
+### The alphabet excludes 0/O and 1/I/L
+
+This code gets read aloud down a phone, written on paper, and typed by
+someone in a hurry. A character that looks like another character is a
+support ticket. Generated with `crypto.getRandomValues`, not `Math.random`:
+a guessable invite is a stranger in your shopping list.
+
+### `pantry_stock.level_set_at` rides along
+
+Revision 18 gave the pantry rough levels. Nothing recorded **when** one was
+set, so a level could never go stale — drift wearing a different hat.
+
+`updated_at` cannot answer it: schema.md §1 warns it moves on every change,
+so editing an item's location would report its level as fresh.
+
+Migration: `migrations/019_household_invites.sql`.
 
 ---
 
@@ -894,6 +953,7 @@ Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.
 |---|---|---|
 | food_id | uuid | not null; references foods(id) **on delete restrict** |
 | default_location | text | which cupboard. Distinct from `foods.category`: category is *what the thing is*, location is *where it lives*, and non-food needs locations like "bathroom cabinet" and "garage" |
+| level_set_at | timestamptz | nullable; when `level` was last set. NOT `updated_at`, which moves on any edit (revision 19) |
 | level | text | nullable, no default; check in ('plenty','low','none'). NULL = nothing said, which is not 'none' (revision 18) |
 | reorder_at | numeric | nullable, no default; check >= 0. Null = never remind (revision 17) |
 | shelf_life_days | int | the ESTIMATE — how long it usually keeps once bought. Used only when `use_by` is null |
@@ -983,6 +1043,20 @@ circular. Everywhere else the standing rule holds: inserts pass nothing.
 `portion_factor` scales the shopping list, never a nutrition target.
 Members with `role = 'child'` are not offered macro targets at all
 (Phase 20).
+
+### household_invites
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, default my_household_id(), on delete cascade |
+| created_by | uuid | not null, default auth.uid() |
+| code | text | not null, **unique**; check length 6–12 |
+| expires_at | timestamptz | not null, default now() + 7 days |
+| redeemed_at | timestamptz | nullable; non-null means used |
+| redeemed_by | uuid | nullable, references auth.users |
+
+Redemption is **not** a direct insert. It goes through
+`redeem_household_invite(text)`, SECURITY DEFINER with a pinned
+`search_path`, which returns a reason string and never the row.
 
 ### meal_steps
 | Column | Type | Notes |
