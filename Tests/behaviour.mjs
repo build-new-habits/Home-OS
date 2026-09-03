@@ -46,6 +46,7 @@ const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } =
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
+const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported } = await import(`${REPO}/js/lib/notify.js`);
 const { servingsFor, describeMember, ROLES } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1254,6 +1255,53 @@ check('the starter list is household-first, not a food list',
 check('every staple has a category', STARTER_STAPLES.every((s) => s.category));
 check('names are unique',
   new Set(STARTER_STAPLES.map((s) => s.name)).size === STARTER_STAPLES.length);
+
+console.log('');
+
+// ============ Phase 32: notifications that arrive ============
+console.log('\nWhat a notification says');
+
+const soon = useSoonMessage([{ name: 'Milk' }, { name: 'Bread' }]);
+check('two items are joined with "and"', soon.body === 'milk and bread.');
+eq('one item stands alone', useSoonMessage([{ name: 'Milk' }]).body, 'milk.');
+check('more than three are summarised',
+  useSoonMessage([{name:'a'},{name:'b'},{name:'c'},{name:'d'},{name:'e'}]).body.includes('2 more'));
+eq('nothing going off means no notification at all', useSoonMessage([]), null);
+
+// Throwing food away is not a moral failure and the app has no view on it.
+check('use-soon never moralises',
+  !/waste|wasting|should|guilt|don.t forget/i.test(JSON.stringify(soon)));
+
+const ready = shoppingReadyMessage(6);
+check('the list notification states the count', ready.body.includes('6 things'));
+eq('one thing is singular', shoppingReadyMessage(1).body.includes('1 thing'), true);
+// A notification for an empty list is a buzz with no content.
+eq('an empty list sends nothing', shoppingReadyMessage(0), null);
+
+// The fastest way to lose this audience is to become another app that
+// buzzes. Nothing here may be re-engagement.
+for (const m of [soon, ready]) {
+  check(`"${m.title}" is a fact, not a nudge`,
+    !/miss you|come back|streak|keep it up|don.t break/i.test(`${m.title} ${m.body}`));
+}
+
+console.log('\nPermission is explained, never just refused');
+
+// "Blocked" alone leaves someone stuck, because the setting is not in this
+// app. Every state has to say what to do next.
+check('denied says where to change it',
+  /browser settings/i.test(describePermission('denied')));
+check('denied also says the switches stay off',
+  /stay off/i.test(describePermission('denied')));
+check('unsupported reassures that the rest still works',
+  /still works/i.test(describePermission('unsupported')));
+check('the default state explains that a switch triggers the prompt',
+  /permission/i.test(describePermission('default')));
+check('granted is a plain statement',
+  describePermission('granted').length > 0
+  && !/error|sorry|unfortunately/i.test(describePermission('granted')));
+check('feature detection does not throw without a window',
+  typeof notificationsSupported() === 'boolean');
 
 console.log('');
 

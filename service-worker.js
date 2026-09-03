@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v64
+// service-worker.js — 01 Sep 2026 v65
+// v65 (Phase 32): ONE new path, js/lib/notify.js. Bumped for
+// views/settings.js v10, views/pantry.js v12, data/listSync.js v3.
 // v64: recipe library 10 -> 100 across 14 cuisine files. Only index.json is
 // precached; the cuisine files are still fetched on demand, which is why
 // growing the library tenfold costs the precache nothing.
@@ -173,7 +175,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v64';
+const CACHE_NAME = 'home-os-shell-v65';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -200,6 +202,7 @@ const SHELL_FILES = [
   './js/lib/units.js',
   './js/lib/icons.js',
   './js/lib/dom.js',
+  './js/lib/notify.js',
   './js/lib/shortfall.js',
   './js/lib/rrule.js',
   './js/lib/barcode.js',

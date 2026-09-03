@@ -1,4 +1,4 @@
-// js/data/listSync.js — 01 Sep 2026 v2
+// js/data/listSync.js — 01 Sep 2026 v3
 // Phase 22. The shopping list follows the plan on its own.
 //
 // ---- The defect ----
@@ -29,6 +29,7 @@ import { getHousehold } from './household.js';
 import { computeShortfall } from '../lib/shortfall.js';
 import { isOffline } from '../lib/net.js';
 import { addDueStaples } from './staples.js';
+import { notify, shoppingReadyMessage } from '../lib/notify.js';
 
 /** Long enough to swallow a burst of edits, short enough to feel immediate. */
 const DEBOUNCE_MS = 2500;
@@ -126,6 +127,29 @@ export async function syncNow() {
       const result = { ok: false, reason: 'write-failed' };
       emit(result);
       return result;
+    }
+
+    // Phase 32. You asked to be told when the list was ready. This is the
+    // moment it becomes true, and it is a fact rather than a nudge.
+    // store.js attaches window listeners at module scope, so importing it
+    // at the top of a DATA module breaks the behaviour gate, which runs in
+    // plain node. Imported lazily here instead — and a failure to read the
+    // preferences is never a reason to fail the sync.
+    let prefs = {};
+    try {
+      const { getState } = await import('../lib/store.js');
+      prefs = (getState().settings || {}).notification_prefs || {};
+    } catch { /* no window: nothing to notify anyway */ }
+    const message = shoppingReadyMessage(items.length);
+    if (message) {
+      notify({
+        key: 'shopping-ready',
+        title: message.title,
+        body: message.body,
+        prefs,
+        prefKey: 'shopping_list_ready',
+        todayISO: todayIso()
+      });
     }
 
     const result = { ok: true, count: items.length };

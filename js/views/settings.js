@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v9
+// js/views/settings.js — 01 Sep 2026 v10
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -17,6 +17,7 @@
 // during the Phase 5 session; logged in PHASE5_HANDOFF.md.
 import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword, sendPasswordReset } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
+import { permissionState, requestPermission, describePermission } from '../lib/notify.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
 import {
@@ -47,10 +48,15 @@ const WEIGHT_UNIT_OPTIONS = [
   { value: 'stone_lb', label: 'Stone & lb' },
   { value: 'kg', label: 'Kilograms' }
 ];
+// Phase 32. Only what actually gets sent is offered.
+//
+// Four switches existed and nothing was behind any of them, which a user
+// reads as broken rather than unbuilt. Two of them now deliver. The other
+// two (water check-in, exercise day) are held back until something sends
+// them — a switch that does nothing is the defect, not the absence of a
+// switch.
 const NOTIFICATION_TYPES = [
-  { key: 'water_reminder', label: 'Water check-in' },
-  { key: 'chore_due', label: 'Chore due' },
-  { key: 'exercise_day', label: 'Exercise day' },
+  { key: 'use_soon', label: 'Food to use soon' },
   { key: 'shopping_list_ready', label: 'Shopping list ready' }
 ];
 
@@ -573,12 +579,34 @@ export function render(mountEl) {
     hint.textContent = 'All off by default. Each reminder is factual, never a nag.';
     notifFieldset.appendChild(hint);
 
+    // Says what is actually true on this device. "Blocked" alone would
+    // leave someone stuck, because the setting is not in this app.
+    const permHint = document.createElement('p');
+    permHint.className = 'field-hint';
+    permHint.setAttribute('role', 'status');
+    permHint.textContent = describePermission(permissionState());
+    notifFieldset.appendChild(permHint);
+
     const prefs = settings.notification_prefs || {};
     for (const type of NOTIFICATION_TYPES) {
       notifFieldset.appendChild(buildSwitch({
         label: type.label,
         checked: !!prefs[type.key],
-        onChange: (checked) => {
+        onChange: async (checked) => {
+          // Permission is asked HERE — the moment someone opts in — and
+          // never on load. A prompt before any benefit has been shown is
+          // how an app gets blocked permanently on the first visit.
+          if (checked) {
+            const state = await requestPermission();
+            permHint.textContent = describePermission(state);
+            if (state !== 'granted') {
+              // Do not save a preference the device cannot honour. A switch
+              // that stays on while nothing arrives is the original defect.
+              showToast('Your browser did not allow reminders, so this stayed off.');
+              renderBody();
+              return;
+            }
+          }
           const nextPrefs = { ...prefs, [type.key]: checked };
           saveAndRerender({ notification_prefs: nextPrefs }, `${type.label} ${checked ? 'enabled' : 'disabled'}`);
         }

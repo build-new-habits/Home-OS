@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v11
+// js/views/pantry.js — 01 Sep 2026 v12
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -61,6 +61,8 @@ import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { stateBadge, countChip } from '../lib/icons.js';
+import { notify, useSoonMessage } from '../lib/notify.js';
+import { getState } from '../lib/store.js';
 import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
 import { claimDialog } from '../components/claimDialog.js';
 
@@ -198,6 +200,29 @@ export function render(mountEl) {
   const useSoonList = el('div', { class: 'card-list' });
   useSoonSection.appendChild(useSoonList);
 
+  /**
+   * Phase 32. Tells you once a day about anything going off.
+   *
+   * Fired from the pantry screen rather than a background job: this is a
+   * PWA with no server-side scheduler, so the honest version happens when
+   * the app is open. Better a reminder that arrives when you look than a
+   * switch that never does anything.
+   */
+  function maybeNotifyUseSoon(soon) {
+    if (soon.length === 0) return;
+    const prefs = (getState().settings || {}).notification_prefs || {};
+    const message = useSoonMessage(soon.map(({ row }) => (row.foods || {})));
+    if (!message) return;
+    notify({
+      key: 'use-soon',
+      title: message.title,
+      body: message.body,
+      prefs,
+      prefKey: 'use_soon',
+      todayISO: todayIso()
+    });
+  }
+
   function renderUseSoon() {
     const soon = useSoon(stock);
     useSoonSection.hidden = soon.length === 0;
@@ -216,6 +241,7 @@ export function render(mountEl) {
       list.appendChild(item);
     }
     useSoonList.appendChild(list);
+    maybeNotifyUseSoon(soon);
   }
 
   // ============================ Modes ==================================
