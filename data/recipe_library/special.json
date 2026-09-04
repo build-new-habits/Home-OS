@@ -1,0 +1,1014 @@
+{
+ "version": 1,
+ "updated": "2026-09-01",
+ "cuisine": "Special",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "beef-wellington-style",
+   "name": "Beef in pastry",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The mushroom layer has to be dry or the pastry goes soggy. That is the whole recipe.",
+   "ingredients": [
+    {
+     "ref": "beef-mince-5-fat",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rub {{ing:butter-block}} into {{ing:flour-plain}} until it looks like crumbs.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Add cold water a spoon at a time until it comes together.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Wrap and chill 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Blitz {{ing:mushroom-chestnut}} and {{ing:garlic-clove}} very finely.",
+     "step_group": "Filling",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Fry them in a dry pan 15 minutes, until no liquid is left.",
+     "note": "Keep going past when you think it is done.",
+     "duration_min": 15,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add {{ing:dried-thyme}}. Cool completely.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Shape {{ing:beef-mince-5-fat}} into a firm log.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Brush it with {{ing:mustard-dijon}}.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Roll the pastry out. Spread the mushrooms over the middle.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Lay the beef on and wrap the pastry round, sealing the edges.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} and brush it all over.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Bake 35 minutes, until deep golden.",
+     "duration_min": 35,
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Rest 15 minutes before cutting.",
+     "note": "Cutting early loses the juices onto the board.",
+     "duration_min": 15,
+     "step_group": "Bake"
+    }
+   ]
+  },
+  {
+   "slug": "roast-sea-bass-polenta",
+   "name": "Sea bass with greens",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "kale",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}} and boil 18 minutes.",
+     "duration_min": 18,
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Drain and mash with half of {{ing:butter-block}}.",
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Pat {{ing:sea-bass-fillet}} dry with kitchen paper.",
+     "note": "Wet skin will not crisp.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Put a frying pan on a high heat with {{ing:olive-oil}}.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Lay the fish in skin side down. Press it flat for 10 seconds.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Cook 4 minutes without moving it.",
+     "duration_min": 4,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Turn it over. Cook 1 minute more, then lift out.",
+     "duration_min": 1,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}}. Add it to the pan with {{ing:kale}}.",
+     "step_group": "Greens"
+    },
+    {
+     "instruction": "Cook 4 minutes, until the kale is bright and wilted.",
+     "duration_min": 4,
+     "step_group": "Greens"
+    },
+    {
+     "instruction": "Add the rest of the butter and a squeeze of {{ing:lemon}}.",
+     "step_group": "Greens"
+    }
+   ]
+  },
+  {
+   "slug": "slow-lamb-shoulder",
+   "name": "Slow-cooked lamb shoulder",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Four hours, almost all of it unattended. Start after breakfast.",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 1200,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut {{ing:onion-large}} and {{ing:carrot-large}} into big chunks.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put them in a deep roasting tin with {{ing:garlic-clove}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Rub {{ing:lamb-mince}} with {{ing:olive-oil}} and {{ing:dried-thyme}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Sit the lamb on the vegetables. Pour {{ing:stock-chicken}} around it.",
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Cover tightly with foil. Roast 3 hours.",
+     "duration_min": 180,
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Take the foil off. Roast 45 minutes more to colour the top.",
+     "duration_min": 45,
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}} and roast alongside for the last hour.",
+     "duration_min": 60,
+     "step_group": "Roast",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Rest 20 minutes. It should pull apart with a spoon.",
+     "duration_min": 20,
+     "step_group": "Roast"
+    }
+   ]
+  },
+  {
+   "slug": "mushroom-wellington",
+   "name": "Mushroom and chestnut pie",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "portobello-mushroom",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rub {{ing:butter-block}} into {{ing:flour-plain}} to fine crumbs.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Add cold water slowly until it forms a dough. Chill 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and cook 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Filling",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Blitz {{ing:mushroom-chestnut}} and {{ing:walnuts}} finely.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Add them to the pan with {{ing:dried-thyme}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Cook 15 minutes, until completely dry.",
+     "note": "Any liquid left will soak the pastry.",
+     "duration_min": 15,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and stir it in. Cool.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Roll the pastry. Pile the filling and {{ing:portobello-mushroom}} down the middle.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Fold over and seal. Brush with beaten {{ing:egg-medium}}.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Bake 35 minutes, until deep golden.",
+     "duration_min": 35,
+     "step_group": "Bake"
+    }
+   ]
+  },
+  {
+   "slug": "seafood-risotto",
+   "name": "Prawn and lemon risotto",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 20,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:stock-vegetable}} and keep it warm.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} finely.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cook it in {{ing:olive-oil}} 6 minutes, until see-through.",
+     "duration_min": 6,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir until the grains look glassy.",
+     "duration_min": 1,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Add stock a ladle at a time, stirring, for 18 minutes.",
+     "duration_min": 18,
+     "step_group": "Risotto"
+    },
+    {
+     "instruction": "Stir in {{ing:prawns-cooked}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Off the heat, add {{ing:butter-block}} and the zest of {{ing:lemon}}.",
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} over. Rest 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "beef-bourguignon",
+   "name": "Beef in red wine",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better made the day before. It is not a weeknight dish and does not pretend to be.",
+   "ingredients": [
+    {
+     "ref": "beef-mince-20-fat",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:bacon-rasher-back}} and fry in {{ing:vegetable-oil}} 6 minutes.",
+     "duration_min": 6,
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Lift it out. Brown {{ing:beef-mince-20-fat}} in the same pan.",
+     "duration_min": 10,
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Chop {{ing:onion-large}} and {{ing:carrot-large}}. Cook 10 minutes.",
+     "duration_min": 10,
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:dried-thyme}}.",
+     "duration_min": 1,
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Add {{ing:wine-red}} and scrape the bottom of the pan.",
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}} and the bacon. Bring to a simmer.",
+     "step_group": "Base"
+    },
+    {
+     "instruction": "Cover and put in the oven for 2 hours 30 minutes.",
+     "duration_min": 150,
+     "step_group": "Oven"
+    },
+    {
+     "instruction": "Fry {{ing:mushroom-chestnut}} separately and stir in at the end.",
+     "duration_min": 8,
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "chocolate-torte",
+   "name": "Flourless chocolate cake",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "snack",
+   "default_serves": 10,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Dense on purpose. It should sink slightly in the middle.",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 180,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 170C. Line a round tin."
+    },
+    {
+     "instruction": "Melt {{ing:dark-chocolate}} and {{ing:butter-block}} in a bowl over hot water."
+    },
+    {
+     "instruction": "Let it cool 5 minutes.",
+     "note": "Hot chocolate will scramble the eggs.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Whisk {{ing:egg-medium}} and {{ing:sugar-caster}} until pale and thick.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Fold the chocolate in gently."
+    },
+    {
+     "instruction": "Sift {{ing:cocoa-powder}} over and fold again."
+    },
+    {
+     "instruction": "Pour into the tin. Bake 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "The middle should still wobble. Cool completely in the tin."
+    }
+   ]
+  },
+  {
+   "slug": "duck-style-orange-chicken",
+   "name": "Chicken with orange and thyme",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": null,
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Zest and juice {{ing:orange}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Mix the juice with {{ing:honey}} and {{ing:dried-thyme}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Brown {{ing:chicken-thigh-boneless}} in {{ing:olive-oil}} 6 minutes.",
+     "duration_min": 6,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}, whole and lightly crushed.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Pour over the orange mixture and {{ing:stock-chicken}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Roast 35 minutes, spooning the juices over twice.",
+     "duration_min": 35,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Cut {{ing:potato-large}} into wedges and roast alongside.",
+     "duration_min": 35,
+     "step_group": "Cook",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Scatter the orange zest over before serving.",
+     "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "baked-camembert-sharing",
+   "name": "Baked cheese with bread",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A whole course that takes twenty minutes and no skill.",
+   "ingredients": [
+    {
+     "ref": "mozzarella",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-white-sliced-loaf",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 20,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Put {{ing:mozzarella}} in a small ovenproof dish."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}} thinly and tuck the pieces in."
+    },
+    {
+     "instruction": "Scatter {{ing:dried-thyme}} and drizzle {{ing:honey}} over."
+    },
+    {
+     "instruction": "Bake 18 minutes, until molten in the middle.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Tear {{ing:bread-white-sliced-loaf}} into pieces.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Toss the bread with {{ing:olive-oil}} and toast 8 minutes.",
+     "duration_min": 8
+    }
+   ]
+  },
+  {
+   "slug": "paella-style-rice",
+   "name": "Chicken and prawn rice",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Do not stir it after the stock goes in. The crust on the bottom is the point.",
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into pieces.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Chop {{ing:onion-large}} and {{ing:pepper-bell}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat with {{ing:olive-oil}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Brown the chicken 8 minutes. Lift it out.",
+     "duration_min": 8,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Cook the onion and pepper 8 minutes.",
+     "duration_min": 8,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and add it with {{ing:paprika}} and {{ing:turmeric-ground}}.",
+     "duration_min": 1,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir to coat.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Put the chicken back. Pour in {{ing:stock-chicken}}. Spread it flat.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Cook 18 minutes without stirring.",
+     "note": "Stirring makes it a risotto. Leave it alone.",
+     "duration_min": 18,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Scatter {{ing:peas-frozen}} and {{ing:prawns-cooked}} over. Cook 5 minutes.",
+     "duration_min": 5,
+     "step_group": "Finish"
+    },
+    {
+     "instruction": "Rest 5 minutes. Serve with {{ing:lemon}} wedges.",
+     "duration_min": 5,
+     "step_group": "Finish"
+    }
+   ]
+  }
+ ]
+}

@@ -63,6 +63,11 @@
    "count": 6
   },
   {
+   "cuisine": "Special",
+   "path": "data/recipe_library/special.json",
+   "count": 10
+  },
+  {
    "cuisine": "Thai",
    "path": "data/recipe_library/thai.json",
    "count": 3

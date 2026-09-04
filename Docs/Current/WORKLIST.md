@@ -243,13 +243,35 @@ otherwise gets you caught short at the till.
 ## BLOCK E — friction found by the traces, not yet placed
 
 - ~~**E1.** Settings grouping~~ ✅ — twelve flat sections became seven. Appearance is five toggle groups set once and rarely revisited, so it collapses to one line. Household goes first: it is the thing with another person waiting on it.
-- **E2.** ~20 `special` tier recipes — **zero of 100** today
+- ~~**E2.** `special` tier recipes~~ ✅ — **10 written**, library 100 → 110.
+  Beef in pastry, slow lamb shoulder, beef in red wine, paella-style rice,
+  a flourless chocolate torte, sea bass, mushroom wellington, prawn risotto,
+  orange chicken, baked cheese for sharing.
+
+  Ten rather than twenty: the brief guessed at a number, and ten covers
+  Sunday, a birthday and having people round without padding the file. More
+  when somebody asks for a kind that is missing.
+
+  **The gate caught an invented ref** — `mushroom-portobello` where the
+  reference file says `portobello-mushroom`. Would have created a bare
+  macro-less food.
 - ~~**E3.** Rotation mode~~ ✅ — schema revision 22. Off by default. The library stays **reachable**, it just stops being offered: hiding it would be the app deciding somebody may not change their mind.
 - ~~**E4.** Search above "needs fixing"~~ ✅ — that section is usually empty, but on the day it is not it pushed search below the fold on the one screen somebody opened to search.
 - ~~**E5.** At-a-glance freshness per location~~ ✅ — a count says how much is in there; it does not say whether anything needs you. The closed heading now answers that.
 - ~~**E6.** Cooking lowers a level~~ ✅ — one step down, never two: a cupboard marked "plenty" becomes "low", not empty. "Low" is left alone, because a recipe cannot tell you whether that was the last of it.
 - **E7.** Quiet hours — **moot, and left undone deliberately.** Nothing fires unless the app is open, so nothing can wake you at 3am. This becomes real only if background push ever exists.
-- **E8.** Bulk reminder levels — one at a time today
+- ~~**E8.** Bulk reminder levels~~ ✅ — "Set up shopping reminders" on the
+  pantry: one list, three buttons a row. Never / when it runs out / at one
+  left. A number box would put arithmetic between somebody and a decision
+  they have already made.
+
+  Setting one used to mean opening a row, then a sheet, then finding a
+  field. Fine for a dozen staples, tedious for fifty — and "tedious for
+  fifty" means it never gets done, which makes the feature theoretical.
+
+---
+
+## ✅ BLOCK E COMPLETE (E7 dropped, with reasons)
 
 ---
 

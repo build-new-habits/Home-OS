@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v16
+// js/views/pantry.js — 01 Sep 2026 v17
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -1383,6 +1383,39 @@ export function render(mountEl) {
   // cupboard and tapping down a single list is a different task from
   // opening sixty rows, and it is the one people will actually do on a
   // Sunday.
+  // Worklist E8. Same shape as the sweep, different question.
+  const remindSection = el('section', { class: 'card sweep-section' });
+  remindSection.hidden = true;
+  const remindToggle = el('button', {
+    type: 'button', class: 'btn', text: 'Set up shopping reminders'
+  });
+  remindToggle.setAttribute('aria-expanded', 'false');
+  const remindBody = el('div', { class: 'sweep-body' });
+  remindBody.hidden = true;
+  remindSection.append(remindToggle, remindBody);
+
+  remindToggle.addEventListener('click', () => {
+    const open = remindToggle.getAttribute('aria-expanded') === 'true';
+    remindToggle.setAttribute('aria-expanded', String(!open));
+    remindBody.hidden = open;
+    if (!open) {
+      renderReminders();
+      announce('Shopping reminders. Choose when each one goes back on the list.');
+    }
+  }, { signal });
+
+  function renderReminders() {
+    remindBody.replaceChildren();
+    remindBody.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Anything set here goes back on your shopping list on its own. '
+        + 'Everything starts at Never — this only ever adds reminders you asked for.'
+    }));
+    const list = el('ul', { class: 'sweep-list' });
+    for (const row of stock) list.appendChild(buildReminderRow(row));
+    remindBody.appendChild(list);
+  }
+
   const sweepSection = el('section', { class: 'card sweep-section' });
   sweepSection.hidden = true;
   const sweepToggle = el('button', { type: 'button', class: 'btn' });
@@ -1417,6 +1450,7 @@ export function render(mountEl) {
   function renderSweepToggle() {
     const n = needsCheck().length;
     sweepSection.hidden = stock.length === 0;
+    remindSection.hidden = stock.length === 0;
     // States the number, never chides. "12 you have not checked" would be
     // an accusation; this is a count and an offer.
     sweepToggle.textContent = n > 0
@@ -1445,6 +1479,65 @@ export function render(mountEl) {
     const list = el('ul', { class: 'sweep-list' });
     for (const row of ordered) list.appendChild(buildSweepRow(row));
     sweepBody.appendChild(list);
+  }
+
+  /**
+   * Worklist E8. Reminder levels, several at a time.
+   *
+   * Setting one meant opening a row, opening the sheet, finding the field.
+   * Fine for a dozen staples, tedious for fifty — and "tedious for fifty"
+   * means it does not get done, which makes the feature theoretical.
+   *
+   * Shares the sweep's shape on purpose: one list, one tap a row.
+   */
+  function buildReminderRow(row) {
+    const food = row.foods || {};
+    const name = food.name || 'Unknown';
+    const item = el('li', { class: 'sweep-row' });
+    item.appendChild(el('span', { class: 'sweep-row-name', text: name }));
+
+    const buttons = el('div', { class: 'level-buttons' });
+    buttons.setAttribute('role', 'group');
+    buttons.setAttribute('aria-label', `Remind me about ${name} at`);
+
+    // Never, when it runs out, or when one is left. Three answers covers
+    // almost every staple, and a number box would put arithmetic between
+    // somebody and a decision they have already made.
+    const OPTIONS = [
+      { value: null, label: 'Never' },
+      { value: 0, label: 'When it runs out' },
+      { value: 1, label: 'At one left' }
+    ];
+
+    for (const option of OPTIONS) {
+      const on = (row.reorder_at == null && option.value === null)
+        || (row.reorder_at != null && Number(row.reorder_at) === option.value);
+      const btn = el('button', {
+        type: 'button',
+        class: `btn btn-small level-btn${on ? ' level-btn-on' : ''}`,
+        text: option.label
+      });
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', `${name}: ${option.label.toLowerCase()}`);
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        const result = await updateStock(row.id, { reorder_at: option.value });
+        btn.disabled = false;
+        if (destroyed) return;
+        if (!result.ok) { showToast('That could not be saved.'); return; }
+        row.reorder_at = option.value;
+        for (const sibling of buttons.querySelectorAll('.level-btn')) {
+          const isOn = sibling.textContent === option.label;
+          sibling.classList.toggle('level-btn-on', isOn);
+          sibling.setAttribute('aria-pressed', String(isOn));
+        }
+        announce(`${name}: ${option.label.toLowerCase()}.`);
+      }, { signal });
+      buttons.appendChild(btn);
+    }
+
+    item.appendChild(buttons);
+    return item;
   }
 
   function buildSweepRow(row) {
@@ -1561,7 +1654,7 @@ export function render(mountEl) {
   // Worklist E4. Search goes above "needs fixing". That section is usually
   // empty, but on the day it is not it pushes search below the fold on the
   // one screen somebody opened in order to search.
-  mountEl.append(searchPanel, fixSection, useSoonSection, sweepSection, browsePanel, addToggle, capturePanel);
+  mountEl.append(searchPanel, fixSection, useSoonSection, sweepSection, remindSection, browsePanel, addToggle, capturePanel);
   syncMode();
   paintOfflineNote();
 
