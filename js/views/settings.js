@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v13
+// js/views/settings.js — 01 Sep 2026 v14
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -58,9 +58,14 @@ const WEIGHT_UNIT_OPTIONS = [
 // two (water check-in, exercise day) are held back until something sends
 // them — a switch that does nothing is the defect, not the absence of a
 // switch.
+// Worklist A3. Water and exercise reminders are back, because something
+// now sends them. The rule from Phase 32 stands: a switch is only offered
+// once delivery exists behind it.
 const NOTIFICATION_TYPES = [
   { key: 'use_soon', label: 'Food to use soon' },
-  { key: 'shopping_list_ready', label: 'Shopping list ready' }
+  { key: 'shopping_list_ready', label: 'Shopping list ready' },
+  { key: 'exercise_day', label: 'Exercises still to do' },
+  { key: 'water_reminder', label: 'Water so far today' }
 ];
 
 function applyThemeAttrs(settings) {

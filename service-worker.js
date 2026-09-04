@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v73
+// service-worker.js — 01 Sep 2026 v74
+// v74 (worklist A3): water and exercise reminders restored —
+// lib/notify.js v3, views/dashboard.js v6, views/settings.js v14.
 // v73 (worklist A2): the health screens — lib/icons.js v3, views/water.js
 // v3, weight.js v5, exercises.js v5, health.js v4, components.css v46.
 // v72: recipe library made findable (views/meals.js v22, navConfig v9) and
@@ -193,7 +195,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v73';
+const CACHE_NAME = 'home-os-shell-v74';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

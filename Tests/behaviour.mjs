@@ -46,7 +46,7 @@ const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } =
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
-const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported, describeDelivery } = await import(`${REPO}/js/lib/notify.js`);
+const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported, describeDelivery, exercisesLeftMessage, waterSoFarMessage } = await import(`${REPO}/js/lib/notify.js`);
 const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
 const { visibleNav, NAV_ITEMS, FOCUS_AREAS } = await import(`${REPO}/js/navConfig.js`);
 const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
@@ -1486,6 +1486,31 @@ check('every focus area has a label and a blurb',
 check('every nav item is either always-on or in a known area',
   NAV_ITEMS.every((i) => i.always || FOCUS_AREAS.some((a) => a.value === i.area)),
   'an item in no area would be unreachable once anyone chose');
+
+console.log('');
+
+// ============ Worklist A3: water and exercise reminders ============
+console.log('\nThe wording is the whole design');
+
+const ex = exercisesLeftMessage(3, 5);
+eq('exercises state what is left', ex.body, '3 of 5 still to do today.');
+// "Don't forget" is a nag; "you've only done 2 of 5" is a scoreline. Both
+// make a missed day feel like a failing.
+check('no nagging', !/don'?t forget|remember to|make sure/i.test(`${ex.title} ${ex.body}`));
+check('no scoreline framing', !/only|just|behind|still haven/i.test(`${ex.title} ${ex.body}`));
+eq('nothing left means no notification', exercisesLeftMessage(0, 5), null);
+
+const waterMsg = waterSoFarMessage(500, 2000, (v) => `${v} ml`);
+// "500 ml so far" and "you are 1.5 litres short" are the same arithmetic
+// and completely different sentences.
+check('water states what you HAVE had', /500 ml so far/.test(waterMsg.body));
+check('and never what you have not',
+  !/short|remaining|left to|need|behind/i.test(waterMsg.body));
+check('no target is framed as a duty',
+  !/should|must|goal|target of/i.test(waterMsg.body));
+eq('a missing total sends nothing', waterSoFarMessage(null, 2000), null);
+// Zero is a real reading and worth stating; it is not an absence.
+check('zero still produces a message', waterSoFarMessage(0, 2000, (v) => `${v} ml`) !== null);
 
 console.log('');
 

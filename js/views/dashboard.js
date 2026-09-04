@@ -1,4 +1,4 @@
-// js/views/dashboard.js — 01 Sep 2026 v5
+// js/views/dashboard.js — 01 Sep 2026 v6
 // Phase 9: what is actually happening today.
 //
 // v1 was a link list. v2 added one-tap water. This is the screen the whole
@@ -38,6 +38,7 @@ import { formatMl } from '../lib/units.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { readPlanProgress } from './planWeek.js';
+import { notify, exercisesLeftMessage, waterSoFarMessage } from '../lib/notify.js';
 import { PRIMARY_ACTION, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 
@@ -292,6 +293,21 @@ export function render(mountEl) {
     const outstanding = cleared.length - doneIds.size;
     if (outstanding === 0) return;   // all done: say nothing rather than well done
 
+    // Worklist A3. Fired from the DASHBOARD, not the Exercises screen.
+    //
+    // On the Exercises screen a notification would tell you what you are
+    // already looking at — Tom's exact complaint about labels dressed as
+    // reminders. Here it is useful: you opened the app for the shopping
+    // list and are reminded of something you came in for a different
+    // reason.
+    notify({
+      key: 'exercises-left',
+      ...exercisesLeftMessage(outstanding, cleared.length),
+      prefs: (getState().settings || {}).notification_prefs || {},
+      prefKey: 'exercise_day',
+      todayISO: today
+    }).catch((error) => console.error('Exercise reminder failed:', error));
+
     exercises.clear();
     exercises.show();
     exercises.body.appendChild(el('p', {
@@ -411,6 +427,18 @@ export function render(mountEl) {
     waterTotalMl = result.data.total;
     waterPartial = result.data.partial;
     paintWater();
+
+    // Worklist A3. Only when there is still room in the day — telling
+    // somebody who has already hit their target is a buzz with no content.
+    if (waterTotalMl < DAILY_TARGET_ML) {
+      notify({
+        key: 'water-so-far',
+        ...waterSoFarMessage(waterTotalMl, DAILY_TARGET_ML, formatMl),
+        prefs: (getState().settings || {}).notification_prefs || {},
+        prefKey: 'water_reminder',
+        todayISO: today
+      }).catch((error) => console.error('Water reminder failed:', error));
+    }
   });
 
   // Each section independently: one failed query must not blank the page.

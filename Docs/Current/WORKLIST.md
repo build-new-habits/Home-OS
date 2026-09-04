@@ -72,10 +72,39 @@ would do most harm.
   Tightened — a gate that punishes a sentence for disavowing the thing it
   forbids is one people learn to work around.
 
-### A3. Water and exercise reminders
+### ~~A3. Water and exercise reminders~~ ✅
 Removed in Phase 32 because nothing sent them. Eileen and Tom both want a
 gentle daily prompt. Build the senders, restore the switches.
 **Done when:** the two switches are back and both deliver.
+
+**Shipped.** No schema. Four switches now, all four with delivery behind
+them — the Phase 32 rule held: a switch is only offered once something
+sends it.
+
+**Both fire from the DASHBOARD, not from their own screens.** On the
+Exercises screen a notification tells you what you are already looking at,
+which is Tom's exact complaint about labels dressed as reminders. From the
+dashboard it is useful: you opened the app for the shopping list and are
+reminded of something you came in for a different reason.
+
+**The wording is the whole design.** Exercises say *"3 of 5 still to do
+today"* — not "don't forget" (a nag) and not "you've only done 2" (a
+scoreline). Water says what you **have** had: *"500 ml so far today, of 2
+litres"*. "500 ml so far" and "you are 1.5 litres short" are the same
+arithmetic and completely different sentences, and only one is a fact about
+water rather than a verdict on you.
+
+Tested in both directions — the presence of the fact and the absence of
+nagging, scorelines, duty framing and shortfall language.
+
+Water does not fire once the target is met: telling somebody who has already
+finished is a buzz with no content.
+
+---
+
+## ✅ BLOCK A COMPLETE
+
+The two personas deferred across three traces have both been served.
 
 ---
 

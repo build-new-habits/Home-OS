@@ -1,4 +1,6 @@
-// js/lib/notify.js — 01 Sep 2026 v2
+// js/lib/notify.js — 01 Sep 2026 v3
+// v3 (worklist A3): water and exercise messages restored, now that
+// something sends them.
 // v2: delivery goes through the service worker. See notify() — the v1
 // constructor does not work on Android at all.
 // Phase 32. Notifications that actually arrive.
@@ -199,6 +201,42 @@ export function useSoonMessage(items = []) {
     body: more > 0
       ? `${list}, and ${more} more.`
       : `${list}.`
+  };
+}
+
+/**
+ * Exercises still to do today.
+ *
+ * ---- The wording is the whole design ----
+ * "Don't forget your exercises" is a nag. "You've only done 2 of 5" is a
+ * scoreline. Both make a missed day feel like a failing, which principle 1
+ * forbids for anything a person did or did not do.
+ *
+ * What is left is a count and nothing else. It is a fact that happens to be
+ * useful, which is the only kind of reminder this app sends.
+ */
+export function exercisesLeftMessage(outstanding, total) {
+  if (!outstanding || outstanding < 1) return null;
+  return {
+    title: 'Exercises',
+    body: `${outstanding} of ${total} still to do today.`
+  };
+}
+
+/**
+ * Water so far.
+ *
+ * States what you HAVE had, never what you have not. "500 ml so far" and
+ * "you are 1.5 litres short" are the same arithmetic and completely
+ * different sentences, and only one of them is a fact about water rather
+ * than a verdict on you.
+ */
+export function waterSoFarMessage(ml, targetMl, formatFn) {
+  if (ml === null || ml === undefined) return null;
+  const fmt = typeof formatFn === 'function' ? formatFn : (v) => `${v} ml`;
+  return {
+    title: 'Water',
+    body: `${fmt(ml)} so far today, of ${fmt(targetMl)}.`
   };
 }
 
