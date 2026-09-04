@@ -1,4 +1,4 @@
-// js/views/foods.js — 01 Sep 2026 v4
+// js/views/foods.js — 01 Sep 2026 v5
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -599,10 +599,22 @@ export function render(mountEl) {
       text: 'Singular: tin, egg, slice. Blank just says "item".'
     });
     label.setAttribute('aria-describedby', `${prefix}-item-label-hint`);
+    // Worklist D1. Typed once, reused on every future list. Optional, and
+    // the hint says what it is for so it does not read as bookkeeping.
+    const price = numberInput(`${prefix}-price`, { min: '0', step: '0.01' });
+    price.value = food.typical_price != null ? String(food.typical_price) : '';
+    const priceHint = el('p', {
+      class: 'field-hint', id: `${prefix}-price-hint`,
+      text: 'Optional. What you usually pay for one. Your shopping list uses it '
+        + 'to add up roughly what a shop will come to.'
+    });
+    price.setAttribute('aria-describedby', priceHint.id);
+
     convSet.append(
       field('Grams per millilitre', perMl),
       field('Grams per item', perItem),
-      field('One of these is called a', label, labelEditHint)
+      field('One of these is called a', label, labelEditHint),
+      field('Usual price', price, priceHint)
     );
 
     const error = el('p', { class: 'field-error', role: 'alert' });
@@ -645,7 +657,8 @@ export function render(mountEl) {
         carbs_g: carb.value,
         grams_per_ml: perMl.value,
         grams_per_item: perItem.value,
-        item_label: label.value
+        item_label: label.value,
+        typical_price: price.value
       });
       save.disabled = false;
       if (destroyed) return;

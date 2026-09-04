@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v49 */
+/* css/components.css — 01 Sep 2026 v50 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -3037,4 +3037,13 @@ body.sheet-open {
   align-items: center;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+}
+
+/* ---- Worklist D1: what this list comes to ----------------------------- */
+/* Deliberately plain. No colour, no size, no emphasis — a number that can
+   be failed is a number people stop looking at, and this one is arithmetic
+   offered, not a verdict. */
+.cost-note {
+  margin: 0 0 var(--space-3);
+  font-variant-numeric: tabular-nums;
 }

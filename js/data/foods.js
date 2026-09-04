@@ -1,4 +1,4 @@
-// js/data/foods.js — 01 Sep 2026 v4
+// js/data/foods.js — 01 Sep 2026 v5
 // v3: `category` is now written and read. Revision 3 added the column but
 // nothing set it, so every food defaulted to food_ambient and the value was
 // dead weight — grouping or filtering by it would have been meaningless.
@@ -255,6 +255,22 @@ export async function updateFood(foodId, patch) {
     next.name = name;
   }
   if (patch.barcode !== undefined) next.barcode = normaliseBarcode(patch.barcode);
+  if (patch.typical_price !== undefined) {
+    // Worklist D1. Null is "never said" and stays that way — a price is
+    // typed, never guessed. Stamped so a stale one can say so rather than
+    // quietly being wrong.
+    if (patch.typical_price === '' || patch.typical_price === null) {
+      next.typical_price = null;
+      next.price_updated_at = null;
+    } else {
+      const price = Number(patch.typical_price);
+      if (!Number.isFinite(price) || price < 0 || price >= 10000) {
+        return { ok: false, error: new Error('Enter a price between 0 and 9999.') };
+      }
+      next.typical_price = Math.round(price * 100) / 100;
+      next.price_updated_at = new Date().toISOString();
+    }
+  }
   if (patch.item_label !== undefined) {
     // Trimmed to null rather than stored as '': an empty string would pass
     // the NOT NULL-less column but fail the length CHECK, and would read as

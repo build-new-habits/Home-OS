@@ -199,7 +199,7 @@ discard is invisible to every other gate.
 
 ## BLOCK D — the new question
 
-### D1. What did the week cost? *(Jodie)*
+### ~~D1. What did the week cost?~~ ✅ *(Jodie)*
 > *"Ask me if it saved me money, not if I liked it."*
 
 She is right, and the app cannot answer. **There is no price anywhere in the
@@ -208,8 +208,35 @@ schema.** This needs its own design, not a column: where a price comes from
 half the pantry was bought last month, and how to show it without turning
 into a budgeting app that shames people.
 
-**Do not start this inside another block.** It is the only genuinely new
-feature in three traces.
+**Shipped.** Schema revision 21. Four decisions, made once:
+
+**1. A price lives on the FOOD, not the purchase.** Barcodes carry no
+prices, Open Food Facts has none, receipt scanning is parked on cost, and
+typing a price every shop is the upkeep that made Jodie uninstall. You type
+it once and every future list uses it — the reference file pattern: answer
+once, benefit forever.
+
+**2. What gets costed is the LIST, not "the week".** *"This week cost £34"*
+is a lie whenever half the pantry was bought last month, and unpicking it
+needs a ledger nobody will keep. *"About £24 for this list"* is checkable,
+useful before you leave the house, and answerable from data that exists.
+
+**3. It says what it does not know.** An unpriced line is **never counted
+as zero** — the worst thing this could do to somebody deciding whether they
+can afford a shop is quietly understate it. An incomplete total says *"at
+least £24, for the 12 items with a price. 5 still to price."*
+
+**4. It is not a budget.** No limit, no overspend, no colour, no history of
+how you did. Tested: no message may contain "too much", "over", "budget",
+"afford", "overspend", "expensive" or "cheap". A number that can be failed
+is a number people stop looking at.
+
+Even a complete total says *"about"* — it is an estimate, and pretending
+otherwise gets you caught short at the till.
+
+---
+
+## ✅ BLOCK D COMPLETE
 
 ---
 

@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v20
+01 Sep 2026 v21
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,51 @@ policies**, 3 trigger functions, 22 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0s. Revision 21 — prices (01 Sep 2026)
+
+`foods.typical_price numeric` and `foods.price_updated_at timestamptz`,
+both nullable, **no defaults**, price checked `>= 0 and < 10000`.
+
+### Why
+
+Jodie, from the round 2 re-trace:
+
+> *"It's good. I've got £30 a week. Ask me if it saved me money, not if I
+> liked it."*
+
+She is right and the app could not answer. There was no price anywhere.
+
+### Four decisions, made once
+
+**1. A price lives on the FOOD, not the purchase.** Barcodes do not carry
+prices and Open Food Facts has none; receipt scanning is parked on per-user
+cost; typing a price every shop is exactly the upkeep that made Jodie
+uninstall. So you type it once and every future list uses it — the same
+pattern as the reference file: answer once, benefit forever.
+
+**2. What gets costed is the shopping LIST, not "the week".** *"This week
+cost £34"* is a lie whenever half the pantry was bought last month, and
+unpicking it needs a purchase ledger nobody will keep. *"This list comes to
+about £24"* is checkable, useful before you leave the house, and answerable
+from data that already exists.
+
+**3. It says what it does not know.** A total over twelve of seventeen
+items shown as a bare number is wrong. Shown as *"at least £24, for the 12
+items with a price"*, it is useful. An unpriced line is **never counted as
+zero** — that would understate the total for somebody deciding whether they
+can afford a shop.
+
+**4. It is not a budget.** No limit, no overspend, no red, no history of
+how you did. A number that can be failed is a number people stop looking
+at, and this audience has been failed by scoring apps before.
+
+`price_updated_at` exists so a price over three months old can say so
+rather than quietly being wrong.
+
+Migration: `migrations/021_prices.sql`.
 
 ---
 
@@ -919,6 +964,8 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | calories_per_100g | numeric | **canonical unit kcal per 100 g** |
 | grams_per_ml | numeric | nullable; `> 0`. How many grams one millilitre weighs (milk ~1.03, oil ~0.92). **Null means ml cannot be converted** — the ingredient is reported incomplete, never guessed |
 | item_label | text | nullable; singular noun for one item ('tin', 'egg', 'slice'). NULL reads as "item" (revision 9) |
+| typical_price | numeric | nullable, no default; check 0–9999. What you usually pay for one. Typed once, reused (revision 21) |
+| price_updated_at | timestamptz | nullable; when `typical_price` was set. NOT `updated_at`, which moves on any edit (revision 21) |
 | grams_per_item | numeric | nullable; `> 0`. How many grams one item weighs (egg ~60, onion ~150). Same rule when null |
 | protein_g | numeric | **per 100 g** |
 | fat_g | numeric | **per 100 g** |

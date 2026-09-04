@@ -45,6 +45,7 @@ const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons,
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
+const { lineCost, estimateList, describeEstimate, formatMoney, isStalePrice } = await import(`${REPO}/js/data/cost.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported, describeDelivery, exercisesLeftMessage, waterSoFarMessage } = await import(`${REPO}/js/lib/notify.js`);
 const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
@@ -1613,6 +1614,70 @@ check('method_note is trimmed to null, not an empty string',
   'an empty string is a note that exists and is blank');
 check('option_label is trimmed to null too',
   /patch\.option_label = label \|\| null/.test(mealsSrc));
+
+console.log('');
+
+// ============ Worklist D1: what this list comes to ============
+console.log('\nCosting a line');
+
+const tinPriced = { name: 'Chopped tomatoes', typical_price: 0.65, grams_per_item: 400, item_label: 'tin' };
+
+eq('items multiply by the price',
+  lineCost({ qty_needed: 3, unit: 'item', foods: tinPriced }), 1.95);
+// A price is per tin, so grams have to become whole tins first — you cannot
+// buy 1.5 tins.
+eq('grams round UP to whole packs',
+  lineCost({ qty_needed: 500, unit: 'g', foods: tinPriced }), 1.30);
+eq('a staple with no quantity assumes one',
+  lineCost({ qty_needed: null, unit: 'item', foods: tinPriced }), 0.65);
+
+// The worst thing this feature could do to somebody deciding whether they
+// can afford a shop is quietly understate it.
+check('no price returns null, never zero',
+  lineCost({ qty_needed: 2, unit: 'item', foods: { name: 'Mystery' } }) === null);
+check('a negative price is refused',
+  lineCost({ qty_needed: 1, unit: 'item', foods: { typical_price: -3 } }) === null);
+
+console.log('\nTotalling a list');
+
+const listItems = [
+  { qty_needed: 2, unit: 'item', status: 'needed', foods: tinPriced },
+  { qty_needed: 1, unit: 'item', status: 'needed', foods: { name: 'Milk', typical_price: 1.20 } },
+  { qty_needed: 1, unit: 'item', status: 'needed', foods: { name: 'Capers' } },
+  { qty_needed: 1, unit: 'item', status: 'bought', foods: { name: 'Bread', typical_price: 1.10 } }
+];
+const est = estimateList(listItems, new Date().toISOString());
+
+eq('only what is still needed is counted', est.pricedCount, 2);
+eq('the total is right', est.total, 2.50);
+check('something already bought is left out',
+  !est.unpricedNames.includes('Bread'));
+eq('and what cannot be priced is counted too', est.unpricedCount, 1);
+check('an incomplete total is not called complete', est.complete === false);
+
+// "About £2.50" over two of three items is a wrong number. "At least" is
+// the honest word, because the real figure can only be higher.
+const partialCost = describeEstimate(est);
+check('an incomplete total says "at least"', /at least/i.test(partialCost));
+check('and names how many are unpriced', /1 still to price/.test(partialCost));
+
+const full = describeEstimate(estimateList(listItems.slice(0, 2), new Date().toISOString()));
+check('a complete total says "about"', /about/i.test(full),
+  'it is still an estimate and pretending otherwise gets you caught at the till');
+
+// It is not a budget. Nothing here may read as a verdict.
+for (const text of [partialCost, full]) {
+  check(`"${text.slice(0, 24)}…" passes no judgement`,
+    !/too much|over|budget|afford|overspend|expensive|cheap/i.test(text));
+}
+eq('no prices at all is an offer, not an error',
+  /add what you usually pay/i.test(describeEstimate(estimateList([], null))), true);
+
+eq('money is never rounded up to look tidier', formatMoney(2.5), '£2.50');
+check('a three-month-old price is stale',
+  isStalePrice({ price_updated_at: new Date(Date.now() - 120 * 86400000).toISOString() },
+    new Date().toISOString()));
+check('and a price never set is not stale', !isStalePrice({}, new Date().toISOString()));
 
 console.log('');
 

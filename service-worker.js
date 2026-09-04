@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v77
+// service-worker.js — 01 Sep 2026 v78
+// v78 (worklist D1): ONE new path, js/data/cost.js. Prices —
+// data/foods.js v5, data/shopping.js v3, views/foods.js v5,
+// views/shopping.js v9, components.css v50.
 // v77 (worklist C2/C3/C7/C9): alternatives, option names, reference foods
 // in the picker, method notes — views/meals.js v24, data/meals.js v7,
 // components.css v49.
@@ -204,7 +207,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v77';
+const CACHE_NAME = 'home-os-shell-v78';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -260,6 +263,7 @@ const SHELL_FILES = [
   './js/data/restock.js',
   './js/data/listSync.js',
   './js/data/staples.js',
+  './js/data/cost.js',
   './js/components/bottomNav.js',
   './js/components/toast.js',
   './js/components/confirmDialog.js',

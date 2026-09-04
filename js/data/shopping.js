@@ -1,4 +1,4 @@
-// js/data/shopping.js — 01 Sep 2026 v2
+// js/data/shopping.js — 01 Sep 2026 v3
 // All Supabase access for `shopping_list_items`.
 // Shared data-access contract: { ok, data|error }, error always checked,
 // nothing thrown at views, no user_id on inserts (RLS supplies it).
@@ -49,7 +49,7 @@ export async function listItems() {
     // Phase 12: item_label and grams_per_item come along so the list can
     // read "4 tins (1.6 kg)" rather than "4 item" while you are in the shop.
     .select('id, food_id, qty_needed, unit, source, status, '
-      + 'foods(id, name, category, item_label, grams_per_item)')
+      + 'foods(id, name, category, item_label, grams_per_item, typical_price, price_updated_at)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };
