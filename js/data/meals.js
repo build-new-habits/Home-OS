@@ -1,4 +1,4 @@
-// js/data/meals.js — 01 Sep 2026 v6
+// js/data/meals.js — 01 Sep 2026 v7
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
 // opaque database error and tells the user nothing.
@@ -215,7 +215,7 @@ export async function createMeal({ name, default_serves = 4, meal_type = null, i
   return { ok: true, data };
 }
 
-export async function updateMeal(mealId, { name, default_serves, meal_type, is_favourite } = {}) {
+export async function updateMeal(mealId, { name, default_serves, meal_type, is_favourite, method_note } = {}) {
   const patch = {};
   if (name !== undefined) {
     const title = String(name).trim();
@@ -228,6 +228,14 @@ export async function updateMeal(mealId, { name, default_serves, meal_type, is_f
       return { ok: false, error: new Error('Servings must be a whole number, 1 or more.') };
     }
     patch.default_serves = serves;
+  }
+  if (method_note !== undefined) {
+    // Worklist C9. A destructured signature silently DISCARDS anything it
+    // does not name, so the editor would have looked like it saved and
+    // changed nothing. Trimmed to null rather than '': an empty string is
+    // a note that exists and is blank.
+    const note = String(method_note || '').trim().slice(0, 200);
+    patch.method_note = note || null;
   }
   if (meal_type !== undefined) {
     const type = normaliseMealType(meal_type);
@@ -311,7 +319,7 @@ export async function addIngredient({ meal_id, food_id, quantity_g, unit = 'g' }
   return { ok: true, data };
 }
 
-export async function updateIngredient(ingredientId, { quantity_g, unit } = {}) {
+export async function updateIngredient(ingredientId, { quantity_g, unit, option_label } = {}) {
   const patch = {};
   if (quantity_g !== undefined) {
     const qty = Number(quantity_g);
@@ -319,6 +327,11 @@ export async function updateIngredient(ingredientId, { quantity_g, unit } = {}) 
       return { ok: false, error: new Error('Enter a quantity greater than zero.') };
     }
     patch.quantity_g = Math.round(qty * 100) / 100;
+  }
+  if (option_label !== undefined) {
+    // Worklist C3. Same trap as method_note — unnamed keys vanish.
+    const label = String(option_label || '').trim().slice(0, 60);
+    patch.option_label = label || null;
   }
   if (unit !== undefined) {
     if (!isValidUnit(unit)) {

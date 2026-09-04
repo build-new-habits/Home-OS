@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v48 */
+/* css/components.css — 01 Sep 2026 v49 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -3013,4 +3013,28 @@ body.sheet-open {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+/* ---- Worklist C: the unwired things, wired ---------------------------- */
+
+.alt-form,
+.method-note-editor,
+.option-rename {
+  margin-top: var(--space-2);
+}
+
+.alt-form {
+  padding: var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.method-note-editor summary,
+.option-rename summary {
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
 }

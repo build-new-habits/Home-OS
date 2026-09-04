@@ -1593,6 +1593,29 @@ eq('an untagged meal reports nothing at all',
 
 console.log('');
 
+// ============ Worklist C: fields that would have vanished ============
+console.log('\nDestructured signatures discard what they do not name');
+
+// C3 and C9 both shipped editors for columns whose update functions took a
+// destructured object that never mentioned them. Both would have looked
+// like they saved and changed nothing — no error, no clue.
+//
+// This asserts the signatures name the fields, since a silent discard is
+// invisible to every other gate.
+const mealsSrc = await (await import('node:fs/promises'))
+  .readFile(`${REPO}/js/data/meals.js`, 'utf8');
+check('updateMeal accepts method_note',
+  /export async function updateMeal\([^)]*method_note/.test(mealsSrc));
+check('updateIngredient accepts option_label',
+  /export async function updateIngredient\([^)]*option_label/.test(mealsSrc));
+check('method_note is trimmed to null, not an empty string',
+  /patch\.method_note = note \|\| null/.test(mealsSrc),
+  'an empty string is a note that exists and is blank');
+check('option_label is trimmed to null too',
+  /patch\.option_label = label \|\| null/.test(mealsSrc));
+
+console.log('');
+
 if (failures.length) {
   console.log(`BEHAVIOUR TESTS FAILED — ${failures.length} of ${pass + failures.length}`);
   for (const f of failures) console.log('  - ' + f);

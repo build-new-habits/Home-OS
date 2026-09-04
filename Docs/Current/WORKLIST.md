@@ -163,8 +163,8 @@ control. Cheap, and visible.
   case and "every tag must match" still holds. A single select rather than
   four tick boxes: asking for one thing is far commoner than a combination,
   and four boxes in a filter row is a wall.
-- **C2.** `addAlternative()` — no button *(Phase 19)*
-- **C3.** `option_label` — no editor *(Phase 19)*
+- ~~**C2.** `addAlternative()`~~ ✅ — one action from the ingredient row. No mode, no separate screen.
+- ~~**C3.** `option_label`~~ ✅ — "Rename this option" on the group row.
 - ~~**C4.** Dietary conflict notes~~ ✅ — shown on the plan entry, worded
   *"Not marked vegetarian — Sam asked for that."* **Not** "contains meat":
   tags say what a meal IS, and absence is not a claim about what it is not.
@@ -172,14 +172,24 @@ control. Cheap, and visible.
 - ~~**C5.** `portion_factor` on the meal plan~~ ✅ — **already done** in
   Phase 20; the worklist was wrong. `servingsForEntry` has been wired since
   `mealPlan.js` v3.
-- **C6.** "You usually buy this every 3 weeks" — needs restock history first
-- **C7.** Ingredient picker offering reference foods *(Phase 13)*
+- **C6.** "You usually buy this every 3 weeks" — **blocked, needs schema.**
+  `describeUsualInterval` is written and tested; `pantry_stock` keeps only
+  the latest `last_restocked`, so there is no history to average. Needs a
+  restock log table. Left here rather than faked.
+
+**C2, C3 and C9 shared a defect worth naming.** All three shipped an editor
+for a column whose update function took a **destructured object that never
+mentioned the field**. Unnamed keys are silently discarded, so every one
+would have looked like it saved and changed nothing — no error, no clue. A
+behaviour test now asserts the signatures name them, because a silent
+discard is invisible to every other gate.
+- ~~**C7.** Ingredient picker offering reference foods~~ ✅ — typing a known name now creates it complete, and says so first.
 - ~~**C8.** Inline step editing~~ ✅ — an Edit button per step, with the
   same live style checker as adding one, so a step edited by hand cannot
   break rules a step added by hand cannot. Changing a word used to mean
   delete and re-add, which lost the note, the timer and the position: a typo
   cost you the whole step.
-- **C9.** `method_note` editable
+- ~~**C9.** `method_note` editable~~ ✅
 - ~~**C10.** Recipe scaling above 1~~ ✅ — a "Cooking for" number beside
   the Cook button. Quantities in the steps scale with it. `resolveTokens`
   has honoured a scale since Phase 15 and nothing ever set one, so every

@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v23
+// js/views/meals.js — 01 Sep 2026 v24
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -120,7 +120,7 @@ import {
   countPlanEntries, countIngredients, deleteMeal,
   addIngredient, updateIngredient, removeIngredient,
   computeMacros, MACROS, INGREDIENT_UNITS, formatIngredientQuantity,
-  groupIngredientOptions, optionLabel, selectOption,
+  groupIngredientOptions, optionLabel, selectOption, addAlternative,
   MEAL_TYPES, mealTypeLabel, setFavourite
 } from '../data/meals.js';
 import { isOffline } from '../lib/net.js';
@@ -134,6 +134,7 @@ import {
 import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
+import { lookup, referencePatch } from '../data/foodReference.js';
 import {
   listStepsForMeals, addStep, updateStep, removeStep, moveStep,
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
@@ -1125,6 +1126,39 @@ export function render(mountEl) {
     const control = el('div', { class: 'option-control' });
     control.append(label, select);
     item.appendChild(control);
+
+    // ---- Worklist C3: what an option is called ----
+    // option_label has been read everywhere since Phase 19 and could only
+    // be set by seed data or SQL. It exists because a food name is often
+    // too literal for a choice list: "Cottage cheese, plain" is a food,
+    // "Cottage cheese" is an option.
+    if (entry.selected) {
+      const rename = el('input', {
+        id: `option-label-${entry.selected.id}`, type: 'text', maxlength: '60'
+      });
+      rename.value = entry.selected.option_label || '';
+      rename.placeholder = (entry.selected.foods || {}).name || '';
+      const renameHint = el('p', {
+        class: 'field-hint', id: `option-label-hint-${entry.selected.id}`,
+        text: 'Optional. Leave blank to use the food\'s own name.'
+      });
+      rename.setAttribute('aria-describedby', renameHint.id);
+      rename.addEventListener('change', async () => {
+        const result = await updateIngredient(entry.selected.id, {
+          option_label: rename.value.trim() || null
+        });
+        if (destroyed) return;
+        if (!result.ok) { showToast('That name could not be saved.'); return; }
+        announce('Renamed.');
+        await loadMeals();
+      }, { signal });
+
+      const renameWrap = el('details', { class: 'option-rename' });
+      renameWrap.appendChild(el('summary', { text: 'Rename this option' }));
+      renameWrap.appendChild(field('Called', rename, renameHint));
+      item.appendChild(renameWrap);
+    }
+
     return item;
   }
 
@@ -1180,9 +1214,35 @@ export function render(mountEl) {
       wrap.appendChild(list);
     }
 
+    // ---- Worklist C9: the one-line caveat ----
+    // method_note has been displayed since Phase 15 and could never be
+    // written. It is for the thing that belongs to no single step —
+    // "this makes a wet sauce, do not panic" — which is exactly the sort of
+    // reassurance somebody adds AFTER cooking it once.
+    const noteDetails = el('details', { class: 'method-note-editor' });
+    noteDetails.appendChild(el('summary', {
+      text: meal.method_note ? 'Change the note' : 'Add a note about this recipe'
+    }));
+    const noteInput = el('input', { id: `method-note-${meal.id}`, type: 'text', maxlength: '200' });
+    noteInput.value = meal.method_note || '';
+    const noteHint = el('p', {
+      class: 'field-hint', id: `method-note-hint-${meal.id}`,
+      text: 'One line, for anything that belongs to the whole recipe rather than one step.'
+    });
+    noteInput.setAttribute('aria-describedby', noteHint.id);
+    noteInput.addEventListener('change', async () => {
+      const result = await updateMeal(meal.id, { method_note: noteInput.value.trim() || null });
+      if (destroyed) return;
+      if (!result.ok) { showToast('That note could not be saved.'); return; }
+      announce('Note saved.');
+      await loadMeals();
+    }, { signal });
+    noteDetails.appendChild(field('Note', noteInput, noteHint));
+
     if (meal.method_note) {
       wrap.appendChild(el('p', { class: 'field-hint', text: meal.method_note }));
     }
+    wrap.appendChild(noteDetails);
 
     const details = el('details', { class: 'step-editor' });
     details.appendChild(el('summary', { text: steps.length ? 'Add a step' : 'Add the first step' }));
@@ -1543,6 +1603,74 @@ export function render(mountEl) {
     }, { signal });
     item.appendChild(removeBtn);
 
+    // ---- Worklist C2: offer yourself a choice ----
+    // addAlternative() has existed since Phase 19 with no button, so option
+    // groups could only be created by seed data or SQL. One action from the
+    // row: no mode, no separate screen.
+    const altBtn = el('button', { type: 'button', class: 'btn btn-small', text: 'Add an alternative' });
+    altBtn.setAttribute('aria-label', `Add an alternative to ${name}`);
+    altBtn.setAttribute('aria-expanded', 'false');
+
+    const altForm = el('form', { class: 'alt-form' });
+    altForm.hidden = true;
+    const altPicker = foodPicker(`alt-food-${row.id}`, foods, { onlyEdible: true });
+    const altQty = numberInput(`alt-qty-${row.id}`, { min: '0.1', step: 'any' });
+    altQty.value = String(row.quantity_g);
+    const altError = el('p', { class: 'field-error', role: 'alert' });
+    altError.hidden = true;
+    const altSave = el('button', { type: 'submit', class: 'btn btn-primary', text: 'Add it' });
+    const altCancel = el('button', { type: 'button', class: 'btn', text: 'Cancel' });
+    altCancel.addEventListener('click', () => {
+      altForm.hidden = true;
+      altBtn.setAttribute('aria-expanded', 'false');
+      altBtn.focus();
+    }, { signal });
+    const altActions = el('div', { class: 'form-actions' });
+    altActions.append(altSave, altCancel);
+    altForm.append(
+      el('p', { class: 'field-hint',
+        text: `You will be able to switch between ${name.toLowerCase()} and this one, `
+          + 'and the nutrition and shopping list follow whichever is chosen.' }),
+      altPicker.wrapper,
+      field('How much', altQty),
+      altError, altActions
+    );
+
+    altBtn.addEventListener('click', () => {
+      const open = altBtn.getAttribute('aria-expanded') === 'true';
+      altBtn.setAttribute('aria-expanded', String(!open));
+      altForm.hidden = open;
+      if (!open) altPicker.select.focus();
+    }, { signal });
+
+    altForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      altError.hidden = true;
+      if (!altPicker.select.value) {
+        altError.textContent = 'Choose what the alternative is.';
+        altError.hidden = false;
+        return;
+      }
+      altSave.disabled = true;
+      const result = await addAlternative(row, {
+        food_id: altPicker.select.value,
+        quantity_g: altQty.value,
+        unit: row.unit
+      });
+      altSave.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        altError.textContent = result.error.message;
+        altError.hidden = false;
+        return;
+      }
+      announce(`Alternative added. ${name} is still the one chosen.`);
+      await loadMeals();
+    }, { signal });
+
+    item.appendChild(altBtn);
+    item.appendChild(altForm);
+
     return item;
   }
 
@@ -1591,7 +1719,27 @@ export function render(mountEl) {
         + 'and the recipe says its nutrition is not counted yet — add the numbers whenever you like.'
     });
     newNameInput.setAttribute('aria-describedby', newHint.id);
-    newWrap.append(field('Name', newNameInput), field('Kind of food', newCategorySelect), newHint);
+    // ---- Worklist C7: create it complete, not bare ----
+    // Typing a food the app already knows about produced an empty row with
+    // no macros and no pack size, and nothing said otherwise. The reference
+    // file has had the answer since Phase 13.
+    const newRefOffer = el('p', { class: 'field-hint', role: 'status' });
+    newRefOffer.hidden = true;
+    let newRefEntry = null;
+    newNameInput.addEventListener('input', async () => {
+      const entry = await lookup(newNameInput.value);
+      if (destroyed) return;
+      newRefEntry = entry;
+      newRefOffer.hidden = !entry;
+      if (entry) {
+        newRefOffer.textContent = `Known: ${entry.name}. It will be created with its `
+          + 'weight and nutrition already filled in.';
+        if (entry.category) newCategorySelect.value = entry.category;
+      }
+    }, { signal });
+
+    newWrap.append(field('Name', newNameInput), newRefOffer,
+      field('Kind of food', newCategorySelect), newHint);
 
     const newToggle = el('button', {
       type: 'button', class: 'btn btn-small', 'aria-expanded': 'false',
@@ -1697,8 +1845,12 @@ export function render(mountEl) {
           foodName = existing.name;
         } else {
           submit.disabled = true;
+          // Worklist C7. Reference values fill blanks only — the same rule
+          // as the Foods screen, so a food created here and one created
+          // there come out identical.
+          const refPatch = newRefEntry ? referencePatch(newRefEntry, {}) : {};
           const created = await createFood({
-            name, category: newCategorySelect.value, source: 'manual'
+            name, category: newCategorySelect.value, source: 'manual', ...refPatch
           });
           submit.disabled = false;
           if (destroyed) return;

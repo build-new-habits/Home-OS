@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v76
+// service-worker.js — 01 Sep 2026 v77
+// v77 (worklist C2/C3/C7/C9): alternatives, option names, reference foods
+// in the picker, method notes — views/meals.js v24, data/meals.js v7,
+// components.css v49.
 // v76 (worklist C1/C4/C8/C10): dietary filter, dietary notes, in-place step
 // editing, cook-for-a-number — views/meals.js v23, views/mealPlan.js v4,
 // data/mealPlan.js v3, components.css v48.
@@ -201,7 +204,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v76';
+const CACHE_NAME = 'home-os-shell-v77';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
