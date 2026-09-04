@@ -26,12 +26,23 @@ both are larger than most of what follows.
 
 ## BLOCK A — the people who have been deferred twice
 
-### A1. Ask what they came for *(Sarah)*
+### ~~A1. Ask what they came for~~ ✅ *(Sarah)*
 Phase 33. One question at first run: kitchen / home and chores / health /
 all of it. Hides the rest of the dashboard until asked, reversible in
 Settings, never a paywall.
 **Done when:** a new account sees one domain, and Sarah's usability score
 moves off 5.
+
+**Shipped.** Schema revision 20. First run asks as step 2 of 5; Settings has
+"What you use it for". Empty means everything and is the default. Dashboard
+and Settings can never be hidden. Correction recorded: the dashboard was not
+the problem, the nav bar was.
+
+**Also fixed alongside:** the recipe library was unfindable — built last on
+the Meals page, after the add form, behind a collapsed `<details>`. A
+hundred recipes nobody could reach. Moved above the add form with a heading,
+a description and a count, the Kitchen hub blurb rewritten, and an a11y
+check added so it cannot drift back down the page.
 
 ### A2. Health gets the kitchen's care *(Eileen)*
 Phase 36, **brought forward from Round 3**. Icons and state badges on Water,

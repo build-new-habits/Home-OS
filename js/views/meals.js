@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v21
+// js/views/meals.js — 01 Sep 2026 v22
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -347,11 +347,29 @@ export function render(mountEl) {
   mealsSection.appendChild(mealsList);
 
   // ---- Phase 16: the recipe library ----
-  // Below your own meals, because this is a place you visit occasionally,
-  // not the thing you came for.
+  // ---- Position, corrected ----
+  // This was built last on the page, after the add-meal form, behind a
+  // collapsed <details> reading "Browse the recipe library". A hundred
+  // recipes were in there and the person who commissioned them could not
+  // find them.
+  //
+  // The original reasoning — "a place you visit occasionally" — was wrong
+  // in both directions: browsing is FAR more common than writing a recipe
+  // from scratch, and "occasionally" is not a reason to bury something, it
+  // is a reason to label it well.
+  //
+  // It now sits directly under your own meals, above the add form, with a
+  // heading and a count.
   const librarySection = el('section', { class: 'library-section' });
+  librarySection.appendChild(el('h3', { text: 'Recipe library' }));
+  librarySection.appendChild(el('p', {
+    class: 'field-hint',
+    text: 'A hundred recipes that come with the app. Add any of them to your meals '
+      + 'in one tap — the ingredients and steps come with it.'
+  }));
   const libraryDetails = el('details');
-  libraryDetails.appendChild(el('summary', { text: 'Browse the recipe library' }));
+  const librarySummary = el('summary', { text: 'Browse the recipe library' });
+  libraryDetails.appendChild(librarySummary);
   const libraryBody = el('div', { class: 'library-body' });
   libraryDetails.appendChild(libraryBody);
   librarySection.appendChild(libraryDetails);
@@ -394,6 +412,7 @@ export function render(mountEl) {
     mealFormError,
     mealSubmit
   );
+  mealsSection.appendChild(librarySection);
   mealsSection.appendChild(addMealForm);
 
   addMealForm.addEventListener('submit', async (event) => {
@@ -844,6 +863,7 @@ export function render(mountEl) {
 
     libraryRecipes = recipes.data;
     libraryOwned = owned.ok ? owned.data : new Map();
+    librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`;
     renderLibrary();
   }
 
@@ -2037,7 +2057,6 @@ export function render(mountEl) {
     class: 'card-link', href: '#/foods',
     text: 'Manage the things you buy'
   }));
-  mealsSection.appendChild(librarySection);
   mealsSection.appendChild(foodsLink);
 
   mountEl.append(mealsSection);

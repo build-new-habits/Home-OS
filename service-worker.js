@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v71
+// service-worker.js — 01 Sep 2026 v72
+// v72: recipe library made findable (views/meals.js v22, navConfig v9) and
+// worklist A1 — focus areas (bottomNav v3, firstRun v2, settings v13).
 // v71: no code change — gate 9 added to the harness.
 // v70 (Phase 32 part two): notificationclick handler, and delivery moved to
 // registration.showNotification() — the v1 constructor does not work on
@@ -189,7 +191,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v71';
+const CACHE_NAME = 'home-os-shell-v72';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

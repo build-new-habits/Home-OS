@@ -985,6 +985,37 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- The recipe library is findable ------------------------------------
+// It shipped last on the page, after the add form, behind a collapsed
+// details. A hundred recipes were in there and the person who commissioned
+// them could not find them. No gate would have caught that, so one does now.
+{
+  const mealsMod = await import(pathToFileURL(path.join(REPO, 'js/views/meals.js')).href);
+  const mount = document.createElement('div');
+  document.body.appendChild(mount);
+  const teardown = mealsMod.render(mount);
+  await new Promise((r) => setTimeout(r, 40));
+
+  const libSection = mount.querySelector('.library-section');
+  check('meals: the recipe library has a heading, not just a summary',
+    !!libSection && !!libSection.querySelector('h3'));
+  check('meals: and says what it is before you open it',
+    !!libSection && /hundred recipes|100 recipes/i.test(libSection.textContent));
+
+  // Position is the actual defect. It must come before the add-meal form:
+  // browsing is far more common than writing a recipe from scratch.
+  const forms = [...mount.querySelectorAll('form')];
+  const addForm = forms.find((f) => /add a meal|add meal/i.test(f.textContent));
+  if (libSection && addForm) {
+    const order = libSection.compareDocumentPosition(addForm);
+    check('meals: the library comes before the add-a-meal form',
+      Boolean(order & window.Node.DOCUMENT_POSITION_FOLLOWING));
+  }
+
+  if (typeof teardown === 'function') teardown();
+  mount.remove();
+}
+
 // ---- Phase 31: the stock sweep -----------------------------------------
 // A screen whose whole purpose is being fast to tap through.
 {

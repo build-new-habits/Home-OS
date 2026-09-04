@@ -48,6 +48,7 @@ const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
 const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported, describeDelivery } = await import(`${REPO}/js/lib/notify.js`);
 const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
+const { visibleNav, NAV_ITEMS, FOCUS_AREAS } = await import(`${REPO}/js/navConfig.js`);
 const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
@@ -1453,6 +1454,38 @@ eq('and so it still does not demote the meal',
     [...staleStock.values()])[0].band, BAND.READY);
 check('the staleness is reported so the sweep can offer it',
   classifyIngredient(staleNeed, staleStock).stale === true);
+
+console.log('');
+
+// ============ Worklist A1: what did you come for ============
+console.log('\nFocus areas');
+
+// Empty means everything, and that is the default every existing account
+// has. If this ever filtered on empty, everyone would lose their nav.
+eq('no choice shows the whole nav', visibleNav(NAV_ITEMS, []).length, NAV_ITEMS.length);
+eq('and so does a missing value', visibleNav(NAV_ITEMS, undefined).length, NAV_ITEMS.length);
+
+const kitchenOnly = visibleNav(NAV_ITEMS, ['kitchen']);
+check('choosing food shows the kitchen', kitchenOnly.some((i) => i.path === 'kitchen'));
+check('and hides health', !kitchenOnly.some((i) => i.path === 'health'));
+check('and hides chores and calendar',
+  !kitchenOnly.some((i) => ['chores', 'calendar'].includes(i.path)));
+
+// An app you can navigate yourself out of is a bug, not a preference.
+check('the dashboard can never be hidden',
+  visibleNav(NAV_ITEMS, ['health']).some((i) => i.path === 'dashboard'));
+check('nor by an unknown area name',
+  visibleNav(NAV_ITEMS, ['nonsense']).some((i) => i.path === 'dashboard'));
+eq('an unknown area hides everything else rather than crashing',
+  visibleNav(NAV_ITEMS, ['nonsense']).length, 1);
+
+eq('home covers both chores and calendar',
+  visibleNav(NAV_ITEMS, ['home']).filter((i) => !i.always).length, 2);
+check('every focus area has a label and a blurb',
+  FOCUS_AREAS.every((a) => a.value && a.label && a.blurb));
+check('every nav item is either always-on or in a known area',
+  NAV_ITEMS.every((i) => i.always || FOCUS_AREAS.some((a) => a.value === i.area)),
+  'an item in no area would be unreachable once anyone chose');
 
 console.log('');
 

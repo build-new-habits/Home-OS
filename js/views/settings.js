@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v12
+// js/views/settings.js — 01 Sep 2026 v13
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -19,6 +19,7 @@ import { upsertSettings, exportAllData, downloadJson, signOutUser, changePasswor
 import { announce } from '../lib/a11y.js';
 import { permissionState, requestPermission, describePermission, describeDelivery } from '../lib/notify.js';
 import { el } from '../lib/dom.js';
+import { FOCUS_AREAS } from '../navConfig.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
 import {
@@ -577,6 +578,7 @@ export function render(mountEl) {
     contrast_mode: 'standard',
     brightness_pref: 'standard',
     density: 'comfortable',
+    focus_areas: [],
     weight_unit_display: 'stone_lb',
     notification_prefs: {}
   };
@@ -766,6 +768,38 @@ export function render(mountEl) {
     const householdSlot = document.createElement('div');
     bodyContainer.appendChild(householdSlot);
     loadHousehold(householdSlot);
+
+    // Worklist A1. Reversible, obvious, and never a paywall — a hidden area
+    // is one tap from coming back.
+    const focusFieldset = document.createElement('fieldset');
+    const focusLegend = document.createElement('legend');
+    focusLegend.textContent = 'What you use it for';
+    focusFieldset.appendChild(focusLegend);
+    const focusHint = document.createElement('p');
+    focusHint.className = 'field-hint';
+    focusHint.textContent = 'Tick what you want in the bar at the bottom. '
+      + 'Untick all of them to see everything. Nothing is deleted either way.';
+    focusFieldset.appendChild(focusHint);
+
+    const chosenAreas = new Set(settings.focus_areas || []);
+    for (const area of FOCUS_AREAS) {
+      const row = document.createElement('div');
+      row.className = 'checkbox-row';
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.id = `focus-${area.value}`;
+      box.checked = chosenAreas.has(area.value);
+      const label = document.createElement('label');
+      label.htmlFor = box.id;
+      label.textContent = area.label;
+      box.addEventListener('change', () => {
+        if (box.checked) chosenAreas.add(area.value); else chosenAreas.delete(area.value);
+        saveAndRerender({ focus_areas: [...chosenAreas] }, 'Updated');
+      }, { signal: controller.signal });
+      row.append(box, label);
+      focusFieldset.appendChild(row);
+    }
+    bodyContainer.appendChild(focusFieldset);
 
     // Phase 27. People forget, and re-finding it should not require
     // reinstalling. Offered plainly, never as a prompt to finish something.

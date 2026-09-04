@@ -1,4 +1,5 @@
-// js/views/firstRun.js — 01 Sep 2026 v1
+// js/views/firstRun.js — 01 Sep 2026 v2
+// v2 (worklist A1): asks what you came for.
 // Phase 27. The first ninety seconds.
 //
 // ---- Why a guided TASK and not a tour ----
@@ -24,6 +25,7 @@ import { loadAllRecipes, addLibraryRecipe, describeAdd } from '../data/recipeLib
 import { addPlanEntry, DAYS, SLOTS } from '../data/mealPlan.js';
 import { flushListSync, describeListSync } from '../data/listSync.js';
 import { upsertSettings } from '../data/settings.js';
+import { FOCUS_AREAS } from '../navConfig.js';
 
 import { el } from '../lib/dom.js';
 /** Marks it done. Failing to record it is not worth interrupting anyone. */
@@ -82,7 +84,7 @@ export function render(mountEl) {
     go(step + 1);
   }, { signal });
 
-  const STEPS = ['welcome', 'pick', 'plan', 'done'];
+  const STEPS = ['welcome', 'focus', 'pick', 'plan', 'done'];
 
   function go(index) {
     step = Math.max(0, Math.min(index, STEPS.length - 1));
@@ -106,6 +108,7 @@ export function render(mountEl) {
 
     const key = STEPS[step];
     if (key === 'welcome') renderWelcome();
+    else if (key === 'focus') renderFocus();
     else if (key === 'pick') renderPick();
     else if (key === 'plan') renderPlan();
     else renderDone();
@@ -125,7 +128,58 @@ export function render(mountEl) {
     }));
   }
 
-  // ---- 2. Pick something --------------------------------------------------
+  // ---- 2. What did you come for? -----------------------------------------
+  // Worklist A1. Sarah, three traces running: "I wanted to sort out dinner.
+  // Why is it asking about my weight?"
+  //
+  // Asked ONCE, here, where somebody is deciding what this app is. Asking
+  // later means they have already formed the impression this is meant to
+  // prevent.
+  function renderFocus() {
+    heading.textContent = 'What would you like to sort out?';
+    body.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Pick what you want now. Everything else is still there — this only '
+        + 'decides what sits in the bar at the bottom, and you can change it any time.'
+    }));
+
+    const chosen = new Set();
+    const list = el('ul', { class: 'plain-list' });
+    for (const area of FOCUS_AREAS) {
+      const item = el('li', { class: 'checkbox-row' });
+      const box = el('input', { type: 'checkbox', id: `first-focus-${area.value}` });
+      const label = el('label', { for: box.id });
+      label.appendChild(el('span', { class: 'first-run-recipe-name', text: area.label }));
+      label.appendChild(el('span', { class: 'field-hint', text: area.blurb }));
+      box.addEventListener('change', () => {
+        if (box.checked) chosen.add(area.value); else chosen.delete(area.value);
+      }, { signal });
+      item.append(box, label);
+      list.appendChild(item);
+    }
+    body.appendChild(list);
+
+    const save = el('button', { type: 'button', class: 'btn', text: 'Use these' });
+    save.addEventListener('click', async () => {
+      // Everything ticked is the same as nothing ticked. Storing it empty
+      // means an area added in a later version appears rather than being
+      // silently excluded by a list written today.
+      const areas = chosen.size === FOCUS_AREAS.length ? [] : [...chosen];
+      const result = await upsertSettings({ focus_areas: areas });
+      if (destroyed) return;
+      if (!result.ok) { showToast('That could not be saved, but nothing is lost.'); }
+      announce(areas.length === 0 ? 'Showing everything.' : 'Saved.');
+      go(step + 1);
+    }, { signal });
+    body.appendChild(save);
+
+    body.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Skipping this shows you everything, which is the normal setting.'
+    }));
+  }
+
+  // ---- 3. Pick something --------------------------------------------------
   function renderPick() {
     heading.textContent = 'Pick something you fancy';
 

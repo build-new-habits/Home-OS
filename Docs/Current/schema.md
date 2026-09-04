@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v19
+01 Sep 2026 v20
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,45 @@ policies**, 3 trigger functions, 22 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0r. Revision 20 — focus areas (01 Sep 2026)
+
+`user_settings.focus_areas text[]`, not null, **default empty**.
+
+### Why
+
+Sarah, unmoved across three persona traces:
+
+> *"I wanted to sort out dinner. Why is it asking about my weight?"*
+> *"I've got used to ignoring most of it. That's not the same as it being
+> better."*
+
+**A correction to the trace, worth recording:** the dashboard is not the
+problem. Its cards only appear when they have something to say, and
+"Everything else" is two links. The breadth she meets is the **nav bar** —
+Health, Kitchen, Chores, Calendar, and two hubs behind them.
+
+### Empty means everything
+
+And empty is the default, which is what every existing account has. This is
+a way of asking for **less**, never something to configure before the app
+works. Skipping the question shows everything.
+
+**Everything ticked is stored as empty**, so an area added in a later
+version appears rather than being silently excluded by a list written today.
+
+### Nothing can hide the way out
+
+`NAV_ITEMS` entries carry `always: true` for Dashboard, and Settings is
+always in the dashboard links. **An app you can navigate yourself out of is
+a bug, not a preference.** Tested, including against an unknown area name.
+
+Nothing is deleted, disabled or paywalled — a hidden area is one tap back in
+Settings.
+
+Migration: `migrations/020_focus_areas.sql`.
 
 ---
 
@@ -1007,6 +1046,7 @@ the list by creating (or matching) a `foods` row with the right `category` —
 | contrast_mode | text | default 'standard' |
 | brightness_pref | text | default 'standard' |
 | density | text | not null; check in ('comfortable','compact'); default 'comfortable' (revision 15) |
+| focus_areas | text[] | not null default '{}'. Empty = show everything (revision 20) |
 | onboarded_at | timestamptz | nullable, no default. Null = not yet (revision 16) |
 | weight_unit_display | text | check in ('stone_lb','kg'); default 'stone_lb' |
 | notification_prefs | jsonb | default '{}'::jsonb — every notification type off by default (principle 8) |
