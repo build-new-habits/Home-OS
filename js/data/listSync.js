@@ -149,7 +149,7 @@ export async function syncNow() {
         prefs,
         prefKey: 'shopping_list_ready',
         todayISO: todayIso()
-      });
+      }).catch((error) => console.error('Shopping-ready notification failed:', error));
     }
 
     const result = { ok: true, count: items.length };

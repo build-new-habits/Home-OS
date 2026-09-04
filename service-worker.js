@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v69
+// service-worker.js — 01 Sep 2026 v70
+// v70 (Phase 32 part two): notificationclick handler, and delivery moved to
+// registration.showNotification() — the v1 constructor does not work on
+// Android at all, so Phase 32 shipped delivering nothing on a phone.
 // v69 (Phase 31 part three): no path changes. Levels go stale —
 // data/pantry.js v7, data/pantryMatch.js v3, lib/shortfall.js v5,
 // views/pantry.js v15.
@@ -185,7 +188,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v69';
+const CACHE_NAME = 'home-os-shell-v70';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -301,6 +304,22 @@ self.addEventListener('activate', (event) => {
 function isShellRequest(url) {
   return url.origin === self.location.origin && url.pathname.startsWith(new URL(SCOPE).pathname);
 }
+// ---- Phase 32 part two: tapping a notification ----
+// Without this, a tap on Android opens a NEW window on the start URL, so
+// somebody who was mid-recipe loses their place. Focus an existing window
+// where there is one.
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil((async () => {
+    const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of all) {
+      if ('focus' in client) return client.focus();
+    }
+    if (self.clients.openWindow) return self.clients.openWindow('./');
+    return undefined;
+  })());
+});
+
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET') {

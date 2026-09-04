@@ -1,4 +1,6 @@
-// js/lib/notify.js — 01 Sep 2026 v1
+// js/lib/notify.js — 01 Sep 2026 v2
+// v2: delivery goes through the service worker. See notify() — the v1
+// constructor does not work on Android at all.
 // Phase 32. Notifications that actually arrive.
 //
 // ---- The defect ----
@@ -59,6 +61,29 @@ export async function requestPermission() {
  * Says what is true and what to do about it. "Notifications blocked" alone
  * leaves someone stuck, because the setting is not in this app.
  */
+/**
+ * When reminders actually arrive — stated, not left to be discovered.
+ *
+ * ---- Why this text exists ----
+ * From the Round 1 re-trace, Tom (autistic, lives alone, daily user):
+ *
+ *   "So it tells me things I'd have seen anyway. That's not a reminder,
+ *    that's a label."
+ *
+ * He wanted a 5pm prompt. **A web app cannot schedule one without a push
+ * server**, and a push server is a per-user running cost — the same
+ * argument that parked Phase 17.
+ *
+ * So the honest move is to say so plainly, in the place where somebody is
+ * deciding whether to switch it on. An expectation that is set is not a
+ * disappointment. An expectation that is discovered is.
+ */
+export function describeDelivery() {
+  return 'Reminders appear when you open the app, not at a set time. '
+    + 'Scheduling them for a particular hour needs a server, which this app '
+    + 'deliberately does not have.';
+}
+
 export function describePermission(state) {
   switch (state) {
     case 'granted': return 'Reminders will appear on this device.';
@@ -111,15 +136,41 @@ export function markSent(key, todayISO) {
  *
  * @returns {'sent'|'duplicate'|'denied'|'unsupported'|'off'}
  */
-export function notify({ key, title, body, prefs = {}, prefKey, todayISO }) {
+export async function notify({ key, title, body, prefs = {}, prefKey, todayISO }) {
   if (prefKey && !prefs[prefKey]) return 'off';
   if (!notificationsSupported()) return 'unsupported';
   if (window.Notification.permission !== 'granted') return 'denied';
   if (alreadySent(key, todayISO)) return 'duplicate';
 
+  const options = { body, tag: key, silent: false, badge: './icons/icon-192.png' };
+
+  // ---- Service worker first, and this is not a preference ----
+  // Chrome on Android REFUSES `new Notification()` outright — it throws
+  // "Illegal constructor" — and every notification must go through
+  // ServiceWorkerRegistration.showNotification().
+  //
+  // v1 of this file used the constructor, so Phase 32 delivered nothing at
+  // all on Android. It failed into a catch and returned 'denied', which
+  // means the switches looked fine and nothing ever arrived — the exact
+  // defect Phase 32 existed to fix, reintroduced by the delivery mechanism.
+  try {
+    if ('serviceWorker' in navigator) {
+      const registration = await navigator.serviceWorker.ready;
+      if (registration && registration.showNotification) {
+        await registration.showNotification(title, options);
+        markSent(key, todayISO);
+        return 'sent';
+      }
+    }
+  } catch (error) {
+    console.error('Service worker notification failed:', error);
+  }
+
+  // Desktop browsers with no registration. Kept as a fallback, never as
+  // the first choice.
   try {
     // eslint-disable-next-line no-new
-    new window.Notification(title, { body, tag: key, silent: false });
+    new window.Notification(title, options);
     markSent(key, todayISO);
     return 'sent';
   } catch {

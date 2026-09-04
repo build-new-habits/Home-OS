@@ -218,6 +218,8 @@ export function render(mountEl) {
     const prefs = (getState().settings || {}).notification_prefs || {};
     const message = useSoonMessage(soon.map(({ row }) => (row.foods || {})));
     if (!message) return;
+    // Fire and forget, but never swallow a failure silently — a
+    // notification that fails quietly is how v1 went unnoticed.
     notify({
       key: 'use-soon',
       title: message.title,
@@ -225,7 +227,7 @@ export function render(mountEl) {
       prefs,
       prefKey: 'use_soon',
       todayISO: todayIso()
-    });
+    }).catch((error) => console.error('Use-soon notification failed:', error));
   }
 
   function renderUseSoon() {

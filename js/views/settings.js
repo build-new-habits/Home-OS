@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v11
+// js/views/settings.js — 01 Sep 2026 v12
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -17,7 +17,7 @@
 // during the Phase 5 session; logged in PHASE5_HANDOFF.md.
 import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword, sendPasswordReset } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
-import { permissionState, requestPermission, describePermission } from '../lib/notify.js';
+import { permissionState, requestPermission, describePermission, describeDelivery } from '../lib/notify.js';
 import { el } from '../lib/dom.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
@@ -695,6 +695,14 @@ export function render(mountEl) {
     permHint.setAttribute('role', 'status');
     permHint.textContent = describePermission(permissionState());
     notifFieldset.appendChild(permHint);
+
+    // Phase 32 part two. Says WHEN they arrive, before anyone switches one
+    // on and forms a different expectation. An expectation that is set is
+    // not a disappointment; one that is discovered is.
+    const deliveryHint = document.createElement('p');
+    deliveryHint.className = 'field-hint';
+    deliveryHint.textContent = describeDelivery();
+    notifFieldset.appendChild(deliveryHint);
 
     const prefs = settings.notification_prefs || {};
     for (const type of NOTIFICATION_TYPES) {

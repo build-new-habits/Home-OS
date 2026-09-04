@@ -46,7 +46,7 @@ const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } =
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
 const { dueForReorder, describeReorder, describeUsualInterval, STARTER_STAPLES } = await import(`${REPO}/js/data/staples.js`);
-const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported } = await import(`${REPO}/js/lib/notify.js`);
+const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsSupported, describeDelivery } = await import(`${REPO}/js/lib/notify.js`);
 const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
 const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
 const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
@@ -1303,6 +1303,15 @@ check('granted is a plain statement',
   && !/error|sorry|unfortunately/i.test(describePermission('granted')));
 check('feature detection does not throw without a window',
   typeof notificationsSupported() === 'boolean');
+
+// Tom: "So it tells me things I'd have seen anyway." He was right, and the
+// fix that was available was to stop letting people discover it.
+check('delivery timing is stated up front',
+  /when you open the app/i.test(describeDelivery()));
+check('and the reason is given, not hidden',
+  /server/i.test(describeDelivery()));
+check('without blaming the browser or the person',
+  !/your browser|you should|sorry/i.test(describeDelivery()));
 
 console.log('');
 
