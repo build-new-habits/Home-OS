@@ -1,4 +1,9 @@
-// service-worker.js — 01 Sep 2026 v80
+// service-worker.js — 01 Sep 2026 v81
+// v81 (worklist F1/F5/F6/F7/F8/F10): undo on step and member removal, the
+// claim step in the Foods scan, the food link landing on the food, the cell
+// split prompt, a resumable first run, and ticking off inside Plan The
+// Week — views/foods.js v6, meals.js v26, mealPlan.js v5, settings.js v17,
+// firstRun.js v3, planWeek.js v2.
 // v80 (worklist E2/E8): 10 special-tier recipes (library 100 -> 110) and
 // bulk shopping reminders — views/pantry.js v17.
 // v79 (worklist E1/E3/E4/E5/E6): settings grouping, rotation mode, pantry
@@ -213,7 +218,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v80';
+const CACHE_NAME = 'home-os-shell-v81';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

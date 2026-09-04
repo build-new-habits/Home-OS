@@ -1,4 +1,5 @@
-// js/views/firstRun.js — 01 Sep 2026 v2
+// js/views/firstRun.js — 01 Sep 2026 v3
+// v3 (worklist F8): resumable, same six-hour rule as Cook Mode.
 // v2 (worklist A1): asks what you came for.
 // Phase 27. The first ninety seconds.
 //
@@ -30,8 +31,37 @@ import { FOCUS_AREAS } from '../navConfig.js';
 import { el } from '../lib/dom.js';
 /** Marks it done. Failing to record it is not worth interrupting anyone. */
 async function markDone() {
+  clearFirstRunProgress();
   const result = await upsertSettings({ onboarded_at: new Date().toISOString() });
   if (!result.ok) console.error('Could not record onboarding:', result.error);
+}
+
+// Worklist F8. Cook Mode and Plan The Week both resume; this did not, which
+// is an inconsistency somebody notices exactly when they can least afford
+// it — halfway through, having been interrupted.
+const FIRST_RUN_KEY = 'home-os:first-run';
+const RESUME_MAX_AGE_MS = 6 * 60 * 60 * 1000;
+
+function readFirstRunProgress() {
+  try {
+    const raw = window.localStorage.getItem(FIRST_RUN_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    if (Date.now() - Number(saved.startedAt || 0) > RESUME_MAX_AGE_MS) return null;
+    return saved;
+  } catch {
+    return null;
+  }
+}
+
+function writeFirstRunProgress(stepIndex, startedAt) {
+  try {
+    window.localStorage.setItem(FIRST_RUN_KEY, JSON.stringify({ stepIndex, startedAt }));
+  } catch { /* a full store must not stop somebody starting */ }
+}
+
+function clearFirstRunProgress() {
+  try { window.localStorage.removeItem(FIRST_RUN_KEY); } catch { /* nothing to do */ }
 }
 
 export function render(mountEl) {
@@ -39,12 +69,15 @@ export function render(mountEl) {
   const { signal } = controller;
   let destroyed = false;
 
+  const resumedRun = readFirstRunProgress();
+  const runStartedAt = resumedRun ? resumedRun.startedAt : Date.now();
+
   let recipes = [];
   let chosenRecipe = null;
   let createdMeal = null;
   let plannedDay = null;
   let listResult = null;
-  let step = 0;
+  let step = resumedRun ? Math.min(resumedRun.stepIndex, 3) : 0;
 
   mountEl.replaceChildren();
 
@@ -88,6 +121,7 @@ export function render(mountEl) {
 
   function go(index) {
     step = Math.max(0, Math.min(index, STEPS.length - 1));
+    writeFirstRunProgress(step, runStartedAt);
     renderStep();
     heading.focus();
   }

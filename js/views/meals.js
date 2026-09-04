@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v25
+// js/views/meals.js — 01 Sep 2026 v26
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -1343,17 +1343,34 @@ export function render(mountEl) {
     const del = el('button', { type: 'button', class: 'btn btn-small', text: 'Delete' });
     del.setAttribute('aria-label', `Delete step ${step.step_number}`);
     del.addEventListener('click', async () => {
-      const yes = await confirmDialog({
-        title: `Delete step ${step.step_number}?`,
-        message: 'The steps after it move up a number.',
-        confirmLabel: 'Delete'
-      });
-      if (!yes || destroyed) return;
+      // Worklist F1. Undo rather than a confirm — a confirm asks you to
+      // predict the mistake before making it. The whole step is snapshotted,
+      // including the note and the timer, which delete-and-re-add lost.
+      const snapshot = {
+        meal_id: meal.id,
+        instruction: step.instruction,
+        note: step.note,
+        duration_min: step.duration_min,
+        step_group: step.step_group,
+        while_waiting: step.while_waiting
+      };
       const result = await removeStep(step.id, meal.id);
       if (destroyed) return;
       if (!result.ok) { showToast('That step could not be deleted.'); return; }
-      announce('Step deleted.');
       await loadMeals();
+      if (destroyed) return;
+      showToast(`Step deleted.`, {
+        undo: async () => {
+          // It goes back on the END — addStep numbers sequentially. Said
+          // out loud rather than letting somebody discover it, because a
+          // silent reorder of a method is worse than the deletion was.
+          const back = await addStep(snapshot);
+          if (destroyed) return;
+          if (!back.ok) { showToast("That step couldn't be put back."); return; }
+          announce('Step put back at the end. Move it if it belonged elsewhere.');
+          await loadMeals();
+        }
+      });
     }, { signal });
 
     actions.append(up, down, edit, del);

@@ -1,4 +1,4 @@
-// js/views/foods.js — 01 Sep 2026 v5
+// js/views/foods.js — 01 Sep 2026 v6
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -29,6 +29,8 @@ import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
+import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
+import { claimDialog } from '../components/claimDialog.js';
 import {
   lookup, describeOffer, referencePatch, warmFoodReference,
   findBackfillable, describeBackfill
@@ -89,6 +91,71 @@ export function render(mountEl) {
 
   const foodsList = el('div', { class: 'card-list' });
   foodsSection.appendChild(foodsList);
+
+  /**
+   * Worklist F6. The macro-gap sheet on the Meals screen links to
+   * `#/foods?food=<id>` and this view never read the query, so it landed on
+   * the list and left you to find the food yourself — on a screen that can
+   * hold hundreds.
+   *
+   * The router matches only the path and ignores the rest, so the query is
+   * ours to read. It is cleared afterwards: a back-navigation should not
+   * re-scroll somewhere you have already left.
+   */
+  /**
+   * Offers the unbarcoded foods this scan might belong to.
+   *
+   * Same three functions as the pantry path — deliberately not a second
+   * implementation, because two versions of "which food is this" would
+   * drift apart and only one of them would get fixed.
+   */
+  async function offerClaimHere(barcode, lookupResult) {
+    const productName = lookupResult && lookupResult.ok ? (lookupResult.data.name || '') : '';
+    const found = await findClaimCandidates({ productName });
+    if (destroyed || !found.ok || found.data.length === 0) return false;
+
+    const choice = await claimDialog({ productName, barcode, candidates: found.data });
+    if (destroyed || choice.action !== 'claim') return false;
+
+    const scanned = { barcode, source: 'openfoodfacts' };
+    if (lookupResult && lookupResult.ok) {
+      scanned.calories_per_100g = lookupResult.data.calories_per_100g;
+      scanned.protein_g = lookupResult.data.protein_g;
+      scanned.fat_g = lookupResult.data.fat_g;
+      scanned.carbs_g = lookupResult.data.carbs_g;
+      const pack = lookupResult.data.packSize;
+      if (pack && pack.unit === 'g' && Number(pack.amount) > 0) {
+        scanned.grams_per_item = Number(pack.amount);
+      }
+    }
+
+    const merged = await claimFood(choice.food.id, scanned);
+    if (destroyed) return false;
+    if (!merged.ok) {
+      showToast('That could not be saved. You can still add it below.');
+      return false;
+    }
+
+    showToast(describeClaim(merged.data, merged.filled));
+    announce(describeClaim(merged.data, merged.filled));
+    await loadFoods();
+    return true;
+  }
+
+  function focusRequestedFood() {
+    const match = (window.location.hash || '').match(/[?&]food=([\w-]+)/);
+    if (!match) return;
+    const card = foodsList.querySelector(`[data-food-id="${CSS.escape(match[1])}"]`);
+    if (!card) return;
+    card.scrollIntoView({ block: 'center' });
+    const heading = card.querySelector('.card-title');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus();
+    }
+    announce(`${heading ? heading.textContent : 'That food'} found.`);
+    window.history.replaceState(null, '', '#/foods');
+  }
 
   async function renderBackfillOffer() {
     const candidates = await findBackfillable(foods);
@@ -792,6 +859,14 @@ export function render(mountEl) {
     const lookup = await lookupBarcode(barcode);
     if (destroyed) return;
 
+    // ---- Worklist F5: claim before create, here too ----
+    // Phase 11 fixed the duplicate-food defect in the PANTRY scan and left
+    // this path creating new rows. So the fix worked on one of the two
+    // places somebody scans, and the recipe you were trying to complete
+    // still ended up pointing at an empty row.
+    const claimed = await offerClaimHere(barcode, lookup);
+    if (destroyed || claimed) return;
+
     if (lookup.ok) {
       const missing = lookup.missing || [];
       prefillFoodForm({
@@ -872,6 +947,7 @@ export function render(mountEl) {
           for (const food of group.foods) foodsList.appendChild(buildFoodCard(food));
         }
         renderBackfillOffer();
+        focusRequestedFood();
       }
     }
 

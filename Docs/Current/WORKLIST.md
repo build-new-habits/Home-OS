@@ -279,17 +279,16 @@ otherwise gets you caught short at the till.
 
 Real, invisible to users until it bites.
 
-- **F1.** Undo on the remaining destructive actions — step delete, member
-  remove, project delete *(only shopping and pantry have it)*
+- ~~**F1.** Undo on step delete and member removal~~ ✅ — both snapshot the whole row. A deleted step goes back at the END, and the toast **says so**, because a silent reorder of a method is worse than the deletion was. The member confirm was doing real work — it said what was *not* deleted — so that line moved into the toast rather than being lost with it. *(Project delete still confirms.)*
 - **F2.** Empty states on the screens Phase 28 did not reach
 - **F3.** Icons beyond the pantry and hubs
 - **F4.** Calendar state colour — event types are text only
-- **F5.** Claim step in the Foods scan path *(pantry only today)*
-- **F6.** Macro-gap Edit link landing on the right food
-- **F7.** Cell split auto-narrowing *(`remainingMembers()` unwired)*
-- **F8.** First-run resumability
-- **F9.** Repeat last week / usual lunch — **needs plan history, so schema**
-- **F10.** Tick shortfall items off inside Plan The Week step 3
+- ~~**F5.** Claim step in the Foods scan path~~ ✅ — Phase 11 fixed the duplicate-food defect in one of the two places somebody scans. The same three functions, not a second implementation: two versions of "which food is this" would drift and only one would get fixed.
+- ~~**F6.** Macro-gap Edit link~~ ✅ — the link carried `?food=<id>` and the view never read it, so it landed on a screen that can hold hundreds and left you to find it. The router matches only the path, so the query was ours to read.
+- ~~**F7.** Cell split~~ ✅ — adding a second meal to a slot now asks whether the first is still for everyone. **Offered, not done automatically**: narrowing somebody else's meal without asking is a change they did not make to a row they were not looking at. Silent when the slot already held two, or when nobody is named.
+- ~~**F8.** First-run resumability~~ ✅ — same six-hour rule as Cook Mode and Plan The Week. The inconsistency showed up exactly when it could least be afforded: halfway through, having been interrupted.
+- **F9.** Repeat last week — **blocked, needs schema.** `weekly_meal_plan` holds one rolling week with no history, so there is nothing to repeat *from*. A plan-history table, not an afternoon.
+- ~~**F10.** Tick off inside Plan The Week~~ ✅ — marks it bought, which is the same act as on the shopping screen, so it also lands in the pantry and the next rebuild does not ask again.
 
 ---
 

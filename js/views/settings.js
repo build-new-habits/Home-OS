@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v16
+// js/views/settings.js — 01 Sep 2026 v17
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -524,21 +524,30 @@ function buildMemberForm({ member, onDone, onCancel, signal }) {
     remove.addEventListener('click', async () => {
       // Principle 9: a removal goes through a confirm, and the confirm
       // says what is NOT lost as well as what is.
-      const yes = await confirmDialog({
-        title: `Remove ${member.display_name}?`,
-        message: 'They come off the meal plan and shopping list from now on. '
-          + 'Nothing in the cupboard, the shopping list or past plans is deleted.',
-        confirmLabel: 'Remove'
-      });
-      if (!yes) return;
+      // Worklist F1. Undo instead of a confirm. The confirm here was doing
+      // useful work — it said what was NOT deleted — so that line moves
+      // into the toast rather than being lost with it.
+      const snapshot = {
+        display_name: member.display_name,
+        role: member.role === 'owner' ? 'adult' : member.role,
+        portion_factor: member.portion_factor,
+        dietary_tags: member.dietary_tags
+      };
       const result = await removeMember(member.id);
       if (!result.ok) {
         error.textContent = result.error.message;
         error.hidden = false;
         return;
       }
-      announce(`${member.display_name} removed from the household.`);
       onDone();
+      showToast(`${member.display_name} removed. Nothing shared was deleted.`, {
+        undo: async () => {
+          const back = await addMember(snapshot);
+          if (!back.ok) { showToast("They couldn't be put back."); return; }
+          announce(`${member.display_name} is back in the household.`);
+          onDone();
+        }
+      });
     }, { signal });
     actions.appendChild(remove);
   }

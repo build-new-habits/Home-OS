@@ -1,4 +1,4 @@
-// js/views/planWeek.js — 01 Sep 2026 v1
+// js/views/planWeek.js — 01 Sep 2026 v2
 // Phase 24. Sort out a week's food from one button.
 //
 // ---- Why this exists ----
@@ -33,7 +33,7 @@ import {
 import { listStock } from '../data/pantry.js';
 import { listFoods } from '../data/foods.js';
 import { computeShortfall } from '../lib/shortfall.js';
-import { replaceGeneratedItems } from '../data/shopping.js';
+import { replaceGeneratedItems, listItems, setStatus } from '../data/shopping.js';
 import { scoreMeals, BAND } from '../data/pantryMatch.js';
 import { todayIso } from '../data/pantry.js';
 
@@ -409,6 +409,12 @@ export function render(mountEl) {
       + 'Anything you know you already have, tick off here rather than in the shop.';
     body.appendChild(intro);
 
+    // Worklist F10. The brief wanted "anything you know you have, tick off
+    // here rather than in the shop", and step 3 only ever listed things.
+    //
+    // Ticking here marks it BOUGHT, which is the same thing the shopping
+    // screen does — so it also lands in the pantry, and the next rebuild
+    // does not ask for it again.
     const list = el('ul', { class: 'plain-list' });
     for (const item of shortfall) {
       const row = el('li', { class: 'state-row' });
@@ -416,6 +422,27 @@ export function render(mountEl) {
         class: 'state-row-main',
         text: `${item.food.name} — ${item.shortfall} ${item.unit}`
       }));
+
+      const got = el('button', { type: 'button', class: 'btn btn-small', text: 'Already have it' });
+      got.setAttribute('aria-label', `I already have ${item.food.name}`);
+      got.addEventListener('click', async () => {
+        got.disabled = true;
+        // Find the line the rebuild just wrote for this food.
+        const current = await listItems();
+        if (destroyed) return;
+        const line = (current.ok ? current.data : [])
+          .find((i) => i.food_id === item.food.id && i.status === 'needed');
+        if (!line) { got.disabled = false; showToast('That item could not be found.'); return; }
+
+        const done = await setStatus(line.id, 'bought');
+        if (destroyed) return;
+        if (!done.ok) { got.disabled = false; showToast('That could not be saved.'); return; }
+        got.textContent = 'Got it';
+        got.setAttribute('aria-disabled', 'true');
+        announce(`${item.food.name} ticked off.`);
+      }, { signal });
+      row.appendChild(got);
+
       list.appendChild(row);
     }
     body.appendChild(list);

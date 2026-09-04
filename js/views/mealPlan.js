@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 01 Sep 2026 v4
+// js/views/mealPlan.js — 01 Sep 2026 v5
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -371,6 +371,16 @@ export function render(mountEl) {
     }
     const mealName = planMealSelect.options[planMealSelect.selectedIndex].textContent;
     planSubmit.disabled = true;
+    // ---- Worklist F7: splitting a cell is one action, not two ----
+    // remainingMembers() was written and tested in Phase 20 and never
+    // wired. Adding "sausage and chips for the kids" to a slot that already
+    // held sea bass left the sea bass marked for EVERYONE, so the shopping
+    // list bought adult portions of both.
+    //
+    // Nothing is narrowed unless the new meal names people. Adding a second
+    // family meal to a slot is a normal thing to do and must stay silent.
+    const existingHere = planByCell.get(`${planDaySelect.value}|${planSlotSelect.value}`) || [];
+
     const result = await addPlanEntry({
       meal_id: planMealSelect.value,
       day_of_week: planDaySelect.value,
@@ -389,6 +399,25 @@ export function render(mountEl) {
     }
     announce(`${mealName} added to ${labelForDay(planDaySelect.value)} `
       + `${labelForSlot(planSlotSelect.value).toLowerCase()}.`);
+
+    // Offered, not done automatically. Narrowing somebody else's meal
+    // without asking is a change they did not make to a row they were not
+    // looking at.
+    if (existingHere.length === 1 && members.length > 1 && result.ok) {
+      const other = existingHere[0];
+      if ((other.member_ids || []).length === 0) {
+        const otherName = (other.meals || {}).name || 'the other meal';
+        showToast(`Is ${otherName} still for everyone?`, {
+          undoLabel: 'Set who it is for',
+          undo: async () => {
+            // Opens the picker rather than guessing: the app knows a split
+            // is likely, not who is on which side.
+            const details = mountEl.querySelector(`.diner-picker`);
+            if (details) { details.open = true; details.scrollIntoView({ block: 'center' }); }
+          }
+        });
+      }
+    }
     planServesInput.value = '';
     await loadPlan();
   }, { signal });
