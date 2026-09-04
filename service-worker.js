@@ -1,4 +1,5 @@
-// service-worker.js — 01 Sep 2026 v70
+// service-worker.js — 01 Sep 2026 v71
+// v71: no code change — gate 9 added to the harness.
 // v70 (Phase 32 part two): notificationclick handler, and delivery moved to
 // registration.showNotification() — the v1 constructor does not work on
 // Android at all, so Phase 32 shipped delivering nothing on a phone.
@@ -188,7 +189,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v70';
+const CACHE_NAME = 'home-os-shell-v71';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

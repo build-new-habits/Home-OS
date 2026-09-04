@@ -67,6 +67,7 @@ run "Contrast — every pair, all four themes"         contrast.mjs
 run "Schema conformance — columns vs schema.md"      schema-conformance.mjs
 run "Interaction trace — every control, every write" trace.mjs
 run "Recipe library — style guide and refs"          library.mjs
+run "Platform — what only breaks on a device"        platform.mjs
 
 echo ""
 if [ "$fail" -eq 0 ]; then
