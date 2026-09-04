@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v47 */
+/* css/components.css — 01 Sep 2026 v48 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -3004,4 +3004,13 @@ body.sheet-open {
   margin-top: 0;
   font-weight: 600;
   color: var(--color-text);
+}
+
+/* A dietary note on a plan entry. A fact, never a block — styled like the
+   quiet metadata it is, not like a warning. */
+.plan-entry-note {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
 }

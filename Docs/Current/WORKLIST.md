@@ -158,17 +158,32 @@ keeps rule 6's twenty words.
 Each of these is a function that already exists with tests, missing only its
 control. Cheap, and visible.
 
-- **C1.** Dietary filter in the library *(Ren — 72 vegetarian recipes, no
-  way to ask)*
+- ~~**C1.** Dietary filter in the library~~ ✅ — a "Suitable for" select.
+  One choice becomes a one-element list, so `filterRecipes` needs no special
+  case and "every tag must match" still holds. A single select rather than
+  four tick boxes: asking for one thing is far commoner than a combination,
+  and four boxes in a filter row is a wall.
 - **C2.** `addAlternative()` — no button *(Phase 19)*
 - **C3.** `option_label` — no editor *(Phase 19)*
-- **C4.** Dietary conflict notes — computed, never displayed *(Phase 20)*
-- **C5.** `portion_factor` on the meal plan — maths done, unused in the UI
+- ~~**C4.** Dietary conflict notes~~ ✅ — shown on the plan entry, worded
+  *"Not marked vegetarian — Sam asked for that."* **Not** "contains meat":
+  tags say what a meal IS, and absence is not a claim about what it is not.
+  A fact, never a block.
+- ~~**C5.** `portion_factor` on the meal plan~~ ✅ — **already done** in
+  Phase 20; the worklist was wrong. `servingsForEntry` has been wired since
+  `mealPlan.js` v3.
 - **C6.** "You usually buy this every 3 weeks" — needs restock history first
 - **C7.** Ingredient picker offering reference foods *(Phase 13)*
-- **C8.** Inline step editing — `updateStep()` exists, no form
+- ~~**C8.** Inline step editing~~ ✅ — an Edit button per step, with the
+  same live style checker as adding one, so a step edited by hand cannot
+  break rules a step added by hand cannot. Changing a word used to mean
+  delete and re-add, which lost the note, the timer and the position: a typo
+  cost you the whole step.
 - **C9.** `method_note` editable
-- **C10.** Recipe scaling above 1 — `resolveTokens` honours it, nothing sets it
+- ~~**C10.** Recipe scaling above 1~~ ✅ — a "Cooking for" number beside
+  the Cook button. Quantities in the steps scale with it. `resolveTokens`
+  has honoured a scale since Phase 15 and nothing ever set one, so every
+  recipe cooked at its default however many were eating.
 
 ---
 

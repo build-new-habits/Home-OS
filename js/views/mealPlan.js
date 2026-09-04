@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 01 Sep 2026 v3
+// js/views/mealPlan.js — 01 Sep 2026 v4
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -25,7 +25,7 @@
 
 import {
   listPlan, groupByCell, addPlanEntry, updatePlanEntry, removePlanEntry,
-  servingsForEntry, describeDiners, remainingMembers,
+  servingsForEntry, describeDiners, remainingMembers, dietaryConflicts,
   servesFor, DAYS, SLOTS
 } from '../data/mealPlan.js';
 import { listMeals, mealTypeLabel } from '../data/meals.js';
@@ -246,6 +246,21 @@ export function render(mountEl) {
       item.appendChild(el('span', {
         class: 'plan-entry-diners',
         text: describeDiners(entry, members)
+      }));
+    }
+
+    // Worklist C4. dietaryConflicts has existed since Phase 20 and nothing
+    // rendered it. Stated as a fact and never a block — it is your kitchen,
+    // and maybe Sam is having something else.
+    //
+    // The wording is "not marked", not "contains": tags say what a meal IS,
+    // and absence is not a claim about what it is not.
+    const mealTags = (entry.meals && entry.meals.dietary_tags) || [];
+    for (const conflict of dietaryConflicts(entry, members, mealTags)) {
+      const needs = conflict.unmet.map((t) => t.replace(/_/g, ' ')).join(' or ');
+      item.appendChild(el('span', {
+        class: 'plan-entry-note',
+        text: `Not marked ${needs} — ${conflict.member.display_name} asked for that.`
       }));
     }
 

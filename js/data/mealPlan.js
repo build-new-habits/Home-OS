@@ -1,4 +1,4 @@
-// js/data/mealPlan.js — 01 Sep 2026 v2
+// js/data/mealPlan.js — 01 Sep 2026 v3
 // All Supabase access for `weekly_meal_plan`. Shared data-access contract:
 // { ok, data|error }, error always checked, nothing thrown at views, no
 // user_id on inserts.
@@ -58,7 +58,7 @@ export function isValidSlot(value) {
 export async function listPlan() {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, day_of_week, slot, serves_override, member_ids, meal_id, meals(id, name, default_serves)')
+    .select('id, day_of_week, slot, serves_override, member_ids, meal_id, meals(id, name, default_serves, dietary_tags)')
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };

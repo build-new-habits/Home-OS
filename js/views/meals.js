@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v22
+// js/views/meals.js — 01 Sep 2026 v23
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -135,7 +135,7 @@ import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
 import {
-  listStepsForMeals, addStep, removeStep, moveStep,
+  listStepsForMeals, addStep, updateStep, removeStep, moveStep,
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
 } from '../data/mealSteps.js';
 import { openCookMode, readProgress } from '../components/cookMode.js';
@@ -897,6 +897,23 @@ export function render(mountEl) {
       { value: 'snack', label: 'Snack' }
     ]));
 
+    // Worklist C1. Ren, two traces: "You've written the function and not
+    // the dropdown. I can tell, and that's a strange thing to be able to
+    // tell." filterRecipes has supported this since Phase 16 and 72 of the
+    // 100 recipes are tagged vegetarian.
+    //
+    // A single select rather than checkboxes: asking for "vegan AND gluten
+    // free" is a real need, but it is rarer than asking for one thing, and
+    // four tick boxes in a filter row is a wall. The select covers the
+    // common case; the combination is a wish.
+    filterRow.appendChild(buildLibrarySelect('Suitable for', 'dietaryOne', [
+      { value: 'vegetarian', label: 'Vegetarian' },
+      { value: 'vegan', label: 'Vegan' },
+      { value: 'gluten_free', label: 'Gluten free' },
+      { value: 'dairy_free', label: 'Dairy free' },
+      { value: 'nut_free', label: 'Nut free' }
+    ]));
+
     libraryBody.appendChild(filterRow);
     libraryBody.appendChild(libraryList);
     renderLibraryList();
@@ -908,11 +925,20 @@ export function render(mountEl) {
     select.appendChild(el('option', { value: '', text: `Any ${label.toLowerCase()}` }));
     for (const option of options) {
       const opt = el('option', { value: option.value, text: option.label });
-      if (libraryFilters[key] === option.value) opt.selected = true;
+      const current = key === 'dietaryOne'
+        ? (libraryFilters.dietary || [])[0]
+        : libraryFilters[key];
+      if (current === option.value) opt.selected = true;
       select.appendChild(opt);
     }
     select.addEventListener('change', () => {
-      libraryFilters[key] = select.value;
+      if (key === 'dietaryOne') {
+        // filterRecipes takes an array and requires EVERY tag, so a single
+        // choice becomes a one-element list rather than a special case.
+        libraryFilters.dietary = select.value ? [select.value] : [];
+      } else {
+        libraryFilters[key] = select.value;
+      }
       renderLibraryList();
     }, { signal });
     wrap.append(el('label', { for: select.id, text: label }), select);
@@ -1120,8 +1146,25 @@ export function render(mountEl) {
       });
       const resumed = readProgress(meal.id);
       if (resumed) cook.textContent = `Carry on from step ${resumed.stepIndex + 1}`;
+      // Worklist C10. resolveTokens has honoured a scale since Phase 15 and
+      // nothing ever set one, so every recipe cooked at its default serving
+      // however many people were eating.
+      const servesInput = el('input', {
+        id: `cook-serves-${meal.id}`, type: 'number', min: '1', max: '24',
+        inputmode: 'numeric', value: String(meal.default_serves || 4)
+      });
+      const servesHint = el('p', {
+        class: 'field-hint', id: `cook-serves-hint-${meal.id}`,
+        text: 'Quantities in the steps change with this.'
+      });
+      servesInput.setAttribute('aria-describedby', servesHint.id);
+      wrap.appendChild(field('Cooking for', servesInput, servesHint));
+
       cook.addEventListener('click', async () => {
-        const finished = await openCookMode({ meal, steps, ingredients: ingredientRows, scale: 1 });
+        const base = Number(meal.default_serves) || 4;
+        const wanted = Number(servesInput.value) || base;
+        const scale = wanted > 0 && base > 0 ? wanted / base : 1;
+        const finished = await openCookMode({ meal, steps, ingredients: ingredientRows, scale });
         if (destroyed) return;
         renderMeals();
         // Phase 22. Offered, never automatic: you may have used the bag from
@@ -1203,6 +1246,24 @@ export function render(mountEl) {
     down.disabled = step.step_number === (stepsByMeal.get(meal.id) || []).length;
     down.addEventListener('click', () => reorder(meal, step, 'down'), { signal });
 
+    // Worklist C8. Changing a word meant delete and re-add, which loses the
+    // note, the timer and the position — a typo cost you the whole step.
+    const edit = el('button', { type: 'button', class: 'btn btn-small', text: 'Edit' });
+    edit.setAttribute('aria-label', `Edit step ${step.step_number}`);
+    edit.setAttribute('aria-expanded', 'false');
+    const editForm = buildEditStepForm(meal, step, ingredientRows, () => {
+      editForm.hidden = true;
+      edit.setAttribute('aria-expanded', 'false');
+      edit.focus();
+    });
+    editForm.hidden = true;
+    edit.addEventListener('click', () => {
+      const open = edit.getAttribute('aria-expanded') === 'true';
+      edit.setAttribute('aria-expanded', String(!open));
+      editForm.hidden = open;
+      if (!open) editForm.querySelector('textarea').focus();
+    }, { signal });
+
     const del = el('button', { type: 'button', class: 'btn btn-small', text: 'Delete' });
     del.setAttribute('aria-label', `Delete step ${step.step_number}`);
     del.addEventListener('click', async () => {
@@ -1219,9 +1280,83 @@ export function render(mountEl) {
       await loadMeals();
     }, { signal });
 
-    actions.append(up, down, del);
+    actions.append(up, down, edit, del);
     item.appendChild(actions);
+    item.appendChild(editForm);
     return item;
+  }
+
+  /**
+   * Editing a step in place.
+   *
+   * Same fields and the same live style checker as adding one — a step
+   * edited by hand must not be able to break rules a step added by hand
+   * cannot.
+   */
+  function buildEditStepForm(meal, step, ingredientRows, onDone) {
+    const form = el('form', { class: 'add-step-form' });
+    form.setAttribute('aria-label', `Edit step ${step.step_number}`);
+
+    const instruction = el('textarea', { id: `edit-instruction-${step.id}`, rows: '2' });
+    instruction.value = step.instruction || '';
+    const styleNote = el('p', { class: 'field-hint style-check', role: 'status' });
+    styleNote.hidden = true;
+
+    instruction.addEventListener('input', () => {
+      const issues = checkStyle(instruction.value);
+      const unresolved = unresolvedTokens(instruction.value, ingredientRows);
+      const lines = issues.map((i) => `Rule ${i.rule}: ${i.text}`);
+      if (unresolved.length) {
+        lines.push(`No ingredient called "${unresolved.join('", "')}" in this recipe.`);
+      }
+      styleNote.textContent = lines.join(' ');
+      styleNote.hidden = lines.length === 0;
+    }, { signal });
+
+    const note = el('input', { id: `edit-note-${step.id}`, type: 'text' });
+    note.value = step.note || '';
+    const duration = el('input', {
+      id: `edit-duration-${step.id}`, type: 'number', min: '1', max: '1440', inputmode: 'numeric'
+    });
+    duration.value = step.duration_min != null ? String(step.duration_min) : '';
+
+    const error = el('p', { class: 'field-error', role: 'alert' });
+    error.hidden = true;
+
+    const save = el('button', { type: 'submit', class: 'btn btn-primary', text: 'Save' });
+    const cancel = el('button', { type: 'button', class: 'btn', text: 'Cancel' });
+    cancel.addEventListener('click', onDone, { signal });
+    const actions = el('div', { class: 'form-actions' });
+    actions.append(save, cancel);
+
+    form.append(
+      field('Instruction', instruction), styleNote,
+      field('Note', note), field('Timer, in minutes', duration),
+      error, actions
+    );
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      save.disabled = true;
+      const result = await updateStep(step.id, {
+        instruction: instruction.value,
+        note: note.value,
+        duration_min: duration.value
+      });
+      save.disabled = false;
+      if (destroyed) return;
+      if (!result.ok) {
+        error.textContent = result.error.message;
+        error.hidden = false;
+        instruction.focus();
+        return;
+      }
+      announce(`Step ${step.step_number} updated.`);
+      await loadMeals();
+    }, { signal });
+
+    return form;
   }
 
   async function reorder(meal, step, direction) {

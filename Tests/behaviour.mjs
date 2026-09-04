@@ -1554,6 +1554,45 @@ eq('nothing to change says so', describeBackfill({}), 'No change.');
 
 console.log('');
 
+// ============ Worklist C: the unwired things ============
+console.log('\nDietary filtering, now reachable');
+
+// C1. Ren: "You've written the function and not the dropdown."
+// A single choice becomes a one-element list, so filterRecipes needs no
+// special case and "every tag must match" still holds.
+eq('one dietary choice filters', filterRecipes(libRecipes, { dietary: ['vegan'] }).length, 1);
+eq('an empty choice does not filter',
+  filterRecipes(libRecipes, { dietary: [] }).length, libRecipes.length);
+
+console.log('\nCooking for a different number');
+
+const scaleIngredients = [
+  { quantity_g: 400, unit: 'g', foods: { name: 'Chopped tomatoes', item_label: 'tin', grams_per_item: 400 } }
+];
+// C10. resolveTokens honoured a scale from Phase 15 and nothing ever set
+// one, so every recipe cooked at its default however many were eating.
+eq('doubling doubles the step', resolveTokens('{{ing:chopped-tomatoes}}', scaleIngredients, 2),
+  '2 tins of chopped tomatoes');
+eq('halving halves it', resolveTokens('{{ing:chopped-tomatoes}}', scaleIngredients, 0.5),
+  '200 g chopped tomatoes');
+eq('a scale of one is unchanged', resolveTokens('{{ing:chopped-tomatoes}}', scaleIngredients, 1),
+  '1 tin of chopped tomatoes');
+
+console.log('\nDietary notes on the plan');
+
+// C4. Tags say what a meal IS. "Not marked vegetarian" is honest;
+// "contains meat" would be a claim the data cannot support.
+const vegMember = { id: 'v1', display_name: 'Sam', portion_factor: 1, dietary_tags: ['vegetarian'] };
+const flagged = dietaryConflicts({ member_ids: [] }, [vegMember], ['gluten_free']);
+eq('an unmet need is reported', flagged.length, 1);
+eq('and names only what is unmet', flagged[0].unmet.join(','), 'vegetarian');
+eq('a meal carrying the tag reports nothing',
+  dietaryConflicts({ member_ids: [] }, [vegMember], ['vegetarian']).length, 0);
+eq('an untagged meal reports nothing at all',
+  dietaryConflicts({ member_ids: [] }, [vegMember], []).length, 0);
+
+console.log('');
+
 if (failures.length) {
   console.log(`BEHAVIOUR TESTS FAILED — ${failures.length} of ${pass + failures.length}`);
   for (const f of failures) console.log('  - ' + f);
