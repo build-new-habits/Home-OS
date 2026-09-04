@@ -41,7 +41,7 @@ const { expand, describe, cadence } = await import(`${REPO}/js/lib/rrule.js`);
 const { freshness, describeFreshness, useSoon, defaultShelfLife, needsAmount, defaultUnitFor } = await import(`${REPO}/js/data/pantry.js`);
 const { parsePackSize } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { computeShortfall, describeShortfall, stockForMeal, describeStockForMeal } = await import(`${REPO}/js/lib/shortfall.js`);
-const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons, ENTRY_UNITS } = await import(`${REPO}/js/lib/units.js`);
+const { formatQuantity, formatPackQuantity, pluraliseLabel, toStorage, toSpoons, ENTRY_UNITS, packsFor } = await import(`${REPO}/js/lib/units.js`);
 const { tokenise, similarity, buildClaimPatch, describeClaim, MAX_CANDIDATES } = await import(`${REPO}/js/data/foodClaim.js`);
 const { describeRestock, RESTOCK, planDepletion, describeDepletion } = await import(`${REPO}/js/data/restock.js`);
 const { describeListSync } = await import(`${REPO}/js/data/listSync.js`);
@@ -50,7 +50,7 @@ const { useSoonMessage, shoppingReadyMessage, describePermission, notificationsS
 const { LEVELS, LEVEL_LABELS, levelIsStale, effectiveLevel, levelLifespanDays } = await import(`${REPO}/js/data/pantry.js`);
 const { visibleNav, NAV_ITEMS, FOCUS_AREAS } = await import(`${REPO}/js/navConfig.js`);
 const { servingsFor, describeMember, ROLES, generateCode, describeRedeem } = await import(`${REPO}/js/data/household.js`);
-const { referencePatch, hasMacros, describeOffer } = await import(`${REPO}/js/data/foodReference.js`);
+const { referencePatch, hasMacros, describeOffer, describeBackfill } = await import(`${REPO}/js/data/foodReference.js`);
 const { checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName, MAX_STEP_WORDS } = await import(`${REPO}/js/data/mealSteps.js`);
 const { groupIngredientOptions, optionLabel, shoppableIngredients } = await import(`${REPO}/js/data/meals.js`);
 const { servingsForEntry, describeDiners, membersFor, remainingMembers, dietaryConflicts } = await import(`${REPO}/js/data/mealPlan.js`);
@@ -831,9 +831,11 @@ const stepIngredients = [
   { quantity_g: 2, unit: 'item', foods: { name: 'Egg, medium', item_label: 'egg', grams_per_item: 58 } }
 ];
 
-eq('a token becomes a real quantity and name',
+// Worklist B1. A weight that is a whole number of packs reads as the packs:
+// it is what somebody standing at a cupboard would say.
+eq('a whole number of packs reads as packs',
   resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 1),
-  'Add the 400 g chopped tomatoes.');
+  'Add the 1 tin of chopped tomatoes.');
 // The label is already the noun. "2 eggs" is the whole phrase; appending
 // the food name gives "2 eggs (116 g) egg, medium", which is unreadable.
 eq('an item label stands alone as the phrase',
@@ -844,7 +846,13 @@ eq('and scales without picking up the gram total',
   'Crack in 4 eggs.');
 eq('scaling a recipe scales the step text too',
   resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 2),
-  'Add the 800 g chopped tomatoes.');
+  'Add the 2 tins of chopped tomatoes.');
+// An awkward amount stays in grams rather than becoming "1.8 tins", which
+// would leave you doing the sum with a decimal in your head.
+eq('an amount that is not a whole pack stays in grams',
+  resolveTokens('Add the {{ing:chopped-tomatoes}}.',
+    [{ quantity_g: 730, unit: 'g', foods: { name: 'Chopped tomatoes', item_label: 'tin', grams_per_item: 400 } }], 1),
+  'Add the 730 g chopped tomatoes.');
 
 // Showing {{ing:butter}} to someone mid-cook is worse than showing "butter".
 eq('an unknown token degrades to a plain name, never to braces',
@@ -1511,6 +1519,38 @@ check('no target is framed as a duty',
 eq('a missing total sends nothing', waterSoFarMessage(null, 2000), null);
 // Zero is a real reading and worth stating; it is not an absence.
 check('zero still produces a message', waterSoFarMessage(0, 2000, (v) => `${v} ml`) !== null);
+
+console.log('');
+
+// ============ Worklist B: tins, not grams ============
+console.log('\nGrams that are a whole number of packs');
+
+const tinFood = { item_label: 'tin', grams_per_item: 400 };
+
+eq('800 g of a 400 g tin is two tins', packsFor(800, tinFood).count, 2);
+eq('and it is pluralised', packsFor(800, tinFood).label, 'tins');
+eq('400 g is one tin', packsFor(400, tinFood).count, 1);
+eq('and stays singular', packsFor(400, tinFood).label, 'tin');
+// 790 is close enough to be useful; 730 is not.
+eq('a near miss still reads as two tins', packsFor(790, tinFood).count, 2);
+check('an awkward amount says nothing', packsFor(730, tinFood) === null,
+  '"1.8 tins" leaves you doing the sum with a decimal in your head');
+check('less than one pack says nothing', packsFor(150, tinFood) === null);
+check('a food with no pack size says nothing', packsFor(800, {}) === null);
+check('and neither does one with no label',
+  formatPackQuantity(800, 'g', { grams_per_item: 400 }) === '800 g');
+
+// Marcus, three traces: "Eight hundred grams. I still don't know how many
+// tins that is."
+eq('the shopping list says both', formatPackQuantity(800, 'g', tinFood), '800 g (2 tins)');
+eq('and plain grams when it cannot help', formatPackQuantity(730, 'g', tinFood), '730 g');
+
+console.log('\nFilling in what we already know');
+check('a backfill names what it would do',
+  /tin/.test(describeBackfill({ item_label: 'tin', grams_per_item: 400 })));
+check('and says how many nutrition values, not just "3 fields"',
+  /nutrition value/.test(describeBackfill({ calories_per_100g: 32, protein_g: 1.6 })));
+eq('nothing to change says so', describeBackfill({}), 'No change.');
 
 console.log('');
 

@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v74
+// service-worker.js — 01 Sep 2026 v75
+// v75 (worklist B1/B2): tins not grams — lib/units.js v5,
+// data/mealSteps.js v2, data/foodReference.js v2, views/foods.js v4,
+// components.css v47.
 // v74 (worklist A3): water and exercise reminders restored —
 // lib/notify.js v3, views/dashboard.js v6, views/settings.js v14.
 // v73 (worklist A2): the health screens — lib/icons.js v3, views/water.js
@@ -195,7 +198,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v74';
+const CACHE_NAME = 'home-os-shell-v75';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

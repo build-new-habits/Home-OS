@@ -1,4 +1,4 @@
-// js/views/foods.js — 01 Sep 2026 v3
+// js/views/foods.js — 01 Sep 2026 v4
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -29,7 +29,10 @@ import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
-import { lookup, describeOffer, referencePatch, warmFoodReference } from '../data/foodReference.js';
+import {
+  lookup, describeOffer, referencePatch, warmFoodReference,
+  findBackfillable, describeBackfill
+} from '../data/foodReference.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
 function numberInput(id, { min = '0', step = 'any' } = {}) {
@@ -77,8 +80,65 @@ export function render(mountEl) {
   }
   foodsSection.appendChild(scanWrap);
 
+  // ---- Worklist B2: fill in what we already know ----
+  // Offered above the list, only when there is something to fill. A
+  // permanent button for a job with nothing to do is clutter.
+  const backfillBox = el('div', { class: 'backfill-offer' });
+  backfillBox.hidden = true;
+  foodsSection.appendChild(backfillBox);
+
   const foodsList = el('div', { class: 'card-list' });
   foodsSection.appendChild(foodsList);
+
+  async function renderBackfillOffer() {
+    const candidates = await findBackfillable(foods);
+    if (destroyed) return;
+    backfillBox.replaceChildren();
+    backfillBox.hidden = candidates.length === 0;
+    if (candidates.length === 0) return;
+
+    backfillBox.appendChild(el('p', {
+      text: `${candidates.length} of your foods can be filled in from what the app `
+        + 'already knows — pack sizes, what one of them is called, nutrition.'
+    }));
+    backfillBox.appendChild(el('p', {
+      class: 'field-hint',
+      // Says the safe thing plainly, because "update my food data" sounds
+      // like it might overwrite something you typed.
+      text: 'This only fills in blanks. Anything you have already entered is left alone.'
+    }));
+
+    const list = el('ul', { class: 'plain-list' });
+    for (const row of candidates.slice(0, 5)) {
+      list.appendChild(el('li', {
+        class: 'field-hint',
+        text: `${row.food.name} — ${describeBackfill(row.patch).toLowerCase()}`
+      }));
+    }
+    if (candidates.length > 5) {
+      list.appendChild(el('li', { class: 'field-hint', text: `…and ${candidates.length - 5} more.` }));
+    }
+    backfillBox.appendChild(list);
+
+    const go = el('button', {
+      type: 'button', class: 'btn btn-primary',
+      text: `Fill in ${candidates.length} food${candidates.length === 1 ? '' : 's'}`
+    });
+    go.addEventListener('click', async () => {
+      go.disabled = true;
+      go.textContent = 'Filling in…';
+      let done = 0;
+      for (const row of candidates) {
+        const result = await updateFood(row.food.id, row.patch);
+        if (result.ok) done += 1;
+      }
+      if (destroyed) return;
+      showToast(`${done} food${done === 1 ? '' : 's'} filled in. Your shopping list can say tins now.`);
+      announce(`${done} foods filled in.`);
+      await loadFoods();
+    }, { signal });
+    backfillBox.appendChild(go);
+  }
 
   const pendingWrap = el('div');
   foodsSection.appendChild(pendingWrap);
@@ -798,6 +858,7 @@ export function render(mountEl) {
           foodsList.appendChild(heading);
           for (const food of group.foods) foodsList.appendChild(buildFoodCard(food));
         }
+        renderBackfillOffer();
       }
     }
 

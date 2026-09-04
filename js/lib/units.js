@@ -1,4 +1,5 @@
-// js/lib/units.js — 01 Sep 2026 v4
+// js/lib/units.js — 01 Sep 2026 v5
+// v5 (worklist B1): packsFor() — grams also read as whole packs.
 // v4 (Phase 12): pack labels and household measures. formatQuantity() gains
 // an OPTIONAL third argument, the food, so it can say "4 tins (1.6 kg)"
 // instead of "4 item". The two-argument call is unchanged and still used
@@ -245,9 +246,44 @@ export function pluraliseLabel(label, count) {
  * unknown is the point: an invented total on a shopping list gets trusted
  * standing in an aisle.
  */
+/**
+ * How many whole packs a weight comes to, or null.
+ *
+ * Worklist B1. Marcus, three persona traces running:
+ *
+ *   "Eight hundred grams. I still don't know how many tins that is."
+ *
+ * Only answered when it divides to something you could pick off a shelf.
+ * 800 g of a 400 g tin is 2 tins; 730 g is 1.8 tins, and "1.8 tins" is a
+ * worse answer than saying nothing — you would still be standing there
+ * doing the sum, now with a decimal in your head.
+ *
+ * Tolerance is 5%, so 790 g still reads as 2 tins.
+ */
+export function packsFor(grams, food) {
+  const per = food && Number(food.grams_per_item);
+  if (!Number.isFinite(per) || per <= 0) return null;
+  const n = Number(grams);
+  if (!Number.isFinite(n) || n <= 0) return null;
+
+  const exact = n / per;
+  const whole = Math.round(exact);
+  if (whole < 1) return null;
+  if (Math.abs(exact - whole) / whole > 0.05) return null;
+  return { count: whole, label: pluraliseLabel(food.item_label, whole) };
+}
+
 export function formatPackQuantity(value, unit, food = null) {
   const n = Number(value);
   if (!Number.isFinite(n)) return 'not known';
+
+  // A weight that happens to be a tidy number of packs says both. The
+  // grams stay because that is what the recipe asked for; the packs are
+  // added because that is what you pick up.
+  if (unit === 'g' && food && food.item_label) {
+    const packs = packsFor(n, food);
+    if (packs) return `${formatQuantity(n, 'g')} (${packs.count} ${packs.label})`;
+  }
 
   if (unit === 'item') {
     const rounded = Math.round(n * 100) / 100;

@@ -1,4 +1,4 @@
-// js/data/mealSteps.js — 01 Sep 2026 v1
+// js/data/mealSteps.js — 01 Sep 2026 v2
 // Phase 15. Instructions you can follow while tired, distracted, or holding
 // something hot.
 //
@@ -12,7 +12,7 @@
 // this app exists to prevent.
 
 import { supabase } from '../supabaseClient.js';
-import { formatPackQuantity } from '../lib/units.js';
+import { formatPackQuantity, packsFor } from '../lib/units.js';
 
 const TABLE = 'meal_steps';
 
@@ -232,6 +232,16 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     if (hit.row.unit === 'item' && hit.food.item_label) {
       return formatPackQuantity(qty, 'item', { item_label: hit.food.item_label });
     }
+
+    // Worklist B1. A weight that is a whole number of packs reads as the
+    // packs. "Add the 1 tin of chopped tomatoes" is what somebody standing
+    // at a cupboard would say; "400 g (1 tin)" is the same fact wearing
+    // both answers at once, and rule 6 gives a step twenty words.
+    const packs = packsFor(qty, hit.food);
+    if (packs) {
+      return `${packs.count} ${packs.label} of ${hit.food.name.toLowerCase()}`;
+    }
+
     return `${amount} ${hit.food.name.toLowerCase()}`;
   });
 }

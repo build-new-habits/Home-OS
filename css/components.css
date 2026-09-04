@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v46 */
+/* css/components.css — 01 Sep 2026 v47 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2986,4 +2986,22 @@ body.sheet-open {
    counterpart — an undone exercise is a fact about today, not a failing. */
 .exercise-done-badge {
   margin-bottom: var(--space-2);
+}
+
+/* ---- Worklist B2: the backfill offer ---------------------------------- */
+/* Above the list, and only when there is something to fill. A permanent
+   button for a job with nothing to do is clutter. */
+
+.backfill-offer {
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.backfill-offer > p:first-child {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--color-text);
 }

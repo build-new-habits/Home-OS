@@ -1,4 +1,5 @@
-// js/data/foodReference.js — 01 Sep 2026 v1
+// js/data/foodReference.js — 01 Sep 2026 v2
+// v2 (worklist B2): findBackfillable() — fill in what we already know.
 // Phase 13. Published averages for the foods you never scan.
 //
 // ---- Why a data file and not a document ----
@@ -169,4 +170,52 @@ export function describeOffer(entry) {
   const detail = bits.length ? ` (${bits.join(', ')})` : '';
   return `Use typical values for ${entry.name}${detail}? These are averages, `
     + 'so they are marked as estimates until you scan the real thing.';
+}
+
+
+// ---- Worklist B2: fill in what we already know --------------------------
+// The reference file has carried pack sizes and item labels since Phase 13,
+// and foods created BEFORE that — or created by a scan, or typed by hand —
+// never got them. So `packsFor()` had nothing to work with and Marcus kept
+// reading grams.
+//
+// This is the difference between a feature existing and a feature working.
+
+/**
+ * Which existing foods the reference file could fill in, and with what.
+ *
+ * Returns the patch alongside the food so a caller can show what would
+ * change BEFORE changing it. Nothing here writes.
+ */
+export async function findBackfillable(foods = []) {
+  await load();
+  const out = [];
+  for (const food of foods) {
+    const entry = await lookup(food.name);
+    if (!entry) continue;
+    const patch = referencePatch(entry, food);
+    // Only offer rows where something would actually change.
+    if (Object.keys(patch).length === 0) continue;
+    out.push({ food, entry, patch });
+  }
+  return out;
+}
+
+/**
+ * Plain summary of one row's change.
+ *
+ * Names the fields rather than saying "3 fields updated", because the
+ * person deciding wants to know whether it is touching their calorie
+ * figures or just adding the word "tin".
+ */
+export function describeBackfill(patch) {
+  const bits = [];
+  if (patch.item_label) bits.push(`calls it a ${patch.item_label}`);
+  if (patch.grams_per_item) bits.push(`one weighs ${patch.grams_per_item} g`);
+  if (patch.grams_per_ml) bits.push('adds a density');
+  const macros = ['calories_per_100g', 'protein_g', 'fat_g', 'carbs_g']
+    .filter((f) => patch[f] !== undefined).length;
+  if (macros > 0) bits.push(`fills ${macros} nutrition value${macros === 1 ? '' : 's'}`);
+  if (bits.length === 0) return 'No change.';
+  return bits.join(', ').replace(/^./, (c) => c.toUpperCase()) + '.';
 }

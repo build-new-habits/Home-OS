@@ -110,16 +110,46 @@ The two personas deferred across three traces have both been served.
 
 ## BLOCK B — the longest-standing friction
 
-### B1. Tins, not grams *(Marcus)*
+### ~~B1. Tins, not grams~~ ✅ *(Marcus)*
 Phase 35. Three traces, unfixed, costs him every shop. At scan time: *how
 does this come?* — tin, bottle, pack — and how much is in one. Back-fill
 from the reference file where the name matches.
 **Done when:** the shopping list says "2 tins".
 
-### B2. Backfill existing foods from the reference file
+### ~~B2. Backfill existing foods from the reference file~~ ✅
 Logged at Phase 13. Chopped tomatoes will not acquire `grams_per_item` on
 their own, which is half of why B1 bites.
 **Done when:** a one-tap "fill in what we know" pass exists.
+
+**Both shipped.** No schema.
+
+**B1** — `packsFor()` in `lib/units.js`. A weight that divides to a whole
+number of packs now says so: the shopping list reads **"800 g (2 tins)"**,
+and a recipe step reads **"Add the 2 tins of chopped tomatoes"** rather than
+carrying both answers at once.
+
+**It stays quiet when it cannot help.** 730 g of a 400 g tin is 1.8 tins,
+and "1.8 tins" is a worse answer than silence — you would still be doing the
+sum, now with a decimal in your head. Tolerance is 5%, so 790 g still reads
+as 2 tins.
+
+**B2** — the Foods screen offers *"12 of your foods can be filled in from
+what the app already knows"*, listing what each would gain before you tap.
+**Only fills blanks**, and says so, because "update my food data" sounds
+like it might overwrite what you typed. Offered only when there is something
+to fill.
+
+B2 is what makes B1 work. The machinery for packs shipped in Phase 12 and
+did nothing for three traces because no food had the data.
+
+**A gate caught a consequence:** recipe steps started reading *"Add the
+400 g (1 tin) chopped tomatoes"*. Correct, and clumsy — steps now say the
+pack alone, which is what somebody standing at a cupboard would say, and
+keeps rule 6's twenty words.
+
+---
+
+## ✅ BLOCK B COMPLETE
 
 ---
 
