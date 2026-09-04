@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v21
+01 Sep 2026 v22
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,31 @@ policies**, 3 trigger functions, 22 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0t. Revision 22 — rotation mode (01 Sep 2026)
+
+`user_settings.rotation_mode boolean not null default false`.
+
+Tom, across three traces:
+
+> *"I'd like it to stop suggesting things."*
+
+He eats a rotation of six meals **deliberately**. For somebody whose routine
+is the point, "you could cook these right now" and a hundred library
+recipes are not helpfulness, they are noise.
+
+**False by default**, because suggestions are useful to most people. This is
+a way of asking for quiet, never something to switch on before the app
+behaves.
+
+**The library stays reachable** — it just stops being offered. Hiding it
+would be the app deciding somebody may not change their mind.
+
+No competitor found offers this, and the people who want it want it badly.
+
+Migration: `migrations/022_rotation_mode.sql`.
 
 ---
 
@@ -1093,6 +1118,7 @@ the list by creating (or matching) a `foods` row with the right `category` —
 | contrast_mode | text | default 'standard' |
 | brightness_pref | text | default 'standard' |
 | density | text | not null; check in ('comfortable','compact'); default 'comfortable' (revision 15) |
+| rotation_mode | boolean | not null default false. True = stop offering suggestions (revision 22) |
 | focus_areas | text[] | not null default '{}'. Empty = show everything (revision 20) |
 | onboarded_at | timestamptz | nullable, no default. Null = not yet (revision 16) |
 | weight_unit_display | text | check in ('stone_lb','kg'); default 'stone_lb' |

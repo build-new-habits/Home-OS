@@ -1,4 +1,4 @@
-// js/data/restock.js — 01 Sep 2026 v2
+// js/data/restock.js — 01 Sep 2026 v3
 // Phase 11. Marking something bought puts it in the cupboard.
 //
 // ---- The gap this closes ----
@@ -169,7 +169,27 @@ export function planDepletion(ingredients = [], stock = [], scale = 1) {
 
     const entry = byFood.get(row.food_id);
     if (!entry) continue;
-    if (entry.current_qty === null || entry.current_qty === undefined) continue;
+
+    // ---- Worklist E6: cooking lowers a rough level too ----
+    // Depletion only ever touched numbers, so somebody using levels — which
+    // is the whole point of Phase 31 for the people who cannot count — had
+    // a cupboard that never went down when they cooked.
+    //
+    // One step down, never two: cooking one meal from a cupboard marked
+    // "plenty" makes it "low", not empty. And "low" is left alone rather
+    // than dropped to "none", because you cannot tell from a recipe whether
+    // that was the last of it.
+    if (entry.current_qty === null || entry.current_qty === undefined) {
+      if (entry.level === 'plenty') {
+        changes.push({
+          stockId: entry.id,
+          food: row.foods || row.food || {},
+          fromLevel: 'plenty',
+          toLevel: 'low'
+        });
+      }
+      continue;
+    }
     // Units must match. Converting silently here would be the same
     // corruption the bought-to-pantry path refuses to commit.
     if (entry.unit !== row.unit) continue;
@@ -198,7 +218,10 @@ export function planDepletion(ingredients = [], stock = [], scale = 1) {
 export async function applyDepletion(changes = []) {
   let applied = 0;
   for (const change of changes) {
-    const result = await updateStock(change.stockId, { current_qty: change.after });
+    const patch = change.toLevel !== undefined
+      ? { level: change.toLevel }
+      : { current_qty: change.after };
+    const result = await updateStock(change.stockId, patch);
     if (!result.ok) return { ok: false, error: result.error, applied };
     applied += 1;
   }

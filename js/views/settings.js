@@ -1,4 +1,4 @@
-// js/views/settings.js — 01 Sep 2026 v14
+// js/views/settings.js — 01 Sep 2026 v16
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -584,6 +584,7 @@ export function render(mountEl) {
     brightness_pref: 'standard',
     density: 'comfortable',
     focus_areas: [],
+    rotation_mode: false,
     weight_unit_display: 'stone_lb',
     notification_prefs: {}
   };
@@ -642,21 +643,35 @@ export function render(mountEl) {
   function renderBody() {
     bodyContainer.replaceChildren();
 
-    bodyContainer.appendChild(buildToggleGroup({
+    // ---- Worklist E1: grouping ----
+    // Priya: "It works. Finding anything in Settings is a scavenger hunt."
+    // Twelve flat sections, 974 lines, and the invite flow — the thing she
+    // needed twice — was eighth down.
+    //
+    // Appearance is five toggle groups that are set once and rarely
+    // revisited, so they collapse into one line. Household goes to the top,
+    // because it is the thing with another person waiting on it.
+    const lookSection = document.createElement('details');
+    lookSection.className = 'settings-group';
+    const lookSummary = document.createElement('summary');
+    lookSummary.textContent = 'How it looks';
+    lookSection.appendChild(lookSummary);
+
+    lookSection.appendChild(buildToggleGroup({
       legend: 'Theme',
       options: THEME_OPTIONS,
       current: settings.theme || 'default',
       onChange: (value) => saveAndRerender({ theme: value }, 'Theme updated')
     }));
 
-    bodyContainer.appendChild(buildToggleGroup({
+    lookSection.appendChild(buildToggleGroup({
       legend: 'Contrast',
       options: CONTRAST_OPTIONS,
       current: settings.contrast_mode || 'standard',
       onChange: (value) => saveAndRerender({ contrast_mode: value }, 'Contrast updated')
     }));
 
-    bodyContainer.appendChild(buildToggleGroup({
+    lookSection.appendChild(buildToggleGroup({
       legend: 'Brightness',
       options: BRIGHTNESS_OPTIONS,
       current: settings.brightness_pref || 'standard',
@@ -677,9 +692,9 @@ export function render(mountEl) {
     densityHint.textContent = 'Compact tightens the space between things. '
       + 'Text size and button sizes stay exactly the same.';
     densityGroup.appendChild(densityHint);
-    bodyContainer.appendChild(densityGroup);
+    lookSection.appendChild(densityGroup);
 
-    bodyContainer.appendChild(buildToggleGroup({
+    lookSection.appendChild(buildToggleGroup({
       legend: 'Weight display',
       options: WEIGHT_UNIT_OPTIONS,
       current: settings.weight_unit_display || 'stone_lb',
@@ -736,7 +751,8 @@ export function render(mountEl) {
         }
       }));
     }
-    bodyContainer.appendChild(notifFieldset);
+    // ordered below
+    const notifSection = notifFieldset;
 
     const dataFieldset = document.createElement('fieldset');
     const dataLegend = document.createElement('legend');
@@ -763,7 +779,7 @@ export function render(mountEl) {
       exportBtn.textContent = 'Export all data (JSON)';
     });
     dataFieldset.appendChild(exportBtn);
-    bodyContainer.appendChild(dataFieldset);
+    const dataSection = dataFieldset;
 
     // ---- Household ----
     // A placeholder appended synchronously, filled when the read returns.
@@ -771,7 +787,7 @@ export function render(mountEl) {
     // connection and above it on a fast one, which is the kind of layout
     // that makes people think they tapped the wrong thing.
     const householdSlot = document.createElement('div');
-    bodyContainer.appendChild(householdSlot);
+    // householdSlot is ordered below; loadHousehold fills it in place.
     loadHousehold(householdSlot);
 
     // Worklist A1. Reversible, obvious, and never a paywall — a hidden area
@@ -804,7 +820,30 @@ export function render(mountEl) {
       row.append(box, label);
       focusFieldset.appendChild(row);
     }
-    bodyContainer.appendChild(focusFieldset);
+    // Worklist E3. Sits with "what you use it for": the same kind of
+    // decision — asking the app to be quieter about something.
+    const rotationRow = document.createElement('div');
+    rotationRow.className = 'checkbox-row';
+    const rotationBox = document.createElement('input');
+    rotationBox.type = 'checkbox';
+    rotationBox.id = 'rotation-mode';
+    rotationBox.checked = Boolean(settings.rotation_mode);
+    const rotationLabel = document.createElement('label');
+    rotationLabel.htmlFor = rotationBox.id;
+    rotationLabel.textContent = 'I cook the same things — stop suggesting recipes';
+    rotationBox.addEventListener('change', () => {
+      saveAndRerender({ rotation_mode: rotationBox.checked },
+        rotationBox.checked ? 'Suggestions off' : 'Suggestions on');
+    }, { signal: controller.signal });
+    rotationRow.append(rotationBox, rotationLabel);
+    focusFieldset.appendChild(rotationRow);
+    const rotationHint = document.createElement('p');
+    rotationHint.className = 'field-hint';
+    rotationHint.textContent = 'The recipe library is still there if you want it — '
+      + 'it just stops being offered.';
+    focusFieldset.appendChild(rotationHint);
+
+    const focusSection = focusFieldset;
 
     // Phase 27. People forget, and re-finding it should not require
     // reinstalling. Offered plainly, never as a prompt to finish something.
@@ -821,7 +860,7 @@ export function render(mountEl) {
     helpHint.className = 'field-hint';
     helpHint.textContent = 'Plans one meal with you, start to finish. Nothing is reset.';
     helpFieldset.appendChild(helpHint);
-    bodyContainer.appendChild(helpFieldset);
+    const helpSection = helpFieldset;
 
     const accountFieldset = document.createElement('fieldset');
     const accountLegend = document.createElement('legend');
@@ -953,7 +992,17 @@ export function render(mountEl) {
 
     accountFieldset.appendChild(pwDetails);
 
-    bodyContainer.appendChild(accountFieldset);
+    // Order: the things somebody else is waiting on, then what you use it
+    // for, then everything that gets set once.
+    bodyContainer.append(
+      householdSlot,
+      focusSection,
+      notifSection,
+      lookSection,
+      helpSection,
+      dataSection,
+      accountFieldset
+    );
 
     bodyContainer.appendChild(buildBuildSection());
   }

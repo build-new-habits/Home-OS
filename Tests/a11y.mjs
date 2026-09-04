@@ -989,6 +989,36 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Worklist E1: Settings is findable ----------------------------------
+// Priya: "It works. Finding anything in Settings is a scavenger hunt."
+// She needed the invite flow twice and hunted both times.
+{
+  const mod = await import(pathToFileURL(path.join(REPO, 'js/views/settings.js')).href);
+  const mount = document.createElement('div');
+  document.body.appendChild(mount);
+  const teardown = mod.render(mount);
+  await new Promise((r) => setTimeout(r, 40));
+
+  const legends = [...mount.querySelectorAll('fieldset > legend')].map((l) => l.textContent);
+  const summaries = [...mount.querySelectorAll('details > summary')].map((s2) => s2.textContent);
+
+  // Twelve flat sections was the problem. Appearance collapsing to one line
+  // is most of the fix.
+  check('settings: appearance is collapsed into one group',
+    summaries.some((t) => /how it looks/i.test(t)));
+  check('settings: and the individual appearance toggles are inside it',
+    !legends.includes('Contrast') || !!mount.querySelector('.settings-group legend'));
+
+  // The thing with another person waiting on it comes first.
+  const householdAt = mount.textContent.indexOf('Household');
+  const accountAt = mount.textContent.indexOf('Account');
+  check('settings: household comes before account',
+    householdAt !== -1 && (accountAt === -1 || householdAt < accountAt));
+
+  if (typeof teardown === 'function') teardown();
+  mount.remove();
+}
+
 // ---- Worklist A2: the health screens ------------------------------------
 // Eileen, unmoved across three traces: "the rest looks like it was built
 // for somebody younger and busier than me." These assert the two things

@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v24
+// js/views/meals.js — 01 Sep 2026 v25
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -135,6 +135,7 @@ import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
 import { lookup, referencePatch } from '../data/foodReference.js';
+import { getState } from '../lib/store.js';
 import {
   listStepsForMeals, addStep, updateStep, removeStep, moveStep,
   checkStyle, resolveTokens, unresolvedTokens, slugifyFoodName
@@ -362,6 +363,9 @@ export function render(mountEl) {
   // It now sits directly under your own meals, above the add form, with a
   // heading and a count.
   const librarySection = el('section', { class: 'library-section' });
+  // The library stays REACHABLE in rotation mode — it just stops being
+  // offered. Hiding it would be the app deciding somebody may not change
+  // their mind.
   librarySection.appendChild(el('h3', { text: 'Recipe library' }));
   librarySection.appendChild(el('p', {
     class: 'field-hint',
@@ -999,6 +1003,18 @@ export function render(mountEl) {
 
   function renderCookNow() {
     cookResults.replaceChildren();
+
+    // Worklist E3. Tom eats a rotation of six meals deliberately. For
+    // somebody whose routine is the point, "you could cook these right
+    // now" is not helpfulness, it is noise.
+    //
+    // The section hides entirely rather than emptying: a heading with
+    // nothing under it is its own kind of clutter.
+    if ((getState().settings || {}).rotation_mode) {
+      cookNowSection.hidden = true;
+      return;
+    }
+    cookNowSection.hidden = false;
 
     if (pantryStock === null) {
       cookResults.appendChild(el('p', { class: 'field-hint', text: 'Reading your cupboard…' }));

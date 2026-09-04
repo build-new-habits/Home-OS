@@ -1,4 +1,4 @@
-// js/data/settings.js — 01 Sep 2026 v8
+// js/data/settings.js — 01 Sep 2026 v9
 // v4: changePassword() no longer assumes the account HAS a password. A user
 // who signed in by magic link may never have set one, so requiring the
 // current password locked out exactly the people who most needed to set it.
@@ -40,6 +40,7 @@ const DEFAULT_SETTINGS = {
   density: 'comfortable',
   onboarded_at: null,
   focus_areas: [],
+  rotation_mode: false,
   brightness_pref: 'standard',
   weight_unit_display: 'stone_lb',
   notification_prefs: {}

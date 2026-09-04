@@ -1,4 +1,4 @@
-// js/views/pantry.js — 01 Sep 2026 v15
+// js/views/pantry.js — 01 Sep 2026 v16
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -687,9 +687,24 @@ export function render(mountEl) {
       const toggle = el('button', { type: 'button', class: 'location-toggle' });
       toggle.setAttribute('aria-expanded', String(isOpen));
       const headingText = locationHeading(location, rows.length);
+
+      // Worklist E5. A count tells you how much is in there; it does not
+      // tell you whether anything needs you. Rolling the freshness up means
+      // the closed heading answers "is there anything in here to deal with".
+      const needing = rows.filter((r) => {
+        const f = freshness(r);
+        return f.state === 'soon' || f.state === 'past';
+      }).length;
+
       toggle.textContent = `${headingText} (${rows.length})`;
       toggle.setAttribute('aria-label',
-        `${headingText}, ${rows.length} item${rows.length === 1 ? '' : 's'}`);
+        `${headingText}, ${rows.length} item${rows.length === 1 ? '' : 's'}`
+        + (needing > 0 ? `, ${needing} to use soon` : ''));
+      if (needing > 0) {
+        // Words as well as the badge, because the badge is inside a button
+        // whose accessible name is set above.
+        toggle.appendChild(stateBadge('soon', `${needing} to use soon`));
+      }
       heading.appendChild(toggle);
       browseList.appendChild(heading);
 
@@ -1543,7 +1558,10 @@ export function render(mountEl) {
   // Order: what needs fixing, then search, then what is about to go off,
   // then where things live, then Add. Search sits above everything you
   // would otherwise scroll through.
-  mountEl.append(fixSection, searchPanel, useSoonSection, sweepSection, browsePanel, addToggle, capturePanel);
+  // Worklist E4. Search goes above "needs fixing". That section is usually
+  // empty, but on the day it is not it pushes search below the fold on the
+  // one screen somebody opened in order to search.
+  mountEl.append(searchPanel, fixSection, useSoonSection, sweepSection, browsePanel, addToggle, capturePanel);
   syncMode();
   paintOfflineNote();
 

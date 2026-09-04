@@ -242,13 +242,13 @@ otherwise gets you caught short at the till.
 
 ## BLOCK E — friction found by the traces, not yet placed
 
-- **E1.** Settings grouping *(Priya — nine sections, 974 lines)*
+- ~~**E1.** Settings grouping~~ ✅ — twelve flat sections became seven. Appearance is five toggle groups set once and rarely revisited, so it collapses to one line. Household goes first: it is the thing with another person waiting on it.
 - **E2.** ~20 `special` tier recipes — **zero of 100** today
-- **E3.** Rotation mode: "these are my meals, stop suggesting" *(Tom)*
-- **E4.** Search above "needs fixing" in the pantry *(Phase 23)*
-- **E5.** At-a-glance freshness per location *(Phase 23)*
-- **E6.** Cooking lowers a level, not only a number *(Phase 31)*
-- **E7.** Quiet hours for notifications
+- ~~**E3.** Rotation mode~~ ✅ — schema revision 22. Off by default. The library stays **reachable**, it just stops being offered: hiding it would be the app deciding somebody may not change their mind.
+- ~~**E4.** Search above "needs fixing"~~ ✅ — that section is usually empty, but on the day it is not it pushed search below the fold on the one screen somebody opened to search.
+- ~~**E5.** At-a-glance freshness per location~~ ✅ — a count says how much is in there; it does not say whether anything needs you. The closed heading now answers that.
+- ~~**E6.** Cooking lowers a level~~ ✅ — one step down, never two: a cupboard marked "plenty" becomes "low", not empty. "Low" is left alone, because a recipe cannot tell you whether that was the last of it.
+- **E7.** Quiet hours — **moot, and left undone deliberately.** Nothing fires unless the app is open, so nothing can wake you at 3am. This becomes real only if background push ever exists.
 - **E8.** Bulk reminder levels — one at a time today
 
 ---

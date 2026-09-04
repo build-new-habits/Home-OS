@@ -1,4 +1,8 @@
-// service-worker.js — 01 Sep 2026 v78
+// service-worker.js — 01 Sep 2026 v79
+// v79 (worklist E1/E3/E4/E5/E6): settings grouping, rotation mode, pantry
+// search first, freshness per location, cooking lowers a level —
+// views/settings.js v16, views/pantry.js v16, views/meals.js v25,
+// data/restock.js v3, data/settings.js v9, components.css v51.
 // v78 (worklist D1): ONE new path, js/data/cost.js. Prices —
 // data/foods.js v5, data/shopping.js v3, views/foods.js v5,
 // views/shopping.js v9, components.css v50.
@@ -207,7 +211,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v78';
+const CACHE_NAME = 'home-os-shell-v79';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
