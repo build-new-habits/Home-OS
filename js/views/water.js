@@ -1,4 +1,4 @@
-// js/views/water.js — 18 Aug 2026 v3
+// js/views/water.js — 01 Sep 2026 v3
 // v3: logging is OPTIMISTIC. v2 still awaited the network before moving the
 // total, so a tap with no connection showed 'Saving…' with the button
 // disabled until the request resolved — meaning you could log one glass
@@ -28,6 +28,7 @@ import { createCard } from '../components/card.js';
 import { announce } from '../lib/a11y.js';
 import { todayIso, formatDateDisplay } from '../lib/dates.js';
 import { formatMl } from '../lib/units.js';
+import { pageHeading } from '../lib/icons.js';
 import {
   logWater, totalForDate, listForDate, GLASS_ML, DAILY_TARGET_ML
 } from '../data/water.js';
@@ -53,7 +54,7 @@ export function render(mountEl) {
   let partial = false;
   let inFlight = 0;   // writes still settling; suppresses reconciliation races
 
-  mountEl.appendChild(el('h1', { text: 'Water' }));
+  mountEl.appendChild(pageHeading('Water', 'water'));
 
   const { article, body, actions } = createCard({ title: `Today — ${formatDateDisplay(today)}` });
 
@@ -112,6 +113,9 @@ export function render(mountEl) {
   }
 
   // ---- One-tap glass ----
+  // Worklist A2. Eileen: "the rest looks like it was built for somebody
+  // younger and busier than me." The kitchen screens carry shape as well as
+  // words; these three carried words only.
   const glassBtn = el('button', {
     type: 'button',
     class: 'btn btn-primary btn-block water-tap',

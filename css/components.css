@@ -1,4 +1,4 @@
-/* css/components.css — 01 Sep 2026 v44 */
+/* css/components.css — 01 Sep 2026 v46 */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -2934,4 +2934,56 @@ body.sheet-open {
   display: block;
   margin: 0 0 var(--space-2);
   font-style: italic;
+}
+
+/* ---- Worklist A2: the health screens ---------------------------------- */
+/* The kitchen screens carry shape as well as words. These three carried
+   words only, and that read as the app having been built for someone else. */
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.page-heading .icon {
+  color: var(--color-accent);
+  flex: 0 0 auto;
+}
+
+/* The weight trend was 320x140 and thumbnail-sized on a phone. Bigger, and
+   it fills the width it is given. */
+.trend-svg {
+  width: 100%;
+  height: auto;
+  max-height: 14rem;
+}
+
+.trend-line {
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.trend-point {
+  fill: var(--color-accent-strong);
+}
+
+/* The most recent reading, marked so the eye lands on it. Larger radius
+   rather than a different colour — colour alone would carry meaning. */
+.trend-point-latest {
+  fill: var(--color-accent-strong);
+  stroke: var(--color-surface);
+  stroke-width: 2;
+}
+
+.trend-target {
+  stroke: var(--color-text-muted);
+}
+
+/* Shown only when today is done. There is deliberately no "not done"
+   counterpart — an undone exercise is a fact about today, not a failing. */
+.exercise-done-badge {
+  margin-bottom: var(--space-2);
 }

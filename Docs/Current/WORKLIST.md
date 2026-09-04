@@ -44,11 +44,33 @@ hundred recipes nobody could reach. Moved above the add form with a heading,
 a description and a count, the Kitchen hub blurb rewritten, and an a11y
 check added so it cannot drift back down the page.
 
-### A2. Health gets the kitchen's care *(Eileen)*
+### ~~A2. Health gets the kitchen's care~~ ✅ *(Eileen)*
 Phase 36, **brought forward from Round 3**. Icons and state badges on Water,
 Weight, Exercises. A weight trend worth looking at. Empty states. Undo on
 anything destructive.
 **Done when:** Eileen would pay something.
+
+**Shipped.** No schema. `pageHeading()` added to `lib/icons.js`; Water,
+Weight and Exercises now lead with an icon. The weight trend went from
+320x140 with 8px padding — a thumbnail with points touching the edges — to a
+full-width chart with the latest reading marked by size and a ring, plus its
+range in words because the SVG is `aria-hidden`. Exercises show a "Done
+today" badge, and the Health hub badges only when everything is done.
+
+**Deliberately not built:** any "not done" state. An undone exercise is a
+fact about today, not a failing, and this is the screen where alarm framing
+would do most harm.
+
+**Two gate findings:**
+
+- **`weight.js` had never been rendered by the a11y gate.** The Supabase
+  stub had no `.not()`, so `getCurrentTarget()` threw and the screen was
+  simply absent from the coverage line rather than failing. The quieter kind
+  of gap. Stub extended; a11y 222 → **237 checks**.
+- The new anti-shaming check flagged the app for the sentence *"nothing here
+  is a streak."* The pattern was matching vocabulary rather than framing.
+  Tightened — a gate that punishes a sentence for disavowing the thing it
+  forbids is one people learn to work around.
 
 ### A3. Water and exercise reminders
 Removed in Phase 32 because nothing sent them. Eileen and Tom both want a

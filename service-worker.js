@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v72
+// service-worker.js — 01 Sep 2026 v73
+// v73 (worklist A2): the health screens — lib/icons.js v3, views/water.js
+// v3, weight.js v5, exercises.js v5, health.js v4, components.css v46.
 // v72: recipe library made findable (views/meals.js v22, navConfig v9) and
 // worklist A1 — focus areas (bottomNav v3, firstRun v2, settings v13).
 // v71: no code change — gate 9 added to the harness.
@@ -191,7 +193,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v72';
+const CACHE_NAME = 'home-os-shell-v73';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

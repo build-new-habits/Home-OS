@@ -1,5 +1,6 @@
-// js/lib/icons.js — 01 Sep 2026 v2
+// js/lib/icons.js — 01 Sep 2026 v3
 // v2 (Phase 28): health and hub icons.
+// v3 (worklist A2): pageHeading().
 // Phase 26. A small, consistent icon set.
 //
 // ---- Why icons are accessibility, not decoration ----
@@ -89,6 +90,27 @@ export function icon(name, { label = '', size = 20 } = {}) {
   group.innerHTML = markup;
   svg.appendChild(group);
   return svg;
+}
+
+/**
+ * A page heading with its icon.
+ *
+ * Worklist A2. The kitchen screens carry shape as well as words; Water,
+ * Weight and Exercises carried words only, and Eileen read that as the app
+ * having been built for somebody else.
+ *
+ * The icon is aria-hidden: the heading text is the accessible name, and
+ * announcing both is noise.
+ */
+export function pageHeading(text, iconName, level = 1) {
+  const h = document.createElement(`h${level}`);
+  h.className = 'page-heading';
+  const mark = icon(iconName, { size: 28 });
+  if (mark) h.appendChild(mark);
+  const label = document.createElement('span');
+  label.textContent = text;
+  h.appendChild(label);
+  return h;
 }
 
 /** Names available, for the render gate to assert none are missing. */

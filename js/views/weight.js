@@ -1,4 +1,4 @@
-// js/views/weight.js — 01 Sep 2026 v3
+// js/views/weight.js — 01 Sep 2026 v5
 // v2: entry unit is now chosen independently of display unit. v1 tied them
 // together, so someone whose scale reads in kg but who thinks in stone had
 // to convert by hand — the exact job this app should be doing. The choice is
@@ -20,6 +20,7 @@ import { todayIso, formatDateDisplay } from '../lib/dates.js';
 import { formatWeight, formatWeightDelta, parseWeightToKg, kgToStoneLb } from '../lib/units.js';
 import { getSettings } from '../data/settings.js';
 import { listLogs, logWeight, getCurrentTarget, setTarget } from '../data/weight.js';
+import { pageHeading } from '../lib/icons.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
@@ -124,9 +125,12 @@ function buildTrend(logs, unitPref, targetKg) {
     return wrap;
   }
 
+  // Worklist A2. Was 320x140 with 8px padding — a thumbnail on a phone,
+  // with points touching the edges. Eileen came here for the trend and it
+  // was the smallest thing on the screen.
   const W = 320;
-  const H = 140;
-  const PAD = 8;
+  const H = 190;
+  const PAD = 14;
   const values = logs.map((l) => Number(l.weight_kg));
   const candidates = targetKg != null ? values.concat([targetKg]) : values;
   const min = Math.min(...candidates);
@@ -160,15 +164,28 @@ function buildTrend(logs, unitPref, targetKg) {
   svg.appendChild(path);
 
   values.forEach((v, i) => {
+    const latest = i === values.length - 1;
     const dot = document.createElementNS(SVG_NS, 'circle');
     dot.setAttribute('cx', x(i));
     dot.setAttribute('cy', y(v));
-    dot.setAttribute('r', '3');
-    dot.setAttribute('class', 'trend-point');
+    // The most recent reading is the one the eye should land on. Marked by
+    // SIZE and a ring, not by colour — colour alone would carry meaning.
+    dot.setAttribute('r', latest ? '6' : '3.5');
+    dot.setAttribute('class', latest ? 'trend-point trend-point-latest' : 'trend-point');
     svg.appendChild(dot);
   });
 
   wrap.appendChild(svg);
+
+  // The chart is aria-hidden, so the range has to exist in words or a
+  // screen reader gets a heading and nothing under it.
+  wrap.appendChild(el('p', {
+    class: 'field-hint',
+    text: `${logs.length} entries, from ${formatWeight(min, unitPref)} `
+      + `to ${formatWeight(max, unitPref)}.`
+      + (targetKg != null ? ` The dashed line is your target.` : '')
+  }));
+
   return wrap;
 }
 
@@ -245,7 +262,7 @@ function buildTable(logs, unitPref) {
 
 export function render(mountEl) {
   let destroyed = false;
-  mountEl.appendChild(el('h1', { text: 'Weight' }));
+  mountEl.appendChild(pageHeading('Weight', 'weight'));
 
   const status = el('p', { class: 'view-status', text: 'Loading…' });
   mountEl.appendChild(status);

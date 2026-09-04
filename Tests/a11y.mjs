@@ -22,7 +22,11 @@ global.fetch = async () => { throw new Error('no network'); };
 window.fetch = global.fetch;
 window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
 
-const CHAIN = ['select','insert','update','delete','upsert','eq','neq','gt','gte','lt','lte','order','limit','range','match','is','in'];
+// `not` was missing, which is why weight.js could never be rendered by this
+// gate: getCurrentTarget() calls .not('target_weight_kg','is',null) and the
+// stub threw. The screen was simply absent from the coverage line rather
+// than failing, which is the quieter kind of gap.
+const CHAIN = ['select','insert','update','delete','upsert','eq','neq','gt','gte','lt','lte','order','limit','range','match','is','in','not','filter','contains','overlaps'];
 function fixture(t) {
   if (t === 'foods') return [{ id:'food-1', name:'Rolled oats', barcode:'5000159407236', calories_per_100g:379, protein_g:13.2, fat_g:8.1, carbs_g:60.1, source:'openfoodfacts', category:'food_ambient' },
                              { id:'food-2', name:'Home-made stock', barcode:null, calories_per_100g:null, protein_g:null, fat_g:null, carbs_g:null, source:'manual', category:'personal' }];
@@ -983,6 +987,45 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 
   if (typeof teardown === 'function') teardown();
   mount.remove();
+}
+
+// ---- Worklist A2: the health screens ------------------------------------
+// Eileen, unmoved across three traces: "the rest looks like it was built
+// for somebody younger and busier than me." These assert the two things
+// that changed, and one that must NOT.
+{
+  for (const [file, label] of [['water.js', 'Water'], ['weight.js', 'Weight'],
+                               ['exercises.js', 'Exercises']]) {
+    const mod = await import(pathToFileURL(path.join(REPO, 'js/views', file)).href);
+    const mount = document.createElement('div');
+    document.body.appendChild(mount);
+    const teardown = mod.render(mount);
+    await new Promise((r) => setTimeout(r, 25));
+
+    const h1 = mount.querySelector('h1');
+    check(`${label}: has exactly one h1`, mount.querySelectorAll('h1').length === 1);
+    check(`${label}: the heading carries an icon`,
+      !!h1 && !!h1.querySelector('svg'));
+    // The icon must never be the name — the words have to survive it.
+    check(`${label}: the heading still reads as words`,
+      !!h1 && h1.textContent.trim().length > 0);
+    check(`${label}: the heading icon is hidden from assistive tech`,
+      !!h1 && h1.querySelector('svg').getAttribute('aria-hidden') === 'true');
+
+    // Principle 1. Nothing on a health screen may frame a missed day as a
+    // failure — this is the screen where that would do most harm.
+    // The pattern matches FRAMING, not vocabulary. A first attempt flagged
+    // the bare words "streak" and "behind" — and caught the app saying
+    // "nothing here is a streak", which is the opposite of the problem.
+    // A gate that punishes a sentence for disavowing the thing it forbids
+    // is a gate people learn to work around.
+    check(`${label}: no shaming or failure language`,
+      !/you haven'?t|you failed|you missed|missed again|falling behind|you'?re behind|keep (your|the) streak|don'?t break/i
+        .test(mount.textContent));
+
+    if (typeof teardown === 'function') teardown();
+    mount.remove();
+  }
 }
 
 // ---- The recipe library is findable ------------------------------------

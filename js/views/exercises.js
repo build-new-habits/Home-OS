@@ -1,4 +1,4 @@
-// js/views/exercises.js — 01 Sep 2026 v4
+// js/views/exercises.js — 01 Sep 2026 v5
 // Replaces the Phase 2 stub. Exercise cards + one-tap logging (principles
 // 1, 2, 3, 6, 10). v2: form fields wrapped in .field (spacing). v3: pending
 // cards now show full details (side/sets/reps/instructions/YouTube) via a
@@ -10,6 +10,7 @@ import { showCompletionStamp, hideCompletionStamp } from '../components/completi
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { emptyState } from '../components/emptyState.js';
+import { icon, stateBadge } from '../lib/icons.js';
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -62,8 +63,15 @@ export function render(mountEl) {
   const { signal } = controller;
   let logsByExerciseId = new Map();
 
+  // Worklist A2. Built by hand rather than via pageHeading() because this
+  // one needs tabIndex for focus management, which the helper does not set.
   const h1 = document.createElement('h1');
-  h1.textContent = 'Exercises';
+  h1.className = 'page-heading';
+  const h1Icon = icon('exercises', { size: 28 });
+  if (h1Icon) h1.appendChild(h1Icon);
+  const h1Text = document.createElement('span');
+  h1Text.textContent = 'Exercises';
+  h1.appendChild(h1Text);
   h1.tabIndex = -1;
   mountEl.appendChild(h1);
   h1.focus();
@@ -110,10 +118,23 @@ export function render(mountEl) {
     notesDetails.append(notesSummary, fieldWrap(notesLabel, notesInput));
     body.appendChild(notesDetails);
 
+    // Worklist A2. Whether today is done was carried by button text alone,
+    // so it took a read rather than a glance. A tick beside it makes the
+    // state scannable down a list of six.
+    //
+    // Deliberately NOT a "you have not done this" state: an undone exercise
+    // is a fact about today, not a failing, and principle 1 forbids alarm
+    // framing for anything a person did or did not do.
+    const isDone = !!existingLog?.completed;
+    if (isDone) {
+      const badge = stateBadge('fresh', 'Done today');
+      badge.classList.add('exercise-done-badge');
+      body.appendChild(badge);
+    }
+
     const doneBtn = document.createElement('button');
     doneBtn.type = 'button';
     doneBtn.className = 'btn btn-done';
-    const isDone = !!existingLog?.completed;
     doneBtn.setAttribute('aria-pressed', String(isDone));
     doneBtn.textContent = isDone ? `Marked done: ${exercise.name}` : `Mark ${exercise.name} done`;
 

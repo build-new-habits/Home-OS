@@ -1,4 +1,4 @@
-// js/views/health.js — 01 Sep 2026 v3
+// js/views/health.js — 01 Sep 2026 v4
 // A hub, not a screen full of controls.
 //
 // Exercises, weight and water occupied three of the four bottom-bar slots
@@ -20,7 +20,7 @@ import { listLogs } from '../data/weight.js';
 import { listCleared, getLogsForDate } from '../data/exercises.js';
 import { formatMl, formatWeight } from '../lib/units.js';
 import { getState } from '../lib/store.js';
-import { icon } from '../lib/icons.js';
+import { icon, stateBadge } from '../lib/icons.js';
 
 import { el } from '../lib/dom.js';
 function todayIso() {
@@ -70,10 +70,17 @@ export function render(mountEl) {
 
   /** The accessible name carries the status too, or it is invisible to a
    *  screen reader that reads links out of context. */
-  function setStatus(path, text) {
+  function setStatus(path, text, badgeState = null) {
     const entry = statusById.get(path);
     if (!entry || !text) return;
-    entry.status.textContent = text;
+    entry.status.replaceChildren();
+    if (badgeState) {
+      entry.status.appendChild(stateBadge(badgeState, text));
+    } else {
+      entry.status.textContent = text;
+    }
+    // The accessible name carries the words either way, so a badge never
+    // becomes the only route to the information.
     entry.link.setAttribute('aria-label', `${entry.title}. ${text}`);
   }
 
@@ -115,7 +122,11 @@ export function render(mountEl) {
     const doneToday = logs.ok
       ? new Set((logs.data || []).filter((l) => l.completed).map((l) => l.exercise_id)).size
       : 0;
-    setStatus('exercises', `${doneToday} of ${cleared.length} done today`);
+    // A number is a read; a shape is a glance. Only shown when everything
+    // is done — a partial count is information, not an achievement, and
+    // badging "2 of 6" would turn a fact into a scoreline.
+    setStatus('exercises', `${doneToday} of ${cleared.length} done today`,
+      doneToday > 0 && doneToday === cleared.length ? 'fresh' : null);
   }
 
   Promise.allSettled([loadWater(), loadWeight(), loadExercises()]).then((results) => {
