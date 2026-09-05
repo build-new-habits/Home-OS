@@ -1,4 +1,5 @@
-// js/views/pantry.js — 01 Sep 2026 v17
+// js/views/pantry.js — 05 Sep 2026 v18
+// v18: the add panel is actually closed. Device test 5 Sep 2026.
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
 // thing worth opening an item for — its macros. Tapping a row now opens a
@@ -266,6 +267,10 @@ export function render(mountEl) {
     type: 'button', class: 'btn add-stock-toggle', text: 'Add something to the pantry'
   });
   addToggle.setAttribute('aria-expanded', 'false');
+  // Without this the relationship is asserted in prose and nowhere in the
+  // markup, so nothing — not a screen reader, not a gate — can check that
+  // the state claimed matches the state shown.
+  addToggle.setAttribute('aria-controls', 'pantry-capture-panel');
   addToggle.addEventListener('click', () => {
     const open = addToggle.getAttribute('aria-expanded') === 'true';
     addToggle.setAttribute('aria-expanded', String(!open));
@@ -816,7 +821,18 @@ export function render(mountEl) {
 
   // ======================= Add to the pantry ===========================
 
-  const capturePanel = el('section');
+  // ---- The panel this button controls, actually closed ----
+  // Phase 23 wrote "Add is one button" and shipped the button. It never
+  // shipped the closed state: this section was created visible, so the add
+  // form has been permanently open at the bottom of the pantry ever since,
+  // under a control claiming aria-expanded="false".
+  //
+  // The first tap set hidden = false — the value it already had — so it did
+  // nothing at all, and it took two taps to close a panel that was never
+  // supposed to be open. That is most of what made this screen feel like
+  // everything chucked into one space.
+  const capturePanel = el('section', { id: 'pantry-capture-panel' });
+  capturePanel.hidden = true;
   capturePanel.appendChild(el('h2', { text: 'Add to the pantry' }));
   capturePanel.appendChild(el('p', {
     class: 'field-hint',

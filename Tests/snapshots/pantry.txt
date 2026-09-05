@@ -49,7 +49,7 @@ section
     p.empty-state
     button.btn.btn-primary[type=button]"Add the first thing"
 button.add-stock-toggle.btn[type=button][aria-expanded=false]"Add something to the pantry"
-section
+section[hidden=]
   h2"Add to the pantry"
   p.field-hint
   div.scan-actions

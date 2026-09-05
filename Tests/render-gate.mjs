@@ -171,6 +171,37 @@ for (const name of VIEWS) {
     const nodes = mount.querySelectorAll('*').length;
     const h1 = mount.querySelector('h1');
     if (!h1) errors.push(`${name}.js: rendered no <h1> (router focuses it on every route change)`);
+
+    // ---- A claimed state must be the state on screen --------------------
+    // Device test 5 Sep 2026. The pantry's "Add something to the pantry"
+    // button carried aria-expanded="false" above a panel that had never
+    // been hidden, because the section was created visible and nothing set
+    // it. The add form sat permanently open at the bottom of the screen,
+    // the first tap set hidden to the value it already had and did nothing
+    // visible, and it took two taps to close something that should never
+    // have been open. That was a large part of why the whole screen read as
+    // everything chucked into one space.
+    //
+    // Every gate passed. The button existed, it was labelled, it had a
+    // state — nothing checked that the state was TRUE.
+    for (const ctl of mount.querySelectorAll('[aria-expanded][aria-controls]')) {
+      // Not CSS.escape: it is not a global in this jsdom context, and an id
+      // match needs no selector parsing anyway.
+      const wanted = ctl.getAttribute('aria-controls');
+      const target = [...mount.querySelectorAll('[id]')].find((n) => n.id === wanted);
+      if (!target) {
+        errors.push(`${name}.js: aria-controls="${ctl.getAttribute('aria-controls')}" points at nothing`);
+        continue;
+      }
+      const claimsOpen = ctl.getAttribute('aria-expanded') === 'true';
+      if (claimsOpen === !!target.hidden) {
+        errors.push(
+          `${name}.js: "${(ctl.textContent || '').trim().slice(0, 40)}" says aria-expanded=`
+          + `"${ctl.getAttribute('aria-expanded')}" but its panel is `
+          + `${target.hidden ? 'hidden' : 'visible'}`
+        );
+      }
+    }
     if (typeof cleanup === 'function') cleanup();
     console.log(`  PASS  ${name.padEnd(10)} ${String(nodes).padStart(4)} nodes  h1="${h1 ? h1.textContent : '-'}"`);
   } catch (err) {
