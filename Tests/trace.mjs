@@ -372,8 +372,12 @@ if (catSelect) {
 
 // --- delete a food that is in use: counts first, then refuses ---
 clearCalls();
+// The visible label is now just "Delete" — food rows collapsed on 5 Sep
+// 2026 and the buttons stopped repeating the food's name on screen. The
+// name still has to be in the ACCESSIBLE name, out of context, which is
+// the thing actually worth asserting here.
 const foodDelete = [...foodsMount.querySelectorAll('.food-card button')]
-  .find((b) => /^Delete /.test(b.textContent));
+  .find((b) => /^Delete /.test(b.getAttribute('aria-label') || b.textContent));
 check('a food card has a delete button', !!foodDelete);
 if (foodDelete) {
   click(foodDelete);

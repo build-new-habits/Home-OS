@@ -1,4 +1,5 @@
-// js/views/foods.js — 01 Sep 2026 v7
+// js/views/foods.js — 05 Sep 2026 v8
+// v8: food rows collapse. Device test 5 Sep 2026.
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -26,6 +27,7 @@ import { openScanner as openScannerDialog } from '../components/scannerDialog.js
 import { lookupBarcode } from '../lib/openFoodFacts.js';
 import { isOffline } from '../lib/net.js';
 import { createCard } from '../components/card.js';
+import { createDisclosureRow } from '../components/disclosureRow.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
@@ -544,20 +546,30 @@ export function render(mountEl) {
   }, { signal });
 
   function buildFoodCard(food) {
-    const { article, body, actions } = createCard({
-      // h4: the card sits under a category h3, which sits under the
+    // Device test 5 Sep 2026. This was a fully expanded card: barcode, a
+    // category chip, four nutrition lines whether or not any were known,
+    // and two full-width buttons each repeating the food's entire name.
+    // Times forty-two. The list was unscannable, and the owner's verdict on
+    // the whole Kitchen section was that everything is chucked into one
+    // space rather than organised.
+    //
+    // Closed by default now: name, and the one line worth reading before
+    // you decide to open it.
+    const source = food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand';
+    const { row: article, body } = createDisclosureRow({
+      // h4: the row sits under a category h3, which sits under the
       // "Foods" h2. A sibling h3 would misdescribe the nesting.
-      title: food.name, headingLevel: 4, className: 'food-card'
+      title: food.name,
+      summary: `${categoryLabel(food.category)} · ${source}`,
+      headingLevel: 4,
+      className: 'food-card'
     });
+    const actions = el('div', { class: 'disclosure-row__actions' });
     article.dataset.foodId = food.id;
 
     if (food.barcode) {
       body.appendChild(el('p', { class: 'field-hint', text: `Barcode ${food.barcode}` }));
     }
-    body.appendChild(el('p', {
-      class: 'chip',
-      text: `${categoryLabel(food.category)} · ${food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand'}`
-    }));
     if (!isEdible(food)) {
       // Stated plainly rather than left to be discovered by its absence.
       body.appendChild(el('p', {
@@ -593,31 +605,39 @@ export function render(mountEl) {
     const editWrap = el('div');
     body.appendChild(editWrap);
 
+    // The visible label is short; the accessible name still carries the
+    // food, because a screen reader user tabbing through hears the button
+    // without the heading beside it. "Delete müller Strawberry Shortcake x3
+    // Milk Chocolate Digestive x3 deliciously creamy yogurts (6 x 124 g)"
+    // was three lines of button on a phone.
     const editBtn = el('button', { type: 'button', class: 'btn', 'aria-expanded': 'false' });
-    editBtn.textContent = `Edit ${food.name}`;
+    editBtn.textContent = 'Edit';
+    editBtn.setAttribute('aria-label', `Edit ${food.name}`);
     editBtn.addEventListener('click', () => {
       const open = editBtn.getAttribute('aria-expanded') === 'true';
       if (open) {
         editWrap.replaceChildren();
         editBtn.setAttribute('aria-expanded', 'false');
-        editBtn.textContent = `Edit ${food.name}`;
+        editBtn.setAttribute('aria-label', `Edit ${food.name}`);
         return;
       }
       editWrap.replaceChildren(buildFoodEditForm(food, () => {
         editWrap.replaceChildren();
         editBtn.setAttribute('aria-expanded', 'false');
-        editBtn.textContent = `Edit ${food.name}`;
+        editBtn.setAttribute('aria-label', `Edit ${food.name}`);
       }));
       editBtn.setAttribute('aria-expanded', 'true');
-      editBtn.textContent = `Close the edit form for ${food.name}`;
+      editBtn.setAttribute('aria-label', `Close the edit form for ${food.name}`);
     }, { signal });
     actions.appendChild(editBtn);
 
     const deleteBtn = el('button', { type: 'button', class: 'btn btn-danger' });
-    deleteBtn.textContent = `Delete ${food.name}`;
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.setAttribute('aria-label', `Delete ${food.name}`);
     deleteBtn.addEventListener('click', () => onDeleteFood(food), { signal });
     actions.appendChild(deleteBtn);
 
+    body.appendChild(actions);
     return article;
   }
 

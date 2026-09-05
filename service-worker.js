@@ -227,7 +227,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v86';
+const CACHE_NAME = 'home-os-shell-v87';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -289,6 +289,7 @@ const SHELL_FILES = [
   './js/components/confirmDialog.js',
   './js/components/liveRegion.js',
   './js/components/card.js',
+  './js/components/disclosureRow.js',
   './js/components/scannerDialog.js',
   './js/components/claimDialog.js',
   './js/components/cookMode.js',

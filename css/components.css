@@ -1,4 +1,6 @@
-/* css/components.css — 05 Sep 2026 v52 */
+/* css/components.css — 05 Sep 2026 v53 */
+/* v53: .disclosure-row — the collapsed list row, styled to match a
+   <details> fold so the app shows one folding idiom. */
 /* v52: one disclosure affordance for every <details>. display:flex on a
    summary removed ::marker on Android; four foldable sections read as dead
    headings on a real phone while every gate passed. */
@@ -3104,4 +3106,84 @@ body.sheet-open {
 .settings-group > summary {
   font-size: var(--text-lg);
   font-family: var(--font-display);
+}
+
+
+/* ---- Collapsible list row (device test 5 Sep 2026) -------------------
+   Every list in the app rendered every row fully expanded. Forty-two foods,
+   each with four nutrition lines and two full-width buttons repeating the
+   food's whole name, is not a list you can scan.
+
+   Deliberately styled to match a <details> fold exactly, chevron and all:
+   the app should present ONE folding idiom to a person even though it uses
+   two to the parser. See js/components/disclosureRow.js for why the markup
+   differs. */
+
+.disclosure-row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.disclosure-row__heading {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+.disclosure-row__toggle {
+  width: 100%;
+  min-height: var(--tap-min);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "chev title"
+    "chev summary";
+  align-items: center;
+  gap: 0 var(--space-3);
+  padding: var(--space-3) var(--space-2);
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.disclosure-row__toggle::before {
+  grid-area: chev;
+  content: "";
+  width: 0.45em;
+  height: 0.45em;
+  border-right: 2px solid var(--color-accent-strong);
+  border-bottom: 2px solid var(--color-accent-strong);
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.disclosure-row__toggle[aria-expanded="true"]::before {
+  transform: rotate(45deg);
+}
+
+.disclosure-row__title {
+  grid-area: title;
+  font-weight: 600;
+}
+
+.disclosure-row__summary {
+  grid-area: summary;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.disclosure-row__body {
+  padding: 0 var(--space-2) var(--space-4) var(--space-5);
+}
+
+/* Actions inside an open row. The row's own heading already says which item
+   this is, so the buttons no longer repeat the name on screen — only in
+   their accessible name, where it is still needed out of context. */
+.disclosure-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
 }
