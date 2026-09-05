@@ -307,13 +307,15 @@ selector: `scanBtn` was already in scope, and a closure beats a
 
 ## BLOCK G — structural
 
-### G1. Split `meals.js` — ⚠️ **THREE of seven**
+### G1. Split `meals.js` — ⚠️ **FOUR of seven**
 
-**2,421 → 1,777 lines.** Three features extracted:
+**2,421 → 1,164 lines**, more than halved. Four features extracted:
 
 - `js/views/meals/library.js` — the recipe library panel
 - `js/views/meals/cookNow.js` — "what could I make?"
 - `js/views/meals/method.js` — method steps and Cook Mode
+- `js/views/meals/ingredients.js` — rows, the add form, option groups, the
+  food picker
 
 **The interface, and why it is not a context object.** The Phase 29 note
 assumed a `ctx` bag threaded through everything. That would have moved the
@@ -356,9 +358,20 @@ the card build partway, and the picker vanished.
 Four new checks now build a method section directly, including one with no
 steps at all, which exercises that path without needing a sheet.
 
-**Four features still in `meals.js`:** the meal list and filter, ingredient
-rows and forms, macros, and the food picker. The rule from Phase 29 stands:
-**one at a time, gates between each.**
+### Ingredients: the most entangled, and why it is only builders
+
+Macros read these rows. So does `method.js`, for `{{ing:}}` tokens. So does
+`cookNow.js`. **Three readers and two copies is how data drifts**, so the
+rows keep one owner in `meals.js` and everything else is handed them.
+
+The module therefore **does not fetch and does not cache**. It returns three
+builders and nothing else. It is also rebuilt whenever `foods` changes — a
+builder closed over a stale list would offer foods that have since been
+deleted.
+
+**Three features still in `meals.js`:** the meal list and filter, macros,
+and the meal edit form. All three are smaller than anything extracted so
+far. The rule stands: **one at a time, gates between each.**
 
 ### G2. Unify the four DOM helper variants
 Documented and gated. Only worth doing with G1.

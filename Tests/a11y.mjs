@@ -1050,6 +1050,32 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   check('method: survives a meal with no steps at all',
     emptyMethod.textContent.length > 0);
 
+  // Ingredients are the most entangled of the seven: macros, method.js and
+  // cookNow.js all read these rows. The contract is that this module does
+  // NOT fetch and does NOT cache — it is a set of builders, handed data.
+  const ing = await import(pathToFileURL(path.join(REPO, 'js/views/meals/ingredients.js')).href);
+  const builders = ing.createIngredientBuilders({
+    foods: [{ id: 'f1', name: 'Rolled oats', category: 'food_ambient' }],
+    signal: ac.signal, isDestroyed: () => false, onChanged: async () => {}
+  });
+  check('ingredients: returns the three builders',
+    typeof builders.buildIngredientRow === 'function'
+    && typeof builders.buildAddIngredientForm === 'function'
+    && typeof builders.buildOptionGroupRow === 'function');
+
+  const form = builders.buildAddIngredientForm({ id: 'm1', name: 'Test' });
+  check('ingredients: the add form has a searchable picker',
+    !!form.querySelector('.food-picker input[type="search"]'));
+  check('ingredients: and every control in it is labelled',
+    [...form.querySelectorAll('input, select, textarea')].every(
+      (c) => c.getAttribute('aria-label') || (c.id && form.querySelector(`label[for="${CSS.escape(c.id)}"]`))));
+
+  const row = builders.buildIngredientRow(
+    { id: 'm1', name: 'Test' },
+    { id: 'i1', quantity_g: 100, unit: 'g', foods: { id: 'f1', name: 'Rolled oats' } }
+  );
+  check('ingredients: a row names its food', /rolled oats/i.test(row.textContent));
+
   ac.abort();
 }
 
