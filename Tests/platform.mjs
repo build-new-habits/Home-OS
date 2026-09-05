@@ -234,6 +234,30 @@ for (const sheet of css) {
   }
 }
 
+// ---- 10. An unsubscribe that is thrown away ----------------------------
+// Device test 5 Sep 2026. app.js called store.subscribe() and discarded the
+// unsubscribe function it returns, so every shell rebuild left a listener
+// behind holding a detached offline banner. Those listeners kept firing at
+// nodes no longer in the document.
+//
+// This is the shape of leak that survives every functional gate: nothing is
+// wrong with one instance, and the tests only ever build one.
+for (const f of files) {
+  if (f.path === 'js/lib/store.js') continue; // where subscribe is defined
+  const lines = f.src.split('\n');
+  lines.forEach((line, i) => {
+    const trimmed = line.trim();
+    // Prose about subscribe() is not a call to it.
+    if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) return;
+    if (!/(^|[^\w.])subscribe\(/.test(line)) return;
+    const before = line.slice(0, line.indexOf('subscribe(')).trimEnd();
+    const retained = /[=:]$/.test(before) || /\breturn$/.test(before);
+    check(`${f.path}:${i + 1} keeps the unsubscribe subscribe() returns`,
+      retained,
+      trimmed.slice(0, 70));
+  });
+}
+
 console.log('');
 if (failures.length) {
   for (const f of failures) console.log(`  FAIL  ${f}`);

@@ -1,4 +1,7 @@
-// js/app.js — 01 Sep 2026 v5
+// js/app.js — 05 Sep 2026 v6
+// v6: DEFECT FIX, breaking the write-once convention deliberately. The
+// shell leaked a store listener on every rebuild and had no guard against
+// a rebuild landing on a live one. See the note above buildAppShell().
 // WRITE-ONCE RULE AMENDED (17 Aug 2026, architect decision). This file was
 // declared write-once in Phase 2, but it also owned the entire sign-in UI —
 // so every change to authentication forced an edit here anyway. Rather than
@@ -37,7 +40,38 @@ function applyTheme(settings) {
   root.setAttribute('data-density', settings?.density || 'comfortable');
 }
 
+// ---- app.js is write-once by convention; this is a defect fix ----------
+// Recorded deliberately rather than done quietly. Device test 5 Sep 2026
+// produced screens with the navigation bar present and <main> completely
+// empty — Shopping list, Chores and Calendar, all recovering later in the
+// same session with no redeploy. One screenshot shows TWO navigation bars,
+// which means the shell was built twice and the visible half was the empty
+// one.
+//
+// The cause is NOT yet proven and this is not claimed as the fix. What is
+// proven is below: every rebuild leaked a store listener, and nothing
+// stopped a rebuild landing on top of a live one. Both are real, both make
+// the symptom more likely, and both are cheap to remove.
+let shellUnsubscribe = null;
+let shellBuilding = false;
+
 function buildAppShell() {
+  // A second build starting while the first is mid-flight would leave the
+  // router pointed at a <main> that is no longer in the document.
+  if (shellBuilding) {
+    console.warn('buildAppShell() called while a build was in progress — ignored.');
+    return;
+  }
+  shellBuilding = true;
+
+  // subscribe() returns an unsubscribe function and this one was discarded,
+  // so every rebuild left a listener behind holding a detached banner. The
+  // old listeners kept firing at nodes nobody could see.
+  if (typeof shellUnsubscribe === 'function') {
+    shellUnsubscribe();
+    shellUnsubscribe = null;
+  }
+
   document.body.replaceChildren();
 
   mountLiveRegion(document.body);
@@ -67,13 +101,15 @@ function buildAppShell() {
 
   bottomNavHandle = mountBottomNav(shell);
 
-  subscribe((state) => {
+  shellUnsubscribe = subscribe((state) => {
     offlineBanner.hidden = state.online;
   });
 
   startRouter(main, (path) => {
     if (bottomNavHandle) bottomNavHandle.setActive(path);
   });
+
+  shellBuilding = false;
 }
 
 async function bootAuthedShell() {
