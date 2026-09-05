@@ -1,4 +1,6 @@
-// js/views/settings.js — 01 Sep 2026 v17
+// js/views/settings.js — 05 Sep 2026 v18
+// v18: invite code renders below the button that creates it, and gains a
+// Copy control. Device test 5 Sep 2026.
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
 // plan, chores, calendar and holidays are shared by everyone here; weight,
 // water and exercises are not, and the section says so out loud rather
@@ -294,8 +296,11 @@ function buildHouseholdSection({ household, onChanged, signal, controller }) {
     + 'chores and calendar. Weight, water and exercises stay private to each person.';
   inviteDetails.appendChild(inviteHint);
 
+  // Device test 5 Sep 2026: this list was appended BEFORE the button that
+  // fills it, so a generated code appeared above its own "Create a code"
+  // control, with Cancel above Create. On a phone that reads as a code
+  // arriving from nowhere. Button first, result under it.
   const inviteList = el('div', { class: 'invite-codes', role: 'status' });
-  inviteDetails.appendChild(inviteList);
 
   const makeCode = el('button', { type: 'button', class: 'btn btn-primary', text: 'Create a code' });
   makeCode.addEventListener('click', async () => {
@@ -308,6 +313,7 @@ function buildHouseholdSection({ household, onChanged, signal, controller }) {
     await renderInvites();
   }, { signal: controller.signal });
   inviteDetails.appendChild(makeCode);
+  inviteDetails.appendChild(inviteList);
 
   async function renderInvites() {
     const result = await listInvites();
@@ -329,6 +335,27 @@ function buildHouseholdSection({ household, onChanged, signal, controller }) {
         class: 'field-hint',
         text: `Works for ${days} more day${days === 1 ? '' : 's'}, once.`
       }));
+
+      // Read down a phone or typed by hand until now. Clipboard is not
+      // available on every browser or over plain http, so the control is
+      // only added when it will actually work — a dead Copy button is
+      // worse than none.
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        const copy = el('button', { type: 'button', class: 'btn btn-small', text: 'Copy' });
+        copy.setAttribute('aria-label', `Copy code ${invite.code.split('').join(' ')}`);
+        copy.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(invite.code);
+            if (controller.signal.aborted) return;
+            announce('Code copied.');
+            showToast('Code copied.');
+          } catch {
+            if (controller.signal.aborted) return;
+            showToast('That could not be copied. Read the code out instead.');
+          }
+        }, { signal: controller.signal });
+        row.appendChild(copy);
+      }
 
       const revoke = el('button', { type: 'button', class: 'btn btn-small', text: 'Cancel' });
       revoke.setAttribute('aria-label', `Cancel code ${invite.code.split('').join(' ')}`);

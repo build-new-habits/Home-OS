@@ -1,4 +1,7 @@
-/* css/components.css — 01 Sep 2026 v51 */
+/* css/components.css — 05 Sep 2026 v52 */
+/* v52: one disclosure affordance for every <details>. display:flex on a
+   summary removed ::marker on Android; four foldable sections read as dead
+   headings on a real phone while every gate passed. */
 /* v23: dashboard today cards. Appended only. */
 /* v22: shopping list rows. Appended only. */
 /* v21: holiday sub-list cards. Appended only. */
@@ -424,10 +427,48 @@ legend {
 details {
   margin-top: var(--space-3);
 }
-details summary {
+/* ---- Disclosure affordance (device test 5 Sep 2026, finding 9.1 / 9.4) --
+   A summary with `display: flex` loses ::marker entirely in Chromium and
+   Android WebView. Two rules elsewhere in this file set exactly that, so
+   on a real phone "How it looks", "Invite someone with their own phone"
+   and "I have a code" all rendered as plain bold text with no affordance,
+   indistinguishable from the field labels beside them. The appearance
+   controls were fully built and simply looked like a dead heading.
+
+   No gate caught it: jsdom does not draw markers, so every summary read as
+   present and labelled. The marker is therefore suppressed deliberately and
+   redrawn as a pseudo-element, which cannot be knocked out by a later
+   display declaration.
+
+   Anything foldable in this app now looks foldable, in one way. */
+details > summary {
   cursor: pointer;
   font-weight: 600;
   padding: var(--space-2) 0;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent-strong);
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker { display: none; }
+
+details > summary::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.45em;
+  height: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+details[open] > summary::before {
+  transform: rotate(45deg);
 }
 
 /* ============ Chores: project colour swatch (Phase 4, additive) ============
@@ -2895,10 +2936,9 @@ body.sheet-open {
   margin-top: var(--space-3);
 }
 
-.invite-section summary {
-  min-height: var(--tap-min);
-  display: flex;
-  align-items: center;
+/* Inherits the shared disclosure treatment above. */
+.invite-section > summary {
+  font-weight: 600;
 }
 
 .invite-codes { margin: var(--space-2) 0; }
@@ -3058,10 +3098,10 @@ body.sheet-open {
   border-bottom: 1px solid var(--color-border);
 }
 
+/* Inherits the shared disclosure treatment above. It previously restated
+   display/min-height and forced color back to --color-text, which removed
+   the marker and the affordance colour together. */
 .settings-group > summary {
-  min-height: var(--tap-min);
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  color: var(--color-text);
+  font-size: var(--text-lg);
+  font-family: var(--font-display);
 }
