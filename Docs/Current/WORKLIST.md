@@ -352,7 +352,9 @@ screen looks right.
 
 ## BLOCK H — before anyone else uses it
 
-### H1. Prove household isolation on two real accounts
+### H1. Prove household isolation on two real accounts — ⏸ **PARKED**
+Needs a phone and a laptop together; Graeme expects to do this next week.
+**Still the one that must not ship unproven.**
 Logged since Phase 18 and **still unproven**. The SQL editor bypasses RLS,
 so structure is verified and behaviour is not. A creates a food, B in
 another household cannot see it; B joins and can; B logs a weight and A
