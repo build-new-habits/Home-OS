@@ -1,4 +1,4 @@
-// js/views/foods.js — 05 Sep 2026 v8
+// js/views/foods.js — 05 Sep 2026 v9
 // v8: food rows collapse. Device test 5 Sep 2026.
 // The things you buy, as their own page.
 //
@@ -960,13 +960,28 @@ export function render(mountEl) {
       if (foods.length === 0) {
         foodsList.appendChild(el('p', { text: 'No foods yet. Scan a barcode, or add one by hand below.' }));
       } else {
-        // Grouped under real headings so a long list stays navigable by
-        // heading rather than by scrolling.
+        // ---- Categories are doors (device test 5 Sep 2026) ----
+        // Headings with counts still meant every food in every category was
+        // on the page at once, so the screen opened onto forty-eight things
+        // and the owner had to scroll past all of them to reach anything.
+        //
+        // A real cupboard is not one shelf. You open the fridge, or the
+        // freezer, or the cupboard, and you look in the one you meant. Each
+        // category is now closed until asked for.
+        //
+        // A category holding exactly one thing opens by default: a door you
+        // have to pull to find a single item is friction, not organisation.
         for (const group of groupByCategory(foods)) {
-          const heading = el('h3', { class: 'group-heading' });
-          heading.textContent = `${group.label} (${group.foods.length})`;
-          foodsList.appendChild(heading);
-          for (const food of group.foods) foodsList.appendChild(buildFoodCard(food));
+          const count = group.foods.length;
+          const { row, body } = createDisclosureRow({
+            title: group.label,
+            summary: count === 1 ? '1 thing' : `${count} things`,
+            headingLevel: 3,
+            className: 'category-door',
+            open: count === 1
+          });
+          for (const food of group.foods) body.appendChild(buildFoodCard(food));
+          foodsList.appendChild(row);
         }
         renderBackfillOffer();
         focusRequestedFood();

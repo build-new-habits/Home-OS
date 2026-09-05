@@ -1,4 +1,5 @@
-/* css/components.css — 05 Sep 2026 v53 */
+/* css/components.css — 05 Sep 2026 v54 */
+/* v54: .category-door — categories collapse into doors. */
 /* v53: .disclosure-row — the collapsed list row, styled to match a
    <details> fold so the app shows one folding idiom. */
 /* v52: one disclosure affordance for every <details>. display:flex on a
@@ -3186,4 +3187,21 @@ body.sheet-open {
   flex-wrap: wrap;
   gap: var(--space-2);
   margin-top: var(--space-3);
+}
+
+/* A category door sits above the rows it contains, so it needs to read as
+   the heavier of the two. Same chevron, same behaviour, more weight. */
+.category-door > .disclosure-row__heading .disclosure-row__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+}
+
+.category-door > .disclosure-row__body {
+  padding-left: var(--space-3);
+}
+
+/* Nested rows already carry a bottom border; the door's own border would
+   double up against the last one inside it. */
+.category-door .disclosure-row:last-child {
+  border-bottom: 0;
 }

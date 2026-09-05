@@ -1,4 +1,5 @@
-// Tests/platform.mjs — 01 Sep 2026 v1
+// Tests/platform.mjs — 05 Sep 2026 v2
+// v2: check 9, stylesheet URL agreement between index.html and precache.
 // Gate 9. The bugs that only appear on a real phone.
 //
 // ---- Why this exists ----
@@ -198,6 +199,39 @@ for (const sheet of css) {
   });
   check(`${sheet.path}: no interactive control under ${MIN_TARGET_PX}px`,
     interactive.length === 0, interactive.join(', '));
+}
+
+// ---- 9. Stylesheet URLs must match between index.html and the precache --
+// Device test 5 Sep 2026: the phone ran new JavaScript against an old
+// stylesheet. Collapsible food rows shipped with their CSS missing, so each
+// row rendered as a fat centred default button with the title and summary
+// text run together.
+//
+// The service worker already fetches with { cache: 'reload' }, so its own
+// copy was fresh. The stale copy came from the browser's HTTP cache serving
+// the <link> itself. The fix is a version query on the href, which makes a
+// changed stylesheet a different URL that no cache can satisfy.
+//
+// That only works while the two lists agree. A stamped <link> and an
+// unstamped precache entry means the page requests a URL the service worker
+// never cached, and the app breaks offline instead — trading a visible bug
+// for an invisible one. So: assert they match, exactly.
+{
+  const indexHtml = readFileSync(path.join(REPO, 'index.html'), 'utf8');
+  const swSrc = readFileSync(path.join(REPO, 'service-worker.js'), 'utf8');
+
+  const linked = [...indexHtml.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)]
+    .map((m) => m[1]);
+  check('index.html links at least one stylesheet', linked.length > 0);
+
+  for (const href of linked) {
+    check(`precache contains ${href} exactly as linked`,
+      swSrc.includes(`'${href}'`),
+      'linked but not precached under that exact URL');
+    check(`${href} carries a version query`,
+      /\?v=\d+/.test(href),
+      'an unversioned stylesheet can be served stale by the HTTP cache');
+  }
 }
 
 console.log('');

@@ -358,11 +358,24 @@ foodMod.render(foodMount, {});
 await new Promise((r) => setTimeout(r, 80));
 
 // A long library stays navigable by heading rather than by scrolling.
-const groupHeadings = [...foodMount.querySelectorAll('.group-heading')];
+//
+// 5 Sep 2026: categories became doors, so the heading now wraps the control
+// that opens one and the count moved from "(42)" into the summary line
+// beside it. Both halves of the original intent still have to hold — a real
+// heading per category, and a count you can read without opening it.
+const groupHeadings = [...foodMount.querySelectorAll('.category-door > .disclosure-row__heading')];
 check('the food list is grouped under category headings', groupHeadings.length > 0);
-check('each group heading states its count',
-  groupHeadings.every((h) => /\(\d+\)/.test(h.textContent)),
+check('each category heading is a real heading element',
+  groupHeadings.every((h) => /^H[1-6]$/.test(h.tagName)),
+  groupHeadings.map((h) => h.tagName).join(','));
+check('each category door states its count without being opened',
+  groupHeadings.every((h) => /\d+/.test(h.textContent)),
   groupHeadings.map((h) => h.textContent).join(' | '));
+check('each category door says whether it is open',
+  groupHeadings.every((h) => {
+    const t = h.querySelector('button[aria-expanded]');
+    return t && ['true', 'false'].includes(t.getAttribute('aria-expanded'));
+  }));
 // ---- The missing conversion factor is offered where it is needed --------
 // The fixture's second ingredient is 200 ml of a food with no grams_per_ml.
 const prompt = sheetScope.querySelector('.factor-prompt');
