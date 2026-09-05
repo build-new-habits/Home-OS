@@ -1,4 +1,4 @@
-// js/views/pantry.js — 05 Sep 2026 v18
+// js/views/pantry.js — 05 Sep 2026 v19
 // v18: the add panel is actually closed. Device test 5 Sep 2026.
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
@@ -112,6 +112,11 @@ export function render(mountEl) {
   let destroyed = false;
 
   let stock = [];
+  // An empty pantry and a pantry that would not load are different facts.
+  // Both left `stock` as [], so the search panel cheerfully reported "The
+  // pantry is empty" directly above "Couldn't load your pantry" — two
+  // contradictory statements on one screen, one of them false.
+  let stockLoadFailed = false;
   let foods = [];
   let openLocation = null;
   const justAdded = [];  // stock ids added this session, newest first
@@ -814,7 +819,9 @@ export function render(mountEl) {
 
     const filtered = term || category || location;
     findCount.textContent = matching.length === 0
-      ? (stock.length === 0 ? 'The pantry is empty.' : 'Nothing matches those filters.')
+      ? (stockLoadFailed
+        ? 'Your pantry could not be loaded, so there is nothing to search yet.'
+        : (stock.length === 0 ? 'The pantry is empty.' : 'Nothing matches those filters.'))
       : `${matching.length} of ${stock.length} item${stock.length === 1 ? '' : 's'}`
         + `${filtered ? ' match' : ''}.`;
   }
@@ -1635,13 +1642,39 @@ export function render(mountEl) {
     const result = await listStock();
     if (destroyed) return;
     if (!result.ok) {
+      // ---- An error that blames the wrong thing is worse than no error ---
+      // Device test 5 Sep 2026: this said "Check your connection" on a good
+      // 5G signal while every sibling screen loaded fine in the same minute.
+      // It sent us hunting the network for something that was not there, and
+      // it told the owner his phone was at fault when it was not.
+      //
+      // Supabase reports a code and a message. Both are now shown, because
+      // the only person who can act on this is looking at the screen, and
+      // "column pantry_stock.level does not exist" and "no connection" call
+      // for completely different actions.
       console.error('Failed to load the pantry:', result.error);
-      browseList.replaceChildren(el('p', {
-        class: 'view-status',
-        text: "Couldn't load your pantry. Check your connection, then reload this page."
+      stockLoadFailed = true;
+      const err = result.error || {};
+      const detail = [err.code, err.message].filter(Boolean).join(' — ');
+      const nodes = [
+        el('p', { class: 'view-status', text: "Couldn't load your pantry." })
+      ];
+      if (detail) {
+        const why = el('details', { class: 'error-detail' });
+        why.appendChild(el('summary', { text: 'Why' }));
+        why.appendChild(el('p', { class: 'field-hint', text: detail }));
+        nodes.push(why);
+      }
+      nodes.push(el('p', {
+        class: 'field-hint',
+        text: navigator.onLine === false
+          ? 'You are offline. It will load when you are back on.'
+          : 'Your connection looks fine, so this is something at our end.'
       }));
+      browseList.replaceChildren(...nodes);
       return;
     }
+    stockLoadFailed = false;
     stock = result.data;
     renderStock();
     rebuildFoodSelect();

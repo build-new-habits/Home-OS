@@ -122,7 +122,12 @@ export const KITCHEN_PAGES = [
   // v8: the blurb said "Recipes and the weekly plan", which describes the
   // wrong screen and never mentioned the hundred recipes that ship with the
   // app. Somebody looking for the library had no reason to tap here.
-  { path: 'meals', title: 'Meals', blurb: 'Your recipes, and a library of 100 to add from.' },
+  { path: 'meals', title: 'Meals', blurb: 'Your own recipes.' },
+  // Device test 5 Sep 2026: the library needed its own space rather than a
+  // section of the Meals page. The Meals blurb loses its mention of it,
+  // because two cards both claiming the library is behind them is worse
+  // than the burial this replaces.
+  { path: 'library', title: 'Recipe library', blurb: 'A hundred recipes to add from, ready to cook.' },
   { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' },
   { path: 'foods', title: 'Things you buy', blurb: 'Food and everything else that ends up in the trolley.' }
 ];

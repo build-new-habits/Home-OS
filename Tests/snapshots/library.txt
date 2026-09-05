@@ -1,0 +1,9 @@
+h1"Recipe library"
+p.field-hint
+section.library-section
+  h3"Recipe library"
+  p.field-hint
+  details
+    summary"Browse the recipe library"
+    div.library-body
+      p.field-hint

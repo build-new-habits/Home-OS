@@ -121,6 +121,13 @@ export const routes = [
     path: 'first-run',
     title: 'Getting started',
     load: () => import('./views/firstRun.js')
+  },
+  // Device test 5 Sep 2026. Appended, per the append-only rule. A hundred
+  // recipes were a section of the Meals page; they are a place you go.
+  {
+    path: 'library',
+    title: 'Recipe library',
+    load: () => import('./views/library.js')
   }
 ];
 

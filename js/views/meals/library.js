@@ -236,7 +236,11 @@ function renderLibraryList() {
    */
   function open() {
     libraryDetails.open = true;
-    libraryDetails.scrollIntoView({ block: 'center' });
+    // Guarded: not every environment implements it (jsdom does not), and on
+    // the library's own page there is nothing above it to scroll past.
+    if (typeof libraryDetails.scrollIntoView === 'function') {
+      libraryDetails.scrollIntoView({ block: 'center' });
+    }
     if (!libraryLoaded) {
       libraryLoaded = true;
       loadLibrary();

@@ -762,10 +762,22 @@ const kitMod = await import(pathToFileURL(path.join(REPO, 'js/views/kitchen.js')
 kitMod.render(kitMount, {});
 await new Promise((r) => setTimeout(r, 60));
 
+// Derived, not hard-coded. This asserted "length === 5" against a fixed
+// list of five paths, so adding the recipe library as its own page on
+// 5 Sep 2026 failed the gate for being new rather than for being wrong.
+// A gate that has to be hand-edited every time the hub gains a card is a
+// gate that gets edited without being read.
+const { KITCHEN_PAGES } = await import(pathToFileURL(path.join(REPO, 'js/navConfig.js')).href);
+const { routes: allRoutes } = await import(pathToFileURL(path.join(REPO, 'js/routes.js')).href);
+const realPaths = new Set(allRoutes.map((r) => r.path));
+
 const kitLinks = [...kitMount.querySelectorAll('.hub-link')];
-check('kitchen: the hub links to every kitchen page', kitLinks.length === 5);
-check('kitchen: links point at real routes',
-  kitLinks.every((a) => /^#\/(meals|pantry|shopping|meal-plan|foods)$/.test(a.getAttribute('href') || '')));
+check('kitchen: the hub links to every kitchen page',
+  kitLinks.length === KITCHEN_PAGES.length,
+  `${kitLinks.length} links for ${KITCHEN_PAGES.length} pages`);
+check('kitchen: every link points at a route that exists',
+  kitLinks.every((a) => realPaths.has((a.getAttribute('href') || '').replace(/^#\//, ''))),
+  kitLinks.map((a) => a.getAttribute('href')).join(' '));
 check('kitchen: shopping comes first — it is what you open in a shop',
   (kitLinks[0] || {}).getAttribute && kitLinks[0].getAttribute('href') === '#/shopping');
 check('kitchen: every link has an accessible name',

@@ -24,7 +24,14 @@ ul.hub-list
         span.hub-status
       span.hub-chevron
   li.hub-item
-    a.hub-link"MealsYour recipes, and a library of <n> to add from.No recipes yet›"
+    a.hub-link"MealsYour own recipes.No recipes yet›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"Recipe libraryA hundred recipes to add from, ready to cook.›"
       span.hub-text
         span.hub-title
         span.hub-blurb
