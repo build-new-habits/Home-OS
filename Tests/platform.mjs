@@ -258,6 +258,47 @@ for (const f of files) {
   });
 }
 
+// ---- 11. Every migration is accounted for ------------------------------
+// Device test 5 Sep 2026: "42703 — column pantry_stock.reorder_at does not
+// exist". Migrations 017 and 018 were written, committed, and never run.
+// 019 WAS run, so this was not a sequence that stopped — two files were
+// skipped and nothing could notice.
+//
+// These gates have no network and no credentials, deliberately, so none of
+// them can ask the database what columns it has. What CAN be checked is
+// that somebody looked: every migration in the repo must appear in
+// MIGRATIONS_APPLIED.md with a status. That does not prove a migration ran.
+// It proves the question was asked, which is the most a repo can honestly
+// assert about a database it cannot see.
+{
+  const ledgerPath = path.join(REPO, 'Docs/Current/MIGRATIONS_APPLIED.md');
+  let ledger = '';
+  try {
+    ledger = readFileSync(ledgerPath, 'utf8');
+  } catch {
+    // handled by the check below
+  }
+  check('the migrations ledger exists', ledger.length > 0,
+    'Docs/Current/MIGRATIONS_APPLIED.md is missing');
+
+  if (ledger) {
+    const migrationsDir = path.join(REPO, 'Docs/Current/migrations');
+    let sqlFiles = [];
+    try {
+      sqlFiles = readdirSync(migrationsDir)
+        .filter((f) => f.endsWith('.sql') && !f.includes('_VERIFY'));
+    } catch {
+      // no migrations directory: nothing to account for
+    }
+    for (const file of sqlFiles) {
+      const name = file.replace(/\.sql$/, '');
+      check(`${name} is recorded in the migrations ledger`,
+        ledger.includes(name),
+        'add a row with its status before committing');
+    }
+  }
+}
+
 console.log('');
 if (failures.length) {
   for (const f of failures) console.log(`  FAIL  ${f}`);
