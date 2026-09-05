@@ -416,8 +416,37 @@ cannot see it.
 `DEVICE_SMOKE_TEST.md`. Notifications first — that is where the last real
 bug was.
 
-### H3. Accounts and plans
-Free tier genuinely useful, **accessibility never behind the paywall**.
+### H1 + H3. Two accounts, and the money — ⏸ **PARKED TOGETHER**
+
+Combined because both need Graeme and both are "before other people use
+it".
+
+**The model, as Graeme set it (01 Sep):** 30-day trial, then £5/month for
+everyone. No free tier.
+
+Simpler than freemium and better suited to a solo operator: no second data
+layer, no feature gating, no free users on a metered backend. It also
+sidesteps the thing that worried me about "free = manual" — that the
+automation IS the accessibility here, so a manual free tier would have
+paywalled the promise through the back door.
+
+**Three things to hold on to when this gets built:**
+
+1. **30 days, not 7.** Day-one value is low and day-21 value is high — the
+   pantry gets accurate, recipes accumulate, the list starts being right. A
+   short trial shows people the worst version of the product.
+2. **No card up front.** It converts better in most markets and worse in
+   this one.
+3. **Lapsing goes read-only, never deletes.** Somebody reaching day 30 with
+   a full pantry and twenty recipes is the best re-subscribe candidate there
+   is, and losing their data is the cruellest available failure.
+
+**Still open, and a question for real users rather than personas:** whether
+anyone pays at all. Five of eight personas said £5, but personas cannot hold
+a wallet.
+
+**Not legal or financial advice** — payment handling and data-protection
+obligations want proper professional input.
 
 ---
 
