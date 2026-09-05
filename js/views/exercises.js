@@ -1,4 +1,5 @@
-// js/views/exercises.js — 01 Sep 2026 v5
+// js/views/exercises.js — 05 Sep 2026 v6
+// v6: one facts line, short button labels. Device test 5 Sep 2026.
 // Replaces the Phase 2 stub. Exercise cards + one-tap logging (principles
 // 1, 2, 3, 6, 10). v2: form fields wrapped in .field (spacing). v3: pending
 // cards now show full details (side/sets/reps/instructions/YouTube) via a
@@ -29,15 +30,26 @@ function fieldWrap(labelEl, inputEl, extraEl) {
 }
 
 function appendExerciseDetails(body, exercise) {
-  if (exercise.side) {
-    const side = document.createElement('p');
-    side.textContent = `Side: ${exercise.side}`;
-    body.appendChild(side);
-  }
+  // Device test 5 Sep 2026. This was two stacked paragraphs — "Side: both"
+  // then "3 sets × 10 reps" — above a fold, a link and a button, three
+  // times down the screen. Neither is a sentence and neither needs its own
+  // line. One line, in the order you would say it out loud.
+  //
+  // This list is NOT collapsed the way the food list is: marking an
+  // exercise done is a daily one-tap action, and putting it behind a fold
+  // would trade a tidy screen for a slower one. The bulk comes out instead.
+  const facts = [];
   if (exercise.target_sets || exercise.target_reps) {
-    const target = document.createElement('p');
-    target.textContent = `${exercise.target_sets || '—'} sets × ${exercise.target_reps || '—'} reps`;
-    body.appendChild(target);
+    facts.push(`${exercise.target_sets || '—'} sets × ${exercise.target_reps || '—'} reps`);
+  }
+  // "both" is the common case and says nothing; a single side is the fact
+  // worth carrying, because doing the wrong leg is a real mistake.
+  if (exercise.side && exercise.side !== 'both') facts.push(`${exercise.side} side`);
+  if (facts.length > 0) {
+    const line = document.createElement('p');
+    line.className = 'exercise-facts';
+    line.textContent = facts.join(' · ');
+    body.appendChild(line);
   }
   if (exercise.instructions) {
     const details = document.createElement('details');
@@ -53,7 +65,8 @@ function appendExerciseDetails(body, exercise) {
     link.href = buildYoutubeUrl(exercise.youtube_search_query);
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.textContent = `Watch ${exercise.name} on YouTube`;
+    link.textContent = 'Watch on YouTube';
+    link.setAttribute('aria-label', `Watch ${exercise.name} on YouTube`);
     body.appendChild(link);
   }
 }
@@ -136,7 +149,11 @@ export function render(mountEl) {
     doneBtn.type = 'button';
     doneBtn.className = 'btn btn-done';
     doneBtn.setAttribute('aria-pressed', String(isDone));
-    doneBtn.textContent = isDone ? `Marked done: ${exercise.name}` : `Mark ${exercise.name} done`;
+    // The card's own heading says which exercise this is. The name stays in
+  // the accessible name, where a screen reader user meets the button out of
+  // context, and leaves the visible label, where it was padding.
+  doneBtn.textContent = isDone ? 'Done today' : 'Mark done';
+  doneBtn.setAttribute('aria-label', isDone ? `Marked done: ${exercise.name}` : `Mark ${exercise.name} done`);
 
     doneBtn.addEventListener('click', async () => {
       const current = logsByExerciseId.get(exercise.id);
@@ -151,7 +168,9 @@ export function render(mountEl) {
       }
       logsByExerciseId.set(exercise.id, result.data);
       doneBtn.setAttribute('aria-pressed', String(nextCompleted));
-      doneBtn.textContent = nextCompleted ? `Marked done: ${exercise.name}` : `Mark ${exercise.name} done`;
+      doneBtn.textContent = nextCompleted ? 'Done today' : 'Mark done';
+      doneBtn.setAttribute('aria-label',
+        nextCompleted ? `Marked done: ${exercise.name}` : `Mark ${exercise.name} done`);
       if (nextCompleted) {
         showCompletionStamp(article, { label: 'Complete' });
       } else {

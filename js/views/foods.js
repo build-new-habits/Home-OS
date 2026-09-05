@@ -1,4 +1,4 @@
-// js/views/foods.js — 05 Sep 2026 v9
+// js/views/foods.js — 05 Sep 2026 v10
 // v8: food rows collapse. Device test 5 Sep 2026.
 // The things you buy, as their own page.
 //
@@ -555,12 +555,33 @@ export function render(mountEl) {
     //
     // Closed by default now: name, and the one line worth reading before
     // you decide to open it.
-    const source = food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand';
+    // ---- What the one visible line is worth saying ----
+    // It was "Fresh food · From Open Food Facts". Inside a category door the
+    // category half is now redundant, and where a food came from is not
+    // worth forty-two repetitions — it changes nothing you would do next.
+    //
+    // What DOES change what you do next: whether the app knows enough about
+    // this food to be useful. A food with no nutrition cannot carry a recipe
+    // and cannot be scaled, and that is worth seeing before you open it.
+    // Nothing is said when everything is known, because a line that appears
+    // on every row is a line nobody reads.
+    const known = [food.calories_per_100g, food.protein_g, food.fat_g, food.carbs_g]
+      .filter((v) => v !== null && v !== undefined).length;
+    const bits = [];
+    if (food.grams_per_item != null) {
+      bits.push(`1 ${food.item_label || 'item'} ≈ ${food.grams_per_item} g`);
+    }
+    if (known === 0) bits.push('No nutrition yet');
+    else if (known < 4) bits.push('Some nutrition missing');
+    // Outside a door — search results, a flat list — the category is the
+    // only orientation there is, so it is the fallback rather than the norm.
+    if (bits.length === 0) bits.push(categoryLabel(food.category));
+
     const { row: article, body } = createDisclosureRow({
       // h4: the row sits under a category h3, which sits under the
       // "Foods" h2. A sibling h3 would misdescribe the nesting.
       title: food.name,
-      summary: `${categoryLabel(food.category)} · ${source}`,
+      summary: bits.join(' · '),
       headingLevel: 4,
       className: 'food-card'
     });
@@ -570,6 +591,10 @@ export function render(mountEl) {
     if (food.barcode) {
       body.appendChild(el('p', { class: 'field-hint', text: `Barcode ${food.barcode}` }));
     }
+    body.appendChild(el('p', {
+      class: 'field-hint',
+      text: `${categoryLabel(food.category)} · ${food.source === 'openfoodfacts' ? 'From Open Food Facts' : 'Added by hand'}`
+    }));
     if (!isEdible(food)) {
       // Stated plainly rather than left to be discovered by its absence.
       body.appendChild(el('p', {
