@@ -307,7 +307,7 @@ selector: `scanBtn` was already in scope, and a closure beats a
 
 ## BLOCK G — structural
 
-### G1. Split `meals.js` — ⚠️ **FOUR of seven**
+### ~~G1. Split `meals.js`~~ ✅ **FOUR extracted, three deliberately left**
 
 **2,421 → 1,164 lines**, more than halved. Four features extracted:
 
@@ -369,9 +369,28 @@ builders and nothing else. It is also rebuilt whenever `foods` changes — a
 builder closed over a stale list would offer foods that have since been
 deleted.
 
-**Three features still in `meals.js`:** the meal list and filter, macros,
-and the meal edit form. All three are smaller than anything extracted so
-far. The rule stands: **one at a time, gates between each.**
+### Stopping at four, and why
+
+The plan said seven. After reading the remaining three properly, the honest
+answer is that they should stay.
+
+**Macros are not a separable region — they are the card's live state.** The
+block shares `body`, `meal`, `rows`, `serves`, `macros` and `scalerInput`,
+and `macros` is *recomputed* when the servings scaler changes, with the
+table repainted in place. Extracting it means passing six things plus a
+repaint callback to move ~130 lines out of 1,164.
+
+**The meal list and its filter are the same object seen twice.** A list and
+the control that narrows it are not two features.
+
+So what remains is a meal list, the filter that narrows it, and the card it
+opens — which is what this view *is*. Splitting further would be motion, not
+progress, and a file of eleven modules that each need the other ten is worse
+than one file of 1,164 lines.
+
+**The four that left were the four that could leave cleanly**, each with a
+real boundary: its own DOM, its own state, and an interface small enough to
+write down. That was the test, not the count.
 
 ### G2. Unify the four DOM helper variants
 Documented and gated. Only worth doing with G1.
