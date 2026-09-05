@@ -1,0 +1,72 @@
+h1"Holidays & work"
+p.field-hint[hidden=]
+section
+  h2"Holidays"
+  p.field-hint[role=status]
+  ul.recipe-rows
+    li.recipe-row
+  button.btn[type=button][aria-expanded=false]"Add a holiday"
+  div[hidden=]
+    form
+      h3"Add a holiday"
+      div.field
+        label"Name"
+        input[type=text]
+      div.field
+        label"First day"
+        input[type=date]
+      div.field
+        label"Last day"
+        input[type=date]
+      p.field-error[role=alert][hidden=]
+      button.btn.btn-block.btn-primary[type=submit]"Add holiday"
+section
+  h2"Where I am working"
+  p.field-hint
+  div.card-list
+    p.empty-state
+  form
+    h3"Add a pattern"
+    div.field
+      label"Name"
+      input[type=text]
+    div.field
+      label"Place"
+      input[type=text]
+    div.field
+      label"Starting from"
+      input[type=date]
+    div.field
+      label"Repeat"
+      select
+        option
+        option
+        option
+    fieldset.weekday-set
+      legend"Which days"
+      div.radio-row
+        input[type=checkbox]
+        label"Monday"
+      div.radio-row
+        input[type=checkbox]
+        label"Tuesday"
+      div.radio-row
+        input[type=checkbox]
+        label"Wednesday"
+      div.radio-row
+        input[type=checkbox]
+        label"Thursday"
+      div.radio-row
+        input[type=checkbox]
+        label"Friday"
+      div.radio-row
+        input[type=checkbox]
+        label"Saturday"
+      div.radio-row
+        input[type=checkbox]
+        label"Sunday"
+    p.field-hint
+    div.preview[role=status]
+      p
+    p.field-error[role=alert][hidden=]
+    button.btn.btn-block.btn-primary[type=submit]"Save pattern"

@@ -1,0 +1,40 @@
+h1"Today"
+p.field-hint
+div
+  a.btn.btn-large.btn-primary.dashboard-primary"Show me how this works"
+  p.field-hint
+section.card.today-card
+  h2.card-title"Water"
+  p.water-total[role=status]
+  button.btn.btn-block.btn-primary[type=button]"Add a glass (<n> ml)"
+  p.field-error[role=alert][hidden=]
+  a.card-link"See the week"
+section.card.today-card[hidden=]
+  h2.card-title"Chores due today"
+  div
+section.card.today-card[hidden=]
+  h2.card-title"Exercises"
+  div
+section.card.today-card[hidden=]
+  h2.card-title"Eating today"
+  div
+section.card.today-card[hidden=]
+  h2.card-title"Worth using up"
+  div
+section.card.today-card[hidden=]
+  h2.card-title"Shopping"
+  div
+h2"Everything else"
+ul.hub-list
+  li.hub-item
+    a.hub-link"HolidaysTrips and their checklists.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"SettingsThemes, units and your account.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+      span.hub-chevron

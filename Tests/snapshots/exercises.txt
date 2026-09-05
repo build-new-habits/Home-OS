@@ -1,0 +1,51 @@
+h1.page-heading"Exercises"
+  svg.icon.icon-exercises
+    g
+      path
+  span
+section
+  div.card-list
+    div.empty-state-block
+      p.empty-state
+      button.btn.btn-primary[type=button]"Add an exercise"
+      p.field-hint
+section
+  h2"Pending confirmation"
+  p.field-hint
+  div.card-list
+    p.empty-state
+section
+  h2"Add an exercise"
+  form
+    div.field
+      label"Name"
+      input[type=text]
+      p.field-error[hidden=]
+    div.field.field-checkbox
+      input[type=checkbox]
+      label"This exercise was given by my physiotherapist"
+    details
+      summary"More details (optional)"
+      div.field
+        label"Side"
+        select
+          option
+          option
+          option
+          option
+      div.field
+        label"Target sets"
+        input[type=number]
+      div.field
+        label"Target reps"
+        input[type=number]
+      div.field
+        label"Body region"
+        input[type=text]
+      div.field
+        label"YouTube search terms"
+        input[type=text]
+      div.field
+        label"Instructions"
+        textarea
+    button.btn.btn-block.btn-primary[type=submit]"Add exercise"

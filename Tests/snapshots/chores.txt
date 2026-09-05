@@ -1,0 +1,21 @@
+h1"Chores"
+div.filter-row
+  button.btn[type=button]"Filter"
+  p.field-hint[role=status]
+section
+  h2"Projects"
+  div.project-list
+    div.empty-state-block
+      p.empty-state
+      button.btn.btn-primary[type=button]"Add a project"
+      p.field-hint
+  button.btn[type=button][aria-expanded=false]"Add a project"
+  div[hidden=]
+    form
+      div.field
+        label"Project title"
+        input[type=text]
+      div.field
+        label"Colour"
+        input[type=color]
+      button.btn.btn-block.btn-primary[type=submit]"Add project"

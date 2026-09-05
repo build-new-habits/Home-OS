@@ -395,9 +395,44 @@ write down. That was the test, not the count.
 ### G2. Unify the four DOM helper variants
 Documented and gated. Only worth doing with G1.
 
-### G3. Visual regression testing
-Nine gates prove structure, contrast and platform hazards. None proves a
-screen looks right.
+### ~~G3. Visual regression testing~~ ✅ **Gate 10 — structural snapshots**
+
+**Said plainly: this is not visual regression.** That needs a real browser,
+real layout and pixel diffs, and this project has no CI and no browser —
+jsdom has no layout engine at all. Colour, spacing, overflow and actual
+appearance are still found by a human looking at a phone.
+
+**What it does instead.** Every visual bug this project has actually had was
+**structural**: the library built last on the page, the trend chart at
+320x140, the ingredient picker vanishing when a card build threw, "4 item"
+where a label belonged. **Not one needed a pixel to detect.** Each was a
+change in what elements existed and in what order, and each shipped because
+no gate held a picture of what a screen was supposed to contain.
+
+So: render each view, take a normalised fingerprint of its DOM, commit it.
+17 baselines in `Tests/snapshots/`.
+
+**Text that changes on its own is normalised out** — dates, times, counts,
+money. A snapshot that fails every morning is a snapshot people delete.
+Headings, buttons, labels and captions keep their words, because a button
+that loses its label is a bug.
+
+**A change is not a failure**, it is a change:
+`UPDATE_SNAPSHOTS=1 bash Tests/run-all.sh`. The point is not to prevent
+change; it is to stop change happening **without anybody seeing it**.
+
+### The bug in the gate itself
+
+First version wrote its baselines into the throwaway shadow directory
+`run-all.sh` copies the project into. They were discarded every run, so it
+wrote fresh ones, compared nothing, and **passed permanently while proving
+nothing.**
+
+Found by deliberately breaking the thing it was written for — moving the
+library back below the add form — and watching it pass. Baselines now live
+in the real repo via `GATE_SOURCE_REPO`.
+
+Re-verified after the fix: it fails, names the line, and shows both sides.
 
 ---
 

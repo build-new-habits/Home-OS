@@ -1,0 +1,50 @@
+h1.page-heading"Weight"
+  svg.icon.icon-weight
+    g
+      path
+      circle
+  span
+p.view-status[hidden=]
+section
+  article.card
+    h2.card-title"Log a weight"
+    div.card-body
+      fieldset.unit-choice
+        legend"Enter weight in"
+        div.radio-row
+          input[type=radio]
+          label"Kilograms"
+        div.radio-row
+          input[type=radio]
+          label"Stone and pounds"
+      div.field
+        label"Date"
+        input[type=date]
+        p.field-error[role=alert][hidden=]
+      div.field
+        label"Weight — stone"
+        input[type=number]
+        p.field-error[role=alert][hidden=]
+      div.field
+        label"Weight — pounds"
+        input[type=number]
+        p.field-hint
+        p.field-error[role=alert][hidden=]
+    div.card-actions
+      button.btn.btn-primary[type=button]"Save weight"
+section
+  article.card
+    h2.card-title"Trend"
+    div.card-body
+      div.trend
+        p.trend-empty
+      ul.summary-list
+        li
+    div.card-actions
+section
+  article.card
+    h2.card-title"Target"
+    div.card-body
+      p
+      p.field-hint
+    div.card-actions

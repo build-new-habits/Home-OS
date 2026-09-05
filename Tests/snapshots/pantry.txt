@@ -1,0 +1,121 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section.pantry-search-panel
+  h2"Find something"
+  div.field
+    label"Search"
+    input[type=search]
+  div.field
+    label"Kind of thing"
+    select
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+  div.field
+    label"Where it lives"
+    select
+      option
+  p.field-hint[role=status]
+  ul.stock-rows
+section[hidden=]
+  h2"Needs an amount"
+  p.field-hint
+  ul.stock-rows
+section[hidden=]
+  h2"Worth using up"
+  div.card-list
+section.card.sweep-section[hidden=]
+  button.btn[type=button][aria-expanded=false]"Quick stock check"
+  div.sweep-body[hidden=]
+section.card.sweep-section[hidden=]
+  button.btn[type=button][aria-expanded=false]"Set up shopping reminders"
+  div.sweep-body[hidden=]
+section
+  h2"What's in"
+  p.field-hint[role=status]
+  div.location-list
+    p.empty-state
+    button.btn.btn-primary[type=button]"Add the first thing"
+button.add-stock-toggle.btn[type=button][aria-expanded=false]"Add something to the pantry"
+section
+  h2"Add to the pantry"
+  p.field-hint
+  div.scan-actions
+    button.btn.btn-block.btn-primary[type=button][hidden=]"Scan a barcode"
+    p.field-hint[role=status]
+  form
+    fieldset.unit-choice
+      legend"What are you adding?"
+      div.radio-row
+        input[type=radio]
+        label"Something already on my list"
+      div.radio-row
+        input[type=radio]
+        label"Something new"
+    div
+      div.field
+        label"Search"
+        input[type=search]
+      p.field-hint[role=status]
+      div.field
+        label"Item"
+        select
+          option
+    div[hidden=]
+      div.field
+        label"Name"
+        input[type=text]
+      div.field
+        label"What kind of thing is it?"
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+    div.field
+      label"How much"
+      input[type=number]
+      p.field-hint
+    div.field
+      label"Measured in"
+      select
+        option
+        option
+        option
+    div.field
+      label"Where it lives"
+      input[type=text]
+    div.field
+      label"Use by"
+      input[type=date]
+      p.field-hint
+    div.field
+      label"Usually keeps (days)"
+      input[type=number]
+      p.field-hint
+    div.field
+      label"Last restocked"
+      input[type=date]
+      p.field-hint
+    p.field-error[role=alert][hidden=]
+    button.btn.btn-block.btn-primary[type=submit]"Add to pantry"
+  div[hidden=]
+    h3"Just added"
+    ul.stock-rows

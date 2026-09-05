@@ -1,0 +1,53 @@
+h1.page-heading"Meals"
+  svg.icon.icon-meal
+    g
+      path
+      path
+  span
+p.field-hint[hidden=]
+section
+  h2"Meals"
+  div.filter-row
+    button.btn[type=button]"Filter"
+    p.field-hint[role=status]
+  section.cook-now
+    h3"What could I make?"
+    div.field
+      label"Search by an ingredient you have"
+      input[type=search]
+    div.cook-results
+      p.field-hint
+  ul.recipe-rows
+    li.recipe-row
+      div.empty-state-block
+        p.empty-state
+        button.btn.btn-primary[type=button]"Browse the recipe library"
+        p.field-hint
+  section.library-section
+    h3"Recipe library"
+    p.field-hint
+    details
+      summary"Browse the recipe library"
+      div.library-body
+  form
+    h3"Add a meal"
+    div.field
+      label"Meal name"
+      input[type=text]
+    div.field
+      label"Usually serves"
+      input[type=number]
+    div.field
+      label"Kind of meal"
+      select
+        option
+        option
+        option
+        option
+        option
+        option
+      p.field-hint
+    p.field-error[role=alert][hidden=]
+    button.btn.btn-block.btn-primary[type=submit]"Add meal"
+  p
+    a.card-link"Manage the things you buy"

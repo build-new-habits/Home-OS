@@ -1,0 +1,10 @@
+div.plan-week-header
+  h1"Who's eating this week?"
+  p.plan-week-position
+div.plan-week-body
+  p.field-hint
+div.plan-week-nav
+  button.btn[type=button]"Back"
+  button.btn[type=button]"Skip this"
+  button.btn.btn-large.btn-primary[type=button]"Next"
+button.btn.plan-week-leave[type=button]"Finish later"

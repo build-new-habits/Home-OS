@@ -40,6 +40,11 @@ fi
 
 rm -rf "$SHADOW"
 cp -r "$REPO" "$SHADOW"
+
+# The snapshot gate must read and write its baselines in the REAL repo, not
+# in this throwaway copy — otherwise it rewrites them every run and compares
+# nothing.
+export GATE_SOURCE_REPO="$REPO"
 cat > "$SHADOW/js/supabaseClient.js" <<'STUB'
 // HARNESS STUB — not the real client. Exists only inside the shadow copy.
 export const supabase = globalThis.__HOME_OS_SUPABASE_STUB__;
@@ -68,6 +73,7 @@ run "Schema conformance — columns vs schema.md"      schema-conformance.mjs
 run "Interaction trace — every control, every write" trace.mjs
 run "Recipe library — style guide and refs"          library.mjs
 run "Platform — what only breaks on a device"        platform.mjs
+run "Snapshots — every view's structure, frozen"      snapshot.mjs
 
 echo ""
 if [ "$fail" -eq 0 ]; then

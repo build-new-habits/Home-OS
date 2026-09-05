@@ -1,0 +1,73 @@
+h1.page-heading"Things you buy"
+  svg.icon.icon-shopping
+    g
+      path
+      path
+  span
+p.field-hint
+section
+  h2"Foods"
+  div.scan-actions
+    button.btn.btn-block.btn-primary[type=button][hidden=]"Scan a barcode"
+    p.field-hint
+  div.backfill-offer[hidden=]
+  div.card-list
+    p
+  div
+  details.food-form
+    summary"Add a food by hand"
+    form
+      div.field
+        label"Food name"
+        input[type=text]
+      div.reference-offer[role=status][hidden=]
+      div.field
+        label"Barcode"
+        input[type=text]
+        p.field-hint
+      div.field
+        label"What kind of thing is it?"
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+        p.field-hint
+      fieldset
+        legend"Nutrition per <n> g (optional)"
+        p.field-hint
+        div.field
+          label"Calories (kcal)"
+          input[type=number]
+        div.field
+          label"Protein (g)"
+          input[type=number]
+        div.field
+          label"Fat (g)"
+          input[type=number]
+        div.field
+          label"Carbohydrate (g)"
+          input[type=number]
+      fieldset
+        legend"Measuring it another way (optional)"
+        p.field-hint
+        div.field
+          label"Grams per millilitre"
+          input[type=number]
+          p.field-hint
+        div.field
+          label"Grams per item"
+          input[type=number]
+          p.field-hint
+        div.field
+          label"One of these is called a"
+          input[type=text]
+          p.field-hint
+      p.field-hint[hidden=]
+      p.field-error[role=alert][hidden=]
+      button.btn.btn-block.btn-primary[type=submit]"Save food"

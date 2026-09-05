@@ -1,0 +1,50 @@
+h1"Kitchen"
+p.field-hint
+ul.hub-list
+  li.hub-item
+    a.hub-link"Shopping listWhat you still need to buy.Nothing on the list›"
+      svg.icon.icon-shopping
+        g
+          path
+          path
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"Weekly planWhat you are eating this week.›"
+      svg.icon.icon-plan
+        g
+          rect
+          path
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"MealsYour recipes, and a library of <n> to add from.No recipes yet›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"PantryWhat is in your cupboards.Nothing captured yet›"
+      svg.icon.icon-pantry
+        g
+          rect
+          path
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"Things you buyFood and everything else that ends up in the trolley.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron

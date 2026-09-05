@@ -1,0 +1,24 @@
+h1.page-heading"Water"
+  svg.icon.icon-water
+    g
+      path
+  span
+article.card
+  h2.card-title"Today — Sat, Sep <n>"
+  div.card-body
+    p.water-total
+    div.water-bar
+      div.water-bar-fill
+    p.field-hint[hidden=]
+    p.field-error[role=status][hidden=]
+    details.custom-amount
+      summary"Log a different amount"
+      div.field
+        label"Amount in millilitres"
+        input[type=number]
+        p.field-hint
+        p.field-error[role=alert][hidden=]
+      button.btn[type=button]"Log this amount"
+  div.card-actions
+    button.btn.btn-block.btn-primary.water-tap[type=button]"Log a glass (<n> ml)"
+section

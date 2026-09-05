@@ -1,0 +1,101 @@
+h1"Settings"
+div
+  div
+    fieldset
+      legend"Household"
+      p.field-hint
+  fieldset
+    legend"What you use it for"
+    p.field-hint
+    div.checkbox-row
+      input[type=checkbox]
+      label"Food and shopping"
+    div.checkbox-row
+      input[type=checkbox]
+      label"Home and chores"
+    div.checkbox-row
+      input[type=checkbox]
+      label"Health"
+    div.checkbox-row
+      input[type=checkbox]
+      label"I cook the same things — stop suggesting recipes"
+    p.field-hint
+  fieldset
+    legend"Notifications"
+    p.field-hint
+    p.field-hint[role=status]
+    p.field-hint
+    div.switch
+      span
+      button.switch-control[role=switch][type=button]
+    div.switch
+      span
+      button.switch-control[role=switch][type=button]
+    div.switch
+      span
+      button.switch-control[role=switch][type=button]
+    div.switch
+      span
+      button.switch-control[role=switch][type=button]
+  details.settings-group
+    summary"How it looks"
+    fieldset
+      legend"Theme"
+      div.toggle-group[role=group]
+        button.toggle-option[type=button][aria-pressed=true]"Default"
+        button.toggle-option[type=button][aria-pressed=false]"Dusk"
+    fieldset
+      legend"Contrast"
+      div.toggle-group[role=group]
+        button.toggle-option[type=button][aria-pressed=true]"Standard"
+        button.toggle-option[type=button][aria-pressed=false]"High contrast"
+    fieldset
+      legend"Brightness"
+      div.toggle-group[role=group]
+        button.toggle-option[type=button][aria-pressed=true]"Standard"
+        button.toggle-option[type=button][aria-pressed=false]"Dim"
+        button.toggle-option[type=button][aria-pressed=false]"Bright"
+    fieldset
+      legend"Spacing"
+      div.toggle-group[role=group]
+        button.toggle-option[type=button][aria-pressed=true]"Comfortable"
+        button.toggle-option[type=button][aria-pressed=false]"Compact"
+      p.field-hint
+    fieldset
+      legend"Weight display"
+      div.toggle-group[role=group]
+        button.toggle-option[type=button][aria-pressed=true]"Stone & lb"
+        button.toggle-option[type=button][aria-pressed=false]"Kilograms"
+  fieldset
+    legend"Getting started"
+    a.btn"Walk me through it again"
+    p.field-hint
+  fieldset
+    legend"Your data"
+    button.btn.btn-block[type=button]"Export all data (JSON)"
+  fieldset
+    legend"Account"
+    button.btn.btn-block[type=button]"Sign out"
+    details.custom-amount
+      summary"Change password"
+      p.field-hint
+      div.field
+        label"Current password"
+        input[type=password]
+        p.field-error[role=alert][hidden=]
+      div.field
+        label"New password"
+        input[type=password]
+        p.field-hint
+        p.field-error[role=alert][hidden=]
+      div.field
+        label"Confirm new password"
+        input[type=password]
+        p.field-error[role=alert][hidden=]
+      button.btn.btn-block[type=button]"Update password"
+      div[hidden=]
+        button.btn.btn-block[type=button]"Email me a reset link"
+  fieldset
+    legend"This device"
+    p.field-hint[role=status]
+    p.field-hint

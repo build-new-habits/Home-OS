@@ -1,0 +1,38 @@
+h1.page-heading"Shopping list"
+  svg.icon.icon-shopping
+    g
+      path
+      path
+  span
+p.field-hint[hidden=]
+div.filter-row
+  button.btn.btn-primary[type=button]"Build from the plan"
+  button.btn[type=button]"Filter"
+p.field-hint[role=status]
+p.cost-note.field-hint[role=status][hidden=]
+div
+  div.empty-state-block
+    p.empty-state
+    a.btn.btn-primary"Plan the week"
+    p.field-hint
+  button.btn[type=button]"Add my usual household staples"
+  p.field-hint
+form
+  h2"Add a staple"
+  p.field-hint
+  div.field
+    label"Item"
+    select
+      option
+  div.field
+    label"How much"
+    input[type=number]
+    p.field-hint
+  div.field
+    label"Measured in"
+    select
+      option
+      option
+      option
+  p.field-error[role=alert][hidden=]
+  button.btn.btn-block.btn-primary[type=submit]"Add to list"

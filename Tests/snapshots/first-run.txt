@@ -1,0 +1,9 @@
+h1"Let us plan one meal together"
+p.plan-week-position
+div.first-run-body
+  p
+  p.field-hint
+div.plan-week-nav
+  button.btn[type=button]"Skip this"
+  button.btn.btn-large.btn-primary[type=button]"Next"
+button.btn.first-run-dismiss[type=button]"I will find my own way around"
