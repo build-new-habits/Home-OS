@@ -1,4 +1,4 @@
-// js/views/foods.js — 01 Sep 2026 v6
+// js/views/foods.js — 01 Sep 2026 v7
 // The things you buy, as their own page.
 //
 // This was the bottom 600 lines of the Meals screen, which also held every
@@ -37,6 +37,8 @@ import {
 } from '../data/foodReference.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
+import { pageHeading } from '../lib/icons.js';
+import { emptyState } from '../components/emptyState.js';
 function numberInput(id, { min = '0', step = 'any' } = {}) {
   // step 'any' deliberately: min="0.1" with step="1" made every round number
   // unenterable, and that shipped once already.
@@ -57,7 +59,7 @@ export function render(mountEl) {
   // Held so the camera can be released if the user navigates away mid-scan.
   let scanController = null;
 
-  mountEl.appendChild(el('h1', { text: 'Things you buy' }));
+  mountEl.appendChild(pageHeading('Things you buy', 'shopping'));
   mountEl.appendChild(el('p', {
     class: 'field-hint',
     text: 'Food, and everything else that ends up in the trolley — cleaning things, '
@@ -948,6 +950,18 @@ export function render(mountEl) {
         }
         renderBackfillOffer();
         focusRequestedFood();
+        if (foods.length === 0) {
+          foodsList.appendChild(emptyState({
+            body: 'Everything you buy lives here — food, cleaning things, '
+              + 'toiletries, pet food. Recipes and the shopping list both draw on it.',
+            actionLabel: 'Scan something',
+            // scanBtn is already in scope. Reaching for it by id would mean
+            // inventing one, which is exactly what the selector gate caught
+            // here — a closure beats a querySelector every time.
+            onAction: () => { scanBtn.focus(); scanBtn.click(); },
+            why: 'Or add one by hand below. Scanning fills in the nutrition for you.'
+          }));
+        }
       }
     }
 

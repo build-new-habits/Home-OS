@@ -151,6 +151,7 @@ import { addItem } from '../data/shopping.js';
 import { announce } from '../lib/a11y.js';
 
 import { el } from '../lib/dom.js';
+import { pageHeading } from '../lib/icons.js';
 // Local element helper. Deliberately defined here rather than copied in from
 // another view — the 18 Aug ReferenceError came from moving a helper between
 // files without checking the destination defined it.
@@ -290,7 +291,7 @@ export function render(mountEl) {
   const libraryFilters = { term: '', cuisine: '', budget_tier: '', default_slot: '', dietary: [] };
   const libraryList = el('ul', { class: 'library-list' });
 
-  mountEl.appendChild(el('h1', { text: 'Meals' }));
+  mountEl.appendChild(pageHeading('Meals', 'meal'));
 
   const offlineNote = el('p', { class: 'field-hint' });
   offlineNote.hidden = true;

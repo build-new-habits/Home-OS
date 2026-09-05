@@ -1,4 +1,4 @@
-// js/views/calendar.js — 01 Sep 2026 v2
+// js/views/calendar.js — 01 Sep 2026 v3
 // The calendar as its own page.
 //
 // It used to sit at the bottom of the chores screen, below a form and a
@@ -34,6 +34,7 @@ import { isOffline } from '../lib/net.js';
 import { announce } from '../lib/a11y.js';
 
 import { el } from '../lib/dom.js';
+import { icon, pageHeading } from '../lib/icons.js';
 const DAY_HEADERS = [
   { short: 'Mon', full: 'Monday' },
   { short: 'Tue', full: 'Tuesday' },
@@ -259,6 +260,17 @@ export function render(mountEl) {
 
           const text = el('div', { class: 'day-item-text' });
           text.appendChild(el('span', { class: 'day-item-title', text: item.title }));
+
+          // Worklist F4. A chore, a holiday and a work day sat in one
+          // undifferentiated list, told apart only by reading to the end of
+          // the line. The icon goes FIRST so the shape does the sorting.
+          const kindIcon = icon(
+            item.type === 'holiday' ? 'holiday'
+              : item.type === 'work_location' ? 'work'
+                : 'chores',
+            { size: 18 }
+          );
+          if (kindIcon) li.insertBefore(kindIcon, li.firstChild);
 
           const bits = [];
           if (item.project) bits.push(item.project.title);

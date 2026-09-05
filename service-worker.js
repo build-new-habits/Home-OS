@@ -1,4 +1,7 @@
-// service-worker.js — 01 Sep 2026 v81
+// service-worker.js — 01 Sep 2026 v82
+// v82 (worklist F2/F3/F4): empty states, page icons across six screens,
+// calendar event kinds by shape — lib/icons.js v4, views/calendar.js v3,
+// shopping/meals/mealPlan/pantry/foods headings.
 // v81 (worklist F1/F5/F6/F7/F8/F10): undo on step and member removal, the
 // claim step in the Foods scan, the food link landing on the food, the cell
 // split prompt, a resumable first run, and ticking off inside Plan The
@@ -218,7 +221,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v81';
+const CACHE_NAME = 'home-os-shell-v82';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',

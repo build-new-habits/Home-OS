@@ -1,6 +1,7 @@
-// js/lib/icons.js — 01 Sep 2026 v3
+// js/lib/icons.js — 01 Sep 2026 v4
 // v2 (Phase 28): health and hub icons.
 // v3 (worklist A2): pageHeading().
+// v4 (worklist F4): holiday and work icons for the calendar.
 // Phase 26. A small, consistent icon set.
 //
 // ---- Why icons are accessibility, not decoration ----
@@ -49,7 +50,15 @@ const PATHS = {
   weight: '<path d="M5 20h14l-2-9H7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/>',
   water: '<path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
   chores: '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M2 7l1 1 2-2M2 12l1 1 2-2M2 17l1 1 2-2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
-  calendar: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="14" r="1.2" fill="currentColor"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/>'
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="14" r="1.2" fill="currentColor"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/>',
+
+  // ---- Calendar event kinds (worklist F4) ----
+  // A day can hold a chore, a holiday and a work day at once, and they read
+  // as one undifferentiated list. Distinct SILHOUETTES, not colour
+  // variations — the whole point is telling them apart at a glance, and in
+  // greyscale (WCAG 1.4.1).
+  holiday: '<path d="M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 4c4 0 7 2 8 5-3 1-6 1-8 0z" fill="currentColor"/>',
+  work: '<rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2"/>'
 };
 
 /** Icons drawn as solid shapes rather than strokes. */

@@ -60,7 +60,7 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
-import { stateBadge, countChip } from '../lib/icons.js';
+import { stateBadge, countChip, pageHeading } from '../lib/icons.js';
 import { notify, useSoonMessage } from '../lib/notify.js';
 import { getState } from '../lib/store.js';
 import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim.js';
@@ -115,7 +115,7 @@ export function render(mountEl) {
   let openLocation = null;
   const justAdded = [];  // stock ids added this session, newest first
 
-  mountEl.appendChild(el('h1', { text: 'Pantry' }));
+  mountEl.appendChild(pageHeading('Pantry', 'pantry'));
 
   const offlineNote = el('p', { class: 'field-hint' });
   offlineNote.hidden = true;

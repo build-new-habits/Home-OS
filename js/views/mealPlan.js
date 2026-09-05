@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 01 Sep 2026 v5
+// js/views/mealPlan.js — 01 Sep 2026 v6
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -39,6 +39,8 @@ import {
 } from '../data/listSync.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
+import { pageHeading } from '../lib/icons.js';
+import { emptyState } from '../components/emptyState.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
   return found ? found.label : value;
@@ -72,7 +74,7 @@ export function render(mountEl) {
   syncNote.setAttribute('aria-live', 'polite');
   let meals = [];
 
-  mountEl.appendChild(el('h1', { text: 'Weekly plan' }));
+  mountEl.appendChild(pageHeading('Weekly plan', 'plan'));
 
   const offlineNote = el('p', { class: 'field-hint' });
   offlineNote.hidden = true;
@@ -91,6 +93,17 @@ export function render(mountEl) {
   summary.setAttribute('aria-live', 'polite');
   mountEl.appendChild(summary);
   mountEl.appendChild(syncNote);
+
+  // Worklist F2. An empty grid told you it was empty, which you could see.
+  const planEmpty = emptyState({
+    body: 'Put meals on days here and your shopping list works itself out '
+      + 'from what you already have.',
+    actionLabel: 'Plan the week',
+    actionHref: '#/plan-week',
+    why: 'Or add one at a time below — an empty day is fine.'
+  });
+  planEmpty.hidden = true;
+  mountEl.appendChild(planEmpty);
 
   const stopListening = onListSync((result) => {
     if (destroyed) return;
@@ -459,6 +472,7 @@ export function render(mountEl) {
     }
     planByCell = groupByCell(result.data);
     buildPlanTable();
+    planEmpty.hidden = [...planByCell.values()].some((list) => list.length > 0);
   }
 
   async function loadMeals() {

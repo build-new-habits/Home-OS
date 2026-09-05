@@ -45,6 +45,7 @@ import { addStarterStaples, addDueStaples } from '../data/staples.js';
 import { estimateList, describeEstimate } from '../data/cost.js';
 
 import { el, field } from '../lib/dom.js';
+import { pageHeading } from '../lib/icons.js';
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -65,7 +66,7 @@ export function render(mountEl) {
   let foods = [];
   let hideDone = false;
 
-  mountEl.appendChild(el('h1', { text: 'Shopping list' }));
+  mountEl.appendChild(pageHeading('Shopping list', 'shopping'));
 
   const offlineNote = el('p', { class: 'field-hint' });
   offlineNote.hidden = true;

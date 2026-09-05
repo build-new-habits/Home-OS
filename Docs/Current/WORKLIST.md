@@ -280,9 +280,22 @@ otherwise gets you caught short at the till.
 Real, invisible to users until it bites.
 
 - ~~**F1.** Undo on step delete and member removal~~ ✅ — both snapshot the whole row. A deleted step goes back at the END, and the toast **says so**, because a silent reorder of a method is worse than the deletion was. The member confirm was doing real work — it said what was *not* deleted — so that line moved into the toast rather than being lost with it. *(Project delete still confirms.)*
-- **F2.** Empty states on the screens Phase 28 did not reach
-- **F3.** Icons beyond the pantry and hubs
-- **F4.** Calendar state colour — event types are text only
+- ~~**F2.** Empty states~~ ✅ — the weekly plan and Things You Buy. The plan's grid told you it was empty, which you could see; it now says what the screen is for and offers Plan The Week.
+- ~~**F3.** Icons beyond the pantry and hubs~~ ✅ — page headings on Calendar, Shopping, Meals, Weekly plan, Pantry and Things You Buy, through the shared `pageHeading()`.
+- ~~**F4.** Calendar event kinds~~ ✅ — **shape, not colour.** A chore, a
+  holiday and a work day sat in one undifferentiated list, told apart only
+  by reading to the end of the line. Three distinct silhouettes, leading the
+  row so the shape does the sorting, and distinguishable in greyscale
+  (WCAG 1.4.1).
+
+**The selector gate fired again**, on `#scan-food` — an id I invented for
+the third time. It caught it before commit. The fix was not a better
+selector: `scanBtn` was already in scope, and a closure beats a
+`querySelector` every time.
+
+---
+
+## ✅ BLOCK F COMPLETE (F9 blocked on schema)
 - ~~**F5.** Claim step in the Foods scan path~~ ✅ — Phase 11 fixed the duplicate-food defect in one of the two places somebody scans. The same three functions, not a second implementation: two versions of "which food is this" would drift and only one would get fixed.
 - ~~**F6.** Macro-gap Edit link~~ ✅ — the link carried `?food=<id>` and the view never read it, so it landed on a screen that can hold hundreds and left you to find it. The router matches only the path, so the query was ours to read.
 - ~~**F7.** Cell split~~ ✅ — adding a second meal to a slot now asks whether the first is still for everyone. **Offered, not done automatically**: narrowing somebody else's meal without asking is a change they did not make to a row they were not looking at. Silent when the slot already held two, or when nobody is named.
