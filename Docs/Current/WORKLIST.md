@@ -307,10 +307,39 @@ selector: `scanBtn` was already in scope, and a closure beats a
 
 ## BLOCK G — structural
 
-### G1. Split `meals.js`
-2,081 lines, seven features. Needs a context object designed properly rather
-than a script. **Not to be attempted alongside anything else** — the Phase
-29 lesson.
+### G1. Split `meals.js` — ⚠️ **STARTED, two of seven**
+
+**2,421 → 2,123 lines.** Two features extracted:
+
+- `js/views/meals/library.js` — the recipe library panel
+- `js/views/meals/cookNow.js` — "what could I make?"
+
+**The interface, and why it is not a context object.** The Phase 29 note
+assumed a `ctx` bag threaded through everything. That would have moved the
+tangle rather than removed it — a context object full of `let` is shared
+mutable state with a nicer name.
+
+Instead each module **owns its own DOM and its own state**, and is given
+only what it genuinely cannot know:
+
+- `library.js` takes `signal`, `isDestroyed` and `onAdded`, and returns
+  `{ section, open }`. `open()` exists because the Meals empty state offers
+  "browse the library" — and reaching into another module's DOM to force a
+  `<details>` open is exactly the coupling the split removes.
+- `cookNow.js` takes `signal` and `isDestroyed`, and returns
+  `{ section, update }`. It is **told** its data. Three other features read
+  the same meals and ingredients, so one owner beats two copies that can
+  disagree.
+
+**Gated.** Eight new a11y checks assert each panel returns a section, asks
+for nothing else, does not load until opened, survives being given nothing,
+and that rotation mode hides the section entirely rather than emptying it.
+
+**Five features still in `meals.js`:** the meal list and filter, ingredient
+rows and forms, macros, method steps and cook mode, and the food picker.
+Each is a bigger extraction than these two — steps in particular reach into
+ingredients — and the rule from Phase 29 stands: **one at a time, gates
+between each.**
 
 ### G2. Unify the four DOM helper variants
 Documented and gated. Only worth doing with G1.

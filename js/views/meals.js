@@ -1,4 +1,4 @@
-// js/views/meals.js — 01 Sep 2026 v26
+// js/views/meals.js — 01 Sep 2026 v28
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -128,9 +128,7 @@ import { createCard } from '../components/card.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { showToast } from '../components/toast.js';
 import { listStock } from '../data/pantry.js';
-import {
-  loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
-} from '../data/recipeLibrary.js';
+import { createLibraryPanel } from './meals/library.js';
 import { stockForMeal, describeStockForMeal } from '../lib/shortfall.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { ENTRY_UNITS, toStorage } from '../lib/units.js';
@@ -143,10 +141,7 @@ import {
 import { openCookMode, readProgress } from '../components/cookMode.js';
 import { emptyState } from '../components/emptyState.js';
 import { planDepletion, applyDepletion, describeDepletion } from '../data/restock.js';
-import {
-  scoreMeals, filterByIngredient, describeGaps, describeAssumptions,
-  gapsToShoppingItems, BAND
-} from '../data/pantryMatch.js';
+import { createCookNowPanel } from './meals/cookNow.js';
 import { addItem } from '../data/shopping.js';
 import { announce } from '../lib/a11y.js';
 
@@ -286,10 +281,6 @@ export function render(mountEl) {
   // null until the first read, so the panel can say "reading" rather than
   // claiming an empty cupboard.
   let pantryStock = null;
-  let libraryRecipes = [];
-  let libraryOwned = new Map();
-  const libraryFilters = { term: '', cuisine: '', budget_tier: '', default_slot: '', dietary: [] };
-  const libraryList = el('ul', { class: 'library-list' });
 
   mountEl.appendChild(pageHeading('Meals', 'meal'));
 
@@ -324,68 +315,25 @@ export function render(mountEl) {
   mealsSection.appendChild(mealFilterRow);
   mealFilterBtn.addEventListener('click', () => openMealFilterSheet(mealFilterBtn), { signal });
 
-  // ---- Phase 14: cook from what you have ----
-  // Above the full list, because "what can I make tonight" is the question
-  // people actually arrive with; browsing every recipe is the rarer one.
-  const cookNowSection = el('section', { class: 'cook-now' });
-  cookNowSection.appendChild(el('h3', { text: 'What could I make?' }));
-
-  const cookSearchInput = el('input', {
-    id: 'cook-search', type: 'search', placeholder: 'salmon, chickpeas…'
-  });
-  const cookSearchLabel = el('label', {
-    for: 'cook-search', text: 'Search by an ingredient you have'
-  });
-  const cookSearchWrap = el('div', { class: 'field' });
-  cookSearchWrap.append(cookSearchLabel, cookSearchInput);
-  cookNowSection.appendChild(cookSearchWrap);
-
-  const cookResults = el('div', { class: 'cook-results' });
-  cookNowSection.appendChild(cookResults);
-  mealsSection.appendChild(cookNowSection);
-
-  cookSearchInput.addEventListener('input', () => renderCookNow(), { signal });
+  // ---- Worklist G1: cook-from-pantry lives in its own module ----
+  // See js/views/meals/cookNow.js. It is TOLD the data on update() rather
+  // than reaching for it: three other features read the same meals and
+  // ingredients, so one owner beats two copies that can disagree.
+  const cookNowPanel = createCookNowPanel({ signal, isDestroyed: () => destroyed });
+  mealsSection.appendChild(cookNowPanel.section);
 
   const mealsList = el('ul', { class: 'recipe-rows' });
   mealsSection.appendChild(mealsList);
 
-  // ---- Phase 16: the recipe library ----
-  // ---- Position, corrected ----
-  // This was built last on the page, after the add-meal form, behind a
-  // collapsed <details> reading "Browse the recipe library". A hundred
-  // recipes were in there and the person who commissioned them could not
-  // find them.
-  //
-  // The original reasoning — "a place you visit occasionally" — was wrong
-  // in both directions: browsing is FAR more common than writing a recipe
-  // from scratch, and "occasionally" is not a reason to bury something, it
-  // is a reason to label it well.
-  //
-  // It now sits directly under your own meals, above the add form, with a
-  // heading and a count.
-  const librarySection = el('section', { class: 'library-section' });
-  // The library stays REACHABLE in rotation mode — it just stops being
-  // offered. Hiding it would be the app deciding somebody may not change
-  // their mind.
-  librarySection.appendChild(el('h3', { text: 'Recipe library' }));
-  librarySection.appendChild(el('p', {
-    class: 'field-hint',
-    text: 'A hundred recipes that come with the app. Add any of them to your meals '
-      + 'in one tap — the ingredients and steps come with it.'
-  }));
-  const libraryDetails = el('details');
-  const librarySummary = el('summary', { text: 'Browse the recipe library' });
-  libraryDetails.appendChild(librarySummary);
-  const libraryBody = el('div', { class: 'library-body' });
-  libraryDetails.appendChild(libraryBody);
-  librarySection.appendChild(libraryDetails);
-  let libraryLoaded = false;
-  libraryDetails.addEventListener('toggle', () => {
-    if (libraryDetails.open && !libraryLoaded) {
-      libraryLoaded = true;
-      loadLibrary();
-    }
-  }, { signal });
+  // ---- Worklist G1: the library lives in its own module ----
+  // See js/views/meals/library.js. It owns its DOM and its state; this view
+  // gives it the three things it cannot know and gets a section back.
+  const libraryPanel = createLibraryPanel({
+    signal,
+    isDestroyed: () => destroyed,
+    onAdded: () => loadMeals()
+  });
+  const librarySection = libraryPanel.section;
 
   const addMealForm = el('form');
   addMealForm.setAttribute('aria-label', 'Add a meal');
@@ -852,253 +800,6 @@ export function render(mountEl) {
    * Fetching several cuisine files on page load would cost bandwidth for a
    * panel most visits never open.
    */
-  async function loadLibrary() {
-    libraryBody.replaceChildren(el('p', { class: 'field-hint', text: 'Loading recipes…' }));
-
-    const [recipes, owned] = await Promise.all([loadAllRecipes(), existingLibraryRefs()]);
-    if (destroyed) return;
-
-    if (!recipes.ok) {
-      libraryBody.replaceChildren(el('p', {
-        class: 'field-hint',
-        text: 'The recipe library could not be loaded. Check your connection and reopen this.'
-      }));
-      libraryLoaded = false;
-      return;
-    }
-
-    libraryRecipes = recipes.data;
-    libraryOwned = owned.ok ? owned.data : new Map();
-    librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`;
-    renderLibrary();
-  }
-
-  function renderLibrary() {
-    libraryBody.replaceChildren();
-
-    const filterRow = el('div', { class: 'library-filters' });
-
-    const search = el('input', { id: 'library-search', type: 'search', placeholder: 'name or ingredient' });
-    search.value = libraryFilters.term;
-    const searchWrap = el('div', { class: 'field' });
-    searchWrap.append(el('label', { for: search.id, text: 'Search' }), search);
-    search.addEventListener('input', () => {
-      libraryFilters.term = search.value;
-      renderLibraryList();
-    }, { signal });
-    filterRow.appendChild(searchWrap);
-
-    const cuisines = [...new Set(libraryRecipes.map((r) => r.cuisine))].sort();
-    filterRow.appendChild(buildLibrarySelect('Cuisine', 'cuisine',
-      cuisines.map((c) => ({ value: c, label: c }))));
-    filterRow.appendChild(buildLibrarySelect('Budget', 'budget_tier', [
-      { value: 'budget', label: 'Budget' },
-      { value: 'everyday', label: 'Everyday' },
-      { value: 'special', label: 'Something special' }
-    ]));
-    filterRow.appendChild(buildLibrarySelect('Meal time', 'default_slot', [
-      { value: 'breakfast', label: 'Breakfast' },
-      { value: 'lunch', label: 'Lunch' },
-      { value: 'dinner', label: 'Dinner' },
-      { value: 'snack', label: 'Snack' }
-    ]));
-
-    // Worklist C1. Ren, two traces: "You've written the function and not
-    // the dropdown. I can tell, and that's a strange thing to be able to
-    // tell." filterRecipes has supported this since Phase 16 and 72 of the
-    // 100 recipes are tagged vegetarian.
-    //
-    // A single select rather than checkboxes: asking for "vegan AND gluten
-    // free" is a real need, but it is rarer than asking for one thing, and
-    // four tick boxes in a filter row is a wall. The select covers the
-    // common case; the combination is a wish.
-    filterRow.appendChild(buildLibrarySelect('Suitable for', 'dietaryOne', [
-      { value: 'vegetarian', label: 'Vegetarian' },
-      { value: 'vegan', label: 'Vegan' },
-      { value: 'gluten_free', label: 'Gluten free' },
-      { value: 'dairy_free', label: 'Dairy free' },
-      { value: 'nut_free', label: 'Nut free' }
-    ]));
-
-    libraryBody.appendChild(filterRow);
-    libraryBody.appendChild(libraryList);
-    renderLibraryList();
-  }
-
-  function buildLibrarySelect(label, key, options) {
-    const wrap = el('div', { class: 'field' });
-    const select = el('select', { id: `library-${key}` });
-    select.appendChild(el('option', { value: '', text: `Any ${label.toLowerCase()}` }));
-    for (const option of options) {
-      const opt = el('option', { value: option.value, text: option.label });
-      const current = key === 'dietaryOne'
-        ? (libraryFilters.dietary || [])[0]
-        : libraryFilters[key];
-      if (current === option.value) opt.selected = true;
-      select.appendChild(opt);
-    }
-    select.addEventListener('change', () => {
-      if (key === 'dietaryOne') {
-        // filterRecipes takes an array and requires EVERY tag, so a single
-        // choice becomes a one-element list rather than a special case.
-        libraryFilters.dietary = select.value ? [select.value] : [];
-      } else {
-        libraryFilters[key] = select.value;
-      }
-      renderLibraryList();
-    }, { signal });
-    wrap.append(el('label', { for: select.id, text: label }), select);
-    return wrap;
-  }
-
-  function renderLibraryList() {
-    const matches = filterRecipes(libraryRecipes, libraryFilters);
-    libraryList.replaceChildren();
-
-    if (matches.length === 0) {
-      libraryList.appendChild(el('li', { class: 'field-hint', text: 'Nothing matches those filters.' }));
-      return;
-    }
-
-    for (const recipe of matches) {
-      const item = el('li', { class: 'library-row' });
-      item.appendChild(el('span', { class: 'library-row-name', text: recipe.name }));
-
-      const meta = [recipe.cuisine, recipe.budget_tier, `${recipe.steps.length} steps`];
-      if ((recipe.dietary_tags || []).length) meta.push(recipe.dietary_tags.join(', ').replace(/_/g, ' '));
-      item.appendChild(el('span', { class: 'library-row-meta', text: meta.join(' · ') }));
-
-      // Already-added recipes are MARKED, not hidden. Seeing that you own
-      // it is information; making it vanish just looks like a bug.
-      if (libraryOwned.has(recipe.slug)) {
-        item.appendChild(el('span', { class: 'library-row-owned', text: 'Already in your meals' }));
-      } else {
-        const add = el('button', { type: 'button', class: 'btn btn-small', text: 'Add to my meals' });
-        add.setAttribute('aria-label', `Add ${recipe.name} to my meals`);
-        add.addEventListener('click', async () => {
-          add.disabled = true;
-          add.textContent = 'Adding…';
-          const result = await addLibraryRecipe(recipe);
-          if (destroyed) return;
-          if (!result.ok) {
-            add.disabled = false;
-            add.textContent = 'Add to my meals';
-            showToast(result.error.message);
-            return;
-          }
-          // Say what actually happened. Nothing here is invisible.
-          const message = describeAdd(result);
-          showToast(message);
-          announce(message);
-          libraryOwned.set(recipe.slug, result.data);
-          await loadMeals();
-          if (destroyed) return;
-          renderLibraryList();
-        }, { signal });
-        item.appendChild(add);
-      }
-
-      libraryList.appendChild(item);
-    }
-  }
-
-  function renderCookNow() {
-    cookResults.replaceChildren();
-
-    // Worklist E3. Tom eats a rotation of six meals deliberately. For
-    // somebody whose routine is the point, "you could cook these right
-    // now" is not helpfulness, it is noise.
-    //
-    // The section hides entirely rather than emptying: a heading with
-    // nothing under it is its own kind of clutter.
-    if ((getState().settings || {}).rotation_mode) {
-      cookNowSection.hidden = true;
-      return;
-    }
-    cookNowSection.hidden = false;
-
-    if (pantryStock === null) {
-      cookResults.appendChild(el('p', { class: 'field-hint', text: 'Reading your cupboard…' }));
-      return;
-    }
-
-    const scored = filterByIngredient(
-      scoreMeals(meals, ingredientsByMeal, pantryStock),
-      cookSearchInput.value
-    );
-
-    if (scored.length === 0) {
-      cookResults.appendChild(el('p', {
-        class: 'field-hint',
-        text: cookSearchInput.value.trim().length >= 2
-          ? 'No recipes use that. Try another ingredient.'
-          : 'Add ingredients to a recipe and this will tell you what you could cook.'
-      }));
-      return;
-    }
-
-    const bands = [
-      { key: BAND.READY, label: 'Ready now', open: true },
-      { key: BAND.NEARLY, label: 'Nearly there', open: true },
-      // Collapsed: if it needs three or more things it is a shopping trip,
-      // not a decision about tonight.
-      { key: BAND.SHOP, label: 'Needs a shop', open: false }
-    ];
-
-    for (const band of bands) {
-      const entries = scored.filter((e) => e.band === band.key);
-      if (entries.length === 0) continue;
-
-      const details = el('details', { class: `cook-band cook-band-${band.key}` });
-      details.open = band.open;
-      details.appendChild(el('summary', {
-        text: `${band.label} (${entries.length})`
-      }));
-
-      const list = el('ul', { class: 'cook-band-list' });
-      for (const entry of entries) list.appendChild(buildCookRow(entry));
-      details.appendChild(list);
-      cookResults.appendChild(details);
-    }
-  }
-
-  function buildCookRow(entry) {
-    const item = el('li', { class: 'cook-row' });
-    item.appendChild(el('span', { class: 'cook-row-name', text: entry.meal.name }));
-    item.appendChild(el('span', { class: 'cook-row-gaps', text: describeGaps(entry) }));
-
-    // An unrecorded amount is stated as an assumption the app is making,
-    // never as something you failed to do.
-    const assumption = describeAssumptions(entry);
-    if (assumption) {
-      item.appendChild(el('span', { class: 'cook-row-assumption', text: assumption }));
-    }
-
-    if (entry.gaps > 0) {
-      const add = el('button', {
-        type: 'button', class: 'btn btn-small', text: 'Add what is missing to the shopping list'
-      });
-      add.addEventListener('click', async () => {
-        add.disabled = true;
-        const items = gapsToShoppingItems(entry);
-        let failed = 0;
-        for (const line of items) {
-          const result = await addItem(line);
-          if (!result.ok) failed += 1;
-        }
-        add.disabled = false;
-        if (destroyed) return;
-        showToast(failed === 0
-          ? `${items.length} item${items.length === 1 ? '' : 's'} added to your shopping list.`
-          : `${items.length - failed} of ${items.length} added. Check your connection.`);
-        announce(`Added to your shopping list.`);
-      }, { signal });
-      item.appendChild(add);
-    }
-
-    return item;
-  }
-
   function buildOptionGroupRow(meal, entry) {
     const item = el('li', { class: 'ingredient-row option-group-row' });
 
@@ -2188,9 +1889,7 @@ export function render(mountEl) {
           + 'so the shopping list can work itself out.',
         actionLabel: 'Browse the recipe library',
         onAction: () => {
-          libraryDetails.open = true;
-          libraryDetails.scrollIntoView({ block: 'center' });
-          if (!libraryLoaded) { libraryLoaded = true; loadLibrary(); }
+          libraryPanel.open();
         },
         why: 'Or write your own below — there is no wrong way round.'
       }));
@@ -2365,7 +2064,10 @@ export function render(mountEl) {
       ingredientsByMeal = new Map();
     }
     renderMeals();
-    renderCookNow();
+    cookNowPanel.update({
+      meals, ingredientsByMeal, pantryStock,
+      rotationMode: Boolean((getState().settings || {}).rotation_mode)
+    });
     // The panel holds its own DOM. Without this, a change made inside it is
     // invisible until it is closed and reopened.
     refreshOpenSheet();

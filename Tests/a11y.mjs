@@ -989,6 +989,40 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   mount.remove();
 }
 
+// ---- Worklist G1: extracted panels keep their contract -------------------
+// The split is only safe if each module still owns its DOM and asks for
+// nothing else. These fail the moment somebody reaches back across.
+{
+  const lib = await import(pathToFileURL(path.join(REPO, 'js/views/meals/library.js')).href);
+  const cook = await import(pathToFileURL(path.join(REPO, 'js/views/meals/cookNow.js')).href);
+  const ac = new AbortController();
+
+  const panel = lib.createLibraryPanel({
+    signal: ac.signal, isDestroyed: () => false, onAdded: async () => {}
+  });
+  check('library: returns a section', panel.section instanceof window.HTMLElement);
+  check('library: and a way to open it', typeof panel.open === 'function');
+  check('library: has a heading before it is opened',
+    !!panel.section.querySelector('h3'));
+  // Loading on construction would fetch cuisine files for a panel most
+  // visits never open.
+  check('library: does not load until opened',
+    panel.section.querySelector('.library-list') === null);
+
+  const cookPanel = cook.createCookNowPanel({ signal: ac.signal, isDestroyed: () => false });
+  check('cook now: returns a section', cookPanel.section instanceof window.HTMLElement);
+  check('cook now: is told its data rather than fetching it',
+    typeof cookPanel.update === 'function');
+  cookPanel.update({ meals: [], ingredientsByMeal: new Map(), pantryStock: [] });
+  check('cook now: survives being given nothing', cookPanel.section.textContent.length > 0);
+  // Rotation mode hides the whole section rather than emptying it: a
+  // heading with nothing under it is its own clutter.
+  cookPanel.update({ rotationMode: true });
+  check('cook now: rotation mode hides the section entirely', cookPanel.section.hidden === true);
+
+  ac.abort();
+}
+
 // ---- Worklist E1: Settings is findable ----------------------------------
 // Priya: "It works. Finding anything in Settings is a scavenger hunt."
 // She needed the invite flow twice and hunted both times.

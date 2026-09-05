@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v82
+// service-worker.js — 01 Sep 2026 v83
+// v83 (worklist G1): TWO new paths — js/views/meals/library.js and
+// js/views/meals/cookNow.js. meals.js 2,421 -> 2,123.
 // v82 (worklist F2/F3/F4): empty states, page icons across six screens,
 // calendar event kinds by shape — lib/icons.js v4, views/calendar.js v3,
 // shopping/meals/mealPlan/pantry/foods headings.
@@ -221,7 +223,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v82';
+const CACHE_NAME = 'home-os-shell-v83';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
