@@ -1020,6 +1020,36 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   cookPanel.update({ rotationMode: true });
   check('cook now: rotation mode hides the section entirely', cookPanel.section.hidden === true);
 
+  // The method section is a factory per meal rather than a panel: a method
+  // belongs to one recipe and there is no state to carry between them.
+  const method = await import(pathToFileURL(path.join(REPO, 'js/views/meals/method.js')).href);
+  const section = method.createMethodSection({
+    meal: { id: 'm1', name: 'Test', default_serves: 4 },
+    steps: [{ id: 's1', step_number: 1, instruction: 'Boil the water.' }],
+    ingredientRows: [],
+    pantryStock: [],
+    signal: ac.signal,
+    isDestroyed: () => false,
+    onChanged: async () => {}
+  });
+  check('method: returns a section', section instanceof window.HTMLElement);
+  check('method: renders the steps it was given',
+    /boil the water/i.test(section.textContent));
+  check('method: offers a cook button when there are steps',
+    [...section.querySelectorAll('button')].some((b) => /cook this|carry on/i.test(b.textContent)));
+
+  // The failure this extraction actually had: `const steps = steps;`, a
+  // temporal-dead-zone throw the render gate could not see because it only
+  // fires when a meal SHEET is opened. Building with no steps exercises the
+  // same path without one.
+  const emptyMethod = method.createMethodSection({
+    meal: { id: 'm2', name: 'Empty', default_serves: 4 },
+    steps: [], ingredientRows: [], pantryStock: [],
+    signal: ac.signal, isDestroyed: () => false, onChanged: async () => {}
+  });
+  check('method: survives a meal with no steps at all',
+    emptyMethod.textContent.length > 0);
+
   ac.abort();
 }
 

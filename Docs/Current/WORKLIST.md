@@ -307,12 +307,13 @@ selector: `scanBtn` was already in scope, and a closure beats a
 
 ## BLOCK G — structural
 
-### G1. Split `meals.js` — ⚠️ **STARTED, two of seven**
+### G1. Split `meals.js` — ⚠️ **THREE of seven**
 
-**2,421 → 2,123 lines.** Two features extracted:
+**2,421 → 1,777 lines.** Three features extracted:
 
 - `js/views/meals/library.js` — the recipe library panel
 - `js/views/meals/cookNow.js` — "what could I make?"
+- `js/views/meals/method.js` — method steps and Cook Mode
 
 **The interface, and why it is not a context object.** The Phase 29 note
 assumed a `ctx` bag threaded through everything. That would have moved the
@@ -335,11 +336,29 @@ only what it genuinely cannot know:
 for nothing else, does not load until opened, survives being given nothing,
 and that rotation mode hides the section entirely rather than emptying it.
 
-**Five features still in `meals.js`:** the meal list and filter, ingredient
-rows and forms, macros, method steps and cook mode, and the food picker.
-Each is a bigger extraction than these two — steps in particular reach into
-ingredients — and the rule from Phase 29 stands: **one at a time, gates
-between each.**
+`method.js` is a **factory per meal** rather than a panel: a method belongs
+to one recipe and there is no state to carry between them. It is also the
+first module that genuinely reads another feature — a step's `{{ing:}}`
+token resolves against the meal's ingredients — so it is **given** the
+ingredient rows rather than fetching them. They have one owner, and it is
+not that module.
+
+### The bug this extraction had, and why it matters
+
+Substituting `stepsByMeal.get(meal.id) || []` for the new `steps` parameter
+produced **`const steps = steps;`** — a temporal-dead-zone throw.
+
+**The render gate could not see it.** It renders each view, and the method
+section only builds when a meal SHEET is opened. The a11y gate caught it,
+by four unrelated failures about the ingredient picker: the throw stopped
+the card build partway, and the picker vanished.
+
+Four new checks now build a method section directly, including one with no
+steps at all, which exercises that path without needing a sheet.
+
+**Four features still in `meals.js`:** the meal list and filter, ingredient
+rows and forms, macros, and the food picker. The rule from Phase 29 stands:
+**one at a time, gates between each.**
 
 ### G2. Unify the four DOM helper variants
 Documented and gated. Only worth doing with G1.
