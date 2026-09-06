@@ -2,7 +2,7 @@ h1"Calendar"
 p.field-hint[hidden=]
 div.calendar-controls
   button.btn[type=button]"Previous"
-  h2.calendar-month[role=status]"September <n>"
+  h2.calendar-month[role=status]"<month> <n>"
   button.btn[type=button]"Next"
 div.calendar-wrap
   table.calendar-table
@@ -45,7 +45,7 @@ div.calendar-wrap
           button.calendar-day[type=button]"<n>"
             span.calendar-day-number
         td
-          button.calendar-day.is-today[type=button]"<n>"
+          button.calendar-day[type=button]"<n>"
             span.calendar-day-number
         td
           button.calendar-day[type=button]"<n>"

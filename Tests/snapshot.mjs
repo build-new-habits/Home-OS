@@ -63,6 +63,14 @@ function normaliseText(text) {
   return String(text || '')
     .replace(/\s+/g, ' ')
     .trim()
+    // Weekday and month names are as much "today" as the number is, and the
+    // number was already normalised. Without this the baselines rot at
+    // midnight: on 6 Sep 2026 the water and calendar snapshots failed purely
+    // because Saturday had become Sunday. A gate that fails on the calendar
+    // rather than on the code teaches people to re-baseline without reading,
+    // which is the one habit that makes a snapshot gate worthless.
+    .replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(day|sday|nesday|rsday|urday)?\b/g, '<day>')
+    .replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)([a-z]+)?\b/g, '<month>')
     .replace(/\d{4}-\d{2}-\d{2}/g, '<date>')
     .replace(/\d{1,2}:\d{2}/g, '<time>')
     .replace(/[£$€]\s?\d[\d.,]*/g, '<money>')
@@ -85,8 +93,14 @@ function fingerprint(node, depth = 0) {
     const tag = child.tagName.toLowerCase();
     const bits = [tag];
 
+    // `is-today` moves to a different cell every midnight, so a calendar
+    // snapshot taken on Saturday fails on Sunday for no reason anyone can
+    // act on. Dropped for the same reason the date text is normalised: the
+    // gate is for structural change, and which day is today is not one.
     const cls = (child.getAttribute('class') || '')
-      .split(/\s+/).filter(Boolean).sort().join('.');
+      .split(/\s+/).filter(Boolean)
+      .filter((c) => c !== 'is-today')
+      .sort().join('.');
     if (cls) bits.push(`.${cls}`);
 
     for (const attr of ['role', 'type', 'aria-expanded', 'aria-pressed', 'scope', 'hidden']) {

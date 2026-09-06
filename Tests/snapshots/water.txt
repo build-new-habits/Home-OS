@@ -4,7 +4,7 @@ h1.page-heading"Water"
       path
   span
 article.card
-  h2.card-title"Today — Sat, Sep <n>"
+  h2.card-title"Today — <day>, <month> <n>"
   div.card-body
     p.water-total
     div.water-bar

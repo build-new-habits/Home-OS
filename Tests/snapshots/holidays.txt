@@ -46,25 +46,25 @@ section
       legend"Which days"
       div.radio-row
         input[type=checkbox]
-        label"Monday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Tuesday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Wednesday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Thursday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Friday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Saturday"
+        label"<day>"
       div.radio-row
         input[type=checkbox]
-        label"Sunday"
+        label"<day>"
     p.field-hint
     div.preview[role=status]
       p
