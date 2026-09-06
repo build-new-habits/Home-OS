@@ -31,9 +31,19 @@ is.
 
 ## Who this is for
 
-You, specifically. Not a multi-user product, not something designed to be
-handed to someone else later. Design decisions can be as personal and
-specific as needed — this is not a product that has to generalise.
+You, first and still. Every decision is allowed to be as specific as your
+situation demands, and the household features exist because your household
+does, not because a market asked for them.
+
+**Revised 6 Sep 2026.** This previously said "not something designed to be
+handed to someone else later". That is no longer the intent: the app is
+worth adapting and tidying to a standard where it could be. Building for
+one person remains the method — it is why the decisions are sharp — but it
+is no longer a ceiling on how finished the thing has to look.
+
+Nothing about that changes who it is FOR. It is still an app for somebody
+managing rehab, a weight goal and a household on a day when all three are
+tiring. Marketable does not mean generic.
 
 ## What this is not
 
@@ -42,9 +52,18 @@ specific as needed — this is not a product that has to generalise.
 - Not a diagnostic tool. It stores what a physio or GP has told you and
   tracks how you're doing against it. It does not decide what's safe for
   you to do.
-- Not built to impress anyone else — no onboarding funnel, no marketing
-  polish. Function and reliability over presentation, though accessibility
-  (WCAG 2.1/2.2 AA) is non-negotiable throughout.
+- ~~Not built to impress anyone else — no onboarding funnel, no marketing
+  polish. Function and reliability over presentation~~ — **struck 6 Sep
+  2026.** This line was read, fairly, as permission for the screen to be
+  untidy, and it cost the app for months: pages of stacked folds, five
+  button styles, empty states that said nothing. The device test of 5–6
+  September was almost entirely spent undoing what it licensed.
+
+  What replaces it is not polish for its own sake. It is RESOLUTION:
+  one idea per screen, one primary action, no half-finished state, and
+  nothing on screen that contradicts anything else on screen. Decoration
+  is still not the goal. Accessibility (WCAG 2.1/2.2 AA) remains
+  non-negotiable throughout.
 - Not a second Alongside product. It borrows Alongside's *build discipline*
   (schema-first, session rituals, version headers) because that discipline
   works — but the tone, the data model, and the audience are entirely
