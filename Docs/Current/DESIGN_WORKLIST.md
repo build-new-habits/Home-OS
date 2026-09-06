@@ -1,6 +1,12 @@
 # Design work list — towards something worth handing over
 
-<!-- Docs/Current/DESIGN_WORKLIST.md — 06 Sep 2026 v1 -->
+<!-- Docs/Current/DESIGN_WORKLIST.md — 06 Sep 2026 v2 -->
+
+> **Superseded by `ONE_BIG_BEAUTIFUL_BUILD.md`**, which carries the design
+> law, the wiring, the screen blueprints and the phased plan. This file
+> stays as the short version — the list of what is wrong — because a
+> one-page list of faults is quicker to check against a device than a
+> blueprint is.
 
 Written after the 5–6 September device tests, when the vision's "no
 marketing polish" line was struck. See `00_vision.md`.
