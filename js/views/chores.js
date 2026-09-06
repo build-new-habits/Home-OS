@@ -1,4 +1,4 @@
-// js/views/chores.js — 06 Sep 2026 v6
+// js/views/chores.js — 06 Sep 2026 v7
 // v6: a Due now section, and a colour palette instead of a colour wheel.
 // v4: THE FLAT LIST DOES NOT SCALE, AND NEITHER DID COMPLETION.
 //
@@ -35,7 +35,7 @@
 // one recurrence-builder factory (createRecurrenceBuilder) instead of
 // duplicating the fieldset — this is the only structural change from v1.
 import {
-  listProjects, createProject, countTasksInProject, deleteProject,
+  listProjects, createProject, updateProject, countTasksInProject, deleteProject,
   listTasks, createTask, updateTask, completeTask, uncompleteTask, deleteTask
 } from '../data/chores.js';
 import { upsertTaskEvent, removeTaskEvent, findEventByTaskId, listEvents } from '../data/calendar.js';
@@ -579,8 +579,7 @@ export function render(mountEl) {
 
     const due = tasks
       .map((task) => ({ task, state: taskState(task) }))
-      .filter(({ state }) => !state.done && !state.finished
-        && (state.cadence === 'once' || (state.occurrence && state.occurrence.date <= todayIso())))
+      .filter(({ state }) => state.dueNow)
       // Overdue first: the point of looking back is that a chore missed on
       // Monday is still the one that matters on Wednesday.
       .sort((a, b) => {
@@ -768,15 +767,31 @@ export function render(mountEl) {
       console.error('Unreadable recurrence rule on task', task.id, err);
       return null;
     }
+    // ---- Order matters, and it was wrong (device test 6 Sep 2026) -------
+    // "Marking tasks as done in the front screen doesn't get rid of them."
+    //
+    // Two faults, both here. The upcoming branch ignored completions, so
+    // ticking a chore dated next Monday marked next Monday done and then
+    // went on reporting next Monday as the next one, unchanged. And it sat
+    // ABOVE the done check, so a chore with any future date could never
+    // report itself done at all.
+    //
+    // Now: anything owed, then today if it is settled, then the next date
+    // NOT already ticked off.
     const outstanding = dates.filter((iso) => iso <= today && !isDone(doneKeys, task.id, iso));
     if (outstanding.length > 0) {
-      return { date: outstanding[0], overdue: outstanding[0] < today, done: false };
+      return { date: outstanding[0], overdue: outstanding[0] < today, done: false, future: false };
     }
-    const upcoming = dates.find((iso) => iso > today);
-    if (upcoming) return { date: upcoming, overdue: false, done: false };
     if (dates.includes(today) && isDone(doneKeys, task.id, today)) {
-      return { date: today, overdue: false, done: true };
+      return { date: today, overdue: false, done: true, future: false };
     }
+    const upcoming = dates.find((iso) => iso > today && !isDone(doneKeys, task.id, iso));
+    if (upcoming) return { date: upcoming, overdue: false, done: false, future: true };
+
+    // Every date in the window is ticked off. Say so against the next one
+    // rather than reporting the series finished, which means something else.
+    const anyFuture = dates.find((iso) => iso > today);
+    if (anyFuture) return { date: anyFuture, overdue: false, done: true, future: true };
     return null;
   }
 
@@ -787,7 +802,14 @@ export function render(mountEl) {
 
     if (!task.is_repeatable || !task.recurrence_rule) {
       const done = task.status === 'complete';
-      return { cadence: 'once', done, label: done ? 'Done' : 'To do', occurrence: null, finished: false };
+      // dueNow: owed TODAY. Separate from `done`, because a chore dated
+      // next month is neither done nor something you have to do now, and
+      // counting it as outstanding is what made the summary read "2 still
+      // to do" above two chores that were not due for weeks.
+      return {
+        cadence: 'once', done, label: done ? 'Done' : 'To do',
+        occurrence: null, finished: false, dueNow: !done
+      };
     }
 
     const occ = currentOccurrence(task, startDate);
@@ -795,13 +817,24 @@ export function render(mountEl) {
     if (!occ) {
       // A bounded rule that has run out. Said plainly, rather than left
       // looking permanently outstanding.
-      return { cadence: word, done: true, label: 'Finished — no more dates', occurrence: null, finished: true };
+      return {
+        cadence: word, done: true, label: 'Finished — no more dates',
+        occurrence: null, finished: true, dueNow: false
+      };
     }
-    if (occ.done) return { cadence: word, done: true, label: 'Done today', occurrence: occ, finished: false };
+    if (occ.done) {
+      return {
+        cadence: word, done: true, occurrence: occ, finished: false, dueNow: false,
+        label: occ.future ? `Done — next ${occ.date}` : 'Done today'
+      };
+    }
     const label = occ.date === todayIso()
       ? 'Due today'
       : (occ.overdue ? `Was due ${occ.date}` : `Next ${occ.date}`);
-    return { cadence: word, done: false, label, occurrence: occ, finished: false };
+    return {
+      cadence: word, done: false, label, occurrence: occ, finished: false,
+      dueNow: occ.date <= todayIso()
+    };
   }
 
   function passesFilters(task) {
@@ -845,7 +878,11 @@ export function render(mountEl) {
     for (const project of projects) {
       const all = tasksByProject.get(project.id) || [];
       const visible = all.filter(passesFilters);
-      const due = visible.filter((t) => !taskState(t).done).length;
+      // "Still to do" means owed now, not merely unfinished. Counted as
+      // !done, two chores due in September and November read as two things
+      // to do today, which is how the summary came to disagree with a
+      // completely empty Due now list directly below it.
+      const due = visible.filter((t) => taskState(t).dueNow).length;
       shown += visible.length;
       outstanding += due;
 
@@ -905,6 +942,50 @@ export function render(mountEl) {
         }
         if (projectSelectEl) populateProjectSelect(projectSelectEl, project.id);
         bodyWrap.appendChild(addTaskWrap);
+
+        // ---- Changing the colour of a project that already exists -------
+        // The palette only governs NEW projects, so the ones created with
+        // the old colour wheel keep their pure yellow and pure magenta —
+        // which is most of them, and the reason the screen still looks like
+        // a paint chart. There was no way to change one after the fact.
+        const colourWrap = document.createElement('div');
+        colourWrap.className = 'field field-inline project-colour';
+        const colourLabel = document.createElement('label');
+        colourLabel.htmlFor = `project-colour-${project.id}`;
+        colourLabel.textContent = 'Colour';
+        const colourPick = document.createElement('select');
+        colourPick.id = `project-colour-${project.id}`;
+        for (const c of PROJECT_COLOURS) {
+          const opt = document.createElement('option');
+          opt.value = c.value;
+          opt.textContent = c.label;
+          colourPick.appendChild(opt);
+        }
+        // A colour from before the palette has no option to select, so the
+        // control would silently show the first one and imply the project
+        // is green when it is not. Say what it actually is instead.
+        const known = PROJECT_COLOURS.some((c) => c.value === project.colour);
+        if (!known) {
+          const opt = document.createElement('option');
+          opt.value = project.colour;
+          opt.textContent = 'Its current colour';
+          colourPick.appendChild(opt);
+        }
+        colourPick.value = project.colour;
+        colourPick.addEventListener('change', async () => {
+          const result = await updateProject(project.id, { colour: colourPick.value });
+          if (!result.ok) {
+            console.error('Failed to change a project colour:', result.error);
+            showToast("Couldn't change that colour — try again.");
+            colourPick.value = project.colour;
+            return;
+          }
+          project.colour = colourPick.value;
+          announce(`${project.title} colour changed.`);
+          renderProjects();
+        }, { signal });
+        colourWrap.append(colourLabel, colourPick);
+        bodyWrap.appendChild(colourWrap);
 
         const projectActions = document.createElement('div');
         projectActions.className = 'card-actions';

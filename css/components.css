@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v60 */
+/* css/components.css — 06 Sep 2026 v61 */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -3482,3 +3482,17 @@ body.sheet-open {
 }
 
 .due-now-item .btn { flex: 0 0 auto; }
+
+/* Row layout, and it must reset .field's column direction or the label
+   stacks above with a gap — the same trap that broke the meal picker's
+   filters earlier today. */
+.field-inline.project-colour {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.field-inline.project-colour select {
+  min-height: var(--tap-min);
+}

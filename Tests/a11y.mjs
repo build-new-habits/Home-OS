@@ -944,6 +944,34 @@ check('chores: no task rows are rendered while every project is shut',
 const choFilterBtn = [...choMount.querySelectorAll('button')]
   .find((b) => /^Filter/.test(b.textContent));
 check('chores: a filter control exists', !!choFilterBtn);
+
+// ---- The headline number and the list below must agree ----------------
+// Device test 6 Sep 2026: "Filter, 2 tasks, 2 to do remains and had
+// nothing inside the door." The summary counted every unfinished task,
+// including two dated weeks away, while Due now — correctly — listed none.
+// Two numbers describing the same thing, disagreeing on the same screen.
+//
+// This asserts they cannot drift apart again, without caring what the
+// number is: whatever "still to do" means, it has to mean the same thing
+// in both places.
+{
+  const summary = [...choMount.querySelectorAll('*')]
+    .map((n) => n.textContent || '')
+    .find((t) => /still to do\./.test(t) && t.length < 120) || '';
+  const claimed = Number((summary.match(/(\d+) still to do/) || [])[1]);
+  const listed = choMount.querySelectorAll('.due-now-item').length;
+  check('chores: the "still to do" count matches what Due now lists',
+    Number.isFinite(claimed) && claimed === listed,
+    `summary says ${claimed}, Due now shows ${listed}`);
+}
+
+// Anything a project row calls "Next <date>" is scheduled, not owed, and
+// must not also be sitting under Due now.
+//
+// Written first as "the quarterly chore must not appear", which failed —
+// correctly. Its 1 August occurrence had never been ticked, so it was
+// genuinely overdue and the app was right. Naming a fixture row was the
+// mistake; the rule is what matters, so the rule is what is asserted.
 check('chores: with nothing filtered the button carries no count',
   !!choFilterBtn && choFilterBtn.textContent.trim() === 'Filter');
 
@@ -963,6 +991,16 @@ check('chores: opening a project reveals its tasks', choRows.length === 2);
 // check, which is the wrong way round.
 check('chores: only the open project renders rows',
   !choMount.querySelector('.project-list').textContent.includes('Fix the gate'));
+
+{
+  const dueText = (choMount.querySelector('.due-now-list') || { textContent: '' }).textContent;
+  const scheduled = [...choMount.querySelectorAll('.task-row')]
+    .filter((row) => /Next \d{4}-/.test(row.textContent))
+    .map((row) => (row.querySelector('.task-title') || row).textContent.trim());
+  check('chores: a chore scheduled for later is not also listed as due now',
+    scheduled.every((title) => title && !dueText.includes(title)),
+    scheduled.join(' | '));
+}
 
 // Cadence is derived from the rule and shown, so a filter by it makes sense.
 check('chores: a task row states how often it repeats',
