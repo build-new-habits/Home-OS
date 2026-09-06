@@ -13,7 +13,7 @@ section
       p.empty-state
       button.btn.btn-primary[type=button]"Add a project"
       p.field-hint
-  button.btn[type=button][aria-expanded=false]"Add a project"
+  button.btn[type=button][aria-expanded=false][hidden=]"Add a project"
   div[hidden=]
     form
       div.field
@@ -31,3 +31,5 @@ section
           option
           option
       button.btn.btn-block.btn-primary[type=submit]"Add project"
+div.action-bar
+  button.action-bar__control.btn.btn-primary[type=button]"Add a project"

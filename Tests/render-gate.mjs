@@ -176,6 +176,26 @@ for (const name of VIEWS) {
     const h1 = mount.querySelector('h1');
     if (!h1) errors.push(`${name}.js: rendered no <h1> (router focuses it on every route change)`);
 
+    // ---- One primary action, and it must say what it does ---------------
+    // Design work list D1. The action bar exists so the thing a screen is
+    // for sits where a thumb reaches. Two of them, or one holding three
+    // buttons, is a toolbar — and a screen with three equally important
+    // things to do has not finished being designed.
+    const bars = mount.querySelectorAll('.action-bar');
+    if (bars.length > 1) {
+      errors.push(`${name}.js: ${bars.length} action bars; a screen has one primary action`);
+    }
+    for (const bar of bars) {
+      const controls = bar.querySelectorAll('button, a');
+      if (controls.length !== 1) {
+        errors.push(`${name}.js: action bar holds ${controls.length} controls, expected 1`);
+      }
+      for (const c of controls) {
+        const label = (c.getAttribute('aria-label') || c.textContent || '').trim();
+        if (!label) errors.push(`${name}.js: the action bar's control has no accessible name`);
+      }
+    }
+
     // ---- A claimed state must be the state on screen --------------------
     // Device test 5 Sep 2026. The pantry's "Add something to the pantry"
     // button carried aria-expanded="false" above a panel that had never

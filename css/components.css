@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v61 */
+/* css/components.css — 06 Sep 2026 v62 */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -3495,4 +3495,40 @@ body.sheet-open {
 
 .field-inline.project-colour select {
   min-height: var(--tap-min);
+}
+
+/* ---- Action bar (design work list D1) --------------------------------
+   Sits directly above the bottom nav, holding the one thing this screen is
+   for. Read at the top, press at the bottom: the top third of a phone is
+   the hardest place to reach one-handed, and this app is used by someone
+   with a right-side injury from wrist to collarbone.
+
+   Sticky rather than fixed, deliberately. Sticky participates in layout, so
+   it reserves its own height and the last row of a list can never end up
+   hidden underneath it — which would trade a reaching problem for a worse
+   one. */
+.action-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  margin: var(--space-5) calc(var(--space-4) * -1) 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-raised);
+  border-top: 1px solid var(--color-border);
+}
+
+.action-bar__control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--tap-min);
+  text-decoration: none;
+}
+
+/* A disabled link cannot be disabled, only announced as such, so it is
+   dimmed and made unclickable here to match. */
+.action-bar__control[aria-disabled="true"] {
+  opacity: 0.6;
+  pointer-events: none;
 }

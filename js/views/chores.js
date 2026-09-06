@@ -1,4 +1,4 @@
-// js/views/chores.js — 06 Sep 2026 v7
+// js/views/chores.js — 06 Sep 2026 v8
 // v6: a Due now section, and a colour palette instead of a colour wheel.
 // v4: THE FLAT LIST DOES NOT SCALE, AND NEITHER DID COMPLETION.
 //
@@ -45,6 +45,7 @@ import { showCompletionStamp, hideCompletionStamp } from '../components/completi
 import { confirmDialog } from '../components/confirmDialog.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { createActionBar } from '../components/actionBar.js';
 import { emptyState } from '../components/emptyState.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { listBetween, completionKeys, isDone, markDone, markNotDone }
@@ -530,7 +531,14 @@ export function render(mountEl) {
     const open = addProjectToggle.getAttribute('aria-expanded') === 'true';
     addProjectToggle.setAttribute('aria-expanded', String(!open));
     addProjectBody.hidden = open;
+    if (!open) {
+      addProjectBody.scrollIntoView?.({ block: 'center' });
+      addProjectBody.querySelector('input')?.focus();
+    }
   }, { signal });
+  // The toggle itself moves to the action bar at the foot of the screen; the
+  // form it opens stays here, in the section it belongs to.
+  addProjectToggle.hidden = true;
   projectsSection.append(addProjectToggle, addProjectBody);
 
   // Built ONCE and moved into whichever project is open, so the recurrence
@@ -633,6 +641,18 @@ export function render(mountEl) {
   }
 
   mountEl.append(projectsSection);
+
+  // ---- Design work list D1 --------------------------------------------
+  // "Add a project" was a quiet outlined button below seven project rows,
+  // reachable only by scrolling to the bottom. It is the one thing this
+  // screen is for that is not already a row you can tap, so it goes where a
+  // thumb already is.
+  const projectBar = createActionBar({
+    label: 'Add a project',
+    signal,
+    onClick: () => addProjectToggle.click()
+  });
+  mountEl.appendChild(projectBar.element);
 
   // ================= Projects =================
 
