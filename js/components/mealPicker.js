@@ -1,4 +1,5 @@
-// js/components/mealPicker.js — 06 Sep 2026 v1
+// js/components/mealPicker.js — 06 Sep 2026 v2
+// v2: filters shown, not folded — it has a screen of its own now.
 //
 // Choosing what to eat, from everything you could eat.
 //
@@ -106,8 +107,10 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
   // Search and source answer most questions. Cuisine, diet and budget are
   // real needs but not every-time needs, and six controls stacked above a
   // list is the clutter this whole redesign is undoing.
-  const more = el('details', { class: 'meal-picker__more' });
-  more.appendChild(el('summary', { text: 'Narrow it down' }));
+  // Shown, not folded. On a screen of its own there is room for five
+  // controls, and hiding filters behind a disclosure was the collapsible
+  // habit this redesign is meant to be leaving behind.
+  const more = el('div', { class: 'meal-picker__more' });
 
   const slotSelect = el('select', { id: 'meal-picker-slot' });
   for (const s of SLOTS) slotSelect.appendChild(el('option', { value: s.value, text: s.label }));
@@ -134,12 +137,13 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     dietRow.appendChild(chip);
   }
 
-  more.append(
+  const filterGrid = el('div', { class: 'meal-picker__filters' });
+  filterGrid.append(
     labelled('Meal time', slotSelect),
     labelled('Cuisine', cuisineSelect),
-    labelled('Budget', budgetSelect),
-    dietRow
+    labelled('Budget', budgetSelect)
   );
+  more.append(filterGrid, dietRow);
   root.appendChild(more);
 
   const count = el('p', { class: 'meal-picker__count', role: 'status' });

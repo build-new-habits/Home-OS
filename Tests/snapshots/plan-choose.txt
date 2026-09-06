@@ -1,0 +1,39 @@
+h1.page-heading"Choose a meal"
+  span
+p.choose-context
+a.btn.btn-quiet"Back to the plan"
+div.meal-picker
+  label.visually-hidden"Search meals"
+  input.meal-picker__search[type=search]
+  div.meal-picker__chips[role=group]
+    button.chip-toggle[type=button][aria-pressed=true]"Everything"
+    button.chip-toggle[type=button][aria-pressed=false]"My meals"
+    button.chip-toggle[type=button][aria-pressed=false]"Library"
+  div.meal-picker__more
+    div.meal-picker__filters
+      div.field.field-inline
+        label"Meal time"
+        select
+          option
+          option
+          option
+          option
+          option
+      div.field.field-inline
+        label"Cuisine"
+        select
+      div.field.field-inline
+        label"Budget"
+        select
+          option
+          option
+          option
+          option
+    div.meal-picker__chips[role=group]
+      button.chip-toggle[type=button][aria-pressed=false]"Vegetarian"
+      button.chip-toggle[type=button][aria-pressed=false]"Vegan"
+      button.chip-toggle[type=button][aria-pressed=false]"Gluten free"
+      button.chip-toggle[type=button][aria-pressed=false]"Dairy free"
+      button.chip-toggle[type=button][aria-pressed=false]"Nut free"
+  p.meal-picker__count[role=status]
+  ul.meal-picker__list

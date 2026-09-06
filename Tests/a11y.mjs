@@ -803,6 +803,38 @@ const reachable = new Set([
   navMod.PRIMARY_ACTION.path,
   navMod.FIRST_RUN_ACTION.path
 ]);
+// A hub tile is not the only honest way to reach a page. "Choose a meal"
+// (6 Sep 2026) is opened by a button that first records which day and slot
+// you are filling, which a static <a> could not do — and it is no less
+// reachable for that.
+//
+// So the set is widened to anything a view actually navigates to. This is
+// broader than before, deliberately: the gate exists to catch pages nothing
+// points at, and a navigate() call points at one. It would still fail on a
+// route that no hub lists AND no code navigates to, which is the case it
+// was written for.
+const viewDirs = ['js/views', 'js/views/pantry', 'js/views/meals', 'js/lib'];
+for (const dir of viewDirs) {
+  // fs.readdirSync, not a bare readdirSync: this file imports the module,
+  // not the functions. Written bare the first time, where the ReferenceError
+  // was swallowed by the catch below and every directory was skipped in
+  // silence — the loop ran, found nothing, and reported nothing wrong.
+  let entries = [];
+  try {
+    entries = fs.readdirSync(path.join(REPO, dir)).filter((f) => f.endsWith('.js'));
+  } catch (error) {
+    // A missing directory is fine and expected. Anything else is a fault in
+    // this gate and must not be mistaken for "no views here".
+    if (error && error.code !== 'ENOENT') throw error;
+    continue;
+  }
+  for (const file of entries) {
+    const src = fs.readFileSync(path.join(REPO, dir, file), 'utf8');
+    for (const m of src.matchAll(/navigate\(\s*'([a-z0-9-]+)'/g)) reachable.add(m[1]);
+    for (const m of src.matchAll(/'#\/([a-z0-9-]+)'/g)) reachable.add(m[1]);
+  }
+}
+
 const orphans = routesMod.routes.map((r) => r.path).filter((p) => !reachable.has(p));
 check('every route is reachable from the nav bar or a hub',
   orphans.length === 0, orphans.length ? `orphaned: ${orphans.join(', ')}` : '');

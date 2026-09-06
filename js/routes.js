@@ -156,6 +156,13 @@ export const routes = [
     path: 'pantry-add',
     title: 'Add to the pantry',
     load: () => import('./views/pantry/add.js')
+  },
+  // Device test 6 Sep 2026. Appended, per the append-only rule. Choosing a
+  // meal was a screen inside a form; it is a screen now.
+  {
+    path: 'plan-choose',
+    title: 'Choose a meal',
+    load: () => import('./views/planChoose.js')
   }
 ];
 

@@ -609,20 +609,28 @@ await settle(80);
     cellAdd.dispatchEvent(new window.Event('click', { bubbles: true }));
     await settle();
 
-    const slotNow = planMount.querySelector('#plan-slot').value;
-    check('pressing Add sets the meal time it names',
-      wanted.includes(slotNow),
-      `${wanted} vs slot=${slotNow}`);
-    check('pressing Add tells the picker which meal time to show',
-      planMount.querySelector('#meal-picker-slot').value === slotNow,
-      'the picker filter must follow the slot, not lag a step behind');
-    check('pressing Add moves focus somewhere a person can type',
-      !!window.document.activeElement
-      && picker0().contains(window.document.activeElement),
-      'focus went to a hidden element, so the button looked dead');
+    // Since 6 Sep 2026 this opens the Choose a meal screen rather than
+    // arranging a form in place. Two things must be true: it goes there,
+    // and it takes the day and slot with it. Arriving at a chooser that has
+    // forgotten which meal it is choosing for is the failure to guard.
+    check('pressing Add opens the choosing screen',
+      window.location.hash === '#/plan-choose',
+      `hash was ${window.location.hash}`);
+
+    // Read through the module, not through sessionStorage directly: the
+    // draft falls back to memory where storage is unavailable, and a test
+    // that only knows about one of the two would pass or fail for reasons
+    // that have nothing to do with the button.
+    const draftMod = await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href);
+    const draft = draftMod.readDraft();
+    check('pressing Add carries the day to the choosing screen',
+      !!draft.day && wanted.includes(draft.day === 'thu' ? 'thursday' : draft.day),
+      JSON.stringify(draft));
+    check('pressing Add carries the meal time to the choosing screen',
+      !!draft.slot && wanted.includes(draft.slot),
+      JSON.stringify(draft));
   }
 }
-function picker0() { return planMount.querySelector('.meal-picker'); }
 
 // --- add to plan, blank meal, refused ---
 clearCalls();
@@ -638,17 +646,41 @@ clearCalls();
 setValue(planMount.querySelector('#plan-day'), 'thu');
 setValue(planMount.querySelector('#plan-slot'), 'dinner');
 
-// 6 Sep 2026: the meal is chosen from the picker rather than by setting a
-// <select> value. The select still carries the answer to the form — every
-// assertion below is unchanged — but writing to it directly would now test
-// a path no person can take, because it holds only the option you picked.
-const pickable = [...planMount.querySelectorAll('.meal-picker__pick')];
-check('the meal picker offers something to choose', pickable.length > 0);
+// 6 Sep 2026: choosing happens on its own screen, so this walks the real
+// round trip — open the chooser, pick something, come back — rather than
+// setting a <select> value no person can set.
+const chooseMount = window.document.createElement('main');
+window.document.body.appendChild(chooseMount);
+const chooseView = await import(pathToFileURL(path.join(REPO, 'js/views/planChoose.js')).href);
+const cleanupChoose = chooseView.render(chooseMount, {});
+await settle(80);
+
+const pickable = [...chooseMount.querySelectorAll('.meal-picker__pick')];
+check('the choosing screen offers something to choose', pickable.length > 0);
 if (pickable.length) pickable[0].dispatchEvent(new window.Event('click', { bubbles: true }));
 await settle();
+if (typeof cleanupChoose === 'function') cleanupChoose();
+chooseMount.remove();
 
+const afterChoice = (await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href)).readDraft();
+check('choosing records the meal for the form to pick up', !!afterChoice.mealId,
+  JSON.stringify(afterChoice));
+
+// Back to the plan: the form must come up already knowing what was chosen.
+if (typeof cleanupPlan === 'function') cleanupPlan();
+planMount.replaceChildren();
+const cleanupPlan2 = mealPlanView.render(planMount, {});
+await settle(80);
+check('returning to the plan shows the chosen meal',
+  /Chosen: /.test(planMount.textContent),
+  'the round trip must not lose the choice');
+
+const planForm2 = planMount.querySelector('#plan-meal').closest('form');
+clearCalls();
+setValue(planMount.querySelector('#plan-day'), 'thu');
+setValue(planMount.querySelector('#plan-slot'), 'dinner');
 setValue(planMount.querySelector('#plan-serves-new'), '5');
-submit(planForm);
+submit(planForm2);
 await settle();
 w = writes().find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
 check('add to plan inserts into `weekly_meal_plan`', !!w, JSON.stringify(writes()));

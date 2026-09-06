@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 06 Sep 2026 v8
+// js/views/mealPlan.js — 06 Sep 2026 v9
+// v9: choosing a meal moved to its own screen.
 // v7: the meal picker replaces a <select> of your own dinners.
 // The weekly plan as its own page.
 //
@@ -42,7 +43,8 @@ import {
 import { el, field, selectFrom } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { emptyState } from '../components/emptyState.js';
-import { createMealPicker } from '../components/mealPicker.js';
+import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
+import { navigate } from '../router.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
   return found ? found.label : value;
@@ -177,21 +179,13 @@ export function render(mountEl) {
       planDaySelect.value = day.value;
       planSlotSelect.value = slot.value;
 
-      // Setting .value in code does NOT fire a change event, so the picker
-      // never heard which slot was being filled and went on showing the
-      // previous meal time — the one thing this button exists to set up.
-      picker.setSlot(slot.value);
-
-      // Focus used to go to the meal <select>. That element is now hidden
-      // and unfocusable, so this button did nothing visible at all: no
-      // scroll, no focus, no sign it had been pressed. The search box is
-      // the real first control of the form now, so focus goes there and
-      // brings the picker into view with it.
-      picker.element.scrollIntoView?.({ block: 'center' });
-      const search = picker.element.querySelector('input');
-      if (search) search.focus();
-
-      announce(`Adding a meal to ${day.label} ${slot.label.toLowerCase()}. Choose a meal below.`);
+      // Straight to the choosing screen with the day and slot in hand.
+      // Pressing Add in a Tuesday lunch cell is already the whole question;
+      // making someone then scroll to a form and set two selects that
+      // already know the answer is asking it twice.
+      writeDraft({ day: day.value, slot: slot.value });
+      announce(`Choosing a meal for ${day.label} ${slot.label.toLowerCase()}.`);
+      navigate('plan-choose');
     }, { signal });
     cell.appendChild(addBtn);
 
@@ -389,30 +383,32 @@ export function render(mountEl) {
   const chosenLabel = el('p', { class: 'chosen-meal', role: 'status' });
   chosenLabel.textContent = 'No meal chosen yet.';
 
-  const picker = createMealPicker({
-    signal,
-    getMeals: () => meals,
-    onChoose: ({ id, name }) => {
-      planMealSelect.replaceChildren(el('option', { value: id, text: name }));
-      planMealSelect.value = id;
-      chosenLabel.textContent = `Chosen: ${name}`;
-      planError.hidden = true;
-      announce(`${name} chosen. Add to plan to save it.`);
-      planSubmit.scrollIntoView?.({ block: 'nearest' });
-    }
+  // The picker had been built inline here, with its filters behind a fold —
+  // a screen inside a screen, sitting in a form that already had two selects
+  // above it and two fields below. Choosing what to eat now gets its own
+  // page and this is the door to it.
+  const chooseBtn = el('button', {
+    type: 'button', class: 'btn btn-block choose-meal-btn', text: 'Choose a meal'
   });
+  chooseBtn.addEventListener('click', () => {
+    writeDraft({ day: planDaySelect.value, slot: planSlotSelect.value });
+    navigate('plan-choose');
+  }, { signal });
 
-  // The slot being filled IS the question. Choosing Lunch and then being
-  // offered dinners is the exact complaint this replaces.
-  planSlotSelect.addEventListener('change', () => picker.setSlot(planSlotSelect.value), { signal });
-  picker.setSlot(planSlotSelect.value);
-  picker.load();
+  /** Fills the form in from whatever came back off the choosing screen. */
+  function applyChosen(id, name) {
+    planMealSelect.replaceChildren(el('option', { value: id, text: name }));
+    planMealSelect.value = id;
+    chosenLabel.textContent = `Chosen: ${name}`;
+    chooseBtn.textContent = 'Choose a different meal';
+    planError.hidden = true;
+  }
 
   planForm.append(
     el('h2', { text: 'Add a meal to the plan' }),
     field('Day', planDaySelect),
     field('Meal time', planSlotSelect),
-    picker.element,
+    chooseBtn,
     planMealSelect,
     chosenLabel,
     field('Servings for this one time (optional)', planServesInput, planServesHint),
@@ -421,15 +417,36 @@ export function render(mountEl) {
   );
   mountEl.appendChild(planForm);
 
+  // ---- Coming back from the choosing screen ----------------------------
+  // The draft carries the day and slot out and the meal back. Reading it
+  // here is what makes the round trip feel like one action rather than two
+  // screens that happen to be next to each other.
+  {
+    const draft = readDraft();
+    if (draft.day) planDaySelect.value = draft.day;
+    if (draft.slot) planSlotSelect.value = draft.slot;
+    if (draft.mealId && draft.mealName) {
+      applyChosen(draft.mealId, draft.mealName);
+      announce(`${draft.mealName} chosen for ${planDaySelect.value}. Add to plan to save it.`);
+      planForm.scrollIntoView?.({ block: 'center' });
+    }
+    // The day and slot stay for the next trip; the meal does not, or
+    // reopening the plan tomorrow would show a stale choice as if it were
+    // waiting to be saved.
+    clearDraft();
+    if (draft.day || draft.slot) writeDraft({ day: draft.day, slot: draft.slot });
+  }
+
   planForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     planError.hidden = true;
     if (!planMealSelect.value) {
       // No longer "add a recipe on the Meals page first": the library is in
       // the list above, so there is always something to choose.
-      planError.textContent = 'Pick a meal from the list above first.';
+      planError.textContent = 'Choose a meal first.';
       planError.hidden = false;
-      picker.element.scrollIntoView?.({ block: 'nearest' });
+      chooseBtn.scrollIntoView?.({ block: 'nearest' });
+      chooseBtn.focus?.();
       return;
     }
     const mealName = planMealSelect.options[planMealSelect.selectedIndex].textContent;
@@ -486,13 +503,14 @@ export function render(mountEl) {
   }, { signal });
 
   function repopulateMealSelect() {
+    // Nothing to repopulate: the select holds only the chosen meal, and the
+    // choosing screen reads the meal list itself.
     // Was: fill a <select> with every meal you own. The select now holds
     // exactly one option — whatever you chose — so filling it here would
     // wipe that choice out from under the form.
     //
     // The picker reads `meals` live and does its own ordering (favourites
     // first, then alphabetical), so it only needs telling to redraw.
-    picker.refresh();
   }
 
   async function loadPlan() {

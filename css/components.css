@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v57 */
+/* css/components.css — 06 Sep 2026 v58 */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -3304,24 +3304,38 @@ body.sheet-open {
   outline-offset: 2px;
 }
 
-.meal-picker__more > summary { font-size: var(--text-sm); }
+/* The filters are no longer folded: on a screen of their own there is room
+   to show them, and a fold in front of five controls was the "collapsible
+   experience" this was supposed to be getting away from.
 
-.meal-picker__more .field-inline {
-  display: flex;
-  align-items: center;
+   The previous rule set `flex: 0 0 6.5rem` on the label to give it a fixed
+   WIDTH — but .field is flex-direction: column, which this did not reset, so
+   6.5rem became a fixed HEIGHT. That is why every label sat centred in a
+   tall empty band above its control. */
+.meal-picker__filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: var(--space-3);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
-.meal-picker__more .field-inline label {
-  flex: 0 0 6.5rem;
-  font-size: var(--text-sm);
+.meal-picker__filters .field {
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 0;
 }
 
-.meal-picker__more .field-inline select {
-  flex: 1 1 auto;
+.meal-picker__filters select {
+  width: 100%;
   min-height: var(--tap-min);
 }
+
+.choose-context {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.choose-meal-btn { margin-bottom: var(--space-4); }
 
 .meal-picker__count {
   margin: var(--space-3) 0 var(--space-2);
