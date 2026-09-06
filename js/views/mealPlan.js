@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 06 Sep 2026 v9
+// js/views/mealPlan.js — 06 Sep 2026 v10
 // v9: choosing a meal moved to its own screen.
 // v7: the meal picker replaces a <select> of your own dinners.
 // The weekly plan as its own page.
@@ -115,7 +115,18 @@ export function render(mountEl) {
     if (message) syncNote.textContent = message;
   });
 
+  // Says the columns are there before you have to discover them by accident.
+  mountEl.appendChild(el('p', {
+    class: 'plan-hint',
+    text: 'Breakfast, lunch, dinner and snack — scroll the table sideways to reach them all.'
+  }));
+
   const tableWrap = el('div', { class: 'plan-wrap' });
+  // A region that scrolls must be reachable by keyboard, or its content is
+  // unreachable without a mouse or a touchscreen (WCAG 2.1.1).
+  tableWrap.setAttribute('role', 'region');
+  tableWrap.setAttribute('aria-label', 'The week, scrollable sideways');
+  tableWrap.tabIndex = 0;
   const planTable = el('table', { class: 'plan-table' });
   tableWrap.appendChild(planTable);
   mountEl.appendChild(tableWrap);

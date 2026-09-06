@@ -78,9 +78,43 @@ export async function loadAllRecipes() {
   return { ok: true, data: all };
 }
 
+/* ---- What the dish is built on (device test 6 Sep 2026) --------------
+   "There's no meat or fish filter options."
+
+   There were not, and there is no tag for it: the library carries only
+   vegetarian, vegan, gluten_free and dairy_free. Rather than hand-tag 110
+   recipes, this reads the ingredients, which is where the answer already
+   is.
+
+   Stock and fish sauce are deliberately NOT counted. A risotto made with
+   chicken stock is not what anyone means by "show me a meat dish", and a
+   Thai curry seasoned with fish sauce is not a fish supper. Counting them
+   would make both filters useless by returning almost everything.
+
+   Judged by ingredient rather than by absence: a recipe with neither is
+   neither, not automatically vegetarian, because "no meat in the list" and
+   "suitable for vegetarians" are different claims and the second one is
+   what the dietary tags are for. */
+const MEAT = /\b(beef|lamb|pork|chicken|turkey|bacon|sausage|ham|chorizo|duck|steak|gammon|mince)\b/;
+const FISH = /\b(salmon|tuna|cod|haddock|prawn|prawns|anchovy|mackerel|sardine|shrimp|squid|crab)\b/;
+const FLAVOURING = /^(stock-|fish-sauce)/;
+
+/** @returns {string[]} some of ['meat', 'fish'] */
+export function proteinsOf(recipe) {
+  const out = new Set();
+  for (const ing of recipe.ingredients || []) {
+    const ref = String(ing.ref || ing.name || '');
+    if (FLAVOURING.test(ref)) continue;
+    const words = ref.replace(/[^a-z]+/gi, ' ');
+    if (MEAT.test(words)) out.add('meat');
+    if (FISH.test(words)) out.add('fish');
+  }
+  return [...out];
+}
+
 /** Filters a recipe list. Every filter is optional and they combine. */
 export function filterRecipes(recipes = [], {
-  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = ''
+  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = '', proteins = []
 } = {}) {
   const q = normalise(term);
   return recipes.filter((r) => {
@@ -90,6 +124,13 @@ export function filterRecipes(recipes = [], {
     // A recipe must carry EVERY tag asked for. Tags say what a meal is, and
     // asking for vegan means vegan, not "vegan or vegetarian".
     if (dietary.length && !dietary.every((t) => (r.dietary_tags || []).includes(t))) return false;
+    // Meat and fish are asked for, not ruled out, so ANY match counts:
+    // picking both means "something with meat or fish in it", which is what
+    // pressing two buttons that name foods reads as.
+    if (proteins.length) {
+      const has = proteinsOf(r);
+      if (!proteins.some((p) => has.includes(p))) return false;
+    }
     if (q.length >= 2) {
       const haystack = normalise(
         `${r.name} ${r.cuisine} ${(r.ingredients || []).map((i) => i.ref || i.name).join(' ')}`

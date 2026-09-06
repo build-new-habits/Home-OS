@@ -11,7 +11,8 @@ div.empty-state-block
   p.empty-state
   a.btn.btn-primary"Plan the week"
   p.field-hint
-div.plan-wrap
+p.plan-hint
+div.plan-wrap[role=region]
   table.plan-table
     caption.visually-hidden"Weekly meal plan. Each row is a day of the week, each column a meal time."
     thead

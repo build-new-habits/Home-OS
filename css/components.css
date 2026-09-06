@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v58 */
+/* css/components.css — 06 Sep 2026 v59 */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -870,6 +870,37 @@ details[open] > summary::before {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: var(--space-4);
+}
+
+/* ---- The wrapper that was never styled (device test 6 Sep 2026) -------
+   .plan-wrap has existed in the markup since the plan was built and had no
+   rule anywhere in this file. So the table's 32rem min-width pushed the
+   whole DOCUMENT wide instead of scrolling inside its box, with two
+   consequences on a phone:
+
+     - The fourth column, Snack, was off the edge with nothing to suggest
+       it existed. "I never realised there were more columns."
+     - Scrolling the page sideways carried the heading and the confirm
+       dialog off with it, which is why "Remove Tandoori Salmon?" appeared
+       clipped at both edges with its buttons cut off.
+
+   Both were one missing overflow rule. */
+.plan-wrap {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* A scrollable region must be keyboard-reachable; tabindex is set on the
+     element in mealPlan.js so this is not styling alone. */
+}
+
+.plan-wrap:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.plan-hint {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
 }
 
 .plan-table {

@@ -1,4 +1,4 @@
-// js/components/mealPicker.js — 06 Sep 2026 v2
+// js/components/mealPicker.js — 06 Sep 2026 v3
 // v2: filters shown, not folded — it has a screen of its own now.
 //
 // Choosing what to eat, from everything you could eat.
@@ -34,12 +34,22 @@ import { loadAllRecipes, filterRecipes, addLibraryRecipe, existingLibraryRefs } 
 import { announce } from '../lib/a11y.js';
 import { showToast } from './toast.js';
 
+// 'Nut free' was offered here and no recipe in the library carries the tag,
+// so the chip could only ever return nothing. A filter that always empties
+// the list teaches people the filters are broken. Dropped until the data
+// can back it up.
 const DIETARY = [
   { value: 'vegetarian', label: 'Vegetarian' },
   { value: 'vegan', label: 'Vegan' },
   { value: 'gluten_free', label: 'Gluten free' },
-  { value: 'dairy_free', label: 'Dairy free' },
-  { value: 'nut_free', label: 'Nut free' }
+  { value: 'dairy_free', label: 'Dairy free' }
+];
+
+// Asked for rather than ruled out, and derived from the ingredients because
+// the library has no tag for either. See proteinsOf() in recipeLibrary.js.
+const PROTEIN = [
+  { value: 'meat', label: 'Meat' },
+  { value: 'fish', label: 'Fish' }
 ];
 
 const BUDGET = [
@@ -70,7 +80,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
   let slot = '';
   let busy = false;
 
-  const state = { term: '', cuisine: '', budget: '', dietary: [], source: 'all' };
+  const state = { term: '', cuisine: '', budget: '', dietary: [], proteins: [], source: 'all' };
 
   const root = el('div', { class: 'meal-picker' });
 
@@ -119,6 +129,22 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
   const budgetSelect = el('select', { id: 'meal-picker-budget' });
   for (const b of BUDGET) budgetSelect.appendChild(el('option', { value: b.value, text: b.label }));
 
+  const proteinRow = el('div', { class: 'meal-picker__chips', role: 'group' });
+  proteinRow.setAttribute('aria-label', "What's in it");
+  for (const p of PROTEIN) {
+    const chip = el('button', { type: 'button', class: 'chip-toggle', text: p.label });
+    chip.setAttribute('aria-pressed', 'false');
+    chip.addEventListener('click', () => {
+      const on = chip.getAttribute('aria-pressed') === 'true';
+      chip.setAttribute('aria-pressed', String(!on));
+      state.proteins = on
+        ? state.proteins.filter((v) => v !== p.value)
+        : [...state.proteins, p.value];
+      render();
+    }, { signal });
+    proteinRow.appendChild(chip);
+  }
+
   const dietRow = el('div', { class: 'meal-picker__chips', role: 'group' });
   dietRow.setAttribute('aria-label', 'Dietary needs');
   const dietChips = new Map();
@@ -143,7 +169,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     labelled('Cuisine', cuisineSelect),
     labelled('Budget', budgetSelect)
   );
-  more.append(filterGrid, dietRow);
+  more.append(filterGrid, proteinRow, dietRow);
   root.appendChild(more);
 
   const count = el('p', { class: 'meal-picker__count', role: 'status' });
@@ -209,6 +235,15 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
       if (state.budget && m.budget_tier !== state.budget) return false;
       if (state.dietary.length
         && !state.dietary.every((t) => (m.dietary_tags || []).includes(t))) return false;
+      // Your own meals are not loaded with their ingredients here, so meat
+      // and fish cannot be read off them. Rather than guess, only the case
+      // we DO know is applied: a meal tagged vegetarian or vegan is not
+      // what you are asking for. Anything else stays, on the same footing
+      // as an unset meal time — unknown is not the same as wrong.
+      if (state.proteins.length) {
+        const tags = m.dietary_tags || [];
+        if (tags.includes('vegetarian') || tags.includes('vegan')) return false;
+      }
       return true;
     });
   }
@@ -219,6 +254,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
       budget_tier: state.budget,
       default_slot: slot,
       dietary: state.dietary,
+      proteins: state.proteins,
       term: state.term
     // Already imported? It is in "My meals", so showing it twice is noise.
     }).filter((r) => !owned.has(r.slug));
