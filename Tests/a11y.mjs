@@ -506,7 +506,20 @@ console.log('');
 const panMount = window.document.createElement('main');
 window.document.body.appendChild(panMount);
 const panMod = await import(pathToFileURL(path.join(REPO, 'js/views/pantry.js')).href);
-panMod.render(panMount, {});
+// 6 Sep 2026: the pantry route is now a hub of tiles, and its contents live
+// on their own pages. These checks are about the CONTENTS — stock rows, the
+// detail sheet, the add form — so they render the sections rather than the
+// hub. The hub itself is covered by the orphan gate, which proves every one
+// of these pages is reachable from it.
+panMod.render(panMount, { section: 'browse' });
+
+const panFindMount = window.document.createElement('main');
+window.document.body.appendChild(panFindMount);
+panMod.render(panFindMount, { section: 'find' });
+
+const panAddMount = window.document.createElement('main');
+window.document.body.appendChild(panAddMount);
+panMod.render(panAddMount, { section: 'add' });
 await new Promise((r) => setTimeout(r, 90));
 
 const panControls = [...panMount.querySelectorAll('input, select, textarea')];
@@ -529,10 +542,10 @@ check(`pantry: all ${panButtons.length} buttons have an accessible name`,
 checkNumberInputs(panMount, 'pantry');
 
 // ---- Scanning is offered, and is never the ONLY way in ----
-const panScan = [...panMount.querySelectorAll('button')].find((b) => /Scan a barcode/.test(b.textContent));
+const panScan = [...panAddMount.querySelectorAll('button')].find((b) => /Scan a barcode/.test(b.textContent));
 check('pantry: a scan button is offered', !!panScan);
 check('pantry: the manual add form exists regardless of the scanner',
-  !!panMount.querySelector('#pantry-new-name') && !!panMount.querySelector('#pantry-food'));
+  !!panAddMount.querySelector('#pantry-new-name') && !!panAddMount.querySelector('#pantry-food'));
 const panScanNote = [...panMount.querySelectorAll('[role="status"]')]
   .filter((n) => n.getAttribute('aria-live') === 'polite');
 check('pantry: scan feedback is announced politely', panScanNote.length > 0);
@@ -545,10 +558,22 @@ check('pantry: every aria-describedby target exists', panDesc.length === 0, panD
 // ---- A missing amount must be visible and fixable ----------------------
 // Blank used to be written as 0, and 0 reads as "you have none", so a
 // stocktake that skipped the amount would have been silently rebought.
+// Its own route since 6 Sep 2026, so it is rendered rather than looked for
+// on a page that no longer holds it. The principle is unchanged: a blank
+// amount must be visible and fixable, never written as a 0 that reads as
+// "you have none" and gets silently rebought.
+const panSoonMount = window.document.createElement('main');
+window.document.body.appendChild(panSoonMount);
+panMod.render(panSoonMount, { section: 'use-soon' });
+
+const panFixMount = window.document.createElement('main');
+window.document.body.appendChild(panFixMount);
+panMod.render(panFixMount, { section: 'fix' });
 check('pantry: rows with no amount are surfaced for fixing',
-  /Needs an amount/.test(panMount.textContent));
-check('pantry: a missing amount says so rather than showing a bare 0',
-  /Amount not recorded/.test(panMount.textContent));
+  /Needs an amount/.test(panFixMount.textContent));
+// The bare-0 assertion moved further down, to after a cupboard has been
+// opened: rows only exist once you are inside one. See "a row can be
+// opened".
 
 // ---- One screen since Phase 23 -----------------------------------------
 // Quantities and freshness used to live behind a "Browse" mode, so these
@@ -557,14 +582,14 @@ check('pantry: a missing amount says so rather than showing a bare 0',
 // ---- The use-by date is a picker, not a typed string --------------------
 // A typed date is ambiguous (03/09 is March in half the world) and is work.
 // type="date" opens the native calendar and the OS handles the format.
-const useByField = panMount.querySelector('#pantry-use-by');
+const useByField = panAddMount.querySelector('#pantry-use-by');
 check('pantry: a use-by date can be recorded', !!useByField);
 check('pantry: it is a date picker, not a text box',
   !!useByField && useByField.type === 'date');
 check('pantry: the use-by field is labelled',
-  !!useByField && !!panMount.querySelector(`label[for="${CSS.escape(useByField.id)}"]`));
+  !!useByField && !!panAddMount.querySelector(`label[for="${CSS.escape(useByField.id)}"]`));
 check('pantry: leaving it blank is explained, not left to guesswork',
-  /estimate/i.test(panMount.textContent));
+  /estimate/i.test(panAddMount.textContent));
 
 // ---- Phase 23: one screen, no mode switcher ----
 // Looking for something is not a mode. These replace the old "a browse mode
@@ -572,50 +597,37 @@ check('pantry: leaving it blank is explained, not left to guesswork',
 check('pantry: there is no mode switcher',
   panMount.querySelector('.segmented') === null,
   'search was a mode you had to know existed');
-// 6 Sep 2026: search moved behind a door, so the original wording of this
-// check — no hidden ancestor — no longer holds. Weakening a gate to let a
-// change through is how gates rot, so the reason is recorded rather than
-// quietly edited.
+// 6 Sep 2026, revised twice in a day. Search first moved behind a door,
+// then onto its own page, because doors were not what was asked for.
 //
 // The Phase 23 principle was DISCOVERABILITY: "search was a mode you had to
-// know existed". A segmented mode switcher fails that because nothing on
-// screen says the other mode is there. A door headed "Find something",
-// sitting in the page flow with a chevron, does not: it names itself.
+// know existed". A named tile on the pantry hub satisfies that far better
+// than a segmented control ever did — it says what it is, and the orphan
+// gate proves it is reachable.
 //
-// What must still be true is that no knowledge is required — a labelled
-// control, at the top level of the view, that says what it opens. That is
-// what is asserted now, and it is a stricter test of the actual principle
-// than "is it on screen" ever was.
-check('pantry: search is reachable from a control that names itself',
-  (() => {
-    const find = panMount.querySelector('#pantry-find');
-    if (!find) return false;
-
-    // Walk out to the door that contains the search input.
-    let hiddenBy = null;
-    for (let n = find; n && n !== panMount; n = n.parentElement) {
-      if (n.hidden) { hiddenBy = n; break; }
-    }
-    // Still visible outright is fine.
-    if (!hiddenBy) return true;
-
-    // Otherwise something must open it, and say so in words.
-    const id = hiddenBy.getAttribute('id');
-    if (!id) return false;
-    const opener = [...panMount.querySelectorAll('[aria-controls]')]
-      .find((c) => c.getAttribute('aria-controls') === id);
-    if (!opener) return false;
-    const name = (opener.getAttribute('aria-label') || opener.textContent || '').toLowerCase();
-    return /find|search/.test(name);
-  })(),
-  'search must be openable from a visible, self-describing control');
+// So the check moves rather than relaxes: search must exist, on its own
+// page, with a labelled input.
+check('pantry: search has a page of its own',
+  !!panFindMount.querySelector('#pantry-find'),
+  'the Find something route must render a search input');
 check('pantry: the search input is labelled',
-  !!panMount.querySelector('label[for="pantry-find"]'));
-check('pantry: adding stock is behind one button, not the default view',
+  !!panFindMount.querySelector('label[for="pantry-find"]'));
+// Was: the add form must be behind a toggle rather than open on the pantry
+// screen. Adding is now a route of its own, which is the same principle
+// arrived at properly — you cannot land on the add form by opening the
+// pantry, because the pantry no longer contains it.
+check('pantry: adding stock is not what you meet on opening the pantry',
   (() => {
-    const toggle = panMount.querySelector('.add-stock-toggle');
-    return !!toggle && toggle.getAttribute('aria-expanded') === 'false';
-  })());
+    const hubMount = window.document.createElement('main');
+    window.document.body.appendChild(hubMount);
+    panMod.render(hubMount, {});
+    const hasForm = !!hubMount.querySelector('#pantry-use-by');
+    const linksToAdd = [...hubMount.querySelectorAll('a[href]')]
+      .some((a) => a.getAttribute('href') === '#/pantry-add');
+    hubMount.remove();
+    return !hasForm && linksToAdd;
+  })(),
+  'the hub must link to the add page, not contain the form');
 check('pantry: locations are browsable without switching to them',
   panMount.querySelectorAll('.location-toggle').length > 0);
 // Unplaced items are a to-do, not a dustbin, so they sort first rather
@@ -647,16 +659,31 @@ check('pantry: quantities are shown with a unit',
 // Both wordings count — the fixture now has one row with a real use-by and
 // one relying on the shelf-life estimate.
 check('pantry: freshness is stated in words',
-  /Stocked .* days? ago|Stocked today|Use by \d|Freshness unknown/.test(panMount.textContent), '');
+  /Stocked .* days? ago|Stocked today|Use by \d|Freshness unknown/.test(panSoonMount.textContent), '');
 // The distinction is the point: a guess must not read like a printed date.
 check('pantry: a printed use-by is stated as a date, with no "about"',
-  /Use by \d+ \w+ \d{4} — \d+ days? left\./.test(panMount.textContent)
-  || /Use by \d+ \w+ \d{4} — that/.test(panMount.textContent),
+  /Use by \d+ \w+ \d{4} — \d+ days? left\./.test(panSoonMount.textContent)
+  || /Use by \d+ \w+ \d{4} — that/.test(panSoonMount.textContent),
   'an estimate shown as a hard date gets trusted at the fridge');
 
 // ---- Opening an item must actually show what is known about it ---------
 // The macros are captured by the scan and then had nowhere to be read. A row
 // that cannot be opened makes the app a worse record than the jar's label.
+// The row used to come from a flat list of everything. Since 6 Sep 2026 the
+// items live in cupboards, so the cupboard is opened first — which is
+// exactly the journey a person now makes, and a better test for it.
+const panCupboard = panMount.querySelector('.location-toggle');
+check('pantry: a cupboard can be opened', !!panCupboard);
+if (panCupboard) panCupboard.dispatchEvent(new window.Event('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 20));
+
+// Now that a cupboard is open there are rows to inspect. A blank amount
+// must never have been written as 0: 0 reads as "you have none", and a
+// stocktake that skipped the amount would get silently rebought.
+check('pantry: a missing amount says so rather than showing a bare 0',
+  /Amount not recorded/.test(panMount.textContent)
+  || /Amount not recorded/.test(panFixMount.textContent));
+
 const panRowOpen = panMount.querySelector('.stock-row-open');
 check('pantry: a row can be opened', !!panRowOpen);
 if (panRowOpen) panRowOpen.dispatchEvent(new window.Event('click', { bubbles: true }));
@@ -772,6 +799,7 @@ const reachable = new Set([
   ...navMod.DASHBOARD_LINKS.map((i) => i.path),
   ...navMod.HEALTH_PAGES.map((i) => i.path),
   ...navMod.KITCHEN_PAGES.map((i) => i.path),
+  ...navMod.PANTRY_PAGES.map((i) => i.path),
   navMod.PRIMARY_ACTION.path,
   navMod.FIRST_RUN_ACTION.path
 ]);
@@ -1234,7 +1262,16 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
 // ---- Phase 31: the stock sweep -----------------------------------------
 // A screen whose whole purpose is being fast to tap through.
 {
-  const sweepToggle = [...panMount.querySelectorAll('button')]
+  // A stock check is an action, not a place, so it stayed a button on the
+  // pantry hub when the sections became pages on 6 Sep 2026.
+  const sweepHubMount = window.document.createElement('main');
+  window.document.body.appendChild(sweepHubMount);
+  panMod.render(sweepHubMount, {});
+  // This button is labelled once the stock has loaded, so a mount rendered
+  // just now has an unlabelled one. Every other pantry mount in this file
+  // got its data during earlier awaits; this one has to wait for its own.
+  await new Promise((r) => setTimeout(r, 60));
+  const sweepToggle = [...sweepHubMount.querySelectorAll('button')]
     .find((b) => /quick stock check/i.test(b.textContent));
   check('pantry: a quick stock check is offered', !!sweepToggle);
   if (sweepToggle) {

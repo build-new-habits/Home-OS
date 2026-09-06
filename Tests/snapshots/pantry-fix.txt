@@ -1,0 +1,11 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section[hidden=]
+  h2"Needs an amount"
+  p.field-hint
+  ul.stock-rows

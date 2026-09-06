@@ -128,6 +128,34 @@ export const routes = [
     path: 'library',
     title: 'Recipe library',
     load: () => import('./views/library.js')
+  },
+  // Device test 6 Sep 2026. Appended, per the append-only rule. The pantry
+  // becomes a hub of places rather than a page of folds: "I want tiles that
+  // open new pages, not expandable."
+  {
+    path: 'pantry-find',
+    title: 'Find something',
+    load: () => import('./views/pantry/find.js')
+  },
+  {
+    path: 'pantry-browse',
+    title: "What's in",
+    load: () => import('./views/pantry/browse.js')
+  },
+  {
+    path: 'pantry-fix',
+    title: 'Needs an amount',
+    load: () => import('./views/pantry/fix.js')
+  },
+  {
+    path: 'pantry-use-soon',
+    title: 'Worth using up',
+    load: () => import('./views/pantry/useSoon.js')
+  },
+  {
+    path: 'pantry-add',
+    title: 'Add to the pantry',
+    load: () => import('./views/pantry/add.js')
   }
 ];
 

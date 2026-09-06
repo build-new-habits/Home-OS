@@ -1,4 +1,5 @@
-// js/views/pantry.js — 06 Sep 2026 v21
+// js/views/pantry.js — 06 Sep 2026 v22
+// v22: the pantry is a hub of pages, not a page of folds.
 // v20: the cupboards start closed. Device test 6 Sep 2026.
 // v18: the add panel is actually closed. Device test 5 Sep 2026.
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
@@ -70,6 +71,7 @@ import { claimDialog } from '../components/claimDialog.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
 import { createDisclosureRow } from '../components/disclosureRow.js';
+import { PANTRY_PAGES } from '../navConfig.js';
 const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
@@ -108,7 +110,23 @@ function unitWord(unit, food = null) {
   return pluraliseLabel(food && food.item_label, 2);
 }
 
-export function render(mountEl) {
+// ---- The pantry is a set of places, not a page of folds ----------------
+// Device test 6 Sep 2026, said twice: "I want tiles / buttons that open new
+// pages, not expandable."
+//
+// The first attempt made each section a door that opened in place. That was
+// a compromise offered because these sections share one loaded copy of the
+// stock, and it was the wrong call — folding a section is not the same as
+// leaving the room. Two of the doors even opened onto a single button,
+// which is a fold in front of a fold.
+//
+// So: real routes. `section` selects which one this mount is showing. The
+// builders below are untouched and still construct everything; only the
+// mounting changes. That keeps one source of truth for the pantry's
+// behaviour rather than seven divergent copies of it, at the cost of
+// building sections a given page will not show — cheap, on a single-user
+// app, next to the risk of splitting 1700 lines of shared state.
+export function render(mountEl, { section = 'hub' } = {}) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -119,6 +137,18 @@ export function render(mountEl) {
   // pantry is empty" directly above "Couldn't load your pantry" — two
   // contradictory statements on one screen, one of them false.
   let stockLoadFailed = false;
+  // Counts shown on the front of each tile, so "6 to use up" is readable
+  // without opening the door.
+  const hubStatuses = new Map();
+
+  /** The count goes into the accessible name too, or a screen reader
+   *  reading the links out of context never hears it. */
+  function setHubStatus(path, text) {
+    const tile = hubStatuses.get(path);
+    if (!tile) return;
+    tile.status.textContent = text || '';
+    tile.link.setAttribute('aria-label', text ? `${tile.title}. ${text}` : tile.title);
+  }
   let foods = [];
   let openLocation = null;
   const justAdded = [];  // stock ids added this session, newest first
@@ -157,6 +187,9 @@ export function render(mountEl) {
   function renderNeedsAmount() {
     const rows = needsAmount(stock);
     fixSection.hidden = rows.length === 0;
+    setHubStatus('pantry-fix', rows.length === 0
+      ? 'Nothing to fix'
+      : `${rows.length} to fix`);
     fixList.replaceChildren();
     for (const row of rows) {
       const food = row.foods || {};
@@ -241,6 +274,9 @@ export function render(mountEl) {
   function renderUseSoon() {
     const soon = useSoon(stock);
     useSoonSection.hidden = soon.length === 0;
+    setHubStatus('pantry-use-soon', soon.length === 0
+      ? 'Nothing needs using yet'
+      : `${soon.length} to use up`);
     useSoonList.replaceChildren();
     if (soon.length === 0) return;
     const list = el('ul', { class: 'use-soon-list' });
@@ -690,6 +726,9 @@ export function render(mountEl) {
     browseSummary.textContent =
       `${stock.length} item${stock.length === 1 ? '' : 's'} across ${groups.length} `
       + `place${groups.length === 1 ? '' : 's'}. Open one at a time.`;
+    setHubStatus('pantry-browse',
+      `${stock.length} thing${stock.length === 1 ? '' : 's'} in ${groups.length} `
+      + `place${groups.length === 1 ? '' : 's'}`);
 
     for (const [location, rows] of groups) {
       // One location's contents in the DOM at a time: sixty rows rendered at
@@ -1755,23 +1794,48 @@ export function render(mountEl) {
     return { row, setSummary };
   }
 
-  const searchDoor = door(searchPanel, 'Find something');
-  const fixDoor = door(fixSection, null);
-  const useSoonDoor = door(useSoonSection, null);
-  const sweepDoor = door(sweepSection, 'Quick stock check');
-  const remindDoor = door(remindSection, 'Set up shopping reminders');
-  const browseDoor = door(browsePanel, "What's in");
+  // `door()` is retained: the location cupboards inside "What's in" still
+  // use the same idea, and a section shown on its own page keeps its own
+  // heading rather than inheriting the page's.
+  void door;
 
-  mountEl.append(
-    searchDoor.row,
-    fixDoor.row,
-    useSoonDoor.row,
-    sweepDoor.row,
-    remindDoor.row,
-    browseDoor.row,
-    addToggle,
-    capturePanel
-  );
+  if (section === 'hub') {
+    // Walking into the kitchen. Doors, and nothing on the worktop.
+    const list = el('ul', { class: 'hub-list' });
+    for (const page of PANTRY_PAGES) {
+      const item = el('li', { class: 'hub-item' });
+      const link = el('a', { class: 'hub-link', href: `#/${page.path}` });
+      const text = el('span', { class: 'hub-text' });
+      text.appendChild(el('span', { class: 'hub-title', text: page.title }));
+      text.appendChild(el('span', { class: 'hub-blurb', text: page.blurb }));
+      const status = el('span', { class: 'hub-status' });
+      text.appendChild(status);
+      hubStatuses.set(page.path, { status, link, title: page.title });
+      link.append(text, el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+      item.appendChild(link);
+      list.appendChild(item);
+    }
+    mountEl.appendChild(list);
+
+    // These two were doors containing one button each. A stock check and a
+    // reminder setup are things you DO, not places you go, so they are the
+    // buttons they always were — no page, no fold.
+    mountEl.append(sweepSection, remindSection);
+  } else if (section === 'find') {
+    mountEl.appendChild(searchPanel);
+  } else if (section === 'browse') {
+    mountEl.appendChild(browsePanel);
+  } else if (section === 'fix') {
+    mountEl.appendChild(fixSection);
+  } else if (section === 'use-soon') {
+    mountEl.appendChild(useSoonSection);
+  } else if (section === 'add') {
+    // Its own page: the toggle that used to guard it would be a door in
+    // front of the only thing here.
+    capturePanel.hidden = false;
+    addToggle.setAttribute('aria-expanded', 'true');
+    mountEl.appendChild(capturePanel);
+  }
   syncMode();
   paintOfflineNote();
 

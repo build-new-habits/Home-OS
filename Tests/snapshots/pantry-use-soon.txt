@@ -1,0 +1,10 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section[hidden=]
+  h2"Worth using up"
+  div.card-list

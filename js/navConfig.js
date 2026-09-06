@@ -116,6 +116,18 @@ export const DASHBOARD_LINKS = [
  * you are there. If it grates in the aisle, promote Shopping back out
  * rather than defend the structure.
  */
+// The pantry's own pages. Declared here rather than inside the view for the
+// same reason every other hub is: the orphan gate builds its reachable set
+// from this file, so a page listed anywhere else is a page that can quietly
+// stop being reachable without anything noticing.
+export const PANTRY_PAGES = [
+  { path: 'pantry-find', title: 'Find something', blurb: 'Search by name, kind or place.' },
+  { path: 'pantry-browse', title: "What's in", blurb: 'Your cupboards, one at a time.' },
+  { path: 'pantry-fix', title: 'Needs an amount', blurb: 'Things logged without a quantity.' },
+  { path: 'pantry-use-soon', title: 'Worth using up', blurb: 'Near its date, or been in a while.' },
+  { path: 'pantry-add', title: 'Add something', blurb: 'Scan a barcode or type it in.' }
+];
+
 export const KITCHEN_PAGES = [
   { path: 'shopping', title: 'Shopping list', blurb: 'What you still need to buy.' },
   { path: 'meal-plan', title: 'Weekly plan', blurb: 'What you are eating this week.' },

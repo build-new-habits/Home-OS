@@ -1,0 +1,13 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section
+  h2"What's in"
+  p.field-hint[role=status]
+  div.location-list
+    p.empty-state
+    button.btn.btn-primary[type=button]"Add the first thing"

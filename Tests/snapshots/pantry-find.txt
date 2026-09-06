@@ -1,0 +1,31 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section.pantry-search-panel
+  h2"Find something"
+  div.field
+    label"Search"
+    input[type=search]
+  div.field
+    label"Kind of thing"
+    select
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+  div.field
+    label"Where it lives"
+    select
+      option
+  p.field-hint[role=status]
+  ul.stock-rows

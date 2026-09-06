@@ -133,7 +133,11 @@ window.fetch = global.fetch;
 // happened when calendar and health were appended and this gate carried on
 // reporting a confident pass over ten views.
 const routesSource = fs.readFileSync(path.join(REPO, 'js/routes.js'), 'utf8');
-const VIEWS = [...routesSource.matchAll(/import\('\.\/views\/([a-zA-Z0-9_-]+)\.js'\)/g)]
+// The path segment may contain a slash: pantry's pages live in views/pantry/
+// since 6 Sep 2026. The original pattern stopped at the first slash, so five
+// new routes were skipped in silence — the same hole this comment warns
+// about, arriving by a different door than a hand-written list.
+const VIEWS = [...routesSource.matchAll(/import\('\.\/views\/([a-zA-Z0-9_/-]+)\.js'\)/g)]
   .map((m) => m[1]);
 if (VIEWS.length === 0) {
   console.log('RENDER GATE FAILED — could not read any views out of routes.js');
