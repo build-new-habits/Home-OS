@@ -196,6 +196,37 @@ for (const name of VIEWS) {
       }
     }
 
+    // ---- One primary action per screen (P2) -----------------------------
+    // A screen with two equally important things to do has not finished
+    // being designed: the eye has nowhere to land and the decision gets
+    // handed back to the person, which is the opposite of the point.
+    //
+    // Counted across the whole view, action bar included — the bar IS the
+    // primary where a screen has one.
+    // Only what is actually on screen. A submit button inside a closed
+    // "Add a project" fold is not competing with anything, and counting it
+    // would push every screen towards having no primary at all — which is
+    // the opposite failure and a harder one to notice.
+    const onScreen = (node) => {
+      for (let n = node; n && n !== mount; n = n.parentElement) {
+        if (n.hidden) return false;
+      }
+      return true;
+    };
+    const primaries = [...mount.querySelectorAll('.btn-primary')].filter(onScreen);
+    if (primaries.length > 1) {
+      const labels = primaries
+        .map((b) => (b.getAttribute('aria-label') || b.textContent || '?').trim().slice(0, 24));
+      errors.push(`${name}.js: ${primaries.length} primary buttons — ${labels.join(' / ')}`);
+    }
+
+    // ---- Destructive is never also primary ------------------------------
+    // Filling a delete button in the accent colour makes the safest-looking
+    // control on the screen the one that destroys something.
+    for (const b of mount.querySelectorAll('.btn-danger.btn-primary')) {
+      errors.push(`${name}.js: "${(b.textContent || '').trim().slice(0, 24)}" is both destructive and primary`);
+    }
+
     // ---- A claimed state must be the state on screen --------------------
     // Device test 5 Sep 2026. The pantry's "Add something to the pantry"
     // button carried aria-expanded="false" above a panel that had never

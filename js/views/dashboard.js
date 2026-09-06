@@ -82,7 +82,11 @@ export function render(mountEl) {
 
     if (!onboarded) {
       primaryWrap.appendChild(el('a', {
-        class: 'btn btn-primary btn-large dashboard-primary',
+        // P2: secondary, not primary. The water card is what this screen
+        // is for — the vision names water logging as the one place where
+        // friction decides whether it happens at all. A tour rendered
+        // larger and greener than it, permanently, at the top of the page.
+        class: 'btn btn-large dashboard-primary',
         href: `#/${FIRST_RUN_ACTION.path}`,
         text: FIRST_RUN_ACTION.label
       }));

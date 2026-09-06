@@ -30,6 +30,11 @@
  *   why?: string
  * }} options
  */
+// P2, 6 Sep 2026: the action here is SECONDARY, not primary. An empty
+// state describes what could go in this space; the screen's action bar is
+// what the screen is for. Rendered primary, the two competed — Chores
+// showed "Add a project" twice in accent green, and the shopping list had
+// three filled buttons arguing about which was the point.
 export function emptyState({ title = '', body, actionLabel = '', actionHref = '', onAction = null, why = '' } = {}) {
   const wrap = document.createElement('div');
   wrap.className = 'empty-state-block';
@@ -51,14 +56,14 @@ export function emptyState({ title = '', body, actionLabel = '', actionHref = ''
   // lies to a screen reader about what will happen.
   if (actionLabel && actionHref) {
     const link = document.createElement('a');
-    link.className = 'btn btn-primary';
+    link.className = 'btn';
     link.href = actionHref;
     link.textContent = actionLabel;
     wrap.appendChild(link);
   } else if (actionLabel && onAction) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'btn btn-primary';
+    button.className = 'btn';
     button.textContent = actionLabel;
     button.addEventListener('click', onAction);
     wrap.appendChild(button);

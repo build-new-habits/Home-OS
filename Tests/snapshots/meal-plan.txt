@@ -9,7 +9,7 @@ p.field-hint[role=status]
 p.field-hint.list-sync-note[role=status]
 div.empty-state-block
   p.empty-state
-  a.btn.btn-primary"Plan the week"
+  a.btn"Plan the week"
   p.field-hint
 p.plan-hint
 div.plan-wrap[role=region]

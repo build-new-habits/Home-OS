@@ -13,7 +13,7 @@ p.cost-note.field-hint[role=status][hidden=]
 div
   div.empty-state-block
     p.empty-state
-    a.btn.btn-primary"Plan the week"
+    a.btn"Plan the week"
     p.field-hint
   button.btn[type=button]"Add my usual household staples"
   p.field-hint
@@ -35,4 +35,4 @@ form
       option
       option
   p.field-error[role=alert][hidden=]
-  button.btn.btn-block.btn-primary[type=submit]"Add to list"
+  button.btn.btn-block[type=submit]"Add to list"

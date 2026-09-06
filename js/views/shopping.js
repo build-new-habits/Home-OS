@@ -515,7 +515,11 @@ export function render(mountEl) {
   const addError = el('p', { class: 'field-error', role: 'alert' });
   addError.hidden = true;
   const addSubmit = el('button', {
-    type: 'submit', class: 'btn btn-primary btn-block', text: 'Add to list'
+    // P2: secondary. "Build from the plan" is what this screen is for;
+    // adding one staple by hand is a side errand, and two filled buttons
+    // arguing about which is the point is how the screen came to feel
+    // like a wall of controls.
+    type: 'submit', class: 'btn btn-block', text: 'Add to list'
   });
 
   addForm.append(

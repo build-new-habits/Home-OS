@@ -7,7 +7,7 @@ section
   div.card-list
     div.empty-state-block
       p.empty-state
-      button.btn.btn-primary[type=button]"Add an exercise"
+      button.btn[type=button]"Add an exercise"
       p.field-hint
 section
   h2"Pending confirmation"

@@ -1,4 +1,5 @@
-/* css/components.css — 06 Sep 2026 v64 */
+/* css/components.css — 06 Sep 2026 v65 */
+/* v65: P2 — four button roles, and links stop being underlined buttons. */
 /* v64: P1 — every size and space resolves to a token. */
 /* v63: one tappable-card treatment for everything you can press. */
 /* v57: the meal picker. */
@@ -90,6 +91,12 @@
   font-size: var(--text-base);
   font-weight: 600;
   cursor: pointer;
+  /* P2. An <a class="btn"> inherited the browser's underline, so anything
+     that navigated but looked like a button came out as a filled green
+     button with underlined white text — "Plan the week" on the shopping
+     list, and every empty-state action. That was the fifth button idiom,
+     and it was not a decision anyone made. */
+  text-decoration: none;
   transition: background var(--motion-fast) var(--motion-ease),
               transform var(--motion-fast) var(--motion-ease);
 }
@@ -107,6 +114,32 @@
   background: var(--color-surface);
   border-color: var(--color-caution);
   color: var(--color-caution);
+}
+
+/* ---- The four roles (P2) ---------------------------------------------
+   primary      the one thing this screen is for
+   (base .btn)  secondary — a real choice, but not the point
+   quiet        tertiary — navigation and escapes, no box around it
+   danger       destructive, and never also primary
+
+   Anything outside these four is a fifth idiom and needs arguing for. */
+
+/* Quiet: reads as a link, targets like a button. The dashboard's "See the
+   week" and "Open the plan" were bare text links about 16px tall, which is
+   a hard thing to hit accurately with a sore shoulder. Same appearance,
+   44px of target. */
+.btn-quiet {
+  border-color: transparent;
+  background: none;
+  color: var(--color-accent-strong);
+  padding-left: 0;
+  padding-right: 0;
+  justify-content: flex-start;
+}
+
+.btn-quiet:hover {
+  background: none;
+  text-decoration: underline;
 }
 
 .btn-block { width: 100%; }

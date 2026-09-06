@@ -21,7 +21,7 @@ section
     li.recipe-row
       div.empty-state-block
         p.empty-state
-        button.btn.btn-primary[type=button]"Browse the recipe library"
+        button.btn[type=button]"Browse the recipe library"
         p.field-hint
   section.library-section
     h3"Recipe library"

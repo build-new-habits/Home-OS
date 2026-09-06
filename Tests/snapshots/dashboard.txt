@@ -1,7 +1,7 @@
 h1"Today"
 p.field-hint
 div
-  a.btn.btn-large.btn-primary.dashboard-primary"Show me how this works"
+  a.btn.btn-large.dashboard-primary"Show me how this works"
   p.field-hint
 section.card.today-card
   h2.card-title"Water"
