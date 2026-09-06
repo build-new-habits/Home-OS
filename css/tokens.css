@@ -1,4 +1,9 @@
 /* css/tokens.css — 01 Sep 2026 v2 */
+/* P1, 06 Sep 2026. tokens.css is write-once by convention; this edit is
+   ADDITIVE only — two new tokens, nothing existing changed — and is
+   recorded here rather than done quietly. Every off-scale value in
+   components.css now resolves to a token, and a platform gate keeps it
+   that way. */
 /* Home-OS design tokens.
    ---------------------------------------------------------------------
    WRITE-ONCE RULE, LIFTED ONCE, DELIBERATELY (Phase 26).
@@ -88,6 +93,11 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --tap-min: 44px;
+  /* A knuckle, or the side of a thumb, on a worktop with wet hands. */
+  --tap-large: 56px;
+  /* Bottom-nav glyphs. Sized here rather than in components.css so the
+     type scale has no exceptions living outside it. */
+  --icon-nav: 1.25rem;
 
   /* ---- Motion ---- */
   --motion-fast: 120ms;

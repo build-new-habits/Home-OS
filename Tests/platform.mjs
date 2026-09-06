@@ -299,6 +299,50 @@ for (const f of files) {
   }
 }
 
+// ---- 12. Type and space come from the scale (P1) -----------------------
+// One scale, no exceptions. Before this sweep components.css carried seven
+// sizes that existed nowhere else: 1.05rem, 1.35rem, 1.4rem — and 0.65rem,
+// about ten pixels, which is below anything a person should be asked to
+// read and was the label that touched both cell edges at 200% text.
+//
+// None of them were decisions. They were what looked about right in the
+// moment, and enough of them make a screen read as assembled rather than
+// designed. Spacing is the same story: the gap between two things is how
+// the eye is told whether they are related, and a rhythm with seven
+// one-off exceptions is not a rhythm.
+//
+// Hairlines are allowed. A 1px or 2px border is a physical edge, not a
+// step on a spacing scale, and tokenising it would be ceremony.
+{
+  const SIZED = /(?:^|[\s;{])(font-size|gap|row-gap|column-gap|margin|margin-top|margin-right|margin-bottom|margin-left|padding|padding-top|padding-right|padding-bottom|padding-left)\s*:\s*([^;{}]+)/g;
+
+  for (const f of css) {
+    if (f.path === 'css/tokens.css') continue; // where the scale is defined
+    const lines = f.src.split('\n');
+    lines.forEach((line, i) => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('/*') || trimmed.startsWith('*')) return;
+      SIZED.lastIndex = 0;
+      let m;
+      while ((m = SIZED.exec(line)) !== null) {
+        const value = m[2];
+        for (const raw of value.match(/[0-9.]+(?:px|rem|em)/g) || []) {
+          const n = parseFloat(raw);
+          // Hairlines, and 0.
+          if (raw.endsWith('px') && n <= 2) continue;
+          if (n === 0) continue;
+          // em is relative to the element's own size — used for the
+          // chevron, which must scale with the text it sits beside.
+          if (raw.endsWith('em') && !raw.endsWith('rem')) continue;
+          check(`${f.path}:${i + 1} sizes from the scale, not ${raw}`,
+            false,
+            trimmed.slice(0, 72));
+        }
+      }
+    });
+  }
+}
+
 console.log('');
 if (failures.length) {
   for (const f of failures) console.log(`  FAIL  ${f}`);
