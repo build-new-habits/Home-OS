@@ -2,6 +2,10 @@ h1"Chores"
 div.filter-row
   button.btn[type=button]"Filter"
   p.field-hint[role=status]
+section.due-now
+  h2"Due now"
+  ul.due-now-list
+  p.field-hint
 section
   h2"Projects"
   div.project-list
@@ -17,5 +21,13 @@ section
         input[type=text]
       div.field
         label"Colour"
-        input[type=color]
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
       button.btn.btn-block.btn-primary[type=submit]"Add project"

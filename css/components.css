@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v59 */
+/* css/components.css — 06 Sep 2026 v60 */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -3445,3 +3445,40 @@ body.sheet-open {
   margin: var(--space-2) 0 var(--space-3);
   font-weight: 600;
 }
+
+/* ---- Due now (device test 6 Sep 2026) --------------------------------
+   The Chores tab showed seven projects and no chore. This is the answer to
+   the question you open the tab with, above the doors rather than behind
+   one of them. */
+.due-now { margin-bottom: var(--space-5); }
+
+.due-now-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.due-now-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.due-now-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.due-now-title { font-weight: 600; }
+
+.due-now-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.due-now-item .btn { flex: 0 0 auto; }

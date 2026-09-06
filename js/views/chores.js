@@ -1,4 +1,5 @@
-// js/views/chores.js — 01 Sep 2026 v5
+// js/views/chores.js — 06 Sep 2026 v6
+// v6: a Due now section, and a colour palette instead of a colour wheel.
 // v4: THE FLAT LIST DOES NOT SCALE, AND NEITHER DID COMPLETION.
 //
 //   1. A hundred tasks in one list is unreadable. Projects are cards you
@@ -76,6 +77,15 @@ function labeledInput(id, labelText, type = 'text') {
   const label = document.createElement('label');
   label.htmlFor = id;
   label.textContent = labelText;
+  // 'select' is not an input type. Asked for one, build a <select>: the
+  // project colour is a fixed set of eight, and a constrained value belongs
+  // in a constrained control rather than a free field that happens to be
+  // validated later.
+  if (type === 'select') {
+    const input = document.createElement('select');
+    input.id = id;
+    return { label, input };
+  }
   const input = document.createElement('input');
   input.id = id;
   input.type = type;
@@ -362,6 +372,22 @@ function createRecurrenceBuilder(idPrefix, signal) {
   };
 }
 
+/**
+ * Eight project colours that all clear 3:1 against the card surface and stay
+ * apart from one another in greyscale. Named, because "the teal one" is how
+ * a person refers to a project and "#2f6f4f" is not.
+ */
+const PROJECT_COLOURS = [
+  { value: '#2f6f4f', label: 'Green' },
+  { value: '#1f5f7a', label: 'Blue' },
+  { value: '#6b3fa0', label: 'Purple' },
+  { value: '#a63d40', label: 'Red' },
+  { value: '#9a5b1e', label: 'Orange' },
+  { value: '#7a5c00', label: 'Mustard' },
+  { value: '#3f6b2f', label: 'Olive' },
+  { value: '#4a4a52', label: 'Slate' }
+];
+
 export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
@@ -526,6 +552,87 @@ export function render(mountEl) {
   }, { signal });
   addTaskWrap.append(addTaskToggle, addTaskBody);
 
+  // ================= Due now =================
+  // Device test 6 Sep 2026. The screen said "2 tasks, 2 still to do" above
+  // seven project rows and not one chore. Everything needed to show them was
+  // already loaded — every task, every completion, and taskState() which
+  // knows what is outstanding — it simply was never asked.
+  //
+  // The projects-are-doors design is right and stays: a hundred tasks in one
+  // list is unreadable. But "what do I have to do" is the question you open
+  // this tab with, and it should not require guessing which door it is
+  // behind. Only what is actually due appears here, so this section empties
+  // itself as the day goes on rather than becoming a second full list.
+  const dueSection = document.createElement('section');
+  dueSection.className = 'due-now';
+  const dueHeading = document.createElement('h2');
+  dueHeading.textContent = 'Due now';
+  const dueList = document.createElement('ul');
+  dueList.className = 'due-now-list';
+  const dueEmpty = document.createElement('p');
+  dueEmpty.className = 'field-hint';
+  dueSection.append(dueHeading, dueList, dueEmpty);
+  mountEl.append(dueSection);
+
+  function renderDueNow() {
+    dueList.replaceChildren();
+
+    const due = tasks
+      .map((task) => ({ task, state: taskState(task) }))
+      .filter(({ state }) => !state.done && !state.finished
+        && (state.cadence === 'once' || (state.occurrence && state.occurrence.date <= todayIso())))
+      // Overdue first: the point of looking back is that a chore missed on
+      // Monday is still the one that matters on Wednesday.
+      .sort((a, b) => {
+        const ao = a.state.occurrence?.overdue ? 0 : 1;
+        const bo = b.state.occurrence?.overdue ? 0 : 1;
+        if (ao !== bo) return ao - bo;
+        return (a.task.title || '').localeCompare(b.task.title || '');
+      });
+
+    if (due.length === 0) {
+      dueEmpty.textContent = tasks.length === 0
+        ? 'No chores yet. Add one inside a project below.'
+        : 'Nothing due. Everything on the list is either done or not due yet.';
+      dueEmpty.hidden = false;
+      return;
+    }
+    dueEmpty.hidden = true;
+
+    for (const { task, state } of due) {
+      const item = document.createElement('li');
+      item.className = 'due-now-item';
+
+      const text = document.createElement('span');
+      text.className = 'due-now-text';
+      const name = document.createElement('span');
+      name.className = 'due-now-title';
+      name.textContent = task.title;
+      text.appendChild(name);
+
+      const project = projects.find((p) => p.id === task.project_id);
+      const bits = [project ? project.title : null];
+      if (state.occurrence?.overdue) bits.push('Overdue');
+      const meta = document.createElement('span');
+      meta.className = 'due-now-meta';
+      meta.textContent = bits.filter(Boolean).join(' · ');
+      if (meta.textContent) text.appendChild(meta);
+
+      const tick = document.createElement('button');
+      tick.type = 'button';
+      tick.className = 'btn btn-small';
+      tick.textContent = 'Done';
+      tick.setAttribute('aria-label', `Mark ${task.title} done`);
+      // The existing handler, not a second copy of it: it already knows
+      // that ticking a repeating chore completes THIS occurrence and not
+      // the series, which is the rule easiest to get wrong twice.
+      tick.addEventListener('click', () => toggleTask(task, tick), { signal });
+
+      item.append(text, tick);
+      dueList.appendChild(item);
+    }
+  }
+
   mountEl.append(projectsSection);
 
   // ================= Projects =================
@@ -537,8 +644,26 @@ export function render(mountEl) {
     const titleF = labeledInput('new-project-title', 'Project title');
     titleF.input.required = true;
 
-    const colourF = labeledInput('new-project-colour', 'Colour', 'color');
-    colourF.input.value = '#2f6f4f';
+    // ---- A palette, not a colour wheel (device test 6 Sep 2026) --------
+    // <input type="color"> offers sixteen million colours and no guidance,
+    // and the projects on the device came out pure yellow, pure blue, pure
+    // magenta and pure cyan — the corners of the picker, because that is
+    // what a colour wheel invites. Pure yellow on this off-white background
+    // is close to invisible for anyone with low vision.
+    //
+    // These eight are picked to sit against --color-surface and to stay
+    // distinguishable from each other in greyscale, which is roughly what
+    // the commonest colour blindness leaves you with. The swatch was never
+    // load-bearing — the project's NAME carries the meaning and the count
+    // carries the state — so this restricts decoration, not information.
+    const colourF = labeledInput('new-project-colour', 'Colour', 'select');
+    for (const c of PROJECT_COLOURS) {
+      const opt = document.createElement('option');
+      opt.value = c.value;
+      opt.textContent = c.label;
+      colourF.input.appendChild(opt);
+    }
+    colourF.input.value = PROJECT_COLOURS[0].value;
 
     const submitBtn = document.createElement('button');
     submitBtn.type = 'submit';
@@ -566,7 +691,7 @@ export function render(mountEl) {
         return;
       }
       form.reset();
-      colourF.input.value = '#2f6f4f';
+      colourF.input.value = PROJECT_COLOURS[0].value;
       announce(`${result.data.title} project added`);
       await loadProjects();
       populateProjectSelect(projectSelectEl);
@@ -880,6 +1005,7 @@ export function render(mountEl) {
     // a dead control reads as a crash.
     if (before.done) doneKeys.delete(key); else doneKeys.add(key);
     renderProjects();
+    renderDueNow();
     if (!before.done) showCompletionStamp(btn);
 
     const result = before.done ? await markNotDone(task.id, iso) : await markDone(task.id, iso);
@@ -887,6 +1013,7 @@ export function render(mountEl) {
       // Roll back rather than lie about what was saved.
       if (before.done) doneKeys.add(key); else doneKeys.delete(key);
       renderProjects();
+      renderDueNow();
       console.error('Failed to change a completion:', result.error);
       showToast("Couldn't save that — try again.");
       return;
@@ -1392,6 +1519,7 @@ export function render(mountEl) {
     }
 
     renderProjects();
+    renderDueNow();
   }
 
   (async () => {

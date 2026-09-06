@@ -951,8 +951,18 @@ if (choToggles[0]) choToggles[0].dispatchEvent(new window.Event('click', { bubbl
 await new Promise((r) => setTimeout(r, 40));
 const choRows = [...choMount.querySelectorAll('.task-row')];
 check('chores: opening a project reveals its tasks', choRows.length === 2);
+// Scoped to the project list on 6 Sep 2026, when a "Due now" section was
+// added above the projects. The principle is unchanged and is about the
+// PROJECTS: sixty rows rendered at once is what made the old flat list
+// unusable, so one project's tasks show at a time.
+//
+// Due now is not that list. It is bounded by what is actually due and
+// empties itself as the day goes on, so a task from a closed project
+// appearing there is the feature, not a regression. Asserting over the
+// whole screen would have made adding it impossible without deleting a
+// check, which is the wrong way round.
 check('chores: only the open project renders rows',
-  !choMount.textContent.includes('Fix the gate'));
+  !choMount.querySelector('.project-list').textContent.includes('Fix the gate'));
 
 // Cadence is derived from the rule and shown, so a filter by it makes sense.
 check('chores: a task row states how often it repeats',
