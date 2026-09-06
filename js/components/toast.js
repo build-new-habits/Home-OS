@@ -1,4 +1,5 @@
-// js/components/toast.js — 01 Sep 2026 v2
+// js/components/toast.js — 06 Sep 2026 v3
+// v3: a close button, swipe-to-dismiss, and seven seconds instead of ten.
 // v2 (Phase 22): adds an optional undo action.
 //
 // ---- Why undo, and why it replaces the confirm ----
@@ -41,9 +42,20 @@ export function showToast(message, { duration = 4000, undo = null, undoLabel = '
   const remove = () => { if (!done) { done = true; el.remove(); } };
 
   if (undo) {
-    // Ten seconds, not four. An undo you have to catch is not an undo, and
-    // the whole point is that you notice the mistake a moment later.
-    duration = Math.max(duration, 10000);
+    // ---- Seven seconds, not ten (device test 6 Sep 2026) ----------------
+    // "The banner with undo remains for ages and can't be got rid of. It's
+    // in the way of doing anything."
+    //
+    // v2 argued for ten seconds because an undo you have to catch is not an
+    // undo. That reasoning was right about undo and wrong about the person:
+    // it treated the only exit as waiting. Ten seconds of sitting on your
+    // hands is a long time when you are deleting six things in a row.
+    //
+    // The fix is not really the number. It is that there are now three ways
+    // out — the close button, a swipe, or the timer — so the timer stops
+    // being the only one. Seven is still comfortably longer than the moment
+    // it takes to notice a mistake.
+    duration = Math.max(duration, 7000);
 
     const button = document.createElement('button');
     button.type = 'button';
@@ -62,7 +74,55 @@ export function showToast(message, { duration = 4000, undo = null, undoLabel = '
     el.appendChild(button);
   }
 
+  // ---- A way out that is not waiting -----------------------------------
+  // Every toast gets a close control, including ones without an undo. A
+  // message that covers what you are reading and offers no way to move it
+  // is an obstacle, however briefly it lasts.
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'toast-close';
+  close.setAttribute('aria-label', 'Dismiss this message');
+  // The glyph is decorative; the accessible name above carries the meaning.
+  close.innerHTML = '<span aria-hidden="true">\u00d7</span>';
+  close.addEventListener('click', remove);
+  el.appendChild(close);
+
   region.appendChild(el);
+
+  // ---- Swipe it away ---------------------------------------------------
+  // The gesture people already try on a notification. Horizontal only, and
+  // it gives up the moment the drag looks vertical, so it never fights the
+  // page scroll underneath.
+  let startX = 0;
+  let dx = 0;
+  let swiping = false;
+  el.addEventListener('touchstart', (event) => {
+    if (event.touches.length !== 1) return;
+    startX = event.touches[0].clientX;
+    dx = 0;
+    swiping = true;
+    el.style.transition = 'none';
+  }, { passive: true });
+
+  el.addEventListener('touchmove', (event) => {
+    if (!swiping) return;
+    dx = event.touches[0].clientX - startX;
+    el.style.transform = `translateX(${dx}px)`;
+    el.style.opacity = String(Math.max(0, 1 - Math.abs(dx) / 200));
+  }, { passive: true });
+
+  el.addEventListener('touchend', () => {
+    if (!swiping) return;
+    swiping = false;
+    if (Math.abs(dx) > 80) {
+      remove();
+      return;
+    }
+    // Not far enough: put it back rather than leaving it half off-screen.
+    el.style.transition = prefersReducedMotion() ? 'none' : 'transform 150ms ease, opacity 150ms ease';
+    el.style.transform = '';
+    el.style.opacity = '';
+  }, { passive: true });
 
   // A toast carrying an action must never fade out from under a thumb, and
   // fading text is harder to read for anyone who reads slowly.

@@ -1,4 +1,5 @@
-// js/views/pantry.js — 05 Sep 2026 v19
+// js/views/pantry.js — 06 Sep 2026 v20
+// v20: the cupboards start closed. Device test 6 Sep 2026.
 // v18: the add panel is actually closed. Device test 5 Sep 2026.
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
 // row that ran a name straight into its own status text, and hid the one
@@ -68,6 +69,7 @@ import { findClaimCandidates, claimFood, describeClaim } from '../data/foodClaim
 import { claimDialog } from '../components/claimDialog.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
+import { createDisclosureRow } from '../components/disclosureRow.js';
 const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
@@ -1703,7 +1705,55 @@ export function render(mountEl) {
   // Worklist E4. Search goes above "needs fixing". That section is usually
   // empty, but on the day it is not it pushes search below the fold on the
   // one screen somebody opened in order to search.
-  mountEl.append(searchPanel, fixSection, useSoonSection, sweepSection, remindSection, browsePanel, addToggle, capturePanel);
+  // ==================== The cupboards start closed ======================
+  // Device test 6 Sep 2026: "I think the pantry should be empty at first,
+  // like walking into the kitchen with the cupboards closed."
+  //
+  // Everything below already existed as a separate section. They were just
+  // stacked into one scroll, so opening the Pantry meant meeting a search
+  // form, a fix-these list, a use-soon list, a stock check, a reminders
+  // setup, 130 items and an add form, all at once, before deciding what you
+  // came for.
+  //
+  // Each is now a door with its own heading and a count. You open the one
+  // you meant. Nothing is hidden — the counts are on the front of the door,
+  // so "2 to use soon" is readable without opening anything.
+  //
+  // Search is the exception and opens by default: it is the one thing you
+  // reach for when you already know what you are looking for, and a door in
+  // front of a search box is a door in front of the fast path.
+  function door(section, title, { open = false } = {}) {
+    // The section supplies its own heading; the door's heading replaces it,
+    // so the words are not said twice. createDisclosureRow builds a real
+    // <h2> wrapping the toggle, which keeps the outline intact.
+    const own = section.querySelector('h2');
+    const label = title || (own && own.textContent) || 'More';
+    if (own) own.remove();
+
+    const { row, body, setSummary } = createDisclosureRow({
+      title: label, headingLevel: 2, className: 'pantry-door', open
+    });
+    body.appendChild(section);
+    return { row, setSummary };
+  }
+
+  const searchDoor = door(searchPanel, 'Find something', { open: true });
+  const fixDoor = door(fixSection, null);
+  const useSoonDoor = door(useSoonSection, null);
+  const sweepDoor = door(sweepSection, 'Quick stock check');
+  const remindDoor = door(remindSection, 'Set up shopping reminders');
+  const browseDoor = door(browsePanel, "What's in");
+
+  mountEl.append(
+    searchDoor.row,
+    fixDoor.row,
+    useSoonDoor.row,
+    sweepDoor.row,
+    remindDoor.row,
+    browseDoor.row,
+    addToggle,
+    capturePanel
+  );
   syncMode();
   paintOfflineNote();
 

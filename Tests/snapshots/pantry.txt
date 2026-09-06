@@ -5,49 +5,81 @@ h1.page-heading"Pantry"
       path
   span
 p.field-hint[hidden=]
-section.pantry-search-panel
-  h2"Find something"
-  div.field
-    label"Search"
-    input[type=search]
-  div.field
-    label"Kind of thing"
-    select
-      option
-      option
-      option
-      option
-      option
-      option
-      option
-      option
-      option
-      option
-  div.field
-    label"Where it lives"
-    select
-      option
-  p.field-hint[role=status]
-  ul.stock-rows
-section[hidden=]
-  h2"Needs an amount"
-  p.field-hint
-  ul.stock-rows
-section[hidden=]
-  h2"Worth using up"
-  div.card-list
-section.card.sweep-section[hidden=]
-  button.btn[type=button][aria-expanded=false]"Quick stock check"
-  div.sweep-body[hidden=]
-section.card.sweep-section[hidden=]
-  button.btn[type=button][aria-expanded=false]"Set up shopping reminders"
-  div.sweep-body[hidden=]
-section
-  h2"What's in"
-  p.field-hint[role=status]
-  div.location-list
-    p.empty-state
-    button.btn.btn-primary[type=button]"Add the first thing"
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"Find something"
+    button.disclosure-row__toggle[type=button][aria-expanded=true]"Find something"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body
+    section.pantry-search-panel
+      div.field
+        label"Search"
+        input[type=search]
+      div.field
+        label"Kind of thing"
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+      div.field
+        label"Where it lives"
+        select
+          option
+      p.field-hint[role=status]
+      ul.stock-rows
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"Needs an amount"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"Needs an amount"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body[hidden=]
+    section[hidden=]
+      p.field-hint
+      ul.stock-rows
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"Worth using up"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"Worth using up"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body[hidden=]
+    section[hidden=]
+      div.card-list
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"Quick stock check"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"Quick stock check"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body[hidden=]
+    section.card.sweep-section[hidden=]
+      button.btn[type=button][aria-expanded=false]"Quick stock check"
+      div.sweep-body[hidden=]
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"Set up shopping reminders"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"Set up shopping reminders"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body[hidden=]
+    section.card.sweep-section[hidden=]
+      button.btn[type=button][aria-expanded=false]"Set up shopping reminders"
+      div.sweep-body[hidden=]
+article.disclosure-row.pantry-door
+  h2.disclosure-row__heading"What's in"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"What's in"
+      span.disclosure-row__title
+      span.disclosure-row__summary[hidden=]
+  div.disclosure-row__body[hidden=]
+    section
+      p.field-hint[role=status]
+      div.location-list
+        p.empty-state
+        button.btn.btn-primary[type=button]"Add the first thing"
 button.add-stock-toggle.btn[type=button][aria-expanded=false]"Add something to the pantry"
 section[hidden=]
   h2"Add to the pantry"
