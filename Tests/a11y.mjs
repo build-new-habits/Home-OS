@@ -572,16 +572,43 @@ check('pantry: leaving it blank is explained, not left to guesswork',
 check('pantry: there is no mode switcher',
   panMount.querySelector('.segmented') === null,
   'search was a mode you had to know existed');
-check('pantry: search is visible without switching to it',
+// 6 Sep 2026: search moved behind a door, so the original wording of this
+// check — no hidden ancestor — no longer holds. Weakening a gate to let a
+// change through is how gates rot, so the reason is recorded rather than
+// quietly edited.
+//
+// The Phase 23 principle was DISCOVERABILITY: "search was a mode you had to
+// know existed". A segmented mode switcher fails that because nothing on
+// screen says the other mode is there. A door headed "Find something",
+// sitting in the page flow with a chevron, does not: it names itself.
+//
+// What must still be true is that no knowledge is required — a labelled
+// control, at the top level of the view, that says what it opens. That is
+// what is asserted now, and it is a stricter test of the actual principle
+// than "is it on screen" ever was.
+check('pantry: search is reachable from a control that names itself',
   (() => {
     const find = panMount.querySelector('#pantry-find');
     if (!find) return false;
-    // Visible means no hidden ancestor, not merely present in the DOM.
+
+    // Walk out to the door that contains the search input.
+    let hiddenBy = null;
     for (let n = find; n && n !== panMount; n = n.parentElement) {
-      if (n.hidden) return false;
+      if (n.hidden) { hiddenBy = n; break; }
     }
-    return true;
-  })());
+    // Still visible outright is fine.
+    if (!hiddenBy) return true;
+
+    // Otherwise something must open it, and say so in words.
+    const id = hiddenBy.getAttribute('id');
+    if (!id) return false;
+    const opener = [...panMount.querySelectorAll('[aria-controls]')]
+      .find((c) => c.getAttribute('aria-controls') === id);
+    if (!opener) return false;
+    const name = (opener.getAttribute('aria-label') || opener.textContent || '').toLowerCase();
+    return /find|search/.test(name);
+  })(),
+  'search must be openable from a visible, self-describing control');
 check('pantry: the search input is labelled',
   !!panMount.querySelector('label[for="pantry-find"]'));
 check('pantry: adding stock is behind one button, not the default view',

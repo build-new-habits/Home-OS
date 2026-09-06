@@ -1,4 +1,4 @@
-// js/views/pantry.js — 06 Sep 2026 v20
+// js/views/pantry.js — 06 Sep 2026 v21
 // v20: the cupboards start closed. Device test 6 Sep 2026.
 // v18: the add panel is actually closed. Device test 5 Sep 2026.
 // v4: LOOKS AND DEPTH. v3 fixed the data and the scale problem but shipped a
@@ -807,6 +807,22 @@ export function render(mountEl) {
     const term = findInput.value.trim().toLowerCase();
     const category = findCategory.value;
     const location = findLocation.value;
+
+    // ---- Nothing asked for, nothing shown (device test 6 Sep 2026) ------
+    // With no term and no filters this listed the entire pantry — 130 rows
+    // of it — directly under the search box. The doors built to keep those
+    // items in cupboards ended up stranded below the wall of items they
+    // were meant to replace.
+    //
+    // A search box with an empty query has not been asked a question. The
+    // answer to a question nobody asked is not "everything".
+    if (!term && !category && !location) {
+      findResults.replaceChildren();
+      findCount.textContent = stockLoadFailed
+        ? 'Your pantry could not be loaded, so there is nothing to search yet.'
+        : `Type a name, or pick a kind or a place. ${stock.length} things in the pantry.`;
+      return;
+    }
 
     const matching = stock.filter((row) => {
       const food = row.foods || {};
@@ -1719,9 +1735,11 @@ export function render(mountEl) {
   // you meant. Nothing is hidden — the counts are on the front of the door,
   // so "2 to use soon" is readable without opening anything.
   //
-  // Search is the exception and opens by default: it is the one thing you
-  // reach for when you already know what you are looking for, and a door in
-  // front of a search box is a door in front of the fast path.
+  // Search was opened by default on the first attempt at this, on the
+  // reasoning that a door in front of a search box slows the fast path.
+  // That was wrong twice over: the open panel listed all 130 items, and it
+  // pushed every other door below the fold. Every cupboard starts closed,
+  // including this one.
   function door(section, title, { open = false } = {}) {
     // The section supplies its own heading; the door's heading replaces it,
     // so the words are not said twice. createDisclosureRow builds a real
@@ -1737,7 +1755,7 @@ export function render(mountEl) {
     return { row, setSummary };
   }
 
-  const searchDoor = door(searchPanel, 'Find something', { open: true });
+  const searchDoor = door(searchPanel, 'Find something');
   const fixDoor = door(fixSection, null);
   const useSoonDoor = door(useSoonSection, null);
   const sweepDoor = door(sweepSection, 'Quick stock check');

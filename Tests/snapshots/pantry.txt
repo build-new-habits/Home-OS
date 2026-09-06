@@ -7,10 +7,10 @@ h1.page-heading"Pantry"
 p.field-hint[hidden=]
 article.disclosure-row.pantry-door
   h2.disclosure-row__heading"Find something"
-    button.disclosure-row__toggle[type=button][aria-expanded=true]"Find something"
+    button.disclosure-row__toggle[type=button][aria-expanded=false]"Find something"
       span.disclosure-row__title
       span.disclosure-row__summary[hidden=]
-  div.disclosure-row__body
+  div.disclosure-row__body[hidden=]
     section.pantry-search-panel
       div.field
         label"Search"
