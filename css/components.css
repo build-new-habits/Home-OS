@@ -1,4 +1,4 @@
-/* css/components.css — 06 Sep 2026 v55 */
+/* css/components.css — 06 Sep 2026 v56 */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
 /* v53: .disclosure-row — the collapsed list row, styled to match a
@@ -2936,6 +2936,17 @@ body.sheet-open {
 /* ---- Phase 31 part two: the stock sweep ------------------------------ */
 /* One list, three buttons a row. A different task from opening sixty rows,
    and the one people will actually do. */
+
+/* These action buttons sit under the pantry hub's tiles. The section only
+   ever had a BOTTOM margin, so the gap appeared between the two buttons but
+   not between the tile list and the first of them, and the stock check
+   butted straight onto "Add something" as though it belonged to it.
+   Spaced on the same rhythm as the tiles above, so the eye reads one stack
+   rather than a list with something stuck to the end of it. */
+.hub-list + .sweep-section,
+.sweep-section + .sweep-section {
+  margin-top: var(--space-3);
+}
 
 .sweep-section { margin-bottom: var(--space-4); }
 

@@ -227,7 +227,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v95';
+const CACHE_NAME = 'home-os-shell-v96';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
