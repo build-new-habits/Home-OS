@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 06 Sep 2026 v7
+// js/views/mealPlan.js — 06 Sep 2026 v8
 // v7: the meal picker replaces a <select> of your own dinners.
 // The weekly plan as its own page.
 //
@@ -176,7 +176,21 @@ export function render(mountEl) {
     addBtn.addEventListener('click', () => {
       planDaySelect.value = day.value;
       planSlotSelect.value = slot.value;
-      planMealSelect.focus();
+
+      // Setting .value in code does NOT fire a change event, so the picker
+      // never heard which slot was being filled and went on showing the
+      // previous meal time — the one thing this button exists to set up.
+      picker.setSlot(slot.value);
+
+      // Focus used to go to the meal <select>. That element is now hidden
+      // and unfocusable, so this button did nothing visible at all: no
+      // scroll, no focus, no sign it had been pressed. The search box is
+      // the real first control of the form now, so focus goes there and
+      // brings the picker into view with it.
+      picker.element.scrollIntoView?.({ block: 'center' });
+      const search = picker.element.querySelector('input');
+      if (search) search.focus();
+
       announce(`Adding a meal to ${day.label} ${slot.label.toLowerCase()}. Choose a meal below.`);
     }, { signal });
     cell.appendChild(addBtn);

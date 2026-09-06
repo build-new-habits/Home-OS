@@ -585,6 +585,45 @@ const mealPlanView = await import(pathToFileURL(path.join(REPO, 'js/views/mealPl
 const cleanupPlan = mealPlanView.render(planMount, {});
 await settle(80);
 
+// --- the Add button in a table cell must actually set the form up ---
+// It shipped doing nothing at all on 6 Sep 2026: it focused the meal
+// <select>, which had just become hidden and unfocusable, and it set the
+// slot by assigning .value — which fires no change event, so the picker
+// went on offering the previous meal time.
+//
+// Both faults are invisible to every other assertion here, because the
+// button issues no write. What it does is arrange the form, so that is
+// what gets checked.
+{
+  const cellAdd = [...planMount.querySelectorAll('button')]
+    .find((b) => /^Add a meal to /.test(b.getAttribute('aria-label') || ''));
+  check('a plan cell offers an Add button', !!cellAdd);
+  if (cellAdd) {
+    const wanted = (cellAdd.getAttribute('aria-label') || '').toLowerCase();
+    // Start from a DIFFERENT meal time than the button names, or the
+    // assertion below can pass without the button having done anything.
+    // First written pre-setting 'breakfast' and then pressing a breakfast
+    // cell, which proved only that breakfast equals breakfast.
+    const other = wanted.includes('breakfast') ? 'dinner' : 'breakfast';
+    setValue(planMount.querySelector('#plan-slot'), other);
+    cellAdd.dispatchEvent(new window.Event('click', { bubbles: true }));
+    await settle();
+
+    const slotNow = planMount.querySelector('#plan-slot').value;
+    check('pressing Add sets the meal time it names',
+      wanted.includes(slotNow),
+      `${wanted} vs slot=${slotNow}`);
+    check('pressing Add tells the picker which meal time to show',
+      planMount.querySelector('#meal-picker-slot').value === slotNow,
+      'the picker filter must follow the slot, not lag a step behind');
+    check('pressing Add moves focus somewhere a person can type',
+      !!window.document.activeElement
+      && picker0().contains(window.document.activeElement),
+      'focus went to a hidden element, so the button looked dead');
+  }
+}
+function picker0() { return planMount.querySelector('.meal-picker'); }
+
 // --- add to plan, blank meal, refused ---
 clearCalls();
 const planForm = planMount.querySelector('#plan-meal').closest('form');
