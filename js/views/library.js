@@ -40,6 +40,8 @@ export function render(mountEl) {
 
   const panel = createLibraryPanel({
     signal,
+    // This view already supplies the heading and the blurb.
+    ownPage: true,
     isDestroyed: () => destroyed,
     // On the Meals page this reloads that page's list of meals. Here there
     // is no such list to refresh: the panel marks the recipe as owned by

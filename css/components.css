@@ -1,4 +1,5 @@
-/* css/components.css — 06 Sep 2026 v62 */
+/* css/components.css — 06 Sep 2026 v63 */
+/* v63: one tappable-card treatment for everything you can press. */
 /* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
@@ -3531,4 +3532,103 @@ body.sheet-open {
 .action-bar__control[aria-disabled="true"] {
   opacity: 0.6;
   pointer-events: none;
+}
+
+/* ======================================================================
+   TAPPABLE CARDS — design work list, 6 Sep 2026
+   ======================================================================
+   "Make tappable things cards that pop out."
+
+   One treatment for everything you can press: hub tiles, pantry doors,
+   category doors, chores projects, picker rows. Before this they were four
+   different things — a bordered box, a hairline row, a bare list item and a
+   button — and nothing on screen told you which of them would do something
+   when pressed.
+
+   Elevation carries the affordance and the border stays underneath it. Not
+   redundancy: shadows are invisible in the high-contrast theme and are
+   stripped entirely by Windows forced-colours mode, so a card that relies
+   on shadow alone stops being a card for exactly the people who most need
+   it to look like one.
+
+   Pressing moves it. A card that lifts off the page should go back down
+   when you push it, and on a phone that half-second of feedback is often
+   the only confirmation you get that a tap landed at all. */
+
+.hub-link,
+.disclosure-row,
+.project-row,
+.meal-picker__item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.hub-link:hover,
+.disclosure-row:hover,
+.project-row:hover,
+.meal-picker__item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Pressed: back down onto the page. */
+.hub-link:active,
+.disclosure-row:active,
+.project-row:active,
+.meal-picker__item:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-link,
+  .disclosure-row,
+  .project-row,
+  .meal-picker__item {
+    transition: none;
+  }
+  .hub-link:active,
+  .disclosure-row:active,
+  .project-row:active,
+  .meal-picker__item:active {
+    transform: none;
+  }
+}
+
+/* Cards need air between them or they read as one striped block. */
+.disclosure-row + .disclosure-row,
+.project-row + .project-row {
+  margin-top: var(--space-3);
+}
+
+/* The row-divider look these had before now fights the card edge. */
+.disclosure-row {
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.meal-picker__item + .meal-picker__item {
+  border-top: 0;
+  margin-top: var(--space-2);
+}
+
+/* A card inside a card is a box in a box. Anything nested sits flat and
+   lets the door it lives in do the lifting. */
+.category-door .disclosure-row,
+.pantry-door .disclosure-row {
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-top: 0;
+  background: none;
+}
+
+.category-door .disclosure-row:active,
+.pantry-door .disclosure-row:active {
+  transform: none;
 }

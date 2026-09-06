@@ -32,7 +32,7 @@ import {
  *   onAdded: () => Promise<void>
  * }} options
  */
-export function createLibraryPanel({ signal, isDestroyed, onAdded }) {
+export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = false }) {
   let libraryRecipes = [];
   let libraryOwned = new Map();
   let libraryLoaded = false;
@@ -50,8 +50,12 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded }) {
   // is far more common than writing a recipe from scratch, and
   // "occasionally" is a reason to LABEL something well, not to bury it.
   const section = el('section', { class: 'library-section' });
-  section.appendChild(el('h3', { text: 'Recipe library' }));
-  section.appendChild(el('p', {
+  // Suppressed when the panel IS the page. On its own route the view
+  // already supplies an <h1> and the blurb, so this printed both a second
+  // time — the same two paragraphs, one under the other, which reads as a
+  // rendering fault rather than a design.
+  if (!ownPage) section.appendChild(el('h3', { text: 'Recipe library' }));
+  if (!ownPage) section.appendChild(el('p', {
     class: 'field-hint',
     text: 'A hundred recipes that come with the app. Add any of them to your meals '
       + 'in one tap — the ingredients and steps come with it.'

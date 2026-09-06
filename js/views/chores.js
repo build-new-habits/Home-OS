@@ -1,4 +1,4 @@
-// js/views/chores.js — 06 Sep 2026 v8
+// js/views/chores.js — 06 Sep 2026 v9
 // v6: a Due now section, and a colour palette instead of a colour wheel.
 // v4: THE FLAT LIST DOES NOT SCALE, AND NEITHER DID COMPLETION.
 //
@@ -908,6 +908,11 @@ export function render(mountEl) {
 
       const isOpen = openProjectId === project.id;
 
+      // A project is a door you press, so it is a card like every other
+      // door in the app rather than a hairline row that happens to react.
+      const projectRow = document.createElement('div');
+      projectRow.className = 'project-row';
+
       const heading = document.createElement('h3');
       heading.className = 'project-heading';
 
@@ -938,7 +943,8 @@ export function render(mountEl) {
       toggle.append(swatch, text);
       toggle.setAttribute('aria-label', `${project.title}, ${meta.textContent}`);
       heading.appendChild(toggle);
-      projectsList.appendChild(heading);
+      projectRow.appendChild(heading);
+      projectsList.appendChild(projectRow);
 
       const bodyWrap = document.createElement('div');
       bodyWrap.className = 'project-body';
