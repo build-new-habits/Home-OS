@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 05 Sep 2026 v1 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 06 Sep 2026 v2 -->
 
 ## Why this file exists
 
@@ -63,13 +63,13 @@ Status values are deliberately blunt:
 | 014_recipe_library | unverified | — | predates this ledger |
 | 015_density | unverified | — | predates this ledger |
 | 016_onboarding | unverified | — | predates this ledger |
-| 017_reorder_points | **NOT APPLIED** | — | proven missing 5 Sep 2026 by error 42703 |
-| 018_pantry_level | **NOT APPLIED** | — | assumed missing; the SELECT fails on 017's column first, so 018 was never reached |
-| 019_household_invites | applied | 5 Sep 2026 | inferred, not queried — invite codes generate and redeem on device |
+| 017_reorder_points | applied | 6 Sep 2026 | was missing; repaired by 023 and confirmed by query |
+| 018_pantry_level | applied | 6 Sep 2026 | repaired by 023 and confirmed by query |
+| 019_household_invites | applied | 6 Sep 2026 | invites work on device; its `level_set_at` column confirmed present, though 023 would also have added it |
 | 020_focus_areas | unverified | — | |
 | 021_prices | unverified | — | |
 | 022_rotation_mode | unverified | — | |
-| 023_repair_pantry_columns | **NOT APPLIED** | — | re-applies 017, 018 and 019's pantry column, all idempotent |
+| 023_repair_pantry_columns | applied | 6 Sep 2026 | run against "Home OS"; VERIFY returned all three columns |
 
 ## The honest caveat
 
@@ -80,3 +80,18 @@ would be inventing evidence — exactly the assumption that hid this bug.
 They will turn into `applied` or `NOT APPLIED` as each one is actually
 checked. A screen that works is weak evidence: it only exercises the
 columns it happens to select.
+
+## Resolved, 6 Sep 2026
+
+023 was run against the "Home OS" project and verified:
+
+```
+level_set_at
+reorder_at
+level
+```
+
+Three rows. The pantry query can now succeed. 017 and 018 are marked
+applied on the strength of that query rather than on the strength of the
+app appearing to work — which is the distinction this whole file exists
+to hold on to.
