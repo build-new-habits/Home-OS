@@ -49,7 +49,11 @@ let failNextWrite = false;
 const WRITE_LATENCY_MS = 40;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const CHAIN = ['select', 'eq', 'neq', 'gt', 'gte', 'lt', 'lte', 'is', 'in', 'order', 'limit', 'range', 'match'];
+// 'not' added 6 Sep 2026: the meal picker asks which library recipes are
+// already yours with .not('library_ref', 'is', null), and a stub missing a
+// method the app really uses does not fail an assertion — it throws, and the
+// whole gate dies before it can report anything.
+const CHAIN = ['select', 'eq', 'neq', 'not', 'gt', 'gte', 'lt', 'lte', 'is', 'in', 'order', 'limit', 'range', 'match'];
 
 function fixture(t) {
   if (t === 'foods') return [
@@ -594,7 +598,16 @@ check('and explains what to do', !planMount.querySelector('#plan-error').hidden)
 clearCalls();
 setValue(planMount.querySelector('#plan-day'), 'thu');
 setValue(planMount.querySelector('#plan-slot'), 'dinner');
-setValue(planMount.querySelector('#plan-meal'), 'meal-1');
+
+// 6 Sep 2026: the meal is chosen from the picker rather than by setting a
+// <select> value. The select still carries the answer to the form — every
+// assertion below is unchanged — but writing to it directly would now test
+// a path no person can take, because it holds only the option you picked.
+const pickable = [...planMount.querySelectorAll('.meal-picker__pick')];
+check('the meal picker offers something to choose', pickable.length > 0);
+if (pickable.length) pickable[0].dispatchEvent(new window.Event('click', { bubbles: true }));
+await settle();
+
 setValue(planMount.querySelector('#plan-serves-new'), '5');
 submit(planForm);
 await settle();

@@ -1,4 +1,5 @@
-/* css/components.css — 06 Sep 2026 v56 */
+/* css/components.css — 06 Sep 2026 v57 */
+/* v57: the meal picker. */
 /* v55: toast gains a close control and swipe; pantry doors. */
 /* v54: .category-door — categories collapse into doors. */
 /* v53: .disclosure-row — the collapsed list row, styled to match a
@@ -3248,4 +3249,154 @@ body.sheet-open {
    double up against the last one inside it. */
 .category-door .disclosure-row:last-child {
   border-bottom: 0;
+}
+
+/* ---- Meal picker (device test 6 Sep 2026) ---------------------------
+   Replaces a <select> of six dinners with a tool that searches your meals
+   and all 110 library recipes together. It has to carry six controls and a
+   long list without reading as a form, so: search first, chips for the
+   choices you change often, everything else folded. */
+
+.meal-picker {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.meal-picker__search {
+  width: 100%;
+  min-height: var(--tap-min);
+  margin-bottom: var(--space-3);
+}
+
+.meal-picker__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+/* A chip is a control, so it needs a real border at 3:1 against the card
+   (WCAG 1.4.11) rather than the hairline used for decorative edges. */
+.chip-toggle {
+  min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+/* Pressed state is carried by fill AND weight, never by colour alone. */
+.chip-toggle[aria-pressed="true"] {
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+  color: var(--color-accent-contrast);
+  font-weight: 600;
+}
+
+.chip-toggle:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.meal-picker__more > summary { font-size: var(--text-sm); }
+
+.meal-picker__more .field-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.meal-picker__more .field-inline label {
+  flex: 0 0 6.5rem;
+  font-size: var(--text-sm);
+}
+
+.meal-picker__more .field-inline select {
+  flex: 1 1 auto;
+  min-height: var(--tap-min);
+}
+
+.meal-picker__count {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.meal-picker__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Long enough to feel like a list, short enough that the Add button stays
+     within reach rather than being pushed off the end of 110 recipes. */
+  max-height: 22rem;
+  overflow-y: auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.meal-picker__item + .meal-picker__item {
+  border-top: 1px solid var(--color-border);
+}
+
+.meal-picker__pick {
+  width: 100%;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-2);
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.meal-picker__pick:hover { background: var(--color-surface-alt); }
+
+.meal-picker__pick:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.meal-picker__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.meal-picker__name { font-weight: 600; }
+
+.meal-picker__meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Says where a recipe came from without spending a whole line on it. */
+.meal-picker__chip {
+  flex: 0 0 auto;
+  padding: 2px var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.meal-picker__more-note {
+  padding: var(--space-3) var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.chosen-meal {
+  margin: var(--space-2) 0 var(--space-3);
+  font-weight: 600;
 }

@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 01 Sep 2026 v6
+// js/views/mealPlan.js — 06 Sep 2026 v7
+// v7: the meal picker replaces a <select> of your own dinners.
 // The weekly plan as its own page.
 //
 // It was the top third of a 1,733-line Meals screen that also held every
@@ -41,6 +42,7 @@ import {
 import { el, field, selectFrom } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { emptyState } from '../components/emptyState.js';
+import { createMealPicker } from '../components/mealPicker.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
   return found ? found.label : value;
@@ -361,11 +363,44 @@ export function render(mountEl) {
   planError.hidden = true;
   const planSubmit = el('button', { type: 'submit', class: 'btn btn-primary btn-block', text: 'Add to plan' });
 
+  // ---- Choosing a meal (device test 6 Sep 2026) ------------------------
+  // planMealSelect stays, hidden, holding exactly one option: whatever was
+  // chosen. Every line of submit logic below still reads .value and the
+  // selected option's text, so none of it had to be touched or re-proved.
+  // What changed is how a person arrives at that value.
+  planMealSelect.hidden = true;
+  planMealSelect.setAttribute('aria-hidden', 'true');
+  planMealSelect.tabIndex = -1;
+
+  const chosenLabel = el('p', { class: 'chosen-meal', role: 'status' });
+  chosenLabel.textContent = 'No meal chosen yet.';
+
+  const picker = createMealPicker({
+    signal,
+    getMeals: () => meals,
+    onChoose: ({ id, name }) => {
+      planMealSelect.replaceChildren(el('option', { value: id, text: name }));
+      planMealSelect.value = id;
+      chosenLabel.textContent = `Chosen: ${name}`;
+      planError.hidden = true;
+      announce(`${name} chosen. Add to plan to save it.`);
+      planSubmit.scrollIntoView?.({ block: 'nearest' });
+    }
+  });
+
+  // The slot being filled IS the question. Choosing Lunch and then being
+  // offered dinners is the exact complaint this replaces.
+  planSlotSelect.addEventListener('change', () => picker.setSlot(planSlotSelect.value), { signal });
+  picker.setSlot(planSlotSelect.value);
+  picker.load();
+
   planForm.append(
     el('h2', { text: 'Add a meal to the plan' }),
     field('Day', planDaySelect),
     field('Meal time', planSlotSelect),
-    field('Meal', planMealSelect),
+    picker.element,
+    planMealSelect,
+    chosenLabel,
     field('Servings for this one time (optional)', planServesInput, planServesHint),
     planError,
     planSubmit
@@ -376,10 +411,11 @@ export function render(mountEl) {
     event.preventDefault();
     planError.hidden = true;
     if (!planMealSelect.value) {
-      planError.textContent =
-        'Choose a meal to add. If the list is empty, add a recipe on the Meals page first.';
+      // No longer "add a recipe on the Meals page first": the library is in
+      // the list above, so there is always something to choose.
+      planError.textContent = 'Pick a meal from the list above first.';
       planError.hidden = false;
-      planMealSelect.focus();
+      picker.element.scrollIntoView?.({ block: 'nearest' });
       return;
     }
     const mealName = planMealSelect.options[planMealSelect.selectedIndex].textContent;
@@ -436,25 +472,13 @@ export function render(mountEl) {
   }, { signal });
 
   function repopulateMealSelect() {
-    const chosen = planMealSelect.value;
-    planMealSelect.replaceChildren(el('option', {
-      value: '',
-      text: meals.length === 0 ? 'No recipes yet — add one on the Meals page' : 'Choose a meal'
-    }));
-    // Favourites first: the point of a favourite is being quick to reach,
-    // and this is the screen where reaching for one happens.
-    const ordered = [...meals].sort((a, b) => {
-      if (!!b.is_favourite !== !!a.is_favourite) return b.is_favourite ? 1 : -1;
-      return (a.name || '').localeCompare(b.name || '');
-    });
-    for (const meal of ordered) {
-      const bits = [meal.name];
-      if (meal.is_favourite) bits.push('(favourite)');
-      if (meal.meal_type) bits.push(`— ${mealTypeLabel(meal.meal_type)}`);
-      const option = el('option', { value: meal.id, text: bits.join(' ') });
-      if (meal.id === chosen) option.selected = true;
-      planMealSelect.appendChild(option);
-    }
+    // Was: fill a <select> with every meal you own. The select now holds
+    // exactly one option — whatever you chose — so filling it here would
+    // wipe that choice out from under the form.
+    //
+    // The picker reads `meals` live and does its own ordering (favourites
+    // first, then alphabetical), so it only needs telling to redraw.
+    picker.refresh();
   }
 
   async function loadPlan() {
