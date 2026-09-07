@@ -317,8 +317,15 @@ export function render(mountEl) {
 
     const head = el('div', { class: 'shopping-entry-head' });
     head.appendChild(el('span', { class: 'shopping-entry-name', text: name }));
+    // ---- P6: the total, once ------------------------------------------
+    // A food arriving as a single line printed its quantity twice — in this
+    // header and again in the line below it. On a fifteen-item list that is
+    // fifteen numbers saying nothing, and it is most of why the screen read
+    // as a wall. The total earns its place only when it is summing
+    // something: two or more lines.
+    //
     // A total ONLY when the units match. Grams are never added to items.
-    if (entry.total != null && entry.unit) {
+    if (entry.lines.length > 1 && entry.total != null && entry.unit) {
       head.appendChild(el('span', {
         class: 'shopping-entry-total',
         text: formatPackQuantity(entry.total, entry.unit, entry.food || null)
@@ -376,7 +383,17 @@ export function render(mountEl) {
     }, { signal });
     row.appendChild(toggle);
 
-    const remove = el('button', { type: 'button', class: 'btn btn-small btn-danger', text: 'Remove' });
+    // ---- P6: two controls, not three ----------------------------------
+    // Fifteen rows carried forty-five controls, on a screen used one-handed
+    // in a shop with a trolley in the other hand. Removing is rare; ticking
+    // is the whole job. So the tick keeps its words and the remove becomes a
+    // glyph, with the food's name kept in the accessible name where a
+    // screen reader meets it out of context.
+    //
+    // A bare glyph for a destructive action is only safe because the toast
+    // that follows carries an undo. It does.
+    const remove = el('button', { type: 'button', class: 'btn btn-small btn-quiet shopping-remove' });
+    remove.innerHTML = '<span aria-hidden="true">\u00d7</span>';
     remove.setAttribute('aria-label', `Remove ${foodName} from the list`);
     remove.addEventListener('click', async () => {
       const result = await removeItem(line.id);

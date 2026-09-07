@@ -1546,6 +1546,46 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
     chip.getAttribute('aria-label') === '12 items not put away');
 }
 
+// ---- A list row says a thing once (P6) --------------------------------
+// The shopping list printed every quantity twice — once in the food's
+// header, once in the line beneath it — so fifteen items produced thirty
+// numbers, none of which added information. It is the single biggest
+// reason that screen read as a wall.
+//
+// This lives here rather than in render-gate.mjs, where it was written
+// first and passed against every view: that gate has no shopping fixture,
+// so the screen it was built for rendered empty and the check was
+// measuring nothing. These mounts have data.
+//
+// Nested rows are deliberately included. The duplicate lived ACROSS the
+// boundary — header and nested line — so a check that skipped grouping
+// rows could not see the case it existed for.
+for (const [label, mount] of [
+  ['shopping', shopMount], ['pantry', panMount], ['chores', choMount],
+  ['foods', foodMount]
+]) {
+  if (!mount) continue;
+  let offender = null;
+  for (const row of mount.querySelectorAll('li')) {
+    // Leaves only. A wrapper span whose entire content is one child span
+    // has the same textContent as that child, so counting both reported
+    // every correctly-built row as a duplicate — which is how this check
+    // first "found" a bug in a row that was fine.
+    const texts = [...row.querySelectorAll('span, strong, em')]
+      .filter((n) => n.children.length === 0)
+      .map((n) => (n.textContent || '').trim())
+      .filter((t) => t.length >= 3 && t.length <= 40);
+    const seen = new Set();
+    for (const t of texts) {
+      if (seen.has(t)) { offender = t; break; }
+      seen.add(t);
+    }
+    if (offender) break;
+  }
+  check(`${label}: no list row says the same thing twice`, offender === null,
+    offender ? `"${offender}"` : '');
+}
+
 console.log('');
 
 if (fails.length) { console.log(`A11Y STRUCTURE FAILED — ${fails.length}`); for (const f of fails) console.log('  - ' + f); process.exit(1); }

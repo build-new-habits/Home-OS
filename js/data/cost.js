@@ -124,7 +124,11 @@ export function formatMoney(amount, symbol = '£') {
  * last week, no colour. It is arithmetic, offered.
  */
 export function describeEstimate(estimate, symbol = '£') {
-  if (!estimate || estimate.pricedCount === 0) {
+  // A total of zero is not a total. Something is priced at 0.00 — almost
+  // certainly "I don't know" typed as a number — and "About £0.00 for this
+  // list" is a confident answer to a question we cannot answer. Device
+  // test 7 Sep 2026.
+  if (!estimate || estimate.pricedCount === 0 || !(estimate.total > 0)) {
     return 'No prices yet. Add what you usually pay for a few things and this '
       + 'will start adding up your list.';
   }

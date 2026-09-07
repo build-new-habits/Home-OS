@@ -1,4 +1,5 @@
-/* css/components.css — 06 Sep 2026 v65 */
+/* css/components.css — 07 Sep 2026 v66 */
+/* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
 /* v64: P1 — every size and space resolves to a token. */
 /* v63: one tappable-card treatment for everything you can press. */
@@ -3667,4 +3668,18 @@ body.sheet-open {
 .category-door .disclosure-row:active,
 .pantry-door .disclosure-row:active {
   transform: none;
+}
+
+/* P6. The remove control is a glyph, so it needs a real target rather than
+   the width of a multiplication sign. Colour comes from the caution token
+   because it destroys something, but it is quiet, not filled: a filled red
+   button beside every line would make removing look like the job. */
+.shopping-remove {
+  flex: 0 0 auto;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  justify-content: center;
+  padding: 0;
+  color: var(--color-caution);
+  font-size: var(--text-lg);
 }
