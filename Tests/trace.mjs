@@ -693,7 +693,8 @@ check('changing a planned serving never writes to `meals`',
   !writes().some((c) => c.table === 'meals'), JSON.stringify(writes()));
 
 // --- a plan cell Add button targets the right cell ---
-const cellBtn = [...planMount.querySelectorAll('.plan-table td button')]
+// P7: cells became slot rows inside a card per day.
+const cellBtn = [...planMount.querySelectorAll('.plan-slot button')]
   .find((b) => (b.getAttribute('aria-label') || '').includes('Wednesday lunch'));
 check('a plan cell Add button exists for Wednesday lunch', !!cellBtn);
 if (cellBtn) {

@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 06 Sep 2026 v10
+// js/views/mealPlan.js — 07 Sep 2026 v11
+// v11: P7 — a card per day. The table is gone.
 // v9: choosing a meal moved to its own screen.
 // v7: the meal picker replaces a <select> of your own dinners.
 // The weekly plan as its own page.
@@ -115,52 +116,40 @@ export function render(mountEl) {
     if (message) syncNote.textContent = message;
   });
 
-  // Says the columns are there before you have to discover them by accident.
-  mountEl.appendChild(el('p', {
-    class: 'plan-hint',
-    text: 'Breakfast, lunch, dinner and snack — scroll the table sideways to reach them all.'
-  }));
-
-  const tableWrap = el('div', { class: 'plan-wrap' });
-  // A region that scrolls must be reachable by keyboard, or its content is
-  // unreachable without a mouse or a touchscreen (WCAG 2.1.1).
-  tableWrap.setAttribute('role', 'region');
-  tableWrap.setAttribute('aria-label', 'The week, scrollable sideways');
-  tableWrap.tabIndex = 0;
-  const planTable = el('table', { class: 'plan-table' });
-  tableWrap.appendChild(planTable);
-  mountEl.appendChild(tableWrap);
+  // ---- P7: a card per day, and no sideways scrolling -------------------
+  // The week was a table wider than the phone. Four meal times, three
+  // visible: "I never realised there were more columns." Scrolling sideways
+  // carried the day column away with it, so you lost which row you were in
+  // — and it dragged the whole document, which is how a confirm dialog came
+  // to render clipped at both edges.
+  //
+  // A table is for comparing columns. Nobody compares Tuesday breakfast
+  // against Thursday dinner; you look at one day. The card is the shape of
+  // the question being asked.
+  //
+  // The <table> is gone rather than restyled. A grid that cannot be read as
+  // a grid is not a table that needs better CSS, it is the wrong element.
+  const planList = el('div', { class: 'plan-days' });
+  mountEl.appendChild(planList);
 
   function buildPlanTable() {
-    planTable.replaceChildren();
-    planTable.appendChild(el('caption', {
-      class: 'visually-hidden',
-      text: 'Weekly meal plan. Each row is a day of the week, each column a meal time.'
-    }));
+    planList.replaceChildren();
 
-    const thead = el('thead');
-    const headRow = el('tr');
-    // The corner cell heads the row-header column, so it is a real header.
-    headRow.appendChild(el('th', { scope: 'col', text: 'Day' }));
-    for (const slot of SLOTS) {
-      headRow.appendChild(el('th', { scope: 'col', text: slot.label }));
-    }
-    thead.appendChild(headRow);
-    planTable.appendChild(thead);
-
-    const tbody = el('tbody');
     let planned = 0;
     for (const day of DAYS) {
-      const row = el('tr');
-      row.appendChild(el('th', { scope: 'row', text: day.label }));
+      const card = el('section', { class: 'plan-day' });
+      card.setAttribute('aria-label', day.label);
+      card.appendChild(el('h2', { class: 'plan-day-name', text: day.label }));
+
+      const slots = el('ul', { class: 'plan-slots' });
       for (const slot of SLOTS) {
         const entries = planByCell.get(`${day.value}:${slot.value}`) || [];
         if (entries.length > 0) planned += entries.length;
-        row.appendChild(buildPlanCell(day, slot, entries));
+        slots.appendChild(buildPlanCell(day, slot, entries));
       }
-      tbody.appendChild(row);
+      card.appendChild(slots);
+      planList.appendChild(card);
     }
-    planTable.appendChild(tbody);
 
     const days = new Set();
     for (const [key, entries] of planByCell.entries()) {
@@ -174,7 +163,10 @@ export function render(mountEl) {
   }
 
   function buildPlanCell(day, slot, entries) {
-    const cell = el('td');
+    const cell = el('li', { class: 'plan-slot' });
+    // The meal time labelled once per row rather than once per column. A
+    // column header three days up the screen is not a label.
+    cell.appendChild(el('span', { class: 'plan-slot-name', text: slot.label }));
 
     if (entries.length === 0) {
       cell.appendChild(el('p', { class: 'plan-empty', text: 'Nothing planned' }));

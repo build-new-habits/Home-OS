@@ -885,22 +885,35 @@ planMod.render(planMount, {});
 await new Promise((r) => setTimeout(r, 80));
 
 const planTable = planMount.querySelector('.plan-table');
-check('the weekly plan is a real <table>', !!planTable && planTable.tagName === 'TABLE');
-check('the plan table has a caption', !!planTable && !!planTable.querySelector('caption'));
-const planThs = planTable ? [...planTable.querySelectorAll('th')] : [];
-check(`all ${planThs.length} plan headers carry scope`, planThs.every((t) => t.getAttribute('scope')));
-check('slots are column headers',
-  !!planTable && planTable.querySelectorAll('thead th[scope="col"]').length === 5);
-check('all 7 days are row headers',
-  !!planTable && planTable.querySelectorAll('tbody th[scope="row"]').length === 7);
-check('the grid is 7 days x 4 slots', !!planTable
-  && planTable.querySelectorAll('tbody tr').length === 7
-  && planTable.querySelectorAll('tbody tr')[0].querySelectorAll('td').length === 4);
+// P7, 7 Sep 2026: the table is gone. It was wider than the phone, hid a
+// whole meal time off the right edge, and took the day column away with it
+// when you scrolled — so you lost which row you were in.
+//
+// These checks were about the table. What they were FOR survives exactly:
+// all seven days present, all four meal times present on every one of
+// them, each labelled in text rather than by position, and each addable.
+// A card per day tests the same guarantees without a grid.
+//
+// The one thing deliberately not carried over is the caption and the
+// scope attributes. They existed to make a grid navigable as a grid; there
+// is no grid now, and asserting them would be asserting the shape rather
+// than the promise.
+const planDayCards = [...planMount.querySelectorAll('.plan-day')];
+check('the week is one card per day', planDayCards.length === 7,
+  `found ${planDayCards.length}`);
+check('every day names itself in text',
+  planDayCards.every((c) => /monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
+    .test((c.querySelector('.plan-day-name') || {}).textContent || '')));
+check('every day offers all four meal times',
+  planDayCards.every((c) => c.querySelectorAll('.plan-slot').length === 4));
+check('every meal time is named on its own row',
+  [...planMount.querySelectorAll('.plan-slot')].every((r) =>
+    /breakfast|lunch|dinner|snack/i.test((r.querySelector('.plan-slot-name') || {}).textContent || '')),
+  'a column header three days up the screen is not a label');
 
-const planAddBtns = planTable
-  ? [...planTable.querySelectorAll('td button')].filter((b) => b.textContent.trim() === 'Add')
-  : [];
-check('every cell has an Add button', planAddBtns.length === 28, `found ${planAddBtns.length}`);
+const planAddBtns = [...planMount.querySelectorAll('.plan-slot button')]
+  .filter((b) => b.textContent.trim() === 'Add');
+check('every meal time can be filled', planAddBtns.length === 28, `found ${planAddBtns.length}`);
 check('Add buttons name both the day and the meal time',
   planAddBtns.every((b) => { const l = (b.getAttribute('aria-label') || '').toLowerCase();
     return l.includes('add a meal to') && /monday|tuesday|wednesday|thursday|friday|saturday|sunday/.test(l)
