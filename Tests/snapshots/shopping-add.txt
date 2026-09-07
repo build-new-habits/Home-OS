@@ -1,0 +1,27 @@
+h1.page-heading"Add to the list"
+  svg.icon.icon-shopping
+    g
+      path
+      path
+  span
+p.field-hint
+form
+  h2"Add a staple"
+  p.field-hint
+  div.field
+    label"Item"
+    select
+      option
+  div.field
+    label"How much"
+    input[type=number]
+    p.field-hint
+  div.field
+    label"Measured in"
+    select
+      option
+      option
+      option
+  p.field-error[role=alert][hidden=]
+  button.btn.btn-block.btn-primary[type=submit]"Add to list"
+a.btn.btn-quiet"Back to the list"

@@ -6,7 +6,7 @@ h1.page-heading"Shopping list"
   span
 p.field-hint[hidden=]
 div.filter-row
-  button.btn.btn-primary[type=button]"Build from the plan"
+  button.btn[type=button]"Build from the plan"
   button.btn[type=button]"Filter"
 p.field-hint[role=status]
 p.cost-note.field-hint[role=status][hidden=]
@@ -17,22 +17,5 @@ div
     p.field-hint
   button.btn[type=button]"Add my usual household staples"
   p.field-hint
-form
-  h2"Add a staple"
-  p.field-hint
-  div.field
-    label"Item"
-    select
-      option
-  div.field
-    label"How much"
-    input[type=number]
-    p.field-hint
-  div.field
-    label"Measured in"
-    select
-      option
-      option
-      option
-  p.field-error[role=alert][hidden=]
-  button.btn.btn-block[type=submit]"Add to list"
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Add something to the list"

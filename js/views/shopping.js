@@ -37,6 +37,7 @@ import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
+import { createActionBar } from '../components/actionBar.js';
 import { announce } from '../lib/a11y.js';
 import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.js';
 import { getHousehold } from '../data/household.js';
@@ -57,7 +58,18 @@ function nextStatus(current) {
   return 'needed';
 }
 
-export function render(mountEl) {
+// ---- Two screens, not one (device test 7 Sep 2026) ---------------------
+// "Why can't we add something to the basket, so that the mechanics for
+// adding to the list are at the top and the list is on a different page?"
+//
+// The add form sat at the foot of the list. To reach it you scrolled past
+// every item you were about to go and buy, and it meant the screen you use
+// standing in a shop also carried a three-field form you will not touch
+// while you are there.
+//
+// Same split as the pantry: `section` chooses which half this mount shows.
+// One copy of the behaviour, two routes.
+export function render(mountEl, { section = 'list' } = {}) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -83,7 +95,11 @@ export function render(mountEl) {
 
   const actions = el('div', { class: 'filter-row' });
   const regenerateBtn = el('button', {
-    type: 'button', class: 'btn btn-primary', text: 'Build from the plan'
+    // Secondary since the add moved to its own page (7 Sep 2026) and the
+    // action bar became this screen's primary. Rebuilding is a weekly act;
+    // it keeps its words and its place at the top, but it stops competing
+    // with the control that is always there.
+    type: 'button', class: 'btn', text: 'Build from the plan'
   });
   const filterBtn = el('button', { type: 'button', class: 'btn', text: 'Filter' });
   actions.append(regenerateBtn, filterBtn);
@@ -242,7 +258,10 @@ export function render(mountEl) {
           + 'minus what is already in the cupboard.',
         actionLabel: 'Plan the week',
         actionHref: '#/plan-week',
-        why: 'You can also add staples below at any time.'
+        // Was "add staples below". They are not below any more — the add
+        // form has a page of its own, and a hint pointing at empty space
+        // is worse than no hint.
+        why: 'You can also add things by hand at any time.'
       }));
 
       // Phase 25. The other half of a shopping list: the things no meal
@@ -532,11 +551,11 @@ export function render(mountEl) {
   const addError = el('p', { class: 'field-error', role: 'alert' });
   addError.hidden = true;
   const addSubmit = el('button', {
-    // P2: secondary. "Build from the plan" is what this screen is for;
-    // adding one staple by hand is a side errand, and two filled buttons
-    // arguing about which is the point is how the screen came to feel
-    // like a wall of controls.
-    type: 'submit', class: 'btn btn-block', text: 'Add to list'
+    // The submit of the add page's only form, so it IS that page's primary.
+    // It was secondary while it lived at the foot of the list and competed
+    // with "Build from the plan"; on a page of its own there is nothing to
+    // compete with.
+    type: 'submit', class: 'btn btn-primary btn-block', text: 'Add to list'
   });
 
   addForm.append(
@@ -551,7 +570,30 @@ export function render(mountEl) {
     addError,
     addSubmit
   );
-  mountEl.appendChild(addForm);
+  // Mounted only on its own page — see the section switch at the end.
+
+  // ---- Which half of the screen this mount is -------------------------
+  if (section === 'add') {
+    // The form, and the one-tap starter set, at the top of a page that has
+    // nothing else on it.
+    mountEl.replaceChildren();
+    mountEl.appendChild(pageHeading('Add to the list', 'shopping'));
+    mountEl.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Anything added here stays on the list when it is rebuilt from the plan.'
+    }));
+    mountEl.appendChild(addForm);
+    mountEl.appendChild(el('a', {
+      class: 'btn btn-quiet', href: '#/shopping', text: 'Back to the list'
+    }));
+  } else {
+    // The list, with adding one tap away at the bottom of the screen where
+    // a thumb already is.
+    mountEl.appendChild(createActionBar({
+      label: 'Add something to the list',
+      href: '#/shopping-add'
+    }).element);
+  }
 
   addForm.addEventListener('submit', async (event) => {
     event.preventDefault();

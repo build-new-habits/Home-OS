@@ -163,6 +163,13 @@ export const routes = [
     path: 'plan-choose',
     title: 'Choose a meal',
     load: () => import('./views/planChoose.js')
+  },
+  // Device test 7 Sep 2026. Appended, per the append-only rule. The add
+  // form was at the foot of the list you use standing in a shop.
+  {
+    path: 'shopping-add',
+    title: 'Add to the list',
+    load: () => import('./views/shoppingAdd.js')
   }
 ];
 
