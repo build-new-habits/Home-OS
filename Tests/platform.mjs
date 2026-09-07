@@ -231,6 +231,30 @@ for (const sheet of css) {
     check(`${href} carries a version query`,
       /\?v=\d+/.test(href),
       'an unversioned stylesheet can be served stale by the HTTP cache');
+
+    // ---- and the version must TRACK THE CONTENT ----------------------
+    // This is the check that was missing, and it cost a fortnight of
+    // work being invisible on the device.
+    //
+    // The stamp went on at ?v=88 to defeat the HTTP cache, and was then
+    // never bumped again. CACHE_NAME reached v109 while every stylesheet
+    // still asked for v88, so the phone kept serving components.css as it
+    // stood before the card system, the action bar and the day cards
+    // existed. The app shipped new markup against three-week-old CSS and
+    // rendered as bare bullet lists.
+    //
+    // The original check only asserted that index.html and the precache
+    // agreed with EACH OTHER. They did — both were stale. Agreement is
+    // not freshness.
+    //
+    // Tying the stamp to CACHE_NAME makes it impossible to ship a
+    // stylesheet change without shipping a new URL for it, because the
+    // cache name has to move for any release at all.
+    const swVersion = (swSrc.match(/home-os-shell-v(\d+)/) || [])[1];
+    const hrefVersion = (href.match(/\?v=(\d+)/) || [])[1];
+    check(`${href} is stamped with the current cache version`,
+      swVersion && hrefVersion === swVersion,
+      `stylesheet says v${hrefVersion}, CACHE_NAME says v${swVersion}`);
   }
 }
 
