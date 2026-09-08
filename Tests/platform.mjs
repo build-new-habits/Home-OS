@@ -367,6 +367,48 @@ for (const f of files) {
   }
 }
 
+// ---- 13. Every class the app uses has a rule ---------------------------
+// On 7 Sep 2026 a "remove the dead table rules" edit used a regex that
+// matched the LAST .plan-table occurrence below it and cut everything in
+// between: 2,697 of 3,685 lines of components.css, deleted in one commit.
+//
+// Twelve gates passed. Every one of them checks structure, behaviour,
+// contrast ratios or tokens — none of them looks at whether a class the
+// app renders has any styling at all. The app shipped, and the Kitchen hub
+// came back as underlined bullet points on a phone.
+//
+// This is the cheapest possible check for that: if JavaScript puts a class
+// on an element, some stylesheet should have a rule for it. It would have
+// failed on hundreds of classes the moment that edit landed.
+{
+  const cssText = css.map((f) => f.src).join('\n').replace(/\/\*[\s\S]*?\*\//g, '');
+  const defined = new Set([...cssText.matchAll(/\.([a-zA-Z][\w-]*)/g)].map((m) => m[1]));
+
+  // Hooks with no styling of their own: JavaScript and the gates use them
+  // to find things. Listed rather than silently tolerated, so that adding
+  // to this list is a decision somebody makes on purpose.
+  const UNSTYLED = new Set([
+    'add-step-form', 'cook-results', 'error-detail', 'exercise-card',
+    'food-card', 'ingredient-detail', 'ingredient-text', 'library-body',
+    'meal-card', 'meal-picker__more', 'step-editor', 'stock-row',
+    'task-card', 'work-card'
+  ]);
+
+  const used = new Set();
+  for (const f of files) {
+    for (const m of f.src.matchAll(/class(?:Name)?[:=]\s*'([^']+)'/g)) {
+      for (const c of m[1].split(/\s+/)) if (c) used.add(c);
+    }
+    for (const m of f.src.matchAll(/classList\.(?:add|remove|toggle)\(([^)]*)\)/g)) {
+      for (const c of m[1].matchAll(/'([\w-]+)'/g)) used.add(c[1]);
+    }
+  }
+
+  const orphans = [...used].filter((c) => !defined.has(c) && !UNSTYLED.has(c)).sort();
+  check('every class the app renders has a CSS rule', orphans.length === 0,
+    orphans.slice(0, 12).join(', '));
+}
+
 console.log('');
 if (failures.length) {
   for (const f of failures) console.log(`  FAIL  ${f}`);
