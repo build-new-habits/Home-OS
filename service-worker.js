@@ -227,7 +227,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v111';
+const CACHE_NAME = 'home-os-shell-v112';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -235,9 +235,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=111',
-  './css/base.css?v=111',
-  './css/components.css?v=111',
+  './css/tokens.css?v=112',
+  './css/base.css?v=112',
+  './css/components.css?v=112',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -293,6 +293,8 @@ const SHELL_FILES = [
   './js/components/actionBar.js',
   './js/components/mealPicker.js',
   './js/views/planChoose.js',
+  './js/views/planWeek.js',
+  './js/views/firstRun.js',
   './js/views/shoppingAdd.js',
   './js/lib/planDraft.js',
   './js/components/scannerDialog.js',
@@ -309,6 +311,11 @@ const SHELL_FILES = [
   './js/views/weight.js',
   './js/views/water.js',
   './js/views/meals.js',
+  './js/views/meals/cookNow.js',
+  './js/views/meals/ingredients.js',
+  './js/views/meals/library.js',
+  './js/views/meals/libraryDetail.js',
+  './js/views/meals/method.js',
   './js/views/library.js',
   './js/views/pantry.js',
   './js/views/pantry/find.js',

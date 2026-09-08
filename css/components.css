@@ -1,4 +1,4 @@
-/* css/components.css — 07 Sep 2026 v68 */
+/* css/components.css — 07 Sep 2026 v69 */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3727,4 +3727,46 @@ body.sheet-open {
   .plan-slot > .btn {
     grid-column: 1;
   }
+}
+
+/* ---- Reading a recipe before you commit to it (7 Sep 2026) ------------
+   The library row's name is now the control that opens it. Styled as the
+   heading it already looked like, so nothing moves — it simply becomes
+   pressable, with a target tall enough to hit. */
+.library-row-open {
+  display: block;
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-2) 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.library-row-open:hover { text-decoration: underline; }
+
+.library-row-open:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.recipe-nutrition {
+  margin: 0 0 var(--space-2);
+  font-weight: 600;
+}
+
+.recipe-ingredients,
+.recipe-steps {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-5);
+}
+
+.recipe-ingredients li,
+.recipe-steps li {
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-normal);
 }

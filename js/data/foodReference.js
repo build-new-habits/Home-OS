@@ -96,6 +96,19 @@ export async function lookup(name) {
   return index.get(normalise(name)) || null;
 }
 
+/**
+ * By slug, not by name. Recipe ingredients reference `egg-medium`, and the
+ * name index is keyed on "Egg, medium" and its aliases — so lookup() finds
+ * nothing for a recipe ingredient, which is why the library could not show
+ * what was in a dish.
+ */
+export async function lookupSlug(slug) {
+  const { foods } = await load();
+  if (!slug) return null;
+  const want = String(slug).trim().toLowerCase();
+  return foods.find((f) => f.slug === want) || null;
+}
+
 /** Prefix and substring search, for a picker. Capped — this is a hint list. */
 export async function search(term, limit = 8) {
   const { foods } = await load();

@@ -21,6 +21,7 @@
 import { el } from '../../lib/dom.js';
 import { announce } from '../../lib/a11y.js';
 import { showToast } from '../../components/toast.js';
+import { openLibraryRecipe } from './libraryDetail.js';
 import {
   loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
 } from '../../data/recipeLibrary.js';
@@ -190,7 +191,15 @@ function renderLibraryList() {
 
   for (const recipe of matches) {
     const item = el('li', { class: 'library-row' });
-    item.appendChild(el('span', { class: 'library-row-name', text: recipe.name }));
+    // The name opens the recipe. Until now the only thing you could do with
+    // a library entry was add it to your meals — so reading one meant
+    // adding it first, which is choosing a dinner by its title.
+    const open = el('button', {
+      type: 'button', class: 'library-row-open', text: recipe.name
+    });
+    open.setAttribute('aria-label', `See what is in ${recipe.name}`);
+    open.addEventListener('click', () => { openLibraryRecipe(recipe, open); }, { signal });
+    item.appendChild(open);
 
     const meta = [recipe.cuisine, recipe.budget_tier, `${recipe.steps.length} steps`];
     if ((recipe.dietary_tags || []).length) meta.push(recipe.dietary_tags.join(', ').replace(/_/g, ' '));

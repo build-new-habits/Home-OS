@@ -409,6 +409,35 @@ for (const f of files) {
     orphans.slice(0, 12).join(', '));
 }
 
+// ---- 14. Every module the app imports is in the precache ---------------
+// js/views/meals/ — library, cookNow, method, ingredients — was dynamically
+// imported by meals.js and precached nowhere. Four modules the app needs to
+// browse and cook a recipe, absent from the offline shell since the day
+// meals.js was split.
+//
+// It never showed up because the gates run against the filesystem and the
+// device was almost always online. Offline it would have been a recipe
+// library that could not open.
+{
+  const swSrc2 = readFileSync(path.join(REPO, 'service-worker.js'), 'utf8');
+  const precached = new Set(
+    [...swSrc2.matchAll(/'\.\/(js\/[^']+\.js)'/g)].map((m) => m[1])
+  );
+
+  for (const f of files) {
+    if (!precached.has(f.path)) continue; // only trace outwards from shipped files
+    for (const m of f.src.matchAll(/from\s+'(\.[^']+\.js)'|import\('(\.[^']+\.js)'\)/g)) {
+      const rel = m[1] || m[2];
+      const resolved = path.posix.normalize(
+        path.posix.join(path.posix.dirname(f.path), rel)
+      );
+      check(`${resolved} is precached (imported by ${f.path})`,
+        precached.has(resolved),
+        'imported by a shipped module but missing from SHELL_FILES');
+    }
+  }
+}
+
 console.log('');
 if (failures.length) {
   for (const f of failures) console.log(`  FAIL  ${f}`);
