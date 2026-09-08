@@ -1,0 +1,63 @@
+h1.page-heading"Weekly plan"
+  svg.icon.icon-plan
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+p.field-hint[role=status]
+p.field-hint.list-sync-note[role=status]
+div.empty-state-block
+  p.empty-state
+  a.btn"Plan the week"
+  p.field-hint
+div.plan-days
+  section.plan-day
+    h2.plan-day-name"<day>"
+    ul.plan-slots
+      li.plan-slot
+        span.plan-slot-name
+        p.plan-empty
+        button.btn.btn-small[type=button]"Add"
+      li.plan-slot
+        span.plan-slot-name
+        p.plan-empty
+        button.btn.btn-small[type=button]"Add"
+      li.plan-slot
+        span.plan-slot-name
+        p.plan-empty
+        button.btn.btn-small[type=button]"Add"
+      li.plan-slot
+        span.plan-slot-name
+        p.plan-empty
+        button.btn.btn-small[type=button]"Add"
+form
+  h2"Add a meal to the plan"
+  div.field
+    label"Day"
+    select
+      option
+      option
+      option
+      option
+      option
+      option
+      option
+  div.field
+    label"Meal time"
+    select
+      option
+      option
+      option
+      option
+  button.btn.btn-block.choose-meal-btn[type=button]"Choose a meal"
+  select[hidden=]
+    option
+  p.chosen-meal[role=status]
+  div.field
+    label"Servings for this one time (optional)"
+    input[type=number]
+    p.field-hint
+  p.field-error[role=alert][hidden=]
+  button.btn.btn-block.btn-primary[type=submit]"Add to plan"
+a.btn.btn-quiet"Back to the plan"

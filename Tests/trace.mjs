@@ -590,7 +590,7 @@ check('after cleanup, a connectivity event triggers no further reads',
 const planMount = window.document.createElement('main');
 window.document.body.appendChild(planMount);
 const mealPlanView = await import(pathToFileURL(path.join(REPO, 'js/views/mealPlan.js')).href);
-const cleanupPlan = mealPlanView.render(planMount, {});
+const cleanupPlan = mealPlanView.render(planMount, { section: 'week' });
 await settle(80);
 
 // --- the Add button in a table cell must actually set the form up ---
@@ -677,7 +677,7 @@ check('choosing records the meal for the form to pick up', !!afterChoice.mealId,
 // Back to the plan: the form must come up already knowing what was chosen.
 if (typeof cleanupPlan === 'function') cleanupPlan();
 planMount.replaceChildren();
-const cleanupPlan2 = mealPlanView.render(planMount, {});
+const cleanupPlan2 = mealPlanView.render(planMount, { section: 'week' });
 await settle(80);
 check('returning to the plan shows the chosen meal',
   /Chosen: /.test(planMount.textContent),

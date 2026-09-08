@@ -182,6 +182,17 @@ export const routes = [
     path: 'meals-add',
     title: 'Add a meal',
     load: () => import('./views/mealsAdd.js')
+  },
+  // 7 Sep 2026. Appended, per the append-only rule. The plan becomes a hub.
+  {
+    path: 'plan-today',
+    title: 'Today',
+    load: () => import('./views/planToday.js')
+  },
+  {
+    path: 'plan-this-week',
+    title: 'This week',
+    load: () => import('./views/planThisWeek.js')
   }
 ];
 

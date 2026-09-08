@@ -801,6 +801,7 @@ const reachable = new Set([
   ...navMod.KITCHEN_PAGES.map((i) => i.path),
   ...navMod.PANTRY_PAGES.map((i) => i.path),
   ...navMod.MEALS_PAGES.map((i) => i.path),
+  ...navMod.PLAN_PAGES.map((i) => i.path),
   navMod.PRIMARY_ACTION.path,
   navMod.FIRST_RUN_ACTION.path
 ]);
@@ -882,7 +883,11 @@ console.log('');
 const planMount = window.document.createElement('main');
 window.document.body.appendChild(planMount);
 const planMod = await import(pathToFileURL(path.join(REPO, 'js/views/mealPlan.js')).href);
-planMod.render(planMount, {});
+// 7 Sep 2026: meal-plan is a hub of two doors now. These checks are about
+// the WEEK — day cards, meal times, servings — so they render that page.
+// The hub itself is covered by the orphan gate, which proves both pages
+// are reachable from it.
+planMod.render(planMount, { section: 'week' });
 await new Promise((r) => setTimeout(r, 80));
 
 const planTable = planMount.querySelector('.plan-table');

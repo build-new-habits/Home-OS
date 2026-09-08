@@ -116,6 +116,15 @@ export const DASHBOARD_LINKS = [
  * you are there. If it grates in the aisle, promote Shopping back out
  * rather than defend the structure.
  */
+// The plan's own pages. There is no "next week": weekly_meal_plan is keyed
+// by weekday, so the schema holds exactly one week and does not know which.
+// A tile for next week would show this week's meals under the wrong
+// heading, which is worse than no tile.
+export const PLAN_PAGES = [
+  { path: 'plan-today', title: "Today", blurb: 'What you are eating today.' },
+  { path: 'plan-this-week', title: 'This week', blurb: 'All seven days.' }
+];
+
 // Meals' own pages (P5). Declared here for the same reason as the pantry's:
 // the orphan gate builds its reachable set from this file, and an href
 // assembled from a template literal is invisible to it — which is exactly

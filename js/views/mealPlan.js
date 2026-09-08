@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 07 Sep 2026 v11
+// js/views/mealPlan.js — 07 Sep 2026 v12
+// v12: the plan is a hub — Today, and This week.
 // v11: P7 — a card per day. The table is gone.
 // v9: choosing a meal moved to its own screen.
 // v7: the meal picker replaces a <select> of your own dinners.
@@ -45,6 +46,7 @@ import { el, field, selectFrom } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { emptyState } from '../components/emptyState.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
+import { PLAN_PAGES } from '../navConfig.js';
 import { navigate } from '../router.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
@@ -62,7 +64,21 @@ function restoreFocus(id) {
   if (node && node.focus) node.focus();
 }
 
-export function render(mountEl) {
+// ---- The plan is a hub, and one week is all there is -------------------
+// Asked for on 7 Sep 2026: "Today's plan", "this week", "next week", then
+// day tiles opening one day.
+//
+// Two of those three are built here. NEXT WEEK IS NOT, and cannot be:
+// weekly_meal_plan.day_of_week is an enum of mon..sun, so the schema holds
+// exactly one week and has no idea which. Offering a "next week" tile over
+// that data would show you this week's meals under next week's heading,
+// which is worse than not offering it. Making it real is a migration —
+// a date column, a backfill, and every query that reads the plan.
+//
+//   meal-plan       Today, and This week
+//   plan-today      one day's card
+//   plan-this-week  all seven
+export function render(mountEl, { section = 'hub' } = {}) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -129,14 +145,36 @@ export function render(mountEl) {
   //
   // The <table> is gone rather than restyled. A grid that cannot be read as
   // a grid is not a table that needs better CSS, it is the wrong element.
+  /** mon..sun for the device's today, matching the schema's enum. */
+  function todayDayValue() {
+    return ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][new Date().getDay()];
+  }
+
+  const planHubStatus = new Map();
+
+  /** Counts on the front of the tiles, so the hub is not just two doors. */
+  function setPlanHubStatus(path, text) {
+    const tile = planHubStatus.get(path);
+    if (!tile) return;
+    tile.status.textContent = text || '';
+    tile.link.setAttribute('aria-label', text ? `${tile.title}. ${text}` : tile.title);
+  }
+
   const planList = el('div', { class: 'plan-days' });
-  mountEl.appendChild(planList);
+  if (section !== 'hub') mountEl.appendChild(planList);
 
   function buildPlanTable() {
     planList.replaceChildren();
 
+    // On the single-day page, only that day. Everywhere else, the week.
+    // Not `days` — that name is already a Set of days-with-something-on,
+    // used by the summary line below.
+    const daysToShow = section === 'today'
+      ? DAYS.filter((d) => d.value === todayDayValue())
+      : DAYS;
+
     let planned = 0;
-    for (const day of DAYS) {
+    for (const day of daysToShow) {
       const card = el('section', { class: 'plan-day' });
       card.setAttribute('aria-label', day.label);
       card.appendChild(el('h2', { class: 'plan-day-name', text: day.label }));
@@ -157,6 +195,18 @@ export function render(mountEl) {
     }
     // Stated as a fact about the week, never as a shortfall to feel bad
     // about (principle 1).
+    // Feed the hub tiles from the same numbers the page shows, so the two
+    // can never disagree — the Chores lesson, applied before it bites.
+    const todayCount = [...planByCell.entries()]
+      .filter(([key, entries]) => key.startsWith(`${todayDayValue()}:`) && entries.length)
+      .reduce((n, [, entries]) => n + entries.length, 0);
+    setPlanHubStatus('plan-today', todayCount === 0
+      ? 'Nothing planned today'
+      : `${todayCount} planned today`);
+    setPlanHubStatus('plan-this-week', planned === 0
+      ? 'Nothing planned yet'
+      : `${planned} meal${planned === 1 ? '' : 's'} across ${days.size} day${days.size === 1 ? '' : 's'}`);
+
     summary.textContent = planned === 0
       ? 'Nothing planned yet this week.'
       : `${planned} meal${planned === 1 ? '' : 's'} planned across ${days.size} day${days.size === 1 ? '' : 's'}.`;
@@ -418,7 +468,40 @@ export function render(mountEl) {
     planError,
     planSubmit
   );
-  mountEl.appendChild(planForm);
+  // ---- Which of the three screens this mount is ------------------------
+  if (section === 'hub') {
+    // The form belongs on a day, not on a list of doors.
+    planForm.hidden = true;
+
+    const list = el('ul', { class: 'hub-list' });
+    for (const page of PLAN_PAGES) {
+      const item = el('li', { class: 'hub-item' });
+      const link = el('a', { class: 'hub-link', href: `#/${page.path}` });
+      const text = el('span', { class: 'hub-text' });
+      text.appendChild(el('span', { class: 'hub-title', text: page.title }));
+      text.appendChild(el('span', { class: 'hub-blurb', text: page.blurb }));
+      const status = el('span', { class: 'hub-status' });
+      text.appendChild(status);
+      planHubStatus.set(page.path, { status, link, title: page.title });
+      link.append(text, el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+      item.appendChild(link);
+      list.appendChild(item);
+    }
+    mountEl.appendChild(list);
+
+    // Said once, plainly, rather than leaving a gap where a "next week"
+    // tile obviously ought to be.
+    mountEl.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'The plan holds one week at a time. Planning further ahead is not '
+        + 'built yet.'
+    }));
+  } else {
+    mountEl.appendChild(planForm);
+    mountEl.appendChild(el('a', {
+      class: 'btn btn-quiet', href: '#/meal-plan', text: 'Back to the plan'
+    }));
+  }
 
   // ---- Coming back from the choosing screen ----------------------------
   // The draft carries the day and slot out and the meal back. Reading it
