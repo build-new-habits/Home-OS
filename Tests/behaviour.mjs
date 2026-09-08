@@ -2,6 +2,10 @@
 // syntax check. Run against the shadow repo so modules that import
 // supabaseClient.js resolve without a network.
 
+import { readFileSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
 const REPO = process.env.GATE_REPO || '/tmp/gate-repo';
 
 let pass = 0;
@@ -1678,6 +1682,68 @@ check('a three-month-old price is stale',
   isStalePrice({ price_updated_at: new Date(Date.now() - 120 * 86400000).toISOString() },
     new Date().toISOString()));
 check('and a price never set is not stale', !isStalePrice({}, new Date().toISOString()));
+
+// ---- Recipe timings (7 Sep 2026) ---------------------------------------
+// Mushroom risotto reported "30 min prep, 10 min cooking, plus chilling or
+// resting time" for ten minutes of chopping and half an hour at the hob.
+// Every fault below is one of the three that produced that line.
+{
+  const { estimateRecipeTime, describeRecipeTime } =
+    await import(pathToFileURL(path.join(REPO, 'js/lib/recipeTime.js')).href);
+
+  // 1. Standing over a pan is cooking, whatever verb the step leads with.
+  const stirring = estimateRecipeTime({
+    steps: [{ instruction: 'Keep adding stock a ladle at a time, stirring, for about 18 minutes.' }]
+  });
+  check('stirring at a hob counts as cooking, not preparation',
+    stirring.cook === 20 && stirring.prep === 0,
+    JSON.stringify(stirring));
+
+  // 2. A two-minute rest is not a reason to start the night before.
+  const shortRest = estimateRecipeTime({
+    steps: [{ instruction: 'Grate parmesan in. Stir once and rest 2 minutes.' }]
+  });
+  check('a two-minute rest does not raise a chilling warning',
+    shortRest.needsWaiting === false, JSON.stringify(shortRest));
+
+  // 3. Overnight is never effort, and always worth saying.
+  const overnight = estimateRecipeTime({
+    steps: [{ instruction: 'Cover and chill overnight.' }]
+  });
+  check('an overnight chill is flagged and adds nothing to the total',
+    overnight.needsWaiting === true && overnight.total === 0,
+    JSON.stringify(overnight));
+
+  // 4. Nothing stated is still something done.
+  const bare = estimateRecipeTime({ steps: [{ instruction: 'Chop the onion.' }] });
+  check('a step with no stated time still costs something', bare.total > 0);
+
+  // 5. Across the whole library: every recipe gets a number, and no
+  // recipe silently loses attended minutes it told us about.
+  const dir = path.join(REPO, 'data/recipe_library');
+  let checked = 0;
+  let worst = null;
+  for (const file of readdirSync(dir)) {
+    if (!file.endsWith('.json') || file === 'index.json') continue;
+    const doc = JSON.parse(readFileSync(path.join(dir, file), 'utf8'));
+    for (const recipe of doc.recipes || []) {
+      const t = estimateRecipeTime(recipe);
+      if (t.total <= 0 && !t.needsWaiting) worst = recipe.name;
+      // Attended minutes only: chilling is excluded on purpose.
+      const attended = (recipe.steps || [])
+        .filter((st) => !/\b(overnight|chill|refrigerate|marinate|prove|rise|soak)\b/i
+          .test(st.instruction))
+        .reduce((sum, st) => sum + [...String(st.instruction)
+          .matchAll(/(\d+)\s*(minute|minutes|min|mins)\b/gi)]
+          .reduce((a, m) => a + Number(m[1]), 0), 0);
+      if (t.total + 5 < attended) worst = `${recipe.name} (${t.total} < ${attended})`;
+      checked += 1;
+    }
+  }
+  check(`all ${checked} library recipes produce a sane estimate`, worst === null, worst || '');
+  check('every recipe gets a time line',
+    typeof describeRecipeTime({ steps: [{ instruction: 'Chop it.' }] }) === 'string');
+}
 
 console.log('');
 

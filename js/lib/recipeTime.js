@@ -27,8 +27,30 @@
 // To the nearest 5 minutes. A recipe that claims 23 minutes is claiming a
 // precision this method does not have.
 
-const COOK_VERBS = /\b(cook|simmer|boil|bake|roast|fry|grill|steam|poach|saute|sauté|braise|heat|reduce|toast|griddle)\b/i;
-const WAIT_WORDS = /\b(overnight|chill|refrigerate|marinate|rest|prove|rise|soak|set aside for|leave for)\b/i;
+// ---- Corrected 7 Sep 2026, after the risotto ---------------------------
+// Mushroom risotto reported "30 min prep, 10 min cooking, plus chilling or
+// resting time" for a dish that is 10 minutes of chopping and half an hour
+// at the hob. Three faults, all in this classification:
+//
+//   1. "Keep adding stock a ladle at a time, stirring, for about 18
+//      minutes" has no verb from the old cook list, so eighteen minutes of
+//      standing over a pan was filed as PREPARATION.
+//   2. "Stir once and rest 2 minutes" matched `rest`, so a two-minute
+//      pause raised "plus chilling or resting time" — a phrase that tells
+//      someone to start the recipe the night before.
+//   3. Anything matching a wait word was dropped from the total entirely,
+//      so that same step contributed nothing at all.
+//
+// Stirring at a hob IS cooking. A two-minute rest is not a plan.
+const COOK_VERBS = /\b(cook|simmer|boil|bake|roast|fry|grill|steam|poach|saute|sauté|braise|heat|reduce|toast|griddle|stir|stirring|ladle|oven|hob|pan|saucepan|skillet|griddle)\b/i;
+
+// Only the waits that change WHEN you start. Chilling, proving, marinating.
+const WAIT_WORDS = /\b(overnight|chill|refrigerate|marinate|prove|rise|soak)\b/i;
+
+// A wait short enough to stand at the counter for is not a wait worth
+// warning about. Twenty minutes is the line: below it you wait, above it
+// you go and do something else.
+const WAIT_MINUTES_WORTH_MENTIONING = 20;
 
 /** Minutes stated in one instruction, or 0. Takes the top of a range. */
 function statedMinutes(text) {
@@ -44,7 +66,13 @@ function statedMinutes(text) {
   return total;
 }
 
-const round5 = (n) => Math.max(0, Math.round(n / 5) * 5);
+// Rounds to 5, but anything above zero stays above zero: two minutes of
+// chopping rounding to "0 min prep" says the work is free. A behaviour test
+// caught this on a one-step recipe.
+const round5 = (n) => {
+  if (n <= 0) return 0;
+  return Math.max(5, Math.round(n / 5) * 5);
+};
 
 /**
  * @returns {{ prep: number, cook: number, total: number, needsWaiting: boolean }}
@@ -58,17 +86,28 @@ export function estimateRecipeTime(recipe) {
 
   for (const step of (recipe && recipe.steps) || []) {
     const text = String(step.instruction || '');
-    const waiting = WAIT_WORDS.test(text);
-    if (waiting) needsWaiting = true;
-
     const stated = statedMinutes(text);
+    const isWait = WAIT_WORDS.test(text);
 
-    if (waiting) {
-      // Whatever it says, it is not effort. "Chill 30 minutes" is half an
-      // hour of the fridge doing it.
+    if (isWait) {
+      // Unattended: the fridge is doing it, so it is never effort. Only
+      // flagged when it is long enough to change when you start — or when
+      // it says overnight, which always does.
+      if (/overnight/i.test(text)
+        || stated === 0
+        || stated >= WAIT_MINUTES_WORTH_MENTIONING) {
+        needsWaiting = true;
+      } else {
+        // A short, stated wait — "rest 2 minutes" — is part of finishing
+        // the dish. Counted, not announced.
+        cook += stated;
+      }
       continue;
     }
+
     if (stated > 0) {
+      // A step that takes measurable minutes and mentions a pan, a heat or
+      // a spoon is cooking, whatever verb it happens to lead with.
       if (COOK_VERBS.test(text)) cook += stated;
       else prep += stated;
       continue;
