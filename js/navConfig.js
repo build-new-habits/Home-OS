@@ -116,6 +116,15 @@ export const DASHBOARD_LINKS = [
  * you are there. If it grates in the aisle, promote Shopping back out
  * rather than defend the structure.
  */
+// Meals' own pages (P5). Declared here for the same reason as the pantry's:
+// the orphan gate builds its reachable set from this file, and an href
+// assembled from a template literal is invisible to it — which is exactly
+// how meals-match came up orphaned the moment it was added.
+export const MEALS_PAGES = [
+  { path: 'meals-match', title: 'What could I make?', blurb: 'Recipes you could cook from the cupboards right now.' },
+  { path: 'meals-add', title: 'Add a meal', blurb: 'Your own recipe, by hand.' }
+];
+
 // The pantry's own pages. Declared here rather than inside the view for the
 // same reason every other hub is: the orphan gate builds its reachable set
 // from this file, so a page listed anywhere else is a page that can quietly

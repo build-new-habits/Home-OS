@@ -1,0 +1,33 @@
+h1.page-heading"Add a meal"
+  svg.icon.icon-meal
+    g
+      path
+      path
+  span
+form
+  h3"Add a meal"
+  div.field
+    label"Meal name"
+    input[type=text]
+  div.field
+    label"Usually serves"
+    input[type=number]
+  div.field
+    label"Kind of meal"
+    select
+      option
+      option
+      option
+      option
+      option
+      option
+    p.field-hint
+  p.field-error[role=alert][hidden=]
+  button.btn.btn-block.btn-primary[type=submit]"Add meal"
+section.library-section
+  h3"Recipe library"
+  p.field-hint
+  details
+    summary"Browse the recipe library"
+    div.library-body
+a.btn.btn-quiet"Back to your meals"

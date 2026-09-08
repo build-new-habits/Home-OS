@@ -1,4 +1,5 @@
-// js/views/meals.js — 01 Sep 2026 v30
+// js/views/meals.js — 07 Sep 2026 v31
+// P5: three screens — meals, meals-match, meals-add.
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
 // indistinguishable from a button that does not work. See refreshOpenSheet.
@@ -139,6 +140,7 @@ import { createMethodSection } from './meals/method.js';
 import { createIngredientBuilders } from './meals/ingredients.js';
 import { emptyState } from '../components/emptyState.js';
 import { createCookNowPanel } from './meals/cookNow.js';
+import { createActionBar } from '../components/actionBar.js';
 import { addItem } from '../data/shopping.js';
 import { announce } from '../lib/a11y.js';
 
@@ -195,7 +197,19 @@ function formatMacro(value, unit, known) {
   return `${Math.round(Number(value) * 10) / 10} ${unit}`;
 }
 
-export function render(mountEl) {
+// ---- P5: six jobs, three screens ---------------------------------------
+// This page carried a filter, an ingredient search with three collapsible
+// result groups, the recipe list, a pointer to the library, a full
+// add-a-meal form and a link to Things you buy. Six jobs, one scroll — the
+// last screen in the app still built that way.
+//
+//   meals        your recipes, and doors to the other two
+//   meals-match  "What could I make?" — the pantry-matching screen
+//   meals-add    the add form
+//
+// `section` selects which. One copy of the behaviour, three routes, exactly
+// as the pantry and the shopping list are built.
+export function render(mountEl, { section = 'list' } = {}) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -251,7 +265,8 @@ export function render(mountEl) {
   // ================= Section: meals =================
 
   const mealsSection = el('section');
-  mealsSection.appendChild(el('h2', { text: 'Meals' }));
+  // The <h1> two lines up already says "Meals". Saying it again was a
+  // heading with nothing under it but itself.
 
   // ---- Filter ----
   // In the panel, not on the screen. The COUNT on the button is what keeps
@@ -270,7 +285,7 @@ export function render(mountEl) {
   // than reaching for it: three other features read the same meals and
   // ingredients, so one owner beats two copies that can disagree.
   const cookNowPanel = createCookNowPanel({ signal, isDestroyed: () => destroyed });
-  mealsSection.appendChild(cookNowPanel.section);
+  // Mounted only on the matching page — see the section switch below.
 
   const mealsList = el('ul', { class: 'recipe-rows' });
   mealsSection.appendChild(mealsList);
@@ -316,8 +331,7 @@ export function render(mountEl) {
     mealFormError,
     mealSubmit
   );
-  mealsSection.appendChild(librarySection);
-  mealsSection.appendChild(addMealForm);
+  // librarySection and addMealForm are mounted by the section switch.
 
   addMealForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -1118,16 +1132,50 @@ export function render(mountEl) {
     refreshOpenSheet();
   }
 
-  // A pointer, not a duplicate: the library lives on its own page, and the
-  // ingredient picker below is the only place recipes need it.
-  const foodsLink = el('p');
-  foodsLink.appendChild(el('a', {
-    class: 'card-link', href: '#/foods',
-    text: 'Manage the things you buy'
-  }));
-  mealsSection.appendChild(foodsLink);
+  /** A door, matching every other hub in the app. */
+  function hubTile(path, title, blurb) {
+    const item = el('li', { class: 'hub-item' });
+    const link = el('a', { class: 'hub-link', href: `#/${path}` });
+    const text = el('span', { class: 'hub-text' });
+    text.appendChild(el('span', { class: 'hub-title', text: title }));
+    text.appendChild(el('span', { class: 'hub-blurb', text: blurb }));
+    link.append(text, el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+    item.appendChild(link);
+    return item;
+  }
 
-  mountEl.append(mealsSection);
+  // ---- Which of the three screens this mount is -----------------------
+  if (section === 'match') {
+    mountEl.replaceChildren();
+    mountEl.appendChild(pageHeading('What could I make?', 'meal'));
+    mountEl.appendChild(el('p', {
+      class: 'field-hint',
+      text: 'Built from what is in your cupboards right now.'
+    }));
+    mountEl.appendChild(cookNowPanel.section);
+    mountEl.appendChild(el('a', {
+      class: 'btn btn-quiet', href: '#/meals', text: 'Back to your meals'
+    }));
+  } else if (section === 'add') {
+    mountEl.replaceChildren();
+    mountEl.appendChild(pageHeading('Add a meal', 'meal'));
+    mountEl.appendChild(addMealForm);
+    mountEl.appendChild(librarySection);
+    mountEl.appendChild(el('a', {
+      class: 'btn btn-quiet', href: '#/meals', text: 'Back to your meals'
+    }));
+  } else {
+    mealsSection.appendChild(el('ul', { class: 'hub-list' }, [
+      hubTile('meals-match', 'What could I make?',
+        'Recipes you could cook from the cupboards right now.'),
+      hubTile('library', 'Recipe library',
+        'A hundred recipes to add from, ready to cook.')
+    ]));
+    mountEl.append(mealsSection);
+    mountEl.appendChild(createActionBar({
+      label: 'Add a meal', href: '#/meals-add'
+    }).element);
+  }
 
   paintOfflineNote();
 

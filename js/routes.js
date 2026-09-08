@@ -170,6 +170,18 @@ export const routes = [
     path: 'shopping-add',
     title: 'Add to the list',
     load: () => import('./views/shoppingAdd.js')
+  },
+  // P5, 7 Sep 2026. Appended, per the append-only rule. Meals was the last
+  // screen carrying six jobs on one scroll.
+  {
+    path: 'meals-match',
+    title: 'What could I make?',
+    load: () => import('./views/mealsMatch.js')
+  },
+  {
+    path: 'meals-add',
+    title: 'Add a meal',
+    load: () => import('./views/mealsAdd.js')
   }
 ];
 

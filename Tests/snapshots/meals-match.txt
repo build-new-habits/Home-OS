@@ -1,0 +1,15 @@
+h1.page-heading"What could I make?"
+  svg.icon.icon-meal
+    g
+      path
+      path
+  span
+p.field-hint
+section.cook-now
+  h3"What could I make?"
+  div.field
+    label"Search by an ingredient you have"
+    input[type=search]
+  div.cook-results
+    p.field-hint
+a.btn.btn-quiet"Back to your meals"

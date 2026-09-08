@@ -800,6 +800,7 @@ const reachable = new Set([
   ...navMod.HEALTH_PAGES.map((i) => i.path),
   ...navMod.KITCHEN_PAGES.map((i) => i.path),
   ...navMod.PANTRY_PAGES.map((i) => i.path),
+  ...navMod.MEALS_PAGES.map((i) => i.path),
   navMod.PRIMARY_ACTION.path,
   navMod.FIRST_RUN_ACTION.path
 ]);
@@ -1332,7 +1333,16 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   const teardown = mealsMod.render(mount);
   await new Promise((r) => setTimeout(r, 40));
 
-  const libSection = mount.querySelector('.library-section');
+  // P5, 7 Sep 2026: the library pointer and the add form moved to
+  // meals-add. The checks move with them rather than being deleted — what
+  // they assert (a real heading, and saying what it is before you open it)
+  // is unchanged, only the page it is asserted against.
+  const addMount = window.document.createElement('main');
+  window.document.body.appendChild(addMount);
+  const addTeardown = mealsMod.render(addMount, { section: 'add' });
+  await new Promise((r) => setTimeout(r, 40));
+
+  const libSection = addMount.querySelector('.library-section');
   check('meals: the recipe library has a heading, not just a summary',
     !!libSection && !!libSection.querySelector('h3'));
   check('meals: and says what it is before you open it',

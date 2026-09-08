@@ -177,17 +177,25 @@ const meals = await import(pathToFileURL(path.join(REPO, 'js/views/meals.js')).h
 const cleanupMeals = meals.render(mealsMount, {});
 await settle(120);
 
-// --- every button and input is wired ---
+// P5, 7 Sep 2026: adding a meal moved to its own route, so the meals list
+// legitimately renders no form. The form is exercised on the page that now
+// holds it — a second mount below — rather than the assertion being
+// loosened to accept either.
 const mealButtons = [...mealsMount.querySelectorAll('button')];
-const mealForms = [...mealsMount.querySelectorAll('form')];
-check(`meals: ${mealButtons.length} buttons and ${mealForms.length} forms rendered`,
-  mealButtons.length > 0 && mealForms.length > 0);
+check(`meals: ${mealButtons.length} buttons rendered`, mealButtons.length > 0);
+
+const mealAddMount = window.document.createElement('main');
+window.document.body.appendChild(mealAddMount);
+const cleanupMealAdd = meals.render(mealAddMount, { section: 'add' });
+await settle(80);
+check('meals-add: the add form is on its own page',
+  !!mealAddMount.querySelector('#new-meal-name'));
 
 // --- add a meal ---
 clearCalls();
-setValue(mealsMount.querySelector('#new-meal-name'), 'Trace stew');
-setValue(mealsMount.querySelector('#new-meal-serves'), '3');
-submit(mealsMount.querySelector('#new-meal-name').closest('form'));
+setValue(mealAddMount.querySelector('#new-meal-name'), 'Trace stew');
+setValue(mealAddMount.querySelector('#new-meal-serves'), '3');
+submit(mealAddMount.querySelector('#new-meal-name').closest('form'));
 await settle();
 let w = lastWrite();
 check('add meal issues an insert on `meals`', w && w.table === 'meals' && w.op === 'insert', JSON.stringify(w));
@@ -206,12 +214,12 @@ check('no user_id is ever sent (RLS supplies it)', !w || !('user_id' in w.payloa
 
 // --- add a meal with a blank name is refused before any write ---
 clearCalls();
-setValue(mealsMount.querySelector('#new-meal-name'), '   ');
-submit(mealsMount.querySelector('#new-meal-name').closest('form'));
+setValue(mealAddMount.querySelector('#new-meal-name'), '   ');
+submit(mealAddMount.querySelector('#new-meal-name').closest('form'));
 await settle();
 check('a blank meal name issues NO write', writes().length === 0, JSON.stringify(writes()));
 check('and shows an error the user can read',
-  !mealsMount.querySelector('#new-meal-error').hidden);
+  !mealAddMount.querySelector('#new-meal-error').hidden);
 
 // --- an ingredient can be created FROM the recipe ---
 // Writing a recipe is not the moment to go and maintain a food library.
