@@ -72,13 +72,45 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
 
   let closed = false;
 
+  // ---- The back gesture closes the sheet, not the page ----------------
+  // Device test 7 Sep 2026: "pressing close at the end of the recipe, the
+  // user gets kicked back to Kitchen, not the recipes."
+  //
+  // Close was innocent. The back gesture was not: with the sheet holding no
+  // history of its own, back left the whole route, so reading one recipe
+  // and swiping back put you two screens away from the library you were
+  // browsing.
+  //
+  // The sheet now owns a history entry. Back closes the sheet and leaves
+  // you where you were; the Close button unwinds that same entry, so back
+  // afterwards does not skip a screen either. This is what a phone user
+  // expects of anything that opens over the top of a page.
+  let poppedByHistory = false;
+
+  function onPopState() {
+    poppedByHistory = true;
+    close();
+  }
+
   function close() {
     if (closed) return;
     closed = true;
     document.removeEventListener('keydown', onKeydown, true);
+    window.removeEventListener('popstate', onPopState);
     backdrop.remove();
     document.body.classList.remove('sheet-open');
+
+    // Focus first, THEN unwind the history entry. The other way round, the
+    // navigation lands after the focus call and puts focus back on <body> —
+    // which is the exact "dumped at the top of the page" failure this
+    // component's own comments were written to prevent.
     if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+
+    // Closing by button or Escape must remove the entry we added, or the
+    // next back press does nothing visible and looks broken.
+    if (!poppedByHistory && history.state && history.state.homeOsSheet === uid) {
+      history.back();
+    }
   }
 
   function focusables() {
@@ -113,6 +145,16 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
     if (event.target === backdrop) close();
   });
   document.addEventListener('keydown', onKeydown, true);
+
+  // Same URL, so the hash router does not re-render; this entry exists
+  // only to give the back gesture something to consume.
+  try {
+    history.pushState({ homeOsSheet: uid }, '', window.location.href);
+    window.addEventListener('popstate', onPopState);
+  } catch {
+    // No history API (or a sandboxed frame): the sheet still opens and
+    // closes by button, which is the behaviour before this change.
+  }
 
   if (typeof build === 'function') build(body, { close });
 

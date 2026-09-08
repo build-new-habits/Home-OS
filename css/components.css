@@ -1,4 +1,4 @@
-/* css/components.css — 07 Sep 2026 v69 */
+/* css/components.css — 07 Sep 2026 v70 */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3733,6 +3733,18 @@ body.sheet-open {
    The library row's name is now the control that opens it. Styled as the
    heading it already looked like, so nothing moves — it simply becomes
    pressable, with a target tall enough to hit. */
+/* The name did not look pressable — it looked like a heading, because it
+   used to be one. A chevron and the row's own hover state say otherwise.
+   Device test 7 Sep 2026: "it's not obvious that the recipes can be
+   opened." */
+.library-row-open::after {
+  content: "›";
+  float: right;
+  color: var(--color-accent-strong);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
 .library-row-open {
   display: block;
   width: 100%;
@@ -3748,6 +3760,14 @@ body.sheet-open {
 }
 
 .library-row-open:hover { text-decoration: underline; }
+
+/* Colour alone would be doing the work otherwise, and the accent is
+   already this app's link colour — so the row also lifts like every other
+   pressable card. */
+.library-row-open:hover,
+.library-row-open:focus-visible {
+  color: var(--color-accent-strong);
+}
 
 .library-row-open:focus-visible {
   outline: 2px solid var(--color-focus);

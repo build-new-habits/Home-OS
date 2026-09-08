@@ -33,6 +33,7 @@
 import { el } from '../../lib/dom.js';
 import { openDetailSheet } from '../../components/detailSheet.js';
 import { lookupSlug } from '../../data/foodReference.js';
+import { describeRecipeTime } from '../../lib/recipeTime.js';
 
 /** Grams for one ingredient line, or null when it cannot be known. */
 function gramsFor(ing, entry) {
@@ -43,8 +44,16 @@ function gramsFor(ing, entry) {
   if (unit === 'kg') return qty * 1000;
   // A countable thing only converts if the reference says what one weighs.
   if (unit === 'item' && entry && entry.grams_per_item) return qty * entry.grams_per_item;
-  // ml is NOT assumed to be grams. It is right for water and wrong for oil,
-  // and being wrong about oil moves a calorie total a long way.
+  // Millilitres convert when the reference knows the density — which it
+  // does for all 226 ml ingredients in the library.
+  //
+  // The first version of this refused to convert ml at all, on the sound
+  // reasoning that assuming 1 ml = 1 g is right for water and badly wrong
+  // for oil. That reasoning was correct and the conclusion was not: the
+  // data already carries grams_per_ml, and I never looked. It is why
+  // Overnight oats reported "3 of 6 ingredients" while sitting on a
+  // complete set of figures.
+  if (unit === 'ml' && entry && entry.grams_per_ml) return qty * entry.grams_per_ml;
   return null;
 }
 
@@ -96,11 +105,11 @@ export async function openLibraryRecipe(recipe, returnFocusTo) {
       }
       body.appendChild(nut);
 
-      // Time is not in the data. Said once, plainly, rather than left as a
-      // gap the eye keeps looking for.
+      // Read out of the method rather than invented — see lib/recipeTime.js.
+      const time = describeRecipeTime(recipe);
       body.appendChild(el('p', {
         class: 'field-hint',
-        text: `${recipe.steps.length} steps. How long it takes is not recorded yet.`
+        text: [`${recipe.steps.length} steps`, time].filter(Boolean).join('. ')
       }));
 
       body.appendChild(el('h3', { text: 'Ingredients' }));

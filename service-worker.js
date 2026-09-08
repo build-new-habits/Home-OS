@@ -227,7 +227,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v112';
+const CACHE_NAME = 'home-os-shell-v113';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -235,9 +235,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=112',
-  './css/base.css?v=112',
-  './css/components.css?v=112',
+  './css/tokens.css?v=113',
+  './css/base.css?v=113',
+  './css/components.css?v=113',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -297,6 +297,7 @@ const SHELL_FILES = [
   './js/views/firstRun.js',
   './js/views/shoppingAdd.js',
   './js/lib/planDraft.js',
+  './js/lib/recipeTime.js',
   './js/components/scannerDialog.js',
   './js/components/claimDialog.js',
   './js/components/cookMode.js',
