@@ -26,4 +26,11 @@ ul.hub-list
         span.hub-blurb
         span.hub-status
       span.hub-chevron
+  li.hub-item
+    a.hub-link"Next weekPlan ahead, and send it to the shopping list.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
 p.field-hint

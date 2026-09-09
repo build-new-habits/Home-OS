@@ -1,4 +1,5 @@
-// js/data/mealPlan.js — 01 Sep 2026 v3
+// js/data/mealPlan.js — 08 Sep 2026 v4
+// v4: listPlan and addPlanEntry take a week_start (revision 24).
 // All Supabase access for `weekly_meal_plan`. Shared data-access contract:
 // { ok, data|error }, error always checked, nothing thrown at views, no
 // user_id on inserts.
@@ -23,6 +24,7 @@
 import { supabase } from '../supabaseClient.js';
 
 const TABLE = 'weekly_meal_plan';
+import { thisWeekStart, isWeekStart } from '../lib/weeks.js';
 
 /** Matches the day_of_week CHECK constraint exactly. Order is display order. */
 export const DAYS = [
@@ -54,14 +56,41 @@ export function isValidSlot(value) {
   return SLOT_VALUES.includes(value);
 }
 
-/** The whole plan, each entry with its meal embedded. */
-export async function listPlan() {
+/**
+ * One week's plan, each entry with its meal embedded.
+ *
+ * Revision 24 gave the table a week_start, so this now takes one. It
+ * DEFAULTS to the current week rather than being required: every existing
+ * caller keeps working and keeps meaning what it meant, which is what makes
+ * this safe to land before the views are updated.
+ *
+ * Unfiltered was fine when there was one week in the table. It stops being
+ * fine the moment a second exists — the seven-card view would render both
+ * weeks' meals on the same Tuesday and neither the count nor the shopping
+ * list would be right.
+ */
+export async function listPlan(weekStart = thisWeekStart()) {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, day_of_week, slot, serves_override, member_ids, meal_id, meals(id, name, default_serves, dietary_tags)')
+    .select('id, day_of_week, slot, serves_override, member_ids, week_start, meal_id, meals(id, name, default_serves, dietary_tags)')
+    .eq('week_start', weekStart)
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };
   return { ok: true, data };
+}
+
+/** Which weeks have anything in them at all. For a planner's overview. */
+export async function listPlannedWeeks() {
+  const { data, error } = await supabase
+    .from(TABLE)
+    .select('week_start')
+    .order('week_start', { ascending: true });
+  if (error) return { ok: false, error };
+  const counts = new Map();
+  for (const row of data || []) {
+    counts.set(row.week_start, (counts.get(row.week_start) || 0) + 1);
+  }
+  return { ok: true, data: [...counts].map(([week_start, meals]) => ({ week_start, meals })) };
 }
 
 /**
@@ -78,7 +107,10 @@ export function groupByCell(entries) {
   return map;
 }
 
-export async function addPlanEntry({ meal_id, day_of_week, slot, serves_override = null, member_ids = [] }) {
+export async function addPlanEntry({
+  meal_id, day_of_week, slot, serves_override = null, member_ids = [],
+  week_start = thisWeekStart()
+}) {
   if (!meal_id) return { ok: false, error: new Error('Pick a meal first.') };
   // Guarded here as well as in the UI: a check-constraint violation comes
   // back as an opaque database error, which is not a useful thing to show.
@@ -88,8 +120,14 @@ export async function addPlanEntry({ meal_id, day_of_week, slot, serves_override
   if (!isValidSlot(slot)) {
     return { ok: false, error: new Error(`"${slot}" is not a meal slot.`) };
   }
+  // Checked here rather than left to the database: the Monday constraint
+  // comes back as an opaque violation, and "new row violates check
+  // constraint" is not something to put in front of a person.
+  if (!isWeekStart(week_start)) {
+    return { ok: false, error: new Error(`"${week_start}" is not the Monday of a week.`) };
+  }
   const payload = {
-    meal_id, day_of_week, slot,
+    meal_id, day_of_week, slot, week_start,
     serves_override: normaliseServes(serves_override),
     // Empty means everyone. That is the default and it stays the default.
     member_ids: Array.isArray(member_ids) ? member_ids : []
@@ -110,8 +148,16 @@ function normaliseServes(value) {
  * Updates one plan entry. Passing serves_override as null or '' clears the
  * override, so the entry falls back to meals.default_serves.
  */
-export async function updatePlanEntry(entryId, { day_of_week, slot, serves_override, member_ids } = {}) {
+export async function updatePlanEntry(entryId, { day_of_week, slot, serves_override, member_ids, week_start } = {}) {
   const patch = {};
+  // Moving a meal to another week is the same operation as moving it to
+  // another day — that is the whole point of keeping both columns.
+  if (week_start !== undefined) {
+    if (!isWeekStart(week_start)) {
+      return { ok: false, error: new Error(`"${week_start}" is not the Monday of a week.`) };
+    }
+    patch.week_start = week_start;
+  }
   if (day_of_week !== undefined) {
     if (!isValidDay(day_of_week)) {
       return { ok: false, error: new Error(`"${day_of_week}" is not a day of the week.`) };

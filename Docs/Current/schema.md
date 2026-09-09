@@ -1051,10 +1051,32 @@ migrations are what have kept this app safe. Read `unit` before using it.
 | Column | Type | Notes |
 |---|---|---|
 | meal_id | uuid | not null; references meals(id) **on delete restrict** |
+| week_start | date | not null; default date_trunc('week', now())::date; check extract(isodow) = 1, so always a Monday (revision 24). With day_of_week it identifies one slot |
 | day_of_week | text | not null; check in ('mon','tue','wed','thu','fri','sat','sun') |
 | slot | text | not null; check in ('breakfast','lunch','dinner','snack') |
 | member_ids | uuid[] | not null default '{}'. **Empty = everyone.** No FK possible; unknown ids ignored on read (revision 13) |
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
+
+#### Revision 24 — the plan gets weeks (8 Sep 2026)
+
+`day_of_week` alone held exactly one week and did not know which. That
+blocked next week, moving a meal between weeks, and sending next week's
+ingredients to the shopping list.
+
+`week_start` was ADDED rather than replacing `day_of_week`. Every query,
+every group-by and the seven-card view read the weekday, so replacing it
+would have been a rewrite of the plan's whole read path in one commit — and
+"Tuesday" is genuinely how a person talks about a meal plan.
+
+A row is (week_start, day_of_week). Moving between days changes the
+weekday; moving between weeks changes the week.
+
+Existing rows were backfilled to the week the migration ran, because the
+old schema recorded no date at all. That is a guess, and the only one
+available.
+
+No uniqueness on (week_start, day_of_week, slot): several meals in one slot
+is supported, and `member_ids` exists to say who each is for.
 
 ### pantry_stock
 

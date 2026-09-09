@@ -121,8 +121,12 @@ export const DASHBOARD_LINKS = [
 // A tile for next week would show this week's meals under the wrong
 // heading, which is worse than no tile.
 export const PLAN_PAGES = [
-  { path: 'plan-today', title: "Today", blurb: 'What you are eating today.' },
-  { path: 'plan-this-week', title: 'This week', blurb: 'All seven days.' }
+  { path: 'plan-today', title: 'Today', blurb: 'What you are eating today.' },
+  { path: 'plan-this-week', title: 'This week', blurb: 'All seven days.' },
+  // Real since migration 024 (8 Sep 2026). Until then weekly_meal_plan was
+  // keyed by weekday alone and held exactly one week, so this tile would
+  // have shown this week's meals under next week's heading.
+  { path: 'plan-next-week', title: 'Next week', blurb: 'Plan ahead, and send it to the shopping list.' }
 ];
 
 // Meals' own pages (P5). Declared here for the same reason as the pantry's:

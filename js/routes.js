@@ -193,6 +193,12 @@ export const routes = [
     path: 'plan-this-week',
     title: 'This week',
     load: () => import('./views/planThisWeek.js')
+  },
+  // Real since migration 024, 8 Sep 2026.
+  {
+    path: 'plan-next-week',
+    title: 'Next week',
+    load: () => import('./views/planNextWeek.js')
   }
 ];
 

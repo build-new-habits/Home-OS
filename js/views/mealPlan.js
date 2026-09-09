@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 07 Sep 2026 v12
+// js/views/mealPlan.js — 08 Sep 2026 v13
+// v13: every read and write carries a week. Next week is real.
 // v12: the plan is a hub — Today, and This week.
 // v11: P7 — a card per day. The table is gone.
 // v9: choosing a meal moved to its own screen.
@@ -47,6 +48,7 @@ import { pageHeading } from '../lib/icons.js';
 import { emptyState } from '../components/emptyState.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
 import { PLAN_PAGES } from '../navConfig.js';
+import { thisWeekStart, nextWeekStart, describeWeek } from '../lib/weeks.js';
 import { navigate } from '../router.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
@@ -68,17 +70,19 @@ function restoreFocus(id) {
 // Asked for on 7 Sep 2026: "Today's plan", "this week", "next week", then
 // day tiles opening one day.
 //
-// Two of those three are built here. NEXT WEEK IS NOT, and cannot be:
-// weekly_meal_plan.day_of_week is an enum of mon..sun, so the schema holds
-// exactly one week and has no idea which. Offering a "next week" tile over
-// that data would show you this week's meals under next week's heading,
-// which is worse than not offering it. Making it real is a migration —
-// a date column, a backfill, and every query that reads the plan.
+// All three are real since migration 024 (8 Sep 2026), which gave the table
+// a week_start. Before it, weekly_meal_plan was keyed by weekday alone: it
+// held exactly one week and did not know which, so a "next week" tile would
+// have shown this week's meals under next week's heading.
 //
-//   meal-plan       Today, and This week
+//   meal-plan       Today, This week, Next week
 //   plan-today      one day's card
 //   plan-this-week  all seven
 export function render(mountEl, { section = 'hub' } = {}) {
+  // Which Monday this mount is about. Every read and write below carries
+  // it, so a meal added on the next-week page cannot land on this one via
+  // the column default.
+  const weekStart = section === 'next' ? nextWeekStart() : thisWeekStart();
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -497,6 +501,12 @@ export function render(mountEl, { section = 'hub' } = {}) {
         + 'built yet.'
     }));
   } else {
+    // Which week, in words. "Week of 15 Sep" beats a date nobody reads, and
+    // on the next-week page it is the only thing distinguishing this screen
+    // from the identical one for this week.
+    const weekLabel = el('p', { class: 'field-hint', text: describeWeek(weekStart) });
+    mountEl.insertBefore(weekLabel, mountEl.firstChild.nextSibling);
+
     mountEl.appendChild(planForm);
     mountEl.appendChild(el('a', {
       class: 'btn btn-quiet', href: '#/meal-plan', text: 'Back to the plan'
@@ -551,7 +561,10 @@ export function render(mountEl, { section = 'hub' } = {}) {
       meal_id: planMealSelect.value,
       day_of_week: planDaySelect.value,
       slot: planSlotSelect.value,
-      serves_override: planServesInput.value
+      serves_override: planServesInput.value,
+      // The week this page is about — otherwise a meal added on the next
+      // week page lands on this one, silently, via the column default.
+      week_start: weekStart
     });
     planSubmit.disabled = false;
     if (destroyed) return;
@@ -600,7 +613,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
   }
 
   async function loadPlan() {
-    const [result, household] = await Promise.all([listPlan(), getHousehold()]);
+    const [result, household] = await Promise.all([listPlan(weekStart), getHousehold()]);
     if (destroyed) return;
     // A household read that fails must not cost you the plan. Falling back
     // to an empty member list is the pre-Phase-20 behaviour, not an error.

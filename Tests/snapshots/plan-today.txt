@@ -4,6 +4,7 @@ h1.page-heading"Weekly plan"
       rect
       path
   span
+p.field-hint
 p.field-hint[hidden=]
 p.field-hint[role=status]
 p.field-hint.list-sync-note[role=status]
