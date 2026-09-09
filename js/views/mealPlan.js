@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 08 Sep 2026 v13
+// js/views/mealPlan.js — 08 Sep 2026 v14
 // v13: every read and write carries a week. Next week is real.
 // v12: the plan is a hub — Today, and This week.
 // v11: P7 — a card per day. The table is gone.
@@ -49,6 +49,7 @@ import { emptyState } from '../components/emptyState.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
 import { PLAN_PAGES } from '../navConfig.js';
 import { thisWeekStart, nextWeekStart, describeWeek } from '../lib/weeks.js';
+import { gatherForWeek, buildWeekIntoList } from '../data/planShopping.js';
 import { navigate } from '../router.js';
 function labelForDay(value) {
   const found = DAYS.find((d) => d.value === value);
@@ -506,6 +507,67 @@ export function render(mountEl, { section = 'hub' } = {}) {
     // from the identical one for this week.
     const weekLabel = el('p', { class: 'field-hint', text: describeWeek(weekStart) });
     mountEl.insertBefore(weekLabel, mountEl.firstChild.nextSibling);
+
+    // ---- Send this week's plan to the shopping list --------------------
+    // Only on a week page, and only when there is something to send. The
+    // same arithmetic the shopping list's own Build button runs — one copy,
+    // in data/planShopping.js.
+    if (section !== 'today') {
+      const sendBtn = el('button', {
+        type: 'button', class: 'btn btn-block', text: 'Send to shopping'
+      });
+      sendBtn.addEventListener('click', async () => {
+        // Count before acting: a rebuild replaces whatever the last one
+        // produced, and saying so in numbers first is the house rule.
+        const gathered = await gatherForWeek(weekStart);
+        if (destroyed) return;
+        if (!gathered.ok) {
+          console.error('Could not read the plan to send it:', gathered.error);
+          showToast("Couldn't read your plan and pantry — try again.");
+          return;
+        }
+        const { items, planned } = gathered.data;
+        if (planned === 0) {
+          showToast('Nothing planned for this week yet.');
+          return;
+        }
+
+        const confirmed = await confirmDialog({
+          title: `Send ${describeWeek(weekStart).toLowerCase()} to the shopping list?`,
+          message: items.length === 0
+            ? 'The pantry already covers this plan, so the list would be emptied '
+              + 'of anything the last build put on it. Staples and anything you '
+              + 'added by hand are kept.'
+            : `${items.length} thing${items.length === 1 ? '' : 's'} would go on the list. `
+              + 'Anything the last build put there is replaced. Staples and '
+              + 'anything you added by hand are kept.',
+          confirmLabel: 'Send it',
+          cancelLabel: 'Leave it'
+        });
+        if (!confirmed || destroyed) return;
+
+        sendBtn.disabled = true;
+        const result = await buildWeekIntoList(weekStart);
+        sendBtn.disabled = false;
+        if (destroyed) return;
+        if (!result.ok) {
+          console.error('Send to shopping failed:', result.error);
+          showToast(result.stage === 'insert'
+            ? 'The old list was cleared but the new one failed to save. Try again.'
+            : "Couldn't build the list — nothing was changed.");
+          return;
+        }
+        const n = result.data.items.length;
+        announce(n === 0
+          ? 'Nothing needed — the pantry already covers this plan.'
+          : `${n} thing${n === 1 ? '' : 's'} on the shopping list.`);
+        for (const skip of result.data.skipped) {
+          showToast(`${skip.meal} was left out — ${skip.reason}.`);
+        }
+        showToast(n === 0 ? 'Nothing needed.' : `${n} on the shopping list.`);
+      }, { signal });
+      mountEl.insertBefore(sendBtn, planList);
+    }
 
     mountEl.appendChild(planForm);
     mountEl.appendChild(el('a', {

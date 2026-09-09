@@ -12,6 +12,7 @@ div.empty-state-block
   p.empty-state
   a.btn"Plan the week"
   p.field-hint
+button.btn.btn-block[type=button]"Send to shopping"
 div.plan-days
   section.plan-day
     h2.plan-day-name"<day>"
