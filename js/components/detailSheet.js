@@ -1,4 +1,4 @@
-// js/components/detailSheet.js — 26 Aug 2026 v1
+// js/components/detailSheet.js — 26 Aug 2026 v2
 // A slide-out panel for looking at one thing properly.
 //
 // Cramming an item's details into a list row forces a choice between a row
@@ -85,6 +85,11 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
   // you where you were; the Close button unwinds that same entry, so back
   // afterwards does not skip a screen either. This is what a phone user
   // expects of anything that opens over the top of a page.
+  // window.history, not a bare `history`. A bare global reference throws
+  // outright where it does not exist, and the try/catch around pushState
+  // turned that into a silent no-op — the same shape as the sessionStorage
+  // bug in planDraft.js two days ago. Guarding an error is not the same as
+  // not causing one.
   let poppedByHistory = false;
 
   function onPopState() {
@@ -108,8 +113,8 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
 
     // Closing by button or Escape must remove the entry we added, or the
     // next back press does nothing visible and looks broken.
-    if (!poppedByHistory && history.state && history.state.homeOsSheet === uid) {
-      history.back();
+    if (!poppedByHistory && window.history.state && window.history.state.homeOsSheet === uid) {
+      window.history.back();
     }
   }
 
@@ -149,7 +154,7 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
   // Same URL, so the hash router does not re-render; this entry exists
   // only to give the back gesture something to consume.
   try {
-    history.pushState({ homeOsSheet: uid }, '', window.location.href);
+    window.history.pushState({ homeOsSheet: uid }, '', window.location.href);
     window.addEventListener('popstate', onPopState);
   } catch {
     // No history API (or a sandboxed frame): the sheet still opens and

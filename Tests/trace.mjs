@@ -700,6 +700,54 @@ check('serves_override is sent as a number', w && w.payload.serves_override === 
 check('changing a planned serving never writes to `meals`',
   !writes().some((c) => c.table === 'meals'), JSON.stringify(writes()));
 
+// --- moving a planned meal to another day and week ---
+// Added 8 Sep 2026 with the Move control. Until then the only way to move a
+// meal was remove-and-re-add, which loses the servings override and who it
+// was for — so a move MUST be one update, not a delete and an insert.
+{
+  const moveBtn = [...planMount.querySelectorAll('button')]
+    .find((b) => /^Move /.test(b.getAttribute('aria-label') || ''));
+  check('a planned meal can be moved', !!moveBtn);
+
+  if (moveBtn) {
+    moveBtn.dispatchEvent(new window.Event('click', { bubbles: true }));
+    await settle();
+
+    // The sheet that contains the move controls, not merely the first one
+    // on the page: an earlier trace leaves a pantry sheet open, and
+    // querySelector found that instead — reporting the move sheet as
+    // present while reading a completely different dialog.
+    const sheet = [...window.document.querySelectorAll('.sheet')]
+      .find((node) => node.querySelector('#move-week'));
+    check('moving opens a sheet with somewhere to move to', !!sheet);
+
+    if (sheet) {
+      setValue(sheet.querySelector('#move-week'), '2026-09-14');
+      setValue(sheet.querySelector('#move-day'), 'fri');
+      setValue(sheet.querySelector('#move-slot'), 'lunch');
+
+      clearCalls();
+      const go = [...sheet.querySelectorAll('button')]
+        .find((b) => /move it/i.test(b.textContent));
+      check('the sheet offers a way to confirm', !!go);
+      if (go) go.dispatchEvent(new window.Event('click', { bubbles: true }));
+      await settle();
+
+      const w = writes().find((c) => c.table === 'weekly_meal_plan');
+      check('moving updates rather than deleting and re-inserting',
+        !!w && w.op === 'update',
+        JSON.stringify(writes()));
+      check('the move carries the week, the day and the meal time',
+        !!w && w.payload && w.payload.week_start === '2026-09-14'
+        && w.payload.day_of_week === 'fri' && w.payload.slot === 'lunch',
+        JSON.stringify(w && w.payload));
+      check('and nothing was deleted',
+        !writes().some((c) => c.op === 'delete'),
+        JSON.stringify(writes()));
+    }
+  }
+}
+
 // --- a plan cell Add button targets the right cell ---
 // P7: cells became slot rows inside a card per day.
 const cellBtn = [...planMount.querySelectorAll('.plan-slot button')]

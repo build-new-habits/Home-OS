@@ -1,4 +1,4 @@
-// js/views/mealPlan.js — 08 Sep 2026 v14
+// js/views/mealPlan.js — 08 Sep 2026 v15
 // v13: every read and write carries a week. Next week is real.
 // v12: the plan is a hub — Today, and This week.
 // v11: P7 — a card per day. The table is gone.
@@ -44,6 +44,7 @@ import {
 } from '../data/listSync.js';
 
 import { el, field, selectFrom } from '../lib/dom.js';
+import { openDetailSheet } from '../components/detailSheet.js';
 import { pageHeading } from '../lib/icons.js';
 import { emptyState } from '../components/emptyState.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
@@ -307,6 +308,68 @@ export function render(mountEl, { section = 'hub' } = {}) {
     return details;
   }
 
+  /**
+   * Where to. A sheet rather than three inline selects: moving a meal is
+   * occasional, and three permanently-open dropdowns on every planned meal
+   * is the clutter this app has spent a fortnight removing.
+   */
+  function openMoveSheet(entry, mealName, fromDay, fromSlot, returnFocusTo) {
+    openDetailSheet({
+      title: `Move ${mealName}`,
+      subtitle: `Currently ${fromDay.label} ${fromSlot.label.toLowerCase()}, ${describeWeek(weekStart).toLowerCase()}`,
+      returnFocusTo,
+      build(body, { close }) {
+        const weekSel = selectFrom('move-week', [
+          { value: thisWeekStart(), label: 'This week' },
+          { value: nextWeekStart(), label: 'Next week' }
+        ]);
+        weekSel.value = weekStart;
+        const daySel = selectFrom('move-day', DAYS.map((d) => ({ value: d.value, label: d.label })));
+        daySel.value = fromDay.value;
+        const slotSel = selectFrom('move-slot', SLOTS.map((x) => ({ value: x.value, label: x.label })));
+        slotSel.value = fromSlot.value;
+
+        body.appendChild(field('Week', weekSel));
+        body.appendChild(field('Day', daySel));
+        body.appendChild(field('Meal time', slotSel));
+
+        const go = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Move it' });
+        go.addEventListener('click', async () => {
+          const target = {
+            week_start: weekSel.value,
+            day_of_week: daySel.value,
+            slot: slotSel.value
+          };
+          // Nothing chosen is not an error and not a write. Saying so is
+          // kinder than a silent no-op that looks like a failure.
+          if (target.week_start === weekStart
+            && target.day_of_week === fromDay.value
+            && target.slot === fromSlot.value) {
+            showToast('That is where it already is.');
+            return;
+          }
+          go.disabled = true;
+          const result = await updatePlanEntry(entry.id, target);
+          go.disabled = false;
+          if (destroyed) return;
+          if (!result.ok) {
+            console.error('Move failed:', result.error);
+            showToast("Couldn't move that — nothing was changed.");
+            return;
+          }
+          close();
+          const dayLabel = (DAYS.find((d) => d.value === target.day_of_week) || {}).label || '';
+          const slotLabel = (SLOTS.find((x) => x.value === target.slot) || {}).label || '';
+          announce(`${mealName} moved to ${dayLabel} ${slotLabel.toLowerCase()}, `
+            + `${describeWeek(target.week_start).toLowerCase()}.`);
+          showToast(`Moved to ${dayLabel} ${slotLabel.toLowerCase()}.`);
+          await loadPlan();
+        }, { signal });
+        body.appendChild(go);
+      }
+    });
+  }
+
   function buildPlanEntry(entry, day, slot) {
     const item = el('li', { class: 'plan-entry' });
     const meal = entry.meals || entry.meal || {};
@@ -379,6 +442,19 @@ export function render(mountEl, { section = 'hub' } = {}) {
       requestListSync();
       if (!destroyed) restoreFocus(`plan-serves-${entry.id}`);
     }, { signal });
+
+    // ---- Move it somewhere else (8 Sep 2026) ---------------------------
+    // Plans change on a Tuesday afternoon. Until now the only way to move a
+    // meal was to remove it and add it again somewhere else, which loses
+    // the servings override and who it was for.
+    //
+    // A move is one update, and since migration 024 a week is just another
+    // thing you can change about it.
+    const moveBtn = el('button', { type: 'button', class: 'btn btn-small', text: 'Move' });
+    moveBtn.setAttribute('aria-label',
+      `Move ${mealName} from ${day.label} ${slot.label.toLowerCase()}`);
+    moveBtn.addEventListener('click', () => openMoveSheet(entry, mealName, day, slot, moveBtn), { signal });
+    item.appendChild(moveBtn);
 
     const removeBtn = el('button', { type: 'button', class: 'btn btn-small btn-danger', text: 'Remove' });
     removeBtn.setAttribute('aria-label',
