@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 08 Sep 2026 v4 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 08 Sep 2026 v5 -->
 
 ## Why this file exists
 
@@ -71,6 +71,7 @@ Status values are deliberately blunt:
 | 022_rotation_mode | unverified | — | |
 | 023_repair_pantry_columns | applied | 6 Sep 2026 | run against "Home OS"; VERIFY returned all three columns |
 | 024_plan_weeks | applied | 8 Sep 2026 | week_start present and NOT NULL, Monday constraint on, index created; 6 existing meals backfilled to Monday 2026-09-07 |
+| 025_recipe_notes | **NOT APPLIED** | — | recipe_library_notes and planning_notes; favourites and notes on library recipes, and free-standing planning notes |
 
 ## The honest caveat
 
