@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 06 Sep 2026 v2 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 07 Sep 2026 v3 -->
 
 ## Why this file exists
 
@@ -70,6 +70,7 @@ Status values are deliberately blunt:
 | 021_prices | unverified | — | |
 | 022_rotation_mode | unverified | — | |
 | 023_repair_pantry_columns | applied | 6 Sep 2026 | run against "Home OS"; VERIFY returned all three columns |
+| 024_plan_weeks | **NOT APPLIED** | — | gives weekly_meal_plan a week_start date; unblocks next week, swaps and send-to-shopping |
 
 ## The honest caveat
 
