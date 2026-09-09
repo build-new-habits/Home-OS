@@ -1,6 +1,11 @@
 h1"Kitchen"
 p.field-hint
-ul.hub-list
+a.today-meals"Today's meals›"
+  span.today-meals-head
+    span.today-meals-title
+    span.hub-chevron
+  span.today-meals-rows
+ul.hub-grid.hub-list
   li.hub-item
     a.hub-link"Shopping listWhat you still need to buy.Nothing on the list›"
       svg.icon.icon-shopping

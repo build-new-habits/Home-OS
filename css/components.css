@@ -1,4 +1,4 @@
-/* css/components.css — 07 Sep 2026 v70 */
+/* css/components.css — 08 Sep 2026 v71 */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3790,3 +3790,88 @@ body.sheet-open {
   margin-bottom: var(--space-2);
   line-height: var(--leading-normal);
 }
+
+/* ---- Today's meals, and the Kitchen grid (8 Sep 2026) -----------------
+   The Kitchen was six doors and nothing else, so "what am I eating today"
+   took two taps and a scroll. */
+.today-meals {
+  display: block;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    box-shadow var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.today-meals:hover { box-shadow: var(--shadow-md); }
+.today-meals:active { transform: translateY(1px); box-shadow: var(--shadow-sm); }
+
+@media (prefers-reduced-motion: reduce) {
+  .today-meals { transition: none; }
+  .today-meals:active { transform: none; }
+}
+
+.today-meals-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.today-meals-title {
+  font-weight: 700;
+  font-size: var(--text-lg);
+}
+
+.today-meals-rows { display: block; }
+
+.today-meals-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.today-meals-slot {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.today-meals-name { font-weight: 600; text-align: right; }
+
+/* Said, not hidden. "Lunch — nothing planned" is the line that makes you
+   plan a lunch; a card that omits it just looks like a shorter day. */
+.today-meals-none {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: right;
+}
+
+/* Two by two. Below 22rem the tiles would be narrower than their own
+   titles, so they go back to one column rather than hyphenating. */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-3);
+}
+
+.hub-grid .hub-item + .hub-item { margin-top: 0; }
+
+.hub-grid .hub-link {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+/* The chevron is redundant on a tile: the whole tile is the target and its
+   shape already says so. It stays in the row layout, where a long row needs
+   an end. */
+.hub-grid .hub-chevron { display: none; }

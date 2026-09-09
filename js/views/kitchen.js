@@ -1,4 +1,4 @@
-// js/views/kitchen.js — 01 Sep 2026 v3
+// js/views/kitchen.js — 08 Sep 2026 v4
 // v2: the shopping card carries a real count now the list exists.
 // Meals, pantry and shopping behind one entry.
 //
@@ -28,6 +28,7 @@ import { listItems as listShoppingItems } from '../data/shopping.js';
 import { icon } from '../lib/icons.js';
 
 import { el } from '../lib/dom.js';
+import { SLOTS } from '../data/mealPlan.js';
 /** Monday-first index of today, matching mealPlan.DAYS. */
 function todayDayIndex() {
   const day = new Date().getDay(); // 0 = Sunday
@@ -44,7 +45,24 @@ export function render(mountEl) {
     text: 'Plan a week, check the cupboards, buy the difference.'
   }));
 
-  const list = el('ul', { class: 'hub-list' });
+  // ---- Today's meals, across the top ---------------------------------
+  // The Kitchen was six doors and nothing else, so the commonest question —
+  // what am I eating today — took two taps and a scroll. This answers it
+  // before you have decided where to go.
+  //
+  // It is a link, not a card with links inside it: one target, the whole
+  // thing, which is easier to hit than four small rows and behaves properly
+  // with a keyboard.
+  const todayCard = el('a', { class: 'today-meals', href: '#/plan-today' });
+  const todayHead = el('span', { class: 'today-meals-head' });
+  todayHead.appendChild(el('span', { class: 'today-meals-title', text: "Today's meals" }));
+  todayHead.appendChild(el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+  todayCard.appendChild(todayHead);
+  const todayRows = el('span', { class: 'today-meals-rows' });
+  todayCard.appendChild(todayRows);
+  mountEl.appendChild(todayCard);
+
+  const list = el('ul', { class: 'hub-list hub-grid' });
   const cards = new Map();
 
   for (const page of KITCHEN_PAGES) {
@@ -74,6 +92,35 @@ export function render(mountEl) {
     card.link.setAttribute('aria-label', `${card.title}. ${text}`);
   }
 
+  /**
+   * Every slot today, named. Empty slots are shown rather than hidden:
+   * "Lunch — nothing planned" is the line that makes you plan a lunch, and
+   * a card that silently omits it just looks like a shorter day.
+   */
+  function renderToday(entries, meals, today) {
+    todayRows.replaceChildren();
+    let any = false;
+    for (const slot of SLOTS) {
+      const here = (entries || []).filter((e) =>
+        e.day_of_week === today.value && e.slot === slot.value);
+      const row = el('span', { class: 'today-meals-row' });
+      row.appendChild(el('span', { class: 'today-meals-slot', text: slot.label }));
+      if (here.length === 0) {
+        row.appendChild(el('span', { class: 'today-meals-none', text: 'Nothing planned' }));
+      } else {
+        any = true;
+        const names = here
+          .map((e) => (meals.get(e.meal_id) || {}).name || 'A meal')
+          .join(', ');
+        row.appendChild(el('span', { class: 'today-meals-name', text: names }));
+      }
+      todayRows.appendChild(row);
+    }
+    todayCard.setAttribute('aria-label', any
+      ? `Today's meals. ${today.label}.`
+      : `Today's meals. Nothing planned for ${today.label} yet.`);
+  }
+
   async function loadMeals() {
     const [planResult, mealResult] = await Promise.all([listPlan(), listMeals()]);
     if (destroyed) return;
@@ -89,6 +136,7 @@ export function render(mountEl) {
 
     const entries = planResult.data;
     const today = DAYS[todayDayIndex()];
+    renderToday(entries, meals, today);
     const tonight = entries.find((entry) =>
       entry.day_of_week === today.value && entry.slot === 'dinner');
 
