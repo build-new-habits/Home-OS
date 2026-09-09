@@ -1,4 +1,4 @@
-/* css/components.css — 08 Sep 2026 v72 */
+/* css/components.css — 08 Sep 2026 v73 */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3898,4 +3898,11 @@ body.sheet-open {
   margin: 0 0 var(--space-3);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+}
+
+/* Read from the method, so it sits as a sentence rather than a checklist —
+   a bulleted list would claim a completeness it does not have. */
+.recipe-equipment {
+  margin: 0 0 var(--space-1);
+  line-height: var(--leading-normal);
 }

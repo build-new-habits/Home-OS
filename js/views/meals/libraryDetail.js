@@ -1,4 +1,4 @@
-// js/views/meals/libraryDetail.js — 08 Sep 2026 v2
+// js/views/meals/libraryDetail.js — 08 Sep 2026 v3
 //
 // What is actually in a recipe, before you commit to it.
 //
@@ -34,6 +34,7 @@ import { el } from '../../lib/dom.js';
 import { openDetailSheet } from '../../components/detailSheet.js';
 import { lookupSlug } from '../../data/foodReference.js';
 import { describeRecipeTime } from '../../lib/recipeTime.js';
+import { describeEquipment } from '../../lib/recipeEquipment.js';
 
 /** Grams for one ingredient line, or null when it cannot be known. */
 function gramsFor(ing, entry) {
@@ -145,6 +146,19 @@ export async function openLibraryRecipe(recipe, returnFocusTo) {
         class: 'field-hint',
         text: [`${recipe.steps.length} steps`, time].filter(Boolean).join('. ')
       }));
+
+      // Read from the method, and labelled as such. It will miss things —
+      // the jar for overnight oats, a sieve nobody mentioned — so it must
+      // never read as "the equipment". See lib/recipeEquipment.js.
+      const kit = describeEquipment(recipe);
+      if (kit) {
+        body.appendChild(el('h3', { text: 'You will probably need' }));
+        body.appendChild(el('p', { class: 'recipe-equipment', text: kit }));
+        body.appendChild(el('p', {
+          class: 'field-hint',
+          text: 'Read from the method, so it may not be the whole list.'
+        }));
+      }
 
       body.appendChild(el('h3', { text: 'Ingredients' }));
       const list = el('ul', { class: 'recipe-ingredients' });
