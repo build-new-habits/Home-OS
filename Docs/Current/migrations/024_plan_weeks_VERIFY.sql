@@ -4,6 +4,12 @@
 -- that message appears even when the whole thing rolled back on
 -- disconnect. This is what proved migrations 017 and 018 had never run.
 
+-- NOTE, learned running this one (8 Sep 2026): the Supabase SQL editor
+-- shows only the LAST statement's result. Four separate SELECTs means three
+-- of them run invisibly and prove nothing. The UNION at the bottom of this
+-- file is the one that actually verifies. Written that way for the next
+-- migration.
+
 -- 1. The column exists, is a date, and is required.
 select column_name, data_type, is_nullable, column_default
 from information_schema.columns
@@ -46,3 +52,23 @@ order by week_start;
 -- row here, holding however many meals the plan currently has. Two or more
 -- rows at this point would mean the backfill ran twice against differently
 -- dated data, which is worth understanding before adding anything.
+
+
+-- ---- All three structural checks in ONE result ---------------------------
+-- Expected: NO / 1 / 1.
+select 'not null' as check_name,
+       is_nullable as result
+  from information_schema.columns
+ where table_name = 'weekly_meal_plan' and column_name = 'week_start'
+union all
+select 'monday constraint',
+       count(*)::text
+  from pg_constraint
+ where conrelid = 'weekly_meal_plan'::regclass
+   and conname = 'weekly_meal_plan_week_start_monday'
+union all
+select 'week index',
+       count(*)::text
+  from pg_indexes
+ where tablename = 'weekly_meal_plan'
+   and indexname = 'weekly_meal_plan_week_idx';

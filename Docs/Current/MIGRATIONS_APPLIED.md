@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 07 Sep 2026 v3 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 08 Sep 2026 v4 -->
 
 ## Why this file exists
 
@@ -70,7 +70,7 @@ Status values are deliberately blunt:
 | 021_prices | unverified | — | |
 | 022_rotation_mode | unverified | — | |
 | 023_repair_pantry_columns | applied | 6 Sep 2026 | run against "Home OS"; VERIFY returned all three columns |
-| 024_plan_weeks | **NOT APPLIED** | — | gives weekly_meal_plan a week_start date; unblocks next week, swaps and send-to-shopping |
+| 024_plan_weeks | applied | 8 Sep 2026 | week_start present and NOT NULL, Monday constraint on, index created; 6 existing meals backfilled to Monday 2026-09-07 |
 
 ## The honest caveat
 
@@ -81,6 +81,22 @@ would be inventing evidence — exactly the assumption that hid this bug.
 They will turn into `applied` or `NOT APPLIED` as each one is actually
 checked. A screen that works is weak evidence: it only exercises the
 columns it happens to select.
+
+## Verified, 8 Sep 2026 — revision 24
+
+```
+not null           NO
+monday constraint  1
+week index         1
+
+week_start   day_number  meals
+2026-09-07   1           6
+```
+
+Every check queried rather than assumed. Note the shape of the verify that
+worked: the Supabase editor shows only the LAST statement's result, so a
+file of four separate SELECTs reports three of them invisibly. Rolling them
+into one UNION is what actually proved anything.
 
 ## Resolved, 6 Sep 2026
 
