@@ -1,4 +1,4 @@
-/* css/components.css — 08 Sep 2026 v71 */
+/* css/components.css — 08 Sep 2026 v72 */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3875,3 +3875,27 @@ body.sheet-open {
    shape already says so. It stays in the row layout, where a long row needs
    an end. */
 .hub-grid .hub-chevron { display: none; }
+
+/* Macros and cost on a recipe card. Chips rather than a table: three
+   numbers do not need column headings, and a table of three rows on a
+   phone is mostly rule lines. */
+.recipe-macros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+}
+
+.macro-chip {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.recipe-cost {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}

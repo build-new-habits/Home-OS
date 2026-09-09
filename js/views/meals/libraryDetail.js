@@ -1,4 +1,4 @@
-// js/views/meals/libraryDetail.js — 07 Sep 2026 v1
+// js/views/meals/libraryDetail.js — 08 Sep 2026 v2
 //
 // What is actually in a recipe, before you commit to it.
 //
@@ -80,14 +80,24 @@ export async function openLibraryRecipe(recipe, returnFocusTo) {
     returnFocusTo,
     build(body) {
       // ---- Nutrition, per serving, and honest about its footing --------
-      let kcal = 0;
+      // Calories AND the three macros, from the same grams. Protein is the
+      // one most often looked for and it was computed and thrown away.
+      const totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
       let known = 0;
       for (const r of resolved) {
-        if (r.grams != null && r.entry && r.entry.calories_per_100g != null) {
-          kcal += (r.grams / 100) * r.entry.calories_per_100g;
-          known += 1;
-        }
+        if (r.grams == null || !r.entry || r.entry.calories_per_100g == null) continue;
+        const per = r.grams / 100;
+        totals.kcal += per * r.entry.calories_per_100g;
+        // A macro that is absent is absent — not zero. Adding nothing for a
+        // missing protein figure understates the total, which is the right
+        // direction to be wrong in, and the line below says how many
+        // ingredients it stands on.
+        if (r.entry.protein_g != null) totals.protein += per * r.entry.protein_g;
+        if (r.entry.fat_g != null) totals.fat += per * r.entry.fat_g;
+        if (r.entry.carbs_g != null) totals.carbs += per * r.entry.carbs_g;
+        known += 1;
       }
+      const kcal = totals.kcal;
       const serves = Number(recipe.default_serves) || 1;
       const nut = el('p', { class: 'recipe-nutrition' });
       if (known === 0) {
@@ -104,6 +114,30 @@ export async function openLibraryRecipe(recipe, returnFocusTo) {
           + 'The rest have no nutrition recorded, so the real figure is higher.';
       }
       body.appendChild(nut);
+
+      // The three macros, per serving, as chips. Only when there is
+      // something to divide — a row of zeroes is not information.
+      if (known > 0) {
+        const chips = el('p', { class: 'recipe-macros' });
+        for (const [label, value] of [
+          ['protein', totals.protein], ['fat', totals.fat], ['carbs', totals.carbs]
+        ]) {
+          chips.appendChild(el('span', {
+            class: 'macro-chip',
+            text: `${Math.round(value / serves)} g ${label}`
+          }));
+        }
+        body.appendChild(chips);
+      }
+
+      // What it costs, in the bands the library actually records. Three,
+      // not four: budget / everyday / special. A fourth would be invented.
+      const COST = { budget: '£ budget', everyday: '££ everyday', special: '£££ a treat' };
+      if (COST[recipe.budget_tier]) {
+        body.appendChild(el('p', {
+          class: 'recipe-cost', text: COST[recipe.budget_tier]
+        }));
+      }
 
       // Read out of the method rather than invented — see lib/recipeTime.js.
       const time = describeRecipeTime(recipe);
