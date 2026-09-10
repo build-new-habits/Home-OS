@@ -789,3 +789,5 @@ Standing rule 12 below follows from this.
 | `meal_ingredients` has no unit column, so liquids are grams-only | Rev 3 | **Closed Rev 4** — `unit` added, plus `grams_per_ml` / `grams_per_item` on foods |
 | `meal_ingredients.quantity_g` name is historical — it can hold ml or items | Rev 4 | Open by choice — a rename breaks clients on cached JS; additive-only is what keeps migrations safe |
 | No `User-Agent` sent to Open Food Facts (browsers forbid it) | P6 | Open — unfixable from a browser, documented in the module |
+| A navigation gate that re-renders the route it assumed, instead of following the hash | Rev 26 | **Closed 10 Sep** — the plan round trip broke for three days with every gate green |
+| Cuisine recorded as "Breakfast"/"Lunch" in two library data files | Rev 26 | Open — suppressed in the picker; the honest fix is in `data/recipe_library/` |
