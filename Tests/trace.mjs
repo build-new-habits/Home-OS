@@ -97,6 +97,10 @@ function fixture(t) {
   // One favourited library recipe, with a note. A real slug from
   // data/recipe_library/breakfast.json — a made-up one would filter to
   // nothing and the assertions below would pass by accident.
+  if (t === 'planning_notes') return [
+    { id: 'note-x', title: 'Christmas dinner', body: 'Order the goose',
+      occasion_date: '2026-12-25', recipe_refs: [],
+      created_at: '2026-09-01T00:00:00Z', updated_at: '2026-09-01T00:00:00Z' }];
   if (t === 'recipe_library_notes') return [
     { id: 'note-1', recipe_slug: 'overnight-oats', is_favourite: true,
       note: 'Topped with frozen fruit', updated_at: '2026-09-09T06:00:00Z' },
@@ -1085,6 +1089,57 @@ console.log('\nToday -> choose -> today');
     if (typeof cleanupToday2 === 'function') cleanupToday2();
   }
   todayMount.remove();
+}
+
+// =====================================================================
+// FUTURE PLANS — the third door
+// =====================================================================
+// The table has existed since migration 025 and nothing read it, so the hub
+// ended with an apology while a real capability sat unused.
+console.log('\nFuture plans');
+{
+  const fpMount = window.document.createElement('main');
+  window.document.body.appendChild(fpMount);
+  const fpView = await import(pathToFileURL(path.join(REPO, 'js/views/planFuture.js')).href);
+  const cleanupFp = fpView.render(fpMount);
+  await settle(120);
+
+  check('future plans lists what is already there',
+    /Christmas dinner/.test(fpMount.textContent));
+  check('and a date reads as a date, not as a countdown',
+    /25 December 2026/.test(fpMount.textContent) && !/days? (to go|away)/.test(fpMount.textContent),
+    fpMount.textContent.slice(0, 160));
+
+  clearCalls();
+  const titleBox = fpMount.querySelector('#plan-note-title');
+  const dateBox = fpMount.querySelector('#plan-note-date');
+  const saveBtn = [...fpMount.querySelectorAll('button')].find((b) => /Save this plan/.test(b.textContent));
+  check('there is a way to add one', !!titleBox && !!saveBtn);
+
+  // Nameless first: title is NOT NULL, and a constraint violation is not a
+  // thing to put in front of a person.
+  if (saveBtn) { click(saveBtn); await settle(40); }
+  check('a plan with no name is refused before it reaches the database',
+    writes().length === 0 && /needs a name|name it|Give the plan a name/i.test(fpMount.textContent),
+    JSON.stringify(writes()));
+
+  if (titleBox && saveBtn) {
+    setValue(titleBox, 'When Sam visits');
+    click(saveBtn);
+    await settle(80);
+    const wrote = writes().find((c) => c.table === 'planning_notes' && c.op === 'insert');
+    check('a named plan is saved', !!wrote, JSON.stringify(writes()));
+    check('and an undated one really is undated, not today',
+      wrote && wrote.payload.occasion_date === null, JSON.stringify(wrote && wrote.payload));
+    check('an empty notes box saves NULL, not an empty string',
+      wrote && wrote.payload.body === null, JSON.stringify(wrote && wrote.payload));
+    check('household_id is never sent from the client',
+      wrote && !('household_id' in wrote.payload), JSON.stringify(wrote && wrote.payload));
+  }
+  void dateBox;
+
+  if (typeof cleanupFp === 'function') cleanupFp();
+  fpMount.remove();
 }
 
 // ---- The report goes LAST ----

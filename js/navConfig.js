@@ -126,7 +126,12 @@ export const PLAN_PAGES = [
   // Real since migration 024 (8 Sep 2026). Until then weekly_meal_plan was
   // keyed by weekday alone and held exactly one week, so this tile would
   // have shown this week's meals under next week's heading.
-  { path: 'plan-next-week', title: 'Next week', blurb: 'Plan ahead, and send it to the shopping list.' }
+  { path: 'plan-next-week', title: 'Next week', blurb: 'Plan ahead, and send it to the shopping list.' },
+  // 10 Sep 2026. NOT a third week: planning_notes is free-standing, so this
+  // holds the plans that have no Monday attached — Christmas, when someone
+  // visits, the thing you keep meaning to cook. The hub used to end with
+  // "planning further ahead is not built yet" while the table sat unread.
+  { path: 'plan-future', title: 'Future plans', blurb: 'Ideas with no week attached.' }
 ];
 
 // Meals' own pages (P5). Declared here for the same reason as the pantry's:

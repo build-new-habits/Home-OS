@@ -589,10 +589,13 @@ export function render(mountEl, { section = 'hub' } = {}) {
 
     // Said once, plainly, rather than leaving a gap where a "next week"
     // tile obviously ought to be.
+    // Was: "Planning further ahead is not built yet." Two weeks are real
+    // (migration 024), and anything past them is a note rather than a week —
+    // which is a different thing, said as one.
     mountEl.appendChild(el('p', {
       class: 'field-hint',
-      text: 'The plan holds one week at a time. Planning further ahead is not '
-        + 'built yet.'
+      text: 'The plan holds this week and next. Anything further ahead lives '
+        + 'in Future plans, as notes rather than days.'
     }));
   } else {
     // Which week, in words. "Week of 15 Sep" beats a date nobody reads, and

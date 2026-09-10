@@ -199,6 +199,12 @@ export const routes = [
     path: 'plan-next-week',
     title: 'Next week',
     load: () => import('./views/planNextWeek.js')
+  },
+  // 10 Sep 2026. Appended, per the append-only rule.
+  {
+    path: 'plan-future',
+    title: 'Future plans',
+    load: () => import('./views/planFuture.js')
   }
 ];
 

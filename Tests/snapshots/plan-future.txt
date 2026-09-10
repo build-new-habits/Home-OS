@@ -1,0 +1,27 @@
+h1.page-heading"Future plans"
+  svg.icon.icon-plan
+    g
+      rect
+      path
+  span
+p.field-hint
+a.btn.btn-quiet"Back to the plan"
+p.field-hint[role=status]
+ul.hub-list
+  li
+    div.empty-state-block
+      p.empty-state-title
+      p.empty-state
+form
+  h2"Add a plan"
+  div.field
+    label"What is it"
+    input[type=text]
+  div.field
+    label"When (optional)"
+    input[type=date]
+  div.field
+    label"Notes (optional)"
+    textarea
+  p.field-error[role=alert][hidden=]
+  button.btn.btn-primary[type=submit]"Save this plan"

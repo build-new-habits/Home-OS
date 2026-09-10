@@ -33,4 +33,11 @@ ul.hub-list
         span.hub-blurb
         span.hub-status
       span.hub-chevron
+  li.hub-item
+    a.hub-link"Future plansIdeas with no week attached.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
 p.field-hint
