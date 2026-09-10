@@ -111,7 +111,10 @@ async function loadLibrary() {
   // A failed notes read narrows the panel rather than emptying it: no
   // hearts, no favourites chip, every recipe still browsable.
   libraryNotes = notes.ok ? notes.data : new Map();
-  librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`;
+  // Say when the count is short. A partial read used to look identical to a
+  // complete one — same shape, fewer recipes, nothing said.
+  librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`
+    + (recipes.missing ? ' — part of it did not load' : '');
   renderLibrary();
 }
 

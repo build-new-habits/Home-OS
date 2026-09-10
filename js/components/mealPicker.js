@@ -1,4 +1,5 @@
-// js/components/mealPicker.js — 10 Sep 2026 v4
+// js/components/mealPicker.js — 10 Sep 2026 v5
+// v5: a library that fails to load says so, and can be tried again.
 // v4: favourites, from both sources, filterable.
 // v2: filters shown, not folded — it has a screen of its own now.
 //
@@ -78,6 +79,17 @@ const SLOTS = [
 export function createMealPicker({ signal, getMeals, onChoose }) {
   let library = [];
   let libraryLoaded = false;
+  // ---- A failed load must not be permanent, or silent ----------------
+  // Screen recording, 10 Sep 2026: the picker offered "2 to choose from"
+  // and "Favourites (0)" while 110 recipes and one favourite sat in the
+  // library. `libraryLoaded` was set to true BEFORE the awaits, so the one
+  // failed fetch was final for the life of the screen — and the degraded
+  // result was presented as an ordinary answer. Two of his own meals is a
+  // perfectly plausible number. That is what made it hard to see.
+  let libraryLoading = false;
+  let libraryFailed = false;
+  let libraryPartial = false;
+  let notesFailed = false;
   let owned = new Map();
   // ---- Favourites live in two places, 10 Sep 2026 ----
   // Device test: "no way to find favourites for meal choices". Your own
@@ -158,6 +170,14 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
   /** Keeps the chip honest about how much is behind it. */
   function paintFavChip() {
+    // "Favourites (0)" when the table could not be read is a lie told with
+    // a number. Nothing known is not the same as nothing there.
+    if (notesFailed) {
+      favChip.textContent = 'Favourites';
+      favChip.disabled = true;
+      favChip.setAttribute('aria-label', 'Favourites could not be read. Try loading the library again.');
+      return;
+    }
     const n = countFavourites();
     favChip.textContent = `Favourites (${n})`;
     // Never disabled while it is switched ON, or pressing it once would
@@ -166,6 +186,25 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     favChip.setAttribute('aria-label', n === 0
       ? 'Favourites. Nothing is favourited yet.'
       : `Show only your ${n} favourite${n === 1 ? '' : 's'}.`);
+  }
+
+  /** A way back from a failed load, rather than leaving the screen to get one. */
+  function paintRetry() {
+    retryRow.replaceChildren();
+    retryRow.hidden = !libraryFailed && !libraryPartial && !notesFailed;
+    if (retryRow.hidden) return;
+    const again = el('button', { type: 'button', class: 'btn btn-quiet', text: 'Try again' });
+    again.addEventListener('click', () => {
+      libraryFailed = false;
+      libraryPartial = false;
+      notesFailed = false;
+      // Without this, ensureLibrary() returns at the door on a partial load.
+      libraryLoaded = false;
+      count.textContent = 'Looking…';
+      retryRow.hidden = true;
+      ensureLibrary();
+    }, { signal });
+    retryRow.appendChild(again);
   }
 
   function countFavourites() {
@@ -236,6 +275,9 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
   const count = el('p', { class: 'meal-picker__count', role: 'status' });
   root.appendChild(count);
+  const retryRow = el('div', { class: 'meal-picker__more' });
+  retryRow.hidden = true;
+  root.appendChild(retryRow);
 
   const list = el('ul', { class: 'meal-picker__list' });
   root.appendChild(list);
@@ -261,23 +303,34 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
   // ---- Loading the library ---------------------------------------------
   async function ensureLibrary() {
-    if (libraryLoaded) return;
-    libraryLoaded = true;
+    if (libraryLoaded || libraryLoading) return;
+    libraryLoading = true;
     // The library is an enhancement, not the point of this screen. If it
     // cannot be reached — offline, a bad fetch, a schema surprise — the
     // person must still be able to plan from their own meals, so a failure
     // here narrows the picker rather than taking the page down with it.
-    let recipes = { ok: false };
-    let refs = { ok: false };
-    let saved = { ok: false };
-    try {
-      [recipes, refs, saved] = await Promise.all([
-        loadAllRecipes(), existingLibraryRefs(), listRecipeNotes()
-      ]);
-    } catch (error) {
-      console.error('Recipe library unavailable to the picker:', error);
-    }
+    //
+    // allSettled, not all: three independent reads. Promise.all meant a
+    // slow favourites table could cost you the whole recipe library, and a
+    // missing recipe file could cost you your favourites. Nothing here
+    // depends on anything else here.
+    const settled = await Promise.allSettled([
+      loadAllRecipes(), existingLibraryRefs(), listRecipeNotes()
+    ]);
+    const [recipes, refs, saved] = settled.map((r) => (
+      r.status === 'fulfilled' ? r.value : { ok: false, error: r.reason }
+    ));
+    libraryLoading = false;
     if (signal.aborted) return;
+    if (!recipes.ok) console.error('Recipe library unavailable to the picker:', recipes.error);
+    if (!saved.ok) console.error('Favourites unavailable to the picker:', saved.error);
+    // Only a successful read counts as loaded. Anything else can be retried.
+    libraryLoaded = !!recipes.ok;
+    libraryFailed = !recipes.ok;
+    // Some files read, some not. The list looks ordinary and is short, which
+    // is the shape this bug arrived in.
+    libraryPartial = !!(recipes.ok && recipes.missing);
+    notesFailed = !saved.ok;
     if (recipes.ok) {
       library = recipes.data;
       const cuisines = [...new Set(library.map((r) => r.cuisine).filter(Boolean))].sort();
@@ -338,16 +391,25 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     list.replaceChildren();
 
     if (mine.length === 0 && lib.length === 0) {
-      count.textContent = libraryLoaded
-        ? (state.favouritesOnly
-          ? 'Nothing favourited matches. Try fewer filters, or turn favourites off.'
-          : 'Nothing matches. Try fewer filters.')
-        : 'Looking…';
+      count.textContent = libraryFailed
+        ? 'The recipe library did not load, so only your own meals are here.'
+        : libraryLoaded
+          ? (state.favouritesOnly
+            ? 'Nothing favourited matches. Try fewer filters, or turn favourites off.'
+            : 'Nothing matches. Try fewer filters.')
+          : 'Looking…';
+      paintRetry();
       return;
     }
 
     count.textContent = `${mine.length + lib.length} to choose from`
-      + (lib.length ? ` — ${lib.length} from the library` : '');
+      + (lib.length ? ` — ${lib.length} from the library` : '')
+      // Said every time, not only when the list is empty. Two of your own
+      // meals looks like a complete answer, which is exactly how this went
+      // unnoticed until a screen recording caught the number.
+      + (libraryFailed ? ' — the recipe library did not load' : '')
+      + (libraryPartial ? ' — part of the recipe library did not load' : '');
+    paintRetry();
 
     // Yours first. They are yours, and you already decided you liked them.
     for (const meal of sortMeals(mine)) list.appendChild(mineRow(meal));

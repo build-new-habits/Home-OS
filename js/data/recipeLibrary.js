@@ -64,18 +64,38 @@ export async function loadCuisine(relativePath) {
   }
 }
 
-/** Every recipe across every cuisine file. */
+/**
+ * Every recipe across every cuisine file.
+ *
+ * Returns `missing`: how many cuisine files could not be read. Callers are
+ * expected to SAY so.
+ *
+ * ---- Why this is not just ok/not-ok ----
+ * Screen recording, 10 Sep 2026. This used to `continue` past a failed file
+ * and return `{ ok: true }` regardless, so sixteen files failing and none
+ * failing produced the same shape. The picker then reported "2 to choose
+ * from" — its own two meals — as a complete answer, and a favourite that
+ * lived in the library was simply absent with nothing said.
+ *
+ * A short answer that cannot tell you it is short is worse than an error.
+ */
 export async function loadAllRecipes() {
   const index = await loadIndex();
   if (!index.ok) return index;
 
+  const files = index.data.files || [];
   const all = [];
-  for (const file of index.data.files || []) {
+  let missing = 0;
+  for (const file of files) {
     const doc = await loadCuisine(file.path);
-    if (!doc.ok) continue;
+    if (!doc.ok) { missing += 1; continue; }
     for (const recipe of doc.data.recipes || []) all.push(recipe);
   }
-  return { ok: true, data: all };
+  // Everything failing is not "a library with no recipes in it".
+  if (files.length > 0 && missing === files.length) {
+    return { ok: false, error: new Error('No recipe file could be read.'), missing };
+  }
+  return { ok: true, data: all, missing };
 }
 
 /* ---- What the dish is built on (device test 6 Sep 2026) --------------

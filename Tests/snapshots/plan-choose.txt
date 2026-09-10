@@ -40,4 +40,6 @@ div.meal-picker
       button.chip-toggle[type=button][aria-pressed=false]"Gluten free"
       button.chip-toggle[type=button][aria-pressed=false]"Dairy free"
   p.meal-picker__count[role=status]
+  div.meal-picker__more
+    button.btn.btn-quiet[type=button]"Try again"
   ul.meal-picker__list

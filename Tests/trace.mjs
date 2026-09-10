@@ -38,9 +38,19 @@ global.requestAnimationFrame = (fn) => setTimeout(fn, 0);
 // them was really an assertion about an error message. The library ships as
 // JSON in the repo, so the gate serves it off disk and leaves everything
 // else — Open Food Facts, anything https — throwing as before.
+// Flipped to false to prove the picker survives — and RECOVERS from — a
+// library that will not load. 10 Sep 2026: it did neither.
+let serveLibraryFiles = true;
+// One file refused while the rest answer: the partial load, which looks
+// exactly like an ordinary short list.
+let breakOneCuisineFile = '';
 global.fetch = async (url) => {
   const href = String(url && url.url ? url.url : url);
   if (href.startsWith('file://')) {
+    if (!serveLibraryFiles) throw new Error('recipe library unreachable (on purpose)');
+    if (breakOneCuisineFile && href.includes(breakOneCuisineFile)) {
+      throw new Error(`${breakOneCuisineFile} unreachable (on purpose)`);
+    }
     const file = fileURLToPath(href);
     if (fs.existsSync(file)) {
       const text = fs.readFileSync(file, 'utf8');
@@ -202,6 +212,65 @@ function dialogOpen() {
 // =====================================================================
 // MEALS
 // =====================================================================
+// This block runs FIRST, deliberately: recipeLibrary.js caches every file it
+// has read, so a later test cannot make the library fail again once some
+// earlier block has loaded it.
+// =====================================================================
+// A LIBRARY THAT WILL NOT LOAD
+// =====================================================================
+// Screen recording, 10 Sep 2026. The picker offered "2 to choose from" and
+// "Favourites (0)" while 110 recipes and one favourite sat in the library:
+// `libraryLoaded` was set true BEFORE the awaits, so one failed fetch was
+// final for the life of the screen, and the shortfall was reported as an
+// ordinary answer. Two of your own meals is a plausible number. That is
+// what made it invisible.
+console.log('\nWhen the recipe library will not load');
+{
+  serveLibraryFiles = false;
+  const brokenMount = window.document.createElement('main');
+  window.document.body.appendChild(brokenMount);
+  const bv = await import(pathToFileURL(path.join(REPO, 'js/views/planChoose.js')).href);
+  const bc = bv.render(brokenMount);
+  await settle(220);
+
+  check('a failed library is SAID, not passed off as the answer',
+    /did not load/.test(brokenMount.textContent),
+    brokenMount.querySelector('.meal-picker__count')?.textContent);
+  const chip = [...brokenMount.querySelectorAll('.meal-picker__chips .chip-toggle')]
+    .find((c) => /^Favourites/.test(c.textContent));
+  check('and the favourites chip does not claim a count it does not have',
+    chip && !/\(0\)/.test(chip.textContent), chip && chip.textContent);
+
+  const retry = [...brokenMount.querySelectorAll('.meal-picker__more .btn')]
+    .find((b) => /Try again/.test(b.textContent));
+  check('a way back is offered without leaving the screen', !!retry);
+
+  // ---- The half-loaded library ---------------------------------------
+  // Index fine, one cuisine file refused. loadAllRecipes() used to skip past
+  // it and return ok, so a short list was indistinguishable from a complete
+  // one. Failures are not cached, so this retry really does re-fetch.
+  serveLibraryFiles = true;
+  breakOneCuisineFile = 'breakfast.json';
+  if (retry) { click(retry); await settle(300); }
+  check('a HALF-loaded library says so too',
+    /part of the recipe library did not load/.test(brokenMount.textContent),
+    brokenMount.querySelector('.meal-picker__count')?.textContent);
+  check('and still offers the way back',
+    !!brokenMount.querySelector('.meal-picker__more .btn'));
+
+  breakOneCuisineFile = '';
+  const retry2 = [...brokenMount.querySelectorAll('.meal-picker__more .btn')]
+    .find((b) => /Try again/.test(b.textContent));
+  if (retry2) { click(retry2); await settle(300); }
+  check('and trying again actually reloads it',
+    /from the library/.test(brokenMount.textContent)
+    && !/did not load/.test(brokenMount.textContent),
+    brokenMount.querySelector('.meal-picker__count')?.textContent);
+
+  if (typeof bc === 'function') bc();
+  brokenMount.remove();
+}
+
 console.log('\nMeals view — every control');
 
 const mealsMount = window.document.getElementById('app-main');
