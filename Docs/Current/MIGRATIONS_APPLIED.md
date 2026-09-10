@@ -71,7 +71,7 @@ Status values are deliberately blunt:
 | 022_rotation_mode | unverified | — | |
 | 023_repair_pantry_columns | applied | 6 Sep 2026 | run against "Home OS"; VERIFY returned all three columns |
 | 024_plan_weeks | applied | 8 Sep 2026 | week_start present and NOT NULL, Monday constraint on, index created; 6 existing meals backfilled to Monday 2026-09-07 |
-| 025_recipe_notes | **NOT APPLIED** | — | recipe_library_notes and planning_notes; favourites and notes on library recipes, and free-standing planning notes |
+| 025_recipe_notes | applied | 8 Sep 2026 | both tables, both indexes, RLS true on both, policies present |
 
 ## The honest caveat
 
@@ -82,6 +82,23 @@ would be inventing evidence — exactly the assumption that hid this bug.
 They will turn into `applied` or `NOT APPLIED` as each one is actually
 checked. A screen that works is weak evidence: it only exercises the
 columns it happens to select.
+
+## Verified, 8 Sep 2026 — revision 25
+
+```
+recipe_library_notes table   1
+planning_notes table         1
+recipe notes unique index    1
+planning notes index         1
+recipe notes RLS on          true
+planning notes RLS on        true
+recipe notes policy          1
+planning notes policy        1
+```
+
+The two RLS rows are the ones that mattered. Without them the tables exist,
+the app works perfectly, and every household reads every other household's
+notes — a failure that never announces itself.
 
 ## Verified, 8 Sep 2026 — revision 24
 
