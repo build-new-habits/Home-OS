@@ -1,4 +1,5 @@
 // js/lib/planDraft.js — 10 Sep 2026 v2
+// v3: future plans borrow the chooser too.
 // v2: the draft carries which page it has to come back to.
 //
 // The half-finished thought between two screens.
@@ -33,7 +34,11 @@ const KEY = 'home-os-plan-draft';
 export const PLAN_RETURN_PAGES = {
   today: 'plan-today',
   week: 'plan-this-week',
-  next: 'plan-next-week'
+  next: 'plan-next-week',
+  // 10 Sep 2026. A future plan borrows the same chooser: it is the same
+  // question ("which meal?") asked by a different screen, and a second
+  // picker would have been a second place for the filters to drift.
+  future: 'plan-future'
 };
 
 /**
@@ -78,7 +83,8 @@ const store = (() => {
   };
 })();
 
-/** @returns {{day?: string, slot?: string, origin?: string, mealId?: string, mealName?: string}} */
+/** @returns {{day?: string, slot?: string, origin?: string, intent?: string,
+  *   noteId?: string, noteTitle?: string, mealId?: string, mealName?: string}} */
 export function readDraft() {
   try {
     return JSON.parse(store.getItem(KEY) || '{}') || {};

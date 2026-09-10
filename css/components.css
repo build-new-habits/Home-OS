@@ -3365,6 +3365,29 @@ body.sheet-open {
   outline-offset: 2px;
 }
 
+/* ---- Recipes attached to a future plan, 10 Sep 2026 ------------------ */
+/* recipe_refs existed from migration 025 with nothing able to write or read
+   it. One row per recipe, with its own way off the plan. */
+.plan-note-recipes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.plan-note-recipe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.plan-note-recipe-name {
+  font-weight: 600;
+}
+
 /* Nothing behind it yet. Muted but still legible — "Favourites (0)" is
    information, and a control faded to unreadable is a control that has been
    hidden badly. Used by the recipe library and the meal picker alike. */

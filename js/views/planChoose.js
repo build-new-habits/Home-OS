@@ -1,4 +1,5 @@
 // js/views/planChoose.js — 10 Sep 2026 v2
+// v3: future plans ask the same question, so they use the same screen.
 // v2: the answer goes back to the page that asked the question.
 //
 // Choosing a meal, on its own screen.
@@ -60,9 +61,14 @@ export function render(mountEl) {
   const dayLabel = DAY_LABELS[draft.day];
   const slotLabel = SLOT_LABELS[draft.slot];
   const weekLabel = WEEK_LABELS[draft.origin] || '';
-  context.textContent = dayLabel && slotLabel
-    ? `For ${dayLabel} ${slotLabel}${weekLabel}.`
-    : 'Pick something to add to the week.';
+  // A future plan has no day and no meal time — it has a name. Saying "pick
+  // something to add to the week" there would be describing a different
+  // errand back at the person who just started this one.
+  context.textContent = draft.origin === 'future'
+    ? `For ${draft.noteTitle || 'your plan'}.`
+    : dayLabel && slotLabel
+      ? `For ${dayLabel} ${slotLabel}${weekLabel}.`
+      : 'Pick something to add to the week.';
   mountEl.appendChild(context);
 
   // Back to the page that sent you, not to the hub. Leaving without

@@ -1138,8 +1138,71 @@ console.log('\nFuture plans');
   }
   void dateBox;
 
+  // ---- Attaching a recipe -------------------------------------------
+  // recipe_refs existed from migration 025 with nothing able to write it or
+  // read it. The attach borrows the weekly plan's chooser rather than
+  // growing a second picker.
+  const openNote = [...fpMount.querySelectorAll('.hub-link')]
+    .find((b) => /Christmas dinner/.test(b.textContent));
+  check('a plan opens', !!openNote);
+  if (openNote) {
+    click(openNote);
+    await settle(60);
+    const addRecipe = [...window.document.querySelectorAll('button')]
+      .find((b) => b.textContent === 'Add a recipe');
+    check('a plan offers a way to put a recipe on it', !!addRecipe);
+    if (addRecipe) {
+      click(addRecipe);
+      await settle(40);
+      const d2 = (await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href)).readDraft();
+      check('and tells the chooser which plan is asking',
+        d2.origin === 'future' && d2.noteId === 'note-x', JSON.stringify(d2));
+      check('and that the chooser will come back here',
+        window.location.hash === '#/plan-choose', window.location.hash);
+    }
+  }
+  // Sheets live on document.body and outlive the mount, so leaving one open
+  // would have the next block clicking through it.
+  for (const btn of window.document.querySelectorAll('.sheet-close')) click(btn);
+  await settle(40);
+
   if (typeof cleanupFp === 'function') cleanupFp();
   fpMount.remove();
+}
+
+// The other half of that errand: the chooser hands the meal back, and the
+// plan is the thing that gets written — not a week.
+{
+  const backMount = window.document.createElement('main');
+  window.document.body.appendChild(backMount);
+  const dm = await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href);
+  dm.writeDraft({ origin: 'future', noteId: 'note-x', noteTitle: 'Christmas dinner' });
+  dm.writeDraft({ mealId: 'meal-1', mealName: 'Porridge' });
+
+  clearCalls();
+  const fpView2 = await import(pathToFileURL(path.join(REPO, 'js/views/planFuture.js')).href);
+  const cleanupBack = fpView2.render(backMount);
+  await settle(160);
+
+  const attached = writes().find((c) => c.table === 'planning_notes' && c.op === 'update');
+  check('coming back from the chooser writes the recipe onto the PLAN',
+    !!attached, JSON.stringify(writes()));
+  check('and onto the plan that asked, by id',
+    attached && attached.filters && attached.filters.id === 'note-x',
+    JSON.stringify(attached && attached.filters));
+  check('appending a recipe never rewrites the title',
+    attached && !('title' in attached.payload), JSON.stringify(attached && attached.payload));
+  // attachPending() ends by reloading, which paints again. A slot still
+  // holding the errand runs it a second time — and a second time is a
+  // duplicate recipe on somebody's Christmas.
+  const updates = writes().filter((c) => c.table === 'planning_notes' && c.op === 'update');
+  check('the errand is spent once, not once per repaint',
+    updates.length === 1, `${updates.length} updates`);
+  check('and the draft is cleared, so the next visit does not redo it',
+    !dm.readDraft().mealId, JSON.stringify(dm.readDraft()));
+
+  if (typeof cleanupBack === 'function') cleanupBack();
+  backMount.remove();
 }
 
 // ---- The report goes LAST ----
