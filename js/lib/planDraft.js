@@ -1,4 +1,5 @@
-// js/lib/planDraft.js — 06 Sep 2026 v1
+// js/lib/planDraft.js — 10 Sep 2026 v2
+// v2: the draft carries which page it has to come back to.
 //
 // The half-finished thought between two screens.
 //
@@ -15,6 +16,36 @@
 // preference. It should not still be sitting there next week.
 
 const KEY = 'home-os-plan-draft';
+
+// ---- Where the answer has to be delivered back to ----------------------
+// Device test, 10 Sep 2026: "I selected overnight oats for breakfast and it
+// kicked me back to [the plan hub] and hadn't saved my meal choices."
+//
+// The chooser sent everybody to `meal-plan`. That was right until 7 Sep,
+// when the plan became a hub and the add form moved onto the three week
+// pages. After that the round trip ended on a page with no form to fill in,
+// which then read the draft, found a meal in it, had nowhere to put it, and
+// cleared it. The choice was made, carried, and thrown away in silence.
+//
+// So the draft carries where it came from. A WHITELIST rather than the
+// stored string used directly: a draft is data, and navigating to whatever
+// a data field says is how a field becomes an open redirect.
+export const PLAN_RETURN_PAGES = {
+  today: 'plan-today',
+  week: 'plan-this-week',
+  next: 'plan-next-week'
+};
+
+/**
+ * The page a chosen meal has to be delivered back to.
+ *
+ * Falls back to this week rather than to the hub. If the origin is missing
+ * or unrecognised, the worst outcome should be landing on the wrong week
+ * with the choice intact — not landing somewhere that cannot accept it.
+ */
+export function returnPathFor(draft) {
+  return PLAN_RETURN_PAGES[draft && draft.origin] || PLAN_RETURN_PAGES.week;
+}
 
 // ---- Where the draft actually lives -----------------------------------
 // A bare `sessionStorage` reference throws outright where the global does
@@ -47,7 +78,7 @@ const store = (() => {
   };
 })();
 
-/** @returns {{day?: string, slot?: string, mealId?: string, mealName?: string}} */
+/** @returns {{day?: string, slot?: string, origin?: string, mealId?: string, mealName?: string}} */
 export function readDraft() {
   try {
     return JSON.parse(store.getItem(KEY) || '{}') || {};

@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 08 Sep 2026 v15
+// js/views/mealPlan.js — 10 Sep 2026 v16
+// v16: the chooser is told which page to bring the answer back to.
 // v13: every read and write carries a week. Next week is real.
 // v12: the plan is a hub — Today, and This week.
 // v11: P7 — a card per day. The table is gone.
@@ -242,7 +243,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
       // Pressing Add in a Tuesday lunch cell is already the whole question;
       // making someone then scroll to a form and set two selects that
       // already know the answer is asking it twice.
-      writeDraft({ day: day.value, slot: slot.value });
+      writeDraft({ day: day.value, slot: slot.value, origin: section });
       announce(`Choosing a meal for ${day.label} ${slot.label.toLowerCase()}.`);
       navigate('plan-choose');
     }, { signal });
@@ -525,7 +526,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
     type: 'button', class: 'btn btn-block choose-meal-btn', text: 'Choose a meal'
   });
   chooseBtn.addEventListener('click', () => {
-    writeDraft({ day: planDaySelect.value, slot: planSlotSelect.value });
+    writeDraft({ day: planDaySelect.value, slot: planSlotSelect.value, origin: section });
     navigate('plan-choose');
   }, { signal });
 
@@ -655,7 +656,16 @@ export function render(mountEl, { section = 'hub' } = {}) {
   // The draft carries the day and slot out and the meal back. Reading it
   // here is what makes the round trip feel like one action rather than two
   // screens that happen to be next to each other.
-  {
+  //
+  // NOT ON THE HUB. The hub has no form — planForm is never appended to it —
+  // so reading a chosen meal here meant applying it to a form nobody could
+  // see and then calling clearDraft() on it. Between 7 and 10 Sep 2026 that
+  // is precisely where every choice went: the chooser sent you to `meal-plan`,
+  // the hub swallowed the answer, and the plan looked untouched.
+  //
+  // A page with nowhere to put a choice must leave it alone for the page
+  // that has.
+  if (section !== 'hub') {
     const draft = readDraft();
     if (draft.day) planDaySelect.value = draft.day;
     if (draft.slot) planSlotSelect.value = draft.slot;
@@ -668,7 +678,9 @@ export function render(mountEl, { section = 'hub' } = {}) {
     // reopening the plan tomorrow would show a stale choice as if it were
     // waiting to be saved.
     clearDraft();
-    if (draft.day || draft.slot) writeDraft({ day: draft.day, slot: draft.slot });
+    if (draft.day || draft.slot) {
+      writeDraft({ day: draft.day, slot: draft.slot, origin: section });
+    }
   }
 
   planForm.addEventListener('submit', async (event) => {

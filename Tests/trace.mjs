@@ -637,6 +637,12 @@ await settle(80);
     check('pressing Add carries the meal time to the choosing screen',
       !!draft.slot && wanted.includes(draft.slot),
       JSON.stringify(draft));
+    // 10 Sep 2026. The third thing that has to travel: which page is
+    // waiting for the answer. Without it the chooser guesses, and between
+    // 7 and 10 Sep it guessed the hub — a page with no form, which read the
+    // choice and cleared it.
+    check('pressing Add carries the page to come back to',
+      draft.origin === 'week', JSON.stringify(draft));
   }
 }
 
@@ -670,14 +676,45 @@ await settle();
 if (typeof cleanupChoose === 'function') cleanupChoose();
 chooseMount.remove();
 
-const afterChoice = (await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href)).readDraft();
+const draftMod2 = await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href);
+const afterChoice = draftMod2.readDraft();
 check('choosing records the meal for the form to pick up', !!afterChoice.mealId,
   JSON.stringify(afterChoice));
 
+// ---- FOLLOW THE APP, DO NOT ASSUME IT ------------------------------
+// This block used to re-render section 'week' by hand and then assert the
+// choice was there. That is why the gate stayed green for three days while
+// the feature was broken on the device: it tested the page the test
+// believed you land on, not the page the app actually sends you to.
+//
+// So the destination is read off the hash the app just set.
+const landedOn = window.location.hash.replace('#/', '');
+check('choosing sends you back to the page that asked',
+  landedOn === 'plan-this-week', `landed on ${landedOn || '(nothing)'}`);
+check('choosing never sends you to the plan hub',
+  landedOn !== 'meal-plan',
+  'the hub has no add form — a choice delivered there is a choice thrown away');
+
+// And the hub, if it is ever rendered while a choice is in flight, must
+// leave that choice alone. It has nowhere to put one.
+{
+  const hubMount = window.document.createElement('main');
+  window.document.body.appendChild(hubMount);
+  const cleanupHub = mealPlanView.render(hubMount, { section: 'hub' });
+  await settle(60);
+  const stillThere = draftMod2.readDraft();
+  check('the plan hub does not swallow a meal chosen for a week page',
+    stillThere.mealId === afterChoice.mealId,
+    JSON.stringify(stillThere));
+  if (typeof cleanupHub === 'function') cleanupHub();
+  hubMount.remove();
+}
+
 // Back to the plan: the form must come up already knowing what was chosen.
+const SECTION_FOR_PATH = { 'plan-today': 'today', 'plan-this-week': 'week', 'plan-next-week': 'next' };
 if (typeof cleanupPlan === 'function') cleanupPlan();
 planMount.replaceChildren();
-const cleanupPlan2 = mealPlanView.render(planMount, { section: 'week' });
+const cleanupPlan2 = mealPlanView.render(planMount, { section: SECTION_FOR_PATH[landedOn] || 'hub' });
 await settle(80);
 check('returning to the plan shows the chosen meal',
   /Chosen: /.test(planMount.textContent),

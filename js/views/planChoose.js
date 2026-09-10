@@ -1,4 +1,5 @@
-// js/views/planChoose.js — 06 Sep 2026 v1
+// js/views/planChoose.js — 10 Sep 2026 v2
+// v2: the answer goes back to the page that asked the question.
 //
 // Choosing a meal, on its own screen.
 //
@@ -20,7 +21,7 @@ import { el } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { listMeals } from '../data/meals.js';
 import { createMealPicker } from '../components/mealPicker.js';
-import { readDraft, writeDraft } from '../lib/planDraft.js';
+import { readDraft, writeDraft, returnPathFor } from '../lib/planDraft.js';
 import { navigate } from '../router.js';
 import { announce } from '../lib/a11y.js';
 
@@ -33,6 +34,11 @@ const SLOT_LABELS = {
   breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'a snack'
 };
 
+// Which week, said out loud. Thursday is Thursday on both pages, and a
+// person who came here from Next week deserves to be told that is still
+// where they are.
+const WEEK_LABELS = { next: ' next week', today: '', week: '' };
+
 export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
@@ -40,6 +46,10 @@ export function render(mountEl) {
   let meals = [];
 
   const draft = readDraft();
+
+  // Where the answer has to be delivered. Read once, up front, so the Back
+  // link and the choice itself cannot disagree about where you came from.
+  const returnPath = returnPathFor(draft);
 
   mountEl.appendChild(pageHeading('Choose a meal', 'meals'));
 
@@ -49,12 +59,18 @@ export function render(mountEl) {
   const context = el('p', { class: 'choose-context' });
   const dayLabel = DAY_LABELS[draft.day];
   const slotLabel = SLOT_LABELS[draft.slot];
+  const weekLabel = WEEK_LABELS[draft.origin] || '';
   context.textContent = dayLabel && slotLabel
-    ? `For ${dayLabel} ${slotLabel}.`
+    ? `For ${dayLabel} ${slotLabel}${weekLabel}.`
     : 'Pick something to add to the week.';
   mountEl.appendChild(context);
 
-  const back = el('a', { class: 'btn btn-quiet', href: '#/meal-plan', text: 'Back to the plan' });
+  // Back to the page that sent you, not to the hub. Leaving without
+  // choosing should put you where you were, with the plan you were reading
+  // still on screen.
+  const back = el('a', {
+    class: 'btn btn-quiet', href: `#/${returnPath}`, text: 'Back to the plan'
+  });
   mountEl.appendChild(back);
 
   const picker = createMealPicker({
@@ -64,9 +80,11 @@ export function render(mountEl) {
       if (destroyed) return;
       writeDraft({ mealId: id, mealName: name });
       announce(`${name} chosen.`);
-      // Straight back. The decision was the errand; making someone press a
-      // second confirm button would be asking them to agree with themselves.
-      navigate('meal-plan');
+      // Straight back to the page that asked. `meal-plan` was correct until
+      // 7 Sep 2026, when the plan became a hub and the form moved onto the
+      // week pages — after which this line delivered every choice to a
+      // screen that had no form to put it in.
+      navigate(returnPath);
     }
   });
 
