@@ -1078,6 +1078,36 @@ available.
 No uniqueness on (week_start, day_of_week, slot): several meals in one slot
 is supported, and `member_ids` exists to say who each is for.
 
+### recipe_library_notes
+| Column | Type | Notes |
+|---|---|---|
+| id | uuid | primary key |
+| household_id | uuid | not null; default my_household_id(); references households(id) on delete cascade |
+| recipe_slug | text | not null. The library's own slug. **Deliberately not a foreign key** — the recipe library is JSON shipped with the app, not a table |
+| is_favourite | boolean | not null; default false |
+| note | text | nullable. NULL means no note; '' would read as one written and deleted |
+| created_at | timestamptz | not null; default now() |
+| updated_at | timestamptz | not null; default now() |
+
+Unique on (household_id, recipe_slug), so favouriting twice cannot make a
+second row whose note hides the first. Every write is an upsert on that
+pair. Added revision 25.
+
+### planning_notes
+| Column | Type | Notes |
+|---|---|---|
+| id | uuid | primary key |
+| household_id | uuid | not null; default my_household_id(); references households(id) on delete cascade |
+| title | text | not null |
+| body | text | nullable |
+| recipe_refs | text[] | not null; default '{}'. Library slugs or meal ids as text — same reasoning as above, so this cannot be a foreign key array |
+| occasion_date | date | nullable. "Christmas" has a date; "ideas for when Sam visits" does not |
+| created_at | timestamptz | not null; default now() |
+| updated_at | timestamptz | not null; default now() |
+
+Free-standing: not tied to a week, so it survives the plan being rebuilt.
+Added revision 25.
+
 ### pantry_stock
 
 Holds **non-food as well as food** — 3 spare light bulbs is a legitimate row.

@@ -1,4 +1,4 @@
-// js/views/meals/libraryDetail.js — 08 Sep 2026 v3
+// js/views/meals/libraryDetail.js — 08 Sep 2026 v4
 //
 // What is actually in a recipe, before you commit to it.
 //
@@ -35,6 +35,8 @@ import { openDetailSheet } from '../../components/detailSheet.js';
 import { lookupSlug } from '../../data/foodReference.js';
 import { describeRecipeTime } from '../../lib/recipeTime.js';
 import { describeEquipment } from '../../lib/recipeEquipment.js';
+import { getRecipeNote, setFavourite, setRecipeNote } from '../../data/recipeNotes.js';
+import { showToast } from '../../components/toast.js';
 
 /** Grams for one ingredient line, or null when it cannot be known. */
 function gramsFor(ing, entry) {
@@ -66,13 +68,19 @@ function describeAmount(ing) {
   return `${qty} ${ing.unit}`;
 }
 
-export async function openLibraryRecipe(recipe, returnFocusTo) {
+export async function openLibraryRecipe(recipe, returnFocusTo, onChanged) {
   // Resolved before the sheet opens: a sheet that appears and then fills in
   // is harder to read than one that arrives complete.
   const resolved = await Promise.all((recipe.ingredients || []).map(async (ing) => {
     const entry = await lookupSlug(ing.ref).catch(() => null);
     return { ing, entry, grams: gramsFor(ing, entry) };
   }));
+
+  // Read before the sheet opens, with the ingredients. A favourite heart
+  // that arrives unfilled and then fills itself half a second later reads
+  // as the app changing its mind.
+  const saved = await getRecipeNote(recipe.slug).catch(() => ({ ok: false }));
+  const existing = saved.ok ? saved.data : null;
 
   openDetailSheet({
     title: recipe.name,
@@ -192,6 +200,59 @@ export async function openLibraryRecipe(recipe, returnFocusTo) {
       if (recipe.method_note) {
         body.appendChild(el('p', { class: 'field-hint', text: recipe.method_note }));
       }
+
+      // ---- Yours: a favourite, and anything you want to remember --------
+      let favourite = !!(existing && existing.is_favourite);
+      const favBtn = el('button', { type: 'button', class: 'btn btn-block' });
+      const paintFav = () => {
+        // The word, not only the heart. Colour and a glyph alone leave a
+        // pressed state that has to be inferred.
+        favBtn.textContent = favourite ? '♥ In your favourites' : '♡ Add to favourites';
+        favBtn.setAttribute('aria-pressed', String(favourite));
+        favBtn.setAttribute('aria-label', favourite
+          ? `${recipe.name} is in your favourites. Press to remove it.`
+          : `Add ${recipe.name} to your favourites.`);
+      };
+      paintFav();
+      favBtn.addEventListener('click', async () => {
+        // Optimistic: the tap counts now and the write runs behind it. A
+        // heart that waits on a round trip feels broken on a slow train.
+        favourite = !favourite;
+        paintFav();
+        const result = await setFavourite(recipe.slug, favourite);
+        if (!result.ok) {
+          favourite = !favourite;
+          paintFav();
+          console.error('Could not change a favourite:', result.error);
+          showToast("Couldn't save that — try again.");
+          return;
+        }
+        if (typeof onChanged === 'function') onChanged();
+      });
+      body.appendChild(favBtn);
+
+      body.appendChild(el('h3', { text: 'Your notes' }));
+      const noteBox = el('textarea', { id: `recipe-note-${recipe.slug}`, rows: '3' });
+      noteBox.value = (existing && existing.note) || '';
+      const noteLabel = el('label', {
+        for: noteBox.id, class: 'visually-hidden',
+        text: `Your notes on ${recipe.name}`
+      });
+      const noteStatus = el('p', { class: 'field-hint', role: 'status' });
+      const saveNote = el('button', { type: 'button', class: 'btn', text: 'Save note' });
+      saveNote.addEventListener('click', async () => {
+        saveNote.disabled = true;
+        const result = await setRecipeNote(recipe.slug, noteBox.value);
+        saveNote.disabled = false;
+        if (!result.ok) {
+          console.error('Could not save a recipe note:', result.error);
+          noteStatus.textContent = 'That did not save. Try again.';
+          return;
+        }
+        noteStatus.textContent = noteBox.value.trim() ? 'Saved.' : 'Note cleared.';
+        if (typeof onChanged === 'function') onChanged();
+      });
+      body.append(noteLabel, noteBox, saveNote, noteStatus);
     }
   });
 }
