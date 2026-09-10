@@ -1,4 +1,5 @@
-// js/views/mealPlan.js — 10 Sep 2026 v16
+// js/views/mealPlan.js — 10 Sep 2026 v17
+// v17: Add on a cell is one errand, not three.
 // v16: the chooser is told which page to bring the answer back to.
 // v13: every read and write carries a week. Next week is real.
 // v12: the plan is a hub — Today, and This week.
@@ -243,7 +244,9 @@ export function render(mountEl, { section = 'hub' } = {}) {
       // Pressing Add in a Tuesday lunch cell is already the whole question;
       // making someone then scroll to a form and set two selects that
       // already know the answer is asking it twice.
-      writeDraft({ day: day.value, slot: slot.value, origin: section });
+      // `cell` means the day and the slot were stated by pressing THIS
+      // button. Nothing further needs asking, so nothing further gets asked.
+      writeDraft({ day: day.value, slot: slot.value, origin: section, intent: 'cell' });
       announce(`Choosing a meal for ${day.label} ${slot.label.toLowerCase()}.`);
       navigate('plan-choose');
     }, { signal });
@@ -526,7 +529,12 @@ export function render(mountEl, { section = 'hub' } = {}) {
     type: 'button', class: 'btn btn-block choose-meal-btn', text: 'Choose a meal'
   });
   chooseBtn.addEventListener('click', () => {
-    writeDraft({ day: planDaySelect.value, slot: planSlotSelect.value, origin: section });
+    // `form` means the day and slot came from two selects the person is
+    // standing in front of, and the servings box is right there. The answer
+    // belongs back in that form.
+    writeDraft({
+      day: planDaySelect.value, slot: planSlotSelect.value, origin: section, intent: 'form'
+    });
     navigate('plan-choose');
   }, { signal });
 
@@ -537,6 +545,14 @@ export function render(mountEl, { section = 'hub' } = {}) {
     chosenLabel.textContent = `Chosen: ${name}`;
     chooseBtn.textContent = 'Choose a different meal';
     planError.hidden = true;
+  }
+
+  /** Puts the form back to empty once a choice has been dealt with. */
+  function clearChosen() {
+    planMealSelect.replaceChildren();
+    planMealSelect.value = '';
+    chosenLabel.textContent = 'No meal chosen yet.';
+    chooseBtn.textContent = 'Choose a meal';
   }
 
   planForm.append(
@@ -665,14 +681,38 @@ export function render(mountEl, { section = 'hub' } = {}) {
   //
   // A page with nowhere to put a choice must leave it alone for the page
   // that has.
+  // Filled in by the block below when a choice came back from a cell's Add
+  // button, and carried out once the plan itself has loaded — the diner
+  // narrowing needs to know what is already in the cell.
+  let pendingAutoAdd = null;
+
   if (section !== 'hub') {
     const draft = readDraft();
     if (draft.day) planDaySelect.value = draft.day;
     if (draft.slot) planSlotSelect.value = draft.slot;
     if (draft.mealId && draft.mealName) {
       applyChosen(draft.mealId, draft.mealName);
-      announce(`${draft.mealName} chosen for ${planDaySelect.value}. Add to plan to save it.`);
-      planForm.scrollIntoView?.({ block: 'center' });
+      // ---- Pressing Add on a cell is the whole sentence ----------------
+      // Device test, 10 Sep 2026: "I've tried to add overnight oats to my
+      // breakfast... I select that. It doesn't go into my meal selector."
+      //
+      // It did not, and it was not going to. Pressing Add on Thursday
+      // breakfast states the day and the slot; choosing the meal states the
+      // rest; and the app then parked all three in a form and waited for an
+      // "Add to plan" button sitting below the fold under an optional
+      // servings box. Three actions for one errand, the third invisible.
+      //
+      // So an errand that began at a cell finishes by itself. One that began
+      // at the form's own Choose button does not: the person is standing in
+      // that form with a servings box in front of them, and finishing it for
+      // them would take the box away.
+      if (draft.intent === 'cell') {
+        pendingAutoAdd = { mealId: draft.mealId, mealName: draft.mealName,
+          day: draft.day, slot: draft.slot };
+      } else {
+        announce(`${draft.mealName} chosen for ${planDaySelect.value}. Add to plan to save it.`);
+        planForm.scrollIntoView?.({ block: 'center' });
+      }
     }
     // The day and slot stay for the next trip; the meal does not, or
     // reopening the plan tomorrow would show a stale choice as if it were
@@ -697,24 +737,12 @@ export function render(mountEl, { section = 'hub' } = {}) {
     }
     const mealName = planMealSelect.options[planMealSelect.selectedIndex].textContent;
     planSubmit.disabled = true;
-    // ---- Worklist F7: splitting a cell is one action, not two ----
-    // remainingMembers() was written and tested in Phase 20 and never
-    // wired. Adding "sausage and chips for the kids" to a slot that already
-    // held sea bass left the sea bass marked for EVERYONE, so the shopping
-    // list bought adult portions of both.
-    //
-    // Nothing is narrowed unless the new meal names people. Adding a second
-    // family meal to a slot is a normal thing to do and must stay silent.
-    const existingHere = planByCell.get(`${planDaySelect.value}|${planSlotSelect.value}`) || [];
-
-    const result = await addPlanEntry({
-      meal_id: planMealSelect.value,
-      day_of_week: planDaySelect.value,
+    const result = await commitPlanEntry({
+      mealId: planMealSelect.value,
+      mealName,
+      day: planDaySelect.value,
       slot: planSlotSelect.value,
-      serves_override: planServesInput.value,
-      // The week this page is about — otherwise a meal added on the next
-      // week page lands on this one, silently, via the column default.
-      week_start: weekStart
+      serves: planServesInput.value
     });
     planSubmit.disabled = false;
     if (destroyed) return;
@@ -726,13 +754,44 @@ export function render(mountEl, { section = 'hub' } = {}) {
       planError.hidden = false;
       return;
     }
-    announce(`${mealName} added to ${labelForDay(planDaySelect.value)} `
-      + `${labelForSlot(planSlotSelect.value).toLowerCase()}.`);
+    planServesInput.value = '';
+  }, { signal });
+
+  /**
+   * One meal into one cell of this week. The only place that writes it.
+   *
+   * Factored out on 10 Sep 2026 because there are now two ways in — the
+   * form's submit, and the straight-through path from a cell's Add button —
+   * and two copies of this would have drifted on the very next change.
+   */
+  async function commitPlanEntry({ mealId, mealName, day, slot, serves }) {
+    // ---- Worklist F7: splitting a cell is one action, not two ----
+    // remainingMembers() was written and tested in Phase 20 and never
+    // wired. Adding "sausage and chips for the kids" to a slot that already
+    // held sea bass left the sea bass marked for EVERYONE, so the shopping
+    // list bought adult portions of both.
+    //
+    // Nothing is narrowed unless the new meal names people. Adding a second
+    // family meal to a slot is a normal thing to do and must stay silent.
+    const existingHere = planByCell.get(`${day}|${slot}`) || [];
+
+    const result = await addPlanEntry({
+      meal_id: mealId,
+      day_of_week: day,
+      slot,
+      serves_override: serves,
+      // The week this page is about — otherwise a meal added on the next
+      // week page lands on this one, silently, via the column default.
+      week_start: weekStart
+    });
+    if (destroyed || !result.ok) return result;
+
+    announce(`${mealName} added to ${labelForDay(day)} ${labelForSlot(slot).toLowerCase()}.`);
 
     // Offered, not done automatically. Narrowing somebody else's meal
     // without asking is a change they did not make to a row they were not
     // looking at.
-    if (existingHere.length === 1 && members.length > 1 && result.ok) {
+    if (existingHere.length === 1 && members.length > 1) {
       const other = existingHere[0];
       if ((other.member_ids || []).length === 0) {
         const otherName = (other.meals || {}).name || 'the other meal';
@@ -747,9 +806,9 @@ export function render(mountEl, { section = 'hub' } = {}) {
         });
       }
     }
-    planServesInput.value = '';
     await loadPlan();
-  }, { signal });
+    return result;
+  }
 
   function repopulateMealSelect() {
     // Nothing to repopulate: the select holds only the chosen meal, and the
@@ -801,7 +860,40 @@ export function render(mountEl, { section = 'hub' } = {}) {
   window.addEventListener('offline', onConnectionChange);
 
   loadMeals();
-  loadPlan();
+  loadPlan().then(async () => {
+    if (destroyed || !pendingAutoAdd) return;
+    const { mealId, mealName, day, slot } = pendingAutoAdd;
+    pendingAutoAdd = null;
+    const result = await commitPlanEntry({ mealId, mealName, day, slot, serves: '' });
+    if (destroyed) return;
+    if (!result.ok) {
+      // The choice stays in the form, which is where it already is, and the
+      // error is said out loud rather than swallowed. Nothing is lost: the
+      // Add to plan button will try again.
+      console.error('Failed to add the chosen meal to the plan:', result.error);
+      planError.textContent = isOffline()
+        ? 'The weekly plan needs a connection. Your choice is here — press Add to plan once you are back online.'
+        : "Couldn't add that to the plan — press Add to plan to try again.";
+      planError.hidden = false;
+      planForm.scrollIntoView?.({ block: 'center' });
+      return;
+    }
+    // Done, said plainly, and reversible in one tap. A write nobody pressed
+    // a button for has to be undoable by someone who did not expect it.
+    clearChosen();
+    const entryId = result.data && result.data.id;
+    showToast(`${mealName} added to ${labelForDay(day)} ${labelForSlot(slot).toLowerCase()}.`,
+      entryId ? {
+        undoLabel: 'Undo',
+        undo: async () => {
+          const undone = await removePlanEntry(entryId);
+          if (destroyed) return;
+          if (!undone.ok) { showToast("Couldn't undo that — remove it from the day instead."); return; }
+          announce(`${mealName} removed from ${labelForDay(day)} ${labelForSlot(slot).toLowerCase()}.`);
+          await loadPlan();
+        }
+      } : undefined);
+  });
 
   // Leaving the screen flushes immediately: you are on your way to the
   // kitchen or the shop, and waiting out a debounce there is the moment the

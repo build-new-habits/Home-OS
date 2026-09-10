@@ -695,6 +695,21 @@ setValue(planMount.querySelector('#plan-slot'), 'dinner');
 // 6 Sep 2026: choosing happens on its own screen, so this walks the real
 // round trip — open the chooser, pick something, come back — rather than
 // setting a <select> value no person can set.
+//
+// 10 Sep 2026: through the FORM'S OWN Choose button, which is what the rest
+// of this block is about. A choice that began at a cell finishes by itself
+// now and never reaches this form — that path is traced separately, at the
+// foot of this file.
+const formChoose = planMount.querySelector('.choose-meal-btn');
+check('the form offers its own way into the chooser', !!formChoose);
+if (formChoose) click(formChoose);
+await settle(40);
+{
+  const d = (await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href)).readDraft();
+  check('a choice begun at the form is marked as the form\'s',
+    d.intent === 'form', JSON.stringify(d));
+}
+
 const chooseMount = window.document.createElement('main');
 window.document.body.appendChild(chooseMount);
 const chooseView = await import(pathToFileURL(path.join(REPO, 'js/views/planChoose.js')).href);
@@ -930,6 +945,77 @@ console.log('\nChoosing a meal — favourites');
 
   if (typeof cleanupPick === 'function') cleanupPick();
   pickMount.remove();
+}
+
+// =====================================================================
+// TODAY -> CHOOSE -> TODAY, the way the Kitchen actually goes
+// =====================================================================
+// Device test, 10 Sep 2026 (second pass): Kitchen -> Today's meals -> Add
+// breakfast -> filter to favourites -> pick -> "it doesn't go into my meal
+// selector". The week page was proved above; this is the OTHER door, and
+// the Kitchen card points at it.
+console.log('\nToday -> choose -> today');
+{
+  const todayMount = window.document.createElement('main');
+  window.document.body.appendChild(todayMount);
+  const cleanupToday = mealPlanView.render(todayMount, { section: 'today' });
+  await settle(160);
+
+  const addBtn = [...todayMount.querySelectorAll('button')]
+    .find((b) => /^Add a meal to .*breakfast$/i.test(b.getAttribute('aria-label') || ''));
+  let todayDay = '';
+  check('today offers an Add for breakfast', !!addBtn,
+    [...todayMount.querySelectorAll('button')].map((b) => b.getAttribute('aria-label')).join(' / '));
+  if (addBtn) {
+    click(addBtn);
+    await settle(40);
+    const d = (await import(pathToFileURL(path.join(REPO, 'js/lib/planDraft.js')).href)).readDraft();
+    check('today tells the chooser to come back to today', d.origin === 'today', JSON.stringify(d));
+    check('and that the errand began at a cell, not at the form',
+      d.intent === 'cell', JSON.stringify(d));
+    todayDay = d.day;
+
+    const cm = window.document.createElement('main');
+    window.document.body.appendChild(cm);
+    const cv = await import(pathToFileURL(path.join(REPO, 'js/views/planChoose.js')).href);
+    const cc = cv.render(cm);
+    await settle(220);
+
+    const fav = [...cm.querySelectorAll('.meal-picker__chips .chip-toggle')]
+      .find((c) => /^Favourites/.test(c.textContent));
+    if (fav && !fav.disabled) { click(fav); await settle(60); }
+    const picks = [...cm.querySelectorAll('.meal-picker__pick')];
+    check('a favourite is offered for today\'s breakfast', picks.length > 0,
+      `${picks.length} offered`);
+    if (picks.length) { click(picks[0]); await settle(80); }
+    if (typeof cc === 'function') cc();
+    cm.remove();
+
+    check('choosing from today comes back to today',
+      window.location.hash === '#/plan-today', window.location.hash);
+
+    if (typeof cleanupToday === 'function') cleanupToday();
+    todayMount.replaceChildren();
+    clearCalls();
+    const cleanupToday2 = mealPlanView.render(todayMount, { section: 'today' });
+    await settle(220);
+
+    // ---- The errand FINISHES ------------------------------------------
+    // Pressing Add on a cell states the day and the slot; choosing states
+    // the meal. Parking all three in a form and waiting for a submit button
+    // below the fold is a third action for one errand, and the device test
+    // of 10 Sep found it exactly there.
+    const planned = writes().find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
+    check('choosing from a cell writes the meal into the plan by itself',
+      !!planned, JSON.stringify(writes()));
+    check('and into the cell that was pressed',
+      planned && planned.payload.day_of_week === todayDay && planned.payload.slot === 'breakfast',
+      JSON.stringify(planned && planned.payload));
+    check('the form is left empty rather than holding a choice already saved',
+      /No meal chosen yet/.test(todayMount.textContent));
+    if (typeof cleanupToday2 === 'function') cleanupToday2();
+  }
+  todayMount.remove();
 }
 
 // ---- The report goes LAST ----
