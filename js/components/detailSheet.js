@@ -1,4 +1,6 @@
-// js/components/detailSheet.js — 26 Aug 2026 v2
+// js/components/detailSheet.js — 10 Sep 2026 v3
+// v3: an onClose hook, so a list behind a sheet can refresh itself AFTER
+//     the sheet has gone rather than underneath it.
 // A slide-out panel for looking at one thing properly.
 //
 // Cramming an item's details into a list row forces a choice between a row
@@ -19,12 +21,23 @@
 // about pantries or foods and can be reused by any view.
 
 /**
- * openDetailSheet({ title, subtitle, build, returnFocusTo }) -> { close }
+ * openDetailSheet({ title, subtitle, build, returnFocusTo, onClose }) -> { close }
  *
  * `build(body, api)` fills the panel. `api.close()` dismisses it — pass it
  * to any action that should close the sheet once it has done its work.
+ *
+ * ---- Why onClose exists ----
+ * A sheet that changes something usually leaves the list behind it stale.
+ * Rebuilding that list while the sheet is open destroys the element focus
+ * is due to return to, so `previouslyFocused.focus()` below lands on a
+ * detached node and the person is dumped at the top of the page — the exact
+ * 3.2.1 failure this component's comments were written to prevent.
+ *
+ * So the refresh happens here, after focus has been restored: the caller
+ * rebuilds, and puts focus back itself if the row it rebuilt is the row
+ * focus is standing on.
  */
-export function openDetailSheet({ title = '', subtitle = '', build, returnFocusTo } = {}) {
+export function openDetailSheet({ title = '', subtitle = '', build, returnFocusTo, onClose } = {}) {
   // Where focus goes on close is passed in, not inferred from
   // document.activeElement: a tap does not reliably focus a button on every
   // mobile browser, and inferring it means focus silently lands on <body>
@@ -115,6 +128,12 @@ export function openDetailSheet({ title = '', subtitle = '', build, returnFocusT
     // next back press does nothing visible and looks broken.
     if (!poppedByHistory && window.history.state && window.history.state.homeOsSheet === uid) {
       window.history.back();
+    }
+
+    // Last, and never allowed to take the close down with it: a sheet that
+    // will not shut because a caller's refresh threw is a trap.
+    if (typeof onClose === 'function') {
+      try { onClose(); } catch (error) { console.error('A sheet close handler failed:', error); }
     }
   }
 

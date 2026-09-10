@@ -2666,6 +2666,42 @@ body.sheet-open {
   margin-top: var(--space-2);
 }
 
+/* ---- Favourites in the library, 10 Sep 2026 -------------------------- */
+/* Revision 25 gave the library a heart and revision 26 gives it somewhere
+   to show up. The chip row sits under the five filter selects rather than
+   among them: it is a yes/no, not a sixth thing to read. */
+.library-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+/* Disabled at zero favourites. Muted, but still legible — "Favourites (0)"
+   is information, and a control faded to unreadable is a control that has
+   been hidden badly. */
+.library-chips .chip-toggle:disabled {
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+/* The heart carries a word with it. Colour and glyph alone leave the state
+   to be inferred, and this line is read aloud with the rest of the row. */
+.library-row-fav {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Your own note, on the row. It is the only thing here you wrote. */
+.library-row-note {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--color-border);
+}
+
 /* ---- Phase 26: design foundations ------------------------------------ */
 /* State made visible. Every one of these pairs colour with a shape AND a
    word — colour alone fails WCAG 1.4.1, and shape alone is a puzzle. */

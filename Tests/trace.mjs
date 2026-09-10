@@ -16,7 +16,8 @@
 
 import { JSDOM } from 'jsdom';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, fileURLToPath } from 'node:url';
+import fs from 'node:fs';
 
 const REPO = process.env.GATE_REPO || '/tmp/gate-repo';
 
@@ -31,7 +32,24 @@ global.CSS = window.CSS || { escape: (v) => String(v).replace(/([^\w-])/g, '\\$1
 global.AbortController = window.AbortController;
 global.AbortSignal = window.AbortSignal;
 global.requestAnimationFrame = (fn) => setTimeout(fn, 0);
-global.fetch = async () => { throw new Error('no network in the trace'); };
+// ---- The recipe library is FILES, not network -------------------------
+// It used to throw for every URL, which meant the library panel and the
+// meal picker both rendered "could not be loaded" and every assertion about
+// them was really an assertion about an error message. The library ships as
+// JSON in the repo, so the gate serves it off disk and leaves everything
+// else — Open Food Facts, anything https — throwing as before.
+global.fetch = async (url) => {
+  const href = String(url && url.url ? url.url : url);
+  if (href.startsWith('file://')) {
+    const file = fileURLToPath(href);
+    if (fs.existsSync(file)) {
+      const text = fs.readFileSync(file, 'utf8');
+      return { ok: true, status: 200, async json() { return JSON.parse(text); }, async text() { return text; } };
+    }
+    return { ok: false, status: 404, async json() { throw new Error('404'); }, async text() { return ''; } };
+  }
+  throw new Error('no network in the trace');
+};
 window.fetch = global.fetch;
 window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
 window.HTMLElement.prototype.scrollIntoView = () => {};
@@ -60,6 +78,12 @@ function fixture(t) {
     { id: 'food-1', name: 'Rolled oats', barcode: '5000159407236', calories_per_100g: 379, protein_g: 13.2, fat_g: 8.1, carbs_g: 60.1, source: 'openfoodfacts', category: 'food_ambient' },
     { id: 'food-2', name: 'Home-made stock', barcode: null, calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null, source: 'manual', category: 'personal' }];
   if (t === 'meals') return [{ id: 'meal-1', name: 'Porridge', default_serves: 2 }];
+  // One favourited library recipe, with a note. A real slug from
+  // data/recipe_library/breakfast.json — a made-up one would filter to
+  // nothing and the assertions below would pass by accident.
+  if (t === 'recipe_library_notes') return [
+    { id: 'note-1', recipe_slug: 'overnight-oats', is_favourite: true,
+      note: 'Topped with frozen fruit', updated_at: '2026-09-09T06:00:00Z' }];
   if (t === 'meal_ingredients') return [
     { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixture('foods')[0] }];
   if (t === 'weekly_meal_plan') return [{ id: 'plan-1', day_of_week: 'mon', slot: 'breakfast', serves_override: 3, meal_id: 'meal-1', meals: { id: 'meal-1', name: 'Porridge', default_serves: 2 } }];
@@ -799,6 +823,50 @@ if (cellBtn) {
     `${planMount.querySelector('#plan-day').value}/${planMount.querySelector('#plan-slot').value}`);
 }
 if (typeof cleanupPlan === 'function') cleanupPlan();
+
+// =====================================================================
+// RECIPE LIBRARY — favourites have somewhere to show up
+// =====================================================================
+// 10 Sep 2026. Revision 25 shipped a heart and a note box with no filter
+// and no marker, so a favourite was a tap that went nowhere. These check
+// the way OUT of a favourite, not the way in.
+console.log('\nRecipe library — favourites');
+{
+  const libMount = window.document.createElement('main');
+  window.document.body.appendChild(libMount);
+  const libView = await import(pathToFileURL(path.join(REPO, 'js/views/library.js')).href);
+  const cleanupLib = libView.render(libMount);
+  await settle(200);
+
+  const rows = [...libMount.querySelectorAll('.library-row')];
+  check('the library actually lists recipes in the gate', rows.length > 10,
+    `${rows.length} rows`);
+
+  const favChip = [...libMount.querySelectorAll('.library-chips .chip-toggle')][0];
+  check('the library offers a favourites filter', !!favChip);
+  check('and says how many there are', favChip && /\(1\)/.test(favChip.textContent),
+    favChip && favChip.textContent);
+  check('a favourited recipe is marked in the list',
+    /♥ Favourite/.test(libMount.textContent));
+  check('and your own note is on the row, not one tap away',
+    /Topped with frozen fruit/.test(libMount.textContent));
+
+  if (favChip) {
+    click(favChip);
+    await settle(40);
+    const narrowed = [...libMount.querySelectorAll('.library-row')];
+    check('pressing it narrows the list to the favourites',
+      narrowed.length === 1, `${narrowed.length} rows left`);
+    check('and the one left is the one that was favourited',
+      narrowed.length === 1 && /Overnight oats/.test(narrowed[0].textContent),
+      narrowed[0] && narrowed[0].textContent.slice(0, 40));
+    check('the chip reports itself pressed',
+      favChip.getAttribute('aria-pressed') === 'true');
+  }
+
+  if (typeof cleanupLib === 'function') cleanupLib();
+  libMount.remove();
+}
 
 // ---- The report goes LAST ----
 // It used to sit above the weekly-plan block, which meant those checks ran

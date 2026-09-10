@@ -1,4 +1,5 @@
-// js/views/meals/libraryDetail.js — 08 Sep 2026 v4
+// js/views/meals/libraryDetail.js — 10 Sep 2026 v5
+// v5: the caller is told ONCE, after the sheet has closed.
 //
 // What is actually in a recipe, before you commit to it.
 //
@@ -68,7 +69,23 @@ function describeAmount(ing) {
   return `${qty} ${ing.unit}`;
 }
 
+/**
+ * @param {object} recipe
+ * @param {Element} returnFocusTo
+ * @param {() => void} [onChanged]  called ONCE, AFTER the sheet has closed,
+ *   and only if something was actually saved.
+ *
+ * ---- Why not on every save ----
+ * The list behind this sheet has to rebuild when a heart or a note changes.
+ * Rebuilding it while the sheet is still open destroys the row that focus
+ * is due to return to, so the sheet's own `previouslyFocused.focus()` lands
+ * on a detached node and the person is dumped at the top of the page.
+ *
+ * So changes are recorded here and reported once, on close, when the caller
+ * can rebuild safely and put focus back itself.
+ */
 export async function openLibraryRecipe(recipe, returnFocusTo, onChanged) {
+  let changed = false;
   // Resolved before the sheet opens: a sheet that appears and then fills in
   // is harder to read than one that arrives complete.
   const resolved = await Promise.all((recipe.ingredients || []).map(async (ing) => {
@@ -87,6 +104,9 @@ export async function openLibraryRecipe(recipe, returnFocusTo, onChanged) {
     subtitle: [recipe.cuisine, recipe.default_slot, `serves ${recipe.default_serves}`]
       .filter(Boolean).join(' · '),
     returnFocusTo,
+    onClose() {
+      if (changed && typeof onChanged === 'function') onChanged();
+    },
     build(body) {
       // ---- Nutrition, per serving, and honest about its footing --------
       // Calories AND the three macros, from the same grams. Protein is the
@@ -227,7 +247,7 @@ export async function openLibraryRecipe(recipe, returnFocusTo, onChanged) {
           showToast("Couldn't save that — try again.");
           return;
         }
-        if (typeof onChanged === 'function') onChanged();
+        changed = true;
       });
       body.appendChild(favBtn);
 
@@ -250,7 +270,7 @@ export async function openLibraryRecipe(recipe, returnFocusTo, onChanged) {
           return;
         }
         noteStatus.textContent = noteBox.value.trim() ? 'Saved.' : 'Note cleared.';
-        if (typeof onChanged === 'function') onChanged();
+        changed = true;
       });
       body.append(noteLabel, noteBox, saveNote, noteStatus);
     }

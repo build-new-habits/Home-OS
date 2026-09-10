@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 01 Sep 2026 v1
+// js/views/meals/library.js — 10 Sep 2026 v2
+// v2: favourites have somewhere to show up.
 // Worklist G1, first extraction. The recipe library panel.
 //
 // ---- Why this one first ----
@@ -25,6 +26,7 @@ import { openLibraryRecipe } from './libraryDetail.js';
 import {
   loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
 } from '../../data/recipeLibrary.js';
+import { listRecipeNotes } from '../../data/recipeNotes.js';
 
 /**
  * @param {{
@@ -36,8 +38,17 @@ import {
 export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = false }) {
   let libraryRecipes = [];
   let libraryOwned = new Map();
+  // ---- Favourites, 10 Sep 2026 ----
+  // Device test: "no way to find favourites". Revision 25 gave the library
+  // a heart and a note box and then no way to use either — a favourite you
+  // cannot filter by is a tap that goes nowhere, which is worse than no
+  // heart at all.
+  let libraryNotes = new Map();
   let libraryLoaded = false;
-  const libraryFilters = { term: '', cuisine: '', budget_tier: '', default_slot: '', dietary: [] };
+  const libraryFilters = {
+    term: '', cuisine: '', budget_tier: '', default_slot: '', dietary: [],
+    favouritesOnly: false
+  };
   const libraryList = el('ul', { class: 'library-list' });
 
   const destroyed = () => isDestroyed();
@@ -81,7 +92,9 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
 async function loadLibrary() {
   libraryBody.replaceChildren(el('p', { class: 'field-hint', text: 'Loading recipes…' }));
 
-  const [recipes, owned] = await Promise.all([loadAllRecipes(), existingLibraryRefs()]);
+  const [recipes, owned, notes] = await Promise.all([
+    loadAllRecipes(), existingLibraryRefs(), listRecipeNotes()
+  ]);
   if (destroyed()) return;
 
   if (!recipes.ok) {
@@ -95,6 +108,9 @@ async function loadLibrary() {
 
   libraryRecipes = recipes.data;
   libraryOwned = owned.ok ? owned.data : new Map();
+  // A failed notes read narrows the panel rather than emptying it: no
+  // hearts, no favourites chip, every recipe still browsable.
+  libraryNotes = notes.ok ? notes.data : new Map();
   librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`;
   renderLibrary();
 }
@@ -147,9 +163,48 @@ function renderLibrary() {
     { value: 'nut_free', label: 'Nut free' }
   ]));
 
+  // ---- Favourites -------------------------------------------------
+  // A chip rather than a sixth select: it is a yes/no, and the count says
+  // in advance whether pressing it is worth anything. Disabled at zero for
+  // the same reason the meal picker greys an empty diet chip — "Favourites
+  // (0)" tells you where you stand; a chip that silently empties the list
+  // teaches you the filters are broken.
+  const favCount = countFavourites();
+  const favChip = el('button', {
+    type: 'button', class: 'chip-toggle',
+    text: favCount ? `Favourites (${favCount})` : 'Favourites (0)'
+  });
+  favChip.setAttribute('aria-pressed', String(libraryFilters.favouritesOnly));
+  if (favCount === 0) {
+    favChip.disabled = true;
+    favChip.setAttribute('aria-label',
+      'Favourites. Nothing is favourited yet — open a recipe to add one.');
+  }
+  favChip.addEventListener('click', () => {
+    libraryFilters.favouritesOnly = !libraryFilters.favouritesOnly;
+    favChip.setAttribute('aria-pressed', String(libraryFilters.favouritesOnly));
+    renderLibraryList();
+  }, { signal });
+  const favRow = el('div', { class: 'library-chips', role: 'group' });
+  favRow.setAttribute('aria-label', 'Narrow to favourites');
+  favRow.appendChild(favChip);
+
   libraryBody.appendChild(filterRow);
+  libraryBody.appendChild(favRow);
   libraryBody.appendChild(libraryList);
   renderLibraryList();
+}
+
+
+function countFavourites() {
+  let n = 0;
+  for (const row of libraryNotes.values()) if (row && row.is_favourite) n++;
+  return n;
+}
+
+function isFavourite(slug) {
+  const row = libraryNotes.get(slug);
+  return !!(row && row.is_favourite);
 }
 
 
@@ -181,11 +236,28 @@ function buildLibrarySelect(label, key, options) {
 
 
 function renderLibraryList() {
-  const matches = filterRecipes(libraryRecipes, libraryFilters);
+  // filterRecipes knows nothing about favourites — they live in a table, not
+  // in the recipe files — so the flag is applied here rather than smuggled
+  // into a function that filters static data.
+  let matches = filterRecipes(libraryRecipes, libraryFilters);
+  if (libraryFilters.favouritesOnly) matches = matches.filter((r) => isFavourite(r.slug));
+
+  // Favourites first, always. Marking one and then hunting for it in
+  // alphabetical order is the same problem in a smaller room.
+  matches = [...matches].sort((a, b) => {
+    if (isFavourite(a.slug) !== isFavourite(b.slug)) return isFavourite(a.slug) ? -1 : 1;
+    return 0;
+  });
+
   libraryList.replaceChildren();
 
   if (matches.length === 0) {
-    libraryList.appendChild(el('li', { class: 'field-hint', text: 'Nothing matches those filters.' }));
+    libraryList.appendChild(el('li', {
+      class: 'field-hint',
+      text: libraryFilters.favouritesOnly
+        ? 'Nothing favourited matches those filters.'
+        : 'Nothing matches those filters.'
+    }));
     return;
   }
 
@@ -195,15 +267,45 @@ function renderLibraryList() {
     // a library entry was add it to your meals — so reading one meant
     // adding it first, which is choosing a dinner by its title.
     const open = el('button', {
-      type: 'button', class: 'library-row-open', text: recipe.name
+      type: 'button', class: 'library-row-open', 'data-slug': recipe.slug, text: recipe.name
     });
     open.setAttribute('aria-label', `See what is in ${recipe.name}`);
-    open.addEventListener('click', () => { openLibraryRecipe(recipe, open); }, { signal });
+    open.addEventListener('click', () => {
+      // The sheet owns the heart and the note box. When either changes,
+      // this list is stale — the row still says what it said before the
+      // sheet opened, and the chip still counts the old total.
+      //
+      // The callback runs AFTER the sheet has closed and focus has been
+      // returned to this button, which the rebuild below then destroys. So
+      // the rebuild puts focus back on the row it just replaced: same
+      // recipe, same place on the screen, which is where the person is
+      // standing (3.2.2).
+      openLibraryRecipe(recipe, open, async () => {
+        const fresh = await listRecipeNotes();
+        if (destroyed() || !fresh.ok) return;
+        libraryNotes = fresh.data;
+        renderLibrary();
+        const again = libraryList.querySelector(`.library-row-open[data-slug="${recipe.slug}"]`);
+        if (again && again.focus) again.focus();
+      });
+    }, { signal });
     item.appendChild(open);
 
     const meta = [recipe.cuisine, recipe.budget_tier, `${recipe.steps.length} steps`];
     if ((recipe.dietary_tags || []).length) meta.push(recipe.dietary_tags.join(', ').replace(/_/g, ' '));
     item.appendChild(el('span', { class: 'library-row-meta', text: meta.join(' · ') }));
+
+    // The heart, out here where the list is. The word goes with it: a glyph
+    // alone is a state you have to infer, and the meta line is read aloud.
+    if (isFavourite(recipe.slug)) {
+      item.appendChild(el('span', { class: 'library-row-fav', text: '♥ Favourite' }));
+    }
+
+    // Your own note, shown rather than hidden one tap away. It is the only
+    // thing on the row you wrote, and "topped with frozen fruit" is exactly
+    // the kind of thing you need when scanning, not when already committed.
+    const note = (libraryNotes.get(recipe.slug) || {}).note;
+    if (note) item.appendChild(el('p', { class: 'library-row-note', text: note }));
 
     // Already-added recipes are MARKED, not hidden. Seeing that you own
     // it is information; making it vanish just looks like a bug.
