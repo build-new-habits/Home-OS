@@ -628,14 +628,22 @@ check('pantry: adding stock is not what you meet on opening the pantry',
     return !hasForm && linksToAdd;
   })(),
   'the hub must link to the add page, not contain the form');
+// 10 Sep 2026: the subject MOVED, so the checks moved with it. "What's in"
+// was a column of accordions; it is now a grid of tiles, each opening a page.
+// The requirement is unchanged — every place must be visible at once without
+// switching screens — so it is asserted against the thing that now carries it.
 check('pantry: locations are browsable without switching to them',
-  panMount.querySelectorAll('.location-toggle').length > 0);
+  panMount.querySelectorAll('.location-tile').length > 0);
+check('pantry: what is in a place is a page, not a fold',
+  panMount.querySelectorAll('.location-toggle').length === 0
+  && panMount.querySelectorAll('[aria-expanded]').length === 0,
+  'folds have been offered instead of pages and rejected more than once');
 // Unplaced items are a to-do, not a dustbin, so they sort first rather
 // than alphabetically to the bottom where nobody scrolls.
 check('pantry: unplaced items sort first, not last',
   (() => {
-    const toggles = [...panMount.querySelectorAll('.location-toggle')];
-    const unplacedIndex = toggles.findIndex((t) => /not put away|no place set/i.test(t.textContent));
+    const tiles = [...panMount.querySelectorAll('.location-tile')];
+    const unplacedIndex = tiles.findIndex((t) => /not put away|no place set/i.test(t.textContent));
     return unplacedIndex === -1 || unplacedIndex === 0;
   })());
 
@@ -643,18 +651,34 @@ await new Promise((r) => setTimeout(r, 20));
 
 // Named explicitly rather than taking the first: locations sort
 // alphabetically, and the row under test lives in the kitchen.
-const panLocationToggle = [...panMount.querySelectorAll('.location-toggle')]
+const panLocationTile = [...panMount.querySelectorAll('.location-tile')]
   .find((b) => /Kitchen cupboard/.test(b.textContent));
-check('pantry: browse groups by where things live', !!panLocationToggle,
-  'locations collapse so sixty rows never render at once');
-check('pantry: a location is collapsed until it is opened',
-  panLocationToggle && panLocationToggle.getAttribute('aria-expanded') === 'false');
-if (panLocationToggle) panLocationToggle.dispatchEvent(new window.Event('click', { bubbles: true }));
+check('pantry: browse groups by where things live', !!panLocationTile,
+  'each place is a tile, and a tile opens its own page');
+check('pantry: a tile says how much is in there before you open it',
+  panLocationTile && /\d+ thing/.test(panLocationTile.textContent),
+  panLocationTile && panLocationTile.textContent);
+// Tapping a tile records the place and navigates. The place page then reads
+// it back — which is the whole handoff, since the router carries no
+// parameters.
+if (panLocationTile) panLocationTile.dispatchEvent(new window.Event('click', { bubbles: true }));
 await new Promise((r) => setTimeout(r, 20));
+check('pantry: tapping a place takes you to its page',
+  window.location.hash === '#/pantry-place', window.location.hash);
+
+const panPlaceMount = window.document.createElement('main');
+window.document.body.appendChild(panPlaceMount);
+const panPlaceCleanup = panMod.render(panPlaceMount, { section: 'place' });
+await new Promise((r) => setTimeout(r, 40));
+check('pantry: the place page shows the place you tapped',
+  /Kitchen cupboard/.test(panPlaceMount.textContent), panPlaceMount.textContent.slice(0, 120));
+check('pantry: and a way back to the places',
+  [...panPlaceMount.querySelectorAll('a[href]')]
+    .some((a) => a.getAttribute('href') === '#/pantry-browse'));
 
 // Quantities must carry their unit as text, never a bare number.
 check('pantry: quantities are shown with a unit',
-  /500 g|0.5 kg/.test(panMount.textContent), '');
+  /500 g|0.5 kg/.test(panPlaceMount.textContent), '');
 // Freshness in words, and "unknown" must be an unembarrassed state.
 // Both wordings count — the fixture now has one row with a real use-by and
 // one relying on the shelf-life estimate.
@@ -672,19 +696,14 @@ check('pantry: a printed use-by is stated as a date, with no "about"',
 // The row used to come from a flat list of everything. Since 6 Sep 2026 the
 // items live in cupboards, so the cupboard is opened first — which is
 // exactly the journey a person now makes, and a better test for it.
-const panCupboard = panMount.querySelector('.location-toggle');
-check('pantry: a cupboard can be opened', !!panCupboard);
-if (panCupboard) panCupboard.dispatchEvent(new window.Event('click', { bubbles: true }));
-await new Promise((r) => setTimeout(r, 20));
-
-// Now that a cupboard is open there are rows to inspect. A blank amount
-// must never have been written as 0: 0 reads as "you have none", and a
-// stocktake that skipped the amount would get silently rebought.
+// The rows now live on the place page, which is already open above.
+// A blank amount must never have been written as 0: 0 reads as "you have
+// none", and a stocktake that skipped the amount would get silently rebought.
 check('pantry: a missing amount says so rather than showing a bare 0',
-  /Amount not recorded/.test(panMount.textContent)
+  /Amount not recorded/.test(panPlaceMount.textContent)
   || /Amount not recorded/.test(panFixMount.textContent));
 
-const panRowOpen = panMount.querySelector('.stock-row-open');
+const panRowOpen = panPlaceMount.querySelector('.stock-row-open');
 check('pantry: a row can be opened', !!panRowOpen);
 if (panRowOpen) panRowOpen.dispatchEvent(new window.Event('click', { bubbles: true }));
 await new Promise((r) => setTimeout(r, 20));
@@ -707,6 +726,11 @@ await new Promise((r) => setTimeout(r, 20));
 check('pantry: escape closes the sheet', !window.document.querySelector('.sheet[role="dialog"]'));
 check('pantry: focus returns to the row that opened it',
   window.document.activeElement === panRowOpen);
+
+// The place page is a second live view on the body; left mounted it would
+// leak into the next block's heading and landmark counts.
+if (typeof panPlaceCleanup === 'function') panPlaceCleanup();
+panPlaceMount.remove();
 
 const panLevels = [...panMount.querySelectorAll('h1,h2,h3,h4')].map((h) => Number(h.tagName[1]));
 let panOrdered = true;

@@ -205,6 +205,13 @@ export const routes = [
     path: 'plan-future',
     title: 'Future plans',
     load: () => import('./views/planFuture.js')
+  },
+  // 10 Sep 2026. Appended, per the append-only rule. Which place it shows
+  // comes from lib/pantryPlace.js, not from the path.
+  {
+    path: 'pantry-place',
+    title: 'A place in your pantry',
+    load: () => import('./views/pantry/place.js')
   }
 ];
 

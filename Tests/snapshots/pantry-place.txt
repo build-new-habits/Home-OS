@@ -1,0 +1,12 @@
+h1.page-heading"Pantry"
+  svg.icon.icon-pantry
+    g
+      rect
+      path
+  span
+p.field-hint[hidden=]
+section
+  h2"A place in your pantry"
+  p.field-hint[role=status]
+  a.btn.btn-quiet"Back to what's in"
+  div

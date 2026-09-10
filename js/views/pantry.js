@@ -72,6 +72,8 @@ import { claimDialog } from '../components/claimDialog.js';
 import { el, field, selectFrom } from '../lib/dom.js';
 import { createDisclosureRow } from '../components/disclosureRow.js';
 import { PANTRY_PAGES } from '../navConfig.js';
+import { setPlace, readPlace } from '../lib/pantryPlace.js';
+import { navigate } from '../router.js';
 const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
@@ -150,7 +152,6 @@ export function render(mountEl, { section = 'hub' } = {}) {
     tile.link.setAttribute('aria-label', text ? `${tile.title}. ${text}` : tile.title);
   }
   let foods = [];
-  let openLocation = null;
   const justAdded = [];  // stock ids added this session, newest first
 
   mountEl.appendChild(pageHeading('Pantry', 'pantry'));
@@ -730,48 +731,82 @@ export function render(mountEl, { section = 'hub' } = {}) {
       `${stock.length} thing${stock.length === 1 ? '' : 's'} in ${groups.length} `
       + `place${groups.length === 1 ? '' : 's'}`);
 
+    // ---- Tiles, not accordions (10 Sep 2026) --------------------------
+    // This was a list of folds: tap a heading, sixty rows unfold underneath,
+    // tap another and the first collapses. The rule in this codebase is that
+    // a tappable thing opens a page, and the Kitchen spec has drawn this
+    // screen as tiles — Fridge 30, Freezer 7, Veg 12 — since it was written.
+    //
+    // A grid also answers "where is the flour" at a glance, which a column
+    // of collapsed headings never did.
+    const tiles = el('div', { class: 'location-tiles' });
     for (const [location, rows] of groups) {
-      // One location's contents in the DOM at a time: sixty rows rendered at
-      // once is what made the flat list unusable.
-      const isOpen = openLocation === location;
-      const heading = el('h3', { class: 'location-heading' });
-      const toggle = el('button', { type: 'button', class: 'location-toggle' });
-      toggle.setAttribute('aria-expanded', String(isOpen));
       const headingText = locationHeading(location, rows.length);
 
       // Worklist E5. A count tells you how much is in there; it does not
       // tell you whether anything needs you. Rolling the freshness up means
-      // the closed heading answers "is there anything in here to deal with".
+      // the tile answers "is there anything in here to deal with".
       const needing = rows.filter((r) => {
         const f = freshness(r);
         return f.state === 'soon' || f.state === 'past';
       }).length;
 
-      toggle.textContent = `${headingText} (${rows.length})`;
-      toggle.setAttribute('aria-label',
+      const tile = el('button', { type: 'button', class: 'location-tile' });
+      tile.appendChild(el('span', { class: 'location-tile-name', text: headingText }));
+      tile.appendChild(el('span', {
+        class: 'location-tile-count',
+        text: `${rows.length} thing${rows.length === 1 ? '' : 's'}`
+      }));
+      tile.setAttribute('aria-label',
         `${headingText}, ${rows.length} item${rows.length === 1 ? '' : 's'}`
         + (needing > 0 ? `, ${needing} to use soon` : ''));
       if (needing > 0) {
-        // Words as well as the badge, because the badge is inside a button
+        // Words as well as the badge, because the badge sits inside a button
         // whose accessible name is set above.
-        toggle.appendChild(stateBadge('soon', `${needing} to use soon`));
+        tile.appendChild(stateBadge('soon', `${needing} to use soon`));
       }
-      heading.appendChild(toggle);
-      browseList.appendChild(heading);
-
-      const body = el('div', { class: 'location-body' });
-      body.hidden = !isOpen;
-      if (isOpen) body.appendChild(renderGroupedRows(rows, { unplaced: location === UNPLACED }));
-      browseList.appendChild(body);
-
-      toggle.addEventListener('click', () => {
-        openLocation = isOpen ? null : location;
-        renderBrowse();
-        if (!destroyed && openLocation) {
-          announce(`${location} open, ${rows.length} item${rows.length === 1 ? '' : 's'}.`);
-        }
+      tile.addEventListener('click', () => {
+        setPlace(location);
+        navigate('pantry-place');
       }, { signal });
+      tiles.appendChild(tile);
     }
+    browseList.appendChild(tiles);
+  }
+
+  // ========================= One place, its own page ===================
+
+  const placePanel = el('section');
+  const placeHeading = el('h2');
+  const placeSummary = el('p', { class: 'field-hint', role: 'status' });
+  const placeBody = el('div');
+  placePanel.append(
+    placeHeading,
+    placeSummary,
+    el('a', { class: 'btn btn-quiet', href: '#/pantry-browse', text: "Back to what's in" }),
+    placeBody
+  );
+
+  function renderPlace() {
+    const wanted = readPlace();
+    placeBody.replaceChildren();
+    if (!wanted) {
+      // Arrived without tapping a tile — a reload, or a bookmark. Say so
+      // rather than showing an empty cupboard that looks like a fact.
+      placeHeading.textContent = 'A place in your pantry';
+      placeSummary.textContent = 'No place chosen. Go back and tap one.';
+      return;
+    }
+    const rows = stock.filter((row) => (row.default_location || UNPLACED) === wanted);
+    placeHeading.textContent = locationHeading(wanted, rows.length);
+    if (rows.length === 0) {
+      // Genuinely empty, or emptied since you tapped it. Both are true
+      // things to say; neither is an error.
+      placeSummary.textContent = 'Nothing in here.';
+      return;
+    }
+    placeSummary.textContent = `${rows.length} thing${rows.length === 1 ? '' : 's'} in here.`;
+    placeBody.appendChild(renderGroupedRows(rows, { unplaced: wanted === UNPLACED }));
   }
 
   /** Within a location, category orders what is inside it. */
@@ -1691,6 +1726,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
     renderJustAdded();
     rebuildLocationFilter();
     renderBrowse();
+    if (section === 'place') renderPlace();
     renderSearchResults();
     renderSweepToggle();
   }
@@ -1825,6 +1861,8 @@ export function render(mountEl, { section = 'hub' } = {}) {
     mountEl.appendChild(searchPanel);
   } else if (section === 'browse') {
     mountEl.appendChild(browsePanel);
+  } else if (section === 'place') {
+    mountEl.appendChild(placePanel);
   } else if (section === 'fix') {
     mountEl.appendChild(fixSection);
   } else if (section === 'use-soon') {

@@ -1459,6 +1459,53 @@ select optgroup {
   max-width: 7rem;
 }
 
+/* ---- What's in: tiles, 10 Sep 2026 -----------------------------------
+   Was a column of accordion headings. Two columns of tiles answers "where
+   is the flour" at a glance, which a list of collapsed headings never did,
+   and each tile opens a page rather than unfolding sixty rows in place.
+
+   Two columns, as the spec drew them. Not auto-fit: tokens.css is
+   write-once and holds no tile-width token, and a hard-coded minmax() is
+   exactly what the space gate exists to refuse. */
+.location-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.location-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-md);
+  /* A whole tile is the target. Thumb reach on a phone is the point of a
+     grid, and a small hit area inside a big card is the fault it fixes. */
+  min-height: var(--tap-min);
+  cursor: pointer;
+}
+
+.location-tile:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.location-tile-name {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.location-tile-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
 .location-list {
   margin-top: var(--space-3);
 }
