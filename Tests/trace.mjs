@@ -77,13 +77,21 @@ function fixture(t) {
   if (t === 'foods') return [
     { id: 'food-1', name: 'Rolled oats', barcode: '5000159407236', calories_per_100g: 379, protein_g: 13.2, fat_g: 8.1, carbs_g: 60.1, source: 'openfoodfacts', category: 'food_ambient' },
     { id: 'food-2', name: 'Home-made stock', barcode: null, calories_per_100g: null, protein_g: null, fat_g: null, carbs_g: null, source: 'manual', category: 'personal' }];
-  if (t === 'meals') return [{ id: 'meal-1', name: 'Porridge', default_serves: 2 }];
+  // meal-2 is the subtle case: a library recipe already imported, whose
+  // heart was set in the LIBRARY table and never in meals.is_favourite.
+  // Read only one of the two and it disappears from your favourites.
+  if (t === 'meals') return [
+    { id: 'meal-1', name: 'Porridge', default_serves: 2 },
+    { id: 'meal-2', name: 'Banana pancakes', default_serves: 2,
+      library_ref: 'banana-pancakes', is_favourite: false }];
   // One favourited library recipe, with a note. A real slug from
   // data/recipe_library/breakfast.json — a made-up one would filter to
   // nothing and the assertions below would pass by accident.
   if (t === 'recipe_library_notes') return [
     { id: 'note-1', recipe_slug: 'overnight-oats', is_favourite: true,
-      note: 'Topped with frozen fruit', updated_at: '2026-09-09T06:00:00Z' }];
+      note: 'Topped with frozen fruit', updated_at: '2026-09-09T06:00:00Z' },
+    { id: 'note-2', recipe_slug: 'banana-pancakes', is_favourite: true,
+      note: null, updated_at: '2026-09-09T06:00:00Z' }];
   if (t === 'meal_ingredients') return [
     { id: 'ing-1', meal_id: 'meal-1', food_id: 'food-1', quantity_g: 80, unit: 'g', foods: fixture('foods')[0] }];
   if (t === 'weekly_meal_plan') return [{ id: 'plan-1', day_of_week: 'mon', slot: 'breakfast', serves_override: 3, meal_id: 'meal-1', meals: { id: 'meal-1', name: 'Porridge', default_serves: 2 } }];
@@ -844,7 +852,7 @@ console.log('\nRecipe library — favourites');
 
   const favChip = [...libMount.querySelectorAll('.library-chips .chip-toggle')][0];
   check('the library offers a favourites filter', !!favChip);
-  check('and says how many there are', favChip && /\(1\)/.test(favChip.textContent),
+  check('and says how many there are', favChip && /\(2\)/.test(favChip.textContent),
     favChip && favChip.textContent);
   check('a favourited recipe is marked in the list',
     /♥ Favourite/.test(libMount.textContent));
@@ -856,16 +864,72 @@ console.log('\nRecipe library — favourites');
     await settle(40);
     const narrowed = [...libMount.querySelectorAll('.library-row')];
     check('pressing it narrows the list to the favourites',
-      narrowed.length === 1, `${narrowed.length} rows left`);
-    check('and the one left is the one that was favourited',
-      narrowed.length === 1 && /Overnight oats/.test(narrowed[0].textContent),
-      narrowed[0] && narrowed[0].textContent.slice(0, 40));
+      narrowed.length === 2, `${narrowed.length} rows left`);
+    const narrowedText = narrowed.map((n) => n.textContent).join(' | ');
+    check('and what is left is what was favourited',
+      /Overnight oats/.test(narrowedText) && /Banana pancakes/.test(narrowedText),
+      narrowedText.slice(0, 80));
     check('the chip reports itself pressed',
       favChip.getAttribute('aria-pressed') === 'true');
   }
 
   if (typeof cleanupLib === 'function') cleanupLib();
   libMount.remove();
+}
+
+// =====================================================================
+// CHOOSING A MEAL — favourites, from both sources at once
+// =====================================================================
+// 10 Sep 2026. Device test: "no way to find favourites for meal choices".
+// The hard part is that a favourite lives in one of two tables depending on
+// whether you have imported the recipe yet, so a chip that reads only one
+// of them looks like it works and hides half the answer.
+console.log('\nChoosing a meal — favourites');
+{
+  const pickMount = window.document.createElement('main');
+  window.document.body.appendChild(pickMount);
+  const chooseView2 = await import(pathToFileURL(path.join(REPO, 'js/views/planChoose.js')).href);
+  const cleanupPick = chooseView2.render(pickMount);
+  await settle(220);
+
+  // The chooser opens filtered to the meal time it was called for, which is
+  // dinner by the time this block runs. Widened deliberately: the favourite
+  // in the fixture is a breakfast, and a check that quietly relied on the
+  // slot filter would be testing the slot filter.
+  setValue(pickMount.querySelector('#meal-picker-slot'), '');
+  await settle(40);
+
+  const chips = [...pickMount.querySelectorAll('.meal-picker__chips .chip-toggle')];
+  const pickFav = chips.find((c) => /^Favourites/.test(c.textContent));
+  check('the chooser offers a favourites filter', !!pickFav);
+  // Two, from two different tables: one library recipe not yet imported,
+  // one already imported and hearted in the library rather than in meals.
+  check('and counts favourites from BOTH tables',
+    pickFav && /\(2\)/.test(pickFav.textContent), pickFav && pickFav.textContent);
+  check('a favourite is marked in the list of things to choose from',
+    /♥ Favourite/.test(pickMount.textContent));
+
+  if (pickFav) {
+    click(pickFav);
+    await settle(60);
+    const left = [...pickMount.querySelectorAll('.meal-picker__pick')];
+    check('pressing it narrows the choices to favourites',
+      left.length === 2, `${left.length} left`);
+    const leftText = left.map((n) => n.textContent).join(' | ');
+    check('the library favourite is there', /Overnight oats/.test(leftText), leftText.slice(0, 80));
+    check('and so is the one you already imported and hearted in the library',
+      /Banana pancakes/.test(leftText), leftText.slice(0, 80));
+    // Switched on with nothing behind it, the way out must stay pressable.
+    check('the filter can always be switched off again', !pickFav.disabled);
+  }
+
+  // "Breakfast · Breakfast · serves 2" was true twice over and useless the
+  // second time: the breakfast file records its cuisine as "Breakfast".
+  check('a library row never prints its meal time twice',
+    !/Breakfast · Breakfast/.test(pickMount.textContent));
+
+  if (typeof cleanupPick === 'function') cleanupPick();
+  pickMount.remove();
 }
 
 // ---- The report goes LAST ----

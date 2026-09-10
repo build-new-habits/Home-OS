@@ -9,6 +9,8 @@ div.meal-picker
     button.chip-toggle[type=button][aria-pressed=true]"Everything"
     button.chip-toggle[type=button][aria-pressed=false]"My meals"
     button.chip-toggle[type=button][aria-pressed=false]"Library"
+  div.meal-picker__chips[role=group]
+    button.chip-toggle[type=button][aria-pressed=false]"Favourites (<n>)"
   div.meal-picker__more
     div.meal-picker__filters
       div.field.field-inline

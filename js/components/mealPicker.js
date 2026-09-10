@@ -1,4 +1,5 @@
-// js/components/mealPicker.js — 06 Sep 2026 v3
+// js/components/mealPicker.js — 10 Sep 2026 v4
+// v4: favourites, from both sources, filterable.
 // v2: filters shown, not folded — it has a screen of its own now.
 //
 // Choosing what to eat, from everything you could eat.
@@ -31,6 +32,7 @@
 
 import { el } from '../lib/dom.js';
 import { loadAllRecipes, filterRecipes, addLibraryRecipe, existingLibraryRefs } from '../data/recipeLibrary.js';
+import { listRecipeNotes } from '../data/recipeNotes.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from './toast.js';
 
@@ -77,10 +79,34 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
   let library = [];
   let libraryLoaded = false;
   let owned = new Map();
+  // ---- Favourites live in two places, 10 Sep 2026 ----
+  // Device test: "no way to find favourites for meal choices". Your own
+  // meals carry meals.is_favourite; library recipes carry a row in
+  // recipe_library_notes. One list, one chip, so both have to be read —
+  // filtering on only one of them would quietly hide half the answer.
+  let notes = new Map();
   let slot = '';
   let busy = false;
 
-  const state = { term: '', cuisine: '', budget: '', dietary: [], proteins: [], source: 'all' };
+  const state = {
+    term: '', cuisine: '', budget: '', dietary: [], proteins: [],
+    source: 'all', favouritesOnly: false
+  };
+
+  /** True for a meal of yours, whichever place its heart was set in. */
+  function mealIsFavourite(meal) {
+    if (meal.is_favourite) return true;
+    // Imported from the library and favourited there. Without this, hearting
+    // a recipe and then adding it to your meals would lose the heart —
+    // the same recipe, two tables, one of them not consulted.
+    const row = meal.library_ref ? notes.get(meal.library_ref) : null;
+    return !!(row && row.is_favourite);
+  }
+
+  function recipeIsFavourite(recipe) {
+    const row = notes.get(recipe.slug);
+    return !!(row && row.is_favourite);
+  }
 
   const root = el('div', { class: 'meal-picker' });
 
@@ -112,6 +138,42 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     sourceRow.appendChild(chip);
   }
   root.appendChild(sourceRow);
+
+  // ---- Favourites -------------------------------------------------------
+  // Its own row rather than a fourth source chip: "Everything / My meals /
+  // Library" is a choice of ONE, and favourites narrows whichever of those
+  // you are looking at. Putting it in that group would have made it look
+  // like a fourth place to look.
+  const favRow = el('div', { class: 'meal-picker__chips', role: 'group' });
+  favRow.setAttribute('aria-label', 'Narrow to favourites');
+  const favChip = el('button', { type: 'button', class: 'chip-toggle', text: 'Favourites' });
+  favChip.setAttribute('aria-pressed', 'false');
+  favChip.addEventListener('click', () => {
+    state.favouritesOnly = !state.favouritesOnly;
+    favChip.setAttribute('aria-pressed', String(state.favouritesOnly));
+    render();
+  }, { signal });
+  favRow.appendChild(favChip);
+  root.appendChild(favRow);
+
+  /** Keeps the chip honest about how much is behind it. */
+  function paintFavChip() {
+    const n = countFavourites();
+    favChip.textContent = `Favourites (${n})`;
+    // Never disabled while it is switched ON, or pressing it once would
+    // strand you in an empty list with the way out greyed out.
+    favChip.disabled = n === 0 && !state.favouritesOnly;
+    favChip.setAttribute('aria-label', n === 0
+      ? 'Favourites. Nothing is favourited yet.'
+      : `Show only your ${n} favourite${n === 1 ? '' : 's'}.`);
+  }
+
+  function countFavourites() {
+    let n = 0;
+    for (const meal of getMeals()) if (mealIsFavourite(meal)) n++;
+    for (const recipe of library) if (recipeIsFavourite(recipe) && !owned.has(recipe.slug)) n++;
+    return n;
+  }
 
   // ---- The rest, folded ------------------------------------------------
   // Search and source answer most questions. Cuisine, diet and budget are
@@ -207,8 +269,11 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     // here narrows the picker rather than taking the page down with it.
     let recipes = { ok: false };
     let refs = { ok: false };
+    let saved = { ok: false };
     try {
-      [recipes, refs] = await Promise.all([loadAllRecipes(), existingLibraryRefs()]);
+      [recipes, refs, saved] = await Promise.all([
+        loadAllRecipes(), existingLibraryRefs(), listRecipeNotes()
+      ]);
     } catch (error) {
       console.error('Recipe library unavailable to the picker:', error);
     }
@@ -220,6 +285,9 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
       for (const c of cuisines) cuisineSelect.appendChild(el('option', { value: c, text: c }));
     }
     if (refs.ok) owned = refs.data;
+    // A failed read means no hearts, not an empty picker. Choosing dinner
+    // must not depend on a table that only decorates the list.
+    if (saved.ok) notes = saved.data;
     render();
   }
 
@@ -244,6 +312,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
         const tags = m.dietary_tags || [];
         if (tags.includes('vegetarian') || tags.includes('vegan')) return false;
       }
+      if (state.favouritesOnly && !mealIsFavourite(m)) return false;
       return true;
     });
   }
@@ -257,10 +326,12 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
       proteins: state.proteins,
       term: state.term
     // Already imported? It is in "My meals", so showing it twice is noise.
-    }).filter((r) => !owned.has(r.slug));
+    }).filter((r) => !owned.has(r.slug))
+      .filter((r) => !state.favouritesOnly || recipeIsFavourite(r));
   }
 
   function render() {
+    paintFavChip();
     const mine = state.source === 'library' ? [] : matchingMine();
     const lib = state.source === 'mine' ? [] : matchingLibrary();
 
@@ -268,7 +339,9 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
     if (mine.length === 0 && lib.length === 0) {
       count.textContent = libraryLoaded
-        ? 'Nothing matches. Try fewer filters.'
+        ? (state.favouritesOnly
+          ? 'Nothing favourited matches. Try fewer filters, or turn favourites off.'
+          : 'Nothing matches. Try fewer filters.')
         : 'Looking…';
       return;
     }
@@ -290,7 +363,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
   function sortMeals(meals) {
     return [...meals].sort((a, b) => {
-      if (!!b.is_favourite !== !!a.is_favourite) return b.is_favourite ? 1 : -1;
+      if (mealIsFavourite(a) !== mealIsFavourite(b)) return mealIsFavourite(a) ? -1 : 1;
       return (a.name || '').localeCompare(b.name || '');
     });
   }
@@ -312,15 +385,23 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
   function mineRow(meal) {
     return row(
       meal.name,
-      [meal.is_favourite ? 'Favourite' : '', typeLabel(meal.meal_type), servesLabel(meal.default_serves)],
+      [mealIsFavourite(meal) ? '♥ Favourite' : '', typeLabel(meal.meal_type),
+        servesLabel(meal.default_serves)],
       () => onChoose({ id: meal.id, name: meal.name })
     );
   }
 
   function libraryRow(recipe) {
+    // The cuisine is dropped when it only repeats the meal time. The
+    // breakfast and lunch files record their cuisine as "Breakfast" and
+    // "Lunch", which printed "Breakfast · Breakfast · serves 2" — true
+    // twice over, and useless the second time.
+    const cuisine = (recipe.cuisine || '').toLowerCase() === (recipe.default_slot || '').toLowerCase()
+      ? '' : recipe.cuisine;
     return row(
       recipe.name,
-      [recipe.cuisine, typeLabel(recipe.default_slot), servesLabel(recipe.default_serves)],
+      [recipeIsFavourite(recipe) ? '♥ Favourite' : '', cuisine,
+        typeLabel(recipe.default_slot), servesLabel(recipe.default_serves)],
       () => pickFromLibrary(recipe),
       { chip: 'Library' }
     );

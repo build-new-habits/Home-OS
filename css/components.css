@@ -2677,14 +2677,6 @@ body.sheet-open {
   margin-bottom: var(--space-3);
 }
 
-/* Disabled at zero favourites. Muted, but still legible — "Favourites (0)"
-   is information, and a control faded to unreadable is a control that has
-   been hidden badly. */
-.library-chips .chip-toggle:disabled {
-  color: var(--color-text-muted);
-  cursor: default;
-}
-
 /* The heart carries a word with it. Colour and glyph alone leave the state
    to be inferred, and this line is read aloud with the rest of the row. */
 .library-row-fav {
@@ -3371,6 +3363,14 @@ body.sheet-open {
 .chip-toggle:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+/* Nothing behind it yet. Muted but still legible — "Favourites (0)" is
+   information, and a control faded to unreadable is a control that has been
+   hidden badly. Used by the recipe library and the meal picker alike. */
+.chip-toggle:disabled {
+  color: var(--color-text-muted);
+  cursor: default;
 }
 
 /* The filters are no longer folded: on a screen of their own there is room
