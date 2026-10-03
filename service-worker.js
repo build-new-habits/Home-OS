@@ -1,4 +1,5 @@
-// service-worker.js — 03 Oct 2026 v106
+// service-worker.js — 03 Oct 2026 v107
+// v107: cook mode timers and ingredients; counted names. Shell v153.
 // v106: lib/foodNames.js. Shell v152.
 // v105: recipe servings follow the household; Bought everything. Shell v151.
 // v104: views/pantry/start.js; list sharing; needsAmount. Shell v150.
@@ -249,7 +250,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v152';
+const CACHE_NAME = 'home-os-shell-v153';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -257,9 +258,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=152',
-  './css/base.css?v=152',
-  './css/components.css?v=152',
+  './css/tokens.css?v=153',
+  './css/base.css?v=153',
+  './css/components.css?v=153',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

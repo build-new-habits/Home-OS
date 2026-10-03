@@ -1,5 +1,15 @@
-// js/components/cookMode.js — 01 Sep 2026 v2
-// Phase 15. One instruction at a time, on the counter, hands busy.
+// js/components/cookMode.js — 03 Oct 2026 v3
+// v3 (kitchen rebuild, "at the hob"):
+//   * Timers keep running when you move on. Before, moving to the next step
+//     stopped the timer — so the 25-minute simmer died the moment you went
+//     to chop the next thing, which is exactly when you need it. Timers are
+//     now a strip at the top, several at once, each named for its step, and
+//     stored as END TIMES so a sleeping screen or a reload cannot lose them.
+//   * When one finishes: the words "Time is up", a buzz where the phone can,
+//     and an announcement. Never only a sound or only a colour.
+//   * Ingredients, scaled, one tap away, without leaving the step.
+//   * A progress bar beside "Step 3 of 9", and a bigger instruction.
+// v2: Phase 15. One instruction at a time, on the counter, hands busy.
 //
 // ---- What this is for ----
 // Recipes in books are written to be READ. These are written to be
@@ -7,14 +17,11 @@
 // Everything below follows from that.
 //
 // ---- Progress persists ----
-// The single most important behaviour here. A screen lock, a phone call,
-// answering the door, or an accidental reload must not lose your place.
-// Held in localStorage rather than the offline queue: it is device state,
-// not data, and it must survive without a network round trip.
-//
-// Anything older than six hours is discarded. You are not still cooking.
+// A screen lock, a phone call, answering the door, or an accidental reload
+// must not lose your place — or your timers. Held in localStorage: it is
+// device state, not data. Anything older than six hours is discarded.
 
-import { resolveTokens } from '../data/mealSteps.js';
+import { resolveTokens, slugifyFoodName } from '../data/mealSteps.js';
 import { announce } from '../lib/a11y.js';
 
 const PROGRESS_KEY = 'home-os:cook-progress';
@@ -33,9 +40,9 @@ export function readProgress(mealId) {
   }
 }
 
-function writeProgress(mealId, stepIndex, startedAt) {
+function writeProgress(mealId, stepIndex, startedAt, timers) {
   try {
-    window.localStorage.setItem(PROGRESS_KEY, JSON.stringify({ mealId, stepIndex, startedAt }));
+    window.localStorage.setItem(PROGRESS_KEY, JSON.stringify({ mealId, stepIndex, startedAt, timers }));
   } catch {
     // A full or blocked storage must not stop you cooking.
   }
@@ -45,12 +52,25 @@ export function clearProgress() {
   try { window.localStorage.removeItem(PROGRESS_KEY); } catch { /* nothing to do */ }
 }
 
+/** "4:05" from milliseconds; never negative. Pure. */
+export function formatRemaining(ms) {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  return h ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${m}:${String(s).padStart(2, '0')}`;
+}
+
+/** What a timer is called: the step's group, else its number. Pure. */
+export function timerLabel(step, index) {
+  const group = step && step.step_group ? String(step.step_group) : '';
+  return group ? `${group} (step ${index + 1})` : `Step ${index + 1}`;
+}
+
 /**
  * @param {{ meal: object, steps: object[], ingredients: object[], scale?: number }} options
  * @returns {Promise<boolean>} True when the recipe was cooked through to
- *   the end, false when it was left. Phase 22 uses this to decide whether
- *   to offer to take the ingredients out of the cupboard: offering after
- *   someone abandoned at step 2 would be wrong and annoying.
+ *   the end, false when it was left.
  */
 export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } = {}) {
   return new Promise((resolve) => {
@@ -58,103 +78,153 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
     const saved = readProgress(meal.id);
     const startedAt = saved ? saved.startedAt : Date.now();
     let index = saved ? Math.min(saved.stepIndex, steps.length - 1) : 0;
-    let timerId = null;
-    let remaining = 0;
+    // { step, label, endsAt, done }
+    let timers = saved && Array.isArray(saved.timers) ? saved.timers.filter((t) => t && t.endsAt) : [];
+    let ticker = null;
     let wakeLock = null;
 
-    const overlay = document.createElement('div');
-    overlay.className = 'cook-mode';
+    const el = (tag, cls, text) => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    };
+
+    const overlay = el('div', 'cook-mode');
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', `Cooking ${meal.name}`);
 
-    const header = document.createElement('div');
-    header.className = 'cook-header';
-    const title = document.createElement('h2');
-    title.className = 'cook-title';
-    title.textContent = meal.name;
-    const counter = document.createElement('p');
-    counter.className = 'cook-counter';
-    const exit = document.createElement('button');
+    const header = el('div', 'cook-header');
+    const title = el('h2', 'cook-title', meal.name);
+    const counter = el('p', 'cook-counter');
+    const exit = el('button', 'btn cook-exit', 'Close');
     exit.type = 'button';
-    exit.className = 'btn cook-exit';
-    exit.textContent = 'Close';
-    header.append(title, counter, exit);
+    const progress = el('div', 'cook-progress');
+    progress.setAttribute('aria-hidden', 'true');
+    const progressFill = el('span', 'cook-progress-fill');
+    progress.appendChild(progressFill);
+    header.append(title, counter, exit, progress);
 
-    const groupLabel = document.createElement('p');
-    groupLabel.className = 'cook-group';
+    // Running timers, always visible whatever step is showing.
+    const strip = el('ul', 'cook-timers');
+    strip.setAttribute('aria-label', 'Timers');
+    const alertRegion = el('p', 'visually-hidden');
+    alertRegion.setAttribute('role', 'alert');
 
-    // The live region carries the step text on every change. Without it a
-    // screen reader user advances and hears nothing.
-    const body = document.createElement('div');
-    body.className = 'cook-body';
+    // Ingredients, scaled, without leaving the step.
+    const ingWrap = el('details', 'cook-ingredients');
+    const ingSummary = el('summary', '', `Ingredients (${ingredients.length})`);
+    const ingList = el('ul', 'cook-ingredients-list');
+    for (const row of ingredients) {
+      const name = (row.foods && row.foods.name) || '';
+      const slug = slugifyFoodName(name);
+      const text = slug ? resolveTokens(`{{ing:${slug}}}`, ingredients, scale) : name;
+      ingList.appendChild(el('li', '', text));
+    }
+    ingWrap.append(ingSummary, ingList);
+    ingWrap.hidden = ingredients.length === 0;
+
+    const groupLabel = el('p', 'cook-group');
+
+    // The live region carries the step text on every change.
+    const body = el('div', 'cook-body');
     body.setAttribute('role', 'status');
     body.setAttribute('aria-live', 'polite');
-
-    const instruction = document.createElement('p');
-    instruction.className = 'cook-instruction';
-    const note = document.createElement('p');
-    note.className = 'cook-note';
-    const parallel = document.createElement('p');
-    parallel.className = 'cook-parallel';
+    const instruction = el('p', 'cook-instruction');
+    const note = el('p', 'cook-note');
+    const parallel = el('p', 'cook-parallel');
     body.append(instruction, note, parallel);
 
-    const timerWrap = document.createElement('div');
-    timerWrap.className = 'cook-timer';
-    const timerButton = document.createElement('button');
+    const timerWrap = el('div', 'cook-timer');
+    const timerButton = el('button', 'btn cook-timer-start');
     timerButton.type = 'button';
-    timerButton.className = 'btn';
-    // The remaining time is TEXT, not only a visual countdown.
-    const timerText = document.createElement('p');
-    timerText.className = 'cook-timer-text';
-    timerText.setAttribute('role', 'status');
-    timerWrap.append(timerButton, timerText);
+    timerWrap.append(timerButton);
 
-    const nav = document.createElement('div');
-    nav.className = 'cook-nav';
-    const back = document.createElement('button');
+    const nav = el('div', 'cook-nav');
+    const back = el('button', 'btn', 'Back');
     back.type = 'button';
-    back.className = 'btn';
-    back.textContent = 'Back';
-    const next = document.createElement('button');
+    const next = el('button', 'btn btn-primary btn-large');
     next.type = 'button';
-    next.className = 'btn btn-primary btn-large';
     nav.append(back, next);
 
-    overlay.append(header, groupLabel, body, timerWrap, nav);
+    overlay.append(header, strip, alertRegion, ingWrap, groupLabel, body, timerWrap, nav);
     document.body.appendChild(overlay);
     document.body.classList.add('cook-mode-open');
 
-    function stopTimer() {
-      if (timerId) { clearInterval(timerId); timerId = null; }
-      timerText.textContent = '';
-    }
+    function save() { writeProgress(meal.id, index, startedAt, timers); }
 
-    function startTimer(minutes) {
-      stopTimer();
-      remaining = minutes * 60;
-      tick();
-      timerId = setInterval(tick, 1000);
+    function paintTimers() {
+      strip.replaceChildren();
+      strip.hidden = timers.length === 0;
+      const now = Date.now();
+      for (const t of timers) {
+        const left = t.endsAt - now;
+        const li = el('li', left <= 0 ? 'cook-timer-chip is-done' : 'cook-timer-chip');
+        li.appendChild(el('span', 'cook-timer-label', t.label));
+        li.appendChild(el('span', 'cook-timer-left', left <= 0 ? 'Time is up' : `${formatRemaining(left)} left`));
+        const stop = el('button', 'btn btn-small', left <= 0 ? 'Done' : 'Stop');
+        stop.type = 'button';
+        stop.setAttribute('aria-label', `${left <= 0 ? 'Dismiss' : 'Stop'} the ${t.label} timer`);
+        stop.addEventListener('click', () => {
+          timers = timers.filter((x) => x !== t);
+          save();
+          paintTimers();
+          paintTimerButton();
+          next.focus();
+        });
+        li.appendChild(stop);
+        strip.appendChild(li);
+      }
     }
 
     function tick() {
-      if (remaining <= 0) {
-        stopTimer();
-        timerText.textContent = 'Time is up.';
-        announce('Timer finished.');
+      const now = Date.now();
+      for (const t of timers) {
+        if (!t.done && t.endsAt <= now) {
+          t.done = true;
+          alertRegion.textContent = `Time is up: ${t.label}.`;
+          announce(`Time is up: ${t.label}.`);
+          if ('vibrate' in navigator) { try { navigator.vibrate([300, 150, 300, 150, 300]); } catch { /* not allowed */ } }
+          save();
+        }
+      }
+      paintTimers();
+    }
+
+    function paintTimerButton() {
+      const step = steps[index];
+      if (!step || !step.duration_min) {
+        timerWrap.hidden = true;
+        timerButton.onclick = null;
         return;
       }
-      const mins = Math.floor(remaining / 60);
-      const secs = remaining % 60;
-      timerText.textContent = `${mins}:${String(secs).padStart(2, '0')} left`;
-      remaining -= 1;
+      timerWrap.hidden = false;
+      const running = timers.find((t) => t.step === index && !t.done);
+      timerButton.disabled = false;
+      if (running) {
+        timerButton.textContent = `Timer running: ${step.duration_min} minutes`;
+        timerButton.onclick = null;
+        timerButton.setAttribute('aria-disabled', 'true');
+      } else {
+        timerButton.removeAttribute('aria-disabled');
+        timerButton.textContent = `Start ${step.duration_min} minute timer`;
+        timerButton.onclick = () => {
+          timers = timers.filter((t) => !(t.step === index && t.done));
+          timers.push({ step: index, label: timerLabel(step, index), endsAt: Date.now() + step.duration_min * 60000, done: false });
+          save();
+          paintTimers();
+          paintTimerButton();
+          announce(`${step.duration_min} minute timer started. It keeps going when you move on.`);
+        };
+      }
     }
 
     function render() {
       const step = steps[index];
       if (!step) return;
-
       counter.textContent = `Step ${index + 1} of ${steps.length}`;
+      progressFill.style.width = `${Math.round(((index + 1) / steps.length) * 100)}%`;
       groupLabel.textContent = step.step_group || '';
       groupLabel.hidden = !step.step_group;
 
@@ -162,9 +232,7 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
       note.textContent = step.note || '';
       note.hidden = !step.note;
 
-      // A while_waiting step is shown beside the timer it runs alongside,
-      // not after it. Rule 2 has to survive into the UI or it was just a
-      // writing convention.
+      // A while_waiting step is shown beside the timer it runs alongside.
       const upcoming = steps[index + 1];
       if (upcoming && upcoming.while_waiting) {
         parallel.textContent = `While that cooks: ${resolveTokens(upcoming.instruction, ingredients, scale)}`;
@@ -174,26 +242,18 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
         parallel.hidden = true;
       }
 
-      stopTimer();
-      if (step.duration_min) {
-        timerWrap.hidden = false;
-        timerButton.textContent = `Start ${step.duration_min} minute timer`;
-        timerButton.onclick = () => startTimer(step.duration_min);
-      } else {
-        timerWrap.hidden = true;
-        timerButton.onclick = null;
-      }
-
+      paintTimerButton();
       back.disabled = index === 0;
       next.textContent = index === steps.length - 1 ? 'Finish' : 'Done — next step';
-      writeProgress(meal.id, index, startedAt);
+      save();
     }
 
     function close({ finished = false } = {}) {
-      stopTimer();
-      if (finished) clearProgress();
+      if (ticker) clearInterval(ticker);
+      if (finished) clearProgress(); else save();
       if (wakeLock) { try { wakeLock.release(); } catch { /* already gone */ } }
       document.removeEventListener('keydown', onKeydown, true);
+      document.removeEventListener('visibilitychange', onVisible);
       document.body.classList.remove('cook-mode-open');
       overlay.remove();
       if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
@@ -203,7 +263,7 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
     function onKeydown(event) {
       if (event.key === 'Escape') { event.preventDefault(); close(); return; }
       if (event.key !== 'Tab') return;
-      const nodes = [...overlay.querySelectorAll('button:not([disabled])')]
+      const nodes = [...overlay.querySelectorAll('button:not([disabled]), summary')]
         .filter((n) => n.offsetParent !== null || n === document.activeElement);
       if (nodes.length === 0) return;
       const first = nodes[0];
@@ -215,8 +275,26 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
       }
     }
 
+    // The screen lock releases on hiding; ask again on return.
+    function requestWake() {
+      if (navigator.wakeLock && navigator.wakeLock.request) {
+        navigator.wakeLock.request('screen').then((lock) => { wakeLock = lock; }).catch(() => {});
+      }
+    }
+    function onVisible() {
+      if (document.visibilityState === 'visible') { requestWake(); tick(); }
+    }
+
     next.addEventListener('click', () => {
       if (index >= steps.length - 1) {
+        const running = timers.filter((t) => !t.done).length;
+        if (running) {
+          // Finishing with a timer still going would throw it away.
+          announce(`A timer is still running. Stop it, or wait for it, before finishing.`);
+          alertRegion.textContent = 'A timer is still running. Stop it, or wait for it, before finishing.';
+          strip.querySelector('button')?.focus();
+          return;
+        }
         announce(`${meal.name} finished.`);
         close({ finished: true });
         return;
@@ -231,14 +309,12 @@ export function openCookMode({ meal, steps = [], ingredients = [], scale = 1 } =
     });
     exit.addEventListener('click', () => close());
     document.addEventListener('keydown', onKeydown, true);
+    document.addEventListener('visibilitychange', onVisible);
 
-    // Feature-detected, no polyfill. A phone that dims mid-step is a small
-    // disaster with wet hands.
-    if (navigator.wakeLock && navigator.wakeLock.request) {
-      navigator.wakeLock.request('screen').then((lock) => { wakeLock = lock; }).catch(() => {});
-    }
-
+    requestWake();
     render();
+    paintTimers();
+    ticker = setInterval(tick, 1000);
     if (saved) announce(`Picking up at step ${index + 1}.`);
     next.focus();
   });

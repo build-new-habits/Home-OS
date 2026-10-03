@@ -1,4 +1,5 @@
-// js/data/mealSteps.js — 03 Oct 2026 v4
+// js/data/mealSteps.js — 03 Oct 2026 v5
+// v5: counted things name themselves: "2 anchovy fillets", "½ tin of chopped tomatoes".
 // v4: "half of {{ing:x}}" reads "half of the 50 g butter".
 // v3: steps read "7 boneless chicken thighs", not "7 thighs of chicken thigh, boneless".
 // Phase 15. Instructions you can follow while tired, distracted, or holding
@@ -13,6 +14,7 @@
 // losing the recipe because you answered the door is exactly the failure
 // this app exists to prevent.
 
+import { countedName } from '../lib/foodNames.js';
 import { supabase } from '../supabaseClient.js';
 import { formatPackQuantity, packsFor } from '../lib/units.js';
 
@@ -249,7 +251,8 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     // readable. The bracketed weight goes too — nobody needs the gram total
     // of two eggs while holding two eggs.
     if (hit.row.unit === 'item' && hit.food.item_label) {
-      return formatPackQuantity(qty, 'item', { item_label: hit.food.item_label });
+      // "2 anchovy fillets", not "2 fillets" (3 Oct 2026).
+      return countedName(qty, hit.food).text;
     }
 
     // Worklist B1. A weight that is a whole number of packs reads as the

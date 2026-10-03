@@ -843,14 +843,15 @@ const stepIngredients = [
 eq('a whole number of packs reads as packs',
   resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 1),
   'Add the 1 tin of chopped tomatoes.');
-// The label is already the noun. "2 eggs" is the whole phrase; appending
-// the food name gives "2 eggs (116 g) egg, medium", which is unreadable.
-eq('an item label stands alone as the phrase',
+// The label is the noun, with the food's own words in front: "2 medium
+// eggs" (3 Oct 2026, was "2 eggs"). Never "2 eggs (116 g) egg, medium",
+// and never a bare "2 fillets" that does not say of what.
+eq('an item label reads as the phrase, with what it is',
   resolveTokens('Crack in {{ing:egg-medium}}.', stepIngredients, 1),
-  'Crack in 2 eggs.');
+  'Crack in 2 medium eggs.');
 eq('and scales without picking up the gram total',
   resolveTokens('Crack in {{ing:egg-medium}}.', stepIngredients, 2),
-  'Crack in 4 eggs.');
+  'Crack in 4 medium eggs.');
 eq('scaling a recipe scales the step text too',
   resolveTokens('Add the {{ing:chopped-tomatoes}}.', stepIngredients, 2),
   'Add the 2 tins of chopped tomatoes.');

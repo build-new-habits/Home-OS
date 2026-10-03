@@ -485,6 +485,21 @@ check('the library is not empty', count > 100, `${count}`);
   eq('"Chopped tomatoes, tinned" drops the state', everydayName('Chopped tomatoes, tinned'), 'Chopped tomatoes');
 }
 
+// ---- Counted things name themselves (3 Oct 2026) ----------------------------
+{
+  const { countedName, countText } = await import(`${REPO}/js/lib/foodNames.js`);
+  const { formatRemaining, timerLabel } = await import(`${REPO}/js/components/cookMode.js`);
+  eq('2 anchovy fillets', countedName(2, { name: 'Anchovy fillet', item_label: 'fillet' }).text, '2 anchovy fillets');
+  eq('half a tin of chopped tomatoes', countedName(0.5, { name: 'Chopped tomatoes, tinned', item_label: 'tin' }).text, '½ tin of chopped tomatoes');
+  eq('1½ garlic cloves', countedName(1.5, { name: 'Garlic clove', item_label: 'clove' }).text, '1½ garlic cloves');
+  eq('3 medium eggs', countedName(3, { name: 'Egg, medium', item_label: 'egg' }).text, '3 medium eggs');
+  eq('a count reads as a fraction', countText(2.5), '2½');
+  eq('a timer reads minutes and seconds', formatRemaining(125000), '2:05');
+  eq('a long timer reads hours', formatRemaining(3725000), '1:02:05');
+  eq('a finished timer is 0:00, never negative', formatRemaining(-5000), '0:00');
+  eq('a timer is named for its step group', timerLabel({ step_group: 'Sauce' }, 3), 'Sauce (step 4)');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

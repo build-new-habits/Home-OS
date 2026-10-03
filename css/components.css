@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v85 */
+/* css/components.css — 03 Oct 2026 v86 */
+/* v86: cook mode timers, progress and ingredients (3 Oct). */
 /* v85: pantry quick start (3 Oct). */
 /* v84: Make it vegetarian / vegan chooser (3 Oct). */
 /* v83: recipe photos and their placeholder tiles (3 Oct). */
@@ -2502,7 +2503,7 @@ body.sheet-open {
 /* Large enough to read at arm's length on a worktop. */
 .cook-instruction {
   margin: 0 0 var(--space-3);
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
   line-height: var(--leading-tight);
   color: var(--color-text);
 }
@@ -4855,3 +4856,23 @@ body.sheet-open {
 @media (min-width: 34em) { .pantry-start-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pantry-start-have { color: var(--color-text-muted); min-height: var(--tap-min); display: inline-flex; align-items: center; }
 .recipe-serves-note:empty { display: none; }
+
+/* ---- Cook mode at the hob (3 Oct 2026, v86) ----------------------------
+   Timers that outlive the step, a progress bar, ingredients one tap away. */
+.cook-progress { flex: 1 1 100%; height: 0.375em; background: var(--color-neutral-chip); border-radius: 999em; overflow: hidden; }
+.cook-progress-fill { display: block; height: 100%; background: var(--color-accent); border-radius: inherit; transition: width 0.2s; }
+.cook-timers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.cook-timer-chip {
+  display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3); border: 2px solid var(--color-accent); border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+}
+.cook-timer-chip .btn { margin-left: auto; }
+.cook-timer-label { font-weight: 600; }
+.cook-timer-left { font-variant-numeric: tabular-nums; font-size: var(--text-lg); font-weight: 700; }
+.cook-timer-chip.is-done { border-style: dashed; border-width: 3px; }
+.cook-timer-chip.is-done .cook-timer-left::before { content: "⏰ "; }
+.cook-ingredients summary { min-height: var(--tap-min); display: flex; align-items: center; font-weight: 600; cursor: pointer; }
+.cook-ingredients-list { margin: 0 0 var(--space-2); padding-left: var(--space-5); line-height: var(--leading-normal); }
+.cook-timer-start[aria-disabled="true"] { border-style: dashed; cursor: default; }
+@media (prefers-reduced-motion: reduce) { .cook-progress-fill { transition: none; } }

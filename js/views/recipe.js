@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v13
+// js/views/recipe.js — 03 Oct 2026 v14
+// v14: counted ingredients name themselves ("2 | Anchovy fillets").
 // v13: servings start at your household's size.
 // v12: Make it vegetarian / vegan (data/dietSwitch.js), as radio buttons.
 // v11: a photo at the top when the recipe has one.
@@ -40,7 +41,7 @@
 import { el } from '../lib/dom.js';
 import { toSpoons } from '../lib/units.js';
 import { courseOf, courseLabel } from '../data/courses.js';
-import { everydayName } from '../lib/foodNames.js';
+import { everydayName, countedName } from '../lib/foodNames.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
@@ -179,7 +180,9 @@ function ingredientName(ing, entry, amountIsOne) {
   // "Egg, medium" reads as a shopping-list entry. On a recipe it is
   // "medium egg"; the label the reference gives one item is better still.
   if (entry && ing.unit === 'item' && entry.item_label) {
-    return amountIsOne ? entry.item_label : `${entry.item_label}s`;
+    // "½ | tin of chopped tomatoes", "2 | anchovy fillets" (3 Oct 2026).
+    const rest = countedName(amountIsOne ? 1 : 2, entry).rest;
+    return rest.charAt(0).toUpperCase() + rest.slice(1);
   }
   return base;
 }
@@ -611,7 +614,7 @@ export function render(mountEl) {
       for (const ing of recipe.ingredients || []) {
         const entry = refMap.get(ing.ref);
         const amount = scaledAmount(ing.quantity, ing.unit, serves / baseServes);
-        const one = ing.unit === 'item' && amount === '1';
+        const one = ing.unit === 'item' && (amount === '1' || /^[¼½¾]$/.test(amount));
         const li = el('li', { class: 'recipe-ingredient' });
         li.appendChild(el('span', { class: 'recipe-ingredient-amount', text: amount }));
         li.appendChild(el('span', { class: 'recipe-ingredient-name', text: ingredientName(ing, entry, one) }));
