@@ -1,4 +1,7 @@
-// js/data/mealPlan.js — 03 Oct 2026 v5
+// js/data/mealPlan.js — 03 Oct 2026 v6
+// v6: leftovers. listPlan reads is_leftover when the column exists
+// (migration 026) and quietly does without it until then; addPlanEntry can
+// write one; leftoverTargets() suggests where they could go.
 // v5: listPlan embeds meals.library_ref so Today can open the recipe page.
 // v4: listPlan and addPlanEntry take a week_start (revision 24).
 // All Supabase access for `weekly_meal_plan`. Shared data-access contract:
@@ -71,13 +74,89 @@ export function isValidSlot(value) {
  * list would be right.
  */
 export async function listPlan(weekStart = thisWeekStart()) {
-  const { data, error } = await supabase
+  const base = 'id, day_of_week, slot, serves_override, member_ids, week_start, meal_id';
+  const embed = 'meals(id, name, default_serves, dietary_tags, library_ref)';
+  const read = (withLeftover) => supabase
     .from(TABLE)
-    .select('id, day_of_week, slot, serves_override, member_ids, week_start, meal_id, meals(id, name, default_serves, dietary_tags, library_ref)')
+    .select(withLeftover ? `${base}, is_leftover, ${embed}` : `${base}, ${embed}`)
     .eq('week_start', weekStart)
     .order('created_at', { ascending: true });
+
+  if (leftoverColumn !== false) {
+    const { data, error } = await read(true);
+    if (!error) { leftoverColumn = true; return { ok: true, data }; }
+    if (!isMissingColumn(error)) return { ok: false, error };
+    // Migration 026 not applied yet. Remember, and read without it.
+    leftoverColumn = false;
+  }
+  const { data, error } = await read(false);
   if (error) return { ok: false, error };
   return { ok: true, data };
+}
+
+// ---- Leftovers (3 Oct 2026) -------------------------------------------
+// A leftover is a plan entry for food already cooked: Monday's chilli as
+// Tuesday's lunch. It is eaten, so it counts in the day's nutrition; it is
+// NOT bought or cooked again, so the shortfall (lib/shortfall.js) and the
+// "We cooked it" pantry update both skip it.
+//
+// The column arrives with migration 026. Until then the app cannot store
+// one, so it does not offer to. listPlan finds out which world it is in on
+// its first read, and everything else asks leftoversReady().
+
+let leftoverColumn = null; // null = not known yet
+
+/** Postgres 42703 is "undefined column"; PostgREST also names it in the message. */
+export function isMissingColumn(error) {
+  if (!error) return false;
+  return error.code === '42703' || error.code === 'PGRST204'
+    || /is_leftover/.test(String(error.message || ''));
+}
+
+/** True once a read has shown the database can store leftovers. */
+export function leftoversReady() {
+  return leftoverColumn === true;
+}
+
+export function isLeftover(entry) {
+  return Boolean(entry && entry.is_leftover === true);
+}
+
+/** For tests only: forget what listPlan learned. */
+export function resetLeftoverDetection() {
+  leftoverColumn = null;
+}
+
+/**
+ * Where leftovers from one entry could go: the lunches and dinners after it,
+ * for the rest of that week, nearest first. Each says whether it is open,
+ * so the sheet can lead with the empty ones without hiding the others
+ * (a dinner can be two dishes).
+ *
+ * @param {object[]} entries  the week's plan
+ * @param {{ day_of_week: string, slot: string }} from  the meal being cooked
+ * @returns {Array<{ day: string, slot: string, open: boolean }>}
+ */
+export function leftoverTargets(entries = [], from) {
+  if (!from) return [];
+  const order = ['lunch', 'dinner'];
+  const dayIndex = DAYS.findIndex((d) => d.value === from.day_of_week);
+  if (dayIndex === -1) return [];
+  const out = [];
+  for (let d = dayIndex; d < DAYS.length; d += 1) {
+    for (const slot of order) {
+      // Not the same meal, and not earlier the same day.
+      if (d === dayIndex) {
+        const fromRank = ['breakfast', 'lunch', 'dinner', 'snack'].indexOf(from.slot);
+        const rank = ['breakfast', 'lunch', 'dinner', 'snack'].indexOf(slot);
+        if (rank <= fromRank) continue;
+      }
+      const day = DAYS[d].value;
+      const open = !entries.some((e) => e.day_of_week === day && e.slot === slot);
+      out.push({ day, slot, open });
+    }
+  }
+  return out;
 }
 
 /** Which weeks have anything in them at all. For a planner's overview. */
@@ -110,9 +189,12 @@ export function groupByCell(entries) {
 
 export async function addPlanEntry({
   meal_id, day_of_week, slot, serves_override = null, member_ids = [],
-  week_start = thisWeekStart()
+  week_start = thisWeekStart(), is_leftover = false
 }) {
   if (!meal_id) return { ok: false, error: new Error('Pick a meal first.') };
+  if (is_leftover && leftoverColumn !== true) {
+    return { ok: false, error: new Error('Leftovers can be planned once the next database update is in.') };
+  }
   // Guarded here as well as in the UI: a check-constraint violation comes
   // back as an opaque database error, which is not a useful thing to show.
   if (!isValidDay(day_of_week)) {
@@ -133,6 +215,9 @@ export async function addPlanEntry({
     // Empty means everyone. That is the default and it stays the default.
     member_ids: Array.isArray(member_ids) ? member_ids : []
   };
+  // Only sent when true: before migration 026 the column does not exist,
+  // and naming it at all would fail every ordinary insert.
+  if (is_leftover) payload.is_leftover = true;
   const { data, error } = await supabase.from(TABLE).insert(payload).select().single();
   if (error) return { ok: false, error };
   return { ok: true, data };

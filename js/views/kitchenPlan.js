@@ -1,4 +1,6 @@
 // js/views/kitchenPlan.js — 03 Oct 2026 v4
+// v4: leftovers — "Plan leftovers" on a planned meal; leftover entries are
+// labelled on the board and in the panel, and never add to the shopping list.
 // v4: your own meals open the recipe page too (#/recipe?m=<id>).
 // v3: Fill the open meals — suggestions from your own meals for every open
 // breakfast, lunch and dinner left this week, reviewed before anything is added.
@@ -26,7 +28,8 @@
 
 import { el } from '../lib/dom.js';
 import {
-  listPlan, addPlanEntry, removePlanEntry, servesFor, DAYS, SLOTS
+  listPlan, addPlanEntry, removePlanEntry, servesFor, DAYS, SLOTS,
+  isLeftover, leftoversReady
 } from '../data/mealPlan.js';
 import { listMeals, listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
 import { dayNutrition, nutritionRows } from '../data/nutrition.js';
@@ -39,6 +42,7 @@ import { navigate } from '../router.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
+import { openLeftoverSheet } from '../components/leftoverSheet.js';
 
 const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const SLOT_WORDS = { breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'snacks', drink: 'drinks' };
@@ -238,10 +242,11 @@ export function render(mountEl, { week = 'this' } = {}) {
         const here = cellEntries(d.value, s.value);
         const on = sel.day === d.value && sel.slot === s.value;
         const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
-        const names = here.map((e) => (e.meals && e.meals.name) || 'a meal').join(', ');
+        const names = here.map((e) => `${(e.meals && e.meals.name) || 'a meal'}${isLeftover(e) ? ' (leftovers)' : ''}`).join(', ');
+        const allLeftover = here.length > 0 && here.every(isLeftover);
         const btn = el('button', {
           type: 'button',
-          class: here.length ? `plan-cell meal-${s.value}` : 'plan-cell plan-cell-open',
+          class: here.length ? `plan-cell meal-${s.value}${allLeftover ? ' plan-cell-leftover' : ''}` : 'plan-cell plan-cell-open',
           'aria-pressed': String(on),
           'aria-label': `${d.label} ${SLOT_WORDS[s.value]}: ${here.length ? names : 'open'}`,
           tabindex: on ? '0' : '-1',
@@ -251,6 +256,9 @@ export function render(mountEl, { week = 'this' } = {}) {
         if (here.length) {
           btn.appendChild(mealIcon(s.value, 18));
           if (here.length > 1) btn.appendChild(el('span', { class: 'plan-cell-count', 'aria-hidden': 'true', text: String(here.length) }));
+          // Leftovers carry a mark as well as a dashed edge, so the
+          // difference is never colour or line style alone.
+          else if (allLeftover) btn.appendChild(el('span', { class: 'plan-cell-count', 'aria-hidden': 'true', text: 'L' }));
         }
         btn.addEventListener('click', () => select(d.value, s.value, true), { signal });
         td.appendChild(btn);
@@ -349,8 +357,22 @@ export function render(mountEl, { week = 'this' } = {}) {
         const li = el('li');
         const text = el('span', { class: 'plan-detail-text' });
         text.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'A meal' }));
-        text.appendChild(el('span', { class: 'field-hint', text: `Serves ${servesFor(entry)}` }));
+        text.appendChild(el('span', { class: 'field-hint', text: isLeftover(entry)
+          ? `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.`
+          : `Serves ${servesFor(entry)}` }));
         li.appendChild(text);
+        if (leftoversReady() && !isLeftover(entry)) {
+          const lo = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Plan leftovers', 'aria-haspopup': 'dialog' });
+          lo.setAttribute('aria-label', `Plan the leftovers of ${(entry.meals && entry.meals.name) || 'this meal'}`);
+          lo.addEventListener('click', () => openLeftoverSheet({
+            entry, entries, weekStart, returnFocusTo: lo,
+            onAdded(row) {
+              entries = [...entries, row];
+              refreshAfterChange(`Leftovers of ${(entry.meals && entry.meals.name) || 'the meal'} planned.`);
+            }
+          }), { signal });
+          li.appendChild(lo);
+        }
         const rm = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Remove' });
         rm.setAttribute('aria-label', `Remove ${(entry.meals && entry.meals.name) || 'this meal'} from ${d.label} ${SLOT_WORDS[s.value]}`);
         rm.addEventListener('click', async () => {

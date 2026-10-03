@@ -308,6 +308,36 @@ check('the library is not empty', count > 100, `${count}`);
   check('an unknown ingredient says it is new, without blame', /New to the app/.test(describeIngredient({ name: 'Zzyzx paste', unit: 'g' }, index)));
 }
 
+// ---- Leftovers (3 Oct 2026) ------------------------------------------------
+{
+  const plan = await import(`${REPO}/js/data/mealPlan.js`);
+  const { computeShortfall } = await import(`${REPO}/js/lib/shortfall.js`);
+  const t = plan.leftoverTargets([
+    { day_of_week: 'tue', slot: 'lunch', meals: { name: 'Soup' } }
+  ], { day_of_week: 'mon', slot: 'dinner' });
+  eq('leftovers from Monday dinner start at Tuesday lunch', `${t[0].day} ${t[0].slot}`, 'tue lunch');
+  check('a taken slot is offered, marked as not open', t[0].open === false && t[1].open === true);
+  eq('only lunches and dinners, to the end of the week', t.length, 12);
+  eq('Monday lunch leftovers can be Monday dinner', plan.leftoverTargets([], { day_of_week: 'mon', slot: 'lunch' })[0].slot, 'dinner');
+  eq('Sunday dinner has nowhere left this week', plan.leftoverTargets([], { day_of_week: 'sun', slot: 'dinner' }).length, 0);
+  check('a missing column is recognised by code', plan.isMissingColumn({ code: '42703', message: 'x' }));
+  check('and by name', plan.isMissingColumn({ message: 'column weekly_meal_plan.is_leftover does not exist' }));
+  check('an ordinary failure is not mistaken for it', !plan.isMissingColumn({ code: '42501', message: 'permission denied' }));
+  check('isLeftover is strict', plan.isLeftover({ is_leftover: true }) && !plan.isLeftover({}) && !plan.isLeftover({ is_leftover: 'true' }));
+
+  const food = { id: 'f1', name: 'Beef mince', calories_per_100g: 250, protein_g: 26, fat_g: 16, carbs_g: 0 };
+  const ingredients = [{ meal_id: 'm1', food_id: 'f1', quantity_g: 500, unit: 'g', foods: food }];
+  const cooked = { meal_id: 'm1', day_of_week: 'mon', slot: 'dinner', meals: { id: 'm1', name: 'Chilli', default_serves: 4 } };
+  const leftover = { ...cooked, day_of_week: 'tue', slot: 'lunch', is_leftover: true, serves_override: 2 };
+  const once = computeShortfall({ plan: [cooked], ingredients, pantry: [], foods: [food], todayISO: '2026-10-03' });
+  const both = computeShortfall({ plan: [cooked, leftover], ingredients, pantry: [], foods: [food], todayISO: '2026-10-03' });
+  eq('the cooked meal itself is on the list', once.items.length, 1);
+  eq('leftovers add nothing to the shopping list', JSON.stringify(both.items.map((i) => [i.food && i.food.id, i.needed])),
+    JSON.stringify(once.items.map((i) => [i.food && i.food.id, i.needed])));
+  const { targetLabel } = await import(`${REPO}/js/components/leftoverSheet.js`);
+  eq('a target reads as words', targetLabel({ day: 'wed', slot: 'lunch' }), 'Wednesday lunch');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

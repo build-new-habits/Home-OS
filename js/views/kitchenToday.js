@@ -1,4 +1,6 @@
 // js/views/kitchenToday.js — 03 Oct 2026 v4
+// v4: leftovers — labelled, never taken from the pantry again, and the
+// next meal offers "Plan leftovers" once the database can store them.
 // v4: your own meals open the recipe page too (#/recipe?m=<id>).
 // v3: "We cooked it" on the next meal takes what it used out of the pantry
 // (Phase 22's depletion, which the new screens had not offered).
@@ -21,7 +23,8 @@
 
 import { el } from '../lib/dom.js';
 import { todayIso } from '../lib/dates.js';
-import { listPlan, servesFor } from '../data/mealPlan.js';
+import { listPlan, servesFor, isLeftover, leftoversReady } from '../data/mealPlan.js';
+import { openLeftoverSheet } from '../components/leftoverSheet.js';
 import { listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
 import { dayNutrition } from '../data/nutrition.js';
 import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
@@ -150,10 +153,12 @@ export function render(mountEl) {
 
   // ---------------------------------------------------------------- data
 
+  let weekEntries = [];
   async function loadMeals() {
     const [plan, ingredients] = await Promise.all([listPlan(), listIngredients()]);
     if (destroyed) return;
-    const entries = plan.ok ? (plan.data || []).filter((e) => e.day_of_week === dayValue) : [];
+    weekEntries = plan.ok ? (plan.data || []) : [];
+    const entries = weekEntries.filter((e) => e.day_of_week === dayValue);
     const next = pickNext(entries, now);
     paintNext(next);
     paintRest(entries, next);
@@ -195,14 +200,22 @@ export function render(mountEl) {
     card.appendChild(when);
     card.appendChild(el('h2', { id: 'today-next-h', class: 'today-next-name', text: meal.name || 'Planned' }));
     const facts = el('ul', { class: 'today-next-facts' });
-    facts.appendChild(el('li', { text: `Serves ${servesFor(entry)}` }));
+    facts.appendChild(el('li', { text: isLeftover(entry) ? 'Leftovers' : `Serves ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
     card.appendChild(facts);
     const buttons = el('div', { class: 'today-next-buttons' });
     buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
     const cooked = el('button', { type: 'button', class: 'btn today-next-cooked', text: 'We cooked it', 'aria-haspopup': 'dialog' });
     cooked.addEventListener('click', () => offerDepletion(entry, cooked), { signal: controller.signal });
-    buttons.appendChild(cooked);
+    if (!isLeftover(entry)) buttons.appendChild(cooked);
+    if (leftoversReady() && !isLeftover(entry)) {
+      const lo = el('button', { type: 'button', class: 'btn today-next-leftovers', text: 'Plan leftovers', 'aria-haspopup': 'dialog' });
+      lo.addEventListener('click', () => openLeftoverSheet({
+        entry, entries: weekEntries, weekStart: entry.week_start, returnFocusTo: lo,
+        onAdded: () => { if (!destroyed) loadMeals(); }
+      }), { signal: controller.signal });
+      buttons.appendChild(lo);
+    }
     card.appendChild(buttons);
     nextWrap.appendChild(card);
   }
@@ -279,7 +292,7 @@ export function render(mountEl) {
         const names = el('span', { class: 'today-meal-names' });
         here.forEach((entry, i) => {
           if (i) names.appendChild(document.createTextNode(', '));
-          names.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'Planned' }));
+          names.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
         });
         text.appendChild(names);
       }

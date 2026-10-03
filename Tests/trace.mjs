@@ -69,6 +69,7 @@ window.HTMLElement.prototype.scrollIntoView = () => {};
 // rollback path is exercised too.
 const calls = [];
 let failNextWrite = false;
+let leftoverColumnMissing = false;
 
 // Writes resolve after a short delay. A zero-latency stub makes the
 // optimistic window UNOBSERVABLE — the UI updates and is replaced by the
@@ -126,11 +127,12 @@ function fixture(t) {
 }
 
 function builder(table) {
-  const state = { op: 'select', payload: null, filters: {}, single: false, head: false };
+  const state = { op: 'select', payload: null, filters: {}, single: false, head: false, columns: '' };
   const b = {};
   for (const m of CHAIN) {
     b[m] = (...args) => {
       if (m === 'select' && args[1] && args[1].head) state.head = true;
+      if (m === 'select' && typeof args[0] === 'string') state.columns = args[0];
       if (m === 'eq') state.filters[args[0]] = args[1];
       return b;
     };
@@ -141,7 +143,11 @@ function builder(table) {
   b.single = () => { state.single = true; return b; };
   b.maybeSingle = b.single;
   b.then = (resolve) => {
-    calls.push({ table, op: state.op, payload: state.payload, filters: { ...state.filters } });
+    calls.push({ table, op: state.op, payload: state.payload, filters: { ...state.filters }, columns: state.columns });
+    // Before migration 026 the column does not exist (3 Oct 2026, leftovers).
+    if (leftoverColumnMissing && state.op === 'select' && /is_leftover/.test(state.columns)) {
+      return Promise.resolve({ data: null, error: { code: '42703', message: 'column weekly_meal_plan.is_leftover does not exist' } }).then(resolve);
+    }
     const isWrite = state.op !== 'select';
     const settleWith = async (value) => {
       if (isWrite) await sleep(WRITE_LATENCY_MS);
@@ -1296,6 +1302,77 @@ console.log('\nWriting and changing your own recipe');
   check('and nothing is kept on the phone for an edit', !window.localStorage.getItem('home-os-own-recipe-draft'));
   if (typeof cleanEdit === 'function') cleanEdit();
   mountEdit.remove();
+}
+
+// ---- Leftovers (3 Oct 2026) ----------------------------------------------
+// Before migration 026 there is no is_leftover column: the plan must still
+// load, and leftovers must not be offered. After it, "Plan leftovers" writes
+// a leftover entry with its portions.
+console.log('\nLeftovers, before and after the database can hold them');
+{
+  const mp = await import(pathToFileURL(path.join(REPO, 'js/data/mealPlan.js')).href);
+  const planView = await import(pathToFileURL(path.join(REPO, 'js/views/kitchenPlan.js')).href);
+
+  mp.resetLeftoverDetection();
+  leftoverColumnMissing = true;
+  clearCalls();
+  const before = await mp.listPlan();
+  check('without the column, the plan still loads', before.ok && before.data.length === 1, JSON.stringify(before));
+  check('having asked for it once, then without it',
+    calls.filter((c) => c.table === 'weekly_meal_plan').map((c) => /is_leftover/.test(c.columns)).join() === 'true,false',
+    calls.map((c) => c.columns).join(' | '));
+  check('and leftovers are not offered', mp.leftoversReady() === false);
+  clearCalls();
+  await mp.listPlan();
+  check('it does not ask again on the next read', !calls.some((c) => /is_leftover/.test(c.columns)));
+  const refused = await mp.addPlanEntry({ meal_id: 'meal-1', day_of_week: 'tue', slot: 'lunch', is_leftover: true });
+  check('a leftover cannot be written before the column exists', !refused.ok && writes().length === 0);
+
+  const mountA = window.document.createElement('main');
+  window.document.body.appendChild(mountA);
+  const cleanA = planView.render(mountA, { week: 'this' });
+  await settle(250);
+  const monBreakfast = mountA.querySelector('.plan-cell[aria-label^="Monday Breakfast"]') || mountA.querySelector('.plan-cell[data-r="0"][data-c="0"]');
+  if (monBreakfast) click(monBreakfast);
+  await settle(40);
+  check('the plan offers no leftovers button yet',
+    ![...mountA.querySelectorAll('button')].some((b) => /Plan leftovers/.test(b.textContent)));
+  if (typeof cleanA === 'function') cleanA();
+  mountA.remove();
+
+  // After migration 026.
+  mp.resetLeftoverDetection();
+  leftoverColumnMissing = false;
+  const mountB = window.document.createElement('main');
+  window.document.body.appendChild(mountB);
+  const cleanB = planView.render(mountB, { week: 'this' });
+  await settle(250);
+  const cell = mountB.querySelector('.plan-cell[data-r="0"][data-c="0"]');
+  click(cell);
+  await settle(40);
+  const offer = [...mountB.querySelectorAll('button')].find((b) => /Plan leftovers/.test(b.textContent));
+  check('once it exists, a planned meal offers Plan leftovers', !!offer);
+  if (offer) {
+    click(offer);
+    await settle(60);
+    const sheet = [...window.document.body.querySelectorAll('[role="dialog"]')].pop();
+    const portions = sheet && sheet.querySelector('#leftover-portions');
+    if (portions) setValue(portions, '3');
+    const target = sheet && [...sheet.querySelectorAll('.leftover-target')].find((b) => /Monday lunch/.test(b.textContent));
+    check('the first place offered is later the same day', !!target, sheet && sheet.textContent.slice(0, 200));
+    clearCalls();
+    if (target) click(target);
+    await settle(150);
+    const w = writes().find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
+    check('it writes a leftover entry with its portions',
+      w && w.payload.is_leftover === true && w.payload.serves_override === 3 && w.payload.day_of_week === 'mon' && w.payload.slot === 'lunch' && w.payload.meal_id === 'meal-1',
+      JSON.stringify(w && w.payload));
+    const lunchCell = mountB.querySelector('.plan-cell[data-r="1"][data-c="0"]');
+    check('and the board marks it as leftovers, in words', lunchCell && /leftovers/.test(lunchCell.getAttribute('aria-label')),
+      lunchCell && lunchCell.getAttribute('aria-label'));
+  }
+  if (typeof cleanB === 'function') cleanB();
+  mountB.remove();
 }
 
 // ---- The report goes LAST ----

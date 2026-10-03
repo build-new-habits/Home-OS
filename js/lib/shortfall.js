@@ -1,4 +1,5 @@
-// js/lib/shortfall.js — 01 Sep 2026 v5
+// js/lib/shortfall.js — 03 Oct 2026 v6
+// v6: leftovers (is_leftover) are skipped: that food is already cooked.
 // What you need, minus what you already have.
 //
 // This is principle 5 made real: the shopping list diffs the meal plan
@@ -65,6 +66,9 @@ export function computeShortfall({
   const skipped = [];
 
   for (const entry of plan) {
+    // Leftovers were bought and cooked for another day's entry. Counting
+    // them here would put the chilli's mince on the list twice.
+    if (entry.is_leftover === true) continue;
     const meal = entry.meals || entry.meal || {};
     const rows = ingredientsByMeal.get(entry.meal_id) || [];
     if (rows.length === 0) continue;

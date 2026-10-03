@@ -1075,6 +1075,7 @@ migrations are what have kept this app safe. Read `unit` before using it.
 | slot | text | not null; check in ('breakfast','lunch','dinner','snack') |
 | member_ids | uuid[] | not null default '{}'. **Empty = everyone.** No FK possible; unknown ids ignored on read (revision 13) |
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
+| is_leftover | boolean | not null default false (revision 25, **migration 026 — not yet applied**). Food already cooked for another entry: counted in nutrition, skipped by the shortfall and by "We cooked it". The app detects the column on its first read and offers leftovers only once it exists (`data/mealPlan.js`) |
 
 #### Revision 24 — the plan gets weeks (8 Sep 2026)
 
