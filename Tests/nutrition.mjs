@@ -356,6 +356,48 @@ check('the library is not empty', count > 100, `${count}`);
   eq('a pudding comes back as a pudding', own.draftFromMeal({ id: 'x', name: 'Crumble', course: 'pudding' }, [], []).course, 'pudding');
 }
 
+// ---- Recipes kept on this phone (3 Oct 2026) ------------------------------
+{
+  const mem = new Map();
+  const saved = globalThis.localStorage;
+  globalThis.localStorage = { getItem: (k) => (mem.has(k) ? mem.get(k) : null), setItem: (k, v) => mem.set(k, String(v)), removeItem: (k) => mem.delete(k) };
+  const lr = await import(`${REPO}/js/data/localRecipes.js`);
+  const own = await import(`${REPO}/js/data/ownRecipe.js`);
+  const refFoods = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+  const refMapAll = new Map(refFoods.map((f) => [f.slug, f]));
+  const puttanesca = JSON.parse(readFileSync(path.join(REPO, 'data/recipe_library/italian.json'), 'utf8')).recipes.find((r) => r.slug === 'spaghetti-puttanesca');
+  const draft = lr.draftFromLibrary(puttanesca, refMapAll);
+  eq('a library copy keeps the name and serves', `${draft.name}/${draft.serves}`, 'Spaghetti puttanesca/4');
+  eq('ingredients come over by name', draft.ingredients[0].name, 'Spaghetti, dry');
+  eq('30 ml of oil comes back as 2 tbsp', `${draft.ingredients.find((i) => /olive oil/i.test(i.name)).quantity} tbsp`, '2 tbsp');
+  check('step tokens are written out as words', !draft.steps.some((st) => /\{\{ing:/.test(st.instruction)) && /olive oil/.test(draft.steps[1].instruction), draft.steps[1].instruction);
+  check('step notes are kept', draft.steps.some((st) => st.note));
+  eq('it remembers where it came from', draft.fromSlug, 'spaghetti-puttanesca');
+  eq('the copy has no problems', own.validateDraft(draft).length, 0);
+
+  const first = lr.saveLocal(draft, new Date('2026-10-03T10:00:00Z'));
+  check('it saves on the phone', first.ok && /^p/.test(first.id));
+  eq('and lists there', lr.listLocal().map((r) => r.name).join(), 'Spaghetti puttanesca');
+  const again = lr.saveLocal({ ...lr.getLocal(first.id).draft, name: 'Our puttanesca' }, new Date('2026-10-03T11:00:00Z'));
+  check('saving again changes that recipe, not a second one', again.id === first.id && lr.listLocal().length === 1 && lr.listLocal()[0].name === 'Our puttanesca');
+  const index = own.buildNameIndex(refFoods, []);
+  const { recipe } = own.draftToRecipe(lr.getLocal(first.id).draft, index);
+  check('a phone recipe has nutrition from its ingredients', own.unknownNutrition(lr.getLocal(first.id).draft, index).length === 0,
+    own.unknownNutrition(lr.getLocal(first.id).draft, index).join());
+  check('and carries the library swaps and tip', recipe.method_note && Array.isArray(recipe.swaps));
+
+  const backup = lr.exportLocal();
+  lr.deleteLocal(first.id);
+  eq('delete removes it', lr.listLocal().length, 0);
+  const restored = lr.importLocal(backup);
+  check('a backup restores it', restored.ok && restored.added === 1 && lr.listLocal()[0].name === 'Our puttanesca');
+  check('a file that is not a backup is refused', !lr.importLocal('{"hello":1}').ok && !lr.importLocal('not json').ok);
+  eq('a phone recipe id comes from the hash', lr.localIdFromHash('#/recipe?l=pabc12'), 'pabc12');
+  eq('a library copy is asked for by slug', lr.fromSlugFromHash('#/recipe-edit?from=lentil-ragu'), 'lentil-ragu');
+  check('with no storage, saving says so rather than throwing', (() => { globalThis.localStorage = undefined; const r = lr.saveLocal(draft); return r.ok === false; })());
+  globalThis.localStorage = saved;
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

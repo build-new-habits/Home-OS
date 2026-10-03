@@ -1,4 +1,6 @@
-// js/data/ownRecipe.js — 03 Oct 2026 v2
+// js/data/ownRecipe.js — 03 Oct 2026 v3
+// v3: draftToRecipe carries course, tip, swaps and step notes, so a recipe
+// kept on the phone (data/localRecipes.js) shows in full.
 // v2: a recipe has a course (starter, main, pudding), stored once migration
 // 026 adds meals.course; saving works the same before it.
 // Kitchen rebuild. "Make my own recipe": the whole recipe written in one
@@ -225,9 +227,19 @@ export function draftToRecipe(draft, index) {
     default_serves: Number(draft.serves) > 0 ? Number(draft.serves) : 1,
     default_slot: draft.kind || null,
     dietary_tags: draft.tags || [],
+    course: draft.course || null,
+    method_note: String(draft.note || '').trim() || null,
     ingredients,
+    // Swaps you wrote, then any carried over from a library recipe this
+    // was copied from (those are text, not rows).
+    swaps: [
+      ...(draft.ingredients || []).flatMap((row) => (row.swaps || [])
+        .filter((sw) => String(sw.name || '').trim() && String(row.name || '').trim())
+        .map((sw) => ({ instead: String(row.name).trim(), text: swapLabel(sw) || String(sw.name).trim() }))),
+      ...(Array.isArray(draft.librarySwaps) ? draft.librarySwaps : [])
+    ],
     steps: (draft.steps || []).filter((s) => String(s.instruction || '').trim())
-      .map((s) => ({ instruction: s.instruction.trim(), duration_min: Number(s.minutes) || null }))
+      .map((s) => ({ instruction: s.instruction.trim(), duration_min: Number(s.minutes) || null, note: s.note || null }))
   };
   return { recipe, refMap };
 }
@@ -371,7 +383,7 @@ export function stepSpecs(draft) {
 }
 
 /** Stored ml back to spoons where that is how it was written (exact multiples). */
-function forEditing(quantity, unit) {
+export function forEditing(quantity, unit) {
   const q = Number(quantity);
   if (!(q > 0)) return { quantity: '', unit: unit || 'g' };
   if (unit === 'ml' && q < 60) {

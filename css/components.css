@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v81 */
+/* css/components.css — 03 Oct 2026 v82 */
+/* v82: recipes kept on this phone; save-on-phone note (3 Oct). */
 /* v81: courses in the plan panel; four-field About row (3 Oct). */
 /* v80: leftovers on the board, on Today and in their sheet (3 Oct). */
 /* v79: write your own recipe; recipe swaps; library links (3 Oct). */
@@ -4798,3 +4799,18 @@ body.sheet-open {
 /* ---- Courses (3 Oct 2026, v81) ------------------------------------------ */
 .plan-detail-course { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); }
 .plan-courses { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 var(--space-3); }
+
+/* ---- Recipes kept on this phone (3 Oct 2026, v82) ---------------------- */
+.library-phone {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: 0 0 var(--space-5);
+}
+.library-phone h2 { margin: 0 0 var(--space-2); }
+.library-phone-list { margin: 0 0 var(--space-3); padding-left: var(--space-5); }
+.library-phone-list li { padding: var(--space-1) 0; }
+.library-phone-list a { display: inline-block; min-height: var(--tap-min); padding: var(--space-2) 0; }
+.library-phone input[type="file"]:focus + label { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.own-save-note { margin-top: calc(-1 * var(--space-2)); }

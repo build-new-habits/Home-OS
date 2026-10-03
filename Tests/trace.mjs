@@ -1375,6 +1375,62 @@ console.log('\nLeftovers, before and after the database can hold them');
   mountB.remove();
 }
 
+// ---- Recipes kept on this phone (3 Oct 2026) ------------------------------
+// Make your own version of a library recipe, save it on the phone with no
+// database write, open it, and plan it: only then does it become a meal.
+console.log('\nYour own version, kept on this phone');
+{
+  global.localStorage = window.localStorage;
+  try { window.localStorage.clear(); } catch { /* fine */ }
+  const editor = await import(pathToFileURL(path.join(REPO, 'js/views/recipeEditor.js')).href);
+  const recipeView = await import(pathToFileURL(path.join(REPO, 'js/views/recipe.js')).href);
+
+  window.location.hash = '#/recipe-edit?from=spaghetti-puttanesca';
+  const m1 = window.document.createElement('main');
+  window.document.body.appendChild(m1);
+  const c1 = editor.render(m1);
+  await settle(300);
+  check('your version starts from the library recipe', m1.querySelector('#own-name')?.value === 'Spaghetti puttanesca', m1.querySelector('#own-name')?.value);
+  setValue(m1.querySelector('#own-name'), 'Our puttanesca');
+  clearCalls();
+  const phoneBtn = [...m1.querySelectorAll('button')].find((b) => /^Save on this phone$/.test(b.textContent));
+  check('it offers Save on this phone', !!phoneBtn);
+  if (phoneBtn) click(phoneBtn);
+  await settle(60);
+  check('saving on the phone writes nothing to the database', writes().length === 0, JSON.stringify(writes()));
+  const id = (window.location.hash.match(/[?&]l=([0-9a-z]+)/) || [])[1];
+  check('and opens it from the phone', !!id, window.location.hash);
+  if (typeof c1 === 'function') c1();
+  m1.remove();
+
+  const m2 = window.document.createElement('main');
+  window.document.body.appendChild(m2);
+  const c2 = recipeView.render(m2);
+  await settle(300);
+  check('the phone recipe opens with its new name', /Our puttanesca/.test(m2.querySelector('h1')?.textContent || ''), m2.querySelector('h1')?.textContent);
+  check('it can be changed and deleted from the phone',
+    [...m2.querySelectorAll('a')].some((a) => /Change this recipe/.test(a.textContent) && /recipe-edit\?l=/.test(a.getAttribute('href')))
+    && [...m2.querySelectorAll('button')].some((b) => /Delete from this phone/.test(b.textContent)));
+  const add = [...m2.querySelectorAll('button')].find((b) => /^Add to plan$/.test(b.textContent));
+  clearCalls();
+  if (add) click(add);
+  await settle(60);
+  const sheet = [...window.document.body.querySelectorAll('[role="dialog"]')].pop();
+  const form = sheet && sheet.querySelector('form.plan-add-form');
+  if (form) submit(form);
+  await settle(800);
+  const w = writes();
+  const mealInsert = w.find((c) => c.table === 'meals' && c.op === 'insert');
+  const planInsert = w.find((c) => c.table === 'weekly_meal_plan' && c.op === 'insert');
+  check('planning it puts it in your meals first, by its new name', mealInsert && mealInsert.payload.name === 'Our puttanesca', JSON.stringify(mealInsert && mealInsert.payload));
+  check('then on the plan', planInsert && planInsert.payload.meal_id === 'new-row', JSON.stringify(planInsert && planInsert.payload));
+  let kept = [];
+  try { kept = JSON.parse(window.localStorage.getItem('home-os-local-recipes') || '[]'); } catch { kept = []; }
+  check('and the phone copy remembers which meal it became', kept[0] && kept[0].draft.syncedMealId === 'new-row', JSON.stringify(kept[0] && kept[0].draft.syncedMealId));
+  if (typeof c2 === 'function') c2();
+  m2.remove();
+}
+
 // ---- The report goes LAST ----
 // It used to sit above the weekly-plan block, which meant those checks ran
 // after the gate had already declared itself passed: a failure there would

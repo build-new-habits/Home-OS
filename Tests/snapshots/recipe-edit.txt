@@ -101,4 +101,6 @@ div.own-recipe
       p.field-hint
   div.own-save-bar
     button.btn.btn-primary[type=button]"Save recipe"
+    button.btn[type=button]"Save on this phone"
   p.field-hint[role=status]
+  p.field-hint.own-save-note

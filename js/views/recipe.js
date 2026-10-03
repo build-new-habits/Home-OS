@@ -1,4 +1,6 @@
-// js/views/recipe.js — 03 Oct 2026 v9
+// js/views/recipe.js — 03 Oct 2026 v10
+// v10: recipes kept on this phone (#/recipe?l=<id>): cook, change, delete, and
+// Add to plan puts them in your meals first. Library recipes offer Make your own version.
 // v9: a meal added from the library keeps the library's swaps and course.
 // v8: starters and puddings say so.
 // v7: spoon-sized amounts of liquid read as tsp/tbsp.
@@ -53,6 +55,10 @@ import { getRecipeNote, setFavourite } from '../data/recipeNotes.js';
 import { listMeals, listIngredients, setFavourite as setMealFavourite } from '../data/meals.js';
 import { listSteps, slugifyFoodName } from '../data/mealSteps.js';
 import { showToast } from '../components/toast.js';
+import { localIdFromHash, getLocal, linkLocal, deleteLocal } from '../data/localRecipes.js';
+import { buildNameIndex, draftToRecipe, saveDraft, measuredOnly } from '../data/ownRecipe.js';
+import { listFoods } from '../data/foods.js';
+import { confirmDialog } from '../components/confirmDialog.js';
 
 const SLOT_WORDS = {
   breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', drink: 'Drink'
@@ -184,11 +190,13 @@ export function render(mountEl) {
 
   const slug = slugFromHash(window.location.hash);
   const mealId = mealIdFromHash(window.location.hash);
+  // 3 Oct 2026: a recipe kept on this phone (#/recipe?l=<id>).
+  const localId = mealId ? '' : localIdFromHash(window.location.hash);
 
   const back = el('a', {
     class: 'back-link',
     href: mealId ? '#/meals' : '#/library',
-    text: mealId ? 'Your meals' : 'All recipes'
+    text: mealId ? 'Your meals' : localId ? 'Recipes' : 'All recipes'
   });
   mountEl.appendChild(back);
   const heading = el('h1', { class: 'recipe-page-title', text: 'Recipe' });
@@ -201,7 +209,21 @@ export function render(mountEl) {
     let recipe = null;
     let refMap = new Map();
     let ownMeal = null;
-    if (mealId) {
+    let kept = null;     // a recipe kept on this phone
+    let nameIndex = null;
+    if (localId) {
+      kept = getLocal(localId);
+      const [refs, foods] = await Promise.all([
+        referenceBySlug().catch(() => new Map()),
+        listFoods().catch(() => ({ ok: false }))
+      ]);
+      if (destroyed) return;
+      body.replaceChildren();
+      if (kept) {
+        nameIndex = buildNameIndex([...refs.values()], foods && foods.ok ? foods.data || [] : []);
+        ({ recipe, refMap } = draftToRecipe(kept.draft, nameIndex));
+      }
+    } else if (mealId) {
       const [mealsResult, ingResult, stepResult] = await Promise.all([
         listMeals(), listIngredients(mealId), listSteps(mealId)
       ]);
@@ -240,6 +262,12 @@ export function render(mountEl) {
       }
       refMap = refs;
       recipe = library.data.find((r) => r.slug === slug) || null;
+    }
+    if (!recipe && localId) {
+      heading.textContent = 'Recipe not found';
+      body.appendChild(el('p', { text: 'That recipe is not on this phone. It may have been deleted, or kept on another phone.' }));
+      body.appendChild(el('a', { class: 'btn', href: '#/library', text: 'Browse all recipes' }));
+      return;
     }
     if (!recipe) {
       heading.textContent = 'Recipe not found';
@@ -281,6 +309,27 @@ export function render(mountEl) {
     if (ownMeal) {
       // Your own recipe is yours to change: ingredients, steps, swaps.
       actions.appendChild(el('a', { class: 'btn', href: `#/recipe-edit?m=${encodeURIComponent(ownMeal.id)}`, text: 'Change this recipe' }));
+    } else if (kept) {
+      fav.hidden = true;
+      actions.appendChild(el('a', { class: 'btn', href: `#/recipe-edit?l=${encodeURIComponent(kept.id)}`, text: 'Change this recipe' }));
+      const del = el('button', { type: 'button', class: 'btn btn-quiet', text: 'Delete from this phone' });
+      del.addEventListener('click', async () => {
+        const sure = await confirmDialog({
+          title: `Delete ${recipe.name}?`,
+          message: kept.draft.syncedMealId
+            ? 'It goes from this phone. The copy in your meals stays.'
+            : 'It goes from this phone. This cannot be undone unless you have a backup.',
+          confirmLabel: 'Delete', cancelLabel: 'Keep it'
+        });
+        if (!sure || destroyed) return;
+        deleteLocal(kept.id);
+        showToast(`${recipe.name} deleted from this phone.`);
+        window.location.hash = '#/library';
+      }, { signal });
+      actions.appendChild(del);
+    } else {
+      // A library recipe stays as it is; your version is kept on this phone.
+      actions.appendChild(el('a', { class: 'btn', href: `#/recipe-edit?from=${encodeURIComponent(recipe.slug)}`, text: 'Make your own version' }));
     }
     body.appendChild(actions);
     const status = el('p', { class: 'field-hint', role: 'status' });
@@ -289,7 +338,7 @@ export function render(mountEl) {
     // Your copy of this recipe, if you have one: planning uses it rather
     // than adding the recipe a second time.
     let ownedMeal = ownMeal;
-    if (!ownMeal) existingLibraryRefs().then((refs) => {
+    if (!ownMeal && !kept) existingLibraryRefs().then((refs) => {
       if (destroyed || !refs || !refs.ok) return;
       ownedMeal = (refs.data instanceof Map && refs.data.get(recipe.slug)) || null;
     }).catch(() => {});
@@ -329,7 +378,14 @@ export function render(mountEl) {
             go.disabled = true;
             go.textContent = 'Adding…';
             let meal = ownedMeal;
-            if (!meal) {
+            if (!meal && kept) {
+              // A phone recipe goes into your meals first (the plan needs a
+              // meal), with its latest changes. Remembered, so planning it
+              // again updates that meal rather than adding a second one.
+              let saved = await saveDraft({ ...kept.draft, mealId: kept.draft.syncedMealId || null }, nameIndex);
+              if (!saved.ok && kept.draft.syncedMealId) saved = await saveDraft({ ...kept.draft, mealId: null }, nameIndex);
+              if (saved.ok) { linkLocal(kept.id, saved.data.id); kept.draft.syncedMealId = saved.data.id; meal = saved.data; }
+            } else if (!meal) {
               const added = await addLibraryRecipe(recipe);
               meal = added.ok ? added.data : (added.existing || null);
             }
@@ -415,6 +471,8 @@ export function render(mountEl) {
     if (ownMeal) {
       favourite = Boolean(ownMeal.is_favourite);
       paintFav();
+    } else if (kept) {
+      // No favourites on phone recipes: being kept here is the point.
     } else {
       getRecipeNote(recipe.slug).then((saved) => {
         if (destroyed || !saved || !saved.ok || !saved.data) return;
@@ -437,7 +495,8 @@ export function render(mountEl) {
 
     // ---- Nutrition -------------------------------------------------------
     {
-      const result = recipeNutrition(recipe, refMap);
+      // Unmeasured things on a phone recipe ("salt") are listed, not counted.
+      const result = recipeNutrition(kept ? measuredOnly(recipe) : recipe, refMap);
       let note = 'An estimate, from published averages for each ingredient. '
         + 'Percentages are of a day\u2019s UK adult reference intake.';
       if (result.incompleteCount > 0) {
@@ -510,7 +569,7 @@ export function render(mountEl) {
         quantity_g: ing.quantity, unit: ing.unit, foods: refMap.get(ing.ref) || { name: ing.ref }
       }));
       openCookMode({
-        meal: { id: ownMeal ? ownMeal.id : `library:${recipe.slug}`, name: recipe.name },
+        meal: { id: ownMeal ? ownMeal.id : kept ? `local:${kept.id}` : `library:${recipe.slug}`, name: recipe.name },
         steps: recipe.steps || [],
         ingredients: rows,
         scale: serves / baseServes

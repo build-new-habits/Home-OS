@@ -1,4 +1,6 @@
-// js/views/recipeEditor.js — 03 Oct 2026 v2
+// js/views/recipeEditor.js — 03 Oct 2026 v3
+// v3: Save on this phone (no account needed); ?l=<id> changes a phone recipe;
+// ?from=<slug> starts your own version of a library recipe.
 // v2: Course (starter, main, pudding) beside Kind of meal.
 // Kitchen rebuild. "Make my own recipe" (#/recipe-edit), and changing one
 // you already have (#/recipe-edit?m=<meal id>).
@@ -31,6 +33,8 @@
 
 import { el, selectFrom } from '../lib/dom.js';
 import { COURSES } from '../data/courses.js';
+import { localIdFromHash, fromSlugFromHash, getLocal, saveLocal, draftFromLibrary } from '../data/localRecipes.js';
+import { loadAllRecipes } from '../data/recipeLibrary.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
@@ -87,24 +91,34 @@ export function render(mountEl) {
   let previewTimer = null;
 
   const editId = editIdFromHash(window.location.hash);
+  // 3 Oct 2026: recipes kept on this phone (data/localRecipes.js).
+  //   ?l=<id>       change one kept on this phone
+  //   ?from=<slug>  your own version of a library recipe, kept on this phone
+  const localId = editId ? '' : localIdFromHash(window.location.hash);
+  const fromSlug = editId || localId ? '' : fromSlugFromHash(window.location.hash);
+  const onPhone = Boolean(localId || fromSlug);
+  const backHref = editId ? `#/recipe?m=${encodeURIComponent(editId)}`
+    : localId ? `#/recipe?l=${encodeURIComponent(localId)}`
+      : fromSlug ? `#/recipe?r=${encodeURIComponent(fromSlug)}` : '#/library';
   const back = el('a', {
     class: 'back-link',
-    href: editId ? `#/recipe?m=${encodeURIComponent(editId)}` : '#/library',
-    text: editId ? 'Back to the recipe' : 'Recipes'
+    href: backHref,
+    text: editId || localId || fromSlug ? 'Back to the recipe' : 'Recipes'
   });
-  const heading = el('h1', { text: editId ? 'Change your recipe' : 'Write your own recipe' });
+  const heading = el('h1', { text: editId || localId ? 'Change your recipe' : fromSlug ? 'Your version' : 'Write your own recipe' });
   const page = el('div', { class: 'own-recipe' });
   page.appendChild(el('p', { class: 'field-hint', text: 'Getting things ready…' }));
   mountEl.append(back, heading, page);
 
   (async () => {
-    const [refs, foods, stock, existing] = await Promise.all([
+    const [refs, foods, stock, existing, library] = await Promise.all([
       referenceBySlug().catch(() => new Map()),
       listFoods().catch(() => ({ ok: false })),
       listStock().catch(() => ({ ok: false })),
       editId
         ? Promise.all([listMeals(), listIngredients(editId), listSteps(editId)]).catch(() => null)
-        : Promise.resolve(null)
+        : Promise.resolve(null),
+      fromSlug ? loadAllRecipes().catch(() => null) : Promise.resolve(null)
     ]);
     if (destroyed) return;
 
@@ -122,6 +136,22 @@ export function render(mountEl) {
       }
       heading.textContent = `Change ${meal.name}`;
       draft = draftFromMeal(meal, ings.data || [], steps && steps.ok ? steps.data || [] : []);
+    } else if (localId) {
+      const kept = getLocal(localId);
+      if (!kept) {
+        page.replaceChildren(el('p', { text: 'That recipe is not on this phone any more.' }));
+        return;
+      }
+      draft = kept.draft;
+      heading.textContent = `Change ${draft.name || 'your recipe'}`;
+    } else if (fromSlug) {
+      const source = library && library.ok ? (library.data || []).find((r) => r.slug === fromSlug) : null;
+      if (!source) {
+        page.replaceChildren(el('p', { text: 'That recipe could not be loaded. Check your connection and try again.' }));
+        return;
+      }
+      draft = draftFromLibrary(source, refs);
+      heading.textContent = `Your version of ${source.name}`;
     } else {
       const stored = readStoredDraft();
       if (stored && hasContent(stored)) { draft = stored; restored = true; } else draft = emptyDraft();
@@ -297,17 +327,39 @@ export function render(mountEl) {
     // ---- Save --------------------------------------------------------------
     const saveBar = el('div', { class: 'own-save-bar' });
     const save = el('button', { type: 'button', class: 'btn btn-primary', text: editId ? 'Save changes' : 'Save recipe' });
+    const savePhone = el('button', { type: 'button', class: onPhone ? 'btn btn-primary' : 'btn', text: 'Save on this phone' });
     const saveStatus = el('p', { class: 'field-hint', role: 'status' });
-    saveBar.append(save);
-    if (editId) saveBar.appendChild(el('a', { class: 'btn btn-quiet', href: `#/recipe?m=${encodeURIComponent(editId)}`, text: 'Cancel' }));
+    if (onPhone) saveBar.append(savePhone);
+    else if (editId) saveBar.append(save);
+    else saveBar.append(save, savePhone);
+    if (editId || onPhone) saveBar.appendChild(el('a', { class: 'btn btn-quiet', href: backHref, text: 'Cancel' }));
     page.append(saveBar, saveStatus);
+    if (!editId) {
+      page.appendChild(el('p', { class: 'field-hint own-save-note', text: onPhone
+        ? 'Kept on this phone, with no account needed. To put it on the plan, open it and choose Add to plan.'
+        : 'Save recipe adds it to your meals, ready for the plan. Save on this phone keeps it here only, with no account or connection needed.' }));
+    }
+
+    savePhone.addEventListener('click', () => {
+      const problems = validateDraft(draft);
+      if (problems.length) { showProblems(problems); return; }
+      errors.hidden = true;
+      const kept = saveLocal(draft);
+      if (!kept.ok) { saveStatus.textContent = kept.error.message; return; }
+      draft.localId = kept.id;
+      if (!editId && !onPhone) clearStoredDraft();
+      const words = `${draft.name.trim()} saved on this phone.`;
+      showToast(words);
+      announce(words);
+      window.location.hash = `#/recipe?l=${encodeURIComponent(kept.id)}`;
+    }, { signal });
 
     save.addEventListener('click', async () => {
       const problems = validateDraft(draft);
       if (problems.length) { showProblems(problems); return; }
       errors.hidden = true;
       if (typeof navigator !== 'undefined' && navigator.onLine === false) {
-        saveStatus.textContent = 'You are offline. Saving needs a connection; what you have written is kept on this phone.';
+        saveStatus.textContent = 'You are offline, so it cannot go to your meals yet. Save on this phone keeps it here now.';
         return;
       }
       save.disabled = true;
@@ -317,7 +369,7 @@ export function render(mountEl) {
       save.disabled = false;
       if (!result.ok) {
         console.error('Saving a recipe failed:', result.error);
-        saveStatus.textContent = 'That did not save. Check your connection and try again. Nothing you wrote has been lost.';
+        saveStatus.textContent = 'That did not reach your meals. Nothing you wrote has been lost. Try again, or use Save on this phone.';
         return;
       }
       if (!editId) clearStoredDraft();
@@ -543,7 +595,7 @@ export function render(mountEl) {
     }
 
     function changed() {
-      if (!editId) storeDraft(draft);
+      if (!editId && !onPhone) storeDraft(draft);
       // An open list of problems keeps up as they are fixed, without moving focus.
       if (!errors.hidden) {
         const left = validateDraft(draft);
