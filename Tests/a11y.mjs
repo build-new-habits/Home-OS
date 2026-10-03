@@ -1382,7 +1382,7 @@ check('health: exactly one h1', hubMount.querySelectorAll('h1').length === 1);
   check('meals: the recipe library has a heading, not just a summary',
     !!libSection && !!libSection.querySelector('h3'));
   check('meals: and says what it is before you open it',
-    !!libSection && /hundred recipes|100 recipes/i.test(libSection.textContent));
+    !!libSection && /hundred recipes|100 recipes|recipes that come with the app/i.test(libSection.textContent));
 
   // Position is the actual defect. It must come before the add-meal form:
   // browsing is far more common than writing a recipe from scratch.

@@ -1,0 +1,251 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Vietnamese",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "noodle-salad-chicken-herbs",
+   "name": "Rice noodle salad with chicken and herbs",
+   "cuisine": "Vietnamese",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Fish sauce smells strong from the bottle. In the dressing it just tastes savoury.",
+   "ingredients": [
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} following the packet. Drain. Rinse in cold water.",
+     "step_group": "Noodles"
+    },
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} on a high heat for 6 minutes, until cooked through.",
+     "duration_min": 6,
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Squeeze the juice from {{ing:lime}} into a jar.",
+     "step_group": "Dressing"
+    },
+    {
+     "instruction": "Add {{ing:fish-sauce}} and {{ing:honey}}. Chop {{ing:chilli-fresh}} finely and add.",
+     "step_group": "Dressing"
+    },
+    {
+     "instruction": "Put the lid on. Shake until the honey dissolves.",
+     "step_group": "Dressing"
+    },
+    {
+     "instruction": "Grate {{ing:carrot-medium}}. Cut {{ing:cucumber}} into thin sticks.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Pick the leaves from {{ing:fresh-mint}} and {{ing:fresh-coriander}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Chop {{ing:peanuts}} roughly.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Toss noodles, vegetables, herbs and chicken with the dressing. Top with peanuts.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-noodle-pho-style",
+   "name": "Ginger chicken noodle soup, pho style",
+   "cuisine": "Vietnamese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The broth is the point. Taste it before serving and add lime or fish sauce to suit.",
+   "ingredients": [
+    {
+     "ref": "stock-chicken",
+     "quantity": 1500,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:onion-medium}}. Slice {{ing:ginger-fresh}}.",
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Put a dry frying pan on a high heat. Char the onion and ginger 5 minutes.",
+     "note": "Blackened in places is right. It sweetens the broth.",
+     "duration_min": 5,
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Put them in a large pan with {{ing:stock-chicken}} and {{ing:cinnamon-ground}}.",
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Add {{ing:chicken-breast-skinless}} whole. Simmer (small bubbles) 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Lift out the chicken. Shred it with two forks.",
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Stir {{ing:fish-sauce}} into the broth.",
+     "step_group": "Broth"
+    },
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} following the packet. Drain.",
+     "step_group": "To serve",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Share noodles and chicken between four bowls.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Ladle the broth over, leaving the onion and ginger behind.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Top with {{ing:beansprouts}}, {{ing:fresh-coriander}}, {{ing:fresh-mint}} and sliced {{ing:chilli-fresh}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Serve with wedges of {{ing:lime}}.",
+     "step_group": "To serve"
+    }
+   ]
+  }
+ ]
+}

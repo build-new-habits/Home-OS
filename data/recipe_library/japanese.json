@@ -1,0 +1,311 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Japanese",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "miso-salmon-rice",
+   "name": "Miso-glazed salmon with greens",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The glaze catches fast under the grill. Stay close for the last minutes.",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 3,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rinse {{ing:rice-basmati-dry}}. Cook following the packet.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Heat the grill to high. Line a tray with foil.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:soy-sauce}} in a cup.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Put {{ing:salmon-fillet}} on the tray. Spread the miso mix over the tops.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Grill for 8 minutes, until dark at the edges and flaking.",
+     "duration_min": 8,
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Halve {{ing:pak-choi}}. Steam or boil for 3 minutes, until the stems are tender.",
+     "duration_min": 3,
+     "step_group": "Greens",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:spring-onion}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Serve salmon on the rice. Scatter over spring onion and {{ing:sesame-seeds}}.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "miso-soup-tofu",
+   "name": "Miso soup with tofu",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Miso is added off the boil. Boiling it dulls the flavour.",
+   "ingredients": [
+    {
+     "ref": "water",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:tofu-firm}} into small cubes. Slice {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Bring {{ing:water}} to a simmer (small bubbles) in a pan."
+    },
+    {
+     "instruction": "Add the tofu and {{ing:spinach}}. Cook 2 minutes, until the spinach wilts.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Take off the heat. Put {{ing:miso-paste}} in a ladle."
+    },
+    {
+     "instruction": "Lower the ladle into the soup. Stir until the miso dissolves."
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}}. Serve topped with the spring onion."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-katsu-curry",
+   "name": "Crumbed chicken with katsu-style curry sauce",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The sauce is a mild, sweet curry. Blend it for a smooth finish, or leave it chunky.",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:garlic-clove}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Put a pan on a medium heat with 1 tablespoon of the oil.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Fry the vegetables for 8 minutes, until the onion is soft.",
+     "duration_min": 8,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Stir in {{ing:curry-powder}} and 1 tablespoon of the flour. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Stir in {{ing:stock-chicken}}, {{ing:honey}} and {{ing:soy-sauce}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Simmer (small bubbles) for 15 minutes, until thick like gravy.",
+     "duration_min": 15,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice each of {{ing:chicken-breast-skinless}} in half through the middle, making thin pieces.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Put the rest of the flour on a plate. Beat {{ing:egg-medium}} in a bowl.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Put {{ing:breadcrumbs-dried}} on another plate.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Coat each piece in flour, then egg, then breadcrumbs.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Heat the rest of {{ing:vegetable-oil}} in a frying pan on a medium heat.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Fry the chicken 4 minutes each side, until golden and white all through.",
+     "duration_min": 8,
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Slice the chicken. Serve on the rice with the sauce over.",
+     "step_group": "To serve"
+    }
+   ]
+  }
+ ]
+}

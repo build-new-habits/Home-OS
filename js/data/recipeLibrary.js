@@ -1,4 +1,5 @@
-// js/data/recipeLibrary.js — 03 Oct 2026 v2
+// js/data/recipeLibrary.js — 03 Oct 2026 v3
+// v3: library drinks are added with meal_type 'drink' (default_slot waits for 026).
 // v2: addMissingToList() — a recipe's missing ingredients onto the list.
 // Phase 16. A browsable catalogue of recipes you can add to your own.
 //
@@ -239,7 +240,10 @@ export async function addLibraryRecipe(recipe) {
       default_serves: recipe.default_serves || 4,
       cuisine: recipe.cuisine || null,
       budget_tier: recipe.budget_tier || null,
-      default_slot: recipe.default_slot || null,
+      // A drink is a kind of meal (meal_type) everywhere, but default_slot
+      // only accepts 'drink' after migration 026.
+      default_slot: recipe.default_slot === 'drink' ? null : (recipe.default_slot || null),
+      meal_type: recipe.default_slot || null,
       dietary_tags: recipe.dietary_tags || [],
       method_note: recipe.method_note || null,
       library_ref: recipe.slug

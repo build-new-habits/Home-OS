@@ -1,0 +1,356 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Spanish",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "spanish-potato-omelette",
+   "name": "Spanish potato omelette",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Low and slow. A high heat burns the bottom before the middle sets.",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}}. Slice thinly. Slice {{ing:onion-medium}} thinly."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a non-stick frying pan on a low heat."
+    },
+    {
+     "instruction": "Add potato and onion. Cook 20 minutes, turning now and then, until soft.",
+     "note": "They should go soft, not crisp.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} with {{ing:salt}} in a large bowl."
+    },
+    {
+     "instruction": "Tip the potato into the eggs. Stir. Leave 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Pour back into the pan on a low heat. Cook 10 minutes, until the edges set.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Put a plate over the pan. Turn it over in one go.",
+     "note": "Use oven gloves. Or finish it under a hot grill instead."
+    },
+    {
+     "instruction": "Slide back in. Cook 5 minutes, until set in the middle.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "chickpea-spinach-stew",
+   "name": "Chickpeas with spinach and cumin",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "The fried bread thickens the sauce. Gluten-free bread works too.",
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large pan on a medium heat."
+    },
+    {
+     "instruction": "Fry {{ing:bread-slice-medium}} for 3 minutes, until golden. Lift onto a plate.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Fry 1 minute, until pale gold.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}} and {{ing:paprika}}. Cook for 30 seconds."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:white-wine-vinegar}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}. Stir in with 150 ml water."
+    },
+    {
+     "instruction": "Tear the fried bread in. Simmer (small bubbles) 10 minutes, until thick.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted, about 2 minutes.",
+     "duration_min": 2
+    }
+   ]
+  },
+  {
+   "slug": "chorizo-butter-bean-stew",
+   "name": "Chorizo and butter bean stew",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The chorizo colours the oil red. That oil is where the flavour is.",
+   "ingredients": [
+    {
+     "ref": "chorizo",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chorizo}} into rounds. Chop {{ing:onion-medium}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large pan on a medium heat."
+    },
+    {
+     "instruction": "Fry the chorizo for 3 minutes, until the oil runs red.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add the onion and pepper. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Crush in {{ing:garlic-clove}}. Stir in {{ing:paprika}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and drained {{ing:butter-beans-tinned}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) for 15 minutes, until thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}. Scatter over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "patatas-bravas",
+   "name": "Crispy potatoes with spicy tomato sauce",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Parboiling first gives a fluffy middle and a crisp outside.",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 2,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C.",
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Cut {{ing:potato-large}} into bite-sized cubes. Boil for 5 minutes. Drain.",
+     "duration_min": 5,
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Toss on a tray with 2 tablespoons of the oil and {{ing:salt}}.",
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Roast for 35 minutes, until golden and crisp. Turn halfway.",
+     "duration_min": 35,
+     "step_group": "Potatoes"
+    },
+    {
+     "instruction": "Heat the rest of {{ing:olive-oil}} in a small pan. Crush in {{ing:garlic-clove}}.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:paprika}}, {{ing:chilli-powder}}, {{ing:passata}} and {{ing:sugar-caster}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Simmer (small bubbles) 10 minutes, until thick.",
+     "duration_min": 10,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Spoon the sauce over the potatoes to serve.",
+     "step_group": "To serve"
+    }
+   ]
+  }
+ ]
+}

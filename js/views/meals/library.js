@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 03 Oct 2026 v3
+// js/views/meals/library.js — 03 Oct 2026 v4
+// v4: the blurb no longer counts its recipes.
 // v3: a recipe name links to its own page (#/recipe?r=slug).
 // v2: favourites have somewhere to show up.
 // Worklist G1, first extraction. The recipe library panel.
@@ -73,7 +74,7 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
   if (!ownPage) section.appendChild(el('h3', { text: 'Recipe library' }));
   if (!ownPage) section.appendChild(el('p', {
     class: 'field-hint',
-    text: 'A hundred recipes that come with the app. Add any of them to your meals '
+    text: 'Recipes that come with the app. Add any of them to your meals '
       + 'in one tap — the ingredients and steps come with it.'
   }));
 

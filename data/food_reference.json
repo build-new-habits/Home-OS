@@ -3185,6 +3185,124 @@
    "name": "Cat litter",
    "category": "pet",
    "item_label": "bag"
+  },
+  {
+   "slug": "fresh-mint",
+   "name": "Fresh mint",
+   "category": "food_fresh",
+   "aliases": [
+    "mint",
+    "mint leaves",
+    "spearmint"
+   ],
+   "calories_per_100g": 44,
+   "protein_g": 3.3,
+   "fat_g": 0.7,
+   "carbs_g": 8.4,
+   "fibre_g": 6.8
+  },
+  {
+   "slug": "miso-paste",
+   "name": "Miso paste",
+   "category": "food_ambient",
+   "aliases": [
+    "miso",
+    "white miso",
+    "red miso"
+   ],
+   "grams_per_ml": 1.15,
+   "calories_per_100g": 198,
+   "protein_g": 12.8,
+   "fat_g": 6.0,
+   "carbs_g": 25.4,
+   "fibre_g": 5.4
+  },
+  {
+   "slug": "rice-vinegar",
+   "name": "Rice vinegar",
+   "category": "food_ambient",
+   "aliases": [
+    "rice wine vinegar"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 18,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0
+  },
+  {
+   "slug": "gochujang",
+   "name": "Gochujang",
+   "category": "food_ambient",
+   "aliases": [
+    "korean chilli paste",
+    "korean chili paste"
+   ],
+   "grams_per_ml": 1.25,
+   "calories_per_100g": 210,
+   "protein_g": 4.6,
+   "fat_g": 1.6,
+   "carbs_g": 44.0,
+   "fibre_g": 2.0
+  },
+  {
+   "slug": "kimchi",
+   "name": "Kimchi",
+   "category": "food_fresh",
+   "aliases": [],
+   "calories_per_100g": 15,
+   "protein_g": 1.1,
+   "fat_g": 0.5,
+   "carbs_g": 2.4,
+   "fibre_g": 1.6
+  },
+  {
+   "slug": "edamame-frozen",
+   "name": "Edamame beans, frozen",
+   "category": "food_frozen",
+   "aliases": [
+    "edamame",
+    "edamame beans",
+    "soya beans"
+   ],
+   "calories_per_100g": 121,
+   "protein_g": 11.9,
+   "fat_g": 5.2,
+   "carbs_g": 8.9,
+   "fibre_g": 5.2
+  },
+  {
+   "slug": "pak-choi",
+   "name": "Pak choi",
+   "category": "food_fresh",
+   "aliases": [
+    "bok choy",
+    "bok choi",
+    "pak choy"
+   ],
+   "grams_per_item": 120,
+   "item_label": "head",
+   "calories_per_100g": 13,
+   "protein_g": 1.5,
+   "fat_g": 0.2,
+   "carbs_g": 2.2,
+   "fibre_g": 1.0
+  },
+  {
+   "slug": "beansprouts",
+   "name": "Beansprouts",
+   "category": "food_fresh",
+   "aliases": [
+    "bean sprouts",
+    "beansprout",
+    "mung bean sprouts"
+   ],
+   "calories_per_100g": 30,
+   "protein_g": 3.0,
+   "fat_g": 0.2,
+   "carbs_g": 5.9,
+   "fibre_g": 1.8
   }
  ]
 }

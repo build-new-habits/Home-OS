@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Breakfast",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -375,6 +375,287 @@
     },
     {
      "instruction": "Serve with {{ing:maple-syrup}}."
+    }
+   ]
+  },
+  {
+   "slug": "tofu-scramble",
+   "name": "Tofu scramble on toast",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Turmeric gives it colour. It tastes of the spring onion and pepper, not of tofu.",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 280,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:spring-onion}}. Halve {{ing:cherry-tomato}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:olive-oil}}.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Crumble {{ing:tofu-firm}} into the pan with your fingers.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Fry for 5 minutes, until the tofu is hot and starting to brown.",
+     "duration_min": 5,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Add the spring onion, tomatoes and {{ing:turmeric-ground}}. Cook 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Toast {{ing:wholemeal-bread-slice}}.",
+     "step_group": "Cook",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}} and {{ing:black-pepper-ground}}. Spoon onto the toast.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "peanut-butter-overnight-oats",
+   "name": "Peanut butter overnight oats",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Made the night before. Ready when you are.",
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chia-seeds",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:oats-rolled}} and {{ing:chia-seeds}} in a bowl or two jars."
+    },
+    {
+     "instruction": "Stir in {{ing:oat-milk}}, {{ing:peanut-butter}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Cover. Leave in the fridge overnight, or at least 4 hours.",
+     "note": "The oats soak up the milk and go soft."
+    },
+    {
+     "instruction": "Slice {{ing:banana-medium}} over the top to serve."
+    }
+   ]
+  },
+  {
+   "slug": "chia-berry-pudding",
+   "name": "Chia and berry pudding",
+   "cuisine": "Breakfast",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Stir it twice in the first ten minutes, or the seeds clump at the bottom.",
+   "ingredients": [
+    {
+     "ref": "chia-seeds",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "almond-milk",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "pumpkin-seeds",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:chia-seeds}} in a bowl."
+    },
+    {
+     "instruction": "Stir in {{ing:almond-milk}}, {{ing:maple-syrup}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Leave for 10 minutes. Stir again to break up any clumps.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cover. Chill overnight, until thick like rice pudding."
+    },
+    {
+     "instruction": "Top with {{ing:raspberries}} and {{ing:pumpkin-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "smashed-chickpea-toast",
+   "name": "Smashed chickpea and avocado toast",
+   "cuisine": "Breakfast",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Lemon stops the avocado going brown if you make it ahead.",
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain and rinse {{ing:chickpeas-tinned}}. Tip into a bowl."
+    },
+    {
+     "instruction": "Scoop in the flesh of {{ing:avocado}}."
+    },
+    {
+     "instruction": "Squeeze in the juice from {{ing:lemon}}. Add {{ing:salt}}."
+    },
+    {
+     "instruction": "Mash with a fork until mostly smooth, with some chickpeas still whole."
+    },
+    {
+     "instruction": "Toast {{ing:wholemeal-bread-slice}}."
+    },
+    {
+     "instruction": "Spread on the toast. Sprinkle with {{ing:chilli-powder}}."
     }
    ]
   }

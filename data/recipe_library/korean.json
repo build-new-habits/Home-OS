@@ -1,0 +1,307 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Korean",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "beef-bibimbap-bowl",
+   "name": "Beef and vegetable rice bowl, bibimbap style",
+   "cuisine": "Korean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Everything sits in its own pile on the rice. You mix it at the table.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "beef-mince-5-fat",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "gochujang",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "step_group": "Rice",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Grate {{ing:carrot-medium}}. Crush {{ing:garlic-clove}}.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:beef-mince-5-fat}}.",
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Fry for 8 minutes, breaking it up, until browned all over.",
+     "duration_min": 8,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Add the garlic, {{ing:soy-sauce}} and {{ing:sesame-oil}}. Cook 1 minute. Tip into a bowl.",
+     "duration_min": 1,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Put {{ing:spinach}} in the same pan. Stir 1 minute, until wilted. Set aside.",
+     "duration_min": 1,
+     "step_group": "Vegetables"
+    },
+    {
+     "instruction": "Fry {{ing:beansprouts}} for 2 minutes, until hot but still crunchy.",
+     "duration_min": 2,
+     "step_group": "Vegetables"
+    },
+    {
+     "instruction": "Add {{ing:vegetable-oil}} to the pan. Fry {{ing:egg-medium}} for 3 minutes, until the whites set.",
+     "duration_min": 3,
+     "step_group": "Eggs"
+    },
+    {
+     "instruction": "Share the rice between four bowls. Arrange beef, vegetables and carrot on top.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Top each with an egg and some of {{ing:gochujang}}.",
+     "note": "Gochujang is a chilli paste. Start with a little.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "kimchi-fried-rice",
+   "name": "Kimchi fried rice",
+   "cuisine": "Korean",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Day-old cooked rice fries best. Fresh rice goes sticky. Most kimchi has fish in it; vegan kimchi makes this vegetarian.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "kimchi",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet. Cool it, ideally overnight in the fridge.",
+     "note": "Already have cooked rice? Use about 400 g."
+    },
+    {
+     "instruction": "Chop {{ing:kimchi}}. Slice {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Put a large frying pan on a high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry the kimchi for 2 minutes, until sizzling.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the rice. Fry for 5 minutes, stirring, until hot all through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}}, {{ing:sesame-oil}} and most of the spring onion."
+    },
+    {
+     "instruction": "Fry {{ing:egg-medium}} in a second pan for 3 minutes, until the whites set.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Serve the rice topped with an egg and the last spring onion."
+    }
+   ]
+  },
+  {
+   "slug": "gochujang-tofu",
+   "name": "Sticky chilli tofu with rice",
+   "cuisine": "Korean",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 3,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Pressing the tofu helps it crisp. Wrap it in kitchen roll under a heavy pan for 10 minutes.",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 396,
+     "unit": "g"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 16,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "gochujang",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 3,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cut {{ing:tofu-firm}} into bite-sized cubes. Toss in {{ing:cornflour}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry the tofu for 10 minutes, turning, until golden on all sides.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:gochujang}}, {{ing:soy-sauce}} and {{ing:maple-syrup}} with 2 tablespoons of water."
+    },
+    {
+     "instruction": "Crush {{ing:garlic-clove}} into the pan. Add the sauce."
+    },
+    {
+     "instruction": "Stir for 2 minutes, until the tofu is sticky and coated.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets. Boil for 4 minutes, until tender.",
+     "duration_min": 4,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Serve on the rice with the broccoli. Scatter {{ing:sesame-seeds}} over."
+    }
+   ]
+  }
+ ]
+}

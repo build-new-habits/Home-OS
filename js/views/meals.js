@@ -1171,7 +1171,7 @@ export function render(mountEl, { section = 'list' } = {}) {
       hubTile('meals-match', 'What could I make?',
         'Recipes you could cook from the cupboards right now.'),
       hubTile('library', 'Recipe library',
-        'A hundred recipes to add from, ready to cook.')
+        'Recipes to add from, ready to cook.')
     ]));
     mountEl.append(mealsSection);
     mountEl.appendChild(createActionBar({

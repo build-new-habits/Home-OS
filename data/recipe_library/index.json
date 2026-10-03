@@ -1,11 +1,16 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "files": [
+  {
+   "cuisine": "African",
+   "path": "data/recipe_library/african.json",
+   "count": 3
+  },
   {
    "cuisine": "Breakfast",
    "path": "data/recipe_library/breakfast.json",
-   "count": 6
+   "count": 10
   },
   {
    "cuisine": "British",
@@ -28,8 +33,18 @@
    "count": 3
   },
   {
+   "cuisine": "Drinks",
+   "path": "data/recipe_library/drinks.json",
+   "count": 8
+  },
+  {
    "cuisine": "French",
    "path": "data/recipe_library/french.json",
+   "count": 4
+  },
+  {
+   "cuisine": "Greek",
+   "path": "data/recipe_library/greek.json",
    "count": 4
   },
   {
@@ -41,6 +56,16 @@
    "cuisine": "Italian",
    "path": "data/recipe_library/italian.json",
    "count": 17
+  },
+  {
+   "cuisine": "Japanese",
+   "path": "data/recipe_library/japanese.json",
+   "count": 3
+  },
+  {
+   "cuisine": "Korean",
+   "path": "data/recipe_library/korean.json",
+   "count": 3
   },
   {
    "cuisine": "Lunch",
@@ -60,7 +85,12 @@
   {
    "cuisine": "Snacks",
    "path": "data/recipe_library/snacks.json",
-   "count": 6
+   "count": 11
+  },
+  {
+   "cuisine": "Spanish",
+   "path": "data/recipe_library/spanish.json",
+   "count": 4
   },
   {
    "cuisine": "Special",
@@ -76,6 +106,11 @@
    "cuisine": "Vegetarian",
    "path": "data/recipe_library/vegetarian.json",
    "count": 13
+  },
+  {
+   "cuisine": "Vietnamese",
+   "path": "data/recipe_library/vietnamese.json",
+   "count": 2
   }
  ]
 }

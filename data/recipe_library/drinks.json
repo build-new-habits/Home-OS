@@ -1,0 +1,475 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Drinks",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "banana-oat-smoothie",
+   "name": "Banana and oat smoothie",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Frozen banana makes it thick and cold without ice.",
+   "ingredients": [
+    {
+     "ref": "banana-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:banana-medium}}. Break into chunks."
+    },
+    {
+     "instruction": "Put the banana in a blender with {{ing:oats-rolled}} and {{ing:oat-milk}}."
+    },
+    {
+     "instruction": "Add {{ing:peanut-butter}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Blend for 1 minute, until smooth with no flecks of oat.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour into two glasses."
+    }
+   ]
+  },
+  {
+   "slug": "berry-yoghurt-smoothie",
+   "name": "Berry and yoghurt smoothie",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Frozen berries work as well as fresh and cost less.",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:strawberries}} and {{ing:blueberries}} in a blender."
+    },
+    {
+     "instruction": "Add {{ing:natural-yoghurt}}, {{ing:milk-semi-skimmed}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Blend for 1 minute, until smooth and pink all through.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour into two glasses.",
+     "note": "Too thick? Add a splash more milk and blend again."
+    }
+   ]
+  },
+  {
+   "slug": "mango-lassi",
+   "name": "Mango lassi",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "A ripe mango gives way when you press it gently.",
+   "ingredients": [
+    {
+     "ref": "mango",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut the flesh from {{ing:mango}}. Throw away the stone and skin."
+    },
+    {
+     "instruction": "Put the mango in a blender with {{ing:natural-yoghurt}} and {{ing:milk-semi-skimmed}}."
+    },
+    {
+     "instruction": "Add {{ing:honey}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Blend for 1 minute, until smooth and pale orange.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour into two glasses."
+    }
+   ]
+  },
+  {
+   "slug": "green-smoothie",
+   "name": "Green morning smoothie",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spinach disappears into the fruit. You taste banana and apple.",
+   "ingredients": [
+    {
+     "ref": "spinach",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "kiwi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-juice",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 0.5,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:banana-medium}} and {{ing:kiwi}}."
+    },
+    {
+     "instruction": "Put them in a blender with {{ing:spinach}} and {{ing:apple-juice}}."
+    },
+    {
+     "instruction": "Squeeze in the juice from {{ing:lime}}."
+    },
+    {
+     "instruction": "Blend for 1 minute, until bright green with no leafy bits.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour into two glasses."
+    }
+   ]
+  },
+  {
+   "slug": "golden-milk",
+   "name": "Golden turmeric milk",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Warm, not boiling. Boiled milk forms a skin.",
+   "ingredients": [
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:ginger-fresh}} into a small pan."
+    },
+    {
+     "instruction": "Add {{ing:milk-semi-skimmed}}, {{ing:turmeric-ground}}, {{ing:cinnamon-ground}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Put on a low heat for 5 minutes, until steaming but not bubbling.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Whisk for 30 seconds, until frothy."
+    },
+    {
+     "instruction": "Stir in {{ing:honey}}. Pour into two mugs.",
+     "note": "Oat milk and maple syrup make it vegan."
+    }
+   ]
+  },
+  {
+   "slug": "proper-hot-chocolate",
+   "name": "Proper hot chocolate",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Mixing the cocoa to a paste first stops lumps.",
+   "ingredients": [
+    {
+     "ref": "milk-whole",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 14,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 26,
+     "unit": "g"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:cocoa-powder}} and {{ing:sugar-caster}} in a small pan."
+    },
+    {
+     "instruction": "Add 3 tablespoons of the milk. Stir to a smooth paste."
+    },
+    {
+     "instruction": "Stir in the rest of {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Put on a low heat for 5 minutes, until steaming.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Break in {{ing:dark-chocolate}}. Stir until melted."
+    },
+    {
+     "instruction": "Stir in {{ing:vanilla-extract}}. Pour into two mugs."
+    }
+   ]
+  },
+  {
+   "slug": "fresh-mint-tea",
+   "name": "Fresh mint tea",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the leaves whole. Torn leaves turn the tea bitter.",
+   "ingredients": [
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.25,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:water}} in a kettle."
+    },
+    {
+     "instruction": "Put {{ing:fresh-mint}} in a teapot or large jug."
+    },
+    {
+     "instruction": "Pour the boiling water over the mint."
+    },
+    {
+     "instruction": "Leave for 5 minutes, until pale green and fragrant.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:honey}}. Pour into two mugs with a slice of {{ing:lemon}}.",
+     "note": "Maple syrup instead of honey makes it vegan."
+    }
+   ]
+  },
+  {
+   "slug": "ginger-lemon-tea",
+   "name": "Ginger, lemon and honey",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Good when you have a cold, or after a big meal.",
+   "ingredients": [
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "water",
+     "quantity": 500,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:ginger-fresh}} thinly. No need to peel it."
+    },
+    {
+     "instruction": "Put the ginger in a small pan with {{ing:water}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) for 10 minutes, until the water tastes of ginger.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Squeeze in the juice from {{ing:lemon}}."
+    },
+    {
+     "instruction": "Stir in {{ing:honey}}. Pour through a sieve into two mugs."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,381 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Greek",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "greek-village-salad",
+   "name": "Village salad with feta",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "No lettuce. Ripe tomatoes do the work.",
+   "ingredients": [
+    {
+     "ref": "tomato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "feta",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:tomato-medium}} into wedges."
+    },
+    {
+     "instruction": "Halve {{ing:cucumber}} lengthways. Slice into thick half moons."
+    },
+    {
+     "instruction": "Slice {{ing:red-onion}} thinly. Slice {{ing:pepper-bell}} into rings."
+    },
+    {
+     "instruction": "Put everything in a wide bowl with {{ing:olives-pitted}}."
+    },
+    {
+     "instruction": "Lay {{ing:feta}} on top in one piece."
+    },
+    {
+     "instruction": "Pour over {{ing:olive-oil}}. Sprinkle with {{ing:dried-oregano}}."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-souvlaki-pitta",
+   "name": "Chicken souvlaki pittas with tzatziki",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Marinate in the morning if you can. Twenty minutes still helps.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 0.5,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Put in a bowl.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Add the juice of half of {{ing:lemon}}, 2 crushed garlic cloves and {{ing:dried-oregano}}.",
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Stir in {{ing:olive-oil}}. Leave for at least 20 minutes.",
+     "duration_min": 20,
+     "step_group": "Chicken"
+    },
+    {
+     "instruction": "Grate {{ing:cucumber}}. Squeeze out the water in your hands.",
+     "step_group": "Tzatziki",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Mix the cucumber into {{ing:greek-yoghurt}} with the last garlic clove, crushed.",
+     "step_group": "Tzatziki"
+    },
+    {
+     "instruction": "Chop {{ing:fresh-mint}}. Stir it in.",
+     "step_group": "Tzatziki"
+    },
+    {
+     "instruction": "Put a griddle or frying pan on a high heat.",
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Cook the chicken for 10 minutes, turning, until charred and cooked through.",
+     "duration_min": 10,
+     "step_group": "Cook"
+    },
+    {
+     "instruction": "Warm {{ing:pitta-bread}} in a toaster. Slice {{ing:tomato-medium}} and {{ing:red-onion}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Fill each pitta with chicken, salad and tzatziki.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "baked-giant-beans",
+   "name": "Baked butter beans in tomato",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Even better the next day. Eat warm with bread, or at room temperature.",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 4,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}}. Slice {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in an ovenproof dish or pan on a medium heat."
+    },
+    {
+     "instruction": "Fry the onion and carrot for 10 minutes, until soft.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add the garlic, {{ing:chopped-tomatoes-tinned}}, {{ing:dried-oregano}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Stir them in with 100 ml water."
+    },
+    {
+     "instruction": "Bake for 40 minutes, until thick and bubbling at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}. Scatter over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "lamb-keftedes",
+   "name": "Lamb meatballs with lemon and herbs",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Wet hands stop the mince sticking as you roll.",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 300,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:red-onion}}. Crush {{ing:garlic-clove}}. Chop {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Mix with {{ing:lamb-mince}}, {{ing:breadcrumbs-dried}}, {{ing:egg-medium}} and {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Roll into 20 balls, each about the size of a walnut."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a frying pan on a medium heat."
+    },
+    {
+     "instruction": "Fry the meatballs for 12 minutes, turning, until brown and cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl. Pour over {{ing:stock-vegetable}}, boiling.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cover. Leave 5 minutes, until the stock is absorbed. Fluff with a fork.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Serve the meatballs on the couscous with wedges of {{ing:lemon}}."
+    }
+   ]
+  }
+ ]
+}

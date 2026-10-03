@@ -24,7 +24,10 @@ function check(label, condition, detail = '') {
 
 const BANNED = ['simply', 'just', 'obviously', 'quickly', 'easy', 'easily', 'merely'];
 const TIERS = ['budget', 'everyday', 'special'];
-const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack'];
+// 'drink' since 3 Oct 2026: the library's drinks. meals.default_slot takes
+// it once migration 026 is applied; until then addLibraryRecipe stores it
+// as meal_type only.
+const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack', 'drink'];
 const TAGS = ['vegetarian', 'vegan', 'gluten_free', 'dairy_free', 'nut_free'];
 const UNITS = ['g', 'ml', 'item', 'tsp', 'tbsp'];
 

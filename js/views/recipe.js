@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v6
+// js/views/recipe.js — 03 Oct 2026 v7
+// v7: spoon-sized amounts of liquid read as tsp/tbsp.
 // v6: Change this recipe opens the recipe editor (#/recipe-edit?m=<id>);
 // your own recipe's swaps are listed under its ingredients.
 // v5: your own meals get this page too (#/recipe?m=<meal id>): the same
@@ -30,6 +31,7 @@
 // the same size. Only the ingredient amounts scale.
 
 import { el } from '../lib/dom.js';
+import { toSpoons } from '../lib/units.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
@@ -119,6 +121,13 @@ export function slugFromHash(hash) {
 export function scaledAmount(quantity, unit, scale) {
   const q = Number(quantity) * scale;
   if (!Number.isFinite(q) || q <= 0) return '';
+  // Small amounts of liquid read as spoons when they are exact ones:
+  // 30 ml of oil is "2 tbsp". 45 ml scaled by ⅔ is 30 ml, so still spoons;
+  // 200 ml of milk stays 200 ml (lib/units.js toSpoons).
+  if (unit === 'ml') {
+    const spoons = toSpoons(Math.round(q * 100) / 100);
+    if (spoons) return spoons.text;
+  }
   if (unit === 'g' || unit === 'ml') {
     let value = q;
     let u = unit;

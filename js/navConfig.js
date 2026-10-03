@@ -1,4 +1,5 @@
-// js/navConfig.js — 03 Oct 2026 v11
+// js/navConfig.js — 03 Oct 2026 v12
+// v12: library blurb no longer counts its recipes (146 and growing).
 // v11: Pantry in the kitchen bar; drawn icons.
 // v10 (kitchen rebuild K2): KITCHEN_ONLY. The bar is Today, Plan,
 // Recipes, Shop. Health, chores, calendar and holidays are PARKED, not
@@ -172,7 +173,7 @@ export const KITCHEN_PAGES = [
   // section of the Meals page. The Meals blurb loses its mention of it,
   // because two cards both claiming the library is behind them is worse
   // than the burial this replaces.
-  { path: 'library', title: 'Recipe library', blurb: 'A hundred recipes to add from, ready to cook.' },
+  { path: 'library', title: 'Recipe library', blurb: 'Recipes to add from, ready to cook.' },
   { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' },
   { path: 'foods', title: 'Things you buy', blurb: 'Food and everything else that ends up in the trolley.' }
 ];

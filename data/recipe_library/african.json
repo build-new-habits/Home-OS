@@ -1,0 +1,333 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "African",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "jollof-style-rice",
+   "name": "Smoky tomato rice, jollof style",
+   "cuisine": "West African",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A little catching on the bottom is wanted. It gives the smoky taste.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Roughly chop 1 onion, {{ing:pepper-bell}} and {{ing:chilli-fresh}}."
+    },
+    {
+     "instruction": "Blend them with {{ing:chopped-tomatoes-tinned}} until smooth."
+    },
+    {
+     "instruction": "Slice the other of {{ing:onion-medium}}. Heat {{ing:vegetable-oil}} in a large pan."
+    },
+    {
+     "instruction": "Fry the sliced onion 5 minutes, until soft.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:curry-powder}} and {{ing:dried-thyme}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the blended sauce and {{ing:passata}}. Simmer (small bubbles) 15 minutes, until thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Rinse {{ing:rice-basmati-dry}}. Stir in with {{ing:stock-vegetable}} and {{ing:bay-leaf}}."
+    },
+    {
+     "instruction": "Cover tightly. Cook on a low heat 25 minutes, until the rice is tender.",
+     "note": "Do not stir. If it dries before the rice softens, add a splash of water.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Take out the bay leaves. Fluff with a fork to serve."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-groundnut-stew",
+   "name": "Chicken and peanut stew",
+   "cuisine": "West African",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Peanut butter melts into a rich sauce. Use smooth or crunchy.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "sweet-potato",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Peel and cube {{ing:sweet-potato}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large pan on a medium heat."
+    },
+    {
+     "instruction": "Fry the chicken 6 minutes, until browned.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add onion, garlic and ginger. Fry 5 minutes, until the onion softens.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:chopped-tomatoes-tinned}}, {{ing:stock-chicken}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Stir in {{ing:peanut-butter}} until it melts. Add the sweet potato."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 25 minutes, until the sweet potato is soft.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir {{ing:spinach}} into the stew until wilted. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "spiced-red-lentil-stew",
+   "name": "Spiced red lentil stew, Ethiopian style",
+   "cuisine": "Ethiopian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A warm, deep spice rather than hot. More chilli if you like heat.",
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "coriander-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-large}} very finely. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large pan on a medium-low heat."
+    },
+    {
+     "instruction": "Fry the onion 12 minutes, until soft and golden.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add garlic and ginger. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}}, {{ing:cumin-ground}}, {{ing:coriander-ground}}, {{ing:cinnamon-ground}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Stir in {{ing:passata}}. Cook 3 minutes, until it darkens.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rinse {{ing:lentils-red-dry}}. Add with {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 25 minutes, stirring now and then, until thick and soft.",
+     "duration_min": 25
+    }
+   ]
+  }
+ ]
+}

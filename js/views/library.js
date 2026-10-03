@@ -36,7 +36,7 @@ export function render(mountEl) {
   mountEl.appendChild(el('h1', { text: 'Recipe library' }));
   mountEl.appendChild(el('p', {
     class: 'field-hint',
-    text: 'A hundred recipes that come with the app. Add any of them to your '
+    text: 'Recipes that come with the app. Add any of them to your '
       + 'meals in one tap — the ingredients and steps come with it.'
   }));
 

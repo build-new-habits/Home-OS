@@ -29,30 +29,32 @@ Each pick has to fill a gap in the balance table below. In order, a pick should:
 3. Keep effort and cost spread: some quick, some weekend, mostly budget or everyday.
 4. Be a dish worth cooking on its own, not a component. Dressings and sauces come in only as part of a dish.
 
-## Market library balance, 3 Oct 2026
+## Market library balance, 3 Oct 2026 (afternoon)
 
-110 shipped recipes, all original.
+146 shipped recipes, all original. 36 added on 3 Oct to fill the gaps below.
 
 | Slot | Meat or fish | Vegetarian | Vegan | Total |
 | --- | --- | --- | --- | --- |
-| Breakfast | 3 | 11 | **0** | 14 |
-| Lunch | 5 | 10 | 10 | 25 |
-| Dinner | 26 | 20 | 16 | 62 |
-| Snack | 1 | 6 | **2** | 9 |
-| Drink | **0** | **0** | **0** | **0** |
+| Breakfast | 3 | 11 | 4 | 18 |
+| Lunch | 7 | 12 | 11 | 30 |
+| Dinner | 34 | 20 | 21 | 75 |
+| Snack | 1 | 6 | 8 | 15 |
+| Drink | 0 | 6 | 2 | 8 |
 
-Cuisine counts: Italian 17, British 15, Indian 6, Middle Eastern 4, Mexican 4, French 4, Caribbean 3, Chinese 3, Thai 3. The other 34 are filed by role rather than cuisine (Vegetarian, Special, Lunch, Budget, Snacks, Breakfast).
+Cuisine counts: Italian 17, British 15, Indian 6, French 4, Greek 4, Mexican 4, Middle Eastern 4, Spanish 4, Caribbean 3, Chinese 3, Japanese 3, Korean 3, Thai 3, West African 2, Vietnamese 2, Ethiopian 1. The rest are filed by role (Vegetarian, Snacks, Breakfast, Special, Budget, Drinks, Lunch).
 
-Cost: budget 73, everyday 27, special 10.
+Cost: budget 98, everyday 38, special 10.
+
+Added 3 Oct: 8 drinks (smoothies, lassi, golden milk, hot chocolate, mint tea, ginger and lemon), 4 vegan breakfasts, 5 vegan snacks, and dishes from Japan, Korea, Greece, Spain, Vietnam, West Africa and Ethiopia. Eight new reference foods came with them (fresh mint, miso, rice vinegar, gochujang, kimchi, edamame, pak choi, beansprouts). Drinks are stored with `meal_type` 'drink' until migration 026 lets `default_slot` hold it.
 
 ### Gaps, in priority order
 
-1. **Drinks: none.** The plan has a drinks row. Needs smoothies, teas, hot drinks and a few cold ones. Originals are fine here.
-2. **Vegan breakfast: none.**
-3. **Snacks: 9 in all, 2 vegan.**
-4. **Thin cuisines:** Chinese, Thai and Caribbean have 3 each. Japanese, Korean, West African, Ethiopian, Greek, Spanish and Vietnamese have none.
-5. **Special occasions: 10.** A few weekend and celebration dishes would round it out.
-6. **Bowls and salads as lunch:** the Buddha Bowls scans are a natural fit here.
+1. **Special occasions: 10.** A few weekend and celebration dishes would round it out. Good use for book picks.
+2. **Meat or fish breakfasts and snacks: 3 and 1.** Smoked fish, eggs with bacon, a savoury muffin.
+3. **Thin cuisines:** Caribbean, Chinese, Thai, Japanese and Korean have 3 each; West African, Vietnamese and Ethiopian 2 or fewer. Turkish, Persian, Filipino, Malaysian, Sri Lankan and Polish have none.
+4. **Cold drinks:** most drinks are smoothies or hot. Iced tea, lemonade, a cordial.
+5. **Bowls and salads as lunch:** the Buddha Bowls scans are a natural fit here.
+6. **Cost:** special is still only 10 of 146.
 
 ## Household library
 

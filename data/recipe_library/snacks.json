@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Snacks",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -374,6 +374,280 @@
     },
     {
      "instruction": "A skewer should come out clean."
+    }
+   ]
+  },
+  {
+   "slug": "crispy-roast-chickpeas",
+   "name": "Crispy roast chickpeas",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Dry them well. Wet chickpeas steam instead of crisping.",
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Drain and rinse {{ing:chickpeas-tinned}}. Pat dry with kitchen roll."
+    },
+    {
+     "instruction": "Toss on a baking tray with {{ing:olive-oil}}, {{ing:paprika}}, {{ing:cumin-ground}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Roast for 30 minutes, until crunchy. Shake the tray halfway.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cool for 5 minutes on the tray.",
+     "note": "They crisp up more as they cool.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "salted-edamame",
+   "name": "Salted edamame",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Eat the beans and leave the pods.",
+   "ingredients": [
+    {
+     "ref": "edamame-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 0.5,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil a pan of water."
+    },
+    {
+     "instruction": "Add {{ing:edamame-frozen}}. Cook for 4 minutes, until bright green.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Drain well."
+    },
+    {
+     "instruction": "Toss with {{ing:salt}} and a squeeze of {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "apple-peanut-butter-stacks",
+   "name": "Apple and peanut butter stacks",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Use almond butter or sunflower seed butter if peanuts are a problem.",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "sunflower-seeds",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Core {{ing:apple-medium}}. Slice into rings about as thick as a coin."
+    },
+    {
+     "instruction": "Spread each ring with some of {{ing:peanut-butter}}."
+    },
+    {
+     "instruction": "Scatter over {{ing:raisins}} and {{ing:sunflower-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "banana-oat-cookies",
+   "name": "Two-banana oat cookies",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Spotty bananas are sweetest. These are soft, not crunchy.",
+   "ingredients": [
+    {
+     "ref": "banana-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 160,
+     "unit": "g"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a baking tray with baking paper."
+    },
+    {
+     "instruction": "Mash {{ing:banana-medium}} in a bowl with a fork."
+    },
+    {
+     "instruction": "Stir in {{ing:oats-rolled}}, {{ing:raisins}}, {{ing:cinnamon-ground}} and {{ing:peanut-butter}}."
+    },
+    {
+     "instruction": "Roll into 12 balls. Flatten each on the tray."
+    },
+    {
+     "instruction": "Bake for 15 minutes, until golden at the edges.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Cool on the tray for 10 minutes before moving.",
+     "note": "They firm up as they cool.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "veg-sticks-hummus",
+   "name": "Veg sticks and hummus",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Cut a batch on Sunday. Kept in water in the fridge, they stay crunchy for three days.",
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "hummus",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:carrot-medium}}. Cut into sticks."
+    },
+    {
+     "instruction": "Cut {{ing:cucumber}} and {{ing:pepper-bell}} into sticks."
+    },
+    {
+     "instruction": "Spoon {{ing:hummus}} into a bowl. Sprinkle with {{ing:paprika}}."
     }
    ]
   }

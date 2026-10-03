@@ -23,7 +23,7 @@ section
           span.hub-blurb
         span.hub-chevron
     li.hub-item
-      a.hub-link"Recipe libraryA hundred recipes to add from, ready to cook.›"
+      a.hub-link"Recipe libraryRecipes to add from, ready to cook.›"
         span.hub-text
           span.hub-title
           span.hub-blurb
