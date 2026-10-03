@@ -136,6 +136,23 @@ check('the tip names both foods in kitchen words', /firm tofu/.test(tofu.swaps[0
 eq('an unrelated recipe is not suggested', tofu.swaps.length, 1);
 eq('no slug, no ideas', ideasFor('', fakeRecipes).uses.length, 0);
 
+// ============ What is in the cupboard ============
+console.log('\nCoverage');
+const { haveNames, coverage } = await import(`${REPO}/js/data/recipeCoverage.js`);
+const stockRows = [
+  { foods: { name: 'Oats, rolled' }, current_qty: null, level: null },
+  { foods: { name: 'Milk, semi-skimmed' }, current_qty: 0 },
+  { foods: { name: 'Honey' }, level: 'none', level_set_at: new Date().toISOString(), shelf_life_days: 365 }
+];
+const haveSet = haveNames(stockRows, new Date().toISOString());
+const covRef = new Map([['oats-rolled', { name: 'Oats, rolled' }], ['milk-semi-skimmed', { name: 'Milk, semi-skimmed' }], ['honey', { name: 'Honey' }], ['water', { name: 'Water' }]]);
+const cov = coverage({ ingredients: [{ ref: 'oats-rolled' }, { ref: 'milk-semi-skimmed' }, { ref: 'honey' }, { ref: 'water' }] }, haveSet, covRef);
+eq('in the cupboard with no amount counts as had', cov.have.some((i) => i.ref === 'oats-rolled'), true);
+eq('a quantity of zero is missing', cov.missing.some((i) => i.ref === 'milk-semi-skimmed'), true);
+eq('a level of none is missing', cov.missing.some((i) => i.ref === 'honey'), true);
+eq('water is never missing', cov.have.some((i) => i.ref === 'water'), true);
+eq('total counts every line', cov.total, 4);
+
 // ============ Every shipped recipe ============
 console.log('\nEvery shipped recipe');
 const refDoc = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8'));

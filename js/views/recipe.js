@@ -1,4 +1,7 @@
-// js/views/recipe.js — 03 Oct 2026 v2
+// js/views/recipe.js — 03 Oct 2026 v3
+// v3: Add to plan (day and meal, straight from here), what you have of it,
+// and the missing ingredients onto the list in one tap. The two dead ends
+// were: add to meals, then go to the plan; see what is missing, then go to Shop.
 // v2: nutrition bars moved to components/nutritionBars.js (shared with Today).
 // Kitchen rebuild, K5. One recipe on its own page.
 //
@@ -20,7 +23,14 @@
 // the same size. Only the ingredient amounts scale.
 
 import { el } from '../lib/dom.js';
-import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd } from '../data/recipeLibrary.js';
+import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
+import { listStock } from '../data/pantry.js';
+import { haveNames, coverage } from '../data/recipeCoverage.js';
+import { addPlanEntry, DAYS, SLOTS } from '../data/mealPlan.js';
+import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
+import { requestListSync } from '../data/listSync.js';
+import { openDetailSheet } from '../components/detailSheet.js';
+import { announce } from '../lib/a11y.js';
 import { referenceBySlug } from '../data/foodReference.js';
 import { recipeNutrition } from '../data/nutrition.js';
 import { nutritionBars } from '../components/nutritionBars.js';
@@ -156,33 +166,132 @@ export function render(mountEl) {
 
     // ---- Actions ---------------------------------------------------------
     const actions = el('div', { class: 'recipe-actions' });
-    const add = el('button', { type: 'button', class: 'btn btn-primary', text: 'Add to my meals' });
+    const add = el('button', { type: 'button', class: 'btn btn-primary', text: 'Add to plan', 'aria-haspopup': 'dialog' });
     const fav = el('button', { type: 'button', class: 'btn' });
     actions.append(add, fav);
     body.appendChild(actions);
     const status = el('p', { class: 'field-hint', role: 'status' });
     body.appendChild(status);
 
+    // Your copy of this recipe, if you have one: planning uses it rather
+    // than adding the recipe a second time.
+    let ownedMeal = null;
     existingLibraryRefs().then((refs) => {
       if (destroyed || !refs || !refs.ok) return;
-      const owned = refs.data instanceof Map && refs.data.has(recipe.slug);
-      if (owned) { add.textContent = 'In your meals'; add.disabled = true; }
+      ownedMeal = (refs.data instanceof Map && refs.data.get(recipe.slug)) || null;
     }).catch(() => {});
 
-    add.addEventListener('click', async () => {
-      add.disabled = true;
-      add.textContent = 'Adding…';
-      const result = await addLibraryRecipe(recipe);
-      if (destroyed) return;
-      if (!result.ok) {
-        add.disabled = Boolean(result.existing);
-        add.textContent = result.existing ? 'In your meals' : 'Add to my meals';
-        status.textContent = result.existing ? `You already have ${result.existing.name}.` : 'That did not save. Check your connection and try again.';
-        return;
-      }
-      add.textContent = 'In your meals';
-      status.textContent = describeAdd(result);
-    }, { signal });
+    add.addEventListener('click', () => openPlanSheet(), { signal });
+
+    function openPlanSheet() {
+      const todayIndex = (new Date().getDay() + 6) % 7; // Monday = 0
+      openDetailSheet({
+        title: `Add ${recipe.name} to the plan`,
+        returnFocusTo: add,
+        build(sheetBody, api) {
+          const form = el('form', { class: 'plan-add-form' });
+          const week = el('select', { id: 'plan-add-week' });
+          week.append(el('option', { value: 'this', text: 'This week' }), el('option', { value: 'next', text: 'Next week' }));
+          const day = el('select', { id: 'plan-add-day' });
+          DAYS.forEach((d, i) => {
+            const o = el('option', { value: d.value, text: d.label });
+            if (i === todayIndex) o.selected = true;
+            day.appendChild(o);
+          });
+          const slot = el('select', { id: 'plan-add-slot' });
+          for (const s2 of SLOTS) {
+            const o = el('option', { value: s2.value, text: s2.label });
+            if (s2.value === (recipe.default_slot || 'dinner')) o.selected = true;
+            slot.appendChild(o);
+          }
+          const go = el('button', { type: 'submit', class: 'btn btn-primary btn-block', text: 'Add to plan' });
+          form.append(
+            el('label', { for: 'plan-add-week', text: 'Week' }), week,
+            el('label', { for: 'plan-add-day', text: 'Day' }), day,
+            el('label', { for: 'plan-add-slot', text: 'Meal' }), slot,
+            go
+          );
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            go.disabled = true;
+            go.textContent = 'Adding…';
+            let meal = ownedMeal;
+            if (!meal) {
+              const added = await addLibraryRecipe(recipe);
+              meal = added.ok ? added.data : (added.existing || null);
+            }
+            if (!meal) {
+              go.disabled = false; go.textContent = 'Add to plan';
+              showToast('That did not save. Check your connection and try again.');
+              return;
+            }
+            ownedMeal = meal;
+            const result = await addPlanEntry({
+              meal_id: meal.id, day_of_week: day.value, slot: slot.value,
+              week_start: week.value === 'next' ? nextWeekStart() : thisWeekStart()
+            });
+            if (!result.ok) {
+              go.disabled = false; go.textContent = 'Add to plan';
+              showToast(result.error && result.error.message ? result.error.message : 'That did not save.');
+              return;
+            }
+            requestListSync();
+            const dayLabel = (DAYS.find((d) => d.value === day.value) || {}).label;
+            const words = `Added to ${week.value === 'next' ? 'next week\u2019s ' : ''}${dayLabel} ${slot.value}. The shopping list will follow.`;
+            api.close();
+            status.textContent = words;
+            announce(words);
+          });
+          sheetBody.appendChild(form);
+        }
+      });
+    }
+
+    // ---- What you have ---------------------------------------------------
+    const haveBox = el('section', { class: 'recipe-have', 'aria-labelledby': 'recipe-have-h' });
+    haveBox.hidden = true;
+    body.appendChild(haveBox);
+    listStock().then((stockResult) => {
+      if (destroyed || !stockResult.ok) return;
+      const result = coverage(recipe, haveNames(stockResult.data || [], new Date().toISOString()), refMap);
+      paintHave(result);
+    }).catch(() => {});
+
+    function paintHave(result) {
+      haveBox.replaceChildren();
+      haveBox.hidden = false;
+      const all = result.missing.length === 0;
+      haveBox.appendChild(el('h2', {
+        id: 'recipe-have-h', class: 'recipe-have-title',
+        text: all ? 'You have everything' : `You have ${result.have.length} of ${result.total}`
+      }));
+      if (all) return;
+      haveBox.appendChild(el('p', {
+        class: 'recipe-have-missing',
+        text: `Missing: ${result.missing.map((i) => cookingName(i.name).toLowerCase()).join(', ')}.`
+      }));
+      const n = result.missing.length;
+      const btn = el('button', { type: 'button', class: 'btn', text: `Add the ${n} missing to the list` });
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        btn.textContent = 'Adding…';
+        const done = await addMissingToList(result.missing);
+        if (destroyed) return;
+        if (!done.ok) {
+          btn.disabled = false;
+          btn.textContent = `Add the ${n} missing to the list`;
+          showToast('That did not save. Check your connection and try again.');
+          return;
+        }
+        const words = done.skipped
+          ? `${done.added} added to the shopping list; ${done.skipped} already on it.`
+          : `${done.added} added to the shopping list.`;
+        btn.textContent = 'On the list';
+        status.textContent = words;
+        announce(words);
+      }, { signal });
+      haveBox.appendChild(btn);
+    }
 
     let favourite = false;
     const paintFav = () => {

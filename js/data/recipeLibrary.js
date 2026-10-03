@@ -1,4 +1,5 @@
-// js/data/recipeLibrary.js — 01 Sep 2026 v1
+// js/data/recipeLibrary.js — 03 Oct 2026 v2
+// v2: addMissingToList() — a recipe's missing ingredients onto the list.
 // Phase 16. A browsable catalogue of recipes you can add to your own.
 //
 // ---- Why the library is static JSON, not database rows ----
@@ -295,4 +296,47 @@ export function describeAdd(result) {
   if (result.created > 0) parts.push(`${result.created} created`);
   if (result.steps > 0) parts.push(`${result.steps} steps`);
   return parts.length > 1 ? `${parts[0]} ${parts.slice(1).join(', ')}.` : parts[0];
+}
+
+
+/**
+ * Puts a recipe's missing ingredients on the shopping list (3 Oct 2026).
+ *
+ * Each ingredient becomes a food the same way adding the recipe does
+ * (existing food by name, else from the reference file), and is added as a
+ * `usual` line with the recipe's quantity. Anything already on the list and
+ * still needed is left alone rather than added twice.
+ *
+ * @param {Array<{ ref: string, quantity?: number, unit?: string }>} missing
+ * @returns {{ ok: boolean, added?: number, skipped?: number, error?: Error }}
+ */
+export async function addMissingToList(missing = []) {
+  const foodList = await supabase.from('foods').select('*');
+  if (foodList.error) return { ok: false, error: foodList.error };
+  const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
+
+  const listed = await supabase.from('shopping_list_items').select('food_id, status');
+  if (listed.error) return { ok: false, error: listed.error };
+  const onList = new Set((listed.data || []).filter((i) => i.status === 'needed').map((i) => i.food_id));
+
+  let added = 0;
+  let skipped = 0;
+  for (const seed of missing) {
+    const resolved = await resolveFood(seed, existingFoods);
+    if (resolved.error) return { ok: false, error: resolved.error, added };
+    if (onList.has(resolved.food.id)) { skipped += 1; continue; }
+    const unit = ['g', 'ml', 'item'].includes(seed.unit) ? seed.unit : 'item';
+    const qty = Number(seed.quantity);
+    const row = await supabase.from('shopping_list_items').insert({
+      food_id: resolved.food.id,
+      qty_needed: Number.isFinite(qty) && qty > 0 ? qty : null,
+      unit,
+      source: 'usual',
+      status: 'needed'
+    });
+    if (row.error) return { ok: false, error: row.error, added };
+    onList.add(resolved.food.id);
+    added += 1;
+  }
+  return { ok: true, added, skipped };
 }
