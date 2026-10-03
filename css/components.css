@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v83 */
+/* css/components.css — 03 Oct 2026 v84 */
+/* v84: Make it vegetarian / vegan chooser (3 Oct). */
 /* v83: recipe photos and their placeholder tiles (3 Oct). */
 /* v82: recipes kept on this phone; save-on-phone note (3 Oct). */
 /* v81: courses in the plan panel; four-field About row (3 Oct). */
@@ -4829,3 +4830,18 @@ body.sheet-open {
 .library-row.has-thumb > :not(.recipe-photo) { grid-column: 2; }
 .library-row.has-thumb > .recipe-photo { grid-column: 1; grid-row: 1 / span 4; }
 .recipe-photo-slot:empty { display: none; }
+
+/* ---- Make it vegetarian / vegan (3 Oct 2026, v84) ---------------------- */
+.recipe-diet { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-4); padding: var(--space-3); border-radius: var(--radius-lg); }
+.recipe-diet legend { font-weight: 600; padding: 0 var(--space-1); }
+.recipe-diet-option { display: flex; align-items: center; }
+.recipe-diet-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.recipe-diet-option label {
+  display: inline-flex; align-items: center; min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-4); border: 1px solid var(--control-border);
+  border-radius: 999em; cursor: pointer; background: var(--color-surface);
+}
+.recipe-diet-option input:checked + label { background: var(--color-accent); color: var(--color-accent-contrast); border-color: var(--color-accent); font-weight: 600; }
+.recipe-diet-option input:checked + label::before { content: "✓ "; }
+.recipe-diet-option input:focus-visible + label { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.recipe-diet .field-hint { flex-basis: 100%; margin: 0; }

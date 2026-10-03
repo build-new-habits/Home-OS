@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v11
+// js/views/recipe.js — 03 Oct 2026 v12
+// v12: Make it vegetarian / vegan (data/dietSwitch.js), as radio buttons.
 // v11: a photo at the top when the recipe has one.
 // v10: recipes kept on this phone (#/recipe?l=<id>): cook, change, delete, and
 // Add to plan puts them in your meals first. Library recipes offer Make your own version.
@@ -61,6 +62,7 @@ import { buildNameIndex, draftToRecipe, saveDraft, measuredOnly } from '../data/
 import { listFoods } from '../data/foods.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { loadImages } from '../data/recipeImages.js';
+import { DIETS, dietsFor, switchRecipe, dietFromHash } from '../data/dietSwitch.js';
 import { recipePhoto } from '../components/recipePhoto.js';
 
 const SLOT_WORDS = {
@@ -213,6 +215,7 @@ export function render(mountEl) {
     let refMap = new Map();
     let ownMeal = null;
     let kept = null;     // a recipe kept on this phone
+    let original = null; // a library recipe before any diet switch
     let nameIndex = null;
     if (localId) {
       kept = getLocal(localId);
@@ -265,6 +268,13 @@ export function render(mountEl) {
       }
       refMap = refs;
       recipe = library.data.find((r) => r.slug === slug) || null;
+      // 3 Oct 2026: as written, or switched to vegetarian or vegan.
+      if (recipe) {
+        original = recipe;
+        const diet = dietFromHash(window.location.hash);
+        const switched = diet ? switchRecipe(recipe, diet, refMap) : null;
+        if (switched) recipe = switched.recipe;
+      }
     }
     if (!recipe && localId) {
       heading.textContent = 'Recipe not found';
@@ -285,7 +295,7 @@ export function render(mountEl) {
     // ---- Photo (3 Oct 2026) ---------------------------------------------
     // Library recipes, and your own versions of them. Only when there is a
     // real photo: an empty coloured band on every page reads as unfinished.
-    const photoSlug = recipe.slug || (kept && kept.draft.fromSlug) || (ownMeal && ownMeal.library_ref) || null;
+    const photoSlug = recipe.source_slug || recipe.slug || (kept && kept.draft.fromSlug) || (ownMeal && ownMeal.library_ref) || null;
     if (photoSlug) {
       const slot = el('div', { class: 'recipe-photo-slot' });
       body.appendChild(slot);
@@ -319,6 +329,37 @@ export function render(mountEl) {
     }
     body.appendChild(facts);
 
+    // ---- Make it vegetarian / vegan (3 Oct 2026) -------------------------
+    // Radio buttons, not a menu: three short choices, all visible. Changing
+    // one reloads the page for that version (#/recipe?r=…&diet=…), replacing
+    // rather than adding history, so Back still leaves the recipe.
+    if (original && dietsFor(original).length > 1) {
+      const offered = dietsFor(original);
+      const current = recipe.diet || '';
+      const set = el('fieldset', { class: 'recipe-diet' });
+      set.appendChild(el('legend', { text: 'Make it' }));
+      for (const d of DIETS.filter((x) => offered.includes(x.value))) {
+        const id = `recipe-diet-${d.value || 'written'}`;
+        const input = el('input', { type: 'radio', name: 'recipe-diet', id, value: d.value });
+        input.checked = d.value === current;
+        input.addEventListener('change', () => {
+          try { sessionStorage.setItem('home-os-diet-focus', id); } catch { /* fine */ }
+          const base = `#/recipe?r=${encodeURIComponent(original.slug)}`;
+          window.location.replace(d.value ? `${base}&diet=${d.value}` : base);
+        }, { signal });
+        const row = el('div', { class: 'recipe-diet-option' });
+        row.append(input, el('label', { for: id, text: d.label }));
+        set.appendChild(row);
+      }
+      if (current) {
+        set.appendChild(el('p', { class: 'field-hint', role: 'status', text: `Showing the ${current} version: ingredients, amounts, method and shopping all follow.` }));
+      }
+      body.appendChild(set);
+      let focusId = null;
+      try { focusId = sessionStorage.getItem('home-os-diet-focus'); sessionStorage.removeItem('home-os-diet-focus'); } catch { /* fine */ }
+      if (focusId) requestAnimationFrame(() => { const t = document.getElementById(focusId); if (t) t.focus(); });
+    }
+
     // ---- Actions ---------------------------------------------------------
     const actions = el('div', { class: 'recipe-actions' });
     const add = el('button', { type: 'button', class: 'btn btn-primary', text: 'Add to plan', 'aria-haspopup': 'dialog' });
@@ -347,7 +388,8 @@ export function render(mountEl) {
       actions.appendChild(del);
     } else {
       // A library recipe stays as it is; your version is kept on this phone.
-      actions.appendChild(el('a', { class: 'btn', href: `#/recipe-edit?from=${encodeURIComponent(recipe.slug)}`, text: 'Make your own version' }));
+      const fromHref = `#/recipe-edit?from=${encodeURIComponent(recipe.source_slug || recipe.slug)}${recipe.diet ? `&diet=${recipe.diet}` : ''}`;
+      actions.appendChild(el('a', { class: 'btn', href: fromHref, text: 'Make your own version' }));
     }
     body.appendChild(actions);
     const status = el('p', { class: 'field-hint', role: 'status' });
@@ -492,7 +534,7 @@ export function render(mountEl) {
     } else if (kept) {
       // No favourites on phone recipes: being kept here is the point.
     } else {
-      getRecipeNote(recipe.slug).then((saved) => {
+      getRecipeNote(recipe.source_slug || recipe.slug).then((saved) => {
         if (destroyed || !saved || !saved.ok || !saved.data) return;
         favourite = Boolean(saved.data.is_favourite);
         paintFav();
@@ -503,7 +545,7 @@ export function render(mountEl) {
       paintFav();
       const result = ownMeal
         ? await setMealFavourite(ownMeal.id, favourite)
-        : await setFavourite(recipe.slug, favourite);
+        : await setFavourite(recipe.source_slug || recipe.slug, favourite);
       if (!result.ok) {
         favourite = !favourite;
         paintFav();

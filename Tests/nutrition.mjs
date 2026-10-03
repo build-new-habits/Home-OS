@@ -410,6 +410,44 @@ check('the library is not empty', count > 100, `${count}`);
   eq('an empty manifest is no photos, not an error', imageMap(null).size, 0);
 }
 
+// ---- Make it vegetarian / vegan (3 Oct 2026) ------------------------------
+{
+  const d = await import(`${REPO}/js/data/dietSwitch.js`);
+  const refFoods = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+  const refMapAll = new Map(refFoods.map((f) => [f.slug, f]));
+  const lib = (file) => JSON.parse(readFileSync(path.join(REPO, 'data/recipe_library', file), 'utf8')).recipes;
+  const curry = lib('thai.json').find((r) => r.slug === 'thai-green-chicken-curry');
+  eq('a chicken curry can be vegetarian and vegan', d.dietsFor(curry).join('|'), '|vegetarian|vegan');
+  const veg = d.switchRecipe(curry, 'vegetarian', refMapAll).recipe;
+  check('chicken becomes tofu, by weight', veg.ingredients.some((i) => i.ref === 'tofu-firm' && i.unit === 'g' && i.quantity === 405), JSON.stringify(veg.ingredients[0]));
+  check('fish sauce becomes soy sauce', veg.ingredients.some((i) => i.ref === 'soy-sauce') && !veg.ingredients.some((i) => i.ref === 'fish-sauce'));
+  check('the method says tofu, and its tokens follow', veg.steps.some((st) => /\{\{ing:tofu-firm\}\}/.test(st.instruction)) && !veg.steps.some((st) => /chicken/i.test(st.instruction)));
+  check('the name follows too', /^Thai green tofu curry \(vegetarian\)$/.test(veg.name), veg.name);
+  check('it is tagged vegetarian', veg.dietary_tags.includes('vegetarian'));
+  check('soy sauce in place of fish sauce drops the gluten-free tag', !veg.dietary_tags.includes('gluten_free'));
+  eq('it is its own recipe for your meals', veg.slug, 'thai-green-chicken-curry--vegetarian');
+  check('coconut milk is not mistaken for milk', !veg.steps.some((st) => /coconut oat milk/.test(st.instruction)));
+  const carbonara = lib('italian.json').find((r) => r.slug === 'carbonara');
+  check('a dish built on eggs and cheese is not offered as vegan', carbonara && !d.dietsFor(carbonara).includes('vegan'));
+  const already = lib('vegetarian.json')[0];
+  check('a vegetarian recipe is not offered vegetarian again', !d.dietsFor(already).includes('vegetarian'));
+  check('a diet not on offer gives nothing', d.switchRecipe(carbonara, 'vegan', refMapAll) === null);
+  eq('the diet comes from the hash', d.dietFromHash('#/recipe?r=x&diet=vegan'), 'vegan');
+  // Every switch in the library must still be fully counted for nutrition.
+  let bad = [];
+  for (const file of readdirSync(path.join(REPO, 'data/recipe_library')).filter((f) => f !== 'index.json')) {
+    for (const r of lib(file)) {
+      for (const diet of d.dietsFor(r).filter(Boolean)) {
+        const sw = d.switchRecipe(r, diet, refMapAll).recipe;
+        const n = recipeNutrition(sw, refMapAll);
+        if (n.incompleteCount > 0) bad.push(`${r.slug}/${diet}`);
+        if (sw.ingredients.some((i) => !refMapAll.has(i.ref))) bad.push(`${r.slug}/${diet}: unknown ref`);
+      }
+    }
+  }
+  check('every switched recipe is fully counted', bad.length === 0, bad.slice(0, 6).join(', '));
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

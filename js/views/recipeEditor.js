@@ -35,6 +35,7 @@ import { el, selectFrom } from '../lib/dom.js';
 import { COURSES } from '../data/courses.js';
 import { localIdFromHash, fromSlugFromHash, getLocal, saveLocal, draftFromLibrary } from '../data/localRecipes.js';
 import { loadAllRecipes } from '../data/recipeLibrary.js';
+import { switchRecipe, dietFromHash } from '../data/dietSwitch.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
@@ -150,7 +151,10 @@ export function render(mountEl) {
         page.replaceChildren(el('p', { text: 'That recipe could not be loaded. Check your connection and try again.' }));
         return;
       }
-      draft = draftFromLibrary(source, refs);
+      // Starting from the vegetarian or vegan version, if that was on screen.
+      const diet = dietFromHash(window.location.hash);
+      const switched = diet ? switchRecipe(source, diet, refs) : null;
+      draft = draftFromLibrary(switched ? { ...switched.recipe, slug: source.slug } : source, refs);
       heading.textContent = `Your version of ${source.name}`;
     } else {
       const stored = readStoredDraft();
