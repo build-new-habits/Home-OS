@@ -1,4 +1,5 @@
-// js/views/library.js — 05 Sep 2026 v1
+// js/views/library.js — 03 Oct 2026 v2
+// v2: a link to What can I make?
 //
 // The recipe library, on its own page.
 //
@@ -37,6 +38,11 @@ export function render(mountEl) {
     text: 'A hundred recipes that come with the app. Add any of them to your '
       + 'meals in one tap — the ingredients and steps come with it.'
   }));
+
+  // 3 Oct 2026: straight to what the cupboard can make.
+  const tonight = el('p');
+  tonight.appendChild(el('a', { class: 'btn', href: '#/tonight', text: 'What can I make with what I have?' }));
+  mountEl.appendChild(tonight);
 
   const panel = createLibraryPanel({
     signal,

@@ -152,6 +152,24 @@ eq('a quantity of zero is missing', cov.missing.some((i) => i.ref === 'milk-semi
 eq('a level of none is missing', cov.missing.some((i) => i.ref === 'honey'), true);
 eq('water is never missing', cov.have.some((i) => i.ref === 'water'), true);
 eq('total counts every line', cov.total, 4);
+const sized = coverage({ ingredients: [{ ref: 'onion-large' }] }, haveNames([{ foods: { name: 'Onion, medium' } }]), new Map([['onion-large', { name: 'Onion, large' }]]));
+eq('a medium onion does for a large one', sized.missing.length, 0);
+const butter = coverage({ ingredients: [{ ref: 'butter-block' }] }, haveNames([{ foods: { name: 'Butter beans, tinned' } }]), new Map([['butter-block', { name: 'Butter, block' }]]));
+eq('butter beans are not butter', butter.missing.length, 1);
+
+// ============ What can I make tonight ============
+console.log('\nWhat can I make tonight');
+const { rankRecipes } = await import(`${REPO}/js/data/recipeCoverage.js`);
+const rRef = new Map([['a', { name: 'A' }], ['b', { name: 'B' }], ['c', { name: 'C' }], ['d', { name: 'D' }]]);
+const ranked = rankRecipes([
+  { slug: 'two-missing', name: 'Two missing', ingredients: [{ ref: 'a' }, { ref: 'c' }, { ref: 'd' }] },
+  { slug: 'none-missing', name: 'None missing', ingredients: [{ ref: 'a' }] },
+  { slug: 'none-missing-soon', name: 'Uses soon', ingredients: [{ ref: 'b' }] },
+  { slug: 'have-nothing', name: 'Have nothing', ingredients: [{ ref: 'c' }] }
+], new Set(['a', 'b']), rRef, new Set(['b']));
+eq('nothing to buy comes first, and using up breaks the tie', ranked[0].recipe.slug, 'none-missing-soon');
+eq('…then the other complete one', ranked[1].recipe.slug, 'none-missing');
+eq('a recipe you have nothing for is left out', ranked.some((r) => r.recipe.slug === 'have-nothing'), false);
 
 // ============ Every shipped recipe ============
 console.log('\nEvery shipped recipe');

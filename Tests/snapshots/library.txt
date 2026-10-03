@@ -1,5 +1,7 @@
 h1"Recipe library"
 p.field-hint
+p
+  a.btn"What can I make with what I have?"
 section.library-section
   details
     summary"Browse the recipe library"

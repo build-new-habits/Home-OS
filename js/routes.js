@@ -1,4 +1,5 @@
-// js/routes.js — 03 Oct 2026 v5
+// js/routes.js — 03 Oct 2026 v6
+// v6: appends 'tonight'.
 // v5: appends 'recipe'.
 // Declarative route registry.
 //
@@ -220,6 +221,12 @@ export const routes = [
     path: 'recipe',
     title: 'Recipe',
     load: () => import('./views/recipe.js')
+  },
+  // 3 Oct 2026. Appended. Recipes ranked by what is in the cupboard.
+  {
+    path: 'tonight',
+    title: 'What can I make?',
+    load: () => import('./views/tonight.js')
   }
 ];
 

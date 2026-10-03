@@ -7,6 +7,8 @@ div
   section.today-next.today-next-empty
     h2"Nothing else planned today"
     a.btn.btn-primary"Plan a meal"
+p.today-tonight
+  a.btn.btn-block"What can I make with what I have?"
 section.today-section
   div.today-section-head
     h2"The rest of today"

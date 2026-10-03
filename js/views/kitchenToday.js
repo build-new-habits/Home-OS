@@ -36,6 +36,7 @@ import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 
 const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+const TONIGHT_ROUTE = '#/tonight';
 
 /**
  * Which meal is "next" at this time of day. Fixed boundaries rather than a
@@ -98,6 +99,11 @@ export function render(mountEl) {
 
   const nextWrap = el('div');
   mountEl.appendChild(nextWrap);
+
+  // What could be cooked from what is here (3 Oct 2026).
+  const tonightLink = el('p', { class: 'today-tonight' });
+  tonightLink.appendChild(el('a', { class: 'btn btn-block', href: TONIGHT_ROUTE, text: 'What can I make with what I have?' }));
+  mountEl.appendChild(tonightLink);
 
   const restSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-rest-h' });
   const restHead = el('div', { class: 'today-section-head' });
