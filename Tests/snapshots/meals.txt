@@ -29,4 +29,4 @@ section
           span.hub-blurb
         span.hub-chevron
 div.action-bar
-  a.action-bar__control.btn.btn-primary"Add a meal"
+  a.action-bar__control.btn.btn-primary"Write your own recipe"

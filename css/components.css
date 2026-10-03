@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v78 */
+/* css/components.css — 03 Oct 2026 v79 */
+/* v79: write your own recipe; recipe swaps; library links (3 Oct). */
 /* v78: item sheet, tappable use-soon items, put-away fields (3 Oct). */
 /* v77: the kitchen shopping list (K8). */
 /* v76: the week board (K6). */
@@ -4701,3 +4702,80 @@ body.sheet-open {
 .fill-when { font-size: var(--text-sm); color: var(--color-text-muted); }
 .fill-meal { font-weight: 600; }
 .shop-putaway-hint { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ---- Write your own recipe (3 Oct 2026, v79) ---------------------------
+   One page for the whole recipe. Cards per section, a row per ingredient,
+   and nothing narrower than a thumb. */
+.library-links { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.recipe-swaps { margin: 0 0 var(--space-4); padding-left: var(--space-5); line-height: var(--leading-normal); }
+
+.own-recipe { display: flex; flex-direction: column; gap: var(--space-5); padding-bottom: var(--space-6); }
+.own-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+.own-section h2 { margin: 0 0 var(--space-3); }
+.own-kept, .own-errors {
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start;
+}
+.own-kept p { margin: 0; }
+.own-errors h2 { margin: 0; font-size: var(--text-lg); }
+.own-errors ul { margin: 0; padding-left: var(--space-5); }
+.own-errors a { display: inline-block; min-height: var(--tap-min); padding: var(--space-2) 0; }
+.own-errors:focus { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+
+.own-about-row, .own-ing-row, .own-step-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 var(--space-3);
+}
+.own-about-row > .own-field-wide, .own-ing-row > .own-field-wide, .own-step-row > .own-field-wide { grid-column: 1 / -1; }
+@media (min-width: 34em) {
+  .own-about-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 0.7fr); }
+  .own-ing-row { grid-template-columns: minmax(0, 2fr) minmax(0, 0.8fr) minmax(0, 1fr); }
+  .own-step-row { grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); }
+}
+@media (min-width: 34em) {
+  .own-about-row > .own-field-wide, .own-ing-row > .own-field-wide, .own-step-row > .own-field-wide { grid-column: auto; }
+}
+.own-field-wide { min-width: 0; }
+.own-step-row .field:not(.own-field-wide) { max-width: 12em; }
+.own-tags .checkbox-row { margin-bottom: var(--space-2); }
+
+.own-recipe textarea {
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  line-height: var(--leading-normal);
+}
+
+.own-list { list-style: none; margin: 0 0 var(--space-3); padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.own-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background: var(--color-surface-raised);
+}
+.own-ing { border: 0; padding: 0; margin: 0; min-width: 0; }
+.own-ing > legend, .own-swap legend { font-size: var(--text-sm); color: var(--color-text-muted); padding: 0; margin-bottom: var(--space-2); }
+.own-ing-status { margin: calc(-1 * var(--space-2)) 0 var(--space-2); }
+.own-swaps { list-style: none; margin: 0 0 var(--space-3); padding: 0 0 0 var(--space-3); border-left: 3px solid var(--color-neutral-chip); }
+.own-swap fieldset { border: 0; padding: var(--space-2) 0; margin: 0; min-width: 0; }
+.own-step .field { margin-bottom: var(--space-2); }
+.own-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.own-buttons .btn { min-height: var(--tap-min); }
+.own-have { margin: 0 0 var(--space-3); font-weight: 600; }
+.own-preview .nutrition-section { margin: 0; }
+.own-save-bar { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.own-save-bar .btn { flex: 1 1 10em; min-height: var(--tap-min); }

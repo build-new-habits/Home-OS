@@ -227,6 +227,13 @@ export const routes = [
     path: 'tonight',
     title: 'What can I make?',
     load: () => import('./views/tonight.js')
+  },
+  // 3 Oct 2026. Appended. Write your own recipe, or change one
+  // (#/recipe-edit?m=<meal id>).
+  {
+    path: 'recipe-edit',
+    title: 'Your recipe',
+    load: () => import('./views/recipeEditor.js')
   }
 ];
 

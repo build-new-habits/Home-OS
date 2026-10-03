@@ -228,6 +228,83 @@ for (const file of readdirSync(dir).filter((f) => f.endsWith('.json') && f !== '
 check(`all ${count} shipped recipes have complete nutrition`, problems.length === 0, problems.slice(0, 8).join('; '));
 check('the library is not empty', count > 100, `${count}`);
 
+// ---- Write your own recipe (data/ownRecipe.js) --------------------------
+{
+  const own = await import(`${REPO}/js/data/ownRecipe.js`);
+  const p = (line) => own.parseIngredientLine(line);
+  eq('pasted "200g rice"', JSON.stringify(p('200g rice')), JSON.stringify({ quantity: 200, unit: 'g', name: 'rice' }));
+  eq('pasted "2 tbsp olive oil"', JSON.stringify(p('2 tbsp olive oil')), JSON.stringify({ quantity: 2, unit: 'tbsp', name: 'olive oil' }));
+  eq('pasted "1.5 kg potatoes" becomes grams', p('1.5 kg potatoes').quantity, 1500);
+  eq('pasted "3 eggs" is items', `${p('3 eggs').quantity} ${p('3 eggs').unit} ${p('3 eggs').name}`, '3 item eggs');
+  eq('pasted "2 large onions" keeps the size in the name', p('2 large onions').name, 'large onions');
+  eq('pasted "- a pinch of salt" has no amount', `${p('- a pinch of salt').quantity}|${p('- a pinch of salt').name}`, '|salt');
+  eq('pasted "½ tsp cumin"', p('½ tsp cumin').quantity, 0.5);
+  eq('pasted "400 ml of coconut milk" drops "of"', p('400 ml of coconut milk').name, 'coconut milk');
+  check('a blank line is nothing', p('   ') === null);
+  const method = own.parseMethod('1. Heat the oven.\n\nStep 2: Chop the onion.\n- Roast for 40 minutes.');
+  eq('pasted method: one step per line, numbers gone', method.map((m) => m.instruction).join(' | '),
+    'Heat the oven. | Chop the onion. | Roast for 40 minutes.');
+  check('a long step gets a gentle hint', own.stepHint('word '.repeat(25)).length > 0);
+  check('a short step gets none', own.stepHint('Chop the onion.') === '');
+
+  const refFoods = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+  const index = own.buildNameIndex(refFoods, [{ id: 'u1', name: 'Gran’s chutney', calories_per_100g: 150, protein_g: 1, fat_g: 0, carbs_g: 36 }]);
+  check('your own foods are suggested', index.names.includes('Gran’s chutney'));
+  const anyRef = refFoods.find((f) => f.aliases && f.aliases.length);
+  check('a reference alias resolves', own.resolveName(anyRef.aliases[0], index)?.ref === anyRef.slug);
+
+  const draft = own.emptyDraft();
+  check('an empty draft cannot be saved, and says why', own.validateDraft(draft).map((x) => x.field).join(',') === 'own-name,own-ing-name-0');
+  draft.name = 'Chutney toast';
+  draft.serves = 2;
+  draft.ingredients = [
+    own.newIngredient({ name: 'Gran’s chutney', quantity: 100, unit: 'g',
+      swaps: [own.newSwap({ name: 'Mango chutney', quantity: '', unit: 'g', label: 'from the shop' })] }),
+    own.newIngredient({ name: 'Salt', quantity: '', unit: 'item' })
+  ];
+  draft.steps = [own.newStep({ instruction: 'Spread it.', minutes: '' }), own.newStep({ instruction: '  ' })];
+  eq('a complete draft has no problems', own.validateDraft(draft).length, 0);
+  const specs = own.ingredientSpecs(draft);
+  eq('a swap is written as an unchosen option', specs.map((x) => `${x.foodName}:${x.is_selected}:${x.option_group}`).join(','),
+    'Gran’s chutney:true:Gran’s chutney,Mango chutney:false:Gran’s chutney,Salt:true:null');
+  eq('a swap with no amount takes the main one’s', specs[1].quantity_g, 100);
+  eq('a swap carries its reason with its name', specs[1].option_label, 'Mango chutney, from the shop');
+  eq('blank steps are not saved', own.stepSpecs(draft).length, 1);
+  eq('tablespoons are stored as millilitres', own.ingredientSpecs({ ingredients: [own.newIngredient({ name: 'Oil', quantity: 2, unit: 'tbsp' })] })[0].quantity_g, 30);
+
+  const { recipe, refMap } = own.draftToRecipe(draft, index);
+  const n = recipeNutrition(own.measuredOnly(recipe), refMap);
+  eq('the preview counts your own food per serving', Math.round(n.perServing.calories), 75);
+  eq('an ingredient with no amount is not "unknown"', own.unknownNutrition(draft, index).length, 0);
+  draft.ingredients[0].quantity = 'lots';
+  check('an amount that is not a number is a problem, linked to its field', own.validateDraft(draft).some((x) => x.field === 'own-ing-qty-0'));
+
+  // Round trip: rows from the database back into a draft.
+  const back = own.draftFromMeal(
+    { id: 'm9', name: 'Chutney toast', default_serves: 2, meal_type: 'snack', dietary_tags: ['vegan'], method_note: 'Warm toast.' },
+    [
+      { quantity_g: 100, unit: 'g', option_group: 'Gran’s chutney', is_selected: true, foods: { name: 'Gran’s chutney' } },
+      { quantity_g: 100, unit: 'g', option_group: 'Gran’s chutney', is_selected: false, option_label: 'Mango chutney, from the shop', foods: { name: 'Mango chutney' } },
+      { quantity_g: 30, unit: 'ml', option_group: null, foods: { name: 'Olive oil' } }
+    ],
+    [{ step_number: 2, instruction: 'Eat.' }, { step_number: 1, instruction: 'Spread it.', duration_min: 2 }]
+  );
+  eq('round trip: swaps come back under their ingredient', `${back.ingredients[0].name}>${back.ingredients[0].swaps[0].name}/${back.ingredients[0].swaps[0].label}`,
+    'Gran’s chutney>Mango chutney/from the shop');
+  eq('round trip: 30 ml comes back as 2 tbsp', `${back.ingredients[1].quantity} ${back.ingredients[1].unit}`, '2 tbsp');
+  eq('round trip: steps in order with timers', back.steps.map((x) => `${x.instruction}${x.minutes ? `(${x.minutes})` : ''}`).join(' '), 'Spread it.(2) Eat.');
+  eq('round trip: kind, tags and tip', `${back.kind}/${back.tags.join()}/${back.note}`, 'snack/vegan/Warm toast.');
+}
+
+{
+  const { editIdFromHash, describeIngredient } = await import(`${REPO}/js/views/recipeEditor.js`);
+  eq('the editor reads which recipe to change', editIdFromHash('#/recipe-edit?m=ab-12'), 'ab-12');
+  eq('a new recipe has no id', editIdFromHash('#/recipe-edit'), '');
+  const own = await import(`${REPO}/js/data/ownRecipe.js`);
+  const index = own.buildNameIndex(JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods, []);
+  check('an unknown ingredient says it is new, without blame', /New to the app/.test(describeIngredient({ name: 'Zzyzx paste', unit: 'g' }, index)));
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

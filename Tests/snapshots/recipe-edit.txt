@@ -1,0 +1,98 @@
+a.back-link"Recipes"
+h1"Write your own recipe"
+div.own-recipe
+  div.own-errors[hidden=]
+  datalist
+  section.own-section
+    h2"About it"
+    div.own-about-row
+      div.field.own-field-wide
+        label"What it is called"
+        input[type=text]
+      div.field
+        label"Kind of meal"
+        select
+          option
+          option
+          option
+          option
+          option
+      div.field
+        label"Serves"
+        input[type=number]
+    fieldset.own-tags
+      legend"It is (tick any that are true)"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Vegetarian"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Vegan"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Gluten free"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Dairy free"
+  section.own-section
+    h2"Ingredients"
+    p.field-hint
+    ol.own-list
+      li.own-item
+        fieldset.own-ing
+          legend"Ingredient <n>"
+          div.own-ing-row
+            div.field.own-field-wide
+              label"Ingredient"
+              input[type=text]
+            div.field
+              label"Amount"
+              input[type=text]
+            div.field
+              label"Unit"
+              select
+                option
+                option
+                option
+                option
+                option
+          p.field-hint.own-ing-status
+          div.own-buttons
+            button.btn.btn-small[type=button]"Add a swap"
+            button.btn.btn-quiet.btn-small[type=button]"Remove"
+    div.own-buttons
+      button.btn[type=button]"Add an ingredient"
+      button.btn.btn-quiet[type=button]"Paste a list"
+  section.own-section
+    h2"Method"
+    p.field-hint
+    ol.own-list
+      li.own-item.own-step
+        div.own-step-row
+          div.field.own-field-wide
+            label"Step <n>"
+            textarea
+            p.field-hint
+          div.field
+            label"Minutes (optional)"
+            input[type=text]
+        div.own-buttons
+          button.btn.btn-quiet.btn-small[type=button]"Move up"
+          button.btn.btn-quiet.btn-small[type=button]"Move down"
+          button.btn.btn-quiet.btn-small[type=button]"Remove"
+    div.own-buttons
+      button.btn[type=button]"Add a step"
+      button.btn.btn-quiet[type=button]"Paste the method"
+  section.own-section
+    h2"A tip (optional)"
+    div.field
+      label"Anything whoever cooks it should know"
+      textarea
+      p.field-hint
+  section.own-preview.own-section
+    h2"As it stands"
+    div
+      p.field-hint
+  div.own-save-bar
+    button.btn.btn-primary[type=button]"Save recipe"
+  p.field-hint[role=status]

@@ -1,4 +1,6 @@
-// js/views/recipe.js — 03 Oct 2026 v5
+// js/views/recipe.js — 03 Oct 2026 v6
+// v6: Change this recipe opens the recipe editor (#/recipe-edit?m=<id>);
+// your own recipe's swaps are listed under its ingredients.
 // v5: your own meals get this page too (#/recipe?m=<meal id>): the same
 // what-you-have, nutrition, scaling, cook mode and Add to plan. Until now a
 // meal you wrote yourself opened the old Meals screen — the last dead end.
@@ -69,8 +71,17 @@ export function mealIdFromHash(hash) {
 export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
   const refMap = new Map();
   const ingredients = [];
+  const swaps = [];
+  const chosenIn = new Map();
   for (const row of ingredientRows) {
-    if (row.option_group != null && row.is_selected === false) continue;
+    if (row.option_group != null && row.is_selected !== false) chosenIn.set(row.option_group, (row.foods || {}).name);
+  }
+  for (const row of ingredientRows) {
+    if (row.option_group != null && row.is_selected === false) {
+      // A swap: shown under the ingredients, not counted or shopped for.
+      swaps.push({ instead: chosenIn.get(row.option_group) || row.option_group, text: row.option_label || (row.foods || {}).name || '' });
+      continue;
+    }
     const food = row.foods || {};
     const ref = slugifyFoodName(food.name) || `food-${row.food_id}`;
     refMap.set(ref, food);
@@ -86,6 +97,7 @@ export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
     dietary_tags: meal.dietary_tags || [],
     method_note: meal.method_note || null,
     ingredients,
+    swaps,
     steps: stepRows.map((st) => ({
       instruction: st.instruction, note: st.note, duration_min: st.duration_min,
       step_group: st.step_group, while_waiting: st.while_waiting
@@ -243,7 +255,7 @@ export function render(mountEl) {
     actions.append(add, fav);
     if (ownMeal) {
       // Your own recipe is yours to change: ingredients, steps, swaps.
-      actions.appendChild(el('a', { class: 'btn', href: `#/meals?edit=${encodeURIComponent(ownMeal.id)}`, text: 'Change this meal' }));
+      actions.appendChild(el('a', { class: 'btn', href: `#/recipe-edit?m=${encodeURIComponent(ownMeal.id)}`, text: 'Change this recipe' }));
     }
     body.appendChild(actions);
     const status = el('p', { class: 'field-hint', role: 'status' });
@@ -447,6 +459,14 @@ export function render(mountEl) {
     minus.addEventListener('click', () => { if (serves > 1) { serves -= 1; paintIngredients(); } }, { signal });
     plus.addEventListener('click', () => { if (serves < MAX_SERVES) { serves += 1; paintIngredients(); } }, { signal });
     paintIngredients();
+
+    if (recipe.swaps && recipe.swaps.length) {
+      const swapList = el('ul', { class: 'recipe-swaps' });
+      for (const sw of recipe.swaps) {
+        swapList.appendChild(el('li', { text: `Instead of ${cookingName(sw.instead || '')}: ${sw.text}` }));
+      }
+      ingSection.append(el('h3', { text: 'Swaps' }), swapList);
+    }
 
     const kit = describeEquipment(recipe);
     if (kit) {

@@ -1211,6 +1211,93 @@ console.log('\nFuture plans');
   backMount.remove();
 }
 
+// ---- Write your own recipe (3 Oct 2026) --------------------------------
+// The editor writes nothing until Save, then: the meal, the ingredient
+// rows, the steps — and on an edit, removes the OLD rows only after the new
+// ones are in, so a dropped connection never leaves a meal empty.
+console.log('\nWriting and changing your own recipe');
+{
+  const editor = await import(pathToFileURL(path.join(REPO, 'js/views/recipeEditor.js')).href);
+  // The app reads the global, as a browser has it.
+  global.localStorage = window.localStorage;
+  try { window.localStorage.clear(); } catch { /* fine */ }
+
+  window.location.hash = '#/recipe-edit';
+  const mountNew = window.document.createElement('main');
+  window.document.body.appendChild(mountNew);
+  clearCalls();
+  const cleanNew = editor.render(mountNew);
+  await settle(250);
+  check('the editor opens with nothing written', writes().length === 0, JSON.stringify(writes()));
+
+  click([...mountNew.querySelectorAll('button')].find((b) => /^Save recipe$/.test(b.textContent)));
+  await settle(60);
+  const summary = mountNew.querySelector('.own-errors');
+  check('saving an empty recipe lists what to sort, and writes nothing',
+    summary && !summary.hidden && writes().length === 0 && /name/.test(summary.textContent), summary && summary.textContent);
+  check('focus moves to that list', window.document.activeElement === summary);
+
+  setValue(mountNew.querySelector('#own-name'), 'Oaty bake');
+  setValue(mountNew.querySelector('#own-ing-name-0'), 'Rolled oats');
+  setValue(mountNew.querySelector('#own-ing-qty-0'), '120');
+  setValue(mountNew.querySelector('#own-step-0'), 'Bake for 20 minutes.');
+  setValue(mountNew.querySelector('#own-step-min-0'), '20');
+  await settle(30);
+  check('the list of problems clears as they are fixed', summary.hidden, summary.textContent);
+  let kept = null;
+  try { kept = JSON.parse(window.localStorage.getItem('home-os-own-recipe-draft') || 'null'); } catch { kept = null; }
+  check('a new recipe is kept on the phone while it is written', kept && kept.name === 'Oaty bake', JSON.stringify(kept));
+
+  clearCalls();
+  click([...mountNew.querySelectorAll('button')].find((b) => /^Save recipe$/.test(b.textContent)));
+  await settle(500);
+  const w = writes();
+  const mealInsert = w.find((c) => c.table === 'meals' && c.op === 'insert');
+  check('save creates the meal with its name, serves and kind',
+    mealInsert && mealInsert.payload.name === 'Oaty bake' && mealInsert.payload.default_serves === 4 && mealInsert.payload.meal_type === 'dinner',
+    JSON.stringify(mealInsert && mealInsert.payload));
+  const ingInsert = w.find((c) => c.table === 'meal_ingredients' && c.op === 'insert');
+  check('the ingredient reuses the food you already have',
+    ingInsert && Array.isArray(ingInsert.payload) && ingInsert.payload[0].food_id === 'food-1' && ingInsert.payload[0].quantity_g === 120,
+    JSON.stringify(ingInsert && ingInsert.payload));
+  check('no new food is created for it', !w.some((c) => c.table === 'foods' && c.op === 'insert'));
+  const stepInsert = w.find((c) => c.table === 'meal_steps' && c.op === 'insert');
+  check('the step is saved with its timer',
+    stepInsert && stepInsert.payload[0].instruction === 'Bake for 20 minutes.' && stepInsert.payload[0].duration_min === 20,
+    JSON.stringify(stepInsert && stepInsert.payload));
+  check('a new recipe deletes nothing', !w.some((c) => c.op === 'delete'));
+  check('and opens on its recipe page', window.location.hash === '#/recipe?m=new-row', window.location.hash);
+  check('the kept copy is cleared once saved', !window.localStorage.getItem('home-os-own-recipe-draft'));
+  if (typeof cleanNew === 'function') cleanNew();
+  mountNew.remove();
+
+  // Changing one you have.
+  window.location.hash = '#/recipe-edit?m=meal-1';
+  const mountEdit = window.document.createElement('main');
+  window.document.body.appendChild(mountEdit);
+  clearCalls();
+  const cleanEdit = editor.render(mountEdit);
+  await settle(250);
+  check('changing a recipe starts from what it has',
+    mountEdit.querySelector('#own-name')?.value === 'Porridge' && mountEdit.querySelector('#own-ing-name-0')?.value === 'Rolled oats',
+    `${mountEdit.querySelector('#own-name')?.value} / ${mountEdit.querySelector('#own-ing-name-0')?.value}`);
+  setValue(mountEdit.querySelector('#own-name'), 'Proper porridge');
+  clearCalls();
+  click([...mountEdit.querySelectorAll('button')].find((b) => /^Save changes$/.test(b.textContent)));
+  await settle(600);
+  const we = writes();
+  const upd = we.find((c) => c.table === 'meals' && c.op === 'update');
+  check('an edit updates that meal, by id', upd && upd.filters.id === 'meal-1' && upd.payload.name === 'Proper porridge',
+    JSON.stringify(upd));
+  const firstInsert = we.findIndex((c) => c.table === 'meal_ingredients' && c.op === 'insert');
+  const firstDelete = we.findIndex((c) => c.table === 'meal_ingredients' && c.op === 'delete');
+  check('new ingredient rows go in BEFORE the old ones come out',
+    firstInsert !== -1 && firstDelete !== -1 && firstInsert < firstDelete, JSON.stringify(we.map((c) => `${c.table}:${c.op}`)));
+  check('and nothing is kept on the phone for an edit', !window.localStorage.getItem('home-os-own-recipe-draft'));
+  if (typeof cleanEdit === 'function') cleanEdit();
+  mountEdit.remove();
+}
+
 // ---- The report goes LAST ----
 // It used to sit above the weekly-plan block, which meant those checks ran
 // after the gate had already declared itself passed: a failure there would

@@ -1,4 +1,5 @@
-// js/views/meals.js — 03 Oct 2026 v32
+// js/views/meals.js — 03 Oct 2026 v33
+// v33: the action bar opens the full recipe editor; the quick form stays at #/meals-add.
 // v32: #/meals?edit=<id> opens that meal's sheet (from the recipe page).
 // P5: three screens — meals, meals-match, meals-add.
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
@@ -1174,7 +1175,7 @@ export function render(mountEl, { section = 'list' } = {}) {
     ]));
     mountEl.append(mealsSection);
     mountEl.appendChild(createActionBar({
-      label: 'Add a meal', href: '#/meals-add'
+      label: 'Write your own recipe', href: '#/recipe-edit'
     }).element);
   }
 

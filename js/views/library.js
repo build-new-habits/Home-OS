@@ -1,4 +1,5 @@
-// js/views/library.js — 03 Oct 2026 v2
+// js/views/library.js — 03 Oct 2026 v3
+// v3: Write your own recipe and Your recipes, beside What can I make.
 // v2: a link to What can I make?
 //
 // The recipe library, on its own page.
@@ -40,8 +41,11 @@ export function render(mountEl) {
   }));
 
   // 3 Oct 2026: straight to what the cupboard can make.
-  const tonight = el('p');
+  const tonight = el('p', { class: 'library-links' });
   tonight.appendChild(el('a', { class: 'btn', href: '#/tonight', text: 'What can I make with what I have?' }));
+  // 3 Oct 2026: your own recipes start here too.
+  tonight.appendChild(el('a', { class: 'btn', href: '#/recipe-edit', text: 'Write your own recipe' }));
+  tonight.appendChild(el('a', { class: 'btn btn-quiet', href: '#/meals', text: 'Your recipes' }));
   mountEl.appendChild(tonight);
 
   const panel = createLibraryPanel({
