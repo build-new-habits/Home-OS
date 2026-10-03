@@ -9,7 +9,7 @@ section.library-phone
   ul.library-phone-list[hidden=]
   p.field-hint
   div.library-links
-    button.btn[type=button]"Download a backup"
+    button.btn[type=button][hidden=]"Download a backup"
     input.visually-hidden[type=file]
     label.btn"Restore from a backup"
   p.field-hint[role=status]
