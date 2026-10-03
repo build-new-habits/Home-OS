@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-01 Sep 2026 v22
+03 Oct 2026 v23
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -11,6 +11,24 @@ policies**, 3 trigger functions, 22 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
+
+---
+
+## 0u. Revision 25 — kitchen rebuild (03 Oct 2026)
+
+Migration `026_kitchen_rebuild`. Three additive changes; nothing renamed or
+dropped.
+
+| Change | Detail | Why |
+|---|---|---|
+| `weekly_meal_plan.slot` | check now `breakfast, lunch, dinner, snack, drink` | the plan board has a drinks row |
+| `meals.default_slot` | check now allows `drink` (still nullable) | drinks in the library |
+| `foods.fibre_g` | numeric, nullable, `>= 0`, **per 100 g** | fibre is one of the five figures shown. Null = not recorded, never zero |
+| `user_settings.show_nutrition` | boolean, not null, default true | one switch hides nutrition everywhere |
+| `user_settings.nutrition_targets` | jsonb, nullable | personal targets keyed `calories`, `carbs_g`, `fat_g`, `protein_g`, `fibre_g`. Null = UK reference intakes. Bad values fall back per nutrient (`data/nutrition.js resolveTargets`) |
+
+The constraint names were chosen by Postgres when the columns were made, so
+the migration finds them by what they check rather than by name.
 
 ---
 
