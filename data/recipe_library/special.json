@@ -650,7 +650,7 @@
    "name": "Flourless chocolate cake",
    "cuisine": "Special",
    "budget_tier": "special",
-   "default_slot": "snack",
+   "default_slot": "dinner",
    "default_serves": 10,
    "dietary_tags": [
     "vegetarian",
@@ -713,7 +713,8 @@
     {
      "instruction": "The middle should still wobble. Cool completely in the tin."
     }
-   ]
+   ],
+   "course": "pudding"
   },
   {
    "slug": "duck-style-orange-chicken",
@@ -1336,7 +1337,7 @@
    "name": "Little dark chocolate pots",
    "cuisine": "Special",
    "budget_tier": "special",
-   "default_slot": "snack",
+   "default_slot": "dinner",
    "default_serves": 6,
    "dietary_tags": [
     "vegetarian",
@@ -1395,7 +1396,8 @@
     {
      "instruction": "Top with {{ing:raspberries}} to serve."
     }
-   ]
+   ],
+   "course": "pudding"
   }
  ]
 }

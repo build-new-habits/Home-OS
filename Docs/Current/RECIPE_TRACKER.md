@@ -51,11 +51,13 @@ Round 2 (evening): 4 specials (herb-crusted salmon, chicken and apricot stew, st
 
 Drinks are stored with `meal_type` 'drink' until migration 026 lets `default_slot` hold it.
 
+Round 3 (evening): starters and puddings, now a **course** rather than a meal time. 9 starters (8 new plus bruschetta) and 12 puddings (10 new plus the chocolate torte and chocolate pots), 193 recipes in all. A course sits in the dinner (or lunch) slot beside the main; the plan panel lists dishes in eating order.
+
 ### Gaps, in priority order
 
 1. **Book picks.** The original library is now broad; the next balance gains come from converted scans (Buddha Bowls for lunches especially).
 2. **Meat or fish snacks: still few.** Fine for most households; a couple more would round it out.
-3. **Puddings.** There is no pudding slot; the chocolate pots and flourless cake sit under snack. Worth deciding whether puddings get their own place.
+3. **Vegan starters and puddings:** two of each so far.
 4. **Cuisines with one or two:** Filipino, Ethiopian, Malaysian, Persian, Vietnamese, West African. Polish, Lebanese and Ethiopian sides could follow.
 5. **Cost:** special is 13 of 175.
 

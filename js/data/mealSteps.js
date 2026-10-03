@@ -1,4 +1,5 @@
-// js/data/mealSteps.js — 03 Oct 2026 v3
+// js/data/mealSteps.js — 03 Oct 2026 v4
+// v4: "half of {{ing:x}}" reads "half of the 50 g butter".
 // v3: steps read "7 boneless chicken thighs", not "7 thighs of chicken thigh, boneless".
 // Phase 15. Instructions you can follow while tired, distracted, or holding
 // something hot.
@@ -229,7 +230,14 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     if (food.name) index.set(slugifyFoodName(food.name), { row, food });
   }
 
-  return String(instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_match, slug) => {
+  return String(instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_match, slug, offset, whole) => {
+    // "half of {{ing:butter}}" reads "half of the 50 g butter": a share of
+    // an amount takes "the" (3 Oct 2026). "Juice of 1 lemon" does not.
+    const share = /\b(half|rest|some|little|third|thirds|quarter|most) of $/i.test(whole.slice(0, offset));
+    return (share ? 'the ' : '') + resolveOne(slug);
+  });
+
+  function resolveOne(slug) {
     const hit = index.get(String(slug).toLowerCase());
     if (!hit) return String(slug).replace(/-/g, ' ');
     const qty = Number(hit.row.quantity_g) * (Number(scale) || 1);
@@ -262,7 +270,7 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     }
 
     return `${amount} ${words}`;
-  });
+  }
 }
 
 /** Tokens in a step that match nothing in the meal, for the editor to flag. */

@@ -1,4 +1,5 @@
-// service-worker.js — 03 Oct 2026 v98
+// service-worker.js — 03 Oct 2026 v99
+// v99: recipe_library/index.json (193 recipes: starters and puddings). Shell v145.
 // v98: data/courses.js. Shell v144.
 // v97: food_reference.json (+2 foods, tea bags brewed) and recipe_library/index.json (175 recipes). Shell v143.
 // v96: components/leftoverSheet.js. Shell v142.
@@ -241,7 +242,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v144';
+const CACHE_NAME = 'home-os-shell-v145';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -249,9 +250,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=144',
-  './css/base.css?v=144',
-  './css/components.css?v=144',
+  './css/tokens.css?v=145',
+  './css/base.css?v=145',
+  './css/components.css?v=145',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

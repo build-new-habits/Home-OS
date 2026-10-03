@@ -98,6 +98,11 @@
    "count": 2
   },
   {
+   "cuisine": "Puddings",
+   "path": "data/recipe_library/puddings.json",
+   "count": 10
+  },
+  {
    "cuisine": "Snacks",
    "path": "data/recipe_library/snacks.json",
    "count": 13
@@ -116,6 +121,11 @@
    "cuisine": "Sri Lankan",
    "path": "data/recipe_library/srilankan.json",
    "count": 3
+  },
+  {
+   "cuisine": "Starters",
+   "path": "data/recipe_library/starters.json",
+   "count": 8
   },
   {
    "cuisine": "Thai",

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Italian",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -1488,7 +1488,7 @@
    "name": "Tomato bruschetta",
    "cuisine": "Italian",
    "budget_tier": "budget",
-   "default_slot": "snack",
+   "default_slot": "dinner",
    "default_serves": 4,
    "dietary_tags": [
     "vegetarian",
@@ -1549,7 +1549,8 @@
     {
      "instruction": "Tear {{ing:fresh-basil}} over."
     }
-   ]
+   ],
+   "course": "starter"
   },
   {
    "slug": "mushroom-tagliatelle",

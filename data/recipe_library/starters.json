@@ -1,0 +1,559 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Starters",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "prawn-cocktail-cups",
+   "name": "Prawn cocktail in lettuce cups",
+   "cuisine": "Starters",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Make the sauce up to a day ahead. Assemble just before serving so the lettuce stays crisp.",
+   "ingredients": [
+    {
+     "ref": "prawns-cooked",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.25,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:mayonnaise}} and {{ing:tomato-ketchup}} with a squeeze of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Stir in {{ing:prawns-cooked}} until coated."
+    },
+    {
+     "instruction": "Separate {{ing:lettuce-iceberg}} into 8 cup-shaped leaves."
+    },
+    {
+     "instruction": "Dice {{ing:cucumber}} finely. Put a little in each leaf."
+    },
+    {
+     "instruction": "Spoon the prawns on top. Dust with {{ing:paprika}}."
+    },
+    {
+     "instruction": "Serve with the rest of the lemon in wedges."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "garlic-mushrooms-toast",
+   "name": "Garlic mushrooms on toast",
+   "cuisine": "Starters",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Let the mushrooms brown before you stir. Stirring too soon makes them watery.",
+   "ingredients": [
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Crush {{ing:garlic-clove}}. Chop {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a large frying pan on a high heat."
+    },
+    {
+     "instruction": "Add the mushrooms in one layer. Leave 3 minutes, until browned underneath.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir. Cook 3 minutes more, until golden all over.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add the garlic. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Stir in the parsley. Spoon onto the toast."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "whipped-feta-honey",
+   "name": "Whipped feta with honey and warm pitta",
+   "cuisine": "Starters",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Blend it longer than you think. It goes from grainy to silky.",
+   "ingredients": [
+    {
+     "ref": "feta",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Blend {{ing:feta}} and {{ing:greek-yoghurt}} for 2 minutes, until smooth.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spread in a shallow bowl with the back of a spoon."
+    },
+    {
+     "instruction": "Drizzle over {{ing:olive-oil}} and {{ing:honey}}. Sprinkle with {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Warm {{ing:pitta-bread}} in a toaster. Cut into strips for dipping."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "halloumi-chilli-honey",
+   "name": "Crispy halloumi with chilli honey",
+   "cuisine": "Starters",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Serve straight from the pan. Halloumi turns rubbery as it cools.",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 16,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 0.5,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into thick fingers. Toss in {{ing:cornflour}}."
+    },
+    {
+     "instruction": "Slice {{ing:chilli-fresh}} thinly. Warm it with {{ing:honey}} in a small pan, 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a medium-high heat."
+    },
+    {
+     "instruction": "Fry the halloumi 2 minutes each side, until golden and crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Drizzle with the chilli honey. Squeeze over {{ing:lime}}."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "smoked-salmon-bites",
+   "name": "Smoked salmon and cucumber bites",
+   "cuisine": "Starters",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Can be made an hour ahead and kept covered in the fridge.",
+   "ingredients": [
+    {
+     "ref": "smoked-salmon",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.25,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:cream-cheese}} with the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Spread over {{ing:wholemeal-bread-slice}}. Cut off the crusts."
+    },
+    {
+     "instruction": "Cut each slice into four squares."
+    },
+    {
+     "instruction": "Slice {{ing:cucumber}} thinly. Lay a slice on each square."
+    },
+    {
+     "instruction": "Top with folds of {{ing:smoked-salmon}}. Finish with {{ing:black-pepper-ground}}."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "beetroot-orange-salad",
+   "name": "Beetroot, orange and walnut salad",
+   "cuisine": "Starters",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Ready-cooked beetroot works perfectly. Avoid the kind in vinegar.",
+   "ingredients": [
+    {
+     "ref": "beetroot",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:beetroot}} into wedges.",
+     "note": "Raw beetroot? Boil it whole for 40 minutes, until tender, then cool and peel."
+    },
+    {
+     "instruction": "Peel {{ing:orange}}. Slice into rounds."
+    },
+    {
+     "instruction": "Toast {{ing:walnuts}} in a dry pan for 3 minutes, until fragrant.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Spread {{ing:spinach}} on a plate. Arrange beetroot and orange on top."
+    },
+    {
+     "instruction": "Whisk {{ing:olive-oil}} with {{ing:balsamic-vinegar}}. Drizzle over."
+    },
+    {
+     "instruction": "Scatter the walnuts."
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "herb-stuffed-mushrooms",
+   "name": "Garlic and herb stuffed mushrooms",
+   "cuisine": "Starters",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "One big mushroom each is a starter. Two is a light supper.",
+   "ingredients": [
+    {
+     "ref": "portobello-mushroom",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Pull the stalks from {{ing:portobello-mushroom}}. Chop the stalks finely."
+    },
+    {
+     "instruction": "Crush {{ing:garlic-clove}}. Chop {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Mix stalks, garlic, parsley and {{ing:breadcrumbs-dried}} with 2 tablespoons of the oil."
+    },
+    {
+     "instruction": "Add the zest of {{ing:lemon}}. Pile into the mushroom caps."
+    },
+    {
+     "instruction": "Drizzle with the rest of {{ing:olive-oil}}. Bake 18 minutes, until golden.",
+     "duration_min": 18
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "pork-ginger-lettuce-cups",
+   "name": "Pork and ginger lettuce cups",
+   "cuisine": "Starters",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Eaten with your hands. Fold the lettuce round the filling like a taco.",
+   "ingredients": [
+    {
+     "ref": "pork-mince",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 25,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:ginger-fresh}}. Crush {{ing:garlic-clove}}. Slice {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a high heat."
+    },
+    {
+     "instruction": "Fry {{ing:pork-mince}} 8 minutes, breaking it up, until browned and crisp.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add ginger and garlic. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}}, the juice of {{ing:lime}} and the spring onion."
+    },
+    {
+     "instruction": "Separate {{ing:lettuce-iceberg}} into cups. Spoon the pork in."
+    },
+    {
+     "instruction": "Scatter chopped {{ing:peanuts}} over."
+    }
+   ],
+   "course": "starter"
+  }
+ ]
+}

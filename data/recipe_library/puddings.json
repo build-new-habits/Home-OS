@@ -1,0 +1,701 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Puddings",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "apple-cinnamon-crumble",
+   "name": "Apple and cinnamon crumble",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Oats in the topping make it crunchier. Serve with custard, cream or ice cream.",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Peel and core {{ing:apple-medium}}. Slice into a baking dish."
+    },
+    {
+     "instruction": "Sprinkle over {{ing:cinnamon-ground}} and a third of {{ing:sugar-soft-brown}}."
+    },
+    {
+     "instruction": "Rub {{ing:butter-block}} into {{ing:flour-plain}} with your fingertips, until like breadcrumbs."
+    },
+    {
+     "instruction": "Stir in {{ing:oats-rolled}} and the rest of the sugar."
+    },
+    {
+     "instruction": "Scatter the crumble over the apples. Do not press down."
+    },
+    {
+     "instruction": "Bake 35 minutes, until golden and bubbling at the edges.",
+     "duration_min": 35
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "sticky-toffee-pudding",
+   "name": "Sticky toffee pudding",
+   "cuisine": "Puddings",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Soaking the dates is what makes it sticky. Do not skip it.",
+   "ingredients": [
+    {
+     "ref": "dates-pitted",
+     "quantity": 25,
+     "unit": "item"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Butter a baking dish about 20 by 30 cm.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Chop {{ing:dates-pitted}}. Cover with 250 ml boiling water and {{ing:bicarbonate-of-soda}}.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Leave 10 minutes, until soft. Mash with a fork.",
+     "duration_min": 10,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Beat 50 g of the butter with 100 g of the sugar until pale.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, one at a time.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}}, then the dates and their water.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Pour into the dish. Bake 30 minutes, until springy in the middle.",
+     "duration_min": 30,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Melt the rest of the butter and sugar in a pan.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:double-cream}} and {{ing:golden-syrup}}. Bubble 3 minutes, until glossy.",
+     "duration_min": 3,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Pour half the sauce over the hot sponge. Serve with the rest.",
+     "step_group": "To serve"
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "lemon-posset",
+   "name": "Lemon posset",
+   "cuisine": "Puddings",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Three ingredients. The lemon sets the cream on its own.",
+   "ingredients": [
+    {
+     "ref": "double-cream",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 80,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:double-cream}} and {{ing:sugar-caster}} in a pan on a medium heat."
+    },
+    {
+     "instruction": "Bring to the boil. Bubble 3 minutes, stirring, without letting it rise over.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Take off the heat. Stir in the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Leave 5 minutes. Pour into six small glasses or cups.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Chill at least 3 hours, until set."
+    },
+    {
+     "instruction": "Top with {{ing:raspberries}} to serve."
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "raspberry-yoghurt-fool",
+   "name": "Raspberry and yoghurt fool",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Lighter than cream alone. Frozen raspberries work once thawed.",
+   "ingredients": [
+    {
+     "ref": "raspberries",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush two thirds of {{ing:raspberries}} with a fork."
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} until it holds soft peaks (droops at the tip)."
+    },
+    {
+     "instruction": "Fold in {{ing:greek-yoghurt}}, {{ing:honey}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Ripple the crushed raspberries through. Do not fully mix."
+    },
+    {
+     "instruction": "Spoon into four glasses. Top with the whole raspberries."
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "bread-butter-pudding",
+   "name": "Bread and butter pudding",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A good use for bread that is a day or two old.",
+   "ingredients": [
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter {{ing:bread-slice-medium}} with {{ing:butter-block}}. Cut into triangles."
+    },
+    {
+     "instruction": "Layer in a baking dish with {{ing:raisins}} between the layers."
+    },
+    {
+     "instruction": "Whisk {{ing:egg-medium}}, {{ing:milk-whole}}, {{ing:double-cream}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Pour over the bread. Leave 20 minutes to soak.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Heat the oven to 180C while it soaks."
+    },
+    {
+     "instruction": "Sprinkle with {{ing:cinnamon-ground}}. Bake 35 minutes, until puffed and golden.",
+     "duration_min": 35
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "creamy-rice-pudding",
+   "name": "Creamy baked rice pudding",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Slow in the oven. The skin on top is the best bit for some people.",
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Put {{ing:rice-arborio-dry}} and {{ing:sugar-caster}} in a buttered baking dish."
+    },
+    {
+     "instruction": "Pour in {{ing:milk-whole}} and {{ing:vanilla-extract}}. Stir."
+    },
+    {
+     "instruction": "Dot with {{ing:butter-block}}. Sprinkle with {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Bake 2 hours, until thick and creamy.",
+     "note": "Stir once after 30 minutes if you want less skin.",
+     "duration_min": 120
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "maple-baked-apples",
+   "name": "Baked apples with oats and maple",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Cooking apples go fluffy; eating apples hold their shape. Both are good.",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Core {{ing:apple-medium}}. Score a line round the middle of each.",
+     "note": "The line stops the skin splitting."
+    },
+    {
+     "instruction": "Chop {{ing:walnuts}}. Mix with {{ing:oats-rolled}}, {{ing:raisins}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Stir in {{ing:maple-syrup}}. Pack into the apples."
+    },
+    {
+     "instruction": "Stand in a dish with 3 tablespoons of water. Bake 35 minutes, until soft.",
+     "duration_min": 35
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "chocolate-avocado-mousse",
+   "name": "Chocolate mousse, dairy free",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Nobody tastes the avocado. Ripe ones only: they must give when pressed.",
+   "ingredients": [
+    {
+     "ref": "avocado",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 27,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Scoop the flesh of {{ing:avocado}} into a blender."
+    },
+    {
+     "instruction": "Add {{ing:cocoa-powder}}, {{ing:maple-syrup}}, {{ing:oat-milk}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Blend 2 minutes, until completely smooth.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon into four small glasses. Chill 1 hour."
+    },
+    {
+     "instruction": "Top with {{ing:raspberries}} to serve."
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "lemon-sugar-pancakes",
+   "name": "Thin pancakes with lemon and sugar",
+   "cuisine": "Puddings",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The first pancake is always a test one. Everyone knows this.",
+   "ingredients": [
+    {
+     "ref": "flour-plain",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 38,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:flour-plain}}, {{ing:egg-medium}} and {{ing:milk-semi-skimmed}} until smooth."
+    },
+    {
+     "instruction": "Leave the batter 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Melt a little of {{ing:butter-block}} in a frying pan on a medium-high heat."
+    },
+    {
+     "instruction": "Pour in a ladleful. Tilt the pan to cover the base."
+    },
+    {
+     "instruction": "Cook 1 minute, until golden underneath. Flip. Cook 30 seconds.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Sprinkle with {{ing:sugar-caster}} and a squeeze of {{ing:lemon}}. Roll up."
+    },
+    {
+     "instruction": "Repeat with the rest of the batter."
+    }
+   ],
+   "course": "pudding"
+  },
+  {
+   "slug": "orange-poached-pears",
+   "name": "Pears poached in orange and cinnamon",
+   "cuisine": "Puddings",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Slightly firm pears hold their shape best.",
+   "ingredients": [
+    {
+     "ref": "pear",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "orange-juice",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:pear}}, leaving the stalks on."
+    },
+    {
+     "instruction": "Put {{ing:orange-juice}}, {{ing:honey}} and {{ing:cinnamon-ground}} in a pan that fits the pears snugly."
+    },
+    {
+     "instruction": "Stand the pears in it. Simmer (small bubbles) 20 minutes, until a knife slides in.",
+     "note": "Turn them now and then so they colour evenly.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Lift out the pears. Boil the juice 5 minutes, until syrupy.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Serve the pears with the syrup and {{ing:greek-yoghurt}}.",
+     "note": "Dairy-free yoghurt keeps it dairy free."
+    }
+   ],
+   "course": "pudding"
+  }
+ ]
+}
