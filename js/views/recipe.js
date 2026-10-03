@@ -1,4 +1,7 @@
-// js/views/recipe.js — 03 Oct 2026 v4
+// js/views/recipe.js — 03 Oct 2026 v5
+// v5: your own meals get this page too (#/recipe?m=<meal id>): the same
+// what-you-have, nutrition, scaling, cook mode and Add to plan. Until now a
+// meal you wrote yourself opened the old Meals screen — the last dead end.
 // v4: Start cooking — the existing cook mode (one step at a time, screen kept
 // awake, timers, progress kept) for library recipes, at the servings chosen.
 // v3: Add to plan (day and meal, straight from here), what you have of it,
@@ -40,6 +43,8 @@ import { nutritionBars } from '../components/nutritionBars.js';
 import { describeRecipeTime } from '../lib/recipeTime.js';
 import { describeEquipment } from '../lib/recipeEquipment.js';
 import { getRecipeNote, setFavourite } from '../data/recipeNotes.js';
+import { listMeals, listIngredients, setFavourite as setMealFavourite } from '../data/meals.js';
+import { listSteps, slugifyFoodName } from '../data/mealSteps.js';
 import { showToast } from '../components/toast.js';
 
 const SLOT_WORDS = {
@@ -50,6 +55,45 @@ const FRACTIONS = { 0.25: '¼', 0.5: '½', 0.75: '¾' };
 const MAX_SERVES = 12;
 
 /** The slug from #/recipe?r=..., or ''. */
+/** Your own meal's id from #/recipe?m=..., or ''. */
+export function mealIdFromHash(hash) {
+  const match = String(hash || '').match(/[?&]m=([0-9a-z-]+)/i);
+  return match ? match[1] : '';
+}
+
+/**
+ * One of your own meals in the library recipe's shape, so every part of
+ * this page works on it unchanged. Its foods stand in for the reference
+ * file: each ingredient's `ref` is its food's slug, mapped to the food.
+ */
+export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
+  const refMap = new Map();
+  const ingredients = [];
+  for (const row of ingredientRows) {
+    if (row.option_group != null && row.is_selected === false) continue;
+    const food = row.foods || {};
+    const ref = slugifyFoodName(food.name) || `food-${row.food_id}`;
+    refMap.set(ref, food);
+    ingredients.push({ ref, name: food.name, quantity: row.quantity_g, unit: row.unit || 'g' });
+  }
+  const recipe = {
+    slug: null,
+    name: meal.name,
+    default_serves: meal.default_serves || 1,
+    default_slot: meal.default_slot || meal.meal_type || null,
+    cuisine: meal.cuisine || null,
+    budget_tier: meal.budget_tier || null,
+    dietary_tags: meal.dietary_tags || [],
+    method_note: meal.method_note || null,
+    ingredients,
+    steps: stepRows.map((st) => ({
+      instruction: st.instruction, note: st.note, duration_min: st.duration_min,
+      step_group: st.step_group, while_waiting: st.while_waiting
+    }))
+  };
+  return { recipe, refMap };
+}
+
 export function slugFromHash(hash) {
   const match = String(hash || '').match(/[?&]r=([a-z0-9-]+)/i);
   return match ? match[1].toLowerCase() : '';
@@ -114,8 +158,13 @@ export function render(mountEl) {
   let destroyed = false;
 
   const slug = slugFromHash(window.location.hash);
+  const mealId = mealIdFromHash(window.location.hash);
 
-  const back = el('a', { class: 'back-link', href: '#/library', text: 'All recipes' });
+  const back = el('a', {
+    class: 'back-link',
+    href: mealId ? '#/meals' : '#/library',
+    text: mealId ? 'Your meals' : 'All recipes'
+  });
   mountEl.appendChild(back);
   const heading = el('h1', { class: 'recipe-page-title', text: 'Recipe' });
   mountEl.appendChild(heading);
@@ -124,19 +173,39 @@ export function render(mountEl) {
   mountEl.appendChild(body);
 
   (async () => {
-    const [library, refMap] = await Promise.all([
-      loadAllRecipes(),
-      referenceBySlug().catch(() => new Map())
-    ]);
-    if (destroyed) return;
-    body.replaceChildren();
-
-    if (!library.ok) {
-      heading.textContent = 'Recipe unavailable';
-      body.appendChild(el('p', { text: 'The recipe library could not be loaded. Check your connection and try again.' }));
-      return;
+    let recipe = null;
+    let refMap = new Map();
+    let ownMeal = null;
+    if (mealId) {
+      const [mealsResult, ingResult, stepResult] = await Promise.all([
+        listMeals(), listIngredients(mealId), listSteps(mealId)
+      ]);
+      if (destroyed) return;
+      body.replaceChildren();
+      ownMeal = mealsResult.ok ? (mealsResult.data || []).find((m) => m.id === mealId) || null : null;
+      if (!mealsResult.ok || !ingResult.ok) {
+        heading.textContent = 'Recipe unavailable';
+        body.appendChild(el('p', { text: 'This meal could not be loaded. Check your connection and try again.' }));
+        return;
+      }
+      if (ownMeal) {
+        ({ recipe, refMap } = ownMealAsRecipe(ownMeal, ingResult.data || [], stepResult.ok ? (stepResult.data || []) : []));
+      }
+    } else {
+      const [library, refs] = await Promise.all([
+        loadAllRecipes(),
+        referenceBySlug().catch(() => new Map())
+      ]);
+      if (destroyed) return;
+      body.replaceChildren();
+      if (!library.ok) {
+        heading.textContent = 'Recipe unavailable';
+        body.appendChild(el('p', { text: 'The recipe library could not be loaded. Check your connection and try again.' }));
+        return;
+      }
+      refMap = refs;
+      recipe = library.data.find((r) => r.slug === slug) || null;
     }
-    const recipe = library.data.find((r) => r.slug === slug);
     if (!recipe) {
       heading.textContent = 'Recipe not found';
       body.appendChild(el('p', { text: 'That recipe is not in the library. It may have been renamed.' }));
@@ -172,14 +241,18 @@ export function render(mountEl) {
     const add = el('button', { type: 'button', class: 'btn btn-primary', text: 'Add to plan', 'aria-haspopup': 'dialog' });
     const fav = el('button', { type: 'button', class: 'btn' });
     actions.append(add, fav);
+    if (ownMeal) {
+      // Your own recipe is yours to change: ingredients, steps, swaps.
+      actions.appendChild(el('a', { class: 'btn', href: `#/meals?edit=${encodeURIComponent(ownMeal.id)}`, text: 'Change this meal' }));
+    }
     body.appendChild(actions);
     const status = el('p', { class: 'field-hint', role: 'status' });
     body.appendChild(status);
 
     // Your copy of this recipe, if you have one: planning uses it rather
     // than adding the recipe a second time.
-    let ownedMeal = null;
-    existingLibraryRefs().then((refs) => {
+    let ownedMeal = ownMeal;
+    if (!ownMeal) existingLibraryRefs().then((refs) => {
       if (destroyed || !refs || !refs.ok) return;
       ownedMeal = (refs.data instanceof Map && refs.data.get(recipe.slug)) || null;
     }).catch(() => {});
@@ -302,15 +375,22 @@ export function render(mountEl) {
       fav.setAttribute('aria-pressed', String(favourite));
     };
     paintFav();
-    getRecipeNote(recipe.slug).then((saved) => {
-      if (destroyed || !saved || !saved.ok || !saved.data) return;
-      favourite = Boolean(saved.data.is_favourite);
+    if (ownMeal) {
+      favourite = Boolean(ownMeal.is_favourite);
       paintFav();
-    }).catch(() => {});
+    } else {
+      getRecipeNote(recipe.slug).then((saved) => {
+        if (destroyed || !saved || !saved.ok || !saved.data) return;
+        favourite = Boolean(saved.data.is_favourite);
+        paintFav();
+      }).catch(() => {});
+    }
     fav.addEventListener('click', async () => {
       favourite = !favourite;
       paintFav();
-      const result = await setFavourite(recipe.slug, favourite);
+      const result = ownMeal
+        ? await setMealFavourite(ownMeal.id, favourite)
+        : await setFavourite(recipe.slug, favourite);
       if (!result.ok) {
         favourite = !favourite;
         paintFav();
@@ -385,7 +465,7 @@ export function render(mountEl) {
         quantity_g: ing.quantity, unit: ing.unit, foods: refMap.get(ing.ref) || { name: ing.ref }
       }));
       openCookMode({
-        meal: { id: `library:${recipe.slug}`, name: recipe.name },
+        meal: { id: ownMeal ? ownMeal.id : `library:${recipe.slug}`, name: recipe.name },
         steps: recipe.steps || [],
         ingredients: rows,
         scale: serves / baseServes

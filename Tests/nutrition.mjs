@@ -104,7 +104,7 @@ eq('a real zero that is complete stays zero', noneKnown[2].amount, 0);
 
 // ============ Recipe page helpers ============
 console.log('\nRecipe page');
-const { scaledAmount, cookingName, slugFromHash } = await import(`${REPO}/js/views/recipe.js`);
+const { scaledAmount, cookingName, slugFromHash, mealIdFromHash, ownMealAsRecipe } = await import(`${REPO}/js/views/recipe.js`);
 eq('grams scale', scaledAmount(100, 'g', 2), '200 g');
 eq('large grams round to tens', scaledAmount(133, 'g', 1), '130 g');
 eq('a kilo reads as kg', scaledAmount(800, 'g', 1.5), '1.2 kg');
@@ -115,6 +115,26 @@ eq('a comma name turns round', cookingName('Oats, rolled'), 'Rolled oats');
 eq('a plain name is left alone', cookingName('Honey'), 'Honey');
 eq('the slug comes from the hash', slugFromHash('#/recipe?r=overnight-oats'), 'overnight-oats');
 eq('no slug is empty, not undefined', slugFromHash('#/recipe'), '');
+
+// Your own meals on the recipe page (#/recipe?m=<id>).
+eq('a meal id comes from the hash', mealIdFromHash('#/recipe?m=3f2a-77b1'), '3f2a-77b1');
+eq('no meal id is empty', mealIdFromHash('#/recipe?r=overnight-oats'), '');
+{
+  const meal = { id: 'm1', name: 'Our chilli', default_serves: 4, dietary_tags: ['gf'] };
+  const rows = [
+    { food_id: 1, quantity_g: 500, unit: 'g', foods: { name: 'Beef mince', calories_per_100g: 250, protein_g: 26, fat_g: 16, carbs_g: 0 } },
+    { food_id: 2, quantity_g: 400, unit: 'g', option_group: 'a', is_selected: true, foods: { name: 'Kidney beans', calories_per_100g: 100, protein_g: 7, fat_g: 0.5, carbs_g: 15 } },
+    { food_id: 3, quantity_g: 400, unit: 'g', option_group: 'a', is_selected: false, foods: { name: 'Black beans', calories_per_100g: 130, protein_g: 9, fat_g: 0.5, carbs_g: 20 } }
+  ];
+  const steps = [{ instruction: 'Brown the mince.', duration_min: 8 }];
+  const { recipe, refMap } = ownMealAsRecipe(meal, rows, steps);
+  eq('own meal keeps its name and serves', `${recipe.name}/${recipe.default_serves}`, 'Our chilli/4');
+  eq('unchosen options are left out', recipe.ingredients.map((i) => i.name).join(','), 'Beef mince,Kidney beans');
+  eq('steps carry over', recipe.steps.length, 1);
+  const n = recipeNutrition(recipe, refMap);
+  eq('own meal nutrition is worked out per serving', Math.round(n.perServing.calories), Math.round((1250 + 400) / 4));
+  check('an own meal has no library slug', recipe.slug === null);
+}
 
 // ============ Swap ideas ============
 console.log('\nSwap ideas');

@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v3
+// js/views/kitchenPlan.js — 03 Oct 2026 v4
+// v4: your own meals open the recipe page too (#/recipe?m=<id>).
 // v3: Fill the open meals — suggestions from your own meals for every open
 // breakfast, lunch and dinner left this week, reviewed before anything is added.
 // v2: plan changes ask the shopping list to follow (requestListSync), as the old plan did.
@@ -53,6 +54,7 @@ export function rangeLabel(isoMonday) {
 
 function recipeHref(meal) {
   if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
+  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}`;
   return '#/meals';
 }
 

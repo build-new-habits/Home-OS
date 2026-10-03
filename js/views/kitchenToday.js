@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 03 Oct 2026 v3
+// js/views/kitchenToday.js — 03 Oct 2026 v4
+// v4: your own meals open the recipe page too (#/recipe?m=<id>).
 // v3: "We cooked it" on the next meal takes what it used out of the pantry
 // (Phase 22's depletion, which the new screens had not offered).
 // v2: Use soon items open the item sheet (new one in, gone, details, ideas).
@@ -67,6 +68,7 @@ export function pickNext(entries, now = new Date()) {
 
 function recipeHref(meal) {
   if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
+  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}`;
   return '#/meals';
 }
 

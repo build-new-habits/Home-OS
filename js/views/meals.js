@@ -1,4 +1,5 @@
-// js/views/meals.js — 07 Sep 2026 v31
+// js/views/meals.js — 03 Oct 2026 v32
+// v32: #/meals?edit=<id> opens that meal's sheet (from the recipe page).
 // P5: three screens — meals, meals-match, meals-add.
 // v12: adding an ingredient now shows up IMMEDIATELY. The panel keeps its
 // own DOM, so re-rendering the rows behind it changed nothing visible —
@@ -1201,6 +1202,12 @@ export function render(mountEl, { section = 'list' } = {}) {
     await loadFoods();
     if (destroyed) return;
     await loadMeals();
+    if (destroyed) return;
+    // #/meals?edit=<id> — "Change this meal" on the recipe page lands here
+    // with that meal already open, not at the top of a long list.
+    const editMatch = String(window.location.hash || '').match(/[?&]edit=([0-9a-z-]+)/i);
+    const toEdit = editMatch ? meals.find((m) => String(m.id) === editMatch[1]) : null;
+    if (toEdit) openMealSheet(toEdit, null);
   })();
 
   return () => {
