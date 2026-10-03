@@ -163,6 +163,19 @@ globalThis.AbortSignal = dom.window.AbortSignal;
 globalThis.localStorage = dom.window.localStorage;
 globalThis.HTMLElement = dom.window.HTMLElement;
 globalThis.Node = dom.window.Node;
+// A fixed clock. The month grid's SHAPE depends on the month — how many
+// blank cells before the 1st and whether it needs five rows or six — so
+// the calendar baseline failed every time the month turned (found 3 Oct
+// 2026). Normalising text cannot fix a row count. Freezing the date can.
+{
+  const RealDate = Date;
+  const FIXED = new RealDate('2026-09-07T09:00:00').getTime();
+  class FixedDate extends RealDate {
+    constructor(...args) { if (args.length === 0) super(FIXED); else super(...args); }
+    static now() { return FIXED; }
+  }
+  globalThis.Date = FixedDate;
+}
 globalThis.__HOME_OS_SUPABASE_STUB__ = stubClient();
 globalThis.fetch = () => Promise.reject(new Error('no network in the gate'));
 

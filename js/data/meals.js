@@ -1,4 +1,5 @@
-// js/data/meals.js — 01 Sep 2026 v7
+// js/data/meals.js — 03 Oct 2026 v8
+// v8: optional fibre in computeMacros (never marks a row incomplete).
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
 // opaque database error and tells the user nothing.
@@ -107,7 +108,16 @@ const MACROS = [
   { column: 'carbs_g', key: 'carbs_g', label: 'Carbohydrate', unit: 'g' }
 ];
 
-export { MACROS };
+// Fibre (3 Oct 2026, kitchen rebuild). OPTIONAL on purpose: foods only gain
+// a fibre_g column with migration 027, and until then every database food
+// lacks it. Treating a missing fibre figure as an incomplete ingredient
+// would flag every meal in the app. So fibre is totalled where known and
+// reported complete or not, but it never marks a row incomplete.
+const OPTIONAL_MACROS = [
+  { column: 'fibre_g', key: 'fibre_g', label: 'Fibre', unit: 'g' }
+];
+
+export { MACROS, OPTIONAL_MACROS };
 
 export async function listMeals() {
   const { data, error } = await supabase
@@ -384,7 +394,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
   const totals = {};
   const missingByField = {};
   const complete = {};
-  for (const macro of MACROS) {
+  for (const macro of [...MACROS, ...OPTIONAL_MACROS]) {
     totals[macro.key] = 0;
     missingByField[macro.key] = 0;
     complete[macro.key] = true;
@@ -421,7 +431,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
 
     if (converted.grams === null) {
       // One reason for the whole row: no macro can be worked out at all.
-      for (const macro of MACROS) {
+      for (const macro of [...MACROS, ...OPTIONAL_MACROS]) {
         missingByField[macro.key] += 1;
         complete[macro.key] = false;
       }
@@ -454,6 +464,18 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
       totals[macro.key] += (usableGrams / 100) * value;
     }
 
+    for (const macro of OPTIONAL_MACROS) {
+      const value = Number(food[macro.column]);
+      const known = food[macro.column] !== null && food[macro.column] !== undefined
+        && food[macro.column] !== '' && Number.isFinite(value);
+      if (!known) {
+        missingByField[macro.key] += 1;
+        complete[macro.key] = false;
+        continue;
+      }
+      totals[macro.key] += (usableGrams / 100) * value;
+    }
+
     if (!rowMissing && food.source === 'reference') {
       estimatedNames.push(food.name || 'an unnamed food');
     }
@@ -467,7 +489,7 @@ export function computeMacros(ingredients, { serves = 1 } = {}) {
   }
 
   const perServing = {};
-  for (const macro of MACROS) {
+  for (const macro of [...MACROS, ...OPTIONAL_MACROS]) {
     totals[macro.key] = Math.round(totals[macro.key] * 10) / 10;
     perServing[macro.key] = Math.round((totals[macro.key] / divisor) * 10) / 10;
   }

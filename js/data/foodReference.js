@@ -1,4 +1,5 @@
-// js/data/foodReference.js — 01 Sep 2026 v2
+// js/data/foodReference.js — 03 Oct 2026 v3
+// v3: referenceBySlug() — one map for working out a whole recipe's nutrition.
 // v2 (worklist B2): findBackfillable() — fill in what we already know.
 // Phase 13. Published averages for the foods you never scan.
 //
@@ -107,6 +108,18 @@ export async function lookupSlug(slug) {
   if (!slug) return null;
   const want = String(slug).trim().toLowerCase();
   return foods.find((f) => f.slug === want) || null;
+}
+
+/**
+ * Every reference food keyed by slug. The nutrition engine resolves a whole
+ * recipe's ingredients at once; a find() per ingredient per recipe across
+ * the library is 778 linear scans for one screen.
+ */
+export async function referenceBySlug() {
+  const { foods } = await load();
+  const map = new Map();
+  for (const food of foods) if (food && food.slug) map.set(food.slug, food);
+  return map;
 }
 
 /** Prefix and substring search, for a picker. Capped — this is a hint list. */

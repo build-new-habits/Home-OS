@@ -66,6 +66,7 @@ run() {
 
 run "Render gate — every view executed in jsdom"     render-gate.mjs
 run "Behaviour — macros, barcodes, Open Food Facts"  behaviour.mjs
+run "Nutrition — per serving, per day, every recipe"  nutrition.mjs
 run "Offline queue — retry and table scoping"        queue.mjs
 run "Accessibility — structure of the rendered DOM"  a11y.mjs
 run "Contrast — every pair, all four themes"         contrast.mjs

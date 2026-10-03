@@ -879,7 +879,13 @@ check('changing a planned serving never writes to `meals`',
     check('moving opens a sheet with somewhere to move to', !!sheet);
 
     if (sheet) {
-      setValue(sheet.querySelector('#move-week'), '2026-09-14');
+      // A week the picker actually offers. A hard-coded date rots: once it
+      // falls out of the offered range, setValue silently leaves '' and the
+      // move is refused (found 3 Oct 2026, three weeks after it was written).
+      const weekSelect = sheet.querySelector('#move-week');
+      const offered = [...weekSelect.querySelectorAll('option')].map((o) => o.value).filter(Boolean);
+      var targetWeek = offered[offered.length - 1] || '';
+      setValue(weekSelect, targetWeek);
       setValue(sheet.querySelector('#move-day'), 'fri');
       setValue(sheet.querySelector('#move-slot'), 'lunch');
 
@@ -895,7 +901,7 @@ check('changing a planned serving never writes to `meals`',
         !!w && w.op === 'update',
         JSON.stringify(writes()));
       check('the move carries the week, the day and the meal time',
-        !!w && w.payload && w.payload.week_start === '2026-09-14'
+        !!w && w.payload && w.payload.week_start === targetWeek
         && w.payload.day_of_week === 'fri' && w.payload.slot === 'lunch',
         JSON.stringify(w && w.payload));
       check('and nothing was deleted',

@@ -35,7 +35,7 @@ globalThis.__HOME_OS_SUPABASE_STUB__ = {
   }
 };
 
-const { computeMacros, toGrams, formatIngredientQuantity, isValidUnit } = await import(`${REPO}/js/data/meals.js`);
+const { computeMacros, toGrams, formatIngredientQuantity, isValidUnit, MACROS } = await import(`${REPO}/js/data/meals.js`);
 const { normaliseBarcode, barcodeCandidates } = await import(`${REPO}/js/lib/barcode.js`);
 const { energyKcalPer100g, mapProductToFood, missingMacroFields, suggestCategory } = await import(`${REPO}/js/lib/openFoodFacts.js`);
 const { describeDependents } = await import(`${REPO}/js/data/foods.js`);
@@ -88,8 +88,10 @@ eq('protein total matches hand calculation', complete.totals.protein_g, 17.8);
 eq('fat total matches hand calculation', complete.totals.fat_g, 10.1);
 eq('carbs total matches hand calculation', complete.totals.carbs_g, 57.7);
 eq('per serving halves the total at serves 2', complete.perServing.calories, 201.6);
+// Every CORE field. Fibre is optional by design (meals.js v8) and is
+// covered in Tests/nutrition.mjs.
 check('a fully-known meal reports every field complete',
-  Object.values(complete.complete).every(Boolean));
+  MACROS.every((m) => complete.complete[m.key]));
 eq('a fully-known meal reports nothing incomplete', complete.incompleteCount, 0);
 
 // A null macro must be INCOMPLETE, not zero.
