@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 03 Oct 2026 v1
+// js/views/kitchenToday.js — 03 Oct 2026 v2
+// v2: Use soon items open the item sheet (new one in, gone, details, ideas).
 // Kitchen rebuild K7. Today, for the kitchen-only app.
 //
 // dashboard.js hands over to this when navConfig.KITCHEN_ONLY is on, and
@@ -24,6 +25,7 @@ import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
 import { listItems as listShoppingItems } from '../data/shopping.js';
 import { mealGlyph, mealIcon, MEAL_SLOTS } from '../components/mealGlyph.js';
 import { nutritionBars } from '../components/nutritionBars.js';
+import { openItemSheet } from '../components/itemSheet.js';
 import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 
@@ -219,13 +221,23 @@ export function render(mountEl) {
   async function loadUseSoon() {
     const result = await listStock();
     if (destroyed || !result.ok) return;
-    const soon = useSoon(result.data || [], today);
-    if (soon.length === 0) return;
+    const stock = result.data || [];
+    const soon = useSoon(stock, today);
     soonList.replaceChildren();
+    if (soon.length === 0) { soonSection.hidden = true; return; }
+    const places = [...new Set(stock.map((r) => r.default_location).filter(Boolean))];
     for (const { row, freshness } of soon.slice(0, 4)) {
-      const li = el('li', { class: 'today-soon-item' });
-      li.appendChild(el('span', { class: 'today-soon-name', text: (row.foods && row.foods.name) || 'Something' }));
-      li.appendChild(el('span', { class: 'today-soon-when', text: describeFreshness(freshness) }));
+      const li = el('li');
+      // A button: tapping a thing near its date is how you say a new one
+      // came in, that it went, or find a way to use it (itemSheet.js).
+      const name = (row.foods && row.foods.name) || 'Something';
+      const btn = el('button', { type: 'button', class: 'today-soon-item', 'aria-haspopup': 'dialog' });
+      btn.appendChild(el('span', { class: 'today-soon-name', text: name }));
+      btn.appendChild(el('span', { class: 'today-soon-when', text: describeFreshness(freshness) }));
+      btn.addEventListener('click', () => {
+        openItemSheet(row, { returnFocusTo: btn, places, onChanged: () => { if (!destroyed) loadUseSoon(); } });
+      }, { signal: controller.signal });
+      li.appendChild(btn);
       soonList.appendChild(li);
     }
     soonSection.hidden = false;

@@ -1,4 +1,6 @@
-// js/views/kitchenShop.js — 03 Oct 2026 v1
+// js/views/kitchenShop.js — 03 Oct 2026 v2
+// v2: put away from the basket: where it lives and its use-by, saved to
+// the pantry as you type, so nothing has to be scanned in again.
 // Kitchen rebuild K8. The shopping list for the kitchen app, as in the
 // approved mockup: tick things into the basket, say "have it" for what is
 // already in the cupboard, and finish with Done shopping.
@@ -36,6 +38,8 @@ import { listItems, setStatus, aisleRank } from '../data/shopping.js';
 import { categoryLabel } from '../data/foods.js';
 import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.js';
 import { formatPackQuantity } from '../lib/units.js';
+import { listStock, findByFood, addStock, updateStock, todayIso, defaultShelfLife } from '../data/pantry.js';
+import { COMMON_PLACES } from '../components/itemSheet.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 
@@ -71,8 +75,12 @@ export function render(mountEl) {
   const { signal } = controller;
   let destroyed = false;
   let items = [];
-  let basketOpen = false;
+  // Open by default: the basket is where things get put away.
+  let basketOpen = true;
   let timer = null;
+  // Pantry rows by food, so the put-away fields start from where a thing
+  // already lives. Read once per load.
+  let stockByFood = new Map();
 
   const header = el('header', { class: 'shop-header' });
   header.appendChild(el('h1', { class: 'shop-title', text: 'Shopping' }));
@@ -97,6 +105,8 @@ export function render(mountEl) {
   basket.appendChild(basketList);
   basket.addEventListener('toggle', () => { basketOpen = basket.open; }, { signal });
   mountEl.appendChild(basket);
+  const placeList = el('datalist', { id: 'shop-places' });
+  mountEl.appendChild(placeList);
 
   const cupboard = el('details', { class: 'shop-fold' });
   const cupboardSummary = el('summary');
@@ -147,7 +157,7 @@ export function render(mountEl) {
     }
 
     basket.hidden = bought.length === 0;
-    basketSummary.textContent = `In the basket (${bought.length})`;
+    basketSummary.textContent = `In the basket: put it away (${bought.length})`;
     basket.open = basketOpen;
     basketList.replaceChildren(...bought.map(basketRow));
 
@@ -175,15 +185,69 @@ export function render(mountEl) {
   }
 
   function basketRow(line) {
-    const li = el('li', { class: 'shop-fold-line' });
+    const li = el('li', { class: 'shop-putaway' });
+    const top = el('div', { class: 'shop-fold-line' });
     const id = `shop-${line.id}`;
-    const box = el('input', { type: 'checkbox', id, class: 'shop-check', checked: '' });
+    const box = el('input', { type: 'checkbox', id, class: 'shop-check' });
     box.checked = true;
     const label = el('label', { for: id, class: 'shop-label shop-label-done' });
     label.appendChild(el('span', { class: 'shop-name', text: nameOf(line) }));
     box.addEventListener('change', () => { if (!box.checked) change(line, 'needed'); }, { signal });
-    li.append(box, label);
+    top.append(box, label);
+    li.appendChild(top);
+
+    // ---- Put it away (3 Oct 2026) ----
+    // Where it lives and its use-by, right here in the basket. Saved to the
+    // pantry on change, so unpacking the bags is filling in two fields, not
+    // finding each thing again behind the pantry's doors.
+    const stock = stockByFood.get(line.food_id) || null;
+    const fields = el('div', { class: 'shop-putaway-fields' });
+    const placeId = `place-${line.id}`;
+    const dateId = `useby-${line.id}`;
+    const place = el('input', { type: 'text', id: placeId, list: 'shop-places', autocomplete: 'off' });
+    place.value = (stock && stock.default_location) || '';
+    const useBy = el('input', { type: 'date', id: dateId });
+    useBy.value = (stock && stock.use_by) || '';
+    const saved = el('span', { class: 'shop-putaway-saved', 'aria-live': 'polite' });
+    const placeWrap = el('div', { class: 'shop-putaway-field' });
+    placeWrap.append(el('label', { for: placeId, text: 'Where it goes' }), place);
+    const dateWrap = el('div', { class: 'shop-putaway-field' });
+    dateWrap.append(el('label', { for: dateId, text: 'Use by' }), useBy);
+    fields.append(placeWrap, dateWrap, saved);
+    li.appendChild(fields);
+
+    const save = async () => {
+      saved.textContent = 'Saving…';
+      const result = await putAway(line, { default_location: place.value, use_by: useBy.value || null });
+      if (destroyed) return;
+      saved.textContent = result.ok ? `Saved` : 'Not saved. Try again.';
+    };
+    place.addEventListener('change', save, { signal });
+    useBy.addEventListener('change', save, { signal });
     return li;
+  }
+
+  /** Write where a bought thing lives, creating its pantry row if needed. */
+  async function putAway(line, patch) {
+    const found = await findByFood(line.food_id);
+    if (!found.ok) return found;
+    if (found.data) {
+      const updated = await updateStock(found.data.id, patch);
+      if (updated.ok) stockByFood.set(line.food_id, updated.data);
+      return updated;
+    }
+    const unit = ['g', 'ml', 'item'].includes(line.unit) ? line.unit : 'item';
+    const created = await addStock({
+      food_id: line.food_id,
+      unit,
+      current_qty: line.qty_needed == null ? null : Number(line.qty_needed),
+      last_restocked: todayIso(),
+      shelf_life_days: defaultShelfLife(line.foods && line.foods.category),
+      default_location: patch.default_location,
+      use_by: patch.use_by
+    });
+    if (created.ok) stockByFood.set(line.food_id, created.data);
+    return created;
   }
 
   function haveRow(line) {
@@ -251,7 +315,7 @@ export function render(mountEl) {
     const bought = items.filter((i) => i.status === 'bought').length;
     basketOpen = false;
     paint();
-    const message = `Done. ${bought} thing${bought === 1 ? '' : 's'} went into the cupboard.`;
+    const message = `Done. ${bought} thing${bought === 1 ? '' : 's'} went into the pantry.`;
     status.textContent = message;
     showToast(message);
   }, { signal });
@@ -265,6 +329,16 @@ export function render(mountEl) {
       return;
     }
     items = result.data || [];
+    const stock = await listStock();
+    if (destroyed) return;
+    if (stock.ok) {
+      stockByFood = new Map((stock.data || []).map((r) => [r.food_id, r]));
+      placeList.replaceChildren(...[...new Set([...(stock.data || []).map((r) => r.default_location).filter(Boolean), ...COMMON_PLACES])]
+        .map((p) => el('option', { value: p })));
+    }
+    // Never repaint under someone typing where a thing goes: the refresh
+    // would wipe what they are typing. The next refresh picks it up.
+    if (basket.contains(document.activeElement)) return;
     paint();
   }
 

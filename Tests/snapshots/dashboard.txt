@@ -56,7 +56,7 @@ a.today-shop"0Things to buyThe list is clear›"
 h2.today-more-h"Everything else"
 ul.hub-list
   li.hub-item
-    a.hub-link"Pantry and your mealsYour cupboards, your own recipes and things you buy.›"
+    a.hub-link"Your meals and things you buyYour own recipes, and everything that goes in the t"
       span.hub-text
         span.hub-title
         span.hub-blurb

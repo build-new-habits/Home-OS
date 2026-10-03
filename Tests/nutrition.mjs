@@ -116,6 +116,26 @@ eq('a plain name is left alone', cookingName('Honey'), 'Honey');
 eq('the slug comes from the hash', slugFromHash('#/recipe?r=overnight-oats'), 'overnight-oats');
 eq('no slug is empty, not undefined', slugFromHash('#/recipe'), '');
 
+// ============ Swap ideas ============
+console.log('\nSwap ideas');
+const { ideasFor, SWAP_GROUPS } = await import(`${REPO}/js/data/swaps.js`);
+const refDocS = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8'));
+const refSlugs = new Set(refDocS.foods.map((f) => f.slug));
+const unknownSwaps = SWAP_GROUPS.flatMap((g) => g.foods).filter((slug) => !refSlugs.has(slug));
+check('every swap names a real reference food', unknownSwaps.length === 0, unknownSwaps.join(', '));
+const fakeRef = new Map([['tofu-firm', { name: 'Tofu, firm' }], ['chicken-thigh-boneless', { name: 'Chicken thigh, boneless' }]]);
+const fakeRecipes = [
+  { slug: 'curry', name: 'Chicken curry', ingredients: [{ ref: 'chicken-thigh-boneless' }, { ref: 'onion-medium' }] },
+  { slug: 'tofu-bowl', name: 'Tofu bowl', ingredients: [{ ref: 'tofu-firm' }] },
+  { slug: 'cake', name: 'Cake', ingredients: [{ ref: 'flour-plain' }] }
+];
+const tofu = ideasFor('tofu-firm', fakeRecipes, fakeRef);
+eq('a recipe that already uses it is a use', tofu.uses[0] && tofu.uses[0].slug, 'tofu-bowl');
+eq('tofu can stand in for chicken in the curry', tofu.swaps[0] && tofu.swaps[0].recipe.slug, 'curry');
+check('the tip names both foods in kitchen words', /firm tofu/.test(tofu.swaps[0].tip) && /chicken thigh/.test(tofu.swaps[0].tip), tofu.swaps[0].tip);
+eq('an unrelated recipe is not suggested', tofu.swaps.length, 1);
+eq('no slug, no ideas', ideasFor('', fakeRecipes).uses.length, 0);
+
 // ============ Every shipped recipe ============
 console.log('\nEvery shipped recipe');
 const refDoc = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8'));

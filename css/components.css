@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v77 */
+/* css/components.css — 03 Oct 2026 v78 */
+/* v78: item sheet, tappable use-soon items, put-away fields (3 Oct). */
 /* v77: the kitchen shopping list (K8). */
 /* v76: the week board (K6). */
 /* v75: meal glyphs and the kitchen Today screen (K7). */
@@ -4282,6 +4283,12 @@ body.sheet-open {
   gap: var(--space-3);
 }
 .today-soon-item {
+  width: 100%;
+  min-height: var(--tap-large);
+  text-align: left;
+  font: inherit;
+  color: var(--color-text);
+  cursor: pointer;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -4290,6 +4297,7 @@ body.sheet-open {
   flex-direction: column;
   gap: var(--space-1);
 }
+.today-soon-item:hover { border-color: var(--color-accent); }
 .today-soon-name { font-weight: 700; }
 .today-soon-when { font-size: var(--text-sm); color: var(--state-soon); font-weight: 700; }
 
@@ -4565,3 +4573,54 @@ body.sheet-open {
 }
 .shop-actions { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-5) 0 var(--space-3); }
 .shop-build { margin: 0 0 var(--space-5); }
+
+
+/* ---- Item sheet (3 Oct 2026) -------------------------------------------- */
+.item-sheet-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+}
+.item-sheet-section:first-child { border-top: 0; padding-top: 0; }
+.item-sheet-section h3 { margin: 0; }
+.item-sheet-section input[type="date"],
+.item-sheet-section input[type="text"] {
+  min-height: var(--tap-min);
+  font: inherit;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.item-sheet-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.item-sheet-buttons .btn { flex: 1 1 auto; }
+.item-ideas-title { margin: var(--space-2) 0 var(--space-1); font-weight: 700; }
+.item-ideas { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.item-ideas li { display: flex; flex-direction: column; }
+.item-ideas a { font-weight: 600; min-height: var(--tap-min); display: inline-flex; align-items: center; }
+
+/* ---- Put away, in the basket (3 Oct 2026) ---- */
+.shop-putaway { border-top: 1px solid var(--color-border); padding-bottom: var(--space-3); }
+.shop-putaway .shop-fold-line { border-top: 0; }
+.shop-putaway-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--space-2) var(--space-3);
+  padding-left: calc(var(--space-5) + var(--space-3));
+}
+.shop-putaway-field { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.shop-putaway-field label { font-size: var(--text-sm); color: var(--color-text-muted); }
+.shop-putaway-field input {
+  min-height: var(--tap-min);
+  font: inherit;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  min-width: 0;
+}
+.shop-putaway-saved { grid-column: 1 / -1; font-size: var(--text-sm); color: var(--color-text-muted); min-height: 1em; }

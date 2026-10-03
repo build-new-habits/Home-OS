@@ -9,8 +9,15 @@ div.shop-groups
     p.shop-empty-title
     p.field-hint
 details.shop-basket.shop-fold[hidden=]
-  summary"In the basket (<n>)"
+  summary"In the basket: put it away (<n>)"
   ul.shop-fold-list
+datalist
+  option
+  option
+  option
+  option
+  option
+  option
 details.shop-fold[hidden=]
   summary"Already in the cupboard (<n>)"
   ul.shop-fold-list

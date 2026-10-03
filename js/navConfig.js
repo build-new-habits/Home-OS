@@ -1,4 +1,5 @@
-// js/navConfig.js — 03 Oct 2026 v10
+// js/navConfig.js — 03 Oct 2026 v11
+// v11: Pantry in the kitchen bar; drawn icons.
 // v10 (kitchen rebuild K2): KITCHEN_ONLY. The bar is Today, Plan,
 // Recipes, Shop. Health, chores, calendar and holidays are PARKED, not
 // deleted: every route stays registered and reachable by address. Set the
@@ -194,11 +195,21 @@ export const HEALTH_PAGES = [
 // the parked areas stay tested while they are parked, ready to come back.
 export const KITCHEN_ONLY = !(typeof globalThis !== 'undefined' && globalThis.__HOME_OS_FULL_APP__);
 
+// Pantry joined the bar on 3 Oct 2026: it sat behind three doors (Today,
+// "Pantry and your meals", then Pantry), and the cupboard is half of what
+// the shopping list is computed from. Five items still fit a phone at 44 px.
+// `svg` is drawn by bottomNav.js; `icon` stays as the fallback glyph.
 export const KITCHEN_NAV_ITEMS = [
-  { path: 'dashboard', label: 'Today', icon: '⌂', always: true },
-  { path: 'plan-this-week', label: 'Plan', icon: '▦', area: 'kitchen' },
-  { path: 'library', label: 'Recipes', icon: '☰', area: 'kitchen' },
-  { path: 'shopping', label: 'Shop', icon: '✓', area: 'kitchen' }
+  { path: 'dashboard', label: 'Today', icon: '⌂', always: true,
+    svg: '<path d="M4 11l8-7 8 7v9H4z"/>' },
+  { path: 'plan-this-week', label: 'Plan', icon: '▦', area: 'kitchen',
+    svg: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>' },
+  { path: 'library', label: 'Recipes', icon: '☰', area: 'kitchen',
+    svg: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>' },
+  { path: 'shopping', label: 'Shop', icon: '✓', area: 'kitchen',
+    svg: '<path d="M4 7h16l-1.5 11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2z"/><path d="M9 7a3 3 0 0 1 6 0"/>' },
+  { path: 'pantry', label: 'Pantry', icon: '▤', area: 'kitchen',
+    svg: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 12h14M10 7.5h4M10 16.5h4"/>' }
 ];
 
 /** What goes in the bottom bar for these settings. */
@@ -213,7 +224,7 @@ export function navItemsFor(settings = {}) {
  * you buy) and Settings, and not to holidays, which are parked.
  */
 export const KITCHEN_DASHBOARD_LINKS = [
-  { path: 'kitchen', title: 'Pantry and your meals', blurb: 'Your cupboards, your own recipes and things you buy.' },
+  { path: 'kitchen', title: 'Your meals and things you buy', blurb: 'Your own recipes, and everything that goes in the trolley.' },
   { path: 'settings', title: 'Settings', blurb: 'Themes, text size and your account.', always: true }
 ];
 
