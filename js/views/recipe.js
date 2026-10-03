@@ -1,4 +1,6 @@
-// js/views/recipe.js — 03 Oct 2026 v3
+// js/views/recipe.js — 03 Oct 2026 v4
+// v4: Start cooking — the existing cook mode (one step at a time, screen kept
+// awake, timers, progress kept) for library recipes, at the servings chosen.
 // v3: Add to plan (day and meal, straight from here), what you have of it,
 // and the missing ingredients onto the list in one tap. The two dead ends
 // were: add to meals, then go to the plan; see what is missing, then go to Shop.
@@ -31,6 +33,7 @@ import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
 import { requestListSync } from '../data/listSync.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { announce } from '../lib/a11y.js';
+import { openCookMode } from '../components/cookMode.js';
 import { referenceBySlug } from '../data/foodReference.js';
 import { recipeNutrition } from '../data/nutrition.js';
 import { nutritionBars } from '../components/nutritionBars.js';
@@ -372,7 +375,24 @@ export function render(mountEl) {
 
     // ---- Method ----------------------------------------------------------
     const method = el('section', { class: 'recipe-page-section', 'aria-labelledby': 'recipe-method-h' });
-    method.appendChild(el('h2', { id: 'recipe-method-h', text: 'Method' }));
+    const methodHead = el('div', { class: 'recipe-section-head' });
+    methodHead.appendChild(el('h2', { id: 'recipe-method-h', text: 'Method' }));
+    const cookBtn = el('button', { type: 'button', class: 'btn btn-primary', text: 'Start cooking' });
+    cookBtn.addEventListener('click', () => {
+      // Cook mode reads ingredient rows; a library recipe's are built from
+      // the reference file so its {{ing:…}} tokens resolve to amounts.
+      const rows = (recipe.ingredients || []).map((ing) => ({
+        quantity_g: ing.quantity, unit: ing.unit, foods: refMap.get(ing.ref) || { name: ing.ref }
+      }));
+      openCookMode({
+        meal: { id: `library:${recipe.slug}`, name: recipe.name },
+        steps: recipe.steps || [],
+        ingredients: rows,
+        scale: serves / baseServes
+      });
+    }, { signal });
+    methodHead.appendChild(cookBtn);
+    method.appendChild(methodHead);
     const steps = el('ol', { class: 'recipe-method' });
     for (const step of recipe.steps || []) {
       steps.appendChild(el('li', { class: 'recipe-step', text: stepText(step, refMap) }));

@@ -4700,3 +4700,4 @@ body.sheet-open {
 .fill-list label { display: flex; flex-direction: column; }
 .fill-when { font-size: var(--text-sm); color: var(--color-text-muted); }
 .fill-meal { font-weight: 600; }
+.shop-putaway-hint { font-size: var(--text-xs); color: var(--color-text-muted); }

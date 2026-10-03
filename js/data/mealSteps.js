@@ -1,4 +1,5 @@
-// js/data/mealSteps.js — 01 Sep 2026 v2
+// js/data/mealSteps.js — 03 Oct 2026 v3
+// v3: steps read "7 boneless chicken thighs", not "7 thighs of chicken thigh, boneless".
 // Phase 15. Instructions you can follow while tired, distracted, or holding
 // something hot.
 //
@@ -196,6 +197,16 @@ export function checkStyle(instruction) {
 // instruction carries {{ing:chopped-tomatoes}} and the renderer substitutes
 // the real quantity at the real serving size.
 
+/**
+ * A reference name as a cook says it: "Chicken thigh, boneless" becomes
+ * "boneless chicken thigh"; anything without exactly one comma is left alone.
+ */
+export function kitchenName(name) {
+  const parts = String(name || '').split(',').map((p) => p.trim()).filter(Boolean);
+  const turned = parts.length === 2 ? `${parts[1]} ${parts[0]}` : String(name || '');
+  return turned.toLowerCase();
+}
+
 export function slugifyFoodName(name) {
   return String(name || '')
     .toLowerCase()
@@ -238,11 +249,19 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     // at a cupboard would say; "400 g (1 tin)" is the same fact wearing
     // both answers at once, and rule 6 gives a step twenty words.
     const packs = packsFor(qty, hit.food);
+    const words = kitchenName(hit.food.name);
     if (packs) {
-      return `${packs.count} ${packs.label} of ${hit.food.name.toLowerCase()}`;
+      // "7 thighs of chicken thigh, boneless" (found 3 Oct 2026) reads as a
+      // machine. When the food's name already ends in its own item word,
+      // the count goes in front of the name: "7 boneless chicken thighs".
+      const single = String(hit.food.item_label || '').toLowerCase();
+      if (single && words.endsWith(` ${single}`)) {
+        return `${packs.count} ${words.slice(0, -single.length)}${packs.label}`;
+      }
+      return `${packs.count} ${packs.label} of ${words}`;
     }
 
-    return `${amount} ${hit.food.name.toLowerCase()}`;
+    return `${amount} ${words}`;
   });
 }
 

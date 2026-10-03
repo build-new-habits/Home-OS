@@ -1,4 +1,5 @@
-// js/views/kitchenShop.js — 03 Oct 2026 v2
+// js/views/kitchenShop.js — 03 Oct 2026 v3
+// v3: a blank use-by says what the pantry will estimate instead.
 // v2: put away from the basket: where it lives and its use-by, saved to
 // the pantry as you type, so nothing has to be scanned in again.
 // Kitchen rebuild K8. The shopping list for the kitchen app, as in the
@@ -213,6 +214,16 @@ export function render(mountEl) {
     placeWrap.append(el('label', { for: placeId, text: 'Where it goes' }), place);
     const dateWrap = el('div', { class: 'shop-putaway-field' });
     dateWrap.append(el('label', { for: dateId, text: 'Use by' }), useBy);
+    // Leaving it blank is fine: the pantry estimates from how long this kind
+    // of food keeps. Say what that estimate is, so blank is a choice.
+    const keeps = defaultShelfLife(line.foods && line.foods.category);
+    if (!useBy.value && keeps) {
+      const est = new Date(Date.now() + keeps * 86400000)
+        .toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      const hintId = `useby-hint-${line.id}`;
+      dateWrap.appendChild(el('span', { id: hintId, class: 'shop-putaway-hint', text: `Blank: about ${est}` }));
+      useBy.setAttribute('aria-describedby', hintId);
+    }
     fields.append(placeWrap, dateWrap, saved);
     li.appendChild(fields);
 
