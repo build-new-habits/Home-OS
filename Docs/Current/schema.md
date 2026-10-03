@@ -16,7 +16,7 @@ ownership; 5 remain personal. See §0f and §4.
 
 ## 0u. Revision 25 — kitchen rebuild (03 Oct 2026)
 
-Migration `026_kitchen_rebuild`. Three additive changes; nothing renamed or
+Migration `026_kitchen_rebuild`. Four additive changes; nothing renamed or
 dropped.
 
 | Change | Detail | Why |
@@ -25,6 +25,7 @@ dropped.
 | `meals.default_slot` | check now allows `drink` (still nullable) | drinks in the library |
 | `foods.fibre_g` | numeric, nullable, `>= 0`, **per 100 g** | fibre is one of the five figures shown. Null = not recorded, never zero |
 | `user_settings.show_nutrition` | boolean, not null, default true | one switch hides nutrition everywhere |
+| `weekly_meal_plan.is_leftover` | boolean, not null, default false | leftovers planned on another day. The shortfall skips them, so the ingredients are not bought twice |
 | `user_settings.nutrition_targets` | jsonb, nullable | personal targets keyed `calories`, `carbs_g`, `fat_g`, `protein_g`, `fibre_g`. Null = UK reference intakes. Bad values fall back per nutrient (`data/nutrition.js resolveTargets`) |
 
 The constraint names were chosen by Postgres when the columns were made, so

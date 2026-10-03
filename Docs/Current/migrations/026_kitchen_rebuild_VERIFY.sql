@@ -8,6 +8,7 @@
 --   foods.fibre_g                 PASS
 --   show_nutrition                PASS
 --   nutrition_targets             PASS
+--   is_leftover                   PASS
 
 select 'plan slot allows drink' as check_name,
        case when exists (
@@ -37,4 +38,9 @@ union all
 select 'nutrition_targets',
        case when exists (select 1 from information_schema.columns
                           where table_name = 'user_settings' and column_name = 'nutrition_targets')
+       then 'PASS' else 'FAIL' end
+union all
+select 'is_leftover',
+       case when exists (select 1 from information_schema.columns
+                          where table_name = 'weekly_meal_plan' and column_name = 'is_leftover')
        then 'PASS' else 'FAIL' end;

@@ -17,6 +17,9 @@
 -- 3. user_settings.show_nutrition (default true) and nutrition_targets
 --    (jsonb, null means UK reference intakes). The hide switch, and
 --    personal targets.
+-- 4. weekly_meal_plan.is_leftover (default false). Leftovers planned for
+--    another day must not put the recipe's ingredients on the shopping
+--    list a second time. The shortfall skips these rows.
 --
 -- ============================================================
 -- SAFE TO RUN AGAINST THE LIVE APP
@@ -74,3 +77,6 @@ alter table foods add constraint foods_fibre_g_check check (fibre_g is null or f
 -- ---- 3. Nutrition settings ----------------------------------------------
 alter table user_settings add column if not exists show_nutrition boolean not null default true;
 alter table user_settings add column if not exists nutrition_targets jsonb;
+
+-- ---- 4. Leftovers -------------------------------------------------------
+alter table weekly_meal_plan add column if not exists is_leftover boolean not null default false;

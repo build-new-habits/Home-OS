@@ -4663,3 +4663,13 @@ body.sheet-open {
   color: var(--color-text);
   margin-bottom: var(--space-2);
 }
+
+/* Today: we cooked it (3 Oct 2026) */
+.today-next-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.today-next .btn.today-next-cooked {
+  background: transparent;
+  color: inherit;
+  border: 2px solid currentColor;
+}
+.cooked-changes { margin: 0 0 var(--space-4); padding-left: var(--space-5); }
+.cooked-changes li { padding: var(--space-1) 0; }

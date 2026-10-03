@@ -1,4 +1,6 @@
-// js/views/kitchenToday.js — 03 Oct 2026 v2
+// js/views/kitchenToday.js — 03 Oct 2026 v3
+// v3: "We cooked it" on the next meal takes what it used out of the pantry
+// (Phase 22's depletion, which the new screens had not offered).
 // v2: Use soon items open the item sheet (new one in, gone, details, ideas).
 // Kitchen rebuild K7. Today, for the kitchen-only app.
 //
@@ -22,6 +24,10 @@ import { listPlan, servesFor } from '../data/mealPlan.js';
 import { listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
 import { dayNutrition } from '../data/nutrition.js';
 import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
+import { planDepletion, applyDepletion, describeDepletion } from '../data/restock.js';
+import { openDetailSheet } from '../components/detailSheet.js';
+import { showToast } from '../components/toast.js';
+import { announce } from '../lib/a11y.js';
 import { listItems as listShoppingItems } from '../data/shopping.js';
 import { mealGlyph, mealIcon, MEAL_SLOTS } from '../components/mealGlyph.js';
 import { nutritionBars } from '../components/nutritionBars.js';
@@ -184,8 +190,64 @@ export function render(mountEl) {
     facts.appendChild(el('li', { text: `Serves ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
     card.appendChild(facts);
-    card.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
+    const buttons = el('div', { class: 'today-next-buttons' });
+    buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
+    const cooked = el('button', { type: 'button', class: 'btn today-next-cooked', text: 'We cooked it', 'aria-haspopup': 'dialog' });
+    cooked.addEventListener('click', () => offerDepletion(entry, cooked), { signal: controller.signal });
+    buttons.appendChild(cooked);
+    card.appendChild(buttons);
     nextWrap.appendChild(card);
+  }
+
+  /**
+   * Cooking is the one moment the app knows what left the cupboard. Offer to
+   * take it out, show exactly what will change, and never do it silently.
+   */
+  async function offerDepletion(entry, returnFocusTo) {
+    const meal = entry.meals || {};
+    const [ings, stock] = await Promise.all([listIngredients(entry.meal_id), listStock()]);
+    if (destroyed) return;
+    if (!ings.ok || !stock.ok) { showToast('The pantry could not be read. Try again.'); return; }
+    const scale = servesFor(entry) / (meal.default_serves || 1);
+    const changes = planDepletion(ings.data || [], stock.data || [], scale);
+    if (changes.length === 0) {
+      const words = `Enjoy ${meal.name || 'it'}. Nothing it uses is tracked in the pantry.`;
+      showToast(words);
+      announce(words);
+      return;
+    }
+    openDetailSheet({
+      title: 'We cooked it',
+      subtitle: describeDepletion(changes),
+      returnFocusTo,
+      build(body, api) {
+        const list = el('ul', { class: 'cooked-changes' });
+        for (const c of changes) {
+          const name = (c.food && c.food.name) || 'Something';
+          const text = c.toLevel !== undefined
+            ? `${name}: plenty to low`
+            : `${name}: ${c.before} to ${c.after} ${c.unit}`;
+          list.appendChild(el('li', { text }));
+        }
+        body.appendChild(list);
+        const row = el('div', { class: 'item-sheet-buttons' });
+        const yes = el('button', { type: 'button', class: 'btn btn-primary', text: 'Take them out' });
+        const no = el('button', { type: 'button', class: 'btn', text: 'Not this time' });
+        yes.addEventListener('click', async () => {
+          yes.disabled = true;
+          const done = await applyDepletion(changes);
+          if (!done.ok) { yes.disabled = false; showToast('That did not save. Try again.'); return; }
+          api.close();
+          const words = `Pantry updated: ${done.applied} thing${done.applied === 1 ? '' : 's'}.`;
+          showToast(words);
+          announce(words);
+          if (!destroyed) loadUseSoon();
+        });
+        no.addEventListener('click', () => api.close());
+        row.append(yes, no);
+        body.appendChild(row);
+      }
+    });
   }
 
   function paintRest(entries, next) {
