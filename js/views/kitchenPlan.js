@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v2
+// js/views/kitchenPlan.js — 03 Oct 2026 v3
+// v3: Fill the open meals — suggestions from your own meals for every open
+// breakfast, lunch and dinner left this week, reviewed before anything is added.
 // v2: plan changes ask the shopping list to follow (requestListSync), as the old plan did.
 // Kitchen rebuild K6. The week as a board: seven days across, a row per
 // meal. The approved mockup's Plan screen.
@@ -35,6 +37,7 @@ import { mealGlyph, mealIcon } from '../components/mealGlyph.js';
 import { navigate } from '../router.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { openDetailSheet } from '../components/detailSheet.js';
 
 const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const SLOT_WORDS = { breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'snacks', drink: 'drinks' };
@@ -61,6 +64,29 @@ export function ideasFor(meals, slot, alreadyIds = []) {
     .sort((a, b) => Number(Boolean(b.is_favourite)) - Number(Boolean(a.is_favourite))
       || String(a.name).localeCompare(String(b.name)))
     .slice(0, 3);
+}
+
+/**
+ * Suggestions for every open main meal from today on (or the whole week for
+ * next week). Your own meals only, suited to the slot, favourites first, and
+ * no meal used twice in a week, so a filled week is not seven of the same.
+ *
+ * @returns {Array<{ day: string, slot: string, meal: object }>}
+ */
+export function proposeFills(entries, meals, fromDayIndex = 0) {
+  const days = DAYS.slice(fromDayIndex);
+  const used = new Set(entries.map((e) => e.meal_id));
+  const proposals = [];
+  for (const d of days) {
+    for (const slot of ['breakfast', 'lunch', 'dinner']) {
+      if (entries.some((e) => e.day_of_week === d.value && e.slot === slot)) continue;
+      const pick = ideasFor(meals, slot, [...used])[0];
+      if (!pick) continue;
+      used.add(pick.id);
+      proposals.push({ day: d.value, slot, meal: pick });
+    }
+  }
+  return proposals;
 }
 
 /**
@@ -126,8 +152,62 @@ export function render(mountEl, { week = 'this' } = {}) {
 
   const actions = el('div', { class: 'plan-actions' });
   const shopBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Update shopping list' });
-  actions.appendChild(shopBtn);
+  const fillBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Fill the open meals', 'aria-haspopup': 'dialog' });
+  actions.append(fillBtn, shopBtn);
   mountEl.appendChild(actions);
+
+  fillBtn.addEventListener('click', () => {
+    const fromIndex = todayValue ? DAYS.findIndex((d) => d.value === todayValue) : 0;
+    const proposals = proposeFills(entries, meals, Math.max(0, fromIndex));
+    if (proposals.length === 0) {
+      const words = meals.length === 0
+        ? 'Add some meals of your own first, and they will be suggested here.'
+        : 'Nothing to fill: every meal left this week is planned, or none of your meals suit the gaps.';
+      showToast(words);
+      announce(words);
+      return;
+    }
+    openDetailSheet({
+      title: 'Fill the open meals',
+      subtitle: 'From your own meals. Untick any you do not want.',
+      returnFocusTo: fillBtn,
+      build(body, api) {
+        const list = el('ul', { class: 'fill-list' });
+        const boxes = [];
+        proposals.forEach((p, i) => {
+          const li = el('li', { class: 'checkbox-row' });
+          const box = el('input', { type: 'checkbox', id: `fill-${i}` });
+          box.checked = true;
+          const dayLabel = (DAYS.find((d) => d.value === p.day) || {}).label;
+          const label = el('label', { for: `fill-${i}` });
+          label.appendChild(el('span', { class: 'fill-when', text: `${dayLabel} ${SLOT_WORDS[p.slot]}` }));
+          label.appendChild(el('span', { class: 'fill-meal', text: p.meal.name }));
+          li.append(box, label);
+          list.appendChild(li);
+          boxes.push(box);
+        });
+        body.appendChild(list);
+        const go = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Add these to the plan' });
+        go.addEventListener('click', async () => {
+          go.disabled = true;
+          let added = 0;
+          for (let i = 0; i < proposals.length; i += 1) {
+            if (!boxes[i].checked) continue;
+            const p = proposals[i];
+            const result = await addPlanEntry({ meal_id: p.meal.id, day_of_week: p.day, slot: p.slot, week_start: weekStart });
+            if (destroyed) return;
+            if (!result.ok) { showToast('Some could not be added. Try again.'); break; }
+            entries = [...entries, { ...result.data, meals: p.meal }];
+            added += 1;
+          }
+          api.close();
+          requestListSync();
+          refreshAfterChange(`${added} meal${added === 1 ? '' : 's'} added. The shopping list will follow.`);
+        });
+        body.appendChild(go);
+      }
+    });
+  }, { signal });
 
   // ---------------------------------------------------------------- board
   const headRow = el('tr');

@@ -171,6 +171,20 @@ eq('nothing to buy comes first, and using up breaks the tie', ranked[0].recipe.s
 eq('…then the other complete one', ranked[1].recipe.slug, 'none-missing');
 eq('a recipe you have nothing for is left out', ranked.some((r) => r.recipe.slug === 'have-nothing'), false);
 
+// ============ Fill the open meals ============
+console.log('\nFill the open meals');
+const { proposeFills } = await import(`${REPO}/js/views/kitchenPlan.js`);
+const fillMeals = [
+  { id: 'oats', name: 'Oats', meal_type: 'breakfast' },
+  { id: 'curry', name: 'Curry', default_slot: 'dinner', is_favourite: true },
+  { id: 'pie', name: 'Pie', default_slot: 'dinner' }
+];
+const fills = proposeFills([{ day_of_week: 'mon', slot: 'dinner', meal_id: 'curry' }], fillMeals, 0);
+eq('a planned slot is left alone', fills.some((f) => f.day === 'mon' && f.slot === 'dinner'), false);
+eq('no meal is used twice in the week', new Set(fills.map((f) => f.meal.id)).size, fills.length);
+eq('the favourite already planned is not repeated, so the pie fills a dinner', fills.find((f) => f.slot === 'dinner').meal.id, 'pie');
+eq('from today on: nothing before the given day', proposeFills([], fillMeals, 6).every((f) => f.day === 'sun'), true);
+
 // ============ Every shipped recipe ============
 console.log('\nEvery shipped recipe');
 const refDoc = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8'));

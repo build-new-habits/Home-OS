@@ -4693,3 +4693,10 @@ body.sheet-open {
 .tonight-name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); }
 .tonight-have { color: var(--color-text-muted); font-size: var(--text-sm); }
 .tonight-soon { color: var(--state-soon); font-weight: 700; font-size: var(--text-sm); }
+
+/* Fill the open meals (3 Oct 2026) */
+.plan-actions { display: flex; flex-direction: column; gap: var(--space-3); }
+.fill-list { list-style: none; margin: 0 0 var(--space-4); padding: 0; }
+.fill-list label { display: flex; flex-direction: column; }
+.fill-when { font-size: var(--text-sm); color: var(--color-text-muted); }
+.fill-meal { font-weight: 600; }

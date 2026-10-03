@@ -137,4 +137,5 @@ section.plan-detail
     button.btn[type=button]"Choose"
   p.plan-detail-open
 div.plan-actions
+  button.btn.btn-block[type=button]"Fill the open meals"
   button.btn.btn-block.btn-primary[type=button]"Update shopping list"
