@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 03 Oct 2026 v5
+// js/views/meals/library.js — 03 Oct 2026 v6
+// v6: a photo or meal-colour tile beside each recipe.
 // v5: Course filter (starters, mains, puddings); drinks under Meal time.
 // v4: the blurb no longer counts its recipes.
 // v3: a recipe name links to its own page (#/recipe?r=slug).
@@ -24,6 +25,8 @@
 
 import { el } from '../../lib/dom.js';
 import { COURSES } from '../../data/courses.js';
+import { loadImages } from '../../data/recipeImages.js';
+import { recipePhoto } from '../../components/recipePhoto.js';
 import { announce } from '../../lib/a11y.js';
 import { showToast } from '../../components/toast.js';
 // libraryDetail.js is no longer opened from this list (v3, 3 Oct 2026); the
@@ -44,6 +47,7 @@ import { listRecipeNotes } from '../../data/recipeNotes.js';
  */
 export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = false, course = '' }) {
   let libraryRecipes = [];
+  let libraryImages = new Map();
   let libraryOwned = new Map();
   // ---- Favourites, 10 Sep 2026 ----
   // Device test: "no way to find favourites". Revision 25 gave the library
@@ -99,10 +103,11 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
 async function loadLibrary() {
   libraryBody.replaceChildren(el('p', { class: 'field-hint', text: 'Loading recipes…' }));
 
-  const [recipes, owned, notes] = await Promise.all([
-    loadAllRecipes(), existingLibraryRefs(), listRecipeNotes()
+  const [recipes, owned, notes, images] = await Promise.all([
+    loadAllRecipes(), existingLibraryRefs(), listRecipeNotes(), loadImages().catch(() => new Map())
   ]);
   if (destroyed()) return;
+  libraryImages = images;
 
   if (!recipes.ok) {
     libraryBody.replaceChildren(el('p', {
@@ -275,7 +280,10 @@ function renderLibraryList() {
   }
 
   for (const recipe of matches) {
-    const item = el('li', { class: 'library-row' });
+    const item = el('li', { class: 'library-row has-thumb' });
+    // 3 Oct 2026: a photo, or a tile in the meal's colour. Decorative: the
+    // name beside it says what it is.
+    item.appendChild(recipePhoto(recipe, libraryImages.get(recipe.slug) || null, 'thumb'));
     // The name opens the recipe. Until now the only thing you could do with
     // a library entry was add it to your meals — so reading one meant
     // adding it first, which is choosing a dinner by its title.

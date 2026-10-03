@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v82 */
+/* css/components.css — 03 Oct 2026 v83 */
+/* v83: recipe photos and their placeholder tiles (3 Oct). */
 /* v82: recipes kept on this phone; save-on-phone note (3 Oct). */
 /* v81: courses in the plan panel; four-field About row (3 Oct). */
 /* v80: leftovers on the board, on Today and in their sheet (3 Oct). */
@@ -4814,3 +4815,17 @@ body.sheet-open {
 .library-phone-list a { display: inline-block; min-height: var(--tap-min); padding: var(--space-2) 0; }
 .library-phone input[type="file"]:focus + label { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
 .own-save-note { margin-top: calc(-1 * var(--space-2)); }
+
+/* ---- Recipe photos (3 Oct 2026, v83) -----------------------------------
+   One frame for every photo: 4:3, rounded, cropped to fill. With no photo
+   yet, a tile in the meal's colour holds the same space. */
+.recipe-photo { display: block; border-radius: var(--radius-lg); object-fit: cover; background: var(--color-neutral-chip); }
+.recipe-photo-hero { width: 100%; height: auto; aspect-ratio: 4 / 3; margin: 0 0 var(--space-4); }
+.recipe-photo-thumb { width: 4em; height: 4em; aspect-ratio: 1 / 1; border-radius: var(--radius-md); flex: none; }
+.recipe-photo-tile { display: flex; align-items: center; justify-content: center; }
+.recipe-photo-tile.recipe-photo-hero { max-height: 9em; aspect-ratio: auto; height: 9em; }
+@media (min-width: 40em) { .recipe-photo-hero:not(.recipe-photo-tile) { max-width: 36em; } }
+.library-row.has-thumb { display: grid; grid-template-columns: 4em minmax(0, 1fr); column-gap: var(--space-3); row-gap: 2px; align-items: start; }
+.library-row.has-thumb > :not(.recipe-photo) { grid-column: 2; }
+.library-row.has-thumb > .recipe-photo { grid-column: 1; grid-row: 1 / span 4; }
+.recipe-photo-slot:empty { display: none; }

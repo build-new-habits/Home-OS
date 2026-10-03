@@ -108,7 +108,7 @@ function phoneSection(signal) {
     empty.textContent = kept.length === 0
       ? 'Recipes you save on this phone appear here. Open any recipe and choose Make your own version, or write one.'
       : `${kept.length} recipe${kept.length === 1 ? '' : 's'} kept here. A backup file keeps them safe if this phone is reset.`;
-    backup.disabled = kept.length === 0;
+    backup.hidden = kept.length === 0;
   };
 
   const buttons = el('div', { class: 'library-links' });

@@ -398,6 +398,18 @@ check('the library is not empty', count > 100, `${count}`);
   globalThis.localStorage = saved;
 }
 
+// ---- Recipe photos (3 Oct 2026) -----------------------------------------
+{
+  const { imageMap } = await import(`${REPO}/js/data/recipeImages.js`);
+  const m = imageMap({ images: {
+    'lemon-posset': { src: 'assets/recipes/lemon-posset.webp', alt: 'Lemon posset in a small glass with raspberries', width: 800, height: 600 },
+    'no-alt': { src: 'assets/recipes/no-alt.webp', alt: '  ' }
+  } });
+  check('a photo with alt text is used', m.has('lemon-posset') && /assets\/recipes\/lemon-posset\.webp$/.test(m.get('lemon-posset').src));
+  check('a photo without alt text is not', !m.has('no-alt'));
+  eq('an empty manifest is no photos, not an error', imageMap(null).size, 0);
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v10
+// js/views/recipe.js — 03 Oct 2026 v11
+// v11: a photo at the top when the recipe has one.
 // v10: recipes kept on this phone (#/recipe?l=<id>): cook, change, delete, and
 // Add to plan puts them in your meals first. Library recipes offer Make your own version.
 // v9: a meal added from the library keeps the library's swaps and course.
@@ -59,6 +60,8 @@ import { localIdFromHash, getLocal, linkLocal, deleteLocal } from '../data/local
 import { buildNameIndex, draftToRecipe, saveDraft, measuredOnly } from '../data/ownRecipe.js';
 import { listFoods } from '../data/foods.js';
 import { confirmDialog } from '../components/confirmDialog.js';
+import { loadImages } from '../data/recipeImages.js';
+import { recipePhoto } from '../components/recipePhoto.js';
 
 const SLOT_WORDS = {
   breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', drink: 'Drink'
@@ -278,6 +281,21 @@ export function render(mountEl) {
 
     heading.textContent = recipe.name;
     document.title = `${recipe.name} · Home-OS`;
+
+    // ---- Photo (3 Oct 2026) ---------------------------------------------
+    // Library recipes, and your own versions of them. Only when there is a
+    // real photo: an empty coloured band on every page reads as unfinished.
+    const photoSlug = recipe.slug || (kept && kept.draft.fromSlug) || (ownMeal && ownMeal.library_ref) || null;
+    if (photoSlug) {
+      const slot = el('div', { class: 'recipe-photo-slot' });
+      body.appendChild(slot);
+      loadImages().then((images) => {
+        if (destroyed) return;
+        const image = images.get(photoSlug);
+        if (image) slot.appendChild(recipePhoto(recipe, image, 'hero'));
+        else slot.remove();
+      }).catch(() => slot.remove());
+    }
 
     // ---- Facts -----------------------------------------------------------
     const facts = el('ul', { class: 'recipe-facts' });

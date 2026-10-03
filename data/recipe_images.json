@@ -1,0 +1,6 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "note": "Recipe photos, by library slug. Files live in assets/recipes/. Written by scripts/process_recipe_photos.py; alt text is checked by eye against each photo.",
+ "images": {}
+}
