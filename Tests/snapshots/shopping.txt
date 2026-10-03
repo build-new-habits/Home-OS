@@ -1,21 +1,21 @@
-h1.page-heading"Shopping list"
-  svg.icon.icon-shopping
-    g
-      path
-      path
-  span
-p.field-hint[hidden=]
-div.filter-row
-  button.btn[type=button]"Build from the plan"
-  button.btn[type=button]"Filter"
-p.field-hint[role=status]
-p.cost-note.field-hint[role=status][hidden=]
-div
-  div.empty-state-block
-    p.empty-state
-    a.btn"Plan the week"
+header.shop-header
+  h1.shop-title"Shopping"
+  p.shop-summary
+  div.shop-progress
+    span.shop-progress-fill
+p.visually-hidden[role=status]
+div.shop-groups
+  div.shop-empty
+    p.shop-empty-title
     p.field-hint
-  button.btn[type=button]"Add my usual household staples"
-  p.field-hint
-div.action-bar
-  a.action-bar__control.btn.btn-primary"Add something to the list"
+details.shop-basket.shop-fold[hidden=]
+  summary"In the basket (<n>)"
+  ul.shop-fold-list
+details.shop-fold[hidden=]
+  summary"Already in the cupboard (<n>)"
+  ul.shop-fold-list
+div.shop-actions
+  button.btn.btn-block.btn-primary[type=button][hidden=]"Done shopping"
+  a.btn.btn-block"Add something to the list"
+p.shop-build
+  a"Change the plan"

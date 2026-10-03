@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v76 */
+/* css/components.css — 03 Oct 2026 v77 */
+/* v77: the kitchen shopping list (K8). */
 /* v76: the week board (K6). */
 /* v75: meal glyphs and the kitchen Today screen (K7). */
 /* v74: recipe page and nutrition bars (kitchen rebuild K5). */
@@ -4462,3 +4463,105 @@ body.sheet-open {
 .plan-actions { margin-bottom: var(--space-5); }
 .plan-day-short { display: block; }
 .plan-idea { font-weight: 600; }
+
+
+/* ---- Shopping, kitchen app (K8) ---------------------------------------- */
+.shop-header { margin-bottom: var(--space-5); }
+.shop-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.shop-title:focus { outline: none; }
+.shop-summary { margin: var(--space-1) 0 var(--space-3); color: var(--color-text-muted); }
+.shop-progress {
+  height: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-chip);
+  overflow: hidden;
+}
+.shop-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--color-accent);
+  transition: width var(--motion-normal) var(--motion-ease);
+}
+@media (prefers-reduced-motion: reduce) { .shop-progress-fill { transition: none; } }
+
+.shop-groups { display: flex; flex-direction: column; gap: var(--space-5); margin-bottom: var(--space-5); }
+.shop-group { margin: 0; }
+.shop-aisle { font-size: var(--text-lg); margin: 0 0 var(--space-2); }
+.shop-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.shop-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+}
+.shop-line:first-child { border-top: 0; }
+.shop-check {
+  flex: none;
+  width: var(--space-5);
+  height: var(--space-5);
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+.shop-label {
+  flex: 1;
+  min-height: var(--tap-min);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+.shop-name { font-weight: 600; }
+.shop-amount { font-size: var(--text-sm); color: var(--color-text-muted); }
+.shop-label-done .shop-name { text-decoration: line-through; color: var(--color-text-muted); font-weight: 400; }
+.shop-have { flex: none; }
+
+.shop-empty {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-4);
+  text-align: center;
+}
+.shop-empty-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); margin: 0 0 var(--space-1); }
+
+.shop-fold {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.shop-basket > summary { color: var(--color-accent-strong); }
+.shop-fold > summary {
+  min-height: var(--tap-large);
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+.shop-fold-list { list-style: none; margin: 0; padding: 0 0 var(--space-3); }
+.shop-fold-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--tap-min);
+  border-top: 1px solid var(--color-border);
+}
+.shop-actions { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-5) 0 var(--space-3); }
+.shop-build { margin: 0 0 var(--space-5); }

@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v1
+// js/views/kitchenPlan.js — 03 Oct 2026 v2
+// v2: plan changes ask the shopping list to follow (requestListSync), as the old plan did.
 // Kitchen rebuild K6. The week as a board: seven days across, a row per
 // meal. The approved mockup's Plan screen.
 //
@@ -28,6 +29,7 @@ import { listMeals, listIngredients, groupByMeal, computeMacros } from '../data/
 import { dayNutrition, nutritionRows } from '../data/nutrition.js';
 import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
 import { buildWeekIntoList } from '../data/planShopping.js';
+import { requestListSync } from '../data/listSync.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
 import { mealGlyph, mealIcon } from '../components/mealGlyph.js';
 import { navigate } from '../router.js';
@@ -275,6 +277,9 @@ export function render(mountEl, { week = 'this' } = {}) {
           if (destroyed) return;
           if (!result.ok) { rm.disabled = false; showToast('That did not save. Try again.'); return; }
           entries = entries.filter((x) => x.id !== entry.id);
+          // The list follows the plan on its own (Phase 22), as it did
+          // from the old plan screen.
+          requestListSync();
           refreshAfterChange(`Removed ${(entry.meals && entry.meals.name) || 'the meal'}.`);
         }, { signal });
         li.appendChild(rm);
@@ -313,6 +318,7 @@ export function render(mountEl, { week = 'this' } = {}) {
       return;
     }
     entries = [...entries, { ...result.data, meals: meal }];
+    requestListSync();
     refreshAfterChange(`Added ${meal.name}.`);
   }
 
