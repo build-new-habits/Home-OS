@@ -1,0 +1,36 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "note": "Sources that market-library recipes may be inspired by, and how many each has given. The cap is the lower of 6 and 10% of the source's recipes, counted across every monthly set, ever. See Docs/Current/RECIPE_TRACKER.md. No recipe text lives here: this repo is public.",
+ "sources": [
+  {
+   "id": "buddha-bowls",
+   "title": "Buddha Bowls",
+   "author": "to confirm from the cover",
+   "kind": "book",
+   "recipes_in_source": 63,
+   "recipes_in_source_note": "scanned so far; update when the book's own total is confirmed",
+   "cap": 6,
+   "used": []
+  },
+  {
+   "id": "guardian-feast-2025-12-27",
+   "title": "Guardian Feast, 27 December 2025",
+   "author": "various",
+   "kind": "magazine issue",
+   "recipes_in_source": 11,
+   "cap": 1,
+   "used": []
+  },
+  {
+   "id": "a-good-appetite",
+   "title": "A Good Appetite",
+   "author": "Jenny Chandler",
+   "kind": "book (excerpted in National Trust magazine)",
+   "recipes_in_source": 11,
+   "recipes_in_source_note": "excerpt only; the book's full count sets the real cap",
+   "cap": 1,
+   "used": []
+  }
+ ]
+}
