@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v8
+// js/views/recipe.js — 03 Oct 2026 v9
+// v9: a meal added from the library keeps the library's swaps and course.
 // v8: starters and puddings say so.
 // v7: spoon-sized amounts of liquid read as tsp/tbsp.
 // v6: Change this recipe opens the recipe editor (#/recipe-edit?m=<id>);
@@ -214,6 +215,16 @@ export function render(mountEl) {
       }
       if (ownMeal) {
         ({ recipe, refMap } = ownMealAsRecipe(ownMeal, ingResult.data || [], stepResult.ok ? (stepResult.data || []) : []));
+        // Added from the library: its suggested swaps and course still apply.
+        if (ownMeal.library_ref) {
+          const library = await loadAllRecipes().catch(() => null);
+          if (destroyed) return;
+          const source = library && library.ok ? (library.data || []).find((r) => r.slug === ownMeal.library_ref) : null;
+          if (source) {
+            if (!recipe.swaps.length && Array.isArray(source.swaps)) recipe.swaps = source.swaps;
+            if (!recipe.course && source.course) recipe.course = source.course;
+          }
+        }
       }
     } else {
       const [library, refs] = await Promise.all([

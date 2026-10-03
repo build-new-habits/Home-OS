@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "French",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -324,6 +324,213 @@
     },
     {
      "instruction": "Fold it over and slide onto the plate."
+    }
+   ]
+  },
+  {
+   "slug": "tuna-nicoise-salad",
+   "name": "Tuna, egg and green bean salad, niçoise style",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Everything can be cooked ahead. Dress just before eating.",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:potato-medium}} into chunks. Boil 15 minutes, until tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Add {{ing:green-beans}} for the last 4 minutes. Drain. Cool under cold water.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes. Cool in cold water. Peel and quarter.",
+     "duration_min": 8,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Whisk {{ing:olive-oil}}, {{ing:white-wine-vinegar}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Tear {{ing:lettuce-iceberg}} onto plates. Add potatoes, beans and halved {{ing:cherry-tomato}}."
+    },
+    {
+     "instruction": "Drain {{ing:tuna-tinned-in-spring-water}}. Flake over with the eggs and {{ing:olives-pitted}}."
+    },
+    {
+     "instruction": "Drizzle with the dressing."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "tuna",
+     "text": "A tin of butter beans, to make it vegetarian"
+    }
+   ]
+  },
+  {
+   "slug": "sea-bass-salsa-verde",
+   "name": "Sea bass with salsa verde and new potatoes",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Salsa verde is a sharp green herb sauce. It also lifts lamb, chicken and roast veg.",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:potato-medium}} into chunks. Boil 15 minutes, until tender.",
+     "duration_min": 15,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-basil}}, {{ing:capers}} and {{ing:garlic-clove}} very finely.",
+     "step_group": "Salsa verde"
+    },
+    {
+     "instruction": "Stir in 3 tablespoons of the oil, {{ing:mustard-dijon}} and the juice of half the lemon.",
+     "step_group": "Salsa verde"
+    },
+    {
+     "instruction": "Boil {{ing:green-beans}} 4 minutes.",
+     "duration_min": 4,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Heat the rest of {{ing:olive-oil}} in a frying pan on a medium-high heat.",
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Fry {{ing:sea-bass-fillet}} skin side down 3 minutes, pressing flat, until crisp.",
+     "duration_min": 3,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Turn. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Fish"
+    },
+    {
+     "instruction": "Serve with potatoes and beans. Spoon salsa verde over. Add wedges of {{ing:lemon}}.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "sea bass",
+     "text": "Any white fish or salmon; or halloumi for a vegetarian plate"
     }
    ]
   }

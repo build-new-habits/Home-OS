@@ -351,6 +351,132 @@
      "step_group": "To serve"
     }
    ]
+  },
+  {
+   "slug": "cauliflower-romesco",
+   "name": "Roast cauliflower with romesco sauce",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Romesco is a roasted pepper and almond sauce. It keeps a week in the fridge and is good with fish, eggs or toast.",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 7.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C.",
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into thick slices and florets.",
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}. Toss with the cauliflower, 2 tablespoons of the oil and 1 teaspoon paprika.",
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Quarter {{ing:pepper-bell}}. Add to a second tray with {{ing:garlic-clove}}, unpeeled.",
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Roast both trays 25 minutes, until charred at the edges.",
+     "duration_min": 25,
+     "step_group": "Roast"
+    },
+    {
+     "instruction": "Toast {{ing:almonds}} and {{ing:bread-slice-medium}} in a dry pan, 3 minutes.",
+     "duration_min": 3,
+     "step_group": "Romesco",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Squeeze the garlic from its skins into a blender.",
+     "step_group": "Romesco"
+    },
+    {
+     "instruction": "Add peppers, almonds, bread, {{ing:white-wine-vinegar}}, {{ing:salt}} and the last paprika.",
+     "step_group": "Romesco"
+    },
+    {
+     "instruction": "Blend with the rest of {{ing:olive-oil}} until thick and nearly smooth.",
+     "step_group": "Romesco"
+    },
+    {
+     "instruction": "Spread romesco on plates. Pile the cauliflower on top. Scatter {{ing:fresh-parsley}}.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "almonds",
+     "text": "Sunflower seeds, for a nut-free romesco"
+    },
+    {
+     "instead": "bread",
+     "text": "Leave it out for a gluten-free sauce; it will be a little thinner"
+    }
+   ]
   }
  ]
 }

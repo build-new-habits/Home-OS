@@ -53,6 +53,10 @@ Drinks are stored with `meal_type` 'drink' until migration 026 lets `default_slo
 
 Round 3 (evening): starters and puddings, now a **course** rather than a meal time. 9 starters (8 new plus bruschetta) and 12 puddings (10 new plus the chocolate torte and chocolate pots), 193 recipes in all. A course sits in the dinner (or lunch) slot beside the main; the plan panel lists dishes in eating order.
 
+Round 4 (evening, Graeme's list): fish and vegetarian dinners. Thai green chicken curry, Thai red curry with cauliflower and tofu, massaman curry, tom yum-style prawn soup, pad Thai with prawns and tofu, teriyaki salmon, roast cauliflower with romesco, prawn and chilli spaghetti, cod in tomato and olive, butternut risotto, fish pie, salmon fishcakes, smoked mackerel pâté, tuna niçoise-style salad, sea bass with salsa verde, fish and chickpea stew, squash and chickpea tagine, Goan-style fish curry, aloo gobi, halloumi fajitas, sweet potato and black bean enchiladas. Margherita pizza and lentil ragu were already in (Italian). All are our own versions; nothing follows a named cook's recipe. Library recipes can now carry **swaps** ("Instead of chicken thighs: firm tofu…"), shown under the ingredients; 20 do so far.
+
+Mix after round 4: 214 recipes; 32 with fish or seafood, 135 vegetarian or vegan, 47 with meat.
+
 ### Gaps, in priority order
 
 1. **Book picks.** The original library is now broad; the next balance gains come from converted scans (Buddha Bowls for lunches especially).

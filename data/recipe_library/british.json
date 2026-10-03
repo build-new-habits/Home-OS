@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "British",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -1184,6 +1184,307 @@
      "duration_min": 5
     }
    ]
+  },
+  {
+   "slug": "easy-fish-pie",
+   "name": "Fish pie with a mash top",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Make it ahead and bake from the fridge: add 10 minutes.",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 70,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}}. Cut into chunks. Boil 18 minutes, until soft.",
+     "duration_min": 18,
+     "step_group": "Mash",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Put {{ing:cod-fillet}} and {{ing:salmon-fillet}} in a pan with {{ing:milk-semi-skimmed}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Simmer (small bubbles) 5 minutes, until the fish starts to flake. Lift out the fish.",
+     "duration_min": 5,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Pour the milk into a jug.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Melt 40 g of the butter in the pan. Stir in {{ing:flour-plain}}. Cook 1 minute.",
+     "duration_min": 1,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Whisk in the milk a little at a time. Simmer 3 minutes, until thick.",
+     "duration_min": 3,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Stir in {{ing:peas-frozen}}, chopped {{ing:fresh-parsley}} and the juice of {{ing:lemon}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Flake the fish into a baking dish, skin removed. Add {{ing:prawns-cooked}}. Pour the sauce over.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Drain the potatoes. Mash with the rest of the butter.",
+     "step_group": "Mash"
+    },
+    {
+     "instruction": "Spread the mash on top. Grate over {{ing:cheddar-cheese}}.",
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Bake 25 minutes, until golden and bubbling at the edges.",
+     "duration_min": 25,
+     "step_group": "Bake"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cod, salmon and prawns",
+     "text": "A bag of frozen fish pie mix, thawed, does the same job for less"
+    }
+   ]
+  },
+  {
+   "slug": "salmon-fishcakes",
+   "name": "Salmon fishcakes with peas",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Chilling them for half an hour before frying helps them hold together.",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}}. Boil 18 minutes, until soft. Drain and mash dry.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Poach {{ing:salmon-fillet}} in simmering water 8 minutes, until it flakes.",
+     "duration_min": 8,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Flake the salmon into the mash. Throw away the skin."
+    },
+    {
+     "instruction": "Add sliced {{ing:spring-onion}}, chopped {{ing:fresh-parsley}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Shape into 8 cakes. Chill 30 minutes if you have time.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Dip each cake in egg, then {{ing:breadcrumbs-dried}}."
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} on a medium heat, 4 minutes each side, until golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Boil {{ing:peas-frozen}} 3 minutes.",
+     "duration_min": 3,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Serve with the peas and lemon wedges."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "salmon",
+     "text": "Two tins of salmon or tuna, drained, cost less and work well"
+    }
+   ]
+  },
+  {
+   "slug": "smoked-mackerel-pate",
+   "name": "Smoked mackerel pâté",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Five minutes, no cooking. Keeps three days in the fridge.",
+   "ingredients": [
+    {
+     "ref": "smoked-mackerel",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.25,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel the skin from {{ing:smoked-mackerel}}. Flake into a bowl."
+    },
+    {
+     "instruction": "Add {{ing:cream-cheese}}, the juice of {{ing:lemon}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Mash with a fork until mostly smooth."
+    },
+    {
+     "instruction": "Stir in chopped {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Serve with toasted {{ing:wholemeal-bread-slice}} and slices of {{ing:cucumber}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "smoked mackerel",
+     "text": "Hot-smoked salmon or a tin of sardines"
+    }
+   ],
+   "course": "starter"
   }
  ]
 }

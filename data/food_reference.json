@@ -3337,6 +3337,82 @@
    "fat_g": 0.5,
    "carbs_g": 62.6,
    "fibre_g": 7.3
+  },
+  {
+   "slug": "thai-green-curry-paste",
+   "name": "Thai green curry paste",
+   "category": "food_ambient",
+   "aliases": [
+    "green curry paste"
+   ],
+   "grams_per_ml": 1.1,
+   "calories_per_100g": 110,
+   "protein_g": 2.0,
+   "fat_g": 6.0,
+   "carbs_g": 11.0,
+   "fibre_g": 3.5,
+   "basis": "Typical of UK jars; brands vary widely."
+  },
+  {
+   "slug": "thai-red-curry-paste",
+   "name": "Thai red curry paste",
+   "category": "food_ambient",
+   "aliases": [
+    "red curry paste"
+   ],
+   "grams_per_ml": 1.1,
+   "calories_per_100g": 110,
+   "protein_g": 2.3,
+   "fat_g": 5.5,
+   "carbs_g": 12.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK jars; brands vary widely."
+  },
+  {
+   "slug": "massaman-curry-paste",
+   "name": "Massaman curry paste",
+   "category": "food_ambient",
+   "aliases": [
+    "massaman paste"
+   ],
+   "grams_per_ml": 1.1,
+   "calories_per_100g": 220,
+   "protein_g": 3.0,
+   "fat_g": 14.0,
+   "carbs_g": 20.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK jars; brands vary widely."
+  },
+  {
+   "slug": "lemongrass",
+   "name": "Lemongrass",
+   "category": "food_fresh",
+   "aliases": [
+    "lemon grass",
+    "lemongrass stalk"
+   ],
+   "grams_per_item": 20,
+   "item_label": "stalk",
+   "calories_per_100g": 99,
+   "protein_g": 1.8,
+   "fat_g": 0.5,
+   "carbs_g": 25.3,
+   "fibre_g": 0.0,
+   "basis": "USDA. No fibre figure is published; counted as 0. It is used in small amounts and mostly not eaten."
+  },
+  {
+   "slug": "smoked-mackerel",
+   "name": "Smoked mackerel",
+   "category": "food_fresh",
+   "aliases": [
+    "mackerel",
+    "smoked mackerel fillets"
+   ],
+   "calories_per_100g": 354,
+   "protein_g": 20.7,
+   "fat_g": 30.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0
   }
  ]
 }

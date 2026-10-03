@@ -15,7 +15,7 @@
   {
    "cuisine": "British",
    "path": "data/recipe_library/british.json",
-   "count": 15
+   "count": 18
   },
   {
    "cuisine": "Budget",
@@ -45,7 +45,7 @@
   {
    "cuisine": "French",
    "path": "data/recipe_library/french.json",
-   "count": 4
+   "count": 6
   },
   {
    "cuisine": "Greek",
@@ -55,17 +55,17 @@
   {
    "cuisine": "Indian",
    "path": "data/recipe_library/indian.json",
-   "count": 6
+   "count": 8
   },
   {
    "cuisine": "Italian",
    "path": "data/recipe_library/italian.json",
-   "count": 17
+   "count": 20
   },
   {
    "cuisine": "Japanese",
    "path": "data/recipe_library/japanese.json",
-   "count": 3
+   "count": 4
   },
   {
    "cuisine": "Korean",
@@ -85,12 +85,12 @@
   {
    "cuisine": "Mexican",
    "path": "data/recipe_library/mexican.json",
-   "count": 4
+   "count": 6
   },
   {
    "cuisine": "Middle Eastern",
    "path": "data/recipe_library/middle_eastern.json",
-   "count": 4
+   "count": 6
   },
   {
    "cuisine": "Persian",
@@ -110,7 +110,7 @@
   {
    "cuisine": "Spanish",
    "path": "data/recipe_library/spanish.json",
-   "count": 4
+   "count": 5
   },
   {
    "cuisine": "Special",
@@ -130,7 +130,7 @@
   {
    "cuisine": "Thai",
    "path": "data/recipe_library/thai.json",
-   "count": 5
+   "count": 10
   },
   {
    "cuisine": "Turkish",

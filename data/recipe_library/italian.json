@@ -1635,6 +1635,318 @@
      "instruction": "Grate {{ing:parmesan}} in. Chop {{ing:fresh-parsley}} over."
     }
    ]
+  },
+  {
+   "slug": "prawn-chilli-linguine",
+   "name": "Prawn, chilli and lemon spaghetti",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Save a mug of pasta water. A splash makes the oil and lemon cling to the pasta.",
+   "ingredients": [
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 350,
+     "unit": "g"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 80,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:spaghetti-dry}} in salted boiling water following the packet.",
+     "duration_min": 10,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}} and {{ing:chilli-fresh}}. Halve {{ing:cherry-tomato}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large frying pan on a medium heat."
+    },
+    {
+     "instruction": "Fry garlic and chilli 1 minute, until the garlic is pale gold.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the tomatoes. Cook 3 minutes, until they start to burst.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:prawns-cooked}} and {{ing:spinach}}. Stir 2 minutes, until hot.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Drain the pasta, keeping a mugful of water. Tip into the pan."
+    },
+    {
+     "instruction": "Add the zest and juice of {{ing:lemon}} and a splash of pasta water. Toss."
+    },
+    {
+     "instruction": "Scatter chopped {{ing:fresh-parsley}} to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "A tin of butter beans and a handful of capers, to make it vegetarian and vegan"
+    }
+   ]
+  },
+  {
+   "slug": "cod-tomato-olive",
+   "name": "Cod baked in tomato and olive sauce",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The sauce can be made a day ahead. Add the fish when you are ready to eat.",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}} into small chunks. Roast with 1 tablespoon of the oil, 30 minutes.",
+     "duration_min": 30,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Slice {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Fry them in the rest of {{ing:olive-oil}} in an ovenproof pan, 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:olives-pitted}}, {{ing:capers}} and {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 10 minutes, until thick.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Nestle {{ing:cod-fillet}} into the sauce."
+    },
+    {
+     "instruction": "Bake 12 minutes, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Tear {{ing:fresh-basil}} over. Serve with the potatoes."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cod",
+     "text": "Any firm white fish: haddock, pollock, hake. Or halloumi slices for a vegetarian version"
+    }
+   ]
+  },
+  {
+   "slug": "butternut-risotto",
+   "name": "Butternut squash and thyme risotto",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Add the stock a ladle at a time and keep stirring. That is what makes it creamy.",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "pumpkin-seeds",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel and cube {{ing:butternut-squash}}. Roast with 1 tablespoon of the oil, 25 minutes.",
+     "duration_min": 25,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Keep {{ing:stock-vegetable}} hot in a pan on a low heat."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Fry them in the rest of {{ing:olive-oil}} in a wide pan, 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir in {{ing:rice-arborio-dry}} and {{ing:dried-thyme}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add a ladle of stock. Stir until it is absorbed."
+    },
+    {
+     "instruction": "Keep adding stock a ladle at a time, about 20 minutes, until creamy.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Mash half the squash into the rice. Stir in {{ing:butter-block}} and {{ing:parmesan}}."
+    },
+    {
+     "instruction": "Top with the rest of the squash and {{ing:pumpkin-seeds}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan and butter",
+     "text": "Olive oil and a spoon of nutritional yeast, to make it vegan. Most parmesan is not vegetarian; use a vegetarian hard cheese if that matters"
+    }
+   ]
   }
  ]
 }

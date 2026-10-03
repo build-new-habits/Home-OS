@@ -306,6 +306,133 @@
      "step_group": "To serve"
     }
    ]
+  },
+  {
+   "slug": "teriyaki-salmon-rice",
+   "name": "Teriyaki salmon with rice and greens",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The sauce thickens fast once the honey is in. Keep stirring and take it off as soon as it is glossy.",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 3,
+     "unit": "g"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 3,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Grate {{ing:garlic-clove}} and {{ing:ginger-fresh}} into a jug.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:soy-sauce}}, {{ing:honey}}, {{ing:rice-vinegar}} and 3 tablespoons of water.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Stir in {{ing:cornflour}} until smooth.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a medium-high heat.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Fry {{ing:salmon-fillet}} skin side down 4 minutes, until crisp.",
+     "duration_min": 4,
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Turn. Pour in the sauce. Bubble 2 minutes, spooning it over, until glossy.",
+     "duration_min": 2,
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets. Steam or boil 4 minutes.",
+     "duration_min": 4,
+     "step_group": "Greens",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Serve salmon on the rice with the broccoli. Scatter {{ing:sesame-seeds}} and sliced {{ing:spring-onion}}.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "salmon",
+     "text": "Firm tofu slices or chicken thighs; give chicken 6 minutes a side"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    }
+   ]
   }
  ]
 }

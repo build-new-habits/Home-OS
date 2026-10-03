@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Middle Eastern",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -354,6 +354,248 @@
     },
     {
      "instruction": "Squeeze {{ing:lemon}} in and add {{ing:olive-oil}}."
+    }
+   ]
+  },
+  {
+   "slug": "moroccan-fish-tagine",
+   "name": "Fish and chickpea stew with cumin and paprika",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Gentle heat once the fish is in. It should poach, not boil.",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:pepper-bell}}. Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a wide pan. Fry the onion and pepper 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add garlic, {{ing:cumin-ground}}, {{ing:paprika}} and {{ing:cinnamon-ground}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and drained {{ing:chickpeas-tinned}}. Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cut {{ing:cod-fillet}} into large chunks. Lay them in the sauce."
+    },
+    {
+     "instruction": "Cover. Cook on a low heat 8 minutes, until the fish flakes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Pour 350 ml boiling water over {{ing:couscous-dry}}. Cover 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-coriander}}. Serve with the couscous."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cod",
+     "text": "Halloumi chunks or a second tin of chickpeas, to make it vegetarian"
+    }
+   ]
+  },
+  {
+   "slug": "squash-chickpea-tagine",
+   "name": "Butternut squash and chickpea tagine",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Sweet, warm spice rather than heat. Even better the next day.",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and cube {{ing:butternut-squash}}. Chop {{ing:onion-medium}}. Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large pan. Fry the onion 6 minutes, until soft.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add garlic, {{ing:cumin-ground}}, {{ing:cinnamon-ground}} and {{ing:paprika}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add squash, {{ing:chopped-tomatoes-tinned}}, {{ing:stock-vegetable}} and {{ing:dried-apricots}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 20 minutes, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}. Stir in. Cook 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Pour 350 ml boiling water over {{ing:couscous-dry}}. Cover 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Serve on the couscous with toasted {{ing:almonds}} and chopped {{ing:fresh-mint}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "couscous",
+     "text": "Rice or quinoa, to make it gluten free"
     }
    ]
   }

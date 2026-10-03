@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Mexican",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -354,6 +354,212 @@
     },
     {
      "instruction": "Warm {{ing:tortilla-wrap}} and serve alongside."
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-fajitas",
+   "name": "Halloumi and pepper fajitas",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Squeaky halloumi takes on the spice like chicken does.",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:halloumi}}, {{ing:pepper-bell}} and {{ing:red-onion}} into strips."
+    },
+    {
+     "instruction": "Toss with {{ing:paprika}}, {{ing:cumin-ground}}, {{ing:chilli-powder}} and {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry in a hot pan 8 minutes, until the halloumi is golden and the peppers soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Mash {{ing:avocado}} with the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Warm {{ing:tortilla-wrap}} in a dry pan, 20 seconds each side."
+    },
+    {
+     "instruction": "Fill with halloumi and peppers, avocado and {{ing:natural-yoghurt}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "halloumi",
+     "text": "Chicken strips (fry 8 minutes until cooked) or a tin of black beans for vegan"
+    }
+   ]
+  },
+  {
+   "slug": "sweet-potato-black-bean-enchiladas",
+   "name": "Sweet potato and black bean enchiladas",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A good make-ahead dinner. Assemble in the morning and bake when you get in.",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel and cube {{ing:sweet-potato}}. Roast with {{ing:olive-oil}} and {{ing:cumin-ground}}, 25 minutes.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Warm {{ing:passata}} with crushed {{ing:garlic-clove}}, {{ing:paprika}} and {{ing:chilli-powder}}, 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:red-onion}}. Drain {{ing:black-beans-tinned}}."
+    },
+    {
+     "instruction": "Mix the sweet potato, beans and onion with a third of the sauce."
+    },
+    {
+     "instruction": "Fill {{ing:tortilla-wrap}}. Roll up. Lay seam-down in a baking dish."
+    },
+    {
+     "instruction": "Pour over the rest of the sauce. Scatter {{ing:cheddar-cheese}}."
+    },
+    {
+     "instruction": "Bake 20 minutes, until bubbling. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 20
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cheddar",
+     "text": "Dairy-free cheese, or leave it off and add sliced avocado, to make it vegan"
     }
    ]
   }

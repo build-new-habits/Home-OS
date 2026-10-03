@@ -482,6 +482,618 @@
      "instruction": "Scatter {{ing:peanuts}} over."
     }
    ]
+  },
+  {
+   "slug": "thai-green-chicken-curry",
+   "name": "Thai green chicken curry",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Fry the paste in the thick top of the coconut milk first. That is where the fragrance comes from.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into bite-sized pieces. Slice {{ing:courgette}} into half moons."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok or large pan on a medium heat."
+    },
+    {
+     "instruction": "Spoon in the thick cream from the top of {{ing:coconut-milk-tinned}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir in {{ing:thai-green-curry-paste}}. Fry 2 minutes, until it smells fragrant.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the chicken. Stir 3 minutes, until coated and sealed.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Pour in the rest of the coconut milk. Simmer (small bubbles) 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add {{ing:green-beans}} and the courgette. Simmer 5 minutes, until tender but still bright.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:fish-sauce}}, {{ing:sugar-soft-brown}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Tear in {{ing:fresh-basil}}. Serve with the rice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken thighs",
+     "text": "Firm tofu (a 400 g block, cubed) or a tin of chickpeas, to make it vegetarian"
+    },
+    {
+     "instead": "fish sauce",
+     "text": "Soy sauce, to make it vegetarian or vegan. Check the paste: some contain shrimp"
+    },
+    {
+     "instead": "green beans and courgette",
+     "text": "Any quick-cooking veg: peppers, mangetout, baby corn, spinach"
+    }
+   ]
+  },
+  {
+   "slug": "thai-red-curry-cauliflower-tofu",
+   "name": "Thai red curry with cauliflower and tofu",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Roasting the cauliflower first gives it colour and stops it going watery in the sauce.",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 396,
+     "unit": "g"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets. Toss with 1 tablespoon of the oil on a tray."
+    },
+    {
+     "instruction": "Roast 20 minutes, until golden at the edges.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:tofu-firm}} into cubes. Pat dry with kitchen roll.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Fry the tofu in the rest of {{ing:vegetable-oil}} 8 minutes, until golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:thai-red-curry-paste}} to the tofu pan. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour in {{ing:coconut-milk-tinned}}. Add {{ing:pepper-bell}}, sliced. Simmer 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add the cauliflower and {{ing:spinach}}. Stir until the spinach wilts."
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}}, {{ing:maple-syrup}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Serve with the rice. Scatter {{ing:fresh-coriander}} over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "tofu",
+     "text": "Chicken thighs, browned in place of the tofu, if you eat meat"
+    },
+    {
+     "instead": "cauliflower",
+     "text": "Butternut squash or sweet potato, roasted the same way"
+    }
+   ]
+  },
+  {
+   "slug": "massaman-curry",
+   "name": "Massaman curry with potatoes and peanuts",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Mild, rich and slightly sweet, with warm spice. A good first Thai curry for children.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-medium}}. Cut into large chunks. Cut {{ing:onion-medium}} into wedges."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large pieces."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large pan on a medium heat."
+    },
+    {
+     "instruction": "Fry {{ing:massaman-curry-paste}} 2 minutes, until fragrant.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the chicken. Stir 4 minutes, until sealed.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add potatoes, onion, {{ing:coconut-milk-tinned}}, {{ing:cinnamon-ground}} and 150 ml water."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 30 minutes, until the potatoes are soft.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir in {{ing:fish-sauce}}, {{ing:sugar-soft-brown}} and most of {{ing:peanuts}}."
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Serve with rice and the last peanuts on top."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken thighs",
+     "text": "Firm tofu, added for the last 10 minutes, or extra potato and a tin of chickpeas, to make it vegetarian"
+    },
+    {
+     "instead": "fish sauce",
+     "text": "Soy sauce, to make it vegetarian or vegan"
+    }
+   ]
+  },
+  {
+   "slug": "tom-yum-prawn-soup",
+   "name": "Hot and sour prawn soup, tom yum style",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Hot, sour and salty all at once. Taste at the end and adjust with lime and fish sauce.",
+   "ingredients": [
+    {
+     "ref": "stock-chicken",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Bash {{ing:lemongrass}} with a rolling pin. Cut into short lengths.",
+     "note": "Bashing releases the oils. The pieces are not eaten."
+    },
+    {
+     "instruction": "Slice {{ing:ginger-fresh}}, {{ing:chilli-fresh}} and {{ing:mushroom-chestnut}}. Halve {{ing:cherry-tomato}}."
+    },
+    {
+     "instruction": "Bring {{ing:stock-chicken}} to a simmer (small bubbles) with the lemongrass, ginger and chilli."
+    },
+    {
+     "instruction": "Simmer 10 minutes, until it smells of lemongrass.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add the mushrooms and tomatoes. Simmer 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:prawns-cooked}}. Heat 2 minutes, until hot through.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:fish-sauce}}, {{ing:sugar-soft-brown}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Ladle into bowls, leaving the lemongrass behind. Top with {{ing:fresh-coriander}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "Tofu and extra mushrooms with vegetable stock and soy sauce, to make it vegetarian"
+    },
+    {
+     "instead": "lemongrass",
+     "text": "The grated zest of a lime if you cannot get lemongrass"
+    }
+   ],
+   "course": "starter"
+  },
+  {
+   "slug": "pad-thai-prawns-tofu",
+   "name": "Pad Thai with prawns and tofu",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Have everything chopped and by the hob before you start. It cooks in under ten minutes.",
+   "ingredients": [
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} in hot water following the packet. Drain.",
+     "note": "Slightly firm is right. They finish cooking in the pan."
+    },
+    {
+     "instruction": "Mix {{ing:fish-sauce}}, {{ing:sugar-soft-brown}}, the juice of 1 lime and {{ing:tomato-ketchup}}.",
+     "note": "Ketchup stands in for tamarind: sweet and sour."
+    },
+    {
+     "instruction": "Cut {{ing:tofu-firm}} into small cubes. Slice {{ing:spring-onion}}. Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on a high heat. Fry the tofu 5 minutes, until golden.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Push to one side. Crack in {{ing:egg-medium}}. Scramble 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the garlic, noodles and sauce. Toss 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:prawns-cooked}}, {{ing:beansprouts}} and most of the spring onion. Toss 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Serve topped with chopped {{ing:peanuts}}, {{ing:chilli-powder}}, the last spring onion and lime wedges."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "More tofu, and soy sauce instead of fish sauce, to make it vegetarian. Leave out the egg for vegan"
+    },
+    {
+     "instead": "peanuts",
+     "text": "Toasted sunflower seeds if peanuts are a problem"
+    }
+   ]
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Indian",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -602,6 +602,232 @@
     {
      "instruction": "Chop {{ing:fresh-parsley}} over.",
      "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "goan-fish-curry",
+   "name": "Coconut fish curry, Goan style",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Tangy and coconutty. The fish goes in last and only needs a few minutes.",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "coriander-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wide pan. Fry the onion 8 minutes, until golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add garlic, ginger, {{ing:turmeric-ground}}, {{ing:cumin-ground}}, {{ing:coriander-ground}} and {{ing:chilli-powder}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}. Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cut {{ing:cod-fillet}} into chunks. Lay in the sauce. Simmer 6 minutes, until it flakes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}. Serve with the rice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cod",
+     "text": "Prawns (add for the last 3 minutes), or cauliflower and chickpeas for a vegan curry"
+    }
+   ]
+  },
+  {
+   "slug": "aloo-gobi",
+   "name": "Spiced potato and cauliflower, aloo gobi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A dry curry. Good on its own with flatbread, or beside a dhal.",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:potato-medium}} into small cubes. Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:tomato-medium}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large lidded pan. Fry the onion 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add garlic, ginger, {{ing:cumin-ground}}, {{ing:turmeric-ground}} and {{ing:chilli-powder}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add potato and cauliflower. Stir to coat."
+    },
+    {
+     "instruction": "Add the tomatoes and 4 tablespoons of water. Cover."
+    },
+    {
+     "instruction": "Cook on a low heat 20 minutes, stirring now and then, until tender.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}}. Scatter {{ing:fresh-coriander}} to serve."
     }
    ]
   }
