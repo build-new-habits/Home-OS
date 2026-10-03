@@ -1,4 +1,5 @@
-// js/data/recipeLibrary.js — 03 Oct 2026 v4
+// js/data/recipeLibrary.js — 03 Oct 2026 v5
+// v5: foodsForReference() for the pantry quick start.
 // v4: recipes have a course (starter, main, pudding): filterable, and stored on
 // the meal once migration 026 adds meals.course.
 // v3: library drinks are added with meal_type 'drink' (default_slot waits for 026).
@@ -215,6 +216,24 @@ async function resolveFood(seedIngredient, existingFoods) {
 
   existingFoods.set(normalise(wantedName), data);
   return { food: data, created: true, fromReference: Boolean(entry) };
+}
+
+/**
+ * Makes sure there is a foods row for each reference slug, reusing any you
+ * already have by name. For the pantry quick start (3 Oct 2026).
+ * @returns {{ ok: true, data: Map<string, object> } | { ok: false, error }}
+ */
+export async function foodsForReference(slugs = []) {
+  const foodList = await supabase.from('foods').select('*');
+  if (foodList.error) return { ok: false, error: foodList.error };
+  const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
+  const out = new Map();
+  for (const slug of slugs) {
+    const resolved = await resolveFood({ ref: slug }, existingFoods);
+    if (resolved.error) return { ok: false, error: resolved.error };
+    out.set(slug, resolved.food);
+  }
+  return { ok: true, data: out };
 }
 
 /**

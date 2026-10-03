@@ -1,4 +1,5 @@
-// js/navConfig.js — 03 Oct 2026 v12
+// js/navConfig.js — 03 Oct 2026 v13
+// v13: Pantry quick start, first in the pantry's pages.
 // v12: library blurb no longer counts its recipes (146 and growing).
 // v11: Pantry in the kitchen bar; drawn icons.
 // v10 (kitchen rebuild K2): KITCHEN_ONLY. The bar is Today, Plan,
@@ -155,6 +156,7 @@ export const MEALS_PAGES = [
 // from this file, so a page listed anywhere else is a page that can quietly
 // stop being reachable without anything noticing.
 export const PANTRY_PAGES = [
+  { path: 'pantry-start', title: 'Quick start', blurb: 'Tick the everyday things you already have.' },
   { path: 'pantry-find', title: 'Find something', blurb: 'Search by name, kind or place.' },
   { path: 'pantry-browse', title: "What's in", blurb: 'Your cupboards, one at a time.' },
   { path: 'pantry-fix', title: 'Needs an amount', blurb: 'Things logged without a quantity.' },

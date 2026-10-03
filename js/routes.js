@@ -234,6 +234,12 @@ export const routes = [
     path: 'recipe-edit',
     title: 'Your recipe',
     load: () => import('./views/recipeEditor.js')
+  },
+  // 3 Oct 2026. Appended. Tick the everyday things you already have.
+  {
+    path: 'pantry-start',
+    title: 'Pantry quick start',
+    load: () => import('./views/pantry/start.js')
   }
 ];
 

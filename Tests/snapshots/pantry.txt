@@ -7,6 +7,13 @@ h1.page-heading"Pantry"
 p.field-hint[hidden=]
 ul.hub-list
   li.hub-item
+    a.hub-link"Quick startTick the everyday things you already have.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
+  li.hub-item
     a.hub-link"Find somethingSearch by name, kind or place.›"
       span.hub-text
         span.hub-title

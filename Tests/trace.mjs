@@ -1431,6 +1431,35 @@ console.log('\nYour own version, kept on this phone');
   m2.remove();
 }
 
+// ---- Pantry quick start (3 Oct 2026) --------------------------------------
+console.log('\nPantry quick start');
+{
+  const start = await import(pathToFileURL(path.join(REPO, 'js/views/pantry/start.js')).href);
+  const m = window.document.createElement('main');
+  window.document.body.appendChild(m);
+  clearCalls();
+  const clean = start.render(m);
+  await settle(300);
+  check('what is already in the pantry is shown as in, not offered', /Oats, rolled: already in/.test(m.textContent) && !m.querySelector('#start-oats-rolled'),
+    m.textContent.slice(0, 300));
+  const salt = m.querySelector('#start-salt');
+  const rice = m.querySelector('#start-rice-basmati-dry');
+  salt.checked = true; salt.dispatchEvent(new window.Event('change', { bubbles: true }));
+  rice.checked = true; rice.dispatchEvent(new window.Event('change', { bubbles: true }));
+  const go = [...m.querySelectorAll('button')].find((b) => /Add 2 to the pantry/.test(b.textContent));
+  check('the button counts what is ticked', !!go);
+  clearCalls();
+  if (go) click(go);
+  await settle(700);
+  const inserts = writes().filter((c) => c.table === 'pantry_stock' && c.op === 'insert');
+  const levels = writes().filter((c) => c.table === 'pantry_stock' && c.op === 'update' && c.payload && c.payload.level === 'plenty');
+  check('each ticked thing goes into the pantry', inserts.length === 2, JSON.stringify(writes().map((c) => `${c.table}:${c.op}`)));
+  check('as plenty, with no amount needed', levels.length === 2 && inserts.every((c) => c.payload.current_qty === null));
+  check('in a sensible place', inserts.every((c) => c.payload.default_location === 'Cupboard'));
+  if (typeof clean === 'function') clean();
+  m.remove();
+}
+
 // ---- The report goes LAST ----
 // It used to sit above the weekly-plan block, which meant those checks ran
 // after the gate had already declared itself passed: a failure there would

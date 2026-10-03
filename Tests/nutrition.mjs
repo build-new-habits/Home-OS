@@ -463,6 +463,18 @@ check('the library is not empty', count > 100, `${count}`);
   eq('an empty list shares nothing', listAsText([{ status: 'bought', foods: { name: 'x' } }]), '');
 }
 
+// ---- Pantry levels need no amount (3 Oct 2026) ------------------------------
+{
+  const pantry = await import(`${REPO}/js/data/pantry.js`);
+  const now = new Date().toISOString();
+  const rows = [
+    { id: 1, current_qty: null, level: 'plenty', level_set_at: now, foods: { name: 'Salt' } },
+    { id: 2, current_qty: null, level: null, foods: { name: 'Rice' } },
+    { id: 3, current_qty: 0, level: 'plenty', level_set_at: now, foods: { name: 'Flour' } }
+  ];
+  eq('a level with no amount is not "needs an amount"', pantry.needsAmount(rows, now).map((r) => r.id).join(), '2,3');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

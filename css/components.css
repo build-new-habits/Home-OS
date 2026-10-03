@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v84 */
+/* css/components.css — 03 Oct 2026 v85 */
+/* v85: pantry quick start (3 Oct). */
 /* v84: Make it vegetarian / vegan chooser (3 Oct). */
 /* v83: recipe photos and their placeholder tiles (3 Oct). */
 /* v82: recipes kept on this phone; save-on-phone note (3 Oct). */
@@ -4845,3 +4846,11 @@ body.sheet-open {
 .recipe-diet-option input:checked + label::before { content: "✓ "; }
 .recipe-diet-option input:focus-visible + label { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
 .recipe-diet .field-hint { flex-basis: 100%; margin: 0; }
+
+/* ---- Pantry quick start (3 Oct 2026, v85) ------------------------------ */
+.pantry-start { display: flex; flex-direction: column; gap: var(--space-4); }
+.pantry-start-group { background: var(--color-surface); border-radius: var(--radius-lg); }
+.pantry-start-group legend { font-weight: 700; }
+.pantry-start-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 var(--space-3); margin-top: var(--space-2); }
+@media (min-width: 34em) { .pantry-start-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pantry-start-have { color: var(--color-text-muted); min-height: var(--tap-min); display: inline-flex; align-items: center; }

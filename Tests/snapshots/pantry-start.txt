@@ -1,0 +1,22 @@
+a.back-link"Pantry"
+h1"What do you already have?"
+p.field-hint
+div.pantry-start
+  fieldset.pantry-start-group
+    legend"Cupboard"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all cupboard"
+    div.pantry-start-grid
+  fieldset.pantry-start-group
+    legend"Spices"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all spices"
+    div.pantry-start-grid
+  fieldset.pantry-start-group
+    legend"Fridge"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all fridge"
+    div.pantry-start-grid
+  fieldset.pantry-start-group
+    legend"Vegetable rack and bread bin"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all vegetable rack and bread bin"
+    div.pantry-start-grid
+  button.btn.btn-block.btn-primary[type=button]"Add to the pantry"
+  p.field-hint[role=status]

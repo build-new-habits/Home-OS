@@ -1,4 +1,5 @@
-// js/data/pantry.js — 01 Sep 2026 v7
+// js/data/pantry.js — 03 Oct 2026 v8
+// v8: a row with a level and no amount does not need an amount.
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
 // purpose — see the comment there.
@@ -154,8 +155,13 @@ function buildPayload(input) {
  * can be finished, rather than quietly producing a shopping list that
  * rebuys everything.
  */
-export function needsAmount(rows) {
-  return (rows || []).filter((row) => row.current_qty == null || Number(row.current_qty) === 0);
+export function needsAmount(rows, nowISO) {
+  // A row with a level ("plenty", "low") already answers "have I got
+  // enough", so it needs no amount (3 Oct 2026: the quick start adds a
+  // cupboard's worth of staples this way, and listing all of them as
+  // "to fix" would undo the point of it).
+  return (rows || []).filter((row) => (row.current_qty == null || Number(row.current_qty) === 0)
+    && !(row.current_qty == null && effectiveLevel(row, nowISO)));
 }
 
 /**
