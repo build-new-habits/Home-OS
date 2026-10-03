@@ -650,6 +650,138 @@
      "instruction": "Spoon {{ing:hummus}} into a bowl. Sprinkle with {{ing:paprika}}."
     }
    ]
+  },
+  {
+   "slug": "sardines-on-toast",
+   "name": "Sardines and tomato on toast",
+   "cuisine": "Snacks",
+   "budget_tier": "budget",
+   "default_slot": "snack",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Cheap, filling and full of omega-3. The bones are soft enough to eat.",
+   "ingredients": [
+    {
+     "ref": "sardines-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.25,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Toast {{ing:wholemeal-bread-slice}}."
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}}. Put them on the toast."
+    },
+    {
+     "instruction": "Drain {{ing:sardines-tinned}}. Lay them over the tomatoes."
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Sprinkle with {{ing:chilli-powder}}."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-satay-bites",
+   "name": "Chicken satay bites",
+   "cuisine": "Snacks",
+   "budget_tier": "everyday",
+   "default_slot": "snack",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Make a double batch of sauce. It keeps a week in the fridge and goes with noodles.",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-breast-skinless}} into bite-sized pieces."
+    },
+    {
+     "instruction": "Toss with half of {{ing:soy-sauce}} and {{ing:curry-powder}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a medium-high heat."
+    },
+    {
+     "instruction": "Fry the chicken 8 minutes, turning, until golden and cooked through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}}, {{ing:coconut-milk-tinned}} and {{ing:honey}} in a small pan, stirring.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir in the rest of the soy sauce and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Serve the chicken on cocktail sticks with the sauce for dipping."
+    }
+   ]
   }
  ]
 }

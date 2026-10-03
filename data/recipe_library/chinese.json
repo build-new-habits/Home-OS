@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Chinese",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -321,6 +321,204 @@
     {
      "instruction": "Put the tofu back and turn to coat.",
      "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "kung-pao-style-chicken",
+   "name": "Chilli and peanut chicken, kung pao style",
+   "cuisine": "Chinese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Sweet, sour and gently hot. Cut everything before the pan goes on: it cooks fast.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 8,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Toss with {{ing:cornflour}} and 1 tablespoon of the soy."
+    },
+    {
+     "instruction": "Mix the rest of {{ing:soy-sauce}}, {{ing:rice-vinegar}} and {{ing:honey}} with 3 tablespoons of water."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}, {{ing:ginger-fresh}}, {{ing:chilli-fresh}}, {{ing:pepper-bell}} and {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on a high heat. Fry the chicken 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add garlic, ginger, chilli and pepper. Stir-fry 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Pour in the sauce. Bubble 1 minute, until glossy.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir in {{ing:peanuts}} and the spring onion. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "steamed-fish-ginger",
+   "name": "Ginger and spring onion fish",
+   "cuisine": "Chinese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Very gentle cooking. The fish is done when it flakes at the thickest part.",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Cut {{ing:ginger-fresh}} and {{ing:spring-onion}} into thin strips."
+    },
+    {
+     "instruction": "Put {{ing:cod-fillet}} on a plate that fits in a large pan with a lid."
+    },
+    {
+     "instruction": "Scatter half the ginger over. Stand the plate on a trivet or upturned bowl in the pan."
+    },
+    {
+     "instruction": "Add 3 cm of boiling water. Cover. Steam 8 minutes, until the fish flakes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Steam {{ing:pak-choi}} alongside for the last 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Top the fish with the rest of the ginger and the spring onion."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} and {{ing:sesame-oil}} until smoking. Pour over the fish.",
+     "note": "It sizzles. That cooks the ginger and onion."
+    },
+    {
+     "instruction": "Spoon {{ing:soy-sauce}} over. Serve with the rice and greens."
     }
    ]
   }

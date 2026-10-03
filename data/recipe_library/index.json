@@ -10,7 +10,7 @@
   {
    "cuisine": "Breakfast",
    "path": "data/recipe_library/breakfast.json",
-   "count": 10
+   "count": 13
   },
   {
    "cuisine": "British",
@@ -25,17 +25,22 @@
   {
    "cuisine": "Caribbean",
    "path": "data/recipe_library/caribbean.json",
-   "count": 3
+   "count": 5
   },
   {
    "cuisine": "Chinese",
    "path": "data/recipe_library/chinese.json",
-   "count": 3
+   "count": 5
   },
   {
    "cuisine": "Drinks",
    "path": "data/recipe_library/drinks.json",
-   "count": 8
+   "count": 11
+  },
+  {
+   "cuisine": "Filipino",
+   "path": "data/recipe_library/filipino.json",
+   "count": 1
   },
   {
    "cuisine": "French",
@@ -73,6 +78,11 @@
    "count": 8
   },
   {
+   "cuisine": "Malaysian",
+   "path": "data/recipe_library/malaysian.json",
+   "count": 2
+  },
+  {
    "cuisine": "Mexican",
    "path": "data/recipe_library/mexican.json",
    "count": 4
@@ -83,9 +93,14 @@
    "count": 4
   },
   {
+   "cuisine": "Persian",
+   "path": "data/recipe_library/persian.json",
+   "count": 2
+  },
+  {
    "cuisine": "Snacks",
    "path": "data/recipe_library/snacks.json",
-   "count": 11
+   "count": 13
   },
   {
    "cuisine": "Spanish",
@@ -95,11 +110,21 @@
   {
    "cuisine": "Special",
    "path": "data/recipe_library/special.json",
-   "count": 10
+   "count": 14
+  },
+  {
+   "cuisine": "Sri Lankan",
+   "path": "data/recipe_library/srilankan.json",
+   "count": 3
   },
   {
    "cuisine": "Thai",
    "path": "data/recipe_library/thai.json",
+   "count": 5
+  },
+  {
+   "cuisine": "Turkish",
+   "path": "data/recipe_library/turkish.json",
    "count": 3
   },
   {

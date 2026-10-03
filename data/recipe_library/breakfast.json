@@ -658,6 +658,212 @@
      "instruction": "Spread on the toast. Sprinkle with {{ing:chilli-powder}}."
     }
    ]
+  },
+  {
+   "slug": "smoked-salmon-scrambled-eggs",
+   "name": "Smoked salmon and scrambled eggs on a bagel",
+   "cuisine": "Breakfast",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [],
+   "method_note": "Take the eggs off the heat while they still look a little wet. They keep cooking.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-salmon",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "bagel-plain",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:egg-medium}} in a bowl with {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Slice {{ing:spring-onion}} finely."
+    },
+    {
+     "instruction": "Halve {{ing:bagel-plain}}. Toast them."
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a non-stick pan on a low heat."
+    },
+    {
+     "instruction": "Add the eggs. Stir slowly for 3 minutes, until softly set.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Pile onto the bagels. Lay {{ing:smoked-salmon}} over. Scatter the spring onion."
+    }
+   ]
+  },
+  {
+   "slug": "chorizo-baked-eggs",
+   "name": "Baked eggs with chorizo and peppers",
+   "cuisine": "Breakfast",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Good for a slow weekend morning. Bread for dipping is a must.",
+   "ingredients": [
+    {
+     "ref": "chorizo",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dice {{ing:chorizo}}. Slice {{ing:pepper-bell}} and {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Put a frying pan with a lid on a medium heat. Fry the chorizo 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add pepper and onion. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:paprika}}. Simmer 8 minutes, until thick.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Make four dips in the sauce. Crack in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Cover. Cook 6 minutes, until the whites are set.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter {{ing:fresh-parsley}} over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "bacon-avocado-toast",
+   "name": "Bacon, tomato and avocado toast",
+   "cuisine": "Breakfast",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Grill the bacon on a rack and it crisps without much fat in the pan.",
+   "ingredients": [
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wholemeal-bread-slice",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 0.25,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the grill to high."
+    },
+    {
+     "instruction": "Grill {{ing:bacon-rasher-back}} for 6 minutes, turning once, until crisp.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toast {{ing:wholemeal-bread-slice}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Mash {{ing:avocado}} with a squeeze of {{ing:lemon}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Slice {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Spread avocado on the toast. Top with tomato and bacon."
+    }
+   ]
   }
  ]
 }

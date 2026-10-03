@@ -1,0 +1,103 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Filipino",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "chicken-adobo",
+   "name": "Chicken adobo",
+   "cuisine": "Filipino",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Sharp, salty and peppery. The sauce reduces to a glaze at the end.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-vinegar",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Put {{ing:chicken-thigh-boneless}} in a pan with {{ing:soy-sauce}}, {{ing:rice-vinegar}} and the garlic."
+    },
+    {
+     "instruction": "Add {{ing:bay-leaf}}, {{ing:black-pepper-ground}}, {{ing:sugar-soft-brown}} and 150 ml water."
+    },
+    {
+     "instruction": "Simmer (small bubbles) uncovered 30 minutes, until the chicken is tender.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Lift out the chicken. Boil the sauce 5 minutes, until syrupy.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Brown the chicken in {{ing:vegetable-oil}} in a frying pan, 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Pour the sauce back over. Serve on the rice with sliced {{ing:spring-onion}}."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,307 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Sri Lankan",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "coconut-dhal",
+   "name": "Coconut dhal with turmeric",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Creamier and milder than a north Indian dhal. Good for children.",
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rinse {{ing:lentils-red-dry}}. Put in a pan with 600 ml water and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 15 minutes, until soft.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:coconut-milk-tinned}}. Simmer 5 minutes more.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}. Slice {{ing:chilli-fresh}}."
+    },
+    {
+     "instruction": "Fry them in {{ing:vegetable-oil}} 8 minutes, until the onion is golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:curry-powder}}. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Tip the onion mix into the dhal. Stir in {{ing:spinach}} until wilted."
+    },
+    {
+     "instruction": "Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "sri-lankan-chicken-curry",
+   "name": "Sri Lankan-style chicken curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Toasting the curry powder in the dry pan first deepens the flavour.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Toast {{ing:curry-powder}} in a dry pan for 1 minute, until it smells nutty.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Toss with the toasted powder."
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large pan. Fry the onion 10 minutes, until golden.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add garlic, ginger and {{ing:cinnamon-ground}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the chicken. Fry 5 minutes, until sealed.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 25 minutes, until the chicken is tender.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Squeeze in the juice of {{ing:lime}}. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "green-bean-coconut-stir-fry",
+   "name": "Green beans with coconut",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A side dish in Sri Lanka. With rice and an egg it is lunch.",
+   "ingredients": [
+    {
+     "ref": "green-beans",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "desiccated-coconut",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 0.5,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:green-beans}} into short lengths. Chop {{ing:onion-medium}}."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wide pan on a medium heat."
+    },
+    {
+     "instruction": "Fry the onion 5 minutes, until soft.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add the beans, {{ing:turmeric-ground}}, {{ing:chilli-powder}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Stir-fry 6 minutes, until tender but still bright.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir in {{ing:desiccated-coconut}}. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}} to serve."
+    }
+   ]
+  }
+ ]
+}

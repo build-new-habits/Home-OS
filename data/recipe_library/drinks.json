@@ -470,6 +470,163 @@
      "instruction": "Stir in {{ing:honey}}. Pour through a sieve into two mugs."
     }
    ]
+  },
+  {
+   "slug": "iced-lemon-tea",
+   "name": "Iced lemon tea",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Brewed strong, because the ice waters it down.",
+   "ingredients": [
+    {
+     "ref": "tea-bags",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil half of {{ing:water}} in a kettle."
+    },
+    {
+     "instruction": "Pour it over {{ing:tea-bags}} in a jug. Leave 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Take out the tea bags. Stir in {{ing:honey}}."
+    },
+    {
+     "instruction": "Add the rest of the water, cold. Slice {{ing:lemon}} into the jug."
+    },
+    {
+     "instruction": "Chill at least 1 hour. Serve over ice."
+    }
+   ]
+  },
+  {
+   "slug": "cloudy-lemonade",
+   "name": "Fresh cloudy lemonade",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Roll the lemons on the worktop before squeezing. You get more juice.",
+   "ingredients": [
+    {
+     "ref": "lemon",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 51,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 800,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Squeeze the juice from {{ing:lemon}} into a jug."
+    },
+    {
+     "instruction": "Warm {{ing:sugar-caster}} in {{ing:water}} for 3 minutes, stirring, until dissolved.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Pour the syrup into the jug. Leave to cool."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}}. Serve over ice."
+    }
+   ]
+  },
+  {
+   "slug": "strawberry-mint-cooler",
+   "name": "Strawberry and mint cooler",
+   "cuisine": "Drinks",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "No added sugar. Ripe strawberries are sweet enough.",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 8,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 800,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Hull {{ing:strawberries}}. Blend until smooth."
+    },
+    {
+     "instruction": "Pour into a jug. Squeeze in the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Tear in {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}}. Stir. Serve over ice."
+    }
+   ]
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Special",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -1007,6 +1007,393 @@
      "instruction": "Rest 5 minutes. Serve with {{ing:lemon}} wedges.",
      "duration_min": 5,
      "step_group": "Finish"
+    }
+   ]
+  },
+  {
+   "slug": "herb-crusted-salmon",
+   "name": "Herb-crusted salmon with crushed potatoes",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The mustard holds the crumbs on. Press them down firmly.",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Line a baking tray.",
+     "step_group": "Prep"
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}} into chunks. Boil 18 minutes, until a knife slides in.",
+     "duration_min": 18,
+     "step_group": "Potatoes",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} finely. Grate the zest of {{ing:lemon}}.",
+     "step_group": "Crust"
+    },
+    {
+     "instruction": "Mix parsley, zest and {{ing:breadcrumbs-dried}} with 1 tablespoon of the oil.",
+     "step_group": "Crust"
+    },
+    {
+     "instruction": "Put {{ing:salmon-fillet}} on the tray. Brush the tops with {{ing:mustard-dijon}}.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Press the crumbs onto the mustard.",
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Bake 12 minutes, until the crust is golden and the fish flakes.",
+     "duration_min": 12,
+     "step_group": "Salmon"
+    },
+    {
+     "instruction": "Boil {{ing:green-beans}} for 4 minutes, until tender.",
+     "duration_min": 4,
+     "step_group": "Beans",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drain the potatoes. Crush lightly with a fork, the rest of {{ing:olive-oil}} and {{ing:salt}}.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Serve the salmon on the potatoes, with beans and lemon wedges.",
+     "step_group": "To serve"
+    }
+   ]
+  },
+  {
+   "slug": "chicken-apricot-tagine",
+   "name": "Chicken, apricot and almond stew",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Sweet and warmly spiced, not hot. Even better made the day before.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:onion-large}}. Crush {{ing:garlic-clove}}. Grate {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large lidded pan on a medium heat."
+    },
+    {
+     "instruction": "Brown {{ing:chicken-thigh-boneless}} for 6 minutes, turning. Lift onto a plate.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Fry the onion 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add garlic, ginger, {{ing:cinnamon-ground}}, {{ing:cumin-ground}} and {{ing:turmeric-ground}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:stock-chicken}} and {{ing:dried-apricots}}."
+    },
+    {
+     "instruction": "Put the chicken back. Cover. Simmer (small bubbles) 35 minutes, until tender.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Toast {{ing:almonds}} in a dry pan for 3 minutes, until golden.",
+     "duration_min": 3,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl. Pour over 450 ml boiling water. Cover 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Serve the stew on the couscous. Scatter almonds and {{ing:fresh-coriander}} over."
+    }
+   ]
+  },
+  {
+   "slug": "feta-stuffed-peppers",
+   "name": "Roast peppers stuffed with feta and couscous",
+   "cuisine": "Special",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "A good one for a vegetarian at a meat table: it looks like a main course.",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "couscous-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "feta",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pumpkin-seeds",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:pepper-bell}} through the stalk. Scoop out the seeds."
+    },
+    {
+     "instruction": "Put cut side up in a roasting tin. Drizzle with half of {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until starting to soften.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Put {{ing:couscous-dry}} in a bowl. Pour over {{ing:stock-vegetable}}, boiling. Cover 5 minutes.",
+     "duration_min": 5,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Quarter {{ing:cherry-tomato}}. Chop {{ing:olives-pitted}} and {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Fork the couscous. Stir in tomatoes, olives, mint and {{ing:pumpkin-seeds}}."
+    },
+    {
+     "instruction": "Fill the peppers. Crumble {{ing:feta}} on top. Drizzle with the rest of the oil."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the feta is golden at the edges.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "dark-chocolate-pots",
+   "name": "Little dark chocolate pots",
+   "cuisine": "Special",
+   "budget_tier": "special",
+   "default_slot": "snack",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Rich, so the pots are small. Make them in the morning for the evening.",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 13,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Break {{ing:dark-chocolate}} into small pieces in a heatproof bowl."
+    },
+    {
+     "instruction": "Warm {{ing:double-cream}} and {{ing:sugar-caster}} in a pan for 4 minutes, until steaming.",
+     "note": "Steaming, not boiling. Bubbles at the edge mean it is ready.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Pour the cream over the chocolate. Leave 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir slowly until smooth and glossy. Stir in {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Pour into six small cups or glasses."
+    },
+    {
+     "instruction": "Chill at least 3 hours, until set."
+    },
+    {
+     "instruction": "Top with {{ing:raspberries}} to serve."
     }
    ]
   }

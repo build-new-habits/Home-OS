@@ -1,0 +1,301 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Turkish",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "turkish-red-lentil-soup",
+   "name": "Red lentil soup with lemon",
+   "cuisine": "Turkish",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Squeeze the lemon in at the table. It lifts the whole bowl.",
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 1.25,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}}. Crush {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a large pan on a medium heat."
+    },
+    {
+     "instruction": "Fry onion and carrot 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in garlic, {{ing:cumin-ground}}, {{ing:paprika}} and {{ing:passata}}. Cook 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Rinse {{ing:lentils-red-dry}}. Add with {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer (small bubbles) 25 minutes, until the lentils fall apart.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Blend until smooth."
+    },
+    {
+     "instruction": "Serve with wedges of {{ing:lemon}} and a pinch of {{ing:chilli-powder}}."
+    }
+   ]
+  },
+  {
+   "slug": "turkish-eggs-yoghurt",
+   "name": "Poached eggs on garlic yoghurt",
+   "cuisine": "Turkish",
+   "budget_tier": "everyday",
+   "default_slot": "breakfast",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The yoghurt is served at room temperature, the eggs hot, the butter sizzling.",
+   "ingredients": [
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Take {{ing:greek-yoghurt}} out of the fridge. Crush {{ing:garlic-clove}} into it. Stir."
+    },
+    {
+     "instruction": "Spread the yoghurt over two plates."
+    },
+    {
+     "instruction": "Bring a pan of water to a gentle simmer (small bubbles)."
+    },
+    {
+     "instruction": "Crack in {{ing:egg-medium}}. Poach 3 minutes, until the whites are firm.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a small pan with {{ing:paprika}} and {{ing:chilli-powder}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Lift the eggs onto the yoghurt with a slotted spoon."
+    },
+    {
+     "instruction": "Spoon the red butter over. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "lamb-aubergine-bake",
+   "name": "Lamb and aubergine bake with yoghurt",
+   "cuisine": "Turkish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Roasting the aubergine first stops it going spongy.",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lamb-mince",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Slice {{ing:aubergine}} into rounds. Brush with {{ing:olive-oil}} on a tray."
+    },
+    {
+     "instruction": "Roast 20 minutes, until soft and golden.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Crush {{ing:garlic-clove}}.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Fry {{ing:lamb-mince}} in a pan on a high heat for 8 minutes, until browned.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add onion, garlic, {{ing:cinnamon-ground}} and {{ing:cumin-ground}}. Fry 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 10 minutes, until thick.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Layer the lamb and aubergine in a baking dish."
+    },
+    {
+     "instruction": "Beat {{ing:greek-yoghurt}} with {{ing:egg-medium}}. Spread over the top."
+    },
+    {
+     "instruction": "Bake 25 minutes, until the top is set and golden.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Scatter chopped {{ing:fresh-mint}} to serve."
+    }
+   ]
+  }
+ ]
+}

@@ -2892,7 +2892,13 @@
     "teabags"
    ],
    "grams_per_item": 3,
-   "item_label": "bag"
+   "item_label": "bag",
+   "calories_per_100g": 67,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 23.0,
+   "fibre_g": 0.0,
+   "basis": "As brewed: what a 3 g bag gives one cup (USDA brewed black tea, about 2 kcal and 0.7 g carbohydrate a cup), scaled to 100 g of bags."
   },
   {
    "slug": "coffee-instant",
@@ -3303,6 +3309,34 @@
    "fat_g": 0.2,
    "carbs_g": 5.9,
    "fibre_g": 1.8
+  },
+  {
+   "slug": "smoked-salmon",
+   "name": "Smoked salmon",
+   "category": "food_fresh",
+   "aliases": [
+    "salmon, smoked",
+    "lox"
+   ],
+   "calories_per_100g": 117,
+   "protein_g": 18.3,
+   "fat_g": 4.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0
+  },
+  {
+   "slug": "dried-apricots",
+   "name": "Apricots, dried",
+   "category": "food_ambient",
+   "aliases": [
+    "dried apricots",
+    "apricots"
+   ],
+   "calories_per_100g": 241,
+   "protein_g": 3.4,
+   "fat_g": 0.5,
+   "carbs_g": 62.6,
+   "fibre_g": 7.3
   }
  ]
 }

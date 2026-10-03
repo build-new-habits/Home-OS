@@ -1,0 +1,196 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Persian",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "persian-herb-frittata",
+   "name": "Green herb frittata, Persian style",
+   "cuisine": "Persian",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "It is meant to be more herb than egg. Very green inside.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "baking-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-coriander}} and {{ing:spring-onion}} finely."
+    },
+    {
+     "instruction": "Chop {{ing:walnuts}} roughly."
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} with {{ing:turmeric-ground}} and {{ing:baking-powder}}."
+    },
+    {
+     "instruction": "Stir in the herbs, spring onion and walnuts."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in an ovenproof frying pan on a medium heat."
+    },
+    {
+     "instruction": "Pour in the mix. Cook 5 minutes, until the edges set.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Bake 15 minutes, until firm in the middle.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Cut into wedges. Good warm or cold."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-dates-rice",
+   "name": "Spiced chicken with dates and rice",
+   "cuisine": "Persian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Butter in the rice is traditional and worth it. Olive oil works too.",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "dates-pitted",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:onion-medium}} thinly."
+    },
+    {
+     "instruction": "Heat {{ing:olive-oil}} in a wide lidded pan. Fry the onion 12 minutes, until deep golden.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Lift out half the onion for the top."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}, {{ing:turmeric-ground}} and {{ing:cinnamon-ground}}. Fry 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Rinse {{ing:rice-basmati-dry}}. Stir it in with {{ing:stock-chicken}}."
+    },
+    {
+     "instruction": "Cover. Cook on a low heat 20 minutes, until the rice is tender.",
+     "note": "Do not lift the lid while it cooks.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Chop {{ing:dates-pitted}} and {{ing:almonds}}. Fry in {{ing:butter-block}} 2 minutes.",
+     "duration_min": 2,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Scatter dates, almonds, the saved onion and {{ing:fresh-parsley}} over the rice."
+    }
+   ]
+  }
+ ]
+}

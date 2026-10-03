@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-09-01",
+ "updated": "2026-10-03",
  "cuisine": "Thai",
  "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
  "recipes": [
@@ -306,6 +306,180 @@
     },
     {
      "instruction": "Chop {{ing:fresh-coriander}} over."
+    }
+   ]
+  },
+  {
+   "slug": "thai-basil-pork",
+   "name": "Pork with basil and chilli, Thai style",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "A fried egg on top is how it is often eaten in Thailand.",
+   "ingredients": [
+    {
+     "ref": "pork-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet.",
+     "duration_min": 12,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Chop {{ing:garlic-clove}} and {{ing:chilli-fresh}} finely. Cut {{ing:green-beans}} into short lengths."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on a high heat. Fry garlic and chilli 30 seconds."
+    },
+    {
+     "instruction": "Add {{ing:pork-mince}}. Fry 8 minutes, breaking it up, until browned.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add the beans. Stir-fry 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:soy-sauce}}, {{ing:fish-sauce}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:fresh-basil}} until wilted. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "thai-peanut-slaw",
+   "name": "Crunchy peanut and lime slaw",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Keeps its crunch for a day, so it packs well for lunches.",
+   "ingredients": [
+    {
+     "ref": "cabbage-white",
+     "quantity": 0.25,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred {{ing:cabbage-white}} finely. Grate {{ing:carrot-medium}}. Slice {{ing:pepper-bell}} thinly."
+    },
+    {
+     "instruction": "Whisk {{ing:peanut-butter}}, the juice of {{ing:lime}}, {{ing:soy-sauce}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Chop {{ing:chilli-fresh}} finely. Stir into the dressing."
+    },
+    {
+     "instruction": "Toss the vegetables with the dressing and {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Scatter {{ing:peanuts}} over."
     }
    ]
   }

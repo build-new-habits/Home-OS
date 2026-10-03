@@ -1,0 +1,206 @@
+{
+ "version": 1,
+ "updated": "2026-10-03",
+ "cuisine": "Malaysian",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "nasi-goreng-prawns",
+   "name": "Fried rice with prawns, nasi goreng style",
+   "cuisine": "Malaysian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The soy and honey together stand in for sweet soy sauce.",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 0.25,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} following the packet. Spread out to cool.",
+     "note": "Already have cooked rice? Use about 400 g."
+    },
+    {
+     "instruction": "Slice {{ing:spring-onion}}, {{ing:garlic-clove}} and {{ing:chilli-fresh}}."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}} and {{ing:honey}} in a cup."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a large frying pan on a high heat."
+    },
+    {
+     "instruction": "Fry garlic, chilli and most of the spring onion 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the rice. Fry 5 minutes, stirring, until hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:prawns-cooked}} and the soy mix. Stir 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Fry {{ing:egg-medium}} in a second pan 3 minutes, until the whites set.",
+     "duration_min": 3,
+     "while_waiting": true
+    },
+    {
+     "instruction": "Serve topped with the eggs, sliced {{ing:cucumber}} and the last spring onion."
+    }
+   ]
+  },
+  {
+   "slug": "chicken-satay-noodles",
+   "name": "Satay chicken noodles",
+   "cuisine": "Malaysian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Use crunchy peanut butter for more texture.",
+   "ingredients": [
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:egg-noodles-dry}} following the packet. Drain.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} and {{ing:pepper-bell}} thinly. Cut {{ing:carrot-medium}} into thin sticks."
+    },
+    {
+     "instruction": "Whisk {{ing:peanut-butter}}, {{ing:soy-sauce}}, {{ing:coconut-milk-tinned}} and {{ing:curry-powder}} in a jug."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok or large pan on a high heat."
+    },
+    {
+     "instruction": "Stir-fry the chicken 5 minutes, until cooked through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add pepper and carrot. Stir-fry 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add the noodles and sauce. Toss 2 minutes, until hot and coated.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:peanuts}}."
+    }
+   ]
+  }
+ ]
+}

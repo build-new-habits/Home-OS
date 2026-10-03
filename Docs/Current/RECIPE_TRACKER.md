@@ -29,32 +29,35 @@ Each pick has to fill a gap in the balance table below. In order, a pick should:
 3. Keep effort and cost spread: some quick, some weekend, mostly budget or everyday.
 4. Be a dish worth cooking on its own, not a component. Dressings and sauces come in only as part of a dish.
 
-## Market library balance, 3 Oct 2026 (afternoon)
+## Market library balance, 3 Oct 2026 (evening)
 
-146 shipped recipes, all original. 36 added on 3 Oct to fill the gaps below.
+175 shipped recipes, all original. 65 added on 3 Oct across two rounds.
 
 | Slot | Meat or fish | Vegetarian | Vegan | Total |
 | --- | --- | --- | --- | --- |
-| Breakfast | 3 | 11 | 4 | 18 |
-| Lunch | 7 | 12 | 11 | 30 |
-| Dinner | 34 | 20 | 21 | 75 |
-| Snack | 1 | 6 | 8 | 15 |
-| Drink | 0 | 6 | 2 | 8 |
+| Breakfast | 6 | 12 | 4 | 22 |
+| Lunch | 7 | 13 | 14 | 34 |
+| Dinner | 46 | 21 | 23 | 90 |
+| Snack | 3 | 7 | 8 | 18 |
+| Drink | 0 | 7 | 4 | 11 |
 
-Cuisine counts: Italian 17, British 15, Indian 6, French 4, Greek 4, Mexican 4, Middle Eastern 4, Spanish 4, Caribbean 3, Chinese 3, Japanese 3, Korean 3, Thai 3, West African 2, Vietnamese 2, Ethiopian 1. The rest are filed by role (Vegetarian, Snacks, Breakfast, Special, Budget, Drinks, Lunch).
+Cuisine counts: Italian 17, British 15, Indian 6, Caribbean 5, Chinese 5, Thai 5, French 4, Greek 4, Mexican 4, Middle Eastern 4, Spanish 4, Japanese 3, Korean 3, Sri Lankan 3, Turkish 3, West African 2, Malaysian 2, Persian 2, Vietnamese 2, Ethiopian 1, Filipino 1. The rest are filed by role (Vegetarian, Snacks, Breakfast, Special, Budget, Drinks, Lunch).
 
-Cost: budget 98, everyday 38, special 10.
+Cost: budget 110, everyday 52, special 13.
 
-Added 3 Oct: 8 drinks (smoothies, lassi, golden milk, hot chocolate, mint tea, ginger and lemon), 4 vegan breakfasts, 5 vegan snacks, and dishes from Japan, Korea, Greece, Spain, Vietnam, West Africa and Ethiopia. Eight new reference foods came with them (fresh mint, miso, rice vinegar, gochujang, kimchi, edamame, pak choi, beansprouts). Drinks are stored with `meal_type` 'drink' until migration 026 lets `default_slot` hold it.
+Round 1 (afternoon): 8 drinks, 4 vegan breakfasts, 5 vegan snacks, and dishes from Japan, Korea, Greece, Spain, Vietnam, West Africa and Ethiopia. Eight new reference foods (fresh mint, miso, rice vinegar, gochujang, kimchi, edamame, pak choi, beansprouts).
+
+Round 2 (evening): 4 specials (herb-crusted salmon, chicken and apricot stew, stuffed peppers, chocolate pots), 3 meat or fish breakfasts, 2 meat or fish snacks, 3 cold drinks, and Turkish, Sri Lankan, Persian, Malaysian and Filipino dishes, plus two each for Chinese, Thai and Caribbean. New reference foods: smoked salmon, dried apricots. Tea bags now carry brewed figures (about 2 kcal a cup) so iced tea can be counted.
+
+Drinks are stored with `meal_type` 'drink' until migration 026 lets `default_slot` hold it.
 
 ### Gaps, in priority order
 
-1. **Special occasions: 10.** A few weekend and celebration dishes would round it out. Good use for book picks.
-2. **Meat or fish breakfasts and snacks: 3 and 1.** Smoked fish, eggs with bacon, a savoury muffin.
-3. **Thin cuisines:** Caribbean, Chinese, Thai, Japanese and Korean have 3 each; West African, Vietnamese and Ethiopian 2 or fewer. Turkish, Persian, Filipino, Malaysian, Sri Lankan and Polish have none.
-4. **Cold drinks:** most drinks are smoothies or hot. Iced tea, lemonade, a cordial.
-5. **Bowls and salads as lunch:** the Buddha Bowls scans are a natural fit here.
-6. **Cost:** special is still only 10 of 146.
+1. **Book picks.** The original library is now broad; the next balance gains come from converted scans (Buddha Bowls for lunches especially).
+2. **Meat or fish snacks: still few.** Fine for most households; a couple more would round it out.
+3. **Puddings.** There is no pudding slot; the chocolate pots and flourless cake sit under snack. Worth deciding whether puddings get their own place.
+4. **Cuisines with one or two:** Filipino, Ethiopian, Malaysian, Persian, Vietnamese, West African. Polish, Lebanese and Ethiopian sides could follow.
+5. **Cost:** special is 13 of 175.
 
 ## Household library
 
