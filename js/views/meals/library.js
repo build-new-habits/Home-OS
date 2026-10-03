@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 03 Oct 2026 v4
+// js/views/meals/library.js — 03 Oct 2026 v5
+// v5: Course filter (starters, mains, puddings); drinks under Meal time.
 // v4: the blurb no longer counts its recipes.
 // v3: a recipe name links to its own page (#/recipe?r=slug).
 // v2: favourites have somewhere to show up.
@@ -22,6 +23,7 @@
 // tangle rather than removed it.
 
 import { el } from '../../lib/dom.js';
+import { COURSES } from '../../data/courses.js';
 import { announce } from '../../lib/a11y.js';
 import { showToast } from '../../components/toast.js';
 // libraryDetail.js is no longer opened from this list (v3, 3 Oct 2026); the
@@ -40,7 +42,7 @@ import { listRecipeNotes } from '../../data/recipeNotes.js';
  *   onAdded: () => Promise<void>
  * }} options
  */
-export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = false }) {
+export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = false, course = '' }) {
   let libraryRecipes = [];
   let libraryOwned = new Map();
   // ---- Favourites, 10 Sep 2026 ----
@@ -51,7 +53,7 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
   let libraryNotes = new Map();
   let libraryLoaded = false;
   const libraryFilters = {
-    term: '', cuisine: '', budget_tier: '', default_slot: '', dietary: [],
+    term: '', cuisine: '', budget_tier: '', default_slot: '', course: COURSES.some((c) => c.value === course) ? course : '', dietary: [],
     favouritesOnly: false
   };
   const libraryList = el('ul', { class: 'library-list' });
@@ -151,8 +153,11 @@ function renderLibrary() {
     { value: 'breakfast', label: 'Breakfast' },
     { value: 'lunch', label: 'Lunch' },
     { value: 'dinner', label: 'Dinner' },
-    { value: 'snack', label: 'Snack' }
+    { value: 'snack', label: 'Snack' },
+    { value: 'drink', label: 'Drink' }
   ]));
+  // 3 Oct 2026: starters and puddings. A course, not a meal time.
+  filterRow.appendChild(buildLibrarySelect('Course', 'course', COURSES));
 
   // Worklist C1. Ren, two traces: "You've written the function and not
   // the dropdown. I can tell, and that's a strange thing to be able to

@@ -1,4 +1,6 @@
-// js/data/ownRecipe.js — 03 Oct 2026 v1
+// js/data/ownRecipe.js — 03 Oct 2026 v2
+// v2: a recipe has a course (starter, main, pudding), stored once migration
+// 026 adds meals.course; saving works the same before it.
 // Kitchen rebuild. "Make my own recipe": the whole recipe written in one
 // place, then saved as one of your meals.
 //
@@ -27,6 +29,9 @@
 import { supabase } from '../supabaseClient.js';
 import { referencePatch } from './foodReference.js';
 import { toStorage, ENTRY_UNITS } from '../lib/units.js';
+import { COURSES, isMissingColumnError } from './courses.js';
+
+let courseColumn = null; // meals.course: null = not known yet (migration 026)
 
 export const DIET_TAGS = [
   { value: 'vegetarian', label: 'Vegetarian' },
@@ -59,6 +64,7 @@ export function emptyDraft() {
     mealId: null,
     name: '',
     kind: 'dinner',
+    course: 'main',
     serves: 4,
     tags: [],
     note: '',
@@ -410,6 +416,7 @@ export function draftFromMeal(meal, ingredientRows = [], stepRows = []) {
     mealId: meal.id,
     name: meal.name || '',
     kind,
+    course: meal.course || 'main',
     serves: meal.default_serves || 4,
     tags: [...(meal.dietary_tags || [])],
     note: meal.method_note || '',
@@ -469,31 +476,48 @@ export async function saveDraft(draft, index) {
   };
 
   let mealId = draft.mealId;
-  let mealRow;
-  if (mealId) {
-    const { data, error } = await supabase.from('meals').update({
-      name: mealFields.name,
-      default_serves: mealFields.default_serves,
-      meal_type: mealFields.meal_type,
-      default_slot: mealFields.default_slot,
-      dietary_tags: mealFields.dietary_tags,
-      method_note: mealFields.method_note
-    }).eq('id', mealId).select().single();
-    if (error) return { ok: false, error };
-    mealRow = data;
-  } else {
-    const { data, error } = await supabase.from('meals').insert({
-      name: mealFields.name,
-      default_serves: mealFields.default_serves,
-      meal_type: mealFields.meal_type,
-      default_slot: mealFields.default_slot,
-      dietary_tags: mealFields.dietary_tags,
-      method_note: mealFields.method_note
-    }).select().single();
-    if (error) return { ok: false, error };
-    mealRow = data;
-    mealId = data.id;
+  const course = COURSES.some((c) => c.value === draft.course) ? draft.course : 'main';
+  // meals.course arrives with migration 026. Sent while it may not exist,
+  // and the write repeated without it if the database says so.
+  const writeMeal = (withCourse) => {
+    const table = supabase.from('meals');
+    if (mealId) {
+      return (withCourse
+        ? table.update({
+          name: mealFields.name, default_serves: mealFields.default_serves, meal_type: mealFields.meal_type,
+          default_slot: mealFields.default_slot, dietary_tags: mealFields.dietary_tags,
+          method_note: mealFields.method_note, course
+        })
+        : table.update({
+          name: mealFields.name, default_serves: mealFields.default_serves, meal_type: mealFields.meal_type,
+          default_slot: mealFields.default_slot, dietary_tags: mealFields.dietary_tags,
+          method_note: mealFields.method_note
+        })).eq('id', mealId).select().single();
+    }
+    return (withCourse
+      ? table.insert({
+        name: mealFields.name, default_serves: mealFields.default_serves, meal_type: mealFields.meal_type,
+        default_slot: mealFields.default_slot, dietary_tags: mealFields.dietary_tags,
+        method_note: mealFields.method_note, course
+      })
+      : table.insert({
+        name: mealFields.name, default_serves: mealFields.default_serves, meal_type: mealFields.meal_type,
+        default_slot: mealFields.default_slot, dietary_tags: mealFields.dietary_tags,
+        method_note: mealFields.method_note
+      })).select().single();
+  };
+  let written = await writeMeal(courseColumn !== false);
+  let courseSaved = courseColumn !== false && !written.error;
+  if (written.error && courseColumn !== false && isMissingColumnError(written.error, 'course')) {
+    courseColumn = false;
+    written = await writeMeal(false);
+    courseSaved = false;
+  } else if (!written.error && courseColumn === null) {
+    courseColumn = true;
   }
+  if (written.error) return { ok: false, error: written.error };
+  const mealRow = written.data;
+  mealId = mealRow.id;
 
   // Old rows, so they can go once the new ones are safely in.
   const [oldIngredients, oldSteps] = draft.mealId
@@ -540,7 +564,7 @@ export async function saveDraft(draft, index) {
     const gone = await supabase.from('meal_steps').delete().in('id', oldStepIds);
     if (gone.error) return { ok: false, error: gone.error };
   }
-  return { ok: true, data: { id: mealId, name: mealRow.name } };
+  return { ok: true, data: { id: mealId, name: mealRow.name }, courseSaved };
 }
 
 export { ENTRY_UNITS };

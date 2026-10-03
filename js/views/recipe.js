@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v7
+// js/views/recipe.js — 03 Oct 2026 v8
+// v8: starters and puddings say so.
 // v7: spoon-sized amounts of liquid read as tsp/tbsp.
 // v6: Change this recipe opens the recipe editor (#/recipe-edit?m=<id>);
 // your own recipe's swaps are listed under its ingredients.
@@ -32,6 +33,7 @@
 
 import { el } from '../lib/dom.js';
 import { toSpoons } from '../lib/units.js';
+import { courseOf, courseLabel } from '../data/courses.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
@@ -94,6 +96,7 @@ export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
     name: meal.name,
     default_serves: meal.default_serves || 1,
     default_slot: meal.default_slot || meal.meal_type || null,
+    course: meal.course || null,
     cuisine: meal.cuisine || null,
     budget_tier: meal.budget_tier || null,
     dietary_tags: meal.dietary_tags || [],
@@ -244,6 +247,8 @@ export function render(mountEl) {
     for (const fact of [
       time,
       `Serves ${recipe.default_serves}`,
+      // A starter or pudding says so first; "Dinner" alone would mislead.
+      courseOf(recipe) !== 'main' ? courseLabel(courseOf(recipe)) : null,
       SLOT_WORDS[recipe.default_slot],
       recipe.cuisine,
       COST_WORDS[recipe.budget_tier],

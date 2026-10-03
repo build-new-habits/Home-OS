@@ -69,6 +69,8 @@ for (const file of files) {
     check(`${id} has a cuisine`, Boolean(recipe.cuisine));
     check(`${id} budget_tier is valid`, TIERS.includes(recipe.budget_tier), recipe.budget_tier);
     check(`${id} default_slot is valid`, SLOTS.includes(recipe.default_slot), recipe.default_slot);
+    // 3 Oct 2026: starters and puddings. Absent means a main.
+    check(`${id} course is valid`, recipe.course === undefined || ['starter', 'main', 'pudding'].includes(recipe.course), recipe.course);
     check(`${id} serves a sensible number`,
       Number.isInteger(recipe.default_serves) && recipe.default_serves >= 1 && recipe.default_serves <= 12);
     check(`${id} dietary tags are all known`,

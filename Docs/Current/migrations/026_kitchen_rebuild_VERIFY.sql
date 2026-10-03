@@ -43,4 +43,9 @@ union all
 select 'is_leftover',
        case when exists (select 1 from information_schema.columns
                           where table_name = 'weekly_meal_plan' and column_name = 'is_leftover')
+       then 'PASS' else 'FAIL' end
+union all
+select 'meals.course',
+       case when exists (select 1 from information_schema.columns
+                          where table_name = 'meals' and column_name = 'course')
        then 'PASS' else 'FAIL' end;

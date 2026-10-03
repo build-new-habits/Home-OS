@@ -26,6 +26,7 @@ dropped.
 | `foods.fibre_g` | numeric, nullable, `>= 0`, **per 100 g** | fibre is one of the five figures shown. Null = not recorded, never zero |
 | `user_settings.show_nutrition` | boolean, not null, default true | one switch hides nutrition everywhere |
 | `weekly_meal_plan.is_leftover` | boolean, not null, default false | leftovers planned on another day. The shortfall skips them, so the ingredients are not bought twice |
+| `meals.course` | text, nullable, check in ('starter','main','pudding') | what part of a meal it is. Null reads as main. Not a slot: starters and puddings plan into the dinner (or lunch) slot beside the main. The app detects the column and stores it only once it exists |
 | `user_settings.nutrition_targets` | jsonb, nullable | personal targets keyed `calories`, `carbs_g`, `fat_g`, `protein_g`, `fibre_g`. Null = UK reference intakes. Bad values fall back per nutrient (`data/nutrition.js resolveTargets`) |
 
 The constraint names were chosen by Postgres when the columns were made, so
@@ -1048,6 +1049,7 @@ this column exists to prevent.
 | default_serves | int | not null; default 4 |
 | is_favourite | boolean | not null; default false (revision 5) |
 | meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
+| course | text | nullable; check in ('starter','main','pudding') (revision 25, **migration 026 — not yet applied**). Null reads as main |
 
 ### meal_ingredients
 

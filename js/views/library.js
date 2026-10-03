@@ -1,4 +1,5 @@
-// js/views/library.js — 03 Oct 2026 v3
+// js/views/library.js — 03 Oct 2026 v4
+// v4: #/library?course=… opens on that course.
 // v3: Write your own recipe and Your recipes, beside What can I make.
 // v2: a link to What can I make?
 //
@@ -48,7 +49,10 @@ export function render(mountEl) {
   tonight.appendChild(el('a', { class: 'btn btn-quiet', href: '#/meals', text: 'Your recipes' }));
   mountEl.appendChild(tonight);
 
+  // #/library?course=pudding opens on puddings (from the plan's "Find a pudding").
+  const courseMatch = String(window.location.hash || '').match(/[?&]course=([a-z]+)/);
   const panel = createLibraryPanel({
+    course: courseMatch ? courseMatch[1] : '',
     signal,
     // This view already supplies the heading and the blurb.
     ownPage: true,

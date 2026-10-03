@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v80 */
+/* css/components.css — 03 Oct 2026 v81 */
+/* v81: courses in the plan panel; four-field About row (3 Oct). */
 /* v80: leftovers on the board, on Today and in their sheet (3 Oct). */
 /* v79: write your own recipe; recipe swaps; library links (3 Oct). */
 /* v78: item sheet, tappable use-soon items, put-away fields (3 Oct). */
@@ -4738,7 +4739,7 @@ body.sheet-open {
 }
 .own-about-row > .own-field-wide, .own-ing-row > .own-field-wide, .own-step-row > .own-field-wide { grid-column: 1 / -1; }
 @media (min-width: 34em) {
-  .own-about-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 0.7fr); }
+  .own-about-row { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.7fr); }
   .own-ing-row { grid-template-columns: minmax(0, 2fr) minmax(0, 0.8fr) minmax(0, 1fr); }
   .own-step-row { grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); }
 }
@@ -4793,3 +4794,7 @@ body.sheet-open {
 .leftover-targets { list-style: none; margin: 0 0 var(--space-3); padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 .leftover-target { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); min-height: var(--tap-min); text-align: left; }
 .leftover-target-when { font-weight: 600; }
+
+/* ---- Courses (3 Oct 2026, v81) ------------------------------------------ */
+.plan-detail-course { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); }
+.plan-courses { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 var(--space-3); }

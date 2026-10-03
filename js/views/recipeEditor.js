@@ -1,4 +1,5 @@
-// js/views/recipeEditor.js — 03 Oct 2026 v1
+// js/views/recipeEditor.js — 03 Oct 2026 v2
+// v2: Course (starter, main, pudding) beside Kind of meal.
 // Kitchen rebuild. "Make my own recipe" (#/recipe-edit), and changing one
 // you already have (#/recipe-edit?m=<meal id>).
 //
@@ -29,6 +30,7 @@
 // neighbour, never to the top of the page.
 
 import { el, selectFrom } from '../lib/dom.js';
+import { COURSES } from '../data/courses.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
@@ -162,11 +164,13 @@ export function render(mountEl) {
     about.appendChild(el('h2', { id: 'own-about-h', text: 'About it' }));
     const nameInput = el('input', { type: 'text', id: 'own-name', autocomplete: 'off', maxlength: '80' });
     const kindSelect = selectFrom('own-kind', KINDS);
+    const courseSelect = selectFrom('own-course', COURSES);
     const servesInput = el('input', { type: 'number', id: 'own-serves', min: '1', max: '50', step: '1', inputmode: 'numeric' });
     const aboutRow = el('div', { class: 'own-about-row' });
     aboutRow.append(
       fieldWrap('What it is called', nameInput, 'own-field-wide'),
       fieldWrap('Kind of meal', kindSelect),
+      fieldWrap('Course', courseSelect),
       fieldWrap('Serves', servesInput)
     );
     about.appendChild(aboutRow);
@@ -190,6 +194,7 @@ export function render(mountEl) {
 
     nameInput.addEventListener('input', () => { draft.name = nameInput.value; changed(); }, { signal });
     kindSelect.addEventListener('change', () => { draft.kind = kindSelect.value; changed(); }, { signal });
+    courseSelect.addEventListener('change', () => { draft.course = courseSelect.value; changed(); }, { signal });
     servesInput.addEventListener('input', () => { draft.serves = servesInput.value; changed(); }, { signal });
 
     // ---- Ingredients ---------------------------------------------------
@@ -345,6 +350,7 @@ export function render(mountEl) {
     function paintAll() {
       nameInput.value = draft.name || '';
       kindSelect.value = draft.kind || 'dinner';
+      courseSelect.value = draft.course || 'main';
       servesInput.value = String(draft.serves || '');
       for (const box of tagBoxes) box.checked = (draft.tags || []).includes(box.value);
       note.value = draft.note || '';

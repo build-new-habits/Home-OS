@@ -1,4 +1,6 @@
-// js/data/recipeLibrary.js — 03 Oct 2026 v3
+// js/data/recipeLibrary.js — 03 Oct 2026 v4
+// v4: recipes have a course (starter, main, pudding): filterable, and stored on
+// the meal once migration 026 adds meals.course.
 // v3: library drinks are added with meal_type 'drink' (default_slot waits for 026).
 // v2: addMissingToList() — a recipe's missing ingredients onto the list.
 // Phase 16. A browsable catalogue of recipes you can add to your own.
@@ -20,10 +22,12 @@
 import { supabase } from '../supabaseClient.js';
 import { lookup as lookupReference, referencePatch } from './foodReference.js';
 import { toStorage } from '../lib/units.js';
+import { courseOf, isMissingColumnError } from './courses.js';
 
 const INDEX_URL = new URL('../../data/recipe_library/index.json', import.meta.url).href;
 
 let indexCache = null;
+let courseColumn = null; // meals.course: null = not known yet (migration 026)
 const fileCache = new Map();
 
 function normalise(value) {
@@ -136,13 +140,14 @@ export function proteinsOf(recipe) {
 
 /** Filters a recipe list. Every filter is optional and they combine. */
 export function filterRecipes(recipes = [], {
-  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = '', proteins = []
+  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = '', proteins = [], course = ''
 } = {}) {
   const q = normalise(term);
   return recipes.filter((r) => {
     if (cuisine && r.cuisine !== cuisine) return false;
     if (budget_tier && r.budget_tier !== budget_tier) return false;
     if (default_slot && r.default_slot !== default_slot) return false;
+    if (course && courseOf(r) !== course) return false;
     // A recipe must carry EVERY tag asked for. Tags say what a meal is, and
     // asking for vegan means vegan, not "vegan or vegetarian".
     if (dietary.length && !dietary.every((t) => (r.dietary_tags || []).includes(t))) return false;
@@ -233,23 +238,31 @@ export async function addLibraryRecipe(recipe) {
   if (foodList.error) return { ok: false, error: foodList.error };
   const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
 
-  const meal = await supabase
-    .from('meals')
-    .insert({
-      name: recipe.name,
-      default_serves: recipe.default_serves || 4,
-      cuisine: recipe.cuisine || null,
-      budget_tier: recipe.budget_tier || null,
-      // A drink is a kind of meal (meal_type) everywhere, but default_slot
-      // only accepts 'drink' after migration 026.
-      default_slot: recipe.default_slot === 'drink' ? null : (recipe.default_slot || null),
-      meal_type: recipe.default_slot || null,
-      dietary_tags: recipe.dietary_tags || [],
-      method_note: recipe.method_note || null,
-      library_ref: recipe.slug
-    })
-    .select()
-    .single();
+  const row = {
+    name: recipe.name,
+    default_serves: recipe.default_serves || 4,
+    cuisine: recipe.cuisine || null,
+    budget_tier: recipe.budget_tier || null,
+    // A drink is a kind of meal (meal_type) everywhere, but default_slot
+    // only accepts 'drink' after migration 026.
+    default_slot: recipe.default_slot === 'drink' ? null : (recipe.default_slot || null),
+    meal_type: recipe.default_slot || null,
+    dietary_tags: recipe.dietary_tags || [],
+    method_note: recipe.method_note || null,
+    library_ref: recipe.slug
+  };
+  // meals.course arrives with migration 026. Sent while it may not exist,
+  // and the insert retried without it if the database says so: the meal
+  // still knows its course through library_ref either way.
+  let meal = courseColumn === false
+    ? await supabase.from('meals').insert({ ...row }).select().single()
+    : await supabase.from('meals').insert({ ...row, course: courseOf(recipe) }).select().single();
+  if (meal.error && courseColumn !== false && isMissingColumnError(meal.error, 'course')) {
+    courseColumn = false;
+    meal = await supabase.from('meals').insert({ ...row }).select().single();
+  } else if (!meal.error && courseColumn === null) {
+    courseColumn = true;
+  }
   if (meal.error) return { ok: false, error: meal.error };
 
   let reused = 0;

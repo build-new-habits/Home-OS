@@ -20,6 +20,10 @@
 -- 4. weekly_meal_plan.is_leftover (default false). Leftovers planned for
 --    another day must not put the recipe's ingredients on the shopping
 --    list a second time. The shortfall skips these rows.
+-- 5. meals.course (added 3 Oct 2026, before 026 was ever run): 'starter',
+--    'main' or 'pudding', nullable (null reads as main). A course is not a
+--    slot: a starter and a pudding sit in the dinner slot beside the main,
+--    which the plan already allows (several entries per cell).
 --
 -- ============================================================
 -- SAFE TO RUN AGAINST THE LIVE APP
@@ -80,3 +84,9 @@ alter table user_settings add column if not exists nutrition_targets jsonb;
 
 -- ---- 4. Leftovers -------------------------------------------------------
 alter table weekly_meal_plan add column if not exists is_leftover boolean not null default false;
+
+-- ---- 5. Courses ---------------------------------------------------------
+alter table meals add column if not exists course text;
+alter table meals drop constraint if exists meals_course_check;
+alter table meals add constraint meals_course_check
+  check (course is null or course in ('starter','main','pudding'));

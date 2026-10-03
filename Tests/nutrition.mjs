@@ -338,6 +338,24 @@ check('the library is not empty', count > 100, `${count}`);
   eq('a target reads as words', targetLabel({ day: 'wed', slot: 'lunch' }), 'Wednesday lunch');
 }
 
+// ---- Courses (3 Oct 2026) ------------------------------------------------
+{
+  const c = await import(`${REPO}/js/data/courses.js`);
+  eq('no course reads as a main', c.courseOf({}), 'main');
+  eq('an unknown course reads as a main', c.courseOf({ course: 'dessert' }), 'main');
+  eq('dishes sort into eating order', c.sortByCourse([{ n: 'b', course: 'pudding' }, { n: 'm' }, { n: 's', course: 'starter' }]).map((x) => x.n).join(''), 'smb');
+  check('a missing course column is recognised', c.isMissingColumnError({ code: '42703' }, 'course')
+    && c.isMissingColumnError({ message: "Could not find the 'course' column of 'meals' in the schema cache" }, 'course')
+    && !c.isMissingColumnError({ code: '23514', message: 'violates check constraint' }, 'course'));
+  const lib = await import(`${REPO}/js/data/recipeLibrary.js`);
+  const sample = [{ slug: 'a', course: 'pudding' }, { slug: 'b' }, { slug: 'c', course: 'starter' }];
+  eq('the library filters by course', lib.filterRecipes(sample, { course: 'pudding' }).map((r) => r.slug).join(), 'a');
+  eq('and "main" includes recipes with no course', lib.filterRecipes(sample, { course: 'main' }).map((r) => r.slug).join(), 'b');
+  const own = await import(`${REPO}/js/data/ownRecipe.js`);
+  eq('a new recipe is a main', own.emptyDraft().course, 'main');
+  eq('a pudding comes back as a pudding', own.draftFromMeal({ id: 'x', name: 'Crumble', course: 'pudding' }, [], []).course, 'pudding');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

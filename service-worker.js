@@ -1,4 +1,5 @@
-// service-worker.js — 03 Oct 2026 v97
+// service-worker.js — 03 Oct 2026 v98
+// v98: data/courses.js. Shell v144.
 // v97: food_reference.json (+2 foods, tea bags brewed) and recipe_library/index.json (175 recipes). Shell v143.
 // v96: components/leftoverSheet.js. Shell v142.
 // v95: food_reference.json (+8 foods) and recipe_library/index.json (146 recipes) changed. Shell v141.
@@ -240,7 +241,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v143';
+const CACHE_NAME = 'home-os-shell-v144';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -248,9 +249,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=143',
-  './css/base.css?v=143',
-  './css/components.css?v=143',
+  './css/tokens.css?v=144',
+  './css/base.css?v=144',
+  './css/components.css?v=144',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -326,6 +327,7 @@ const SHELL_FILES = [
   './js/views/recipeEditor.js',
   './js/components/leftoverSheet.js',
   './js/data/ownRecipe.js',
+  './js/data/courses.js',
   './js/components/mealGlyph.js',
   './js/components/nutritionBars.js',
   './assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2',

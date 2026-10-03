@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v4
+// js/views/kitchenPlan.js — 03 Oct 2026 v5
+// v5: starters and puddings — listed in eating order with their course, and
+// Find a starter / Find a pudding for lunch and dinner.
 // v4: leftovers — "Plan leftovers" on a planned meal; leftover entries are
 // labelled on the board and in the panel, and never add to the shopping list.
 // v4: your own meals open the recipe page too (#/recipe?m=<id>).
@@ -43,6 +45,8 @@ import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
+import { courseOf, courseLabel, sortByCourse } from '../data/courses.js';
+import { loadAllRecipes } from '../data/recipeLibrary.js';
 
 const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const SLOT_WORDS = { breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'snacks', drink: 'drinks' };
@@ -111,6 +115,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   let entries = [];
   let meals = [];
   let ingredientsByMeal = new Map();
+  let libraryCourse = new Map(); // library slug -> course
   let sel = { day: todayValue || 'mon', slot: 'dinner' };
 
   // ---------------------------------------------------------------- shell
@@ -351,12 +356,24 @@ export function render(mountEl, { week = 'this' } = {}) {
     head.appendChild(choose);
     detail.appendChild(head);
 
+    // A course for each dish: the meal's own (migration 026), else the
+    // library recipe it came from, else a main.
+    const courseFor = (entry) => {
+      const meal = meals.find((m) => m.id === entry.meal_id) || entry.meals || {};
+      if (meal.course) return courseOf(meal);
+      const ref = meal.library_ref || (entry.meals && entry.meals.library_ref);
+      return ref && libraryCourse.has(ref) ? libraryCourse.get(ref) : 'main';
+    };
+    const ordered = sortByCourse(here, courseFor);
+    const showCourses = ordered.some((e) => courseFor(e) !== 'main');
+
     if (here.length) {
       const list = el('ul', { class: 'plan-detail-items' });
-      for (const entry of here) {
+      for (const entry of ordered) {
         const li = el('li');
         const text = el('span', { class: 'plan-detail-text' });
         text.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'A meal' }));
+        if (showCourses) text.appendChild(el('span', { class: 'plan-detail-course', text: courseLabel(courseFor(entry)) }));
         text.appendChild(el('span', { class: 'field-hint', text: isLeftover(entry)
           ? `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.`
           : `Serves ${servesFor(entry)}` }));
@@ -392,6 +409,16 @@ export function render(mountEl, { week = 'this' } = {}) {
       detail.appendChild(list);
     } else {
       detail.appendChild(el('p', { class: 'plan-detail-open', text: 'Open. Choose a meal, or pick one of your ideas below.' }));
+    }
+
+    // Starters and puddings sit beside the main. Offered for lunch and
+    // dinner once there is a main to go with.
+    if ((sel.slot === 'dinner' || sel.slot === 'lunch') && here.length) {
+      const has = new Set(here.map(courseFor));
+      const more = el('p', { class: 'plan-courses' });
+      if (!has.has('starter')) more.appendChild(el('a', { class: 'btn btn-quiet btn-small', href: '#/library?course=starter', text: 'Find a starter' }));
+      if (!has.has('pudding')) more.appendChild(el('a', { class: 'btn btn-quiet btn-small', href: '#/library?course=pudding', text: 'Find a pudding' }));
+      if (more.childNodes.length) detail.appendChild(more);
     }
 
     const ideas = ideasFor(meals, sel.slot, here.map((e) => e.meal_id));
@@ -486,6 +513,14 @@ export function render(mountEl, { week = 'this' } = {}) {
     paintBoard();
     paintDetail();
     paintDayNutrition();
+
+    // Courses for library recipes, for the panel's order and labels. Not
+    // awaited before the first paint: the board is useful without it.
+    loadAllRecipes().then((lib) => {
+      if (destroyed || !lib || !lib.ok) return;
+      libraryCourse = new Map((lib.data || []).map((r) => [r.slug, courseOf(r)]));
+      paintDetail();
+    }).catch(() => {});
   })().catch((error) => {
     if (destroyed) return;
     console.error('Plan board failed:', error);

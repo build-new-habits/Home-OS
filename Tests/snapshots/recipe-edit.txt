@@ -18,6 +18,12 @@ div.own-recipe
           option
           option
       div.field
+        label"Course"
+        select
+          option
+          option
+          option
+      div.field
         label"Serves"
         input[type=number]
     fieldset.own-tags
