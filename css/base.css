@@ -1,4 +1,23 @@
-/* css/base.css — 26 Aug 2026 v2 */
+/* css/base.css — 03 Oct 2026 v3 */
+/* v3: self-hosted @font-face for the kitchen rebuild type (K3). */
+/* Kitchen rebuild K3 (3 Oct 2026): self-hosted faces, SIL OFL, licences in
+   assets/fonts. font-display: swap so text is never invisible while a face
+   loads on a slow connection. */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../assets/fonts/bricolage-grotesque-latin-standard-normal.woff2') format('woff2');
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 

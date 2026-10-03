@@ -1,4 +1,8 @@
-/* css/tokens.css — 01 Sep 2026 v2 */
+/* css/tokens.css — 03 Oct 2026 v3 */
+/* v3 (kitchen rebuild K3): the approved mockup's light palette and type,
+   and five meal colours in all four theme combinations. Dusk and both
+   high-contrast themes keep their colours; they gain only the meal tokens.
+   The old light palette is on branch archive/pre-kitchen-2026-10. */
 /* P1, 06 Sep 2026. tokens.css is write-once by convention; this edit is
    ADDITIVE only — two new tokens, nothing existing changed — and is
    recorded here rather than done quietly. Every off-scale value in
@@ -19,18 +23,18 @@
   /* ---- Palette: quiet, warm-neutral base with a slate-teal accent.
      No red anywhere in the base palette — "missed" states are neutral,
      not warning-coloured (behavioural principle 1). ---- */
-  --color-bg: #F7F5F1;
+  --color-bg: #F1F3EE;
   --color-surface: #FFFFFF;
-  --color-surface-raised: #FCFBF9;
-  --color-border: #DEDAD2;
-  --color-text: #23261F;
-  --color-text-muted: #5B5F55;
-  --color-accent: #35635C;
-  --color-accent-strong: #234641;
+  --color-surface-raised: #F8FAF6;
+  --color-border: #D5DAD3;
+  --color-text: #1C2620;
+  --color-text-muted: #4E5A52;
+  --color-accent: #2B6649;
+  --color-accent-strong: #1E4A35;
   --color-accent-contrast: #FFFFFF;
   --color-focus-ring: #B65C2E;
-  --color-neutral-chip: #EDEAE3;
-  --color-stamp: #35635C;
+  --color-neutral-chip: #E1EDE4;
+  --color-stamp: #2B6649;
   --color-caution: #8A5A19;   /* used sparingly, never for "missed" state */
 
   /* ---- Semantic state (Phase 26) ----
@@ -50,12 +54,22 @@
   --state-fresh: #2F5C54;
   --state-soon: #7A4E12;
   --state-past: #8C3A2A;
-  --state-unknown: #5B5F55;
+  --state-unknown: #4E5A52;
 
   /* Interactive control borders. Lived in components.css until Phase 26,
      which is a layering error: it is a token and 21 rules depend on it.
      Must stay >= 3:1 against the card surface (WCAG 1.4.11). */
   --control-border: var(--color-text-muted);
+
+  /* ---- Meals (v3, kitchen rebuild) ----
+     One tint and one ink per meal. The ink is >= 4.5:1 on its tint in every
+     theme combination, and the contrast gate asserts it. A meal colour is
+     NEVER the only signal: every use carries the meal's icon or name. */
+  --meal-breakfast: #F7E3A3; --meal-breakfast-ink: #5E4300;
+  --meal-lunch: #CDE5D2;     --meal-lunch-ink: #1C4D33;
+  --meal-dinner: #3A2F52;    --meal-dinner-ink: #FFFFFF;
+  --meal-snack: #F6CFB6;     --meal-snack-ink: #6E3412;
+  --meal-drink: #CFE0F1;     --meal-drink-ink: #1A4670;
 
   /* ---- Density (Phase 26) ----
      Sensory needs vary, and a fixed density serves half the audience.
@@ -64,8 +78,11 @@
   --density-scale: 1;
 
   /* ---- Type ---- */
-  --font-display: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* v3: self-hosted in assets/fonts (SIL OFL), so they work offline.
+     Atkinson Hyperlegible was drawn for low-vision readers; Bricolage
+     Grotesque gives headings character without a serif. */
+  --font-display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-xs: 0.8125rem;
@@ -132,6 +149,11 @@
   --state-soon: #E0B173;
   --state-past: #E8A091;
   --state-unknown: #B3B3A6;
+  --meal-breakfast: #4A3B12; --meal-breakfast-ink: #F7E3A3;
+  --meal-lunch: #1F3B2B;     --meal-lunch-ink: #CDE5D2;
+  --meal-dinner: #4B3D6B;    --meal-dinner-ink: #FFFFFF;
+  --meal-snack: #4D2A17;     --meal-snack-ink: #F6CFB6;
+  --meal-drink: #1D3550;     --meal-drink-ink: #CFE0F1;
   color-scheme: dark;
 }
 
@@ -157,6 +179,11 @@
   --state-soon: #5C3B00;
   --state-past: #7A1E10;
   --state-unknown: #2B2B2B;
+  --meal-breakfast: #FFF1B8; --meal-breakfast-ink: #000000;
+  --meal-lunch: #D6F0DC;     --meal-lunch-ink: #000000;
+  --meal-dinner: #2B1F45;    --meal-dinner-ink: #FFFFFF;
+  --meal-snack: #FFD9C2;     --meal-snack-ink: #000000;
+  --meal-drink: #D4E6F7;     --meal-drink-ink: #000000;
 }
 
 [data-theme="dusk"][data-contrast="high"] {
@@ -177,6 +204,11 @@
   --state-soon: #F0C285;
   --state-past: #FFB3A3;
   --state-unknown: #E6E6E6;
+  --meal-breakfast: #3D3000; --meal-breakfast-ink: #FFFFFF;
+  --meal-lunch: #0F3320;     --meal-lunch-ink: #FFFFFF;
+  --meal-dinner: #2B1F45;    --meal-dinner-ink: #FFFFFF;
+  --meal-snack: #46200A;     --meal-snack-ink: #FFFFFF;
+  --meal-drink: #0B2A47;     --meal-drink-ink: #FFFFFF;
 }
 
 /* ============ Brightness: standard (default) — no override needed ============ */

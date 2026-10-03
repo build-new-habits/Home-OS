@@ -1,4 +1,5 @@
-// service-worker.js — 03 Oct 2026 v86
+// service-worker.js — 03 Oct 2026 v87
+// v87 (K3): three self-hosted font files. Shell v133.
 // v86 (kitchen rebuild K4/K5): TWO new paths, js/data/nutrition.js and
 // js/views/recipe.js. food_reference.json v3 (fibre). Shell v132.
 // v85 (worklist G1): ONE new path, js/views/meals/ingredients.js.
@@ -229,7 +230,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v132';
+const CACHE_NAME = 'home-os-shell-v133';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -237,9 +238,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=132',
-  './css/base.css?v=132',
-  './css/components.css?v=132',
+  './css/tokens.css?v=133',
+  './css/base.css?v=133',
+  './css/components.css?v=133',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -305,6 +306,9 @@ const SHELL_FILES = [
   './js/views/planNextWeek.js',
   './js/views/planFuture.js',
   './js/views/recipe.js',
+  './assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2',
+  './assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2',
+  './assets/fonts/bricolage-grotesque-latin-standard-normal.woff2',
   './js/data/nutrition.js',
   './js/views/pantry/place.js',
   './js/lib/weeks.js',

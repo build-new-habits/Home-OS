@@ -5,28 +5,40 @@
 
 const THEMES = {
   'default / standard': {
-    bg: '#F7F5F1', surface: '#FFFFFF', surfaceRaised: '#FCFBF9', border: '#DEDAD2',
-    text: '#23261F', textMuted: '#5B5F55', accent: '#35635C', accentStrong: '#234641',
-    accentContrast: '#FFFFFF', neutralChip: '#EDEAE3',
-    stateFresh: '#2F5C54', stateSoon: '#7A4E12', statePast: '#8C3A2A', stateUnknown: '#5B5F55'
+    bg: '#F1F3EE', surface: '#FFFFFF', surfaceRaised: '#F8FAF6', border: '#D5DAD3',
+    text: '#1C2620', textMuted: '#4E5A52', accent: '#2B6649', accentStrong: '#1E4A35',
+    accentContrast: '#FFFFFF', neutralChip: '#E1EDE4',
+    stateFresh: '#2F5C54', stateSoon: '#7A4E12', statePast: '#8C3A2A', stateUnknown: '#4E5A52',
+    mealBreakfast: '#F7E3A3', mealBreakfastInk: '#5E4300', mealLunch: '#CDE5D2', mealLunchInk: '#1C4D33',
+    mealDinner: '#3A2F52', mealDinnerInk: '#FFFFFF', mealSnack: '#F6CFB6', mealSnackInk: '#6E3412',
+    mealDrink: '#CFE0F1', mealDrinkInk: '#1A4670'
   },
   'dusk / standard': {
     bg: '#1B1E19', surface: '#23261F', surfaceRaised: '#2A2E24', border: '#3A3F33',
     text: '#EDEAE1', textMuted: '#B3B3A6', accent: '#7FB6AA', accentStrong: '#A6D2C6',
     accentContrast: '#12201C', neutralChip: '#2E3227',
-    stateFresh: '#8CC4B7', stateSoon: '#E0B173', statePast: '#E8A091', stateUnknown: '#B3B3A6'
+    stateFresh: '#8CC4B7', stateSoon: '#E0B173', statePast: '#E8A091', stateUnknown: '#B3B3A6',
+    mealBreakfast: '#4A3B12', mealBreakfastInk: '#F7E3A3', mealLunch: '#1F3B2B', mealLunchInk: '#CDE5D2',
+    mealDinner: '#4B3D6B', mealDinnerInk: '#FFFFFF', mealSnack: '#4D2A17', mealSnackInk: '#F6CFB6',
+    mealDrink: '#1D3550', mealDrinkInk: '#CFE0F1'
   },
   'default / high': {
     bg: '#FFFFFF', surface: '#FFFFFF', surfaceRaised: '#FFFFFF', border: '#000000',
     text: '#000000', textMuted: '#2B2B2B', accent: '#0B3D37', accentStrong: '#04211D',
     accentContrast: '#FFFFFF', neutralChip: '#E7E7E7',
-    stateFresh: '#0B3D37', stateSoon: '#5C3B00', statePast: '#7A1E10', stateUnknown: '#2B2B2B'
+    stateFresh: '#0B3D37', stateSoon: '#5C3B00', statePast: '#7A1E10', stateUnknown: '#2B2B2B',
+    mealBreakfast: '#FFF1B8', mealBreakfastInk: '#000000', mealLunch: '#D6F0DC', mealLunchInk: '#000000',
+    mealDinner: '#2B1F45', mealDinnerInk: '#FFFFFF', mealSnack: '#FFD9C2', mealSnackInk: '#000000',
+    mealDrink: '#D4E6F7', mealDrinkInk: '#000000'
   },
   'dusk / high': {
     bg: '#000000', surface: '#000000', surfaceRaised: '#000000', border: '#FFFFFF',
     text: '#FFFFFF', textMuted: '#E6E6E6', accent: '#9FE0D2', accentStrong: '#C9EFE5',
     accentContrast: '#000000', neutralChip: '#1A1A1A',
-    stateFresh: '#9FE0D2', stateSoon: '#F0C285', statePast: '#FFB3A3', stateUnknown: '#E6E6E6'
+    stateFresh: '#9FE0D2', stateSoon: '#F0C285', statePast: '#FFB3A3', stateUnknown: '#E6E6E6',
+    mealBreakfast: '#3D3000', mealBreakfastInk: '#FFFFFF', mealLunch: '#0F3320', mealLunchInk: '#FFFFFF',
+    mealDinner: '#2B1F45', mealDinnerInk: '#FFFFFF', mealSnack: '#46200A', mealSnackInk: '#FFFFFF',
+    mealDrink: '#0B2A47', mealDrinkInk: '#FFFFFF'
   }
 };
 
@@ -46,6 +58,13 @@ const ratio = (a, b) => {
 
 // [description, foreground key, background key, required ratio]
 const PAIRS = [
+  // ---- Kitchen rebuild K3: meal colours. Words and icons sit on these
+  // tints, so they are held to text contrast. ----
+  ['breakfast ink on its tint', 'mealBreakfastInk', 'mealBreakfast', 4.5],
+  ['lunch ink on its tint',     'mealLunchInk',     'mealLunch',     4.5],
+  ['dinner ink on its tint',    'mealDinnerInk',    'mealDinner',    4.5],
+  ['snack ink on its tint',     'mealSnackInk',     'mealSnack',     4.5],
+  ['drink ink on its tint',     'mealDrinkInk',     'mealDrink',     4.5],
   // Phase 28. A hub icon carries meaning at a glance, so it is held to the
   // 3:1 required of a meaningful graphic (WCAG 1.4.11), not left untested
   // because it is "just an icon".
@@ -110,6 +129,32 @@ for (const [name, theme] of Object.entries(THEMES)) {
     console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${r.toFixed(2).padStart(6)}:1  (needs ${need}:1)  ${desc}`);
   }
 }
+// ---- The table above must be the colours that ship (3 Oct 2026) ----
+// This gate checks hex values written here, not the stylesheet. Without
+// this, a palette change in tokens.css passes a gate that is still testing
+// the old one. The light theme's base and meal colours are read from
+// tokens.css and compared.
+{
+  const { readFileSync } = await import('node:fs');
+  const REPO = process.env.GATE_REPO || process.cwd();
+  const css = readFileSync(`${REPO}/css/tokens.css`, 'utf8');
+  const root = css.slice(css.indexOf(':root'), css.indexOf('[data-theme="dusk"]'));
+  const read = (name) => { const m = root.match(new RegExp(`--${name}:\\s*(#[0-9A-Fa-f]{6})`)); return m ? m[1].toUpperCase() : null; };
+  const light = THEMES['default / standard'];
+  const MAP = { 'color-bg': 'bg', 'color-surface': 'surface', 'color-text': 'text', 'color-text-muted': 'textMuted',
+    'color-accent': 'accent', 'color-accent-strong': 'accentStrong', 'color-neutral-chip': 'neutralChip',
+    'meal-breakfast': 'mealBreakfast', 'meal-breakfast-ink': 'mealBreakfastInk', 'meal-lunch': 'mealLunch',
+    'meal-lunch-ink': 'mealLunchInk', 'meal-dinner': 'mealDinner', 'meal-dinner-ink': 'mealDinnerInk',
+    'meal-snack': 'mealSnack', 'meal-snack-ink': 'mealSnackInk', 'meal-drink': 'mealDrink', 'meal-drink-ink': 'mealDrinkInk' };
+  console.log('\ntokens.css agrees with this table');
+  for (const [token, key] of Object.entries(MAP)) {
+    const shipped = read(token);
+    const ok = shipped === String(light[key]).toUpperCase();
+    if (!ok) fails++;
+    console.log(`  ${ok ? 'PASS' : 'FAIL'}  --${token}  shipped ${shipped}, tested ${light[key]}`);
+  }
+}
+
 console.log('');
 console.log(fails === 0
   ? `CONTRAST PASSED — ${PAIRS.length} pairs x 4 theme combinations = ${PAIRS.length * 4} checks`
