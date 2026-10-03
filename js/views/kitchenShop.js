@@ -1,4 +1,5 @@
-// js/views/kitchenShop.js — 03 Oct 2026 v4
+// js/views/kitchenShop.js — 03 Oct 2026 v5
+// v5: Bought everything — the whole list into the basket and pantry at once.
 // v4: Share the list — the phone's share sheet, or copied.
 // v3: a blank use-by says what the pantry will estimate instead.
 // v2: put away from the basket: where it lives and its use-by, saved to
@@ -161,7 +162,31 @@ export function render(mountEl) {
       showToast('The list could not be shared from here. Try again.');
     }
   }, { signal });
-  actions.append(doneBtn, shareBtn, addLink);
+  // 3 Oct 2026: a delivery arrived, or one big shop. Every line still on
+  // the list goes in the basket and the pantry at once, rather than forty
+  // ticks. Each can still be unticked.
+  const allBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Bought everything' });
+  allBtn.addEventListener('click', async () => {
+    const needed = items.filter((i) => i.status === 'needed');
+    if (!needed.length) return;
+    for (const line of needed) line.status = 'bought';
+    paint();
+    let failed = 0;
+    for (const line of needed) {
+      const result = await setStatus(line.id, 'bought');
+      if (destroyed) return;
+      if (!result.ok) { line.status = 'needed'; failed += 1; continue; }
+      if (!result.queued) await restockFromPurchase(line, line.foods || {});
+      if (destroyed) return;
+    }
+    paint();
+    const words = failed
+      ? `${needed.length - failed} in the basket and the pantry. ${failed} did not save; they are still on the list.`
+      : `All ${needed.length} in the basket and the pantry.`;
+    status.textContent = words;
+    showToast(words);
+  }, { signal });
+  actions.append(doneBtn, allBtn, shareBtn, addLink);
   mountEl.appendChild(actions);
 
   const buildLink = el('p', { class: 'shop-build' });
@@ -180,6 +205,7 @@ export function render(mountEl) {
       ? 'Nothing to buy.'
       : `${needed.length} to buy, ${bought.length} in the basket`;
     progressFill.style.width = total ? `${Math.round((bought.length / total) * 100)}%` : '0%';
+    allBtn.hidden = needed.length < 2;
 
     listWrap.replaceChildren();
     if (needed.length === 0) {

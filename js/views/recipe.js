@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v12
+// js/views/recipe.js — 03 Oct 2026 v13
+// v13: servings start at your household's size.
 // v12: Make it vegetarian / vegan (data/dietSwitch.js), as radio buttons.
 // v11: a photo at the top when the recipe has one.
 // v10: recipes kept on this phone (#/recipe?l=<id>): cook, change, delete, and
@@ -42,7 +43,8 @@ import { courseOf, courseLabel } from '../data/courses.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
-import { addPlanEntry, DAYS, SLOTS } from '../data/mealPlan.js';
+import { addPlanEntry, DAYS, SLOTS, servingsForEntry } from '../data/mealPlan.js';
+import { getHousehold } from '../data/household.js';
 import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
 import { requestListSync } from '../data/listSync.js';
 import { openDetailSheet } from '../components/detailSheet.js';
@@ -585,6 +587,21 @@ export function render(mountEl) {
 
     const baseServes = Number(recipe.default_serves) || 1;
     let serves = baseServes;
+    // 3 Oct 2026: start at your household's size, as the plan and the
+    // shopping list already do (mealPlan.servingsForEntry). A recipe for
+    // four opens as one for a household of one.
+    const servesNote = el('p', { class: 'field-hint recipe-serves-note' });
+    getHousehold().then((h) => {
+      if (destroyed || !h || !h.ok) return;
+      const members = (h.data && h.data.members) || [];
+      if (members.length === 0) return;
+      const size = servingsForEntry({ serves_override: null, member_ids: [] }, members);
+      const whole = Math.max(1, Math.min(MAX_SERVES, Math.ceil(size)));
+      if (whole === serves) return;
+      serves = whole;
+      servesNote.textContent = `Set for your household (${whole}). The recipe is written for ${baseServes}.`;
+      paintIngredients();
+    }).catch(() => {});
     const paintIngredients = () => {
       count.textContent = `${serves} ${serves === 1 ? 'serving' : 'servings'}`;
       minus.disabled = serves <= 1;
@@ -603,6 +620,7 @@ export function render(mountEl) {
     minus.addEventListener('click', () => { if (serves > 1) { serves -= 1; paintIngredients(); } }, { signal });
     plus.addEventListener('click', () => { if (serves < MAX_SERVES) { serves += 1; paintIngredients(); } }, { signal });
     paintIngredients();
+    ingSection.appendChild(servesNote);
 
     if (recipe.swaps && recipe.swaps.length) {
       const swapList = el('ul', { class: 'recipe-swaps' });

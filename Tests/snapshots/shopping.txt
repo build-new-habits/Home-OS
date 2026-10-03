@@ -23,6 +23,7 @@ details.shop-fold[hidden=]
   ul.shop-fold-list
 div.shop-actions
   button.btn.btn-block.btn-primary[type=button][hidden=]"Done shopping"
+  button.btn.btn-block[type=button][hidden=]"Bought everything"
   button.btn.btn-block[type=button]"Share the list"
   a.btn.btn-block"Add something to the list"
 p.shop-build
