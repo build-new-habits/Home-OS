@@ -40,6 +40,7 @@
 import { el } from '../lib/dom.js';
 import { toSpoons } from '../lib/units.js';
 import { courseOf, courseLabel } from '../data/courses.js';
+import { everydayName } from '../lib/foodNames.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
@@ -499,7 +500,7 @@ export function render(mountEl) {
       if (all) return;
       haveBox.appendChild(el('p', {
         class: 'recipe-have-missing',
-        text: `Missing: ${result.missing.map((i) => cookingName(i.name).toLowerCase()).join(', ')}.`
+        text: `Missing: ${result.missing.map((i) => everydayName(i.name).toLowerCase()).join(', ')}.`
       }));
       const n = result.missing.length;
       const btn = el('button', { type: 'button', class: 'btn', text: `Add the ${n} missing to the list` });

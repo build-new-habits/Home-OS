@@ -1440,7 +1440,7 @@ console.log('\nPantry quick start');
   clearCalls();
   const clean = start.render(m);
   await settle(300);
-  check('what is already in the pantry is shown as in, not offered', /Oats, rolled: already in/.test(m.textContent) && !m.querySelector('#start-oats-rolled'),
+  check('what is already in the pantry is shown as in, not offered', /Rolled oats: already in/.test(m.textContent) && !m.querySelector('#start-oats-rolled'),
     m.textContent.slice(0, 300));
   const salt = m.querySelector('#start-salt');
   const rice = m.querySelector('#start-rice-basmati-dry');

@@ -475,6 +475,16 @@ check('the library is not empty', count > 100, `${count}`);
   eq('a level with no amount is not "needs an amount"', pantry.needsAmount(rows, now).map((r) => r.id).join(), '2,3');
 }
 
+// ---- Everyday food names (3 Oct 2026) --------------------------------------
+{
+  const { everydayName } = await import(`${REPO}/js/lib/foodNames.js`);
+  eq('"Rice, basmati, dry" reads as basmati rice', everydayName('Rice, basmati, dry'), 'Basmati rice');
+  eq('"Flour, plain" reads as plain flour', everydayName('Flour, plain'), 'Plain flour');
+  eq('"Black pepper, ground" reads as ground black pepper', everydayName('Black pepper, ground'), 'Ground black pepper');
+  eq('a plain name is left alone', everydayName('Salt'), 'Salt');
+  eq('"Chopped tomatoes, tinned" drops the state', everydayName('Chopped tomatoes, tinned'), 'Chopped tomatoes');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

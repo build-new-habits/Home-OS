@@ -17,6 +17,7 @@ import { showToast } from '../../components/toast.js';
 import { listStock, addStock, updateStock, defaultUnitFor, todayIso } from '../../data/pantry.js';
 import { foodsForReference } from '../../data/recipeLibrary.js';
 import { referenceBySlug } from '../../data/foodReference.js';
+import { everydayName } from '../../lib/foodNames.js';
 
 export const STARTER_GROUPS = [
   { title: 'Cupboard', slugs: ['salt', 'black-pepper-ground', 'olive-oil', 'vegetable-oil', 'flour-plain', 'sugar-caster',
@@ -73,7 +74,7 @@ export function render(mountEl) {
       const set = el('fieldset', { class: 'pantry-start-group' });
       set.appendChild(el('legend', { text: group.title }));
       const allId = `start-all-${g}`;
-      const all = el('button', { type: 'button', class: 'btn btn-small btn-quiet', id: allId, text: `Tick all ${group.title.toLowerCase()}` });
+      const all = el('button', { type: 'button', class: 'btn btn-small btn-quiet', id: allId, text: `Tick all of these` });
       set.appendChild(all);
       const grid = el('div', { class: 'pantry-start-grid' });
       const groupBoxes = [];
@@ -83,11 +84,11 @@ export function render(mountEl) {
         const id = `start-${slug}`;
         const row = el('div', { class: 'checkbox-row' });
         if (have.has(slug)) {
-          row.appendChild(el('span', { class: 'pantry-start-have', text: `${entry.name}: already in` }));
+          row.appendChild(el('span', { class: 'pantry-start-have', text: `${everydayName(entry.name)}: already in` }));
         } else {
           const box = el('input', { type: 'checkbox', id, value: slug });
           box.dataset.place = PLACE[group.title] || 'Cupboard';
-          row.append(box, el('label', { for: id, text: entry.name }));
+          row.append(box, el('label', { for: id, text: everydayName(entry.name) }));
           boxes.push(box);
           groupBoxes.push(box);
           box.addEventListener('change', paintCount, { signal });

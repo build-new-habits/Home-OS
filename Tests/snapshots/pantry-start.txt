@@ -4,19 +4,19 @@ p.field-hint
 div.pantry-start
   fieldset.pantry-start-group
     legend"Cupboard"
-    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all cupboard"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all of these"
     div.pantry-start-grid
   fieldset.pantry-start-group
     legend"Spices"
-    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all spices"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all of these"
     div.pantry-start-grid
   fieldset.pantry-start-group
     legend"Fridge"
-    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all fridge"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all of these"
     div.pantry-start-grid
   fieldset.pantry-start-group
     legend"Vegetable rack and bread bin"
-    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all vegetable rack and bread bin"
+    button.btn.btn-quiet.btn-small[type=button][hidden=]"Tick all of these"
     div.pantry-start-grid
   button.btn.btn-block.btn-primary[type=button]"Add to the pantry"
   p.field-hint[role=status]
