@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v5
+// js/views/kitchenPlan.js — 03 Oct 2026 v6
+// v6: Board or List — the week in words, day by day, for a small phone.
 // v5: starters and puddings — listed in eating order with their course, and
 // Find a starter / Find a pudding for lunch and dinner.
 // v4: leftovers — "Plan leftovers" on a planned meal; leftover entries are
@@ -153,7 +154,34 @@ export function render(mountEl, { week = 'this' } = {}) {
   openKey.appendChild(document.createTextNode('Open'));
   legend.appendChild(openKey);
   boardWrap.appendChild(legend);
-  mountEl.appendChild(boardWrap);
+
+  // ---- Board or list (3 Oct 2026) ----------------------------------------
+  // The board shows a week's shape; on a small phone it does not show what
+  // anything IS without a tap per square. The list says it in words, day by
+  // day. Your choice is remembered on this phone.
+  const VIEW_KEY = 'home-os-plan-view';
+  let view = 'board';
+  try { if (localStorage.getItem(VIEW_KEY) === 'list') view = 'list'; } catch { /* fine */ }
+  const switcher = el('div', { class: 'plan-view-switch', role: 'group', 'aria-label': 'Show the week as' });
+  const boardBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'Board' });
+  const listBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'List' });
+  switcher.append(boardBtn, listBtn);
+  const listWrap = el('div', { class: 'plan-list' });
+  const setView = (next) => {
+    view = next;
+    try { localStorage.setItem(VIEW_KEY, next); } catch { /* fine */ }
+    paintView();
+  };
+  boardBtn.addEventListener('click', () => setView('board'), { signal });
+  listBtn.addEventListener('click', () => setView('list'), { signal });
+  function paintView() {
+    boardBtn.setAttribute('aria-pressed', String(view === 'board'));
+    listBtn.setAttribute('aria-pressed', String(view === 'list'));
+    boardWrap.hidden = view !== 'board';
+    listWrap.hidden = view !== 'list';
+    if (view === 'list') paintList();
+  }
+  mountEl.append(switcher, boardWrap, listWrap);
 
   const dayNutri = el('section', { class: 'plan-day-nutrition', 'aria-labelledby': 'plan-nutri-h' });
   mountEl.appendChild(dayNutri);
@@ -236,6 +264,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   }
 
   function paintBoard() {
+    if (view === 'list') paintList();
     tbody.replaceChildren();
     SLOTS.forEach((s, r) => {
       const tr = el('tr');
@@ -271,6 +300,41 @@ export function render(mountEl, { week = 'this' } = {}) {
       });
       tbody.appendChild(tr);
     });
+  }
+
+  // The week in words: each day, each meal, tap one to work on it.
+  function paintList() {
+    listWrap.replaceChildren();
+    for (const d of DAYS) {
+      const day = el('section', { class: d.value === todayValue ? 'plan-list-day is-today' : 'plan-list-day', 'aria-labelledby': `plan-list-${d.value}` });
+      day.appendChild(el('h2', { id: `plan-list-${d.value}`, class: 'plan-list-day-name', text: d.value === todayValue ? `${d.label} (today)` : d.label }));
+      const ul = el('ul', { class: 'plan-list-slots' });
+      for (const s of SLOTS) {
+        const here = cellEntries(d.value, s.value);
+        const li = el('li');
+        const b = el('button', { type: 'button', class: here.length ? 'plan-list-slot' : 'plan-list-slot is-open' });
+        b.appendChild(mealGlyph(s.value, 18));
+        const text = el('span', { class: 'plan-list-text' });
+        text.appendChild(el('span', { class: 'plan-list-slot-name', text: s.label }));
+        text.appendChild(el('span', { class: 'plan-list-meals', text: here.length
+          ? here.map((e) => `${(e.meals && e.meals.name) || 'A meal'}${isLeftover(e) ? ' (leftovers)' : ''}`).join(', ')
+          : 'Open' }));
+        b.appendChild(text);
+        b.setAttribute('aria-label', `${d.label} ${SLOT_WORDS[s.value]}: ${here.length ? text.lastChild.textContent : 'open'}. Change it.`);
+        b.addEventListener('click', () => {
+          sel = { day: d.value, slot: s.value };
+          paintBoard();
+          paintDetail();
+          paintDayNutrition();
+          const h = document.getElementById('plan-detail-h');
+          if (h) { h.focus(); h.scrollIntoView({ block: 'start' }); }
+        }, { signal });
+        li.appendChild(b);
+        ul.appendChild(li);
+      }
+      day.appendChild(ul);
+      listWrap.appendChild(day);
+    }
   }
 
   tbody.addEventListener('keydown', (event) => {
@@ -486,6 +550,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   }, { signal });
 
   // --------------------------------------------------------------- load
+  paintView();
   paintBoard();
   paintDetail();
 

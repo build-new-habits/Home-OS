@@ -4,6 +4,9 @@ header.plan-header
   p.plan-week-switch
     a"Next week"
 p.visually-hidden[role=status]
+div.plan-view-switch[role=group]
+  button.chip-toggle[type=button][aria-pressed=true]"Board"
+  button.chip-toggle[type=button][aria-pressed=false]"List"
 div.plan-board-wrap
   p.visually-hidden
   table.plan-board
@@ -123,6 +126,7 @@ div.plan-board-wrap
       span.meal-snack.plan-legend-swatch
     li
       span.plan-legend-open.plan-legend-swatch
+div.plan-list[hidden=]
 section.plan-day-nutrition
   div.plan-nutri-head
     h2"<day>’s nutrition"
