@@ -1,9 +1,10 @@
-// js/components/bottomNav.js — 01 Sep 2026 v3
+// js/components/bottomNav.js — 03 Oct 2026 v4
+// v4: navItemsFor() (KITCHEN_ONLY, kitchen rebuild K2).
 // v3 (worklist A1): the bar shows what somebody asked for. See visibleNav.
 // v2: the nav set comes from navConfig.js rather than from `nav: true` flags
 // inside routes.js. Changing which four things sit in the bar is a product
 // decision and should not mean editing route entries.
-import { NAV_ITEMS, visibleNav } from '../navConfig.js';
+import { navItemsFor } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 
 /**
@@ -15,7 +16,8 @@ export function mountBottomNav(containerEl) {
   // and what every existing account has. Dashboard is `always` and cannot
   // be filtered out — you must be able to get home.
   const settings = getState().settings || {};
-  const navRoutes = visibleNav(NAV_ITEMS, settings.focus_areas || []);
+  // Kitchen rebuild K2: navItemsFor() decides, so KITCHEN_ONLY lives in one place.
+  const navRoutes = navItemsFor(settings);
 
   const nav = document.createElement('nav');
   nav.className = 'bottom-nav';

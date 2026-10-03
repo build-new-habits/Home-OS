@@ -6,16 +6,6 @@ div
       p.field-hint
   fieldset
     legend"What you use it for"
-    p.field-hint
-    div.checkbox-row
-      input[type=checkbox]
-      label"Food and shopping"
-    div.checkbox-row
-      input[type=checkbox]
-      label"Home and chores"
-    div.checkbox-row
-      input[type=checkbox]
-      label"Health"
     div.checkbox-row
       input[type=checkbox]
       label"I cook the same things — stop suggesting recipes"

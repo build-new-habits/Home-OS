@@ -1,4 +1,9 @@
-// js/navConfig.js — 01 Sep 2026 v9
+// js/navConfig.js — 03 Oct 2026 v10
+// v10 (kitchen rebuild K2): KITCHEN_ONLY. The bar is Today, Plan,
+// Recipes, Shop. Health, chores, calendar and holidays are PARKED, not
+// deleted: every route stays registered and reachable by address. Set the
+// flag to false and the old bar, focus areas and dashboard come back as
+// they were. See Docs/Current/PARKED_AREAS.md.
 // v7: adds FIRST_RUN_ACTION.
 // v6: adds PRIMARY_ACTION — the one task at the top of the dashboard.
 // v5: the foods library is its own page under Kitchen.
@@ -180,3 +185,38 @@ export const HEALTH_PAGES = [
   { path: 'weight', title: 'Weight', blurb: 'Weigh-ins, your target, and the trend.' },
   { path: 'water', title: 'Water', blurb: 'What you have drunk today, and the last week.' }
 ];
+
+
+// ---- Kitchen rebuild (3 Oct 2026) ----------------------------------------
+// One switch, so parking is a decision in one place rather than edits
+// scattered across views. Everything that changes reads it from here.
+// The gates can ask for the full app (globalThis.__HOME_OS_FULL_APP__) so
+// the parked areas stay tested while they are parked, ready to come back.
+export const KITCHEN_ONLY = !(typeof globalThis !== 'undefined' && globalThis.__HOME_OS_FULL_APP__);
+
+export const KITCHEN_NAV_ITEMS = [
+  { path: 'dashboard', label: 'Today', icon: '⌂', always: true },
+  { path: 'plan-this-week', label: 'Plan', icon: '▦', area: 'kitchen' },
+  { path: 'library', label: 'Recipes', icon: '☰', area: 'kitchen' },
+  { path: 'shopping', label: 'Shop', icon: '✓', area: 'kitchen' }
+];
+
+/** What goes in the bottom bar for these settings. */
+export function navItemsFor(settings = {}) {
+  if (KITCHEN_ONLY) return KITCHEN_NAV_ITEMS;
+  return visibleNav(NAV_ITEMS, settings.focus_areas || []);
+}
+
+/**
+ * The dashboard's "everything else" list. In kitchen-only mode it leads to
+ * the parts of the kitchen not in the bar (pantry, your own meals, things
+ * you buy) and Settings, and not to holidays, which are parked.
+ */
+export const KITCHEN_DASHBOARD_LINKS = [
+  { path: 'kitchen', title: 'Pantry and your meals', blurb: 'Your cupboards, your own recipes and things you buy.' },
+  { path: 'settings', title: 'Settings', blurb: 'Themes, text size and your account.', always: true }
+];
+
+export function dashboardLinks() {
+  return KITCHEN_ONLY ? KITCHEN_DASHBOARD_LINKS : DASHBOARD_LINKS;
+}

@@ -8,6 +8,13 @@ import { pathToFileURL } from 'node:url';
 import fs from 'node:fs';
 
 const REPO = process.env.GATE_REPO || '/tmp/gate-repo';
+
+// Kitchen rebuild (3 Oct 2026): health, chores, calendar and holidays are
+// PARKED behind navConfig.KITCHEN_ONLY, not deleted. This gate runs the full
+// app so their accessibility stays proven for when they come back. The
+// kitchen-only screens are covered by the snapshot gate, which runs as
+// shipped.
+globalThis.__HOME_OS_FULL_APP__ = true;
 const dom = new JSDOM('<!doctype html><html><body><main id="app-main"></main></body></html>', {
   url: 'https://example.github.io/Home-OS/#/meals', pretendToBeVisual: true
 });

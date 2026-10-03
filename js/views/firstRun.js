@@ -1,4 +1,5 @@
-// js/views/firstRun.js — 01 Sep 2026 v3
+// js/views/firstRun.js — 03 Oct 2026 v4
+// v4: no 'focus' step while KITCHEN_ONLY (K2).
 // v3 (worklist F8): resumable, same six-hour rule as Cook Mode.
 // v2 (worklist A1): asks what you came for.
 // Phase 27. The first ninety seconds.
@@ -26,7 +27,7 @@ import { loadAllRecipes, addLibraryRecipe, describeAdd } from '../data/recipeLib
 import { addPlanEntry, DAYS, SLOTS } from '../data/mealPlan.js';
 import { flushListSync, describeListSync } from '../data/listSync.js';
 import { upsertSettings } from '../data/settings.js';
-import { FOCUS_AREAS } from '../navConfig.js';
+import { FOCUS_AREAS, KITCHEN_ONLY } from '../navConfig.js';
 
 import { el } from '../lib/dom.js';
 /** Marks it done. Failing to record it is not worth interrupting anyone. */
@@ -117,7 +118,8 @@ export function render(mountEl) {
     go(step + 1);
   }, { signal });
 
-  const STEPS = ['welcome', 'focus', 'pick', 'plan', 'done'];
+  // Kitchen rebuild K2: no 'focus' step while the other areas are parked.
+  const STEPS = KITCHEN_ONLY ? ['welcome', 'pick', 'plan', 'done'] : ['welcome', 'focus', 'pick', 'plan', 'done'];
 
   function go(index) {
     step = Math.max(0, Math.min(index, STEPS.length - 1));

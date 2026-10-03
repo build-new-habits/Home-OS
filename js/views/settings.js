@@ -1,4 +1,5 @@
-// js/views/settings.js — 05 Sep 2026 v18
+// js/views/settings.js — 03 Oct 2026 v19
+// v19: focus-area checkboxes hidden while KITCHEN_ONLY (K2).
 // v18: invite code renders below the button that creates it, and gains a
 // Copy control. Device test 5 Sep 2026.
 // v7 (Phase 18): a Household section. The cupboard, shopping list, meal
@@ -21,7 +22,7 @@ import { upsertSettings, exportAllData, downloadJson, signOutUser, changePasswor
 import { announce } from '../lib/a11y.js';
 import { permissionState, requestPermission, describePermission, describeDelivery } from '../lib/notify.js';
 import { el } from '../lib/dom.js';
-import { FOCUS_AREAS } from '../navConfig.js';
+import { FOCUS_AREAS, KITCHEN_ONLY } from '../navConfig.js';
 import { showToast } from '../components/toast.js';
 import { getState, setSettings } from '../lib/store.js';
 import {
@@ -836,10 +837,12 @@ export function render(mountEl) {
     focusHint.className = 'field-hint';
     focusHint.textContent = 'Tick what you want in the bar at the bottom. '
       + 'Untick all of them to see everything. Nothing is deleted either way.';
-    focusFieldset.appendChild(focusHint);
+    // Kitchen rebuild K2: with the other areas parked there is nothing to
+    // choose between, so the choice is not offered. Rotation mode below stays.
+    if (!KITCHEN_ONLY) focusFieldset.appendChild(focusHint);
 
     const chosenAreas = new Set(settings.focus_areas || []);
-    for (const area of FOCUS_AREAS) {
+    for (const area of (KITCHEN_ONLY ? [] : FOCUS_AREAS)) {
       const row = document.createElement('div');
       row.className = 'checkbox-row';
       const box = document.createElement('input');

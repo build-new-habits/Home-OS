@@ -1,4 +1,5 @@
-// js/views/dashboard.js — 01 Sep 2026 v6
+// js/views/dashboard.js — 03 Oct 2026 v7
+// v7: kitchen-only mode parks water, chores and exercises (K2).
 // Phase 9: what is actually happening today.
 //
 // v1 was a link list. v2 added one-tap water. This is the screen the whole
@@ -23,7 +24,7 @@
 // today, then check chore_task_completions for that date. Both fetched
 // once, not per chore.
 
-import { DASHBOARD_LINKS } from '../navConfig.js';
+import { dashboardLinks, KITCHEN_ONLY } from '../navConfig.js';
 import { formatDateDisplay, todayIso } from '../lib/dates.js';
 import { totalForDate, logWater, GLASS_ML, DAILY_TARGET_ML } from '../data/water.js';
 import { listEvents } from '../data/calendar.js';
@@ -147,7 +148,9 @@ export function render(mountEl) {
   waterError.hidden = true;
   water.append(waterTotal, addBtn, waterError,
     el('a', { class: 'card-link', href: '#/water', text: 'See the week' }));
-  mountEl.appendChild(water);
+  // Kitchen rebuild K2: water is parked with Health. Built but not shown,
+  // so nothing else in this file needs to know.
+  if (!KITCHEN_ONLY) mountEl.appendChild(water);
 
   function paintWater() {
     // A fact, never a shortfall to feel bad about (principle 1).
@@ -410,7 +413,7 @@ export function render(mountEl) {
 
   mountEl.appendChild(el('h2', { text: 'Everything else' }));
   const links = el('ul', { class: 'hub-list' });
-  for (const entry of DASHBOARD_LINKS) {
+  for (const entry of dashboardLinks()) {
     const item = el('li', { class: 'hub-item' });
     const link = el('a', { class: 'hub-link', href: `#/${entry.path}` });
     const text = el('span', { class: 'hub-text' });
@@ -426,7 +429,7 @@ export function render(mountEl) {
 
   // ------------------------------ Loading --------------------------------
 
-  totalForDate(today).then((result) => {
+  (KITCHEN_ONLY ? Promise.resolve({ ok: false }) : totalForDate(today)).then((result) => {
     if (destroyed || !result.ok) return;
     waterTotalMl = result.data.total;
     waterPartial = result.data.partial;
@@ -447,7 +450,9 @@ export function render(mountEl) {
 
   // Each section independently: one failed query must not blank the page.
   Promise.allSettled([
-    loadChores(), loadExercises(), loadMeal(), loadUseUp(), loadShopping()
+    // Chores and exercises are parked in kitchen-only mode (K2).
+    ...(KITCHEN_ONLY ? [] : [loadChores(), loadExercises()]),
+    loadMeal(), loadUseUp(), loadShopping()
   ]).then((results) => {
     for (const result of results) {
       if (result.status === 'rejected') console.error('A dashboard section failed:', result.reason);
