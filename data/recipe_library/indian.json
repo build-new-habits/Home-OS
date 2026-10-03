@@ -220,6 +220,20 @@
      "instruction": "Chop {{ing:fresh-coriander}} over.",
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
+    },
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
+    }
    ]
   },
   {
@@ -415,6 +429,16 @@
      "instruction": "Put the halloumi back in.",
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    },
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    }
    ]
   },
   {
@@ -500,6 +524,12 @@
     },
     {
      "instruction": "Chop {{ing:fresh-coriander}} over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
     }
    ]
   },
@@ -602,6 +632,20 @@
     {
      "instruction": "Chop {{ing:fresh-parsley}} over.",
      "step_group": "Finish"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "the fish",
+     "text": "Any firm white fish: haddock, pollock or hake"
     }
    ]
   },
@@ -828,6 +872,12 @@
     },
     {
      "instruction": "Stir in {{ing:garam-masala}}. Scatter {{ing:fresh-coriander}} to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
     }
    ]
   }

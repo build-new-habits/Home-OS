@@ -71,7 +71,21 @@
      "duration_min": 35
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    }
+   ]
   },
   {
    "slug": "sticky-toffee-pudding",
@@ -172,7 +186,21 @@
      "step_group": "To serve"
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    }
+   ]
   },
   {
    "slug": "lemon-posset",
@@ -230,7 +258,13 @@
      "instruction": "Top with {{ing:raspberries}} to serve."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    }
+   ]
   },
   {
    "slug": "raspberry-yoghurt-fool",
@@ -288,7 +322,21 @@
      "instruction": "Spoon into four glasses. Top with the whole raspberries."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
+    }
+   ]
   },
   {
    "slug": "bread-butter-pudding",
@@ -365,7 +413,21 @@
      "duration_min": 35
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    }
+   ]
   },
   {
    "slug": "creamy-rice-pudding",
@@ -430,7 +492,17 @@
      "duration_min": 120
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    }
+   ]
   },
   {
    "slug": "maple-baked-apples",
@@ -496,7 +568,17 @@
      "duration_min": 35
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
+    }
+   ]
   },
   {
    "slug": "chocolate-avocado-mousse",
@@ -632,7 +714,21 @@
      "instruction": "Repeat with the rest of the batter."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    }
+   ]
   },
   {
    "slug": "orange-poached-pears",
@@ -695,7 +791,13 @@
      "note": "Dairy-free yoghurt keeps it dairy free."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    }
+   ]
   }
  ]
 }

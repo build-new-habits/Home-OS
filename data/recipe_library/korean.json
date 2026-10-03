@@ -121,6 +121,20 @@
      "note": "Gochujang is a chilli paste. Start with a little.",
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "beef mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    }
    ]
   },
   {
@@ -199,6 +213,12 @@
     },
     {
      "instruction": "Serve the rice topped with an egg and the last spring onion."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
     }
    ]
   },
@@ -300,6 +320,12 @@
     },
     {
      "instruction": "Serve on the rice with the broccoli. Scatter {{ing:sesame-seeds}} over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
     }
    ]
   }

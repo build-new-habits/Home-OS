@@ -185,6 +185,20 @@
     {
      "instruction": "Toast {{ing:bread-slice-medium}} for dipping."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
    ]
   },
   {
@@ -294,6 +308,16 @@
     },
     {
      "instruction": "Scatter chopped {{ing:fresh-mint}} to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "lamb mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
     }
    ]
   }

@@ -61,6 +61,16 @@
     {
      "instruction": "Pour into two glasses."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
+    }
    ]
   },
   {
@@ -116,6 +126,20 @@
     {
      "instruction": "Pour into two glasses.",
      "note": "Too thick? Add a splash more milk and blend again."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
     }
    ]
   },
@@ -174,6 +198,20 @@
     },
     {
      "instruction": "Pour into two glasses."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
     }
    ]
   },
@@ -234,6 +272,16 @@
     },
     {
      "instruction": "Pour into two glasses."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    },
+    {
+     "instead": "lime",
+     "text": "Lemon"
     }
    ]
   },
@@ -299,6 +347,16 @@
      "instruction": "Stir in {{ing:honey}}. Pour into two mugs.",
      "note": "Oat milk and maple syrup make it vegan."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    }
    ]
   },
   {
@@ -360,6 +418,12 @@
     {
      "instruction": "Stir in {{ing:vanilla-extract}}. Pour into two mugs."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    }
    ]
   },
   {
@@ -415,6 +479,12 @@
      "instruction": "Stir in {{ing:honey}}. Pour into two mugs with a slice of {{ing:lemon}}.",
      "note": "Maple syrup instead of honey makes it vegan."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    }
    ]
   },
   {
@@ -469,6 +539,12 @@
     {
      "instruction": "Stir in {{ing:honey}}. Pour through a sieve into two mugs."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    }
    ]
   },
   {
@@ -522,6 +598,12 @@
     },
     {
      "instruction": "Chill at least 1 hour. Serve over ice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
     }
    ]
   },
@@ -625,6 +707,12 @@
     },
     {
      "instruction": "Top up with {{ing:sparkling-water}}. Stir. Serve over ice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "lime",
+     "text": "Lemon"
     }
    ]
   }

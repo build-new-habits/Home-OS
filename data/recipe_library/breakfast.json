@@ -63,6 +63,20 @@
     {
      "instruction": "In the morning, top with {{ing:blueberries}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
+    }
    ]
   },
   {
@@ -131,6 +145,20 @@
     },
     {
      "instruction": "Serve with {{ing:maple-syrup}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
     }
    ]
   },
@@ -201,6 +229,12 @@
     {
      "instruction": "Scatter {{ing:chilli-powder}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
    ]
   },
   {
@@ -268,6 +302,20 @@
     {
      "instruction": "Add {{ing:tomato-ketchup}} and roll it up."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bacon",
+     "text": "Mushrooms fried with a pinch of smoked paprika, for a vegetarian version"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    }
    ]
   },
   {
@@ -312,6 +360,16 @@
     },
     {
      "instruction": "Add {{ing:strawberries}} and drizzle {{ing:honey}} on top."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
     }
    ]
   },
@@ -375,6 +433,20 @@
     },
     {
      "instruction": "Serve with {{ing:maple-syrup}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -465,6 +537,16 @@
      "instruction": "Stir in {{ing:soy-sauce}} and {{ing:black-pepper-ground}}. Spoon onto the toast.",
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
    ]
   },
   {
@@ -525,6 +607,16 @@
     },
     {
      "instruction": "Slice {{ing:banana-medium}} over the top to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
     }
    ]
   },
@@ -657,6 +749,12 @@
     {
      "instruction": "Spread on the toast. Sprinkle with {{ing:chilli-powder}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
    ]
   },
   {
@@ -719,6 +817,16 @@
     },
     {
      "instruction": "Pile onto the bagels. Lay {{ing:smoked-salmon}} over. Scatter the spring onion."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -797,6 +905,12 @@
     {
      "instruction": "Scatter {{ing:fresh-parsley}} over to serve."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chorizo",
+     "text": "A teaspoon of smoked paprika and a tin of butter beans, for a vegetarian version"
+    }
    ]
   },
   {
@@ -862,6 +976,16 @@
     },
     {
      "instruction": "Spread avocado on the toast. Top with tomato and bacon."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "bacon",
+     "text": "Mushrooms fried with a pinch of smoked paprika, for a vegetarian version"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   }

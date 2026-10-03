@@ -57,6 +57,8 @@ Round 4 (evening, Graeme's list): fish and vegetarian dinners. Thai green chicke
 
 Mix after round 4: 214 recipes; 32 with fish or seafood, 135 vegetarian or vegan, 47 with meat.
 
+Swaps for the rest of the library (3 Oct, evening): 164 older recipes now carry up to three swaps, chosen from what is in them and what they already are: a vegetarian swap for meat or fish first, then vegan (honey), dairy free, gluten free and nut free, then everyday ones (spinach to kale, any white fish). A recipe that is already vegan and gluten free gets none. The rules live in the generator, so new recipes can be given swaps the same way.
+
 ### Gaps, in priority order
 
 1. **Book picks.** The original library is now broad; the next balance gains come from converted scans (Buddha Bowls for lunches especially).

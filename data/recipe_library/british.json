@@ -112,6 +112,20 @@
      "duration_min": 25,
      "step_group": "Assemble"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "lamb mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    }
    ]
   },
   {
@@ -207,6 +221,20 @@
     {
      "instruction": "Drain and mash the potatoes with the rest of the butter and {{ing:milk-semi-skimmed}}.",
      "step_group": "Mash"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pork sausages",
+     "text": "Vegetarian sausages, cooked as the packet says"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
     }
    ]
   },
@@ -305,6 +333,20 @@
      "duration_min": 25,
      "step_group": "Bake"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    }
    ]
   },
   {
@@ -390,6 +432,16 @@
      "instruction": "Fry {{ing:egg-medium}} to your liking in the same pan.",
      "step_group": "Cook"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "pork sausages",
+     "text": "Vegetarian sausages, cooked as the packet says"
+    },
+    {
+     "instead": "bacon",
+     "text": "Mushrooms fried with a pinch of smoked paprika, for a vegetarian version"
+    }
    ]
   },
   {
@@ -443,6 +495,20 @@
     {
      "instruction": "Drizzle over {{ing:honey}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    }
    ]
   },
   {
@@ -495,6 +561,20 @@
     },
     {
      "instruction": "Spoon the beans over. Grate {{ing:cheddar-cheese}} on top."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -558,6 +638,16 @@
     },
     {
      "instruction": "Grate {{ing:cheddar-cheese}} over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "tuna",
+     "text": "A tin of chickpeas, lightly mashed, for a vegetarian version"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
     }
    ]
   },
@@ -649,6 +739,16 @@
      "instruction": "Heat {{ing:stock-chicken}} in a pan for the gravy.",
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    }
    ]
   },
   {
@@ -735,6 +835,20 @@
      "instruction": "Pour over the cauliflower in a dish. Bake 20 minutes.",
      "duration_min": 20,
      "step_group": "Bake"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
     }
    ]
   },
@@ -826,6 +940,20 @@
      "duration_min": 4,
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "breadcrumbs",
+     "text": "Gluten-free breadcrumbs, or crushed cornflakes"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    },
+    {
+     "instead": "the fish",
+     "text": "Any firm white fish: haddock, pollock or hake"
+    }
    ]
   },
   {
@@ -888,6 +1016,20 @@
     {
      "instruction": "Grill 3 minutes, until bubbling and browned in patches.",
      "duration_min": 3
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -959,6 +1101,20 @@
     },
     {
      "instruction": "Chop {{ing:fresh-parsley}} over the top."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "ham",
+     "text": "Roasted peppers or extra cheese, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
     }
    ]
   },
@@ -1032,6 +1188,12 @@
      "note": "It will break up. That is fine.",
      "duration_min": 5
     }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    }
    ]
   },
   {
@@ -1096,6 +1258,20 @@
     },
     {
      "instruction": "Toast {{ing:bread-slice-medium}} and spoon the eggs over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -1182,6 +1358,16 @@
     {
      "instruction": "Drain {{ing:butter-beans-tinned}} and add them. Cook 5 minutes.",
      "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pork sausages",
+     "text": "Vegetarian sausages, cooked as the packet says"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
     }
    ]
   },

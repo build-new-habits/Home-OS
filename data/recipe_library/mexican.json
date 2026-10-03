@@ -112,6 +112,12 @@
      "step_group": "Rice",
      "while_waiting": true
     }
+   ],
+   "swaps": [
+    {
+     "instead": "beef mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    }
    ]
   },
   {
@@ -182,6 +188,16 @@
     },
     {
      "instruction": "Cut into wedges."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "flatbreads",
+     "text": "Gluten-free wraps, or corn tortillas"
     }
    ]
   },
@@ -274,6 +290,20 @@
      "duration_min": 1,
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "flatbreads",
+     "text": "Gluten-free wraps, or corn tortillas"
+    },
+    {
+     "instead": "lime",
+     "text": "Lemon"
+    }
    ]
   },
   {
@@ -354,6 +384,12 @@
     },
     {
      "instruction": "Warm {{ing:tortilla-wrap}} and serve alongside."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "flatbreads",
+     "text": "Gluten-free wraps, or corn tortillas"
     }
    ]
   },

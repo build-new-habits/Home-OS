@@ -94,6 +94,12 @@
     {
      "instruction": "Chop {{ing:fresh-parsley}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    }
    ]
   },
   {
@@ -180,6 +186,12 @@
     {
      "instruction": "Stir in {{ing:spinach}} until it wilts.",
      "duration_min": 3
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
     }
    ]
   },
@@ -435,6 +447,12 @@
      "instruction": "Add {{ing:coconut-milk-tinned}}. Cook 10 minutes more.",
      "duration_min": 10
     }
+   ],
+   "swaps": [
+    {
+     "instead": "sweet potato",
+     "text": "Butternut squash, cut the same size"
+    }
    ]
   },
   {
@@ -589,6 +607,16 @@
     {
      "instruction": "Chop {{ing:spring-onion}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "egg noodles",
+     "text": "Rice noodles, to make it gluten free"
+    }
    ]
   },
   {
@@ -667,6 +695,20 @@
     },
     {
      "instruction": "Grate {{ing:parmesan}} in. Zest {{ing:lemon}} over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    },
+    {
+     "instead": "pasta",
+     "text": "Gluten-free pasta; cook it a minute less than the packet says"
+    },
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
     }
    ]
   },
@@ -753,6 +795,16 @@
     {
      "instruction": "Squeeze {{ing:lemon}} in. Chop {{ing:fresh-coriander}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "couscous",
+     "text": "Quinoa or rice, to make it gluten free"
+    },
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
+    }
    ]
   },
   {
@@ -835,6 +887,16 @@
     {
      "instruction": "Split and toast {{ing:bagel-plain}} to serve."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    },
+    {
+     "instead": "breadcrumbs",
+     "text": "Gluten-free breadcrumbs, or crushed cornflakes"
+    }
    ]
   },
   {
@@ -911,6 +973,20 @@
     {
      "instruction": "Uncover, grate {{ing:cheddar-cheese}} on top, bake 20 minutes.",
      "duration_min": 20
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
     }
    ]
   },
@@ -1091,6 +1167,12 @@
      "instruction": "Bake 35 minutes, until golden.",
      "duration_min": 35,
      "step_group": "Bake"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
     }
    ]
   }

@@ -97,6 +97,16 @@
     {
      "instruction": "Pour the sauce back over. Serve on the rice with sliced {{ing:spring-onion}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    }
    ]
   }
  ]

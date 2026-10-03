@@ -104,6 +104,12 @@
      "instruction": "Scatter the spring onions over.",
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    }
    ]
   },
   {
@@ -215,6 +221,20 @@
      "instruction": "Add the sauce and the drained noodles. Toss 1 minute.",
      "duration_min": 1,
      "step_group": "Fry"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "egg noodles",
+     "text": "Rice noodles, to make it gluten free"
     }
    ]
   },
@@ -432,6 +452,20 @@
     {
      "instruction": "Stir in {{ing:peanuts}} and the spring onion. Serve with the rice."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "peanuts",
+     "text": "Toasted sunflower or pumpkin seeds, for a nut-free version"
+    }
    ]
   },
   {
@@ -519,6 +553,16 @@
     },
     {
      "instruction": "Spoon {{ing:soy-sauce}} over. Serve with the rice and greens."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "the fish",
+     "text": "Any firm white fish: haddock, pollock or hake"
     }
    ]
   }

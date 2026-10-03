@@ -90,6 +90,20 @@
      "duration_min": 5,
      "step_group": "Assemble"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "ham",
+     "text": "Roasted peppers or extra cheese, for a vegetarian version"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    }
    ]
   },
   {
@@ -175,6 +189,20 @@
      "instruction": "Grill until bubbling, then float on the soup.",
      "duration_min": 3,
      "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -324,6 +352,16 @@
     },
     {
      "instruction": "Fold it over and slide onto the plate."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
     }
    ]
   },

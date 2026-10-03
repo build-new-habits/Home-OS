@@ -166,6 +166,16 @@
      "instruction": "Stir in {{ing:spinach}} until wilted, about 2 minutes.",
      "duration_min": 2
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    },
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    }
    ]
   },
   {
@@ -254,6 +264,12 @@
     },
     {
      "instruction": "Chop {{ing:fresh-parsley}}. Scatter over to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chorizo",
+     "text": "A teaspoon of smoked paprika and a tin of butter beans, for a vegetarian version"
     }
    ]
   },

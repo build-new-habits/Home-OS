@@ -119,6 +119,20 @@
      "duration_min": 15,
      "step_group": "Bake"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "beef mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    }
    ]
   },
   {
@@ -214,6 +228,16 @@
     {
      "instruction": "Add the rest of the butter and a squeeze of {{ing:lemon}}.",
      "step_group": "Greens"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "the fish",
+     "text": "Any firm white fish: haddock, pollock or hake"
     }
    ]
   },
@@ -312,6 +336,16 @@
      "instruction": "Rest 20 minutes. It should pull apart with a spoon.",
      "duration_min": 20,
      "step_group": "Roast"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "the meat",
+     "text": "Large chunks of mushroom and butternut squash with a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
     }
    ]
   },
@@ -424,6 +458,20 @@
      "duration_min": 35,
      "step_group": "Bake"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    },
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
+    }
    ]
   },
   {
@@ -526,6 +574,16 @@
      "instruction": "Chop {{ing:fresh-parsley}} over. Rest 2 minutes.",
      "duration_min": 2,
      "step_group": "Finish"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "Cubes of firm tofu or extra vegetables, for a vegetarian version"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
     }
    ]
   },
@@ -643,6 +701,20 @@
      "duration_min": 8,
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "beef mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "bacon",
+     "text": "Mushrooms fried with a pinch of smoked paprika, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    }
    ]
   },
   {
@@ -714,7 +786,13 @@
      "instruction": "The middle should still wobble. Cool completely in the tin."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    }
+   ]
   },
   {
    "slug": "duck-style-orange-chicken",
@@ -811,6 +889,16 @@
      "instruction": "Scatter the orange zest over before serving.",
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    }
    ]
   },
   {
@@ -880,6 +968,16 @@
     {
      "instruction": "Toss the bread with {{ing:olive-oil}} and toast 8 minutes.",
      "duration_min": 8
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
     }
    ]
   },
@@ -1009,6 +1107,20 @@
      "duration_min": 5,
      "step_group": "Finish"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "prawns",
+     "text": "Cubes of firm tofu or extra vegetables, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    }
    ]
   },
   {
@@ -1114,6 +1226,16 @@
     {
      "instruction": "Serve the salmon on the potatoes, with beans and lemon wedges.",
      "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "breadcrumbs",
+     "text": "Gluten-free breadcrumbs, or crushed cornflakes"
+    },
+    {
+     "instead": "salmon",
+     "text": "Trout fillets"
     }
    ]
   },
@@ -1238,6 +1360,20 @@
     {
      "instruction": "Serve the stew on the couscous. Scatter almonds and {{ing:fresh-coriander}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "couscous",
+     "text": "Quinoa or rice, to make it gluten free"
+    }
    ]
   },
   {
@@ -1330,6 +1466,12 @@
      "instruction": "Roast 20 minutes, until the feta is golden at the edges.",
      "duration_min": 20
     }
+   ],
+   "swaps": [
+    {
+     "instead": "couscous",
+     "text": "Quinoa or rice, to make it gluten free"
+    }
    ]
   },
   {
@@ -1397,7 +1539,13 @@
      "instruction": "Top with {{ing:raspberries}} to serve."
     }
    ],
-   "course": "pudding"
+   "course": "pudding",
+   "swaps": [
+    {
+     "instead": "cream",
+     "text": "Oat or soya cream, to make it dairy free"
+    }
+   ]
   }
  ]
 }

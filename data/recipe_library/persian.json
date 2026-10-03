@@ -89,6 +89,16 @@
     {
      "instruction": "Cut into wedges. Good warm or cold."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
+    },
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
+    }
    ]
   },
   {
@@ -189,6 +199,20 @@
     },
     {
      "instruction": "Scatter dates, almonds, the saved onion and {{ing:fresh-parsley}} over the rice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
+    },
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
     }
    ]
   }

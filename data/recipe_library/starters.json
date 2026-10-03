@@ -73,7 +73,13 @@
      "instruction": "Serve with the rest of the lemon in wedges."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "Cubes of firm tofu or extra vegetables, for a vegetarian version"
+    }
+   ]
   },
   {
    "slug": "garlic-mushrooms-toast",
@@ -145,7 +151,17 @@
      "instruction": "Squeeze in {{ing:lemon}}. Stir in the parsley. Spoon onto the toast."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
+   ]
   },
   {
    "slug": "whipped-feta-honey",
@@ -205,7 +221,21 @@
      "instruction": "Warm {{ing:pitta-bread}} in a toaster. Cut into strips for dipping."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "yoghurt",
+     "text": "Coconut or soya yoghurt, to make it dairy free"
+    },
+    {
+     "instead": "flatbreads",
+     "text": "Gluten-free wraps, or corn tortillas"
+    }
+   ]
   },
   {
    "slug": "halloumi-chilli-honey",
@@ -270,7 +300,17 @@
      "instruction": "Drizzle with the chilli honey. Squeeze over {{ing:lime}}."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "lime",
+     "text": "Lemon"
+    }
+   ]
   },
   {
    "slug": "smoked-salmon-bites",
@@ -330,7 +370,13 @@
      "instruction": "Top with folds of {{ing:smoked-salmon}}. Finish with {{ing:black-pepper-ground}}."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
+   ]
   },
   {
    "slug": "beetroot-orange-salad",
@@ -400,7 +446,17 @@
      "instruction": "Scatter the walnuts."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
+    },
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    }
+   ]
   },
   {
    "slug": "herb-stuffed-mushrooms",
@@ -468,7 +524,13 @@
      "duration_min": 18
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "breadcrumbs",
+     "text": "Gluten-free breadcrumbs, or crushed cornflakes"
+    }
+   ]
   },
   {
    "slug": "pork-ginger-lettuce-cups",
@@ -553,7 +615,21 @@
      "instruction": "Scatter chopped {{ing:peanuts}} over."
     }
    ],
-   "course": "starter"
+   "course": "starter",
+   "swaps": [
+    {
+     "instead": "mince",
+     "text": "Plant-based mince or finely chopped mushrooms, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "peanuts",
+     "text": "Toasted sunflower or pumpkin seeds, for a nut-free version"
+    }
+   ]
   }
  ]
 }

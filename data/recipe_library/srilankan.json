@@ -109,6 +109,12 @@
     {
      "instruction": "Serve with the rice."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "spinach",
+     "text": "Kale or chard; give them 2 minutes longer"
+    }
    ]
   },
   {
@@ -218,6 +224,16 @@
     {
      "instruction": "Squeeze in the juice of {{ing:lime}}. Serve with the rice."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "lime",
+     "text": "Lemon"
+    }
    ]
   },
   {
@@ -300,6 +316,12 @@
     },
     {
      "instruction": "Squeeze over {{ing:lime}} to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "lime",
+     "text": "Lemon"
     }
    ]
   }

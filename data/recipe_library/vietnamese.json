@@ -120,6 +120,20 @@
      "instruction": "Toss noodles, vegetables, herbs and chicken with the dressing. Top with peanuts.",
      "step_group": "To serve"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "fish sauce",
+     "text": "Soy sauce, for a vegetarian version"
+    },
+    {
+     "instead": "peanuts",
+     "text": "Toasted sunflower or pumpkin seeds, for a nut-free version"
+    }
    ]
   },
   {
@@ -244,6 +258,20 @@
     {
      "instruction": "Serve with wedges of {{ing:lime}}.",
      "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "fish sauce",
+     "text": "Soy sauce, for a vegetarian version"
+    },
+    {
+     "instead": "chicken stock",
+     "text": "Vegetable stock, alongside the other vegetarian swaps"
     }
    ]
   }

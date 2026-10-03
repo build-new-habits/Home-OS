@@ -61,6 +61,16 @@
     {
      "instruction": "Cut into squares while warm. Cool in the tin."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    }
    ]
   },
   {
@@ -122,6 +132,16 @@
     {
      "instruction": "Chill 30 minutes before eating.",
      "duration_min": 30
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
     }
    ]
   },
@@ -201,6 +221,20 @@
     {
      "instruction": "Cool completely before storing."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
+    }
    ]
   },
   {
@@ -264,6 +298,20 @@
      "instruction": "Chill 2 hours, then cut into bars.",
      "duration_min": 120
     }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, to make it vegan"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
+    }
    ]
   },
   {
@@ -300,6 +348,16 @@
     },
     {
      "instruction": "Put them on a plate with {{ing:walnuts}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "nuts",
+     "text": "Toasted seeds, for a nut-free version"
     }
    ]
   },
@@ -374,6 +432,16 @@
     },
     {
      "instruction": "A skewer should come out clean."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    },
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
     }
    ]
   },
@@ -484,6 +552,12 @@
     {
      "instruction": "Toss with {{ing:salt}} and a squeeze of {{ing:lime}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "lime",
+     "text": "Lemon"
+    }
    ]
   },
   {
@@ -531,6 +605,12 @@
     },
     {
      "instruction": "Scatter over {{ing:raisins}} and {{ing:sunflower-seeds}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
     }
    ]
   },
@@ -595,6 +675,16 @@
      "instruction": "Cool on the tray for 10 minutes before moving.",
      "note": "They firm up as they cool.",
      "duration_min": 10
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "oats",
+     "text": "Oats labelled gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
     }
    ]
   },
@@ -702,6 +792,12 @@
     {
      "instruction": "Squeeze over {{ing:lemon}}. Sprinkle with {{ing:chilli-powder}}."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread"
+    }
    ]
   },
   {
@@ -780,6 +876,20 @@
     },
     {
      "instruction": "Serve the chicken on cocktail sticks with the sauce for dipping."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chicken",
+     "text": "Firm tofu or a tin of chickpeas, for a vegetarian version"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari, to make it gluten free"
+    },
+    {
+     "instead": "peanut butter",
+     "text": "Sunflower seed butter, for a nut-free version"
     }
    ]
   }

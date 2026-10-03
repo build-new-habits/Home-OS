@@ -199,6 +199,16 @@
      "instruction": "Serve with {{ing:hummus}} and the cucumber.",
      "step_group": "Bowl"
     }
+   ],
+   "swaps": [
+    {
+     "instead": "flour",
+     "text": "A gluten-free flour blend (add 1 tsp baking powder per 150 g in place of self-raising)"
+    },
+    {
+     "instead": "coriander",
+     "text": "Fresh parsley, if coriander tastes soapy to you"
+    }
    ]
   },
   {
@@ -279,6 +289,16 @@
     {
      "instruction": "Warm {{ing:pitta-bread}} and split them open."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "lamb mince",
+     "text": "Green or brown lentils (a 400 g tin for every 250 g) or plant-based mince, for a vegetarian version"
+    },
+    {
+     "instead": "flatbreads",
+     "text": "Gluten-free wraps, or corn tortillas"
+    }
    ]
   },
   {
@@ -354,6 +374,12 @@
     },
     {
      "instruction": "Squeeze {{ing:lemon}} in and add {{ing:olive-oil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "couscous",
+     "text": "Quinoa or rice, to make it gluten free"
     }
    ]
   },

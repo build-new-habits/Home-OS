@@ -167,6 +167,16 @@
     {
      "instruction": "Grate {{ing:cheddar-cheese}} over."
     }
+   ],
+   "swaps": [
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    },
+    {
+     "instead": "pasta",
+     "text": "Gluten-free pasta; cook it a minute less than the packet says"
+    }
    ]
   },
   {
@@ -530,6 +540,20 @@
      "instruction": "Uncover, grate {{ing:cheddar-cheese}} on top, bake 20 minutes.",
      "duration_min": 20
     }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "A dairy-free block or spread, or olive oil where it is only for frying, to make it dairy free"
+    },
+    {
+     "instead": "milk",
+     "text": "Oat or soya milk, to make it dairy free"
+    },
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
+    }
    ]
   },
   {
@@ -606,6 +630,12 @@
     {
      "instruction": "Grate {{ing:cheddar-cheese}} over. Grill 4 minutes to set the top.",
      "duration_min": 4
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cheddar",
+     "text": "A dairy-free cheese, or a spoon of nutritional yeast, to make it dairy free"
     }
    ]
   }
