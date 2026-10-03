@@ -1,4 +1,5 @@
-/* css/components.css — 08 Sep 2026 v73 */
+/* css/components.css — 03 Oct 2026 v74 */
+/* v74: recipe page and nutrition bars (kitchen rebuild K5). */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
 /* v65: P2 — four button roles, and links stop being underlined buttons. */
@@ -3854,6 +3855,7 @@ body.sheet-open {
 .library-row-open {
   display: block;
   width: 100%;
+  text-decoration: none; /* an <a> since 3 Oct 2026; underline on hover only */
   min-height: var(--tap-min);
   padding: var(--space-2) 0;
   background: none;
@@ -4011,4 +4013,148 @@ body.sheet-open {
 .recipe-equipment {
   margin: 0 0 var(--space-1);
   line-height: var(--leading-normal);
+}
+
+
+/* ---- Recipe page (kitchen rebuild K5, 3 Oct 2026) ---------------------
+   One recipe on its own page: facts, actions, nutrition per serving,
+   scaled ingredients, numbered method. Tokens only; the type-scale gate
+   refuses hard-coded sizes. */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-weight: 600;
+  color: var(--color-accent-strong);
+}
+.back-link::before { content: "‹"; margin-right: var(--space-2); font-size: var(--text-lg); }
+
+.recipe-page { display: flex; flex-direction: column; gap: var(--space-5); }
+.recipe-page-title { margin-bottom: var(--space-2); }
+
+.recipe-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.recipe-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.recipe-actions .btn { flex: 1 1 auto; }
+
+.recipe-page-section h2 { margin-bottom: var(--space-3); }
+.recipe-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.recipe-section-head h2 { margin: 0; }
+
+.serves-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-1);
+}
+.serves-stepper .btn { min-width: var(--tap-min); min-height: var(--tap-min); }
+.serves-count { min-width: 6.5em; text-align: center; font-weight: 600; }
+
+.recipe-ingredients {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.recipe-ingredient {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+}
+.recipe-ingredient:first-child { border-top: 0; }
+.recipe-ingredient-name { flex: 1 1 auto; }
+.recipe-ingredient-amount {
+  flex: 0 0 5.5em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.recipe-method {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.recipe-step {
+  counter-increment: step;
+  position: relative;
+  max-width: 68ch;
+  padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-4) + var(--tap-min) + var(--space-3));
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  line-height: var(--leading-relaxed);
+}
+.recipe-step::before {
+  content: counter(step);
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-3);
+  width: var(--tap-min);
+  min-height: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-chip);
+  color: var(--color-accent-strong);
+  font-weight: 700;
+}
+
+/* Nutrition bars. The bar stops at full; the number does not, and going
+   past 100% changes nothing about the colour (behavioural principle 1). */
+.nutrition-bars {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.nutrition-row {
+  display: grid;
+  grid-template-columns: 5.5em 1fr 3.5em;
+  grid-template-areas: "name bar pct" "amount bar pct";
+  align-items: center;
+  column-gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+.nutrition-name { grid-area: name; font-weight: 600; }
+.nutrition-amount { grid-area: amount; font-size: var(--text-xs); color: var(--color-text-muted); }
+.nutrition-bar {
+  grid-area: bar;
+  height: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-chip);
+  overflow: hidden;
+}
+.nutrition-bar-fill { display: block; height: 100%; background: var(--color-accent); }
+.nutrition-percent {
+  grid-area: pct;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }

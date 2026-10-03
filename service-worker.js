@@ -1,4 +1,6 @@
-// service-worker.js — 01 Sep 2026 v85
+// service-worker.js — 03 Oct 2026 v86
+// v86 (kitchen rebuild K4/K5): TWO new paths, js/data/nutrition.js and
+// js/views/recipe.js. food_reference.json v3 (fibre). Shell v132.
 // v85 (worklist G1): ONE new path, js/views/meals/ingredients.js.
 // meals.js 1,777 -> 1,164. Four of seven features extracted.
 // v84 (worklist G1): ONE new path, js/views/meals/method.js.
@@ -227,7 +229,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v131';
+const CACHE_NAME = 'home-os-shell-v132';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -235,9 +237,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=131',
-  './css/base.css?v=131',
-  './css/components.css?v=131',
+  './css/tokens.css?v=132',
+  './css/base.css?v=132',
+  './css/components.css?v=132',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -302,6 +304,8 @@ const SHELL_FILES = [
   './js/views/planThisWeek.js',
   './js/views/planNextWeek.js',
   './js/views/planFuture.js',
+  './js/views/recipe.js',
+  './js/data/nutrition.js',
   './js/views/pantry/place.js',
   './js/lib/weeks.js',
   './js/data/planShopping.js',

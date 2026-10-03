@@ -98,6 +98,20 @@ eq('energy percentage', rows[0].percent, 70);
 eq('fibre row is marked at least', rows[4].atLeast, true);
 eq('an empty day is zero, not unknown', dayNutrition([]).totals.protein_g, 0);
 
+// ============ Recipe page helpers ============
+console.log('\nRecipe page');
+const { scaledAmount, cookingName, slugFromHash } = await import(`${REPO}/js/views/recipe.js`);
+eq('grams scale', scaledAmount(100, 'g', 2), '200 g');
+eq('large grams round to tens', scaledAmount(133, 'g', 1), '130 g');
+eq('a kilo reads as kg', scaledAmount(800, 'g', 1.5), '1.2 kg');
+eq('half an onion is a fraction', scaledAmount(1, 'item', 0.5), '½');
+eq('two thirds of an egg rounds to a quarter step', scaledAmount(1, 'item', 2 / 3), '¾');
+eq('never less than a quarter', scaledAmount(1, 'item', 0.1), '¼');
+eq('a comma name turns round', cookingName('Oats, rolled'), 'Rolled oats');
+eq('a plain name is left alone', cookingName('Honey'), 'Honey');
+eq('the slug comes from the hash', slugFromHash('#/recipe?r=overnight-oats'), 'overnight-oats');
+eq('no slug is empty, not undefined', slugFromHash('#/recipe'), '');
+
 // ============ Every shipped recipe ============
 console.log('\nEvery shipped recipe');
 const refDoc = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8'));

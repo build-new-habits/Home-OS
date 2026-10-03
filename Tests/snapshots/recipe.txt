@@ -1,0 +1,4 @@
+a.back-link"All recipes"
+h1.recipe-page-title"Recipe unavailable"
+div.recipe-page
+  p

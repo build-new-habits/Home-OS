@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 10 Sep 2026 v2
+// js/views/meals/library.js — 03 Oct 2026 v3
+// v3: a recipe name links to its own page (#/recipe?r=slug).
 // v2: favourites have somewhere to show up.
 // Worklist G1, first extraction. The recipe library panel.
 //
@@ -22,7 +23,10 @@
 import { el } from '../../lib/dom.js';
 import { announce } from '../../lib/a11y.js';
 import { showToast } from '../../components/toast.js';
-import { openLibraryRecipe } from './libraryDetail.js';
+// libraryDetail.js is no longer opened from this list (v3, 3 Oct 2026); the
+// recipe has its own page. The sheet module is kept, not deleted.
+// A literal, so the orphan gate can see the route is linked from here.
+const RECIPE_ROUTE = '#/recipe';
 import {
   loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
 } from '../../data/recipeLibrary.js';
@@ -269,29 +273,13 @@ function renderLibraryList() {
     // The name opens the recipe. Until now the only thing you could do with
     // a library entry was add it to your meals — so reading one meant
     // adding it first, which is choosing a dinner by its title.
-    const open = el('button', {
-      type: 'button', class: 'library-row-open', 'data-slug': recipe.slug, text: recipe.name
+    // 3 Oct 2026 (K5): the name is a LINK to the recipe's own page. The
+    // detail sheet (libraryDetail.js) is kept but no longer opened from here:
+    // a recipe you cook from needs room, a back button and an address.
+    const open = el('a', {
+      class: 'library-row-open', 'data-slug': recipe.slug, text: recipe.name,
+      href: `${RECIPE_ROUTE}?r=${encodeURIComponent(recipe.slug)}`
     });
-    open.setAttribute('aria-label', `See what is in ${recipe.name}`);
-    open.addEventListener('click', () => {
-      // The sheet owns the heart and the note box. When either changes,
-      // this list is stale — the row still says what it said before the
-      // sheet opened, and the chip still counts the old total.
-      //
-      // The callback runs AFTER the sheet has closed and focus has been
-      // returned to this button, which the rebuild below then destroys. So
-      // the rebuild puts focus back on the row it just replaced: same
-      // recipe, same place on the screen, which is where the person is
-      // standing (3.2.2).
-      openLibraryRecipe(recipe, open, async () => {
-        const fresh = await listRecipeNotes();
-        if (destroyed() || !fresh.ok) return;
-        libraryNotes = fresh.data;
-        renderLibrary();
-        const again = libraryList.querySelector(`.library-row-open[data-slug="${recipe.slug}"]`);
-        if (again && again.focus) again.focus();
-      });
-    }, { signal });
     item.appendChild(open);
 
     const meta = [recipe.cuisine, recipe.budget_tier, `${recipe.steps.length} steps`];

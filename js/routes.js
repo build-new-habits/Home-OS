@@ -1,4 +1,5 @@
-// js/routes.js — 01 Sep 2026 v4
+// js/routes.js — 03 Oct 2026 v5
+// v5: appends 'recipe'.
 // Declarative route registry.
 //
 // ---- The rule is now APPEND-ONLY, not write-once ----
@@ -212,6 +213,13 @@ export const routes = [
     path: 'pantry-place',
     title: 'A place in your pantry',
     load: () => import('./views/pantry/place.js')
+  },
+  // 3 Oct 2026, kitchen rebuild K5. Appended. Which recipe comes from the
+  // hash itself (#/recipe?r=<slug>), so back, refresh and bookmarks work.
+  {
+    path: 'recipe',
+    title: 'Recipe',
+    load: () => import('./views/recipe.js')
   }
 ];
 
