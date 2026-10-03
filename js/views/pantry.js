@@ -1,4 +1,5 @@
-// js/views/pantry.js — 06 Sep 2026 v22
+// js/views/pantry.js — 03 Oct 2026 v23
+// v23: use-soon items open the item's sheet; the sheet offers ways to use it.
 // v22: the pantry is a hub of pages, not a page of folds.
 // v20: the cupboards start closed. Device test 6 Sep 2026.
 // v18: the add panel is actually closed. Device test 5 Sep 2026.
@@ -61,6 +62,7 @@ import { formatQuantity, formatPackQuantity, pluraliseLabel } from '../lib/units
 import { isOffline } from '../lib/net.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { openDetailSheet, sheetFact } from '../components/detailSheet.js';
+import { ideasSection } from '../components/itemSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
 import { stateBadge, countChip, pageHeading } from '../lib/icons.js';
@@ -283,13 +285,16 @@ export function render(mountEl, { section = 'hub' } = {}) {
     const list = el('ul', { class: 'use-soon-list' });
     for (const { row, freshness: fresh } of soon) {
       const food = row.foods || {};
-      const item = el('li', { class: 'use-soon-item' });
-      item.appendChild(el('span', { class: 'use-soon-name', text: food.name || 'Unknown' }));
-      item.appendChild(el('span', { class: 'field-hint', text: describeAmount(row, row.foods) }));
+      const item = el('li');
+      // 3 Oct 2026: a button. Seeing a thing near its date and not being
+      // able to act on it from here was the dead end (device feedback).
+      const open = el('button', { type: 'button', class: 'use-soon-item use-soon-open', 'aria-haspopup': 'dialog' });
+      open.appendChild(el('span', { class: 'use-soon-name', text: food.name || 'Unknown' }));
+      open.appendChild(el('span', { class: 'field-hint', text: describeAmount(row, row.foods) }));
       // Phase 26: the state gets a shape and a colour as well as its words.
-      // These four states have existed in the data since Phase 7 and have
-      // never been anything but a sentence you had to read.
-      item.appendChild(stateBadge(fresh.state, describeFreshness(fresh)));
+      open.appendChild(stateBadge(fresh.state, describeFreshness(fresh)));
+      open.addEventListener('click', () => openStockSheet(row, open), { signal });
+      item.appendChild(open);
       list.appendChild(item);
     }
     useSoonList.appendChild(list);
@@ -565,6 +570,8 @@ export function render(mountEl, { section = 'hub' } = {}) {
         actions.appendChild(removeBtn);
 
         body.append(actions, editWrap);
+        // 3 Oct 2026: the same "ways to use it" as Today's item sheet.
+        body.appendChild(ideasSection(name));
       }
     });
   }

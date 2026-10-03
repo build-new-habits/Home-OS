@@ -1,4 +1,5 @@
-// js/components/itemSheet.js — 03 Oct 2026 v1
+// js/components/itemSheet.js — 03 Oct 2026 v2
+// v2: ideasSection() exported for the pantry's own sheet.
 // Kitchen rebuild. One thing in your cupboard, and everything you might
 // want to do with it, in one place.
 //
@@ -125,48 +126,57 @@ export function openItemSheet(row, { returnFocusTo, places = [], onChanged } = {
       );
       body.appendChild(edit);
 
-      // ---- Ideas ---------------------------------------------------------
-      const ideas = el('section', { class: 'item-sheet-section', 'aria-labelledby': 'item-ideas-h' });
-      ideas.appendChild(el('h3', { id: 'item-ideas-h', text: 'Ways to use it' }));
-      const ideasBody = el('div', { 'aria-live': 'polite' });
-      ideasBody.appendChild(el('p', { class: 'field-hint', text: 'Looking for recipes…' }));
-      ideas.appendChild(ideasBody);
-      body.appendChild(ideas);
-
-      (async () => {
-        const [library, refMap, entry] = await Promise.all([
-          loadAllRecipes(), referenceBySlug(), lookup(name).catch(() => null)
-        ]);
-        ideasBody.replaceChildren();
-        if (!library.ok || !entry) {
-          ideasBody.appendChild(el('p', { class: 'field-hint', text: 'No recipe ideas for this one yet.' }));
-          return;
-        }
-        const { uses, swaps } = ideasFor(entry.slug, library.data, refMap);
-        if (uses.length === 0 && swaps.length === 0) {
-          ideasBody.appendChild(el('p', { class: 'field-hint', text: 'No recipe ideas for this one yet.' }));
-          return;
-        }
-        if (uses.length) {
-          ideasBody.appendChild(el('p', { class: 'item-ideas-title', text: 'Recipes that use it' }));
-          const ul = el('ul', { class: 'item-ideas' });
-          for (const r of uses.slice(0, 5)) { const li = el('li'); li.appendChild(recipeLink(r)); ul.appendChild(li); }
-          ideasBody.appendChild(ul);
-        }
-        if (swaps.length) {
-          ideasBody.appendChild(el('p', { class: 'item-ideas-title', text: `Use it instead of something else` }));
-          const ul = el('ul', { class: 'item-ideas' });
-          for (const s of swaps.slice(0, 5)) {
-            const li = el('li');
-            li.appendChild(recipeLink(s.recipe));
-            li.appendChild(el('span', { class: 'field-hint', text: s.tip }));
-            ul.appendChild(li);
-          }
-          ideasBody.appendChild(ul);
-        }
-      })().catch(() => {
-        ideasBody.replaceChildren(el('p', { class: 'field-hint', text: 'Recipe ideas could not be loaded.' }));
-      });
+      body.appendChild(ideasSection(name));
     }
   });
+}
+
+
+/**
+ * "Ways to use it": recipes that use this food, and recipes it could stand
+ * in for (data/swaps.js). Its own export so the pantry's fuller sheet can
+ * offer the same ideas without a second copy of this code.
+ */
+export function ideasSection(name) {
+  const ideas = el('section', { class: 'item-sheet-section', 'aria-labelledby': 'item-ideas-h' });
+  ideas.appendChild(el('h3', { id: 'item-ideas-h', text: 'Ways to use it' }));
+  const ideasBody = el('div', { 'aria-live': 'polite' });
+  ideasBody.appendChild(el('p', { class: 'field-hint', text: 'Looking for recipes…' }));
+  ideas.appendChild(ideasBody);
+
+  (async () => {
+    const [library, refMap, entry] = await Promise.all([
+      loadAllRecipes(), referenceBySlug(), lookup(name).catch(() => null)
+    ]);
+    ideasBody.replaceChildren();
+    if (!library.ok || !entry) {
+      ideasBody.appendChild(el('p', { class: 'field-hint', text: 'No recipe ideas for this one yet.' }));
+      return;
+    }
+    const { uses, swaps } = ideasFor(entry.slug, library.data, refMap);
+    if (uses.length === 0 && swaps.length === 0) {
+      ideasBody.appendChild(el('p', { class: 'field-hint', text: 'No recipe ideas for this one yet.' }));
+      return;
+    }
+    if (uses.length) {
+      ideasBody.appendChild(el('p', { class: 'item-ideas-title', text: 'Recipes that use it' }));
+      const ul = el('ul', { class: 'item-ideas' });
+      for (const r of uses.slice(0, 5)) { const li = el('li'); li.appendChild(recipeLink(r)); ul.appendChild(li); }
+      ideasBody.appendChild(ul);
+    }
+    if (swaps.length) {
+      ideasBody.appendChild(el('p', { class: 'item-ideas-title', text: `Use it instead of something else` }));
+      const ul = el('ul', { class: 'item-ideas' });
+      for (const s of swaps.slice(0, 5)) {
+        const li = el('li');
+        li.appendChild(recipeLink(s.recipe));
+        li.appendChild(el('span', { class: 'field-hint', text: s.tip }));
+        ul.appendChild(li);
+      }
+      ideasBody.appendChild(ul);
+    }
+  })().catch(() => {
+    ideasBody.replaceChildren(el('p', { class: 'field-hint', text: 'Recipe ideas could not be loaded.' }));
+  });
+  return ideas;
 }
