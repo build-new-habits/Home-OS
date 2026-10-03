@@ -1,4 +1,5 @@
-// js/views/kitchenShop.js — 03 Oct 2026 v3
+// js/views/kitchenShop.js — 03 Oct 2026 v4
+// v4: Share the list — the phone's share sheet, or copied.
 // v3: a blank use-by says what the pantry will estimate instead.
 // v2: put away from the basket: where it lives and its use-by, saved to
 // the pantry as you type, so nothing has to be scanned in again.
@@ -71,6 +72,25 @@ function amountOf(line) {
   return formatPackQuantity(line.qty_needed, line.unit, line.foods || null);
 }
 
+/**
+ * The list as plain text, for sharing (3 Oct 2026): aisle headings in
+ * walking order, one line each, amounts after the name. Only what is still
+ * needed; the basket and the cupboard are not shopping.
+ */
+export function listAsText(items, { title = 'Shopping list' } = {}) {
+  const needed = (items || []).filter((i) => i.status === 'needed');
+  if (needed.length === 0) return '';
+  const lines = [title];
+  for (const group of groupByAisle(needed)) {
+    lines.push('', categoryLabel(group.category));
+    for (const line of group.lines) {
+      const amount = amountOf(line);
+      lines.push(`- ${nameOf(line)}${amount ? ` (${amount})` : ''}`);
+    }
+  }
+  return lines.join('\n');
+}
+
 export function render(mountEl) {
   const controller = new AbortController();
   const { signal } = controller;
@@ -119,7 +139,29 @@ export function render(mountEl) {
   const actions = el('div', { class: 'shop-actions' });
   const doneBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Done shopping' });
   const addLink = el('a', { class: 'btn btn-block', href: '#/shopping-add', text: 'Add something to the list' });
-  actions.append(doneBtn, addLink);
+  // 3 Oct 2026: send the list anywhere — a partner, WhatsApp, Notes, or
+  // pasted into a supermarket's own list. The phone's share sheet where
+  // there is one; copied to the clipboard where there is not.
+  const shareBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Share the list' });
+  shareBtn.addEventListener('click', async () => {
+    const text = listAsText(items);
+    if (!text) { showToast('Nothing left to buy, so nothing to share.'); return; }
+    try {
+      if ('share' in navigator) {
+        await navigator.share({ title: 'Shopping list', text });
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+      const words = 'List copied. Paste it wherever you need it.';
+      showToast(words);
+      announce(words);
+    } catch (error) {
+      // Closing the share sheet is a choice, not a failure.
+      if (error && error.name === 'AbortError') return;
+      showToast('The list could not be shared from here. Try again.');
+    }
+  }, { signal });
+  actions.append(doneBtn, shareBtn, addLink);
   mountEl.appendChild(actions);
 
   const buildLink = el('p', { class: 'shop-build' });

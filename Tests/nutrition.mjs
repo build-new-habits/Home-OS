@@ -448,6 +448,21 @@ check('the library is not empty', count > 100, `${count}`);
   check('every switched recipe is fully counted', bad.length === 0, bad.slice(0, 6).join(', '));
 }
 
+// ---- Sharing the list (3 Oct 2026) -----------------------------------------
+{
+  const { listAsText } = await import(`${REPO}/js/views/kitchenShop.js`);
+  const text = listAsText([
+    { status: 'needed', qty_needed: 2, unit: 'item', foods: { name: 'Onion', category: 'food_fresh', grams_per_item: 150, item_label: 'onion' } },
+    { status: 'needed', qty_needed: null, foods: { name: 'Toilet roll', category: 'household' } },
+    { status: 'bought', qty_needed: 1, unit: 'item', foods: { name: 'Milk', category: 'food_fresh' } },
+    { status: 'have', foods: { name: 'Rice', category: 'food_ambient' } }
+  ]);
+  check('a shared list has a title and aisle headings', /^Shopping list\n\n/.test(text) && /Onion/.test(text), text);
+  check('only what is still needed is shared', !/Milk|Rice/.test(text));
+  check('a line with no amount has no brackets', /- Toilet roll$/m.test(text));
+  eq('an empty list shares nothing', listAsText([{ status: 'bought', foods: { name: 'x' } }]), '');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);
