@@ -1,0 +1,389 @@
+// js/views/kitchenPlan.js — 03 Oct 2026 v1
+// Kitchen rebuild K6. The week as a board: seven days across, a row per
+// meal. The approved mockup's Plan screen.
+//
+// planThisWeek.js and planNextWeek.js hand over to this in kitchen-only
+// mode; mealPlan.js keeps the previous day-card screen for the full app.
+//
+// ---- Why a board ----
+// The day cards answered "what is on Tuesday" and nothing else. The board
+// answers "where are the gaps this week" at a glance, without scrolling,
+// and a tap on any square says what is in it and offers something for it.
+//
+// ---- Accessibility ----
+// A real <table>: day column headers, meal row headers, so a screen reader
+// announces "Tuesday, Lunch: open". One square is in the tab order at a
+// time and the arrow keys move between squares (roving tabindex), so the
+// board is one Tab stop, not twenty-eight.
+//
+// ---- No verdicts ----
+// An empty square is "open". Never missed, never red, never counted
+// against anyone (behavioural principle 1).
+
+import { el } from '../lib/dom.js';
+import {
+  listPlan, addPlanEntry, removePlanEntry, servesFor, DAYS, SLOTS
+} from '../data/mealPlan.js';
+import { listMeals, listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
+import { dayNutrition, nutritionRows } from '../data/nutrition.js';
+import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
+import { buildWeekIntoList } from '../data/planShopping.js';
+import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
+import { mealGlyph, mealIcon } from '../components/mealGlyph.js';
+import { navigate } from '../router.js';
+import { announce } from '../lib/a11y.js';
+import { showToast } from '../components/toast.js';
+
+const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+const SLOT_WORDS = { breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'snacks', drink: 'drinks' };
+
+/** "Monday 28 September to Sunday 4 October". */
+export function rangeLabel(isoMonday) {
+  const [y, m, d] = String(isoMonday).split('-').map(Number);
+  const start = new Date(y, m - 1, d);
+  const end = new Date(y, m - 1, d + 6);
+  const fmt = (date) => date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  return `${fmt(start)} to ${fmt(end)}`;
+}
+
+function recipeHref(meal) {
+  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
+  return '#/meals';
+}
+
+/** Up to three of your own meals that suit this slot, favourites first. */
+export function ideasFor(meals, slot, alreadyIds = []) {
+  return (meals || [])
+    .filter((m) => !alreadyIds.includes(m.id))
+    .filter((m) => m.meal_type === slot || m.default_slot === slot)
+    .sort((a, b) => Number(Boolean(b.is_favourite)) - Number(Boolean(a.is_favourite))
+      || String(a.name).localeCompare(String(b.name)))
+    .slice(0, 3);
+}
+
+/**
+ * @param {HTMLElement} mountEl
+ * @param {{ week: 'this' | 'next' }} opts
+ */
+export function render(mountEl, { week = 'this' } = {}) {
+  const controller = new AbortController();
+  const { signal } = controller;
+  let destroyed = false;
+
+  const weekStart = week === 'next' ? nextWeekStart() : thisWeekStart();
+  const origin = week === 'next' ? 'next' : 'week';
+  const todayValue = week === 'this' ? JS_DAY[new Date().getDay()] : null;
+
+  let entries = [];
+  let meals = [];
+  let ingredientsByMeal = new Map();
+  let sel = { day: todayValue || 'mon', slot: 'dinner' };
+
+  // ---------------------------------------------------------------- shell
+  const header = el('header', { class: 'plan-header' });
+  header.appendChild(el('h1', { class: 'plan-title', text: week === 'next' ? 'Next week' : 'This week' }));
+  header.appendChild(el('p', { class: 'plan-range', text: rangeLabel(weekStart) }));
+  const weekNav = el('p', { class: 'plan-week-switch' });
+  weekNav.appendChild(week === 'next'
+    ? el('a', { href: '#/plan-this-week', text: 'This week' })
+    : el('a', { href: '#/plan-next-week', text: 'Next week' }));
+  header.appendChild(weekNav);
+  mountEl.appendChild(header);
+
+  const status = el('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
+  mountEl.appendChild(status);
+
+  const boardWrap = el('div', { class: 'plan-board-wrap' });
+  const help = el('p', { class: 'visually-hidden', id: 'plan-board-help',
+    text: 'Each column is a day and each row is a meal. Use the arrow keys to move between squares.' });
+  const table = el('table', { class: 'plan-board', 'aria-describedby': 'plan-board-help' });
+  table.appendChild(el('caption', { class: 'visually-hidden', text: `Meals planned, ${rangeLabel(weekStart)}` }));
+  const thead = el('thead');
+  const tbody = el('tbody');
+  table.append(thead, tbody);
+  boardWrap.append(help, table);
+  const legend = el('ul', { class: 'plan-legend', 'aria-hidden': 'true' });
+  for (const s of SLOTS) {
+    const li = el('li');
+    li.appendChild(el('span', { class: `plan-legend-swatch meal-${s.value}` }));
+    li.appendChild(document.createTextNode(s.label));
+    legend.appendChild(li);
+  }
+  const openKey = el('li');
+  openKey.appendChild(el('span', { class: 'plan-legend-swatch plan-legend-open' }));
+  openKey.appendChild(document.createTextNode('Open'));
+  legend.appendChild(openKey);
+  boardWrap.appendChild(legend);
+  mountEl.appendChild(boardWrap);
+
+  const dayNutri = el('section', { class: 'plan-day-nutrition', 'aria-labelledby': 'plan-nutri-h' });
+  mountEl.appendChild(dayNutri);
+
+  const detail = el('section', { class: 'plan-detail', 'aria-labelledby': 'plan-detail-h' });
+  mountEl.appendChild(detail);
+
+  const actions = el('div', { class: 'plan-actions' });
+  const shopBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Update shopping list' });
+  actions.appendChild(shopBtn);
+  mountEl.appendChild(actions);
+
+  // ---------------------------------------------------------------- board
+  const headRow = el('tr');
+  headRow.appendChild(el('td', { class: 'plan-corner' }));
+  for (const d of DAYS) {
+    const th = el('th', { scope: 'col', class: d.value === todayValue ? 'is-today' : '', abbr: d.label });
+    th.appendChild(el('span', { class: 'plan-day-short', text: d.value === todayValue ? 'Today' : d.short }));
+    th.appendChild(el('span', { class: 'visually-hidden', text: d.value === todayValue ? `, ${d.label}` : '' }));
+    headRow.appendChild(th);
+  }
+  thead.appendChild(headRow);
+
+  function cellEntries(day, slot) {
+    return entries.filter((e) => e.day_of_week === day && e.slot === slot);
+  }
+
+  function paintBoard() {
+    tbody.replaceChildren();
+    SLOTS.forEach((s, r) => {
+      const tr = el('tr');
+      const th = el('th', { scope: 'row', class: 'plan-row-head' });
+      th.appendChild(mealIcon(s.value, 18));
+      th.appendChild(el('span', { class: 'visually-hidden', text: s.label }));
+      tr.appendChild(th);
+      DAYS.forEach((d, c) => {
+        const here = cellEntries(d.value, s.value);
+        const on = sel.day === d.value && sel.slot === s.value;
+        const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
+        const names = here.map((e) => (e.meals && e.meals.name) || 'a meal').join(', ');
+        const btn = el('button', {
+          type: 'button',
+          class: here.length ? `plan-cell meal-${s.value}` : 'plan-cell plan-cell-open',
+          'aria-pressed': String(on),
+          'aria-label': `${d.label} ${SLOT_WORDS[s.value]}: ${here.length ? names : 'open'}`,
+          tabindex: on ? '0' : '-1',
+          'data-r': String(r),
+          'data-c': String(c)
+        });
+        if (here.length) {
+          btn.appendChild(mealIcon(s.value, 18));
+          if (here.length > 1) btn.appendChild(el('span', { class: 'plan-cell-count', 'aria-hidden': 'true', text: String(here.length) }));
+        }
+        btn.addEventListener('click', () => select(d.value, s.value, true), { signal });
+        td.appendChild(btn);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  tbody.addEventListener('keydown', (event) => {
+    const btn = event.target.closest('.plan-cell');
+    if (!btn) return;
+    const r = Number(btn.dataset.r);
+    const c = Number(btn.dataset.c);
+    const moves = { ArrowLeft: [0, -1], ArrowRight: [0, 1], ArrowUp: [-1, 0], ArrowDown: [1, 0] };
+    let move = moves[event.key];
+    if (event.key === 'Home') move = [0, -c];
+    if (event.key === 'End') move = [0, DAYS.length - 1 - c];
+    if (!move) return;
+    event.preventDefault();
+    const nr = Math.max(0, Math.min(SLOTS.length - 1, r + move[0]));
+    const nc = Math.max(0, Math.min(DAYS.length - 1, c + move[1]));
+    select(DAYS[nc].value, SLOTS[nr].value, false);
+    const target = tbody.querySelector(`[data-r="${nr}"][data-c="${nc}"]`);
+    if (target) target.focus();
+  }, { signal });
+
+  function select(day, slot, keepFocus) {
+    const dayChanged = day !== sel.day;
+    sel = { day, slot };
+    paintBoard();
+    paintDetail();
+    if (dayChanged) paintDayNutrition();
+    if (keepFocus) {
+      const target = tbody.querySelector('[aria-pressed="true"]');
+      if (target) target.focus();
+    }
+  }
+
+  // ------------------------------------------------------- day nutrition
+  function paintDayNutrition() {
+    dayNutri.replaceChildren();
+    const dayLabel = (DAYS.find((d) => d.value === sel.day) || {}).label || '';
+    const head = el('div', { class: 'plan-nutri-head' });
+    head.appendChild(el('h2', { id: 'plan-nutri-h', text: `${dayLabel}’s nutrition` }));
+    head.appendChild(el('span', { class: 'field-hint', text: 'Estimate, % of reference intake' }));
+    dayNutri.appendChild(head);
+    const items = cellsForDay(sel.day).map((entry) => {
+      const rows = ingredientsByMeal.get(entry.meal_id) || [];
+      if (rows.length === 0) return null;
+      const m = computeMacros(rows, { serves: (entry.meals && entry.meals.default_serves) || 1 });
+      return { perServing: m.perServing, complete: m.complete };
+    }).filter(Boolean);
+    if (items.length === 0) {
+      dayNutri.appendChild(el('p', { class: 'field-hint', text: 'Nothing planned with ingredients yet.' }));
+      return;
+    }
+    const day = dayNutrition(items);
+    const dl = el('dl', { class: 'plan-nutri-strip' });
+    for (const row of nutritionRows(day.totals, day.complete)) {
+      const group = el('div');
+      const value = row.amount === null ? '–' : (row.unit === 'kcal' ? row.amount.toLocaleString('en-GB') : `${row.percent}%`);
+      group.appendChild(el('dt', { text: row.unit === 'kcal' ? 'kcal' : row.label }));
+      group.appendChild(el('dd', { text: value }));
+      dl.appendChild(group);
+    }
+    dayNutri.appendChild(dl);
+  }
+
+  function cellsForDay(day) {
+    return entries.filter((e) => e.day_of_week === day);
+  }
+
+  // -------------------------------------------------------------- detail
+  function paintDetail() {
+    detail.replaceChildren();
+    const d = DAYS.find((x) => x.value === sel.day);
+    const s = SLOTS.find((x) => x.value === sel.slot);
+    const here = cellEntries(sel.day, sel.slot);
+
+    const head = el('div', { class: 'plan-detail-head' });
+    head.appendChild(mealGlyph(sel.slot, 22));
+    head.appendChild(el('h2', { id: 'plan-detail-h', tabindex: '-1', text: `${d.label} ${SLOT_WORDS[s.value]}` }));
+    const choose = el('button', { type: 'button', class: 'btn', text: 'Choose' });
+    choose.setAttribute('aria-label', `Choose a meal for ${d.label} ${SLOT_WORDS[s.value]}`);
+    choose.addEventListener('click', () => {
+      writeDraft({ day: sel.day, slot: sel.slot, origin, mealId: null, mealName: null });
+      navigate('plan-choose');
+    }, { signal });
+    head.appendChild(choose);
+    detail.appendChild(head);
+
+    if (here.length) {
+      const list = el('ul', { class: 'plan-detail-items' });
+      for (const entry of here) {
+        const li = el('li');
+        const text = el('span', { class: 'plan-detail-text' });
+        text.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'A meal' }));
+        text.appendChild(el('span', { class: 'field-hint', text: `Serves ${servesFor(entry)}` }));
+        li.appendChild(text);
+        const rm = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Remove' });
+        rm.setAttribute('aria-label', `Remove ${(entry.meals && entry.meals.name) || 'this meal'} from ${d.label} ${SLOT_WORDS[s.value]}`);
+        rm.addEventListener('click', async () => {
+          rm.disabled = true;
+          const result = await removePlanEntry(entry.id);
+          if (destroyed) return;
+          if (!result.ok) { rm.disabled = false; showToast('That did not save. Try again.'); return; }
+          entries = entries.filter((x) => x.id !== entry.id);
+          refreshAfterChange(`Removed ${(entry.meals && entry.meals.name) || 'the meal'}.`);
+        }, { signal });
+        li.appendChild(rm);
+        list.appendChild(li);
+      }
+      detail.appendChild(list);
+    } else {
+      detail.appendChild(el('p', { class: 'plan-detail-open', text: 'Open. Choose a meal, or pick one of your ideas below.' }));
+    }
+
+    const ideas = ideasFor(meals, sel.slot, here.map((e) => e.meal_id));
+    if (ideas.length) {
+      const wrap = el('div', { class: 'plan-ideas' });
+      wrap.appendChild(el('p', { class: 'plan-ideas-title', text: here.length ? 'Add another' : 'From your meals' }));
+      const ul = el('ul');
+      for (const meal of ideas) {
+        const li = el('li');
+        const b = el('button', { type: 'button', class: 'chip-toggle plan-idea', text: `+ ${meal.name}` });
+        b.setAttribute('aria-label', `Add ${meal.name} to ${d.label} ${SLOT_WORDS[s.value]}`);
+        b.addEventListener('click', () => addMeal(meal, b), { signal });
+        li.appendChild(b);
+        ul.appendChild(li);
+      }
+      wrap.appendChild(ul);
+      detail.appendChild(wrap);
+    }
+  }
+
+  async function addMeal(meal, button) {
+    if (button) button.disabled = true;
+    const result = await addPlanEntry({ meal_id: meal.id, day_of_week: sel.day, slot: sel.slot, week_start: weekStart });
+    if (destroyed) return;
+    if (!result.ok) {
+      if (button) button.disabled = false;
+      showToast(result.error && result.error.message ? result.error.message : 'That did not save. Try again.');
+      return;
+    }
+    entries = [...entries, { ...result.data, meals: meal }];
+    refreshAfterChange(`Added ${meal.name}.`);
+  }
+
+  function refreshAfterChange(message) {
+    paintBoard();
+    paintDetail();
+    paintDayNutrition();
+    status.textContent = message;
+    announce(message);
+    const h = document.getElementById('plan-detail-h');
+    if (h) h.focus();
+  }
+
+  // ---------------------------------------------------------- shopping
+  shopBtn.addEventListener('click', async () => {
+    shopBtn.disabled = true;
+    shopBtn.textContent = 'Updating…';
+    const result = await buildWeekIntoList(weekStart);
+    if (destroyed) return;
+    shopBtn.disabled = false;
+    shopBtn.textContent = 'Update shopping list';
+    if (!result.ok) {
+      showToast(result.stage === 'insert'
+        ? 'The old list was cleared but the new one failed to save. Try again.'
+        : 'The list could not be updated. Nothing was changed.');
+      return;
+    }
+    const n = result.data.items.length;
+    const message = n === 0
+      ? 'Nothing to buy for this week’s plan.'
+      : `Shopping list updated: ${n} thing${n === 1 ? '' : 's'} from this week’s plan.`;
+    status.textContent = message;
+    showToast(message);
+  }, { signal });
+
+  // --------------------------------------------------------------- load
+  paintBoard();
+  paintDetail();
+
+  (async () => {
+    const [plan, mealList, ingredients] = await Promise.all([listPlan(weekStart), listMeals(), listIngredients()]);
+    if (destroyed) return;
+    entries = plan.ok ? (plan.data || []) : [];
+    meals = mealList.ok ? (mealList.data || []) : [];
+    ingredientsByMeal = ingredients.ok ? groupByMeal(ingredients.data) : new Map();
+    if (!plan.ok) {
+      detail.replaceChildren(el('p', { text: 'The plan could not be loaded. Check your connection and try again.' }));
+    }
+
+    // Back from the chooser with a meal picked: add it where it was asked for.
+    const draft = readDraft();
+    if (draft.mealId && draft.day && draft.slot && draft.origin === origin) {
+      clearDraft();
+      sel = { day: draft.day, slot: draft.slot };
+      const meal = meals.find((m) => m.id === draft.mealId) || { id: draft.mealId, name: draft.mealName || 'The meal' };
+      paintBoard();
+      await addMeal(meal, null);
+      if (destroyed) return;
+    }
+
+    paintBoard();
+    paintDetail();
+    paintDayNutrition();
+  })().catch((error) => {
+    if (destroyed) return;
+    console.error('Plan board failed:', error);
+    detail.replaceChildren(el('p', { text: 'Something went wrong loading the plan. Try again.' }));
+  });
+
+  return () => {
+    destroyed = true;
+    controller.abort();
+  };
+}

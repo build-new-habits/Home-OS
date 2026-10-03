@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v75 */
+/* css/components.css — 03 Oct 2026 v76 */
+/* v76: the week board (K6). */
 /* v75: meal glyphs and the kitchen Today screen (K7). */
 /* v74: recipe page and nutrition bars (kitchen rebuild K5). */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
@@ -4316,3 +4317,148 @@ body.sheet-open {
 .today-shop-title { font-weight: 700; }
 .today-shop-hint { font-size: var(--text-sm); color: var(--color-text-muted); }
 .today-more-h { margin-bottom: var(--space-3); }
+
+
+/* ---- The week board (kitchen rebuild K6) -------------------------------
+   Seven days across, a row per meal, fits a phone without sideways
+   scrolling. Filled squares carry the meal's icon on its colour; open
+   squares are outlined. Colour is never the only signal. */
+.plan-header { margin-bottom: var(--space-5); }
+.plan-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.plan-range { margin: var(--space-1) 0 0; color: var(--color-text-muted); }
+.plan-week-switch { margin: var(--space-1) 0 0; }
+.plan-week-switch a { font-weight: 700; min-height: var(--tap-min); display: inline-flex; align-items: center; }
+
+.plan-board-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-2) var(--space-2);
+  margin-bottom: var(--space-5);
+}
+.plan-board { width: 100%; border-collapse: separate; border-spacing: var(--space-1); table-layout: fixed; }
+.plan-board thead th {
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding-bottom: var(--space-1);
+}
+.plan-board thead th.is-today { color: var(--color-accent-strong); font-weight: 700; }
+.plan-corner, .plan-row-head { width: 1.75rem; padding: 0; }
+.plan-row-head { color: var(--color-text-muted); text-align: center; vertical-align: middle; }
+.plan-board td { padding: 0; text-align: center; }
+.plan-board td.is-today { background: var(--color-neutral-chip); border-radius: var(--radius-md); }
+.plan-cell {
+  position: relative;
+  width: 100%;
+  min-height: var(--tap-min);
+  aspect-ratio: 1 / 1;
+  max-height: var(--tap-large);
+  border-radius: var(--radius-md);
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.plan-cell-open {
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1.5px var(--control-border);
+}
+.plan-cell-open:hover { background: var(--color-neutral-chip); }
+.plan-cell[aria-pressed="true"] { outline: 3px solid var(--color-text); outline-offset: 2px; }
+.plan-cell-count {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  min-width: 1.1em;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.plan-legend {
+  list-style: none;
+  margin: var(--space-2) var(--space-1) 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+.plan-legend li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.plan-legend-swatch { width: var(--space-3); height: var(--space-3); border-radius: var(--radius-sm); display: inline-block; }
+.plan-legend-open { box-shadow: inset 0 0 0 1.5px var(--control-border); }
+
+.plan-day-nutrition { margin-bottom: var(--space-5); }
+.plan-nutri-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.plan-nutri-head h2 { margin: 0; font-size: var(--text-lg); }
+.plan-nutri-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.plan-nutri-strip div { display: flex; flex-direction: column-reverse; }
+.plan-nutri-strip dt { font-size: var(--text-xs); color: var(--color-text-muted); }
+.plan-nutri-strip dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+.plan-detail {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.plan-detail-head { display: flex; align-items: center; gap: var(--space-3); }
+.plan-detail-head h2 { flex: 1; margin: 0; }
+.plan-detail-head h2:focus { outline: none; }
+.plan-detail-items { list-style: none; margin: 0; padding: 0; }
+.plan-detail-items li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+}
+.plan-detail-items li:first-child { border-top: 0; }
+.plan-detail-text { flex: 1; display: flex; flex-direction: column; }
+.plan-detail-text a { color: var(--color-text); font-weight: 600; }
+.plan-detail-open { margin: 0; color: var(--color-text-muted); }
+.plan-ideas-title { margin: 0 0 var(--space-2); font-weight: 700; }
+.plan-ideas ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.plan-actions { margin-bottom: var(--space-5); }
+.plan-day-short { display: block; }
+.plan-idea { font-weight: 600; }
