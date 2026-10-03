@@ -1,0 +1,252 @@
+// js/views/kitchenToday.js — 03 Oct 2026 v1
+// Kitchen rebuild K7. Today, for the kitchen-only app.
+//
+// dashboard.js hands over to this when navConfig.KITCHEN_ONLY is on, and
+// keeps its own full-app screen for when it is off. Two screens rather than
+// one full of conditions: the parked dashboard stays exactly as tested.
+//
+// ---- What it answers, in order ----
+// 1. What is next to eat?        The next planned meal by the clock.
+// 2. What else is planned today? Every other meal, or "Nothing planned".
+// 3. What does that add up to?   Nutrition for the day as planned.
+// 4. What should I use up?       Up to three things near their date.
+// 5. What do I need to buy?      One number and a way to the list.
+//
+// Nothing here is a verdict. An empty meal says "Nothing planned", never
+// "missed"; a day over its reference intake shows the number, nothing more.
+
+import { el } from '../lib/dom.js';
+import { todayIso } from '../lib/dates.js';
+import { listPlan, servesFor } from '../data/mealPlan.js';
+import { listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
+import { dayNutrition } from '../data/nutrition.js';
+import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
+import { listItems as listShoppingItems } from '../data/shopping.js';
+import { mealGlyph, mealIcon, MEAL_SLOTS } from '../components/mealGlyph.js';
+import { nutritionBars } from '../components/nutritionBars.js';
+import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
+import { getState } from '../lib/store.js';
+
+const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+/**
+ * Which meal is "next" at this time of day. Fixed boundaries rather than a
+ * setting: breakfast until half ten, lunch until half two, dinner after.
+ * Snacks and drinks are never "next" — they are not what anyone means by
+ * "what are we having?".
+ */
+export function nextSlotAt(date = new Date()) {
+  const minutes = date.getHours() * 60 + date.getMinutes();
+  if (minutes < 10 * 60 + 30) return 'breakfast';
+  if (minutes < 14 * 60 + 30) return 'lunch';
+  return 'dinner';
+}
+
+/**
+ * The meal to feature: the slot for now if it has something planned, else
+ * the next main meal later today that does. Null when nothing is left.
+ */
+export function pickNext(entries, now = new Date()) {
+  const order = ['breakfast', 'lunch', 'dinner'];
+  const from = order.indexOf(nextSlotAt(now));
+  for (const slot of order.slice(from)) {
+    const hit = entries.find((e) => e.slot === slot);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+function recipeHref(meal) {
+  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
+  return '#/meals';
+}
+
+export function render(mountEl) {
+  const controller = new AbortController();
+  let destroyed = false;
+
+  const now = new Date();
+  const today = todayIso();
+  const dayValue = DAY_VALUES[now.getDay()];
+
+  const header = el('header', { class: 'today-header' });
+  header.appendChild(el('h1', {
+    class: 'today-day',
+    text: now.toLocaleDateString('en-GB', { weekday: 'long' })
+  }));
+  header.appendChild(el('p', {
+    class: 'today-date',
+    text: now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })
+  }));
+  mountEl.appendChild(header);
+
+  // First run, offered not forced (Phase 27).
+  const settings = getState().settings || {};
+  if (!settings.onboarded_at) {
+    const offer = el('p', { class: 'today-offer' });
+    offer.appendChild(el('a', { class: 'btn', href: `#/${FIRST_RUN_ACTION.path}`, text: FIRST_RUN_ACTION.label }));
+    mountEl.appendChild(offer);
+  }
+
+  const nextWrap = el('div');
+  mountEl.appendChild(nextWrap);
+
+  const restSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-rest-h' });
+  const restHead = el('div', { class: 'today-section-head' });
+  restHead.appendChild(el('h2', { id: 'today-rest-h', text: 'The rest of today' }));
+  restHead.appendChild(el('a', { href: '#/plan-this-week', text: 'Change' }));
+  restSection.appendChild(restHead);
+  const restList = el('ul', { class: 'today-meals' });
+  restSection.appendChild(restList);
+  mountEl.appendChild(restSection);
+
+  const nutritionWrap = el('div');
+  mountEl.appendChild(nutritionWrap);
+
+  const soonSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-soon-h' });
+  soonSection.hidden = true;
+  soonSection.appendChild(el('h2', { id: 'today-soon-h', text: 'Use soon' }));
+  const soonList = el('ul', { class: 'today-soon' });
+  soonSection.appendChild(soonList);
+  mountEl.appendChild(soonSection);
+
+  const shopLink = el('a', { class: 'today-shop', href: '#/shopping' });
+  const shopCount = el('span', { class: 'today-shop-count', text: '…' });
+  const shopText = el('span', { class: 'today-shop-text' });
+  const shopTitle = el('span', { class: 'today-shop-title', text: 'Things to buy' });
+  const shopHint = el('span', { class: 'today-shop-hint', text: 'Your shopping list' });
+  shopText.append(shopTitle, shopHint);
+  shopLink.append(shopCount, shopText, el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+  mountEl.appendChild(shopLink);
+
+  mountEl.appendChild(el('h2', { class: 'today-more-h', text: 'Everything else' }));
+  const links = el('ul', { class: 'hub-list' });
+  for (const entry of dashboardLinks()) {
+    const item = el('li', { class: 'hub-item' });
+    const link = el('a', { class: 'hub-link', href: `#/${entry.path}` });
+    const text = el('span', { class: 'hub-text' });
+    text.append(el('span', { class: 'hub-title', text: entry.title }), el('span', { class: 'hub-blurb', text: entry.blurb }));
+    link.append(text, el('span', { class: 'hub-chevron', 'aria-hidden': 'true', text: '›' }));
+    item.appendChild(link);
+    links.appendChild(item);
+  }
+  mountEl.appendChild(links);
+
+  // ---------------------------------------------------------------- data
+
+  async function loadMeals() {
+    const [plan, ingredients] = await Promise.all([listPlan(), listIngredients()]);
+    if (destroyed) return;
+    const entries = plan.ok ? (plan.data || []).filter((e) => e.day_of_week === dayValue) : [];
+    const next = pickNext(entries, now);
+    paintNext(next);
+    paintRest(entries, next);
+
+    // Nutrition: each planned meal's per-serving figures, one portion each.
+    const byMeal = ingredients.ok ? groupByMeal(ingredients.data) : new Map();
+    const items = entries.map((entry) => {
+      const meal = entry.meals || {};
+      const rows = byMeal.get(entry.meal_id) || [];
+      if (rows.length === 0) return null;
+      const m = computeMacros(rows, { serves: meal.default_serves || 1 });
+      return { perServing: m.perServing, complete: m.complete };
+    }).filter(Boolean);
+    nutritionWrap.replaceChildren();
+    if (items.length > 0) {
+      const day = dayNutrition(items);
+      const skipped = entries.length - items.length;
+      let note = 'An estimate for what is planned, one portion of each, against UK adult reference intakes.';
+      if (skipped > 0) note += ` ${skipped} planned meal${skipped === 1 ? ' has' : 's have'} no ingredients yet, so ${skipped === 1 ? 'it is' : 'they are'} not counted.`;
+      nutritionWrap.appendChild(nutritionBars({ id: 'today-nutrition-h', title: "Today's nutrition", totals: day.totals, complete: day.complete, note }));
+    }
+  }
+
+  function paintNext(entry) {
+    nextWrap.replaceChildren();
+    if (!entry) {
+      const empty = el('section', { class: 'today-next today-next-empty', 'aria-labelledby': 'today-next-h' });
+      empty.appendChild(el('h2', { id: 'today-next-h', text: 'Nothing else planned today' }));
+      empty.appendChild(el('a', { class: 'btn btn-primary', href: '#/plan-this-week', text: 'Plan a meal' }));
+      nextWrap.appendChild(empty);
+      return;
+    }
+    const meal = entry.meals || {};
+    const label = (MEAL_SLOTS.find((s) => s.value === entry.slot) || {}).label || 'Next';
+    const card = el('section', { class: `today-next meal-${entry.slot}`, 'aria-labelledby': 'today-next-h' });
+    const when = el('p', { class: 'today-next-when' });
+    when.appendChild(mealIcon(entry.slot, 20));
+    when.appendChild(document.createTextNode(` ${label} is next`));
+    card.appendChild(when);
+    card.appendChild(el('h2', { id: 'today-next-h', class: 'today-next-name', text: meal.name || 'Planned' }));
+    const facts = el('ul', { class: 'today-next-facts' });
+    facts.appendChild(el('li', { text: `Serves ${servesFor(entry)}` }));
+    for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
+    card.appendChild(facts);
+    card.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
+    nextWrap.appendChild(card);
+  }
+
+  function paintRest(entries, next) {
+    restList.replaceChildren();
+    for (const slot of MEAL_SLOTS) {
+      const here = entries.filter((e) => e.slot === slot.value && e !== next);
+      // The featured meal is already above; its slot is listed only if it
+      // holds something else too.
+      if (next && slot.value === next.slot && here.length === 0) continue;
+      // Drinks have no slot in the database until migration 026. Not
+      // shown until they can hold anything, rather than as a row that can
+      // only ever say "nothing".
+      if (slot.value === 'drink' && !entries.some((e) => e.slot === 'drink')) continue;
+      const li = el('li', { class: 'today-meal' });
+      li.appendChild(mealGlyph(slot.value, 20));
+      const text = el('span', { class: 'today-meal-text' });
+      text.appendChild(el('span', { class: 'today-meal-slot', text: slot.label }));
+      if (here.length === 0) {
+        text.appendChild(el('span', { class: 'today-meal-none', text: 'Nothing planned' }));
+      } else {
+        const names = el('span', { class: 'today-meal-names' });
+        here.forEach((entry, i) => {
+          if (i) names.appendChild(document.createTextNode(', '));
+          names.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'Planned' }));
+        });
+        text.appendChild(names);
+      }
+      li.appendChild(text);
+      restList.appendChild(li);
+    }
+  }
+
+  async function loadUseSoon() {
+    const result = await listStock();
+    if (destroyed || !result.ok) return;
+    const soon = useSoon(result.data || [], today);
+    if (soon.length === 0) return;
+    soonList.replaceChildren();
+    for (const { row, freshness } of soon.slice(0, 4)) {
+      const li = el('li', { class: 'today-soon-item' });
+      li.appendChild(el('span', { class: 'today-soon-name', text: (row.foods && row.foods.name) || 'Something' }));
+      li.appendChild(el('span', { class: 'today-soon-when', text: describeFreshness(freshness) }));
+      soonList.appendChild(li);
+    }
+    soonSection.hidden = false;
+  }
+
+  async function loadShopping() {
+    const result = await listShoppingItems();
+    if (destroyed) return;
+    if (!result.ok) { shopCount.textContent = '–'; shopHint.textContent = 'Could not load the list'; return; }
+    const outstanding = (result.data || []).filter((item) => item.status === 'needed').length;
+    shopCount.textContent = String(outstanding);
+    shopTitle.textContent = outstanding === 1 ? 'Thing to buy' : 'Things to buy';
+    shopHint.textContent = outstanding === 0 ? 'The list is clear' : 'Open the shopping list';
+  }
+
+  Promise.allSettled([loadMeals(), loadUseSoon(), loadShopping()]).then((results) => {
+    for (const r of results) if (r.status === 'rejected') console.error('A Today section failed:', r.reason);
+  });
+
+  return () => {
+    destroyed = true;
+    controller.abort();
+  };
+}

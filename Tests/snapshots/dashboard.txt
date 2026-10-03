@@ -1,24 +1,59 @@
-h1"Today"
-p.field-hint
+header.today-header
+  h1.today-day"<day>"
+  p.today-date
+p.today-offer
+  a.btn"Show me how this works"
 div
-  a.btn.btn-large.dashboard-primary"Show me how this works"
-  p.field-hint
-section.card.today-card[hidden=]
-  h2.card-title"Chores due today"
-  div
-section.card.today-card[hidden=]
-  h2.card-title"Exercises"
-  div
-section.card.today-card[hidden=]
-  h2.card-title"Eating today"
-  div
-section.card.today-card[hidden=]
-  h2.card-title"Worth using up"
-  div
-section.card.today-card[hidden=]
-  h2.card-title"Shopping"
-  div
-h2"Everything else"
+  section.today-next.today-next-empty
+    h2"Nothing else planned today"
+    a.btn.btn-primary"Plan a meal"
+section.today-section
+  div.today-section-head
+    h2"The rest of today"
+    a"Change"
+  ul.today-meals
+    li.today-meal
+      span.meal-breakfast.meal-glyph
+        svg
+          path
+          path
+      span.today-meal-text
+        span.today-meal-slot
+        span.today-meal-none
+    li.today-meal
+      span.meal-glyph.meal-lunch
+        svg
+          circle
+          path
+      span.today-meal-text
+        span.today-meal-slot
+        span.today-meal-none
+    li.today-meal
+      span.meal-dinner.meal-glyph
+        svg
+          path
+      span.today-meal-text
+        span.today-meal-slot
+        span.today-meal-none
+    li.today-meal
+      span.meal-glyph.meal-snack
+        svg
+          path
+          path
+      span.today-meal-text
+        span.today-meal-slot
+        span.today-meal-none
+div
+section.today-section[hidden=]
+  h2"Use soon"
+  ul.today-soon
+a.today-shop"0Things to buyThe list is clear›"
+  span.today-shop-count
+  span.today-shop-text
+    span.today-shop-title
+    span.today-shop-hint
+  span.hub-chevron
+h2.today-more-h"Everything else"
 ul.hub-list
   li.hub-item
     a.hub-link"Pantry and your mealsYour cupboards, your own recipes and things you buy.›"

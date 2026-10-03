@@ -1,4 +1,5 @@
-// js/data/mealPlan.js — 08 Sep 2026 v4
+// js/data/mealPlan.js — 03 Oct 2026 v5
+// v5: listPlan embeds meals.library_ref so Today can open the recipe page.
 // v4: listPlan and addPlanEntry take a week_start (revision 24).
 // All Supabase access for `weekly_meal_plan`. Shared data-access contract:
 // { ok, data|error }, error always checked, nothing thrown at views, no
@@ -72,7 +73,7 @@ export function isValidSlot(value) {
 export async function listPlan(weekStart = thisWeekStart()) {
   const { data, error } = await supabase
     .from(TABLE)
-    .select('id, day_of_week, slot, serves_override, member_ids, week_start, meal_id, meals(id, name, default_serves, dietary_tags)')
+    .select('id, day_of_week, slot, serves_override, member_ids, week_start, meal_id, meals(id, name, default_serves, dietary_tags, library_ref)')
     .eq('week_start', weekStart)
     .order('created_at', { ascending: true });
   if (error) return { ok: false, error };

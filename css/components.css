@@ -1,4 +1,5 @@
-/* css/components.css — 03 Oct 2026 v74 */
+/* css/components.css — 03 Oct 2026 v75 */
+/* v75: meal glyphs and the kitchen Today screen (K7). */
 /* v74: recipe page and nutrition bars (kitchen rebuild K5). */
 /* v68: restored after v67 deleted 2,697 lines. P7 day cards re-applied. */
 /* v66: P6 — shopping rows say a thing once. */
@@ -4158,3 +4159,160 @@ body.sheet-open {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+
+
+/* ---- Meal glyphs (kitchen rebuild, 3 Oct 2026) ------------------------
+   Tint behind, ink on top, icon always present: colour is never the only
+   signal. Tokens per theme live in tokens.css. */
+.meal-glyph {
+  flex: none;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.meal-breakfast { background: var(--meal-breakfast); color: var(--meal-breakfast-ink); }
+.meal-lunch { background: var(--meal-lunch); color: var(--meal-lunch-ink); }
+.meal-dinner { background: var(--meal-dinner); color: var(--meal-dinner-ink); }
+.meal-snack { background: var(--meal-snack); color: var(--meal-snack-ink); }
+.meal-drink { background: var(--meal-drink); color: var(--meal-drink-ink); }
+
+/* ---- Today, kitchen app (K7) ------------------------------------------ */
+.today-header { margin-bottom: var(--space-5); }
+.today-day {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+.today-date { margin: var(--space-1) 0 0; color: var(--color-text-muted); }
+.today-offer { margin: 0 0 var(--space-5); }
+
+.today-next {
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.today-next-empty { background: var(--color-surface); border: 1px solid var(--color-border); }
+.today-next-when {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+.today-next-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  margin: 0;
+  color: inherit;
+}
+.today-next-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.today-next-facts li {
+  border: 1px solid currentColor;
+  border-radius: var(--radius-lg);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+}
+.today-next .btn.today-next-open {
+  align-self: flex-start;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-surface);
+}
+
+.today-section { margin-bottom: var(--space-6); }
+.today-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.today-section-head h2 { margin: 0; }
+.today-section-head a { font-weight: 700; min-height: var(--tap-min); display: inline-flex; align-items: center; }
+
+.today-meals {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.today-meal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+}
+.today-meal:first-child { border-top: 0; }
+.today-meal-text { display: flex; flex-direction: column; min-width: 0; }
+.today-meal-slot { font-size: var(--text-sm); color: var(--color-text-muted); }
+.today-meal-names a { color: var(--color-text); }
+.today-meal-none { color: var(--color-text-muted); }
+
+.nutrition-section { margin-bottom: var(--space-6); }
+
+.today-soon {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.today-soon-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.today-soon-name { font-weight: 700; }
+.today-soon-when { font-size: var(--text-sm); color: var(--state-soon); font-weight: 700; }
+
+.today-shop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  text-decoration: none;
+  min-height: var(--tap-large);
+}
+.today-shop:hover { border-color: var(--color-accent); }
+.today-shop-count {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-accent);
+  min-width: 2ch;
+}
+.today-shop-text { flex: 1; display: flex; flex-direction: column; }
+.today-shop-title { font-weight: 700; }
+.today-shop-hint { font-size: var(--text-sm); color: var(--color-text-muted); }
+.today-more-h { margin-bottom: var(--space-3); }

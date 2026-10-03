@@ -1,4 +1,5 @@
-// js/data/nutrition.js — 03 Oct 2026 v1
+// js/data/nutrition.js — 03 Oct 2026 v2
+// v2: an incomplete figure with nothing counted is unknown, not "at least 0".
 // Kitchen rebuild, phase K4. The one place nutrition is worked out for
 // display: a recipe per serving, a day's planned meals, and either as a
 // share of a day's reference intake.
@@ -142,7 +143,9 @@ export function dayNutrition(items = []) {
 export function nutritionRows(totals, complete = {}, targets = REFERENCE_INTAKES) {
   return NUTRIENTS.map((n) => {
     const raw = totals ? Number(totals[n.key]) : NaN;
-    const amount = Number.isFinite(raw) ? raw : null;
+    // "At least 0 g" is no information dressed up as some. When a figure
+    // is incomplete AND nothing at all was counted, it is unknown.
+    const amount = Number.isFinite(raw) && !(complete[n.key] === false && raw === 0) ? raw : null;
     return {
       key: n.key,
       label: n.label,

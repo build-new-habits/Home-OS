@@ -97,6 +97,10 @@ eq('energy rounds to whole kcal', rows[0].amount, 1391);
 eq('energy percentage', rows[0].percent, 70);
 eq('fibre row is marked at least', rows[4].atLeast, true);
 eq('an empty day is zero, not unknown', dayNutrition([]).totals.protein_g, 0);
+const noneKnown = nutritionRows({ calories: 500, carbs_g: 0, fat_g: 0, protein_g: 0, fibre_g: 0 }, { fibre_g: false });
+eq('fibre with nothing counted is unknown, not "at least 0"', noneKnown[4].amount, null);
+eq('…and has no percentage', noneKnown[4].percent, null);
+eq('a real zero that is complete stays zero', noneKnown[2].amount, 0);
 
 // ============ Recipe page helpers ============
 console.log('\nRecipe page');

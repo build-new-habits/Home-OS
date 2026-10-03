@@ -1,4 +1,5 @@
-// js/views/dashboard.js — 03 Oct 2026 v7
+// js/views/dashboard.js — 03 Oct 2026 v8
+// v8: kitchen-only mode hands over to views/kitchenToday.js (K7).
 // v7: kitchen-only mode parks water, chores and exercises (K2).
 // Phase 9: what is actually happening today.
 //
@@ -25,6 +26,7 @@
 // once, not per chore.
 
 import { dashboardLinks, KITCHEN_ONLY } from '../navConfig.js';
+import { render as renderKitchenToday } from './kitchenToday.js';
 import { formatDateDisplay, todayIso } from '../lib/dates.js';
 import { totalForDate, logWater, GLASS_ML, DAILY_TARGET_ML } from '../data/water.js';
 import { listEvents } from '../data/calendar.js';
@@ -51,6 +53,10 @@ function todayDayValue() {
 }
 
 export function render(mountEl) {
+  // Kitchen rebuild K7: the kitchen app has its own Today. This screen stays
+  // exactly as it was for the full app.
+  if (KITCHEN_ONLY) return renderKitchenToday(mountEl);
+
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;

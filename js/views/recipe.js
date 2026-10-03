@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v1
+// js/views/recipe.js — 03 Oct 2026 v2
+// v2: nutrition bars moved to components/nutritionBars.js (shared with Today).
 // Kitchen rebuild, K5. One recipe on its own page.
 //
 // ---- Why a page and not the sheet ----
@@ -21,7 +22,8 @@
 import { el } from '../lib/dom.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd } from '../data/recipeLibrary.js';
 import { referenceBySlug } from '../data/foodReference.js';
-import { recipeNutrition, nutritionRows, REFERENCE_INTAKES } from '../data/nutrition.js';
+import { recipeNutrition } from '../data/nutrition.js';
+import { nutritionBars } from '../components/nutritionBars.js';
 import { describeRecipeTime } from '../lib/recipeTime.js';
 import { describeEquipment } from '../lib/recipeEquipment.js';
 import { getRecipeNote, setFavourite } from '../data/recipeNotes.js';
@@ -91,45 +93,6 @@ function stepText(step, refMap) {
     const entry = refMap.get(slug);
     return entry ? cookingName(entry.name).toLowerCase() : slug.replace(/-/g, ' ');
   });
-}
-
-function nutritionBlock(result) {
-  const section = el('section', { class: 'recipe-page-section', 'aria-labelledby': 'recipe-nutrition-h' });
-  section.appendChild(el('h2', { id: 'recipe-nutrition-h', text: 'Nutrition per serving' }));
-  const rows = nutritionRows(result.perServing, result.complete, REFERENCE_INTAKES);
-  const list = el('ul', { class: 'nutrition-bars' });
-  for (const row of rows) {
-    const li = el('li', { class: 'nutrition-row' });
-    const amount = row.amount === null ? 'unknown' : `${row.atLeast ? 'at least ' : ''}${row.amount.toLocaleString('en-GB')} ${row.unit}`;
-    li.appendChild(el('span', { class: 'nutrition-name', text: row.label }));
-    li.appendChild(el('span', { class: 'nutrition-amount', text: amount }));
-    const bar = el('span', { class: 'nutrition-bar', 'aria-hidden': 'true' });
-    const fill = el('span', { class: 'nutrition-bar-fill' });
-    // The bar stops at full; the number does not. Over 100% is information,
-    // not a warning, so it gets no colour of its own (principle 1).
-    fill.style.width = `${Math.min(row.percent || 0, 100)}%`;
-    bar.appendChild(fill);
-    li.appendChild(bar);
-    li.appendChild(el('span', {
-      class: 'nutrition-percent',
-      text: row.percent === null ? '' : `${row.percent}%`
-    }));
-    if (row.percent !== null) {
-      li.appendChild(el('span', {
-        class: 'visually-hidden',
-        text: ` of a day's reference intake of ${row.target.toLocaleString('en-GB')} ${row.unit}`
-      }));
-    }
-    list.appendChild(li);
-  }
-  section.appendChild(list);
-  let note = 'An estimate, from published averages for each ingredient. '
-    + 'Percentages are of a day’s UK adult reference intake.';
-  if (result.incompleteCount > 0) {
-    note += ` ${result.incompleteNames.join(', ')} could not be counted, so the real figures are higher.`;
-  }
-  section.appendChild(el('p', { class: 'field-hint', text: note }));
-  return section;
 }
 
 export function render(mountEl) {
@@ -244,7 +207,18 @@ export function render(mountEl) {
     }, { signal });
 
     // ---- Nutrition -------------------------------------------------------
-    body.appendChild(nutritionBlock(recipeNutrition(recipe, refMap)));
+    {
+      const result = recipeNutrition(recipe, refMap);
+      let note = 'An estimate, from published averages for each ingredient. '
+        + 'Percentages are of a day\u2019s UK adult reference intake.';
+      if (result.incompleteCount > 0) {
+        note += ` ${result.incompleteNames.join(', ')} could not be counted, so the real figures are higher.`;
+      }
+      body.appendChild(nutritionBars({
+        id: 'recipe-nutrition-h', title: 'Nutrition per serving',
+        totals: result.perServing, complete: result.complete, note
+      }));
+    }
 
     // ---- Ingredients, scaled --------------------------------------------
     const ingSection = el('section', { class: 'recipe-page-section', 'aria-labelledby': 'recipe-ing-h' });
