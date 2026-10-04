@@ -5,8 +5,8 @@ header.plan-header
     a"This week"
 p.visually-hidden[role=status]
 div.plan-view-switch[role=group]
-  button.chip-toggle[type=button][aria-pressed=true]"Board"
-  button.chip-toggle[type=button][aria-pressed=false]"List"
+  button.chip-toggle[type=button][aria-pressed=true]"Grid"
+  button.chip-toggle[type=button][aria-pressed=false]"Day by day"
 div.plan-board-wrap
   p.visually-hidden
   table.plan-board

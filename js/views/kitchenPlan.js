@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v10
+// js/views/kitchenPlan.js — 04 Oct 2026 v11
+// v11: the view switch says Grid and Day by day ("Board" meant nothing to
+// Eileen in re-trace 3).
 // v10: Fill the week for me — ideas from your meals AND the library
 // (data/weekIdeas.js): household diet, quick weekday dinners, variety, uses
 // up what needs using; dinners by default, lunches and breakfasts if asked;
@@ -190,8 +192,8 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   let view = 'board';
   try { if (localStorage.getItem(VIEW_KEY) === 'list') view = 'list'; } catch { /* fine */ }
   const switcher = el('div', { class: 'plan-view-switch', role: 'group', 'aria-label': 'Show the week as' });
-  const boardBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'Board' });
-  const listBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'List' });
+  const boardBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'Grid' });
+  const listBtn = el('button', { type: 'button', class: 'chip-toggle', text: 'Day by day' });
   switcher.append(boardBtn, listBtn);
   const listWrap = el('div', { class: 'plan-list' });
   const setView = (next) => {

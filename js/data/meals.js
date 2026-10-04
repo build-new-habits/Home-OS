@@ -1,4 +1,5 @@
-// js/data/meals.js — 04 Oct 2026 v9
+// js/data/meals.js — 04 Oct 2026 v10
+// v10: fibre filled from the food reference until foods.fibre_g exists.
 // v9: listIngredients reads every page (lib/readAll.js): past 1,000 rows
 // the newest meals' ingredients were silently missing.
 // v8: optional fibre in computeMacros (never marks a row incomplete).
@@ -150,7 +151,31 @@ export async function listIngredients(mealId) {
     if (mealId) query = query.eq('meal_id', mealId);
     return query;
   };
-  return readAll(build);
+  const result = await readAll(build);
+  if (result.ok) await fibreFromReference(result.data);
+  return result;
+}
+
+/**
+ * v10 (4 Oct 2026): fibre from the reference while foods.fibre_g waits on
+ * migration 026. Today said "Fibre: not recorded yet" for every planned
+ * meal, though the recipe page showed a figure from the same reference.
+ * Exact name or alias only (foodReference.lookup), and only where the food
+ * has no figure of its own. Never stored; a failed read changes nothing.
+ */
+async function fibreFromReference(rows = []) {
+  const missing = (rows || []).filter((r) => r.foods && (r.foods.fibre_g === undefined || r.foods.fibre_g === null));
+  if (!missing.length) return;
+  try {
+    const { lookup } = await import('./foodReference.js');
+    const seen = new Map();
+    for (const row of missing) {
+      const name = row.foods.name;
+      if (!seen.has(name)) seen.set(name, await lookup(name));
+      const entry = seen.get(name);
+      if (entry && Number.isFinite(Number(entry.fibre_g))) row.foods.fibre_g = Number(entry.fibre_g);
+    }
+  } catch { /* the reference is a nicety here, never a failure */ }
 }
 
 /** Ingredient rows keyed by meal_id. */

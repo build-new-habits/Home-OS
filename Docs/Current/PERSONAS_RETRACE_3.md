@@ -358,3 +358,9 @@ updates settings at once, so Today stops offering the walk-through.
 - "Nothing planned today" when nothing is; "Nothing else" only after a meal.
 - Oven steps read "200°C (180°C fan, gas 6)" on the recipe page and in cook
   mode; text that already mentions fan or gas is left alone.
+
+### Batch 5 — fibre counted, plainer words
+- Today and the plan counted fibre as "not recorded yet" for every meal,
+  though the recipe page showed it. Fibre now comes from the food reference
+  (exact name or alias) until foods.fibre_g arrives with migration 026.
+- The plan's view switch says Grid and Day by day.
