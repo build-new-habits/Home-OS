@@ -1,4 +1,6 @@
-// js/data/portions.js — 04 Oct 2026 v1
+// js/data/portions.js — 04 Oct 2026 v2
+// v2: a chip for each head count, Just me (1) up to Everyone; nutrition is
+// always one person's portion (Today and Plan count one portion each).
 // Kitchen rebuild. How many portions a planned meal makes, and how many of
 // those are spare.
 //
@@ -47,16 +49,25 @@ export function sparePortions(entry, members = []) {
   return Math.max(0, Math.floor(entryPortions(entry, members) - people));
 }
 
-/** The quick choices offered beside − and +. Pure. */
+/**
+ * The quick choices offered beside − and +. Pure.
+ * Graeme, 4 Oct 2026: "my default is a family of 4, but sometimes I cook on
+ * my own, and sometimes for 2 or 3." So one tap for each head count from
+ * just you up to everyone, then double to freeze half.
+ */
 export function portionChoices(entry, members = []) {
-  const people = peoplePortions(entry, members);
-  const meal = (entry && entry.meals) || {};
+  const people = peoplePortions({ member_ids: [] }, members);
+  const everyone = people === null ? null : Math.max(1, Math.ceil(people));
+  const top = Math.min(6, everyone || 4);
   const out = [];
-  if (people !== null) {
-    const whole = Math.max(1, Math.ceil(people));
-    out.push({ value: whole, label: members.length === 1 || whole === 1 ? `Just for me (${whole})` : `For us (${whole})` });
-    out.push({ value: Math.min(MAX_PORTIONS, whole * 2), label: `Double, freeze half (${Math.min(MAX_PORTIONS, whole * 2)})` });
+  for (let n = 1; n <= top; n += 1) {
+    let label = String(n);
+    if (n === 1) label = 'Just me (1)';
+    else if (n === everyone) label = members.length > 1 ? `Everyone (${n})` : String(n);
+    out.push({ value: n, label });
   }
+  if (everyone) out.push({ value: Math.min(MAX_PORTIONS, everyone * 2), label: `Double, freeze half (${Math.min(MAX_PORTIONS, everyone * 2)})` });
+  const meal = (entry && entry.meals) || {};
   const recipe = Number(meal.default_serves);
   if (recipe > 0 && !out.some((c) => c.value === recipe)) out.push({ value: recipe, label: `As the recipe (${recipe})` });
   return out;

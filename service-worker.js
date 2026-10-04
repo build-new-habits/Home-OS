@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v115
+// service-worker.js — 04 Oct 2026 v116
+// v116: portion chips for each head count. Shell v162.
 // v115: portions and pantry once (data/portions.js, data/pantryTaken.js, data/homeMade.js,
 // components/portionsControl.js, components/spareSheet.js). Shell v161.
 // v114: drinks — beer, wine, spirit, cocktail. Shell v160.
@@ -259,7 +260,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v161';
+const CACHE_NAME = 'home-os-shell-v162';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -267,9 +268,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=161',
-  './css/base.css?v=161',
-  './css/components.css?v=161',
+  './css/tokens.css?v=162',
+  './css/base.css?v=162',
+  './css/components.css?v=162',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
