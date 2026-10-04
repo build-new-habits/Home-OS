@@ -1,4 +1,5 @@
-// js/data/drinks.js — 04 Oct 2026 v1
+// js/data/drinks.js — 04 Oct 2026 v2
+// v2: Beer or cider, Wine, Spirit, Cocktail — standard servings, never brands.
 // Kitchen rebuild. Drinks: a row on the plan and on Today, added in a tap.
 //
 // ---- Why ----
@@ -27,6 +28,13 @@ export const DRINKS = [
   { value: 'smoothie', label: 'Smoothie', serving: 'a 150 ml glass', per: { calories: 80, carbs_g: 17.5, fat_g: 0.3, protein_g: 1, fibre_g: 1.5 } },
   { value: 'squash', label: 'Squash', serving: 'a 250 ml glass, no added sugar', per: { calories: 5, carbs_g: 0.8, fat_g: 0, protein_g: 0, fibre_g: 0 } },
   { value: 'fizzy', label: 'Fizzy drink', serving: 'a 330 ml can, full sugar', per: { calories: 139, carbs_g: 35, fat_g: 0, protein_g: 0, fibre_g: 0 } },
+  // Alcohol (4 Oct 2026): standard UK servings and strengths, not brands.
+  // Most of the energy is the alcohol itself (7 kcal a gram), so it shows in
+  // Energy but not in carbs, fat or protein. NHS / Drinkaware figures.
+  { value: 'beer', label: 'Beer or cider', serving: 'a pint (568 ml) at about 4.5%', per: { calories: 215, carbs_g: 18, fat_g: 0, protein_g: 1.7, fibre_g: 0 } },
+  { value: 'wine', label: 'Wine', serving: 'a 175 ml glass at about 12%', per: { calories: 160, carbs_g: 4.5, fat_g: 0, protein_g: 0.1, fibre_g: 0 } },
+  { value: 'spirit', label: 'Spirit', serving: 'a single 25 ml measure at 40%, no mixer', per: { calories: 56, carbs_g: 0, fat_g: 0, protein_g: 0, fibre_g: 0 } },
+  { value: 'cocktail', label: 'Cocktail', serving: 'a typical cocktail with two measures and a mixer', per: { calories: 200, carbs_g: 20, fat_g: 0, protein_g: 0, fibre_g: 0 } },
   { value: 'other', label: 'Something else', serving: 'nutrition not known', per: null }
 ];
 

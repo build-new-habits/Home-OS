@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v113
+// service-worker.js — 04 Oct 2026 v114
+// v114: drinks — beer, wine, spirit, cocktail. Shell v160.
 // v113: lib/readAll.js — ingredients and foods past 1,000 rows. Shell v159.
 // v112: drinks (data/drinks.js, components/drinksQuickAdd.js). Shell v158.
 // v111: Eaten tick (data/eaten.js, components/eatenTick.js). Shell v157.
@@ -256,7 +257,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v159';
+const CACHE_NAME = 'home-os-shell-v160';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -264,9 +265,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=159',
-  './css/base.css?v=159',
-  './css/components.css?v=159',
+  './css/tokens.css?v=160',
+  './css/base.css?v=160',
+  './css/components.css?v=160',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

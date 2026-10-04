@@ -69,6 +69,14 @@ section.today-section
       li
         button.chip-toggle.drinks-chip[type=button]"+ Fizzy drink"
       li
+        button.chip-toggle.drinks-chip[type=button]"+ Beer or cider"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Wine"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Spirit"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Cocktail"
+      li
         button.chip-toggle.drinks-chip[type=button][aria-expanded=false]"+ Something else"
     div.drinks-other[hidden=]
       label"What was it?"
@@ -77,6 +85,10 @@ section.today-section
     details.drinks-servings
       summary"What each one counts as"
       ul
+        li
+        li
+        li
+        li
         li
         li
         li

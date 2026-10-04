@@ -559,6 +559,8 @@ check('the library is not empty', count > 100, `${count}`);
   const day = dayNutrition(dr.drinkNutritionItems(dr.listDrinks(W, 'sun')));
   eq('a tea and a water count as the tea', day.totals.calories, 17);
   check('something else makes the figures a floor', day.complete.calories === false);
+  eq('a pint is a standard pint, not a brand', dr.drinkKind('beer').per.calories, 215);
+  check('alcohol has a stated serving', ['beer', 'wine', 'spirit', 'cocktail'].every((k) => /ml|measure/.test(dr.drinkKind(k).serving)));
   eq('only the newest three weeks are kept', Object.keys(dr.pruneWeeks({ '2026-09-07': {}, '2026-09-14': {}, '2026-09-21': {}, '2026-09-28': {} })).join(','), '2026-09-14,2026-09-21,2026-09-28');
   globalThis.localStorage = saved;
 }
