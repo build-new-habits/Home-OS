@@ -1826,6 +1826,35 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   check('a Wednesday is this week', !weekendLooksAhead(wed));
 }
 
+// ---- Try it on this phone: the local client (re-trace 3) ----
+{
+  const store = new Map();
+  const hadStorage = 'localStorage' in globalThis;
+  const before = globalThis.localStorage;
+  globalThis.localStorage = { getItem: (k) => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, String(v)), removeItem: (k) => store.delete(k) };
+  const { localClient } = await import(pathToFileURL(path.join(REPO, 'js/lib/localClient.js')).href);
+  const db = localClient();
+  const food = await db.from('foods').insert({ name: 'Onion' }).select().single();
+  check('a trial phone saves a food', food.data && food.data.id && !food.error);
+  const meal = await db.from('meals').insert({ name: 'Soup', default_serves: 2 }).select().single();
+  await db.from('meal_ingredients').insert({ meal_id: meal.data.id, food_id: food.data.id, quantity_g: 100, unit: 'g' });
+  const rows = await db.from('meal_ingredients').select('id, meal_id, foods(id, name)').eq('meal_id', meal.data.id);
+  eq('embedded tables come back joined', rows.data[0].foods.name, 'Onion');
+  const head = await db.from('meals').select('id', { count: 'exact', head: true });
+  eq('head counts count', head.count, 1);
+  await db.from('user_settings').upsert({ theme: 'dusk' }, { onConflict: 'user_id' });
+  await db.from('user_settings').upsert({ theme: 'default' }, { onConflict: 'user_id' });
+  const settings = await db.from('user_settings').select('*');
+  eq('upsert on user_id keeps one row', settings.data.length, 1);
+  const none = await db.from('meals').select('*').eq('id', 'missing').maybeSingle();
+  check('maybeSingle with nothing is not an error', none.data === null && none.error === null);
+  const members = await db.from('household_members').select('*');
+  eq('a trial starts with one person at home', members.data.length, 1);
+  const rpc = await db.rpc('redeem_household_invite', {});
+  check('server-only things say so in words', rpc.error && /account/.test(rpc.error.message));
+  if (hadStorage) globalThis.localStorage = before; else delete globalThis.localStorage;
+}
+
 console.log('');
 
 if (failures.length) {

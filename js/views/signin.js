@@ -1,4 +1,5 @@
-// js/views/signin.js — 01 Sep 2026 v2
+// js/views/signin.js — 04 Oct 2026 v3
+// v3: New here? Try it on this phone, before any account.
 // The unauthenticated entry screen. Extracted whole from app.js's
 // buildSignInView() so that auth UI can change without repeatedly editing
 // a write-once gating file — app.js now imports and calls this instead.
@@ -20,6 +21,7 @@
 
 import { supabase } from '../supabaseClient.js';
 import { announce } from '../lib/a11y.js';
+import { enterLocalMode } from '../lib/localClient.js';
 
 const REDIRECT_TO = new URL('./', window.location.href).href;
 
@@ -197,7 +199,24 @@ export function buildSignInView() {
   });
   resetDetails.appendChild(resetBtn);
 
-  wrap.append(h1, strap, form, magicDetails, resetDetails);
+  // ---- Try it on this phone (4 Oct 2026) ----
+  // Persona re-trace 3: someone trying the app before paying met a sign-in
+  // form and went no further. They can now use the whole kitchen first,
+  // kept on this phone (lib/localClient.js), and make an account later.
+  const trial = el('section', { class: 'signin-trial' });
+  trial.setAttribute('aria-labelledby', 'signin-trial-h');
+  trial.appendChild(el('h2', { id: 'signin-trial-h', class: 'signin-trial-title', text: 'New here?' }));
+  trial.appendChild(el('p', {
+    class: 'field-hint',
+    text: 'Try it first, no account needed. Everything stays on this phone until you decide.'
+  }));
+  const trialBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Try it on this phone' });
+  trialBtn.addEventListener('click', () => {
+    if (!enterLocalMode()) setStatus('This phone is not letting the app save anything, so the trial cannot start. Check private browsing is off.');
+  });
+  trial.appendChild(trialBtn);
+
+  wrap.append(h1, strap, trial, el('h2', { class: 'signin-have-title', text: 'Already have an account?' }), form, magicDetails, resetDetails);
   document.body.appendChild(wrap);
   h1.focus();
 }

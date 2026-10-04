@@ -1,4 +1,5 @@
-// js/views/settings.js — 03 Oct 2026 v19
+// js/views/settings.js — 04 Oct 2026 v20
+// v20: on a trial phone, Account explains the trial and offers Make an account.
 // v19: focus-area checkboxes hidden while KITCHEN_ONLY (K2).
 // v18: invite code renders below the button that creates it, and gains a
 // Copy control. Device test 5 Sep 2026.
@@ -31,6 +32,7 @@ import {
   createInvite, listInvites, revokeInvite, redeemInvite
 } from '../data/household.js';
 import { confirmDialog } from '../components/confirmDialog.js';
+import { isLocalMode, leaveLocalMode } from '../lib/localClient.js';
 
 const THEME_OPTIONS = [
   { value: 'default', label: 'Default' },
@@ -922,6 +924,18 @@ export function render(mountEl) {
     });
     accountFieldset.appendChild(signOutBtn);
 
+    // ---- Trial on this phone (4 Oct 2026) ----
+    // No account, no password, no sign out: say what a trial is, plainly,
+    // and how to move on from it.
+    if (isLocalMode()) {
+      signOutBtn.remove();
+      accountFieldset.appendChild(el('p', { class: 'field-hint settings-trial', text: 'You are trying Home-OS on this phone. Everything you add stays here and nowhere else.' }));
+      accountFieldset.appendChild(el('p', { class: 'field-hint settings-trial', text: 'An account lets you use it on another phone and share the plan and the list with your household. For now a new account starts empty; what you made here stays on this phone if you come back to the trial.' }));
+      const makeBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Make an account' });
+      makeBtn.addEventListener('click', () => leaveLocalMode());
+      accountFieldset.appendChild(makeBtn);
+    }
+
     // ---- Change password ----
     // Behind a <details> so the everyday Account view stays a single
     // Sign out button; opening it is a deliberate act, not a stumble.
@@ -1030,6 +1044,7 @@ export function render(mountEl) {
     pwDetails.appendChild(resetRow);
 
     accountFieldset.appendChild(pwDetails);
+    if (isLocalMode()) pwDetails.hidden = true;
 
     // Order: the things somebody else is waiting on, then what you use it
     // for, then everything that gets set once.

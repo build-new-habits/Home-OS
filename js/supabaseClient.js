@@ -1,4 +1,5 @@
-// js/supabaseClient.js — 17 Aug 2026 v3
+// js/supabaseClient.js — 04 Oct 2026 v4
+// v4: trial mode hands out lib/localClient.js (Try it on this phone).
 // Single shared Supabase client. Created once, imported everywhere else.
 // No bundler in this build, so previously the client library was loaded
 // from a pinned esm.sh CDN URL. That broke the app entirely when offline —
@@ -10,6 +11,7 @@
 // how it was built) — same-origin, precached like any other shell file.
 import { createClient } from './vendor/supabase-js.js';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+import { isLocalMode, localClient } from './lib/localClient.js';
 
 // v3 — BUG FIX. detectSessionInUrl was false, which broke every email-based
 // sign-in path.
@@ -37,7 +39,10 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 // is what makes `type=recovery` survive the round trip, which is what lets
 // app.js tell a password-reset link apart from an ordinary sign-in. Switching
 // to 'pkce' here would silently turn every reset link into a plain sign-in.
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+// v4 (4 Oct 2026): Try it on this phone. While the phone is in trial mode
+// the app talks to lib/localClient.js, which keeps everything in this
+// browser's storage, instead of the network. No view knows the difference.
+export const supabase = isLocalMode() ? localClient() : createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,

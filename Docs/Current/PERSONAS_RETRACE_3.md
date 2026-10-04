@@ -364,3 +364,14 @@ updates settings at once, so Today stops offering the walk-through.
   though the recipe page showed it. Fibre now comes from the food reference
   (exact name or alias) until foods.fibre_g arrives with migration 026.
 - The plan's view switch says Grid and Day by day.
+
+### Batch 6 — Try it on this phone
+The sign-in screen now opens with "New here? Try it on this phone". The
+whole kitchen works with no account: everything is kept in the phone's
+storage by a stand-in for the database (js/lib/localClient.js) that answers
+the same calls, so no screen changed. Tapping it goes straight into the
+guided first run. Settings explains the trial and offers Make an account;
+it says plainly that a new account starts empty for now (moving a trial's
+meals into an account is still to build). Invites and sign-in links say
+they need an account. On a trial phone migration 026's features (leftovers,
+courses, Eaten) work, because the local store takes any column.
