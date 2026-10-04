@@ -115,6 +115,26 @@ div.plan-board-wrap
           button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
         td
           button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+      tr
+        th.plan-row-head[scope=row]
+          svg
+            path
+            path
+          span.visually-hidden
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
+        td
+          button.plan-cell.plan-cell-open[type=button][aria-pressed=false]
   ul.plan-legend
     li
       span.meal-breakfast.plan-legend-swatch
@@ -124,6 +144,8 @@ div.plan-board-wrap
       span.meal-dinner.plan-legend-swatch
     li
       span.meal-snack.plan-legend-swatch
+    li
+      span.meal-drink.plan-legend-swatch
     li
       span.plan-legend-open.plan-legend-swatch
 div.plan-list[hidden=]

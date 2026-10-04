@@ -4924,3 +4924,19 @@ body.sheet-open {
 .today-meal-text { flex: 1; }
 .today-meal-entry { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .today-next .eaten-tick { margin-bottom: var(--space-2); }
+
+/* Drinks quick add — 04 Oct 2026 */
+.drinks-quick { display: flex; flex-direction: column; gap: var(--space-2); }
+.drinks-tally { list-style: none; margin: 0; padding: 0; }
+.drinks-tally-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); border-top: 1px solid var(--color-border); min-height: var(--tap-min); }
+.drinks-tally-row:first-child { border-top: 0; }
+.drinks-tally-name { font-weight: 600; }
+.drinks-none { margin: 0; }
+.drinks-add-title { margin: var(--space-2) 0 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+.drinks-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.drinks-chip { min-height: var(--tap-min); }
+.drinks-other { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.drinks-other label { flex: 1 1 100%; font-size: var(--text-sm); }
+.drinks-other input { flex: 1 1 10em; min-height: var(--tap-min); }
+.drinks-servings { font-size: var(--text-sm); color: var(--color-text-muted); }
+.drinks-servings summary { min-height: var(--tap-min); display: flex; align-items: center; cursor: pointer; }

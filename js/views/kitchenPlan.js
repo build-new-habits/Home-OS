@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v7
+// js/views/kitchenPlan.js — 04 Oct 2026 v8
+// v8: a Drinks row on the board and the list; its panel adds a drink in one
+// tap (data/drinks.js), and the day's nutrition counts them.
 // v7: an Eaten tick on each planned meal this week (data/eaten.js).
 // v6: Board or List — the week in words, day by day, for a small phone.
 // v5: starters and puddings — listed in eating order with their course, and
@@ -51,8 +53,13 @@ import { eatenTick } from '../components/eatenTick.js';
 import { isEaten } from '../data/eaten.js';
 import { courseOf, courseLabel, sortByCourse } from '../data/courses.js';
 import { loadAllRecipes } from '../data/recipeLibrary.js';
+import { listDrinks, tallyText, drinkNutritionItems } from '../data/drinks.js';
+import { drinksQuickAdd } from '../components/drinksQuickAdd.js';
 
 const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+// The board's rows: the meal slots, then drinks (kept on this phone, not in
+// the plan table; data/drinks.js).
+const ROWS = [...SLOTS.filter((s) => s.value !== 'drink'), { value: 'drink', label: 'Drinks' }];
 const SLOT_WORDS = { breakfast: 'breakfast', lunch: 'lunch', dinner: 'dinner', snack: 'snacks', drink: 'drinks' };
 
 /** "Monday 28 September to Sunday 4 October". */
@@ -146,7 +153,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   table.append(thead, tbody);
   boardWrap.append(help, table);
   const legend = el('ul', { class: 'plan-legend', 'aria-hidden': 'true' });
-  for (const s of SLOTS) {
+  for (const s of ROWS) {
     const li = el('li');
     li.appendChild(el('span', { class: `plan-legend-swatch meal-${s.value}` }));
     li.appendChild(document.createTextNode(s.label));
@@ -269,13 +276,14 @@ export function render(mountEl, { week = 'this' } = {}) {
   function paintBoard() {
     if (view === 'list') paintList();
     tbody.replaceChildren();
-    SLOTS.forEach((s, r) => {
+    ROWS.forEach((s, r) => {
       const tr = el('tr');
       const th = el('th', { scope: 'row', class: 'plan-row-head' });
       th.appendChild(mealIcon(s.value, 18));
       th.appendChild(el('span', { class: 'visually-hidden', text: s.label }));
       tr.appendChild(th);
       DAYS.forEach((d, c) => {
+        if (s.value === 'drink') { tr.appendChild(drinkCell(d, s, r, c)); return; }
         const here = cellEntries(d.value, s.value);
         const on = sel.day === d.value && sel.slot === s.value;
         const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
@@ -305,6 +313,28 @@ export function render(mountEl, { week = 'this' } = {}) {
     });
   }
 
+  function drinkCell(d, s, r, c) {
+    const drinks = listDrinks(weekStart, d.value);
+    const on = sel.day === d.value && sel.slot === 'drink';
+    const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
+    const btn = el('button', {
+      type: 'button',
+      class: drinks.length ? 'plan-cell meal-drink' : 'plan-cell plan-cell-open',
+      'aria-pressed': String(on),
+      'aria-label': `${d.label} drinks: ${drinks.length ? tallyText(drinks) : 'none yet'}`,
+      tabindex: on ? '0' : '-1',
+      'data-r': String(r),
+      'data-c': String(c)
+    });
+    if (drinks.length) {
+      btn.appendChild(mealIcon('drink', 18));
+      if (drinks.length > 1) btn.appendChild(el('span', { class: 'plan-cell-count', 'aria-hidden': 'true', text: String(drinks.length) }));
+    }
+    btn.addEventListener('click', () => select(d.value, 'drink', true), { signal });
+    td.appendChild(btn);
+    return td;
+  }
+
   // The week in words: each day, each meal, tap one to work on it.
   function paintList() {
     listWrap.replaceChildren();
@@ -312,18 +342,22 @@ export function render(mountEl, { week = 'this' } = {}) {
       const day = el('section', { class: d.value === todayValue ? 'plan-list-day is-today' : 'plan-list-day', 'aria-labelledby': `plan-list-${d.value}` });
       day.appendChild(el('h2', { id: `plan-list-${d.value}`, class: 'plan-list-day-name', text: d.value === todayValue ? `${d.label} (today)` : d.label }));
       const ul = el('ul', { class: 'plan-list-slots' });
-      for (const s of SLOTS) {
+      for (const s of ROWS) {
         const here = cellEntries(d.value, s.value);
+        const drinks = s.value === 'drink' ? listDrinks(weekStart, d.value) : [];
         const li = el('li');
-        const b = el('button', { type: 'button', class: here.length ? 'plan-list-slot' : 'plan-list-slot is-open' });
+        const filled = s.value === 'drink' ? drinks.length > 0 : here.length > 0;
+        const b = el('button', { type: 'button', class: filled ? 'plan-list-slot' : 'plan-list-slot is-open' });
         b.appendChild(mealGlyph(s.value, 18));
         const text = el('span', { class: 'plan-list-text' });
         text.appendChild(el('span', { class: 'plan-list-slot-name', text: s.label }));
-        text.appendChild(el('span', { class: 'plan-list-meals', text: here.length
+        text.appendChild(el('span', { class: 'plan-list-meals', text: s.value === 'drink'
+          ? (drinks.length ? tallyText(drinks) : 'None yet')
+          : here.length
           ? here.map((e) => `${(e.meals && e.meals.name) || 'A meal'}${isLeftover(e) ? ' (leftovers)' : ''}${isEaten(e) ? ' (eaten)' : ''}`).join(', ')
           : 'Open' }));
         b.appendChild(text);
-        b.setAttribute('aria-label', `${d.label} ${SLOT_WORDS[s.value]}: ${here.length ? text.lastChild.textContent : 'open'}. Change it.`);
+        b.setAttribute('aria-label', `${d.label} ${SLOT_WORDS[s.value]}: ${filled ? text.lastChild.textContent : (s.value === 'drink' ? 'none yet' : 'open')}. Change it.`);
         b.addEventListener('click', () => {
           sel = { day: d.value, slot: s.value };
           paintBoard();
@@ -351,9 +385,9 @@ export function render(mountEl, { week = 'this' } = {}) {
     if (event.key === 'End') move = [0, DAYS.length - 1 - c];
     if (!move) return;
     event.preventDefault();
-    const nr = Math.max(0, Math.min(SLOTS.length - 1, r + move[0]));
+    const nr = Math.max(0, Math.min(ROWS.length - 1, r + move[0]));
     const nc = Math.max(0, Math.min(DAYS.length - 1, c + move[1]));
-    select(DAYS[nc].value, SLOTS[nr].value, false);
+    select(DAYS[nc].value, ROWS[nr].value, false);
     const target = tbody.querySelector(`[data-r="${nr}"][data-c="${nc}"]`);
     if (target) target.focus();
   }, { signal });
@@ -383,7 +417,7 @@ export function render(mountEl, { week = 'this' } = {}) {
       if (rows.length === 0) return null;
       const m = computeMacros(rows, { serves: (entry.meals && entry.meals.default_serves) || 1 });
       return { perServing: m.perServing, complete: m.complete };
-    }).filter(Boolean);
+    }).filter(Boolean).concat(drinkNutritionItems(listDrinks(weekStart, sel.day)));
     if (items.length === 0) {
       dayNutri.appendChild(el('p', { class: 'field-hint', text: 'Nothing planned with ingredients yet.' }));
       return;
@@ -408,7 +442,8 @@ export function render(mountEl, { week = 'this' } = {}) {
   function paintDetail() {
     detail.replaceChildren();
     const d = DAYS.find((x) => x.value === sel.day);
-    const s = SLOTS.find((x) => x.value === sel.slot);
+    const s = ROWS.find((x) => x.value === sel.slot);
+    if (s.value === 'drink') { paintDrinks(d); return; }
     const here = cellEntries(sel.day, sel.slot);
 
     const head = el('div', { class: 'plan-detail-head' });
@@ -506,6 +541,18 @@ export function render(mountEl, { week = 'this' } = {}) {
       wrap.appendChild(ul);
       detail.appendChild(wrap);
     }
+  }
+
+  function paintDrinks(d) {
+    const head = el('div', { class: 'plan-detail-head' });
+    head.appendChild(mealGlyph('drink', 22));
+    head.appendChild(el('h2', { id: 'plan-detail-h', tabindex: '-1', text: `${d.label} drinks` }));
+    detail.appendChild(head);
+    detail.appendChild(el('p', { class: 'field-hint', text: 'One tap for each drink. Kept on this phone, and counted in the day’s nutrition.' }));
+    detail.appendChild(drinksQuickAdd({
+      weekStart, day: d.value, dayLabel: d.label, signal,
+      onChange: () => { paintBoard(); paintDayNutrition(); }
+    }));
   }
 
   async function addMeal(meal, button) {

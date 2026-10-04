@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v6
+// js/views/kitchenToday.js — 04 Oct 2026 v7
+// v7: Drinks today — one tap per drink (data/drinks.js), counted in nutrition.
 // v6: an Eaten tick on each of today's meals; nutrition eaten so far beside
 // the day as planned; "Take them out" after cooking ticks the meal too.
 // v5: Tomorrow — what is planned and what to take out of the freezer tonight;
@@ -29,7 +30,9 @@ import { el } from '../lib/dom.js';
 import { todayIso } from '../lib/dates.js';
 import { listPlan, servesFor, isLeftover, leftoversReady } from '../data/mealPlan.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
-import { nextWeekStart } from '../lib/weeks.js';
+import { nextWeekStart, thisWeekStart } from '../lib/weeks.js';
+import { listDrinks, drinkNutritionItems } from '../data/drinks.js';
+import { drinksQuickAdd } from '../components/drinksQuickAdd.js';
 import { everydayName } from '../lib/foodNames.js';
 import { loadImages } from '../data/recipeImages.js';
 import { recipePhoto } from '../components/recipePhoto.js';
@@ -129,6 +132,15 @@ export function render(mountEl) {
   restSection.appendChild(restList);
   mountEl.appendChild(restSection);
 
+  // Drinks today (4 Oct 2026): a tap per drink, nothing to plan.
+  const drinksSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-drinks-h' });
+  drinksSection.appendChild(el('h2', { id: 'today-drinks-h', text: 'Drinks today' }));
+  drinksSection.appendChild(drinksQuickAdd({
+    weekStart: thisWeekStart(), day: dayValue, signal: controller.signal,
+    onChange: () => paintNutrition()
+  }));
+  mountEl.appendChild(drinksSection);
+
   // Tomorrow (4 Oct 2026): what is planned, and anything to take out of
   // the freezer tonight. Seeing tomorrow's dinner the night before is when
   // there is still time to defrost it or buy the one missing thing.
@@ -204,19 +216,24 @@ export function render(mountEl) {
       const m = computeMacros(rows, { serves: meal.default_serves || 1 });
       return { perServing: m.perServing, complete: m.complete };
     };
-    const items = entries.map(itemFor).filter(Boolean);
+    // Drinks are had, not planned, so they count in both.
+    const drinks = listDrinks(thisWeekStart(), dayValue);
+    const drinkItems = drinkNutritionItems(drinks);
+    const drinkNote = drinks.length ? ` Includes ${drinks.length} drink${drinks.length === 1 ? '' : 's'}.` : '';
+    const items = entries.map(itemFor).filter(Boolean).concat(drinkItems);
     nutritionWrap.replaceChildren();
     const eaten = eatenOf(entries);
     const eatenItems = eaten.map(itemFor).filter(Boolean);
     if (eatenItems.length > 0) {
-      const day = dayNutrition(eatenItems);
-      const note = `${eaten.length} of ${entries.length} planned meal${entries.length === 1 ? '' : 's'} ticked as eaten. One portion of each, against UK adult reference intakes.`;
+      const day = dayNutrition(eatenItems.concat(drinkItems));
+      const note = `${eaten.length} of ${entries.length} planned meal${entries.length === 1 ? '' : 's'} ticked as eaten. One portion of each, against UK adult reference intakes.${drinkNote}`;
       nutritionWrap.appendChild(nutritionBars({ id: 'today-eaten-h', title: 'Eaten so far today', totals: day.totals, complete: day.complete, note }));
     }
     if (items.length > 0) {
       const day = dayNutrition(items);
-      const skipped = entries.length - items.length;
+      const skipped = entries.length - (items.length - drinkItems.length);
       let note = 'An estimate for what is planned, one portion of each, against UK adult reference intakes.';
+      note += drinkNote;
       if (skipped > 0) note += ` ${skipped} planned meal${skipped === 1 ? ' has' : 's have'} no ingredients yet, so ${skipped === 1 ? 'it is' : 'they are'} not counted.`;
       nutritionWrap.appendChild(nutritionBars({ id: 'today-nutrition-h', title: eatenItems.length ? 'Today as planned' : "Today's nutrition", totals: day.totals, complete: day.complete, note }));
     }

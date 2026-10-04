@@ -542,6 +542,27 @@ check('the library is not empty', count > 100, `${count}`);
   globalThis.localStorage = saved;
 }
 
+// ---- Drinks (04 Oct 2026) ----------------------------------------------
+{
+  const mem = new Map();
+  const saved = globalThis.localStorage;
+  globalThis.localStorage = { getItem: (k) => (mem.has(k) ? mem.get(k) : null), setItem: (k, v) => mem.set(k, String(v)), removeItem: (k) => mem.delete(k) };
+  const dr = await import(`${REPO}/js/data/drinks.js`);
+  const { dayNutrition } = await import(`${REPO}/js/data/nutrition.js`);
+  const W = '2026-09-28';
+  dr.addDrink(W, 'sun', 'tea'); dr.addDrink(W, 'sun', 'water'); dr.addDrink(W, 'sun', 'tea');
+  dr.addDrink(W, 'sun', 'other', 'Kombucha');
+  eq('drinks tally in the order first had', dr.tallyText(dr.listDrinks(W, 'sun')), 'Tea ×2, Water, Kombucha');
+  check('another day is empty', dr.listDrinks(W, 'mon').length === 0);
+  dr.removeDrink(W, 'sun', { kind: 'tea' });
+  eq('taking one off leaves the rest', dr.tallyText(dr.listDrinks(W, 'sun')), 'Tea, Water, Kombucha');
+  const day = dayNutrition(dr.drinkNutritionItems(dr.listDrinks(W, 'sun')));
+  eq('a tea and a water count as the tea', day.totals.calories, 17);
+  check('something else makes the figures a floor', day.complete.calories === false);
+  eq('only the newest three weeks are kept', Object.keys(dr.pruneWeeks({ '2026-09-07': {}, '2026-09-14': {}, '2026-09-21': {}, '2026-09-28': {} })).join(','), '2026-09-14,2026-09-21,2026-09-28');
+  globalThis.localStorage = saved;
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

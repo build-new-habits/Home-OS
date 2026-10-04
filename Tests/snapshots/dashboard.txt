@@ -46,6 +46,47 @@ section.today-section
         span.today-meal-slot
         span.today-meal-none
 section.today-section
+  h2"Drinks today"
+  div.drinks-quick
+    ul.drinks-tally[hidden=]
+    p.drinks-none.field-hint
+    p.drinks-add-title
+    ul.drinks-chips
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Water"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Tea"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Coffee"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Juice"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Milk"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Smoothie"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Squash"
+      li
+        button.chip-toggle.drinks-chip[type=button]"+ Fizzy drink"
+      li
+        button.chip-toggle.drinks-chip[type=button][aria-expanded=false]"+ Something else"
+    div.drinks-other[hidden=]
+      label"What was it?"
+      input[type=text]
+      button.btn.btn-small[type=button]"Add it"
+    details.drinks-servings
+      summary"What each one counts as"
+      ul
+        li
+        li
+        li
+        li
+        li
+        li
+        li
+        li
+        li
+section.today-section
   h2"Tomorrow"
   div.today-tomorrow
     p.field-hint
