@@ -950,7 +950,7 @@ console.log('\nRecipe library — favourites');
   check('the library actually lists recipes in the gate', rows.length > 10,
     `${rows.length} rows`);
 
-  const favChip = [...libMount.querySelectorAll('.library-chips .chip-toggle')][0];
+  const favChip = [...libMount.querySelectorAll('.library-chips .chip-toggle')].find((c) => /^Favourites/.test(c.textContent));
   check('the library offers a favourites filter', !!favChip);
   check('and says how many there are', favChip && /\(2\)/.test(favChip.textContent),
     favChip && favChip.textContent);
@@ -1456,6 +1456,35 @@ console.log('\nPantry quick start');
   check('each ticked thing goes into the pantry', inserts.length === 2, JSON.stringify(writes().map((c) => `${c.table}:${c.op}`)));
   check('as plenty, with no amount needed', levels.length === 2 && inserts.every((c) => c.payload.current_qty === null));
   check('in a sensible place', inserts.every((c) => c.payload.default_location === 'Cupboard'));
+  if (typeof clean === 'function') clean();
+  m.remove();
+}
+
+// ---- Recipes page quick filters (4 Oct 2026) ------------------------------
+console.log('\nRecipes page quick filters');
+{
+  const m = window.document.createElement('main');
+  window.document.body.appendChild(m);
+  const libView = await import(pathToFileURL(path.join(REPO, 'js/views/library.js')).href);
+  const clean = libView.render(m);
+  await settle(250);
+  const all = m.querySelectorAll('.library-row').length;
+  const chip = (name) => [...m.querySelectorAll('.library-chips .chip-toggle')].find((c) => c.textContent === name);
+  check('the quick filters are there', ['Vegetarian', 'Vegan', '30 minutes or less', 'Puddings'].every((n) => chip(n)));
+  click(chip('Puddings'));
+  await settle(50);
+  const puds = m.querySelectorAll('.library-row').length;
+  check('Puddings narrows the list to puddings', puds > 0 && puds < all && chip('Puddings').getAttribute('aria-pressed') === 'true', `${puds} of ${all}`);
+  check('and the folded filters open, saying one is on', /More filters \(1 on\)/.test(m.querySelector('.library-more summary')?.textContent || '') && m.querySelector('.library-more').open);
+  check('focus stays on the chip that was pressed', window.document.activeElement === chip('Puddings'));
+  click(chip('Puddings'));
+  await settle(50);
+  click(chip('30 minutes or less'));
+  await settle(50);
+  const quick = m.querySelectorAll('.library-row').length;
+  check('30 minutes or less narrows the list', quick > 0 && quick < all, `${quick} of ${all}`);
+  check('rows give a time, not a step count', !/\d+ steps/.test(m.querySelector('.library-row-meta')?.textContent || '') && /\d+ min/.test(m.querySelector('.library-row-meta')?.textContent || ''),
+    m.querySelector('.library-row-meta')?.textContent);
   if (typeof clean === 'function') clean();
   m.remove();
 }

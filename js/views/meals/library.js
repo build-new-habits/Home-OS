@@ -1,4 +1,6 @@
-// js/views/meals/library.js — 03 Oct 2026 v6
+// js/views/meals/library.js — 03 Oct 2026 v7
+// v7: quick filters (vegetarian, vegan, 30 minutes or less, puddings); the
+// rest fold under More filters; rows show time instead of a step count.
 // v6: a photo or meal-colour tile beside each recipe.
 // v5: Course filter (starters, mains, puddings); drinks under Meal time.
 // v4: the blurb no longer counts its recipes.
@@ -25,6 +27,7 @@
 
 import { el } from '../../lib/dom.js';
 import { COURSES } from '../../data/courses.js';
+import { estimateRecipeTime } from '../../lib/recipeTime.js';
 import { loadImages } from '../../data/recipeImages.js';
 import { recipePhoto } from '../../components/recipePhoto.js';
 import { announce } from '../../lib/a11y.js';
@@ -57,7 +60,7 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
   let libraryNotes = new Map();
   let libraryLoaded = false;
   const libraryFilters = {
-    term: '', cuisine: '', budget_tier: '', default_slot: '', course: COURSES.some((c) => c.value === course) ? course : '', dietary: [],
+    quick: false, term: '', cuisine: '', budget_tier: '', default_slot: '', course: COURSES.some((c) => c.value === course) ? course : '', dietary: [],
     favouritesOnly: false
   };
   const libraryList = el('ul', { class: 'library-list' });
@@ -146,15 +149,25 @@ function renderLibrary() {
   }, { signal });
   filterRow.appendChild(searchWrap);
 
+  // 3 Oct 2026: on a phone, five dropdowns pushed the first recipe below
+  // the fold. Search stays out; the rest fold away under "More filters",
+  // which says how many are on and opens itself when any are.
+  const activeCount = ['cuisine', 'budget_tier', 'default_slot', 'course'].filter((k) => libraryFilters[k]).length
+    + ((libraryFilters.dietary || []).length ? 1 : 0);
+  const more = el('details', { class: 'library-more' });
+  if (activeCount) more.open = true;
+  more.appendChild(el('summary', { text: activeCount ? `More filters (${activeCount} on)` : 'More filters' }));
+  const moreRow = el('div', { class: 'library-filters' });
+  more.appendChild(moreRow);
   const cuisines = [...new Set(libraryRecipes.map((r) => r.cuisine))].sort();
-  filterRow.appendChild(buildLibrarySelect('Cuisine', 'cuisine',
+  moreRow.appendChild(buildLibrarySelect('Cuisine', 'cuisine',
     cuisines.map((c) => ({ value: c, label: c }))));
-  filterRow.appendChild(buildLibrarySelect('Budget', 'budget_tier', [
+  moreRow.appendChild(buildLibrarySelect('Budget', 'budget_tier', [
     { value: 'budget', label: 'Budget' },
     { value: 'everyday', label: 'Everyday' },
     { value: 'special', label: 'Something special' }
   ]));
-  filterRow.appendChild(buildLibrarySelect('Meal time', 'default_slot', [
+  moreRow.appendChild(buildLibrarySelect('Meal time', 'default_slot', [
     { value: 'breakfast', label: 'Breakfast' },
     { value: 'lunch', label: 'Lunch' },
     { value: 'dinner', label: 'Dinner' },
@@ -162,7 +175,7 @@ function renderLibrary() {
     { value: 'drink', label: 'Drink' }
   ]));
   // 3 Oct 2026: starters and puddings. A course, not a meal time.
-  filterRow.appendChild(buildLibrarySelect('Course', 'course', COURSES));
+  moreRow.appendChild(buildLibrarySelect('Course', 'course', COURSES));
 
   // Worklist C1. Ren, two traces: "You've written the function and not
   // the dropdown. I can tell, and that's a strange thing to be able to
@@ -173,7 +186,7 @@ function renderLibrary() {
   // free" is a real need, but it is rarer than asking for one thing, and
   // four tick boxes in a filter row is a wall. The select covers the
   // common case; the combination is a wish.
-  filterRow.appendChild(buildLibrarySelect('Suitable for', 'dietaryOne', [
+  moreRow.appendChild(buildLibrarySelect('Suitable for', 'dietaryOne', [
     { value: 'vegetarian', label: 'Vegetarian' },
     { value: 'vegan', label: 'Vegan' },
     { value: 'gluten_free', label: 'Gluten free' },
@@ -204,11 +217,31 @@ function renderLibrary() {
     renderLibraryList();
   }, { signal });
   const favRow = el('div', { class: 'library-chips', role: 'group' });
-  favRow.setAttribute('aria-label', 'Narrow to favourites');
+  favRow.setAttribute('aria-label', 'Quick filters');
+  // 3 Oct 2026: the questions people actually start with, one tap each.
+  // Each is the same filter as its dropdown, so the two never disagree.
+  const quick = [
+    ['Vegetarian', () => (libraryFilters.dietary || [])[0] === 'vegetarian', (on) => { libraryFilters.dietary = on ? [] : ['vegetarian']; }],
+    ['Vegan', () => (libraryFilters.dietary || [])[0] === 'vegan', (on) => { libraryFilters.dietary = on ? [] : ['vegan']; }],
+    ['30 minutes or less', () => libraryFilters.quick === true, (on) => { libraryFilters.quick = !on; }],
+    ['Puddings', () => libraryFilters.course === 'pudding', (on) => { libraryFilters.course = on ? '' : 'pudding'; }]
+  ];
+  for (const [label, isOn, toggle] of quick) {
+    const chip = el('button', { type: 'button', class: 'chip-toggle', text: label });
+    chip.setAttribute('aria-pressed', String(isOn()));
+    chip.addEventListener('click', () => {
+      toggle(isOn());
+      renderLibrary();
+      const again = [...libraryBody.querySelectorAll('.library-chips .chip-toggle')].find((c) => c.textContent === label);
+      if (again) again.focus();
+    }, { signal });
+    favRow.appendChild(chip);
+  }
   favRow.appendChild(favChip);
 
   libraryBody.appendChild(filterRow);
   libraryBody.appendChild(favRow);
+  libraryBody.appendChild(more);
   libraryBody.appendChild(libraryList);
   renderLibraryList();
 }
@@ -253,12 +286,30 @@ function buildLibrarySelect(label, key, options) {
 }
 
 
+/** Diet tags as a cook would list them. Vegan implies the other two. Pure. */
+function shortTags(tags = []) {
+  const set = new Set(tags);
+  const out = [];
+  if (set.has('vegan')) out.push('vegan');
+  else if (set.has('vegetarian')) out.push('vegetarian');
+  if (set.has('gluten_free')) out.push('gluten free');
+  if (set.has('dairy_free') && !set.has('vegan')) out.push('dairy free');
+  if (set.has('nut_free')) out.push('nut free');
+  return out;
+}
+
 function renderLibraryList() {
   // filterRecipes knows nothing about favourites — they live in a table, not
   // in the recipe files — so the flag is applied here rather than smuggled
   // into a function that filters static data.
   let matches = filterRecipes(libraryRecipes, libraryFilters);
   if (libraryFilters.favouritesOnly) matches = matches.filter((r) => isFavourite(r.slug));
+  if (libraryFilters.quick) {
+    matches = matches.filter((r) => {
+      const t = estimateRecipeTime(r);
+      return t.total > 0 && t.total <= 30 && !t.needsWaiting;
+    });
+  }
 
   // Favourites first, always. Marking one and then hunting for it in
   // alphabetical order is the same problem in a smaller room.
@@ -296,9 +347,12 @@ function renderLibraryList() {
     });
     item.appendChild(open);
 
-    const meta = [recipe.cuisine, recipe.budget_tier, `${recipe.steps.length} steps`];
-    if ((recipe.dietary_tags || []).length) meta.push(recipe.dietary_tags.join(', ').replace(/_/g, ' '));
-    item.appendChild(el('span', { class: 'library-row-meta', text: meta.join(' · ') }));
+    // Time rather than a step count: "35 min" answers "can I make this
+    // tonight". Tags shortened: vegan already says vegetarian and dairy free.
+    const t = estimateRecipeTime(recipe);
+    const meta = [recipe.cuisine, t.total ? `${t.total} min${t.needsWaiting ? ' + chilling' : ''}` : null];
+    meta.push(...shortTags(recipe.dietary_tags || []));
+    item.appendChild(el('span', { class: 'library-row-meta', text: meta.filter(Boolean).join(' · ') }));
 
     // The heart, out here where the list is. The word goes with it: a glyph
     // alone is a state you have to infer, and the meta line is read aloud.

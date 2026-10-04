@@ -1,4 +1,5 @@
-// js/views/library.js — 03 Oct 2026 v5
+// js/views/library.js — 03 Oct 2026 v6
+// v6: On this phone sits below the library until there is something on it.
 // v5: On this phone — recipes saved here, a backup file and restore.
 // v4: #/library?course=… opens on that course.
 // v3: Write your own recipe and Your recipes, beside What can I make.
@@ -41,8 +42,7 @@ export function render(mountEl) {
   mountEl.appendChild(el('h1', { text: 'Recipe library' }));
   mountEl.appendChild(el('p', {
     class: 'field-hint',
-    text: 'Recipes that come with the app. Add any of them to your '
-      + 'meals in one tap — the ingredients and steps come with it.'
+    text: 'Recipes that come with the app. Open one to cook, plan it or make your own version.'
   }));
 
   // 3 Oct 2026: straight to what the cupboard can make.
@@ -53,8 +53,11 @@ export function render(mountEl) {
   tonight.appendChild(el('a', { class: 'btn btn-quiet', href: '#/meals', text: 'Your recipes' }));
   mountEl.appendChild(tonight);
 
-  // 3 Oct 2026: recipes kept on this phone (data/localRecipes.js).
-  mountEl.appendChild(phoneSection(signal));
+  // 3 Oct 2026: recipes kept on this phone (data/localRecipes.js). Above
+  // the library when there are some; below it, out of the way, when not.
+  const phone = phoneSection(signal);
+  const hasLocal = listLocal().length > 0;
+  if (hasLocal) mountEl.appendChild(phone);
 
   // #/library?course=pudding opens on puddings (from the plan's "Find a pudding").
   const courseMatch = String(window.location.hash || '').match(/[?&]course=([a-z]+)/);
@@ -71,6 +74,7 @@ export function render(mountEl) {
   });
 
   mountEl.appendChild(panel.section);
+  if (!hasLocal) mountEl.appendChild(phone);
 
   // The panel loads lazily on open, because it was built as a fold. On a
   // page that IS the library, there is nothing to wait for.

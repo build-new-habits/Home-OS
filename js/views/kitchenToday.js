@@ -1,4 +1,6 @@
-// js/views/kitchenToday.js — 03 Oct 2026 v4
+// js/views/kitchenToday.js — 04 Oct 2026 v5
+// v5: Tomorrow — what is planned and what to take out of the freezer tonight;
+// the next meal shows its photo when it has one.
 // v4: leftovers — labelled, never taken from the pantry again, and the
 // next meal offers "Plan leftovers" once the database can store them.
 // v4: your own meals open the recipe page too (#/recipe?m=<id>).
@@ -25,6 +27,10 @@ import { el } from '../lib/dom.js';
 import { todayIso } from '../lib/dates.js';
 import { listPlan, servesFor, isLeftover, leftoversReady } from '../data/mealPlan.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
+import { nextWeekStart } from '../lib/weeks.js';
+import { everydayName } from '../lib/foodNames.js';
+import { loadImages } from '../data/recipeImages.js';
+import { recipePhoto } from '../components/recipePhoto.js';
 import { listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
 import { dayNutrition } from '../data/nutrition.js';
 import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
@@ -119,6 +125,16 @@ export function render(mountEl) {
   restSection.appendChild(restList);
   mountEl.appendChild(restSection);
 
+  // Tomorrow (4 Oct 2026): what is planned, and anything to take out of
+  // the freezer tonight. Seeing tomorrow's dinner the night before is when
+  // there is still time to defrost it or buy the one missing thing.
+  const tomorrowSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-tomorrow-h' });
+  tomorrowSection.hidden = true;
+  tomorrowSection.appendChild(el('h2', { id: 'today-tomorrow-h', text: 'Tomorrow' }));
+  const tomorrowBody = el('div', { class: 'today-tomorrow' });
+  tomorrowSection.appendChild(tomorrowBody);
+  mountEl.appendChild(tomorrowSection);
+
   const nutritionWrap = el('div');
   mountEl.appendChild(nutritionWrap);
 
@@ -162,6 +178,7 @@ export function render(mountEl) {
     const next = pickNext(entries, now);
     paintNext(next);
     paintRest(entries, next);
+    paintTomorrow(byMealFor(ingredients)).catch(() => {});
 
     // Nutrition: each planned meal's per-serving figures, one portion each.
     const byMeal = ingredients.ok ? groupByMeal(ingredients.data) : new Map();
@@ -182,6 +199,65 @@ export function render(mountEl) {
     }
   }
 
+  function byMealFor(ingredients) {
+    return ingredients && ingredients.ok ? groupByMeal(ingredients.data) : new Map();
+  }
+
+  async function paintTomorrow(byMeal) {
+    const tomorrowIndex = (now.getDay() + 1) % 7;
+    const tomorrowValue = DAY_VALUES[tomorrowIndex];
+    // Sunday's tomorrow is next week's Monday.
+    let entries = weekEntries;
+    let planHref = '#/plan-this-week';
+    if (now.getDay() === 0) {
+      const next = await listPlan(nextWeekStart());
+      if (destroyed) return;
+      entries = next.ok ? next.data || [] : [];
+      planHref = '#/plan-next-week';
+    }
+    const planned = entries.filter((e) => e.day_of_week === tomorrowValue);
+    tomorrowBody.replaceChildren();
+    tomorrowSection.hidden = false;
+    if (planned.length === 0) {
+      const p = el('p', { class: 'field-hint' });
+      p.appendChild(document.createTextNode('Nothing planned yet. '));
+      p.appendChild(el('a', { href: planHref, text: 'Plan tomorrow' }));
+      tomorrowBody.appendChild(p);
+      return;
+    }
+    const ul = el('ul', { class: 'today-tomorrow-list' });
+    for (const slot of MEAL_SLOTS) {
+      const here = planned.filter((e) => e.slot === slot.value);
+      if (!here.length) continue;
+      const li = el('li');
+      li.appendChild(el('span', { class: 'today-meal-slot', text: `${slot.label}: ` }));
+      here.forEach((entry, i) => {
+        if (i) li.appendChild(document.createTextNode(', '));
+        li.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
+      });
+      ul.appendChild(li);
+    }
+    tomorrowBody.appendChild(ul);
+
+    // Anything tomorrow's cooking needs that lives in the freezer.
+    const stock = await listStock();
+    if (destroyed || !stock.ok) return;
+    const frozen = new Map();
+    for (const row of stock.data || []) {
+      if (/freez/i.test(String(row.default_location || ''))) frozen.set(row.food_id, row);
+    }
+    const toDefrost = new Set();
+    for (const entry of planned) {
+      if (isLeftover(entry)) continue;
+      for (const ing of byMeal.get(entry.meal_id) || []) {
+        if (frozen.has(ing.food_id)) toDefrost.add((ing.foods && ing.foods.name) || 'Something');
+      }
+    }
+    if (toDefrost.size) {
+      tomorrowBody.appendChild(el('p', { class: 'today-defrost', text: `Take out of the freezer tonight: ${[...toDefrost].map((n) => everydayName(n).toLowerCase()).join(', ')}.` }));
+    }
+  }
+
   function paintNext(entry) {
     nextWrap.replaceChildren();
     if (!entry) {
@@ -199,6 +275,16 @@ export function render(mountEl) {
     when.appendChild(document.createTextNode(` ${label} is next`));
     card.appendChild(when);
     card.appendChild(el('h2', { id: 'today-next-h', class: 'today-next-name', text: meal.name || 'Planned' }));
+    // The photo, once library recipes have one (4 Oct 2026).
+    if (meal.library_ref) {
+      loadImages().then((images) => {
+        const image = images.get(meal.library_ref);
+        if (!image || destroyed) return;
+        const photo = recipePhoto({ default_slot: entry.slot }, image, 'hero');
+        photo.classList.add('today-next-photo');
+        card.insertBefore(photo, card.children[1]);
+      }).catch(() => {});
+    }
     const facts = el('ul', { class: 'today-next-facts' });
     facts.appendChild(el('li', { text: isLeftover(entry) ? 'Leftovers' : `Serves ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
@@ -315,7 +401,7 @@ export function render(mountEl) {
       // came in, that it went, or find a way to use it (itemSheet.js).
       const name = (row.foods && row.foods.name) || 'Something';
       const btn = el('button', { type: 'button', class: 'today-soon-item', 'aria-haspopup': 'dialog' });
-      btn.appendChild(el('span', { class: 'today-soon-name', text: name }));
+      btn.appendChild(el('span', { class: 'today-soon-name', text: everydayName(name) }));
       btn.appendChild(el('span', { class: 'today-soon-when', text: describeFreshness(freshness) }));
       btn.addEventListener('click', () => {
         openItemSheet(row, { returnFocusTo: btn, places, onChanged: () => { if (!destroyed) loadUseSoon(); } });

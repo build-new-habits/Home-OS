@@ -4,6 +4,11 @@ p.library-links
   a.btn"What can I make with what I have?"
   a.btn"Write your own recipe"
   a.btn.btn-quiet"Your recipes"
+section.library-section
+  details
+    summary"Browse the recipe library"
+    div.library-body
+      p.field-hint
 section.library-phone
   h2"On this phone"
   ul.library-phone-list[hidden=]
@@ -13,8 +18,3 @@ section.library-phone
     input.visually-hidden[type=file]
     label.btn"Restore from a backup"
   p.field-hint[role=status]
-section.library-section
-  details
-    summary"Browse the recipe library"
-    div.library-body
-      p.field-hint

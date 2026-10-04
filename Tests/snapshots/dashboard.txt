@@ -45,6 +45,11 @@ section.today-section
       span.today-meal-text
         span.today-meal-slot
         span.today-meal-none
+section.today-section
+  h2"Tomorrow"
+  div.today-tomorrow
+    p.field-hint
+      a"Plan tomorrow"
 div
 section.today-section[hidden=]
   h2"Use soon"

@@ -1,4 +1,6 @@
-/* css/components.css — 03 Oct 2026 v87 */
+/* css/components.css — 04 Oct 2026 v89 */
+/* v89: Today tomorrow section; recipes page quick filters (4 Oct). */
+/* v88: recipes page quick filters and folded filters (4 Oct). */
 /* v87: plan list view; plan detail rows wrap (3 Oct). */
 /* v86: cook mode timers, progress and ingredients (3 Oct). */
 /* v85: pantry quick start (3 Oct). */
@@ -4897,3 +4899,16 @@ body.sheet-open {
 .plan-list-slot-name { font-size: var(--text-sm); color: var(--color-text-muted); }
 .plan-list-meals { font-weight: 600; overflow-wrap: anywhere; }
 .plan-list-slot.is-open .plan-list-meals { font-weight: 400; color: var(--color-text-muted); }
+
+/* ---- Recipes page, denser on a phone (4 Oct 2026, v88) ------------------ */
+.library-more { margin: 0 0 var(--space-3); }
+.library-more summary { min-height: var(--tap-min); display: flex; align-items: center; font-weight: 600; cursor: pointer; color: var(--color-accent-strong); }
+.library-more .library-filters { margin-top: var(--space-1); }
+.library-row.has-thumb > .btn { justify-self: start; }
+
+/* ---- Today: tomorrow, and a photo on the next meal (4 Oct 2026) -------- */
+.today-tomorrow-list { list-style: none; margin: 0; padding: var(--space-3) var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.today-tomorrow-list li { padding: var(--space-1) 0; line-height: var(--leading-normal); }
+.today-defrost { margin: var(--space-2) 0 0; padding: var(--space-2) var(--space-3); border-left: 4px solid var(--color-accent); background: var(--color-surface-raised); border-radius: var(--radius-sm); font-weight: 600; }
+.today-next-photo { margin: var(--space-2) 0 var(--space-3); max-height: 12em; }
+.today-tomorrow { display: flex; flex-direction: column; }
