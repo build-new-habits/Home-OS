@@ -1802,6 +1802,14 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   check('a planned meal is left alone', taken.every((p) => !(p.day === 'mon' && p.slot === 'dinner')));
   eq('the same seed gives the same week', JSON.stringify(W.planWeek({ candidates: c, days: DAYS, seed: 's' }).map((p) => p.pick.key)), JSON.stringify(W.planWeek({ candidates: c, days: DAYS, seed: 's' }).map((p) => p.pick.key)));
 
+  const F = W;
+  const starters = F.starterDinners(recipes, new Set(['vegetarian']));
+  check('first run offers only dinners that suit the table', starters.length > 0 && starters.every((x) => (x.dietary_tags || []).some((t) => t === 'vegetarian' || t === 'vegan')));
+  check('first run offers quick dinners', starters.every((x) => x.slug !== 'slow-veg'));
+  const days = F.nextSevenDays(new Date(2026, 9, 4, 9)); // a Sunday
+  eq('days count from today', days.slice(0, 2).map((d) => d.label).join(','), 'Today,Tomorrow');
+  eq('today on a Sunday is in this week', days[0].weekStart, '2026-09-28');
+  eq('tomorrow on a Sunday is in next week', days[1].weekStart, '2026-10-05');
   const L = await import(pathToFileURL(path.join(REPO, 'js/data/listWindow.js')).href);
   const wed = new Date(2026, 9, 7, 12); // a Wednesday
   const left = L.stillToCome([{ day_of_week: 'mon' }, { day_of_week: 'wed' }, { day_of_week: 'sun' }], wed).map((e) => e.day_of_week);

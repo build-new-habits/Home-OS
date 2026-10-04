@@ -1,4 +1,5 @@
-// js/data/weekIdeas.js — 04 Oct 2026 v1
+// js/data/weekIdeas.js — 04 Oct 2026 v2
+// v2: starterDinners() and nextSevenDays() for the first run.
 // v1: Fill the week for me — ideas for every open meal from your own meals
 // AND the library, chosen the way a person would plan a week.
 //
@@ -30,6 +31,8 @@
 import { estimateRecipeTime } from '../lib/recipeTime.js';
 import { courseOf } from './courses.js';
 import { proteinsOf } from './recipeLibrary.js';
+import { DAYS } from './mealPlan.js';
+import { mondayOf } from '../lib/weeks.js';
 
 export const WEEKDAY_MAX_MINUTES = 45;
 const WEEKDAYS = new Set(['mon', 'tue', 'wed', 'thu']);
@@ -218,3 +221,55 @@ export function describeIdea(pick) {
   if (pick.usesSoon) parts.push('uses something to use up');
   return parts.join(' · ');
 }
+
+// ---- For the first run (v2) ----
+
+/** Cuisines most British households already cook, offered first. */
+const FAMILIAR = ['British', 'Italian', 'Budget', 'Indian', 'Mexican', 'Chinese', 'Vegetarian', 'Spanish', 'Greek', 'Thai'];
+
+/**
+ * Six quick dinners that suit the table, from different cuisines, familiar
+ * ones first. Exported for the gates.
+ */
+export function starterDinners(recipes = [], diet = new Set(), seed = 'first-run') {
+  const rand = seeded(seed);
+  const pool = candidatesFrom({ recipes })
+    .filter((c) => c.slot === 'dinner' && c.course === 'main')
+    .filter((c) => suitsDiet(c, diet))
+    .filter((c) => c.minutes === null || c.minutes <= WEEKDAY_MAX_MINUTES)
+    .map((c) => {
+      const rank = FAMILIAR.indexOf(c.cuisine);
+      return { c, score: (rank === -1 ? 0 : (FAMILIAR.length - rank)) + rand() * 4 };
+    })
+    .sort((a, b) => b.score - a.score);
+  const out = [];
+  const cuisines = new Set();
+  for (const { c } of pool) {
+    if (cuisines.has(c.cuisine)) continue;
+    cuisines.add(c.cuisine);
+    out.push(c.recipe);
+    if (out.length === 6) break;
+  }
+  for (const { c } of pool) {
+    if (out.length === 6) break;
+    if (!out.includes(c.recipe)) out.push(c.recipe);
+  }
+  return out;
+}
+
+const JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+/** The next seven days from today, each with its plan day and its week. */
+export function nextSevenDays(now = new Date()) {
+  const out = [];
+  for (let i = 0; i < 7; i += 1) {
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const label = i === 0 ? 'Today'
+      : i === 1 ? 'Tomorrow'
+        : date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
+    const dayName = (DAYS.find((d) => d.value === JS_DAY[date.getDay()]) || {}).label;
+    out.push({ label, dayName, day: JS_DAY[date.getDay()], weekStart: mondayOf(date), offset: i });
+  }
+  return out;
+}
+

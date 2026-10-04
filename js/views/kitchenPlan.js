@@ -762,6 +762,14 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
 
     // Courses for library recipes, for the panel's order and labels. Not
     // awaited before the first paint: the board is useful without it.
+    // Arrived from "Fill the rest of the week for me" (first run, v10): open
+    // the sheet once, and take the request out of the address so a reload
+    // or Back does not open it again.
+    if (/[?&]fill=1\b/.test(window.location.hash || '')) {
+      try { history.replaceState(null, '', window.location.href.replace(/[?&]fill=1\b/, '')); } catch { /* fine */ }
+      fillBtn.click();
+    }
+
     loadAllRecipes().then((lib) => {
       if (destroyed || !lib || !lib.ok) return;
       libraryRecipes = lib.data || [];

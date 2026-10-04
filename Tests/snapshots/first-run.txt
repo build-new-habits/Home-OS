@@ -1,9 +1,47 @@
-h1"Let us plan one meal together"
+h1"Who do you cook for?"
 p.plan-week-position
 div.first-run-body
   p
-  p.field-hint
+  fieldset.first-run-fieldset
+    legend"How many usually eat"
+    div.first-run-choices
+      label.first-run-choice"Just me"
+        input[type=radio]
+        span
+      label.first-run-choice"<n>"
+        input[type=radio]
+        span
+      label.first-run-choice"<n>"
+        input[type=radio]
+        span
+      label.first-run-choice"<n>"
+        input[type=radio]
+        span
+      label.first-run-choice"<n>"
+        input[type=radio]
+        span
+      label.first-run-choice"<n>"
+        input[type=radio]
+        span
+  fieldset.first-run-fieldset
+    legend"Does anyone eat differently? (optional)"
+    p.field-hint
+    div.first-run-choices
+      label.first-run-choice"Vegetarian"
+        input[type=checkbox]
+        span
+      label.first-run-choice"Vegan"
+        input[type=checkbox]
+        span
+      label.first-run-choice"Gluten free"
+        input[type=checkbox]
+        span
+      label.first-run-choice"Dairy free"
+        input[type=checkbox]
+        span
+      label.first-run-choice"Nut free"
+        input[type=checkbox]
+        span
 div.plan-week-nav
-  button.btn[type=button]"Skip this"
   button.btn.btn-large.btn-primary[type=button]"Next"
-button.btn.first-run-dismiss[type=button]"I will find my own way around"
+button.btn.first-run-dismiss[type=button]"Not now"

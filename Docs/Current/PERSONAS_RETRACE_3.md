@@ -340,3 +340,12 @@ what you bought. No use-by asked for long-life food. "sweet potatoes".
 - **Plan looks ahead at the weekend.** Sunday, or Saturday from 6 pm, opens
   next week and says so; Today's links still go to this week.
 - Fresh herbs and ginger are a pack or a piece, never a cupboard check.
+
+### Batch 3 — a first run about the person
+Asks who you cook for (adds people up to the number, never removes) and
+whether anyone eats differently; offers six quick dinners that suit, from
+different cuisines, familiar first; days count from today and land in the
+right week (it used to put "Monday" into the week just gone on a Sunday);
+no Next on the day step, so choosing a recipe can no longer skip it; ends
+with Fill the rest of the week for me. One exit ("Not now"). Finishing
+updates settings at once, so Today stops offering the walk-through.
