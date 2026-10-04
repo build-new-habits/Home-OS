@@ -375,3 +375,25 @@ it says plainly that a new account starts empty for now (moving a trial's
 meals into an account is still to build). Invites and sign-in links say
 they need an account. On a trial phone migration 026's features (leftovers,
 courses, Eaten) work, because the local store takes any column.
+
+## Re-scored after batches 1–6 (same ten people, same honesty)
+
+| Person | Before | Now | What moved them | What still holds them back |
+|---|---|---|---|---|
+| Graeme | 8 | 9 | a list he can shop from, fibre counted, Plan on Sunday | photos; names on the grid |
+| Becky, new cook | 6 | 8 | a week planned for her, gas and fan ovens, a shop she can read | photos |
+| Sam, one on a budget | 6 | 7 | whole items, staples as a check | no idea what a week costs |
+| Priya and Jo, vegetarian | 7 | 9 | asked once, every idea vegetarian | photos |
+| Ade, keen cook | 4 | 4 | nothing yet | import from a web page |
+| Margaret, low vision | 8 | 9 | Today is two controls, not forty | — |
+| Dev, ADHD | 7 | 8 | "Fill the week for me" decides; one exit | photos |
+| Eileen, older | 6 | 7 | gas marks, plainer words, a first run that works | still a lot of app |
+| Lou, batch cook | 7 | 7 | — | freezer portions offered back (after 026) |
+| Tom, trial | 3 | 7 | can get in; a week planned in two taps | his trial does not move into an account |
+| **Mean** | **6.2** | **7.5** | | |
+
+Four people are at 9 (four and a half stars). The next fixes, in order:
+**photos** (waiting on Graeme's images; every rating above moves with them),
+**moving a trial into a new account**, **freezer portions in the picker**
+(possible now on trial phones, and for everyone once 026 is in), then
+**week cost** and **import**, which need prices and a server.
