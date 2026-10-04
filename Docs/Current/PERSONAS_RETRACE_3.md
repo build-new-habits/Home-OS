@@ -472,3 +472,18 @@ the night you shop) opens on the next one. The shopping list is for the
 meals still to come in your week, plus all of the next one on that last
 day. Nothing in the database changed: a food week is a view over the
 existing Monday weeks, so each meal keeps its real date (lib/foodWeek.js).
+
+### Ten thousand foods, and shop products (4 Oct, 20:30)
+Find nutrition now searches one ranked list of 10,500 foods on the phone,
+offline: the app's everyday foods (now 149, adding plant-based chicken,
+mince, burgers, sausages, nuggets, breaded fillets and bacon, vegan
+cheese, protein bagels and yoghurt, halloumi fries, peri-peri and garlic
+mayonnaise), CoFID 2019 (2,877) and USDA SR Legacy (7,283, public domain,
+American names reached through British words). An alias is scored as its
+own phrase, so "fake chicken" finds plant-based chicken pieces.
+**Search shop products** asks Open Food Facts (Open Database Licence) for
+UK products by name, brands included, with label nutrition. It runs on a
+button, not as you type, at most every 6.5 seconds, because its search is
+limited to ten a minute. **Not yet tried against the live service from
+here** (the build environment cannot reach it); the barcode lookup already
+uses the same service and data shape.

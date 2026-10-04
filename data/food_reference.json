@@ -1,7 +1,7 @@
 {
  "version": 4,
  "updated": "2026-10-04",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
  "foods": [
   {
    "slug": "egg-small",
@@ -5689,8 +5689,6 @@
    "name": "Mycoprotein pieces",
    "category": "food_frozen",
    "aliases": [
-    "quorn",
-    "quorn pieces",
     "mycoprotein"
    ],
    "calories_per_100g": 73.0,
@@ -5703,14 +5701,370 @@
    "portion_g": 100
   },
   {
+   "slug": "plant-chicken-pieces",
+   "name": "Plant-based chicken-style pieces",
+   "category": "food_frozen",
+   "aliases": [
+    "fake chicken",
+    "vegan chicken",
+    "vegetarian chicken",
+    "meat-free chicken",
+    "meat free chicken",
+    "plant-based chicken",
+    "chicken-style pieces",
+    "no chicken pieces"
+   ],
+   "calories_per_100g": 180,
+   "protein_g": 20.0,
+   "fat_g": 7.0,
+   "carbs_g": 6.0,
+   "fibre_g": 5.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 100
+  },
+  {
+   "slug": "plant-mince",
+   "name": "Plant-based mince",
+   "category": "food_frozen",
+   "aliases": [
+    "vegan mince",
+    "vegetarian mince",
+    "meat-free mince",
+    "meat free mince",
+    "soya mince",
+    "mycoprotein mince"
+   ],
+   "calories_per_100g": 160,
+   "protein_g": 18.0,
+   "fat_g": 6.0,
+   "carbs_g": 6.0,
+   "fibre_g": 5.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 100
+  },
+  {
+   "slug": "plant-burger",
+   "name": "Plant-based burger",
+   "category": "food_frozen",
+   "aliases": [
+    "vegan burger",
+    "vegetarian burger",
+    "veggie burger",
+    "meat-free burger",
+    "bean burger"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 17.0,
+   "fat_g": 14.0,
+   "carbs_g": 7.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "burger",
+   "grams_per_item": 113,
+   "portion_g": 113
+  },
+  {
+   "slug": "plant-sausages",
+   "name": "Plant-based sausages",
+   "category": "food_frozen",
+   "aliases": [
+    "vegan sausages",
+    "vegetarian sausages",
+    "veggie sausages",
+    "meat-free sausages"
+   ],
+   "calories_per_100g": 220,
+   "protein_g": 14.0,
+   "fat_g": 12.0,
+   "carbs_g": 12.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sausage",
+   "grams_per_item": 50,
+   "portion_g": 100
+  },
+  {
+   "slug": "plant-nuggets",
+   "name": "Plant-based nuggets",
+   "category": "food_frozen",
+   "aliases": [
+    "vegan nuggets",
+    "vegetarian nuggets",
+    "meat-free nuggets"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 14.0,
+   "fat_g": 11.0,
+   "carbs_g": 18.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "nugget",
+   "grams_per_item": 18,
+   "portion_g": 108
+  },
+  {
+   "slug": "plant-fillets-breaded",
+   "name": "Plant-based breaded fillets",
+   "category": "food_frozen",
+   "aliases": [
+    "southern fried fillets",
+    "vegan fillets",
+    "vegetarian fillets",
+    "plant-based fillets",
+    "breaded vegan chicken",
+    "vegan breaded chicken",
+    "meat-free fillets"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 13.0,
+   "fat_g": 11.0,
+   "carbs_g": 19.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "fillet",
+   "grams_per_item": 100,
+   "portion_g": 100
+  },
+  {
+   "slug": "plant-bacon",
+   "name": "Plant-based bacon",
+   "category": "food_fresh",
+   "aliases": [
+    "vegan bacon",
+    "vegetarian bacon",
+    "meat-free bacon",
+    "facon"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 18.0,
+   "fat_g": 13.0,
+   "carbs_g": 8.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "rasher",
+   "grams_per_item": 15,
+   "portion_g": 45
+  },
+  {
+   "slug": "vegan-cheese",
+   "name": "Vegan cheese",
+   "category": "food_fresh",
+   "aliases": [
+    "dairy-free cheese",
+    "dairy free cheese",
+    "plant-based cheese"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 1.0,
+   "fat_g": 23.0,
+   "carbs_g": 20.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 20,
+   "portion_g": 30
+  },
+  {
+   "slug": "protein-bagel",
+   "name": "Protein bagel",
+   "category": "food_ambient",
+   "aliases": [
+    "protein bagels",
+    "high protein bagel"
+   ],
+   "calories_per_100g": 253,
+   "protein_g": 18.0,
+   "fat_g": 3.0,
+   "carbs_g": 36.0,
+   "fibre_g": 7.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bagel",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "halloumi-fries",
+   "name": "Halloumi fries",
+   "category": "food_frozen",
+   "aliases": [
+    "halloumi sticks"
+   ],
+   "calories_per_100g": 310,
+   "protein_g": 17.0,
+   "fat_g": 22.0,
+   "carbs_g": 11.0,
+   "fibre_g": 0.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 100
+  },
+  {
+   "slug": "peri-mayo",
+   "name": "Peri-peri mayonnaise",
+   "category": "food_ambient",
+   "aliases": [
+    "perinaise",
+    "peri peri mayo",
+    "peri-peri mayo",
+    "peri mayo",
+    "peri peri mayonnaise"
+   ],
+   "calories_per_100g": 480,
+   "protein_g": 1.0,
+   "fat_g": 50.0,
+   "carbs_g": 6.0,
+   "fibre_g": 0.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "garlic-mayo",
+   "name": "Garlic mayonnaise",
+   "category": "food_ambient",
+   "aliases": [
+    "garlic mayo",
+    "aioli"
+   ],
+   "calories_per_100g": 520,
+   "protein_g": 1.0,
+   "fat_g": 55.0,
+   "carbs_g": 4.0,
+   "fibre_g": 0.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "sriracha-mayo",
+   "name": "Sriracha mayonnaise",
+   "category": "food_ambient",
+   "aliases": [
+    "sriracha mayo",
+    "spicy mayo"
+   ],
+   "calories_per_100g": 470,
+   "protein_g": 1.0,
+   "fat_g": 48.0,
+   "carbs_g": 8.0,
+   "fibre_g": 0.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "peri-sauce",
+   "name": "Peri-peri sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "peri peri sauce",
+    "piri piri sauce",
+    "hot sauce"
+   ],
+   "calories_per_100g": 60,
+   "protein_g": 1.0,
+   "fat_g": 3.0,
+   "carbs_g": 7.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "protein-yoghurt",
+   "name": "High protein yoghurt",
+   "category": "food_fresh",
+   "aliases": [
+    "protein yoghurt",
+    "protein yogurt",
+    "skyr",
+    "quark"
+   ],
+   "calories_per_100g": 62,
+   "protein_g": 10.0,
+   "fat_g": 0.2,
+   "carbs_g": 4.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "pot",
+   "grams_per_item": 200,
+   "portion_g": 150
+  },
+  {
+   "slug": "protein-shake",
+   "name": "Protein shake, ready to drink",
+   "category": "drink",
+   "aliases": [
+    "protein shake",
+    "protein drink",
+    "protein milk"
+   ],
+   "calories_per_100g": 60,
+   "protein_g": 8.0,
+   "fat_g": 1.2,
+   "carbs_g": 4.0,
+   "fibre_g": 0.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bottle",
+   "grams_per_item": 330,
+   "portion_g": 330
+  },
+  {
+   "slug": "cauliflower-rice",
+   "name": "Cauliflower rice",
+   "category": "food_frozen",
+   "aliases": [
+    "riced cauliflower"
+   ],
+   "calories_per_100g": 30.0,
+   "protein_g": 2.5,
+   "fat_g": 0.4,
+   "carbs_g": 4.4,
+   "fibre_g": 1.8,
+   "basis": "CoFID 2019: Cauliflower, raw.",
+   "everyday": true,
+   "portion_g": 150
+  },
+  {
+   "slug": "microwave-rice-pouch",
+   "name": "Microwave rice pouch, flavoured",
+   "category": "food_ambient",
+   "aliases": [
+    "microwave rice",
+    "rice pouch",
+    "pilau rice pouch",
+    "flavoured rice pouch"
+   ],
+   "calories_per_100g": 155,
+   "protein_g": 3.5,
+   "fat_g": 3.0,
+   "carbs_g": 28.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "pouch",
+   "grams_per_item": 250,
+   "portion_g": 125
+  },
+  {
    "slug": "rice-white-cooked",
    "name": "Rice, white, cooked",
    "category": "food_fresh",
    "aliases": [
     "cooked rice",
     "boiled rice",
-    "steamed rice",
-    "microwave rice"
+    "steamed rice"
    ],
    "calories_per_100g": 131.0,
    "protein_g": 2.8,

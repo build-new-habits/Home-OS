@@ -4296,6 +4296,8 @@ body.sheet-open {
 .nf-group { font-size: var(--text-sm); color: var(--color-text-muted); }
 .nf-count { margin: var(--space-2) 0 0; }
 .nf-credit { margin-top: var(--space-3); }
+.nf-products-title { margin: var(--space-4) 0 var(--space-1); font-size: var(--text-lg); }
+.nf-products-btn { margin-top: var(--space-2); }
 .signin-trial { margin: var(--space-4) 0 var(--space-5); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
 .signin-trial-title, .signin-have-title { font-family: var(--font-display); font-size: var(--text-lg); margin: 0 0 var(--space-2); }
 .settings-trial { margin: 0 0 var(--space-3); }

@@ -37,7 +37,7 @@ const BRANDS = [
   'walkers', 'cadbury', 'nestle', 'mr kipling', 'kingsmill', 'alpro', 'oatly', 'innocent', 'tropicana', 'robinsons', 'ribena',
   'yorkshire tea', 'pg tips', 'twinings', 'nescafe', 'kenco', 'nature valley', 'hartley s', 'bonne maman', 'branston', 'colman s',
   'lea perrins', 'kikkoman', 'blue dragon', 'amoy', 'pringles', 'doritos', 'finest', 'extra special', 'taste the difference',
-  'everyday essentials', 'essentials', 'basics', 'value', 'plant chef', 'stockwell', 'hearty food co', 'by sainsbury s'
+  'everyday essentials', 'essentials', 'basics', 'value', 'plant chef', 'stockwell', 'hearty food co', 'by sainsbury s', 'the vegetarian butcher', 'vegetarian butcher', 'nando s', 'nandos', 'quorn', 'linda mccartney s', 'linda mccartney', 'richmond', 'heck', 'gosh', 'beyond meat', 'meatless farm', 'dr oetker', 'chicago town', 'goodfella s', 'mr kipling', 'graze', 'fage', 'arla', 'warburton s', 'new york bakery co', 'deliciously ella', 'wicked kitchen', 'oggs', 'this isn t', 'naked glory', 'vivera', 'plant menu', 'garden gourmet'
 ];
 
 /** "Tesco Capers (190g)" -> "capers". Pure. */

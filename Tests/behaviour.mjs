@@ -1947,6 +1947,29 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   check('a brand-only name is not matched with confidence', !C.bestMatch(foods, 'strawberry shortcake corner').confident || /strawberr/i.test(C.bestMatch(foods, 'strawberry shortcake corner').food.name));
 }
 
+// ---- Ten thousand foods to search (4 Oct 2026) ----
+{
+  const C = await import(pathToFileURL(path.join(REPO, 'js/data/cofid.js')).href);
+  const FS = await import(pathToFileURL(path.join(REPO, 'js/data/foodSearch.js')).href);
+  const words = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean).map((w) => (w.length > 3 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1) : w));
+  const ref = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods
+    .filter((f) => f.calories_per_100g != null).map((f) => ({ ...f, source: 'app', words: words(f.name), phrases: [f.name, ...(f.aliases || [])].map(words) }));
+  const all = [...ref, ...C.indexFoods(JSON.parse(readFileSync(path.join(REPO, 'data/cofid.json'), 'utf8')).foods, 'uk'),
+    ...C.indexFoods(JSON.parse(readFileSync(path.join(REPO, 'data/usda.json'), 'utf8')).foods, 'us')];
+  check('over ten thousand foods to search offline', all.length > 10000, String(all.length));
+  const top = (q) => (C.searchFoods(all, q, 1)[0] || {}).name || '';
+  check('baby spinach', /spinach/i.test(top('baby spinach')), top('baby spinach'));
+  check('bagels', /bagel/i.test(top('bagels')), top('bagels'));
+  check('protein bagel', /protein bagel/i.test(top('protein bagel')), top('protein bagel'));
+  check('fake chicken finds plant-based chicken', /plant-based chicken/i.test(top('fake chicken')), top('fake chicken'));
+  check('perinaise', /peri-peri mayonnaise/i.test(top('perinaise')), top('perinaise'));
+  check('courgette finds a courgette, UK first', /^Courgette/.test(top('courgette')), top('courgette'));
+  const product = FS.fromProduct({ code: '1', product_name: 'Perinaise', brands: "Nando's", quantity: '265 g', nutriments: { 'energy-kcal_100g': 470, proteins_100g: 1.2, fat_100g: 48, carbohydrates_100g: 8 } });
+  eq('a shop product reads as brand and name', product.name, "Nando's Perinaise");
+  eq('and keeps its label figures', product.calories_per_100g, 470);
+  check('a product with no energy is not offered', FS.fromProduct({ product_name: 'Mystery', nutriments: {} }) === null);
+}
+
 console.log('');
 
 if (failures.length) {
