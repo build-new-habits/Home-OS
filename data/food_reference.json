@@ -1,7 +1,7 @@
 {
- "version": 3,
- "updated": "2026-10-03",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded.",
+ "version": 4,
+ "updated": "2026-10-04",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
  "foods": [
   {
    "slug": "egg-small",
@@ -1750,7 +1750,8 @@
    "protein_g": 8.5,
    "fat_g": 0.9,
    "carbs_g": 77.0,
-   "fibre_g": 1.3
+   "fibre_g": 1.3,
+   "portion_g": 75
   },
   {
    "slug": "rice-brown-dry",
@@ -1763,7 +1764,8 @@
    "protein_g": 7.9,
    "fat_g": 2.8,
    "carbs_g": 72.0,
-   "fibre_g": 3.5
+   "fibre_g": 3.5,
+   "portion_g": 75
   },
   {
    "slug": "rice-arborio-dry",
@@ -1777,7 +1779,8 @@
    "protein_g": 7.0,
    "fat_g": 0.6,
    "carbs_g": 78.0,
-   "fibre_g": 1.0
+   "fibre_g": 1.0,
+   "portion_g": 75
   },
   {
    "slug": "spaghetti-dry",
@@ -1791,7 +1794,8 @@
    "protein_g": 12.0,
    "fat_g": 1.8,
    "carbs_g": 71.0,
-   "fibre_g": 3.0
+   "fibre_g": 3.0,
+   "portion_g": 75
   },
   {
    "slug": "penne-dry",
@@ -1805,7 +1809,8 @@
    "protein_g": 12.0,
    "fat_g": 1.8,
    "carbs_g": 71.0,
-   "fibre_g": 3.0
+   "fibre_g": 3.0,
+   "portion_g": 75
   },
   {
    "slug": "egg-noodles-dry",
@@ -1819,7 +1824,8 @@
    "protein_g": 12.0,
    "fat_g": 2.5,
    "carbs_g": 71.0,
-   "fibre_g": 2.5
+   "fibre_g": 2.5,
+   "portion_g": 75
   },
   {
    "slug": "rice-noodles-dry",
@@ -1832,7 +1838,8 @@
    "protein_g": 5.9,
    "fat_g": 0.6,
    "carbs_g": 83.0,
-   "fibre_g": 1.6
+   "fibre_g": 1.6,
+   "portion_g": 75
   },
   {
    "slug": "couscous-dry",
@@ -1845,7 +1852,8 @@
    "protein_g": 12.8,
    "fat_g": 0.6,
    "carbs_g": 77.0,
-   "fibre_g": 5.0
+   "fibre_g": 5.0,
+   "portion_g": 65
   },
   {
    "slug": "flour-plain",
@@ -2003,7 +2011,8 @@
    "protein_g": 14.1,
    "fat_g": 6.1,
    "carbs_g": 64.2,
-   "fibre_g": 7.0
+   "fibre_g": 7.0,
+   "portion_g": 65
   },
   {
    "slug": "pearl-barley",
@@ -2491,7 +2500,8 @@
    "protein_g": 31.0,
    "fat_g": 3.6,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 150
   },
   {
    "slug": "chicken-thigh-boneless",
@@ -2507,7 +2517,8 @@
    "protein_g": 26.0,
    "fat_g": 10.9,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 150
   },
   {
    "slug": "chicken-drumstick",
@@ -2560,7 +2571,8 @@
    "protein_g": 16.9,
    "fat_g": 21.2,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 125
   },
   {
    "slug": "lamb-mince",
@@ -2570,7 +2582,8 @@
    "protein_g": 16.6,
    "fat_g": 23.4,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 125
   },
   {
    "slug": "turkey-mince",
@@ -2580,7 +2593,8 @@
    "protein_g": 21.0,
    "fat_g": 7.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 125
   },
   {
    "slug": "bacon-rasher-back",
@@ -2612,7 +2626,8 @@
    "protein_g": 13.0,
    "fat_g": 24.0,
    "carbs_g": 7.0,
-   "fibre_g": 0.6
+   "fibre_g": 0.6,
+   "portion_g": 114
   },
   {
    "slug": "salmon-fillet",
@@ -2627,7 +2642,8 @@
    "protein_g": 20.4,
    "fat_g": 13.4,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 120
   },
   {
    "slug": "cod-fillet",
@@ -2642,7 +2658,8 @@
    "protein_g": 17.8,
    "fat_g": 0.7,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 140
   },
   {
    "slug": "sea-bass-fillet",
@@ -2657,7 +2674,8 @@
    "protein_g": 18.4,
    "fat_g": 2.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 110
   },
   {
    "slug": "prawns-cooked",
@@ -2671,7 +2689,8 @@
    "protein_g": 20.9,
    "fat_g": 0.9,
    "carbs_g": 0.2,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 100
   },
   {
    "slug": "chorizo",
@@ -2699,7 +2718,8 @@
    "protein_g": 17.3,
    "fat_g": 8.7,
    "carbs_g": 2.8,
-   "fibre_g": 1.2
+   "fibre_g": 1.2,
+   "portion_g": 125
   },
   {
    "slug": "halloumi",
@@ -2711,7 +2731,8 @@
    "protein_g": 22.0,
    "fat_g": 25.0,
    "carbs_g": 2.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "portion_g": 60
   },
   {
    "slug": "cheddar-cheese",
@@ -3412,7 +3433,2431 @@
    "protein_g": 20.7,
    "fat_g": 30.0,
    "carbs_g": 0.0,
-   "fibre_g": 0.0
+   "fibre_g": 0.0,
+   "portion_g": 100
+  },
+  {
+   "slug": "breaded-fish-baked",
+   "name": "Breaded fish fillet, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "breaded fish",
+    "breaded cod",
+    "breaded haddock",
+    "fish in breadcrumbs",
+    "breaded fish fillet"
+   ],
+   "calories_per_100g": 204.0,
+   "protein_g": 13.7,
+   "fat_g": 8.3,
+   "carbs_g": 19.8,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Cod, in breadcrumbs, baked.",
+   "everyday": true,
+   "item_label": "fillet",
+   "grams_per_item": 125,
+   "portion_g": 125
+  },
+  {
+   "slug": "battered-fish-baked",
+   "name": "Battered fish fillet, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "battered fish",
+    "battered cod",
+    "battered haddock",
+    "fish in batter",
+    "beer battered fish"
+   ],
+   "calories_per_100g": 229.0,
+   "protein_g": 12.3,
+   "fat_g": 11.8,
+   "carbs_g": 19.7,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Cod, in batter, baked.",
+   "everyday": true,
+   "item_label": "fillet",
+   "grams_per_item": 140,
+   "portion_g": 140
+  },
+  {
+   "slug": "battered-fish-chippy",
+   "name": "Fish in batter, from the chip shop",
+   "category": "food_fresh",
+   "aliases": [
+    "chip shop fish",
+    "chippy fish",
+    "takeaway fish"
+   ],
+   "calories_per_100g": 240.0,
+   "protein_g": 16.8,
+   "fat_g": 14.7,
+   "carbs_g": 10.7,
+   "fibre_g": 0.5,
+   "basis": "CoFID 2019: Cod, in batter, fried, takeaway.",
+   "everyday": true,
+   "item_label": "portion",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "oven-chips",
+   "name": "Oven chips, baked",
+   "category": "food_frozen",
+   "aliases": [
+    "oven chips",
+    "chips",
+    "frozen chips",
+    "french fries",
+    "fries",
+    "straight cut chips",
+    "crinkle cut chips"
+   ],
+   "calories_per_100g": 189.0,
+   "protein_g": 3.2,
+   "fat_g": 4.9,
+   "carbs_g": 35.3,
+   "fibre_g": 3.5,
+   "basis": "CoFID 2019: Potato chips, oven ready, no batter, baked.",
+   "everyday": true,
+   "portion_g": 165
+  },
+  {
+   "slug": "chippy-chips",
+   "name": "Chips, from the chip shop",
+   "category": "food_fresh",
+   "aliases": [
+    "chip shop chips",
+    "chippy chips",
+    "takeaway chips"
+   ],
+   "calories_per_100g": 214.0,
+   "protein_g": 3.5,
+   "fat_g": 8.4,
+   "carbs_g": 33.2,
+   "fibre_g": 3.2,
+   "basis": "CoFID 2019: Potato chips, fried in commercial oil, from takeaway fish and chip shops.",
+   "everyday": true,
+   "item_label": "portion",
+   "grams_per_item": 250,
+   "portion_g": 250
+  },
+  {
+   "slug": "potato-wedges",
+   "name": "Potato wedges, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "wedges",
+    "potato wedges"
+   ],
+   "calories_per_100g": 176.0,
+   "protein_g": 2.8,
+   "fat_g": 5.5,
+   "carbs_g": 30.6,
+   "fibre_g": 4.3,
+   "basis": "CoFID 2019: Potato wedges, retail, cooked.",
+   "everyday": true,
+   "portion_g": 165
+  },
+  {
+   "slug": "peas-frozen-cooked",
+   "name": "Peas, frozen, cooked",
+   "category": "food_frozen",
+   "aliases": [
+    "frozen peas cooked",
+    "boiled peas"
+   ],
+   "calories_per_100g": 70.0,
+   "protein_g": 5.5,
+   "fat_g": 0.7,
+   "carbs_g": 11.2,
+   "fibre_g": 5.5,
+   "basis": "CoFID 2019: Peas, frozen, boiled in unsalted water.",
+   "everyday": true,
+   "portion_g": 80
+  },
+  {
+   "slug": "mushy-peas",
+   "name": "Mushy peas",
+   "category": "food_ambient",
+   "aliases": [
+    "processed peas"
+   ],
+   "calories_per_100g": 81.0,
+   "protein_g": 5.8,
+   "fat_g": 0.7,
+   "carbs_g": 13.8,
+   "fibre_g": 3.1,
+   "basis": "CoFID 2019: Peas, mushy, canned, re-heated.",
+   "everyday": true,
+   "portion_g": 80
+  },
+  {
+   "slug": "fish-fingers",
+   "name": "Fish fingers, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "fish fingers",
+    "fish finger"
+   ],
+   "calories_per_100g": 223.0,
+   "protein_g": 14.3,
+   "fat_g": 9.2,
+   "carbs_g": 22.0,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Fish fingers, cod, grilled/baked.",
+   "everyday": true,
+   "item_label": "finger",
+   "grams_per_item": 28,
+   "portion_g": 112
+  },
+  {
+   "slug": "fishcakes-breaded",
+   "name": "Fishcakes, breaded, baked",
+   "category": "food_frozen",
+   "aliases": [
+    "fishcakes",
+    "fish cakes",
+    "fishcake"
+   ],
+   "calories_per_100g": 206.0,
+   "protein_g": 9.3,
+   "fat_g": 9.4,
+   "carbs_g": 22.6,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Fishcakes, white fish, coated in breadcrumbs, baked.",
+   "everyday": true,
+   "item_label": "fishcake",
+   "grams_per_item": 85,
+   "portion_g": 170
+  },
+  {
+   "slug": "scampi",
+   "name": "Scampi, breaded, baked",
+   "category": "food_frozen",
+   "aliases": [
+    "scampi"
+   ],
+   "calories_per_100g": 232.0,
+   "protein_g": 11.6,
+   "fat_g": 10.5,
+   "carbs_g": 24.3,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Scampi, coated in breadcrumbs, baked.",
+   "everyday": true,
+   "portion_g": 150
+  },
+  {
+   "slug": "tartare-sauce",
+   "name": "Tartare sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "tartar sauce"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 1.0,
+   "fat_g": 29.0,
+   "carbs_g": 6.0,
+   "fibre_g": 0.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "pizza-cheese-tomato",
+   "name": "Pizza, cheese and tomato",
+   "category": "food_frozen",
+   "aliases": [
+    "pizza",
+    "margherita pizza",
+    "frozen pizza",
+    "cheese and tomato pizza"
+   ],
+   "calories_per_100g": 272.0,
+   "protein_g": 12.2,
+   "fat_g": 9.8,
+   "carbs_g": 36.1,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Pizza, cheese and tomato, retail.",
+   "everyday": true,
+   "item_label": "pizza",
+   "grams_per_item": 330,
+   "portion_g": 165
+  },
+  {
+   "slug": "pizza-meat",
+   "name": "Pizza, meat topped",
+   "category": "food_frozen",
+   "aliases": [
+    "pepperoni pizza",
+    "meat feast pizza",
+    "meat pizza",
+    "takeaway pizza"
+   ],
+   "calories_per_100g": 255.0,
+   "protein_g": 13.2,
+   "fat_g": 10.3,
+   "carbs_g": 29.1,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Pizza, meat topped, retail and takeaway.",
+   "everyday": true,
+   "item_label": "pizza",
+   "grams_per_item": 400,
+   "portion_g": 200
+  },
+  {
+   "slug": "pizza-vegetarian",
+   "name": "Pizza, vegetable topped",
+   "category": "food_frozen",
+   "aliases": [
+    "vegetable pizza",
+    "veggie pizza",
+    "vegetarian pizza"
+   ],
+   "calories_per_100g": 216.0,
+   "protein_g": 10.8,
+   "fat_g": 6.9,
+   "carbs_g": 29.6,
+   "fibre_g": 3.1,
+   "basis": "CoFID 2019: Pizza, vegetarian, retail and takeaway.",
+   "everyday": true,
+   "item_label": "pizza",
+   "grams_per_item": 380,
+   "portion_g": 190
+  },
+  {
+   "slug": "pizza-ham-pineapple",
+   "name": "Pizza, ham and pineapple",
+   "category": "food_frozen",
+   "aliases": [
+    "ham and pineapple pizza",
+    "hawaiian pizza"
+   ],
+   "calories_per_100g": 260.0,
+   "protein_g": 13.5,
+   "fat_g": 8.6,
+   "carbs_g": 34.4,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Pizza, ham and pineapple, retail.",
+   "everyday": true,
+   "item_label": "pizza",
+   "grams_per_item": 380,
+   "portion_g": 190
+  },
+  {
+   "slug": "doner-kebab",
+   "name": "Doner kebab in pitta with salad",
+   "category": "food_fresh",
+   "aliases": [
+    "kebab",
+    "doner kebab",
+    "doner",
+    "takeaway kebab"
+   ],
+   "calories_per_100g": 248.0,
+   "protein_g": 14.1,
+   "fat_g": 16.0,
+   "carbs_g": 12.5,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Doner kebab in pitta bread with salad.",
+   "everyday": true,
+   "item_label": "kebab",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "shish-kebab",
+   "name": "Shish kebab in pitta with salad",
+   "category": "food_fresh",
+   "aliases": [
+    "shish kebab",
+    "chicken shish"
+   ],
+   "calories_per_100g": 149.0,
+   "protein_g": 13.6,
+   "fat_g": 4.1,
+   "carbs_g": 15.4,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Shish kebab in pitta bread with salad.",
+   "everyday": true,
+   "item_label": "kebab",
+   "grams_per_item": 350,
+   "portion_g": 350
+  },
+  {
+   "slug": "beef-burger",
+   "name": "Beef burger, grilled",
+   "category": "food_frozen",
+   "aliases": [
+    "burger",
+    "beef burger",
+    "burgers",
+    "quarter pounder",
+    "hamburger patty"
+   ],
+   "calories_per_100g": 229.0,
+   "protein_g": 18.3,
+   "fat_g": 13.8,
+   "carbs_g": 8.5,
+   "fibre_g": 0.6,
+   "basis": "CoFID 2019: Burger, beef, 62-85%, beef, grilled.",
+   "everyday": true,
+   "item_label": "burger",
+   "grams_per_item": 85,
+   "portion_g": 85
+  },
+  {
+   "slug": "beef-burger-homemade",
+   "name": "Beef burger, homemade, grilled",
+   "category": "food_fresh",
+   "aliases": [
+    "homemade burger",
+    "smash burger"
+   ],
+   "calories_per_100g": 288.0,
+   "protein_g": 25.0,
+   "fat_g": 20.3,
+   "carbs_g": 1.1,
+   "fibre_g": 0.3,
+   "basis": "CoFID 2019: Burger, beef, grilled, homemade.",
+   "everyday": true,
+   "item_label": "burger",
+   "grams_per_item": 110,
+   "portion_g": 110
+  },
+  {
+   "slug": "cheeseburger-takeaway",
+   "name": "Cheeseburger, takeaway",
+   "category": "food_fresh",
+   "aliases": [
+    "cheeseburger",
+    "takeaway burger",
+    "fast food burger"
+   ],
+   "calories_per_100g": 254.0,
+   "protein_g": 13.6,
+   "fat_g": 10.4,
+   "carbs_g": 28.3,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Burger, cheeseburger, takeaway.",
+   "everyday": true,
+   "item_label": "burger",
+   "grams_per_item": 120,
+   "portion_g": 120
+  },
+  {
+   "slug": "chicken-burger-takeaway",
+   "name": "Chicken burger, takeaway",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken burger"
+   ],
+   "calories_per_100g": 235.0,
+   "protein_g": 12.5,
+   "fat_g": 10.8,
+   "carbs_g": 23.4,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Burger, chicken, takeaway.",
+   "everyday": true,
+   "item_label": "burger",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "burger-bun",
+   "name": "Burger bun",
+   "category": "food_ambient",
+   "aliases": [
+    "burger buns",
+    "brioche bun",
+    "bap"
+   ],
+   "calories_per_100g": 270,
+   "protein_g": 9.0,
+   "fat_g": 4.5,
+   "carbs_g": 47.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bun",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "bread-roll-white",
+   "name": "Bread roll, white",
+   "category": "food_ambient",
+   "aliases": [
+    "bread roll",
+    "white roll",
+    "roll",
+    "dinner roll",
+    "baguette"
+   ],
+   "calories_per_100g": 262.0,
+   "protein_g": 9.2,
+   "fat_g": 2.2,
+   "carbs_g": 54.9,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Bread rolls, white, crusty.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "bread-roll-brown",
+   "name": "Bread roll, brown",
+   "category": "food_ambient",
+   "aliases": [
+    "brown roll",
+    "wholemeal roll"
+   ],
+   "calories_per_100g": 255.0,
+   "protein_g": 10.3,
+   "fat_g": 2.8,
+   "carbs_g": 50.4,
+   "fibre_g": 3.5,
+   "basis": "CoFID 2019: Bread rolls, brown, crusty.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "hot-dog-sausage",
+   "name": "Hot dog sausage",
+   "category": "food_fresh",
+   "aliases": [
+    "hot dog",
+    "hot dogs",
+    "frankfurter",
+    "frankfurters"
+   ],
+   "calories_per_100g": 287.0,
+   "protein_g": 13.6,
+   "fat_g": 25.4,
+   "carbs_g": 1.1,
+   "fibre_g": 0.1,
+   "basis": "CoFID 2019: Frankfurter.",
+   "everyday": true,
+   "item_label": "sausage",
+   "grams_per_item": 45,
+   "portion_g": 90
+  },
+  {
+   "slug": "chicken-nuggets",
+   "name": "Chicken nuggets, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "chicken nuggets",
+    "nuggets",
+    "chicken dippers"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 15.0,
+   "fat_g": 13.0,
+   "carbs_g": 18.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "nugget",
+   "grams_per_item": 18,
+   "portion_g": 108
+  },
+  {
+   "slug": "breaded-chicken",
+   "name": "Breaded chicken pieces, baked",
+   "category": "food_frozen",
+   "aliases": [
+    "breaded chicken",
+    "chicken goujons",
+    "goujons",
+    "chicken strips",
+    "popcorn chicken",
+    "chicken kiev"
+   ],
+   "calories_per_100g": 256.0,
+   "protein_g": 14.4,
+   "fat_g": 13.9,
+   "carbs_g": 19.6,
+   "fibre_g": 2.3,
+   "basis": "CoFID 2019: Chicken/turkey pieces, coated, baked.",
+   "everyday": true,
+   "portion_g": 150
+  },
+  {
+   "slug": "chicken-tikka-masala-ready",
+   "name": "Chicken tikka masala, ready meal",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken tikka masala",
+    "tikka masala",
+    "curry ready meal",
+    "chicken curry ready meal"
+   ],
+   "calories_per_100g": 156.0,
+   "protein_g": 12.4,
+   "fat_g": 9.8,
+   "carbs_g": 4.9,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Curry, chicken tikka masala, retail, reheated.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 350
+  },
+  {
+   "slug": "chicken-korma",
+   "name": "Chicken korma",
+   "category": "food_fresh",
+   "aliases": [
+    "korma"
+   ],
+   "calories_per_100g": 127.0,
+   "protein_g": 14.6,
+   "fat_g": 5.1,
+   "carbs_g": 4.6,
+   "fibre_g": 0.7,
+   "basis": "CoFID 2019: Curry, chicken korma, homemade.",
+   "everyday": true,
+   "portion_g": 350
+  },
+  {
+   "slug": "egg-fried-rice",
+   "name": "Egg fried rice",
+   "category": "food_fresh",
+   "aliases": [
+    "fried rice"
+   ],
+   "calories_per_100g": 186.0,
+   "protein_g": 4.3,
+   "fat_g": 4.9,
+   "carbs_g": 33.3,
+   "fibre_g": 1.1,
+   "basis": "CoFID 2019: Rice, egg fried, takeaway.",
+   "everyday": true,
+   "portion_g": 250
+  },
+  {
+   "slug": "chow-mein",
+   "name": "Chicken chow mein, takeaway",
+   "category": "food_fresh",
+   "aliases": [
+    "chow mein",
+    "chicken chow mein"
+   ],
+   "calories_per_100g": 147.0,
+   "protein_g": 8.5,
+   "fat_g": 7.2,
+   "carbs_g": 12.7,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Chow mein, chicken, takeaway.",
+   "everyday": true,
+   "portion_g": 350
+  },
+  {
+   "slug": "sweet-sour-chicken",
+   "name": "Sweet and sour chicken, takeaway",
+   "category": "food_fresh",
+   "aliases": [
+    "sweet and sour chicken",
+    "sweet and sour"
+   ],
+   "calories_per_100g": 194.0,
+   "protein_g": 7.6,
+   "fat_g": 10.0,
+   "carbs_g": 19.7,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Sweet and sour chicken, takeaway.",
+   "everyday": true,
+   "portion_g": 300
+  },
+  {
+   "slug": "spring-roll",
+   "name": "Spring rolls",
+   "category": "food_frozen",
+   "aliases": [
+    "spring roll"
+   ],
+   "calories_per_100g": 242.0,
+   "protein_g": 6.5,
+   "fat_g": 16.4,
+   "carbs_g": 18.2,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Spring rolls, meat, takeaway.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 60,
+   "portion_g": 120
+  },
+  {
+   "slug": "prawn-crackers",
+   "name": "Prawn crackers",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 570.0,
+   "protein_g": 0.3,
+   "fat_g": 39.0,
+   "carbs_g": 58.2,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Prawn crackers, takeaway.",
+   "everyday": true,
+   "portion_g": 25
+  },
+  {
+   "slug": "samosa-vegetable",
+   "name": "Vegetable samosa",
+   "category": "food_fresh",
+   "aliases": [
+    "samosa",
+    "samosas"
+   ],
+   "calories_per_100g": 217.0,
+   "protein_g": 5.1,
+   "fat_g": 9.3,
+   "carbs_g": 30.0,
+   "fibre_g": 3.5,
+   "basis": "CoFID 2019: Samosas, vegetable, retail.",
+   "everyday": true,
+   "item_label": "samosa",
+   "grams_per_item": 60,
+   "portion_g": 120
+  },
+  {
+   "slug": "onion-bhaji",
+   "name": "Onion bhaji",
+   "category": "food_fresh",
+   "aliases": [
+    "onion bhajis",
+    "bhaji"
+   ],
+   "calories_per_100g": 280,
+   "protein_g": 6.0,
+   "fat_g": 18.0,
+   "carbs_g": 24.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bhaji",
+   "grams_per_item": 50,
+   "portion_g": 100
+  },
+  {
+   "slug": "lasagne-ready",
+   "name": "Lasagne, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "lasagne",
+    "frozen lasagne",
+    "beef lasagne",
+    "ready meal lasagne"
+   ],
+   "calories_per_100g": 143.0,
+   "protein_g": 7.4,
+   "fat_g": 6.1,
+   "carbs_g": 15.7,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Lasagne, retail, reheated.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "lasagne-vegetable-ready",
+   "name": "Vegetable lasagne, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "vegetable lasagne",
+    "veggie lasagne"
+   ],
+   "calories_per_100g": 117.0,
+   "protein_g": 4.8,
+   "fat_g": 5.3,
+   "carbs_g": 13.4,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Lasagne, vegetable, retail.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "cottage-pie-ready",
+   "name": "Cottage or shepherd's pie, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "cottage pie ready meal",
+    "shepherds pie ready meal",
+    "frozen cottage pie"
+   ],
+   "calories_per_100g": 111.0,
+   "protein_g": 4.5,
+   "fat_g": 5.4,
+   "carbs_g": 11.9,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Pie, Cottage/Shepherd's, reheated.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "spag-bol-ready",
+   "name": "Spaghetti bolognese, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "spaghetti bolognese ready meal",
+    "spag bol ready meal"
+   ],
+   "calories_per_100g": 126.0,
+   "protein_g": 6.6,
+   "fat_g": 2.8,
+   "carbs_g": 20.0,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Spaghetti bolognese, retail, reheated, with spaghetti.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "chilli-con-carne-ready",
+   "name": "Chilli con carne with rice, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "chilli ready meal",
+    "chilli con carne ready meal"
+   ],
+   "calories_per_100g": 116.0,
+   "protein_g": 5.8,
+   "fat_g": 2.7,
+   "carbs_g": 18.1,
+   "fibre_g": 0.8,
+   "basis": "CoFID 2019: Chilli con carne, retail, reheated, with rice.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "macaroni-cheese",
+   "name": "Macaroni cheese",
+   "category": "food_fresh",
+   "aliases": [
+    "mac and cheese",
+    "mac n cheese"
+   ],
+   "calories_per_100g": 183.0,
+   "protein_g": 7.8,
+   "fat_g": 8.6,
+   "carbs_g": 19.8,
+   "fibre_g": 1.1,
+   "basis": "CoFID 2019: Macaroni cheese, homemade.",
+   "everyday": true,
+   "portion_g": 300
+  },
+  {
+   "slug": "fish-pie-ready",
+   "name": "Fish pie, ready meal",
+   "category": "food_frozen",
+   "aliases": [
+    "fish pie ready meal"
+   ],
+   "calories_per_100g": 124.0,
+   "protein_g": 6.6,
+   "fat_g": 4.8,
+   "carbs_g": 14.4,
+   "fibre_g": 2.1,
+   "basis": "CoFID 2019: Pie, fish, white fish, retail, baked.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 400,
+   "portion_g": 400
+  },
+  {
+   "slug": "vegetable-curry-ready",
+   "name": "Vegetable curry, ready meal",
+   "category": "food_fresh",
+   "aliases": [
+    "vegetable curry",
+    "veg curry"
+   ],
+   "calories_per_100g": 94.0,
+   "protein_g": 2.1,
+   "fat_g": 6.0,
+   "carbs_g": 8.4,
+   "fibre_g": 1.8,
+   "basis": "CoFID 2019: Curry, vegetable, ready meal, without rice, cooked.",
+   "everyday": true,
+   "item_label": "pack",
+   "grams_per_item": 350,
+   "portion_g": 350
+  },
+  {
+   "slug": "english-muffin",
+   "name": "English muffin",
+   "category": "food_ambient",
+   "aliases": [
+    "english muffins"
+   ],
+   "calories_per_100g": 223.0,
+   "protein_g": 10.0,
+   "fat_g": 1.9,
+   "carbs_g": 44.2,
+   "fibre_g": 2.6,
+   "basis": "CoFID 2019: Muffins, English style, white.",
+   "everyday": true,
+   "item_label": "muffin",
+   "grams_per_item": 65,
+   "portion_g": 65
+  },
+  {
+   "slug": "croissant",
+   "name": "Croissant",
+   "category": "food_ambient",
+   "aliases": [
+    "croissants",
+    "pain au chocolat"
+   ],
+   "calories_per_100g": 373.0,
+   "protein_g": 8.3,
+   "fat_g": 19.7,
+   "carbs_g": 43.3,
+   "fibre_g": 3.1,
+   "basis": "CoFID 2019: Croissants.",
+   "everyday": true,
+   "item_label": "croissant",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "hot-cross-bun",
+   "name": "Hot cross bun",
+   "category": "food_ambient",
+   "aliases": [
+    "hot cross buns",
+    "teacake",
+    "teacakes"
+   ],
+   "calories_per_100g": 312.0,
+   "protein_g": 7.3,
+   "fat_g": 5.8,
+   "carbs_g": 58.3,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Hot cross buns, homemade.",
+   "everyday": true,
+   "item_label": "bun",
+   "grams_per_item": 70,
+   "portion_g": 70
+  },
+  {
+   "slug": "scone-fruit",
+   "name": "Fruit scone",
+   "category": "food_ambient",
+   "aliases": [
+    "scone",
+    "scones"
+   ],
+   "calories_per_100g": 338.0,
+   "protein_g": 6.5,
+   "fat_g": 11.2,
+   "carbs_g": 56.2,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Scones, fruit, retail.",
+   "everyday": true,
+   "item_label": "scone",
+   "grams_per_item": 70,
+   "portion_g": 70
+  },
+  {
+   "slug": "doughnut-jam",
+   "name": "Doughnut",
+   "category": "food_ambient",
+   "aliases": [
+    "donut",
+    "jam doughnut",
+    "ring doughnut"
+   ],
+   "calories_per_100g": 321.0,
+   "protein_g": 5.4,
+   "fat_g": 13.1,
+   "carbs_g": 48.4,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Doughnuts, with jam.",
+   "everyday": true,
+   "item_label": "doughnut",
+   "grams_per_item": 75,
+   "portion_g": 75
+  },
+  {
+   "slug": "muffin-american",
+   "name": "Muffin, American style",
+   "category": "food_ambient",
+   "aliases": [
+    "muffin",
+    "blueberry muffin",
+    "chocolate muffin",
+    "muffins"
+   ],
+   "calories_per_100g": 375.0,
+   "protein_g": 5.0,
+   "fat_g": 19.5,
+   "carbs_g": 47.8,
+   "fibre_g": 1.8,
+   "basis": "CoFID 2019: Muffins, American, not chocolate, retail.",
+   "everyday": true,
+   "item_label": "muffin",
+   "grams_per_item": 110,
+   "portion_g": 110
+  },
+  {
+   "slug": "pancakes-sweet",
+   "name": "Pancakes",
+   "category": "food_fresh",
+   "aliases": [
+    "pancake",
+    "crepes"
+   ],
+   "calories_per_100g": 234.0,
+   "protein_g": 6.3,
+   "fat_g": 7.4,
+   "carbs_g": 37.9,
+   "fibre_g": 1.0,
+   "basis": "CoFID 2019: Pancakes, sweet, made with semi skimmed milk, homemade.",
+   "everyday": true,
+   "item_label": "pancake",
+   "grams_per_item": 50,
+   "portion_g": 100
+  },
+  {
+   "slug": "waffles",
+   "name": "Waffles",
+   "category": "food_ambient",
+   "aliases": [
+    "waffle"
+   ],
+   "calories_per_100g": 335.0,
+   "protein_g": 9.0,
+   "fat_g": 15.3,
+   "carbs_g": 43.0,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Waffles, homemade.",
+   "everyday": true,
+   "item_label": "waffle",
+   "grams_per_item": 35,
+   "portion_g": 70
+  },
+  {
+   "slug": "cornflakes",
+   "name": "Cornflakes",
+   "category": "food_ambient",
+   "aliases": [
+    "corn flakes"
+   ],
+   "calories_per_100g": 376.0,
+   "protein_g": 7.1,
+   "fat_g": 0.8,
+   "carbs_g": 90.9,
+   "fibre_g": 2.6,
+   "basis": "CoFID 2019: Breakfast cereal, cornflakes, fortified.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "bran-flakes",
+   "name": "Bran flakes",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 333.0,
+   "protein_g": 9.6,
+   "fat_g": 2.2,
+   "carbs_g": 73.3,
+   "fibre_g": 13.4,
+   "basis": "CoFID 2019: Breakfast cereal, bran flakes, fortified.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "wheat-biscuits",
+   "name": "Wheat biscuit cereal",
+   "category": "food_ambient",
+   "aliases": [
+    "wheat biscuits"
+   ],
+   "calories_per_100g": 332.0,
+   "protein_g": 10.5,
+   "fat_g": 1.9,
+   "carbs_g": 72.7,
+   "fibre_g": 9.7,
+   "basis": "CoFID 2019: Breakfast cereal, wheat biscuits, Weetabix type, fortified.",
+   "everyday": true,
+   "item_label": "biscuit",
+   "grams_per_item": 19,
+   "portion_g": 38
+  },
+  {
+   "slug": "muesli",
+   "name": "Muesli",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 366.0,
+   "protein_g": 9.2,
+   "fat_g": 6.3,
+   "carbs_g": 72.6,
+   "fibre_g": 8.8,
+   "basis": "CoFID 2019: Muesli, Swiss style, unfortified.",
+   "everyday": true,
+   "portion_g": 45
+  },
+  {
+   "slug": "porridge-milk",
+   "name": "Porridge made with semi-skimmed milk",
+   "category": "food_fresh",
+   "aliases": [
+    "porridge",
+    "porridge with milk"
+   ],
+   "calories_per_100g": 84.0,
+   "protein_g": 4.6,
+   "fat_g": 2.3,
+   "carbs_g": 12.1,
+   "fibre_g": 1.0,
+   "basis": "CoFID 2019: Porridge oats, unfortified, cooked, made up with semi-skimmed milk.",
+   "everyday": true,
+   "portion_g": 250
+  },
+  {
+   "slug": "hash-brown",
+   "name": "Hash browns, oven baked",
+   "category": "food_frozen",
+   "aliases": [
+    "hash brown",
+    "hash browns"
+   ],
+   "calories_per_100g": 200,
+   "protein_g": 2.5,
+   "fat_g": 10.0,
+   "carbs_g": 25.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "hash brown",
+   "grams_per_item": 45,
+   "portion_g": 90
+  },
+  {
+   "slug": "yorkshire-pudding",
+   "name": "Yorkshire pudding",
+   "category": "food_frozen",
+   "aliases": [
+    "yorkshire puddings",
+    "yorkshires"
+   ],
+   "calories_per_100g": 197.0,
+   "protein_g": 6.7,
+   "fat_g": 8.3,
+   "carbs_g": 25.6,
+   "fibre_g": 1.1,
+   "basis": "CoFID 2019: Yorkshire pudding, made with semi-skimmed milk, homemade.",
+   "everyday": true,
+   "item_label": "pudding",
+   "grams_per_item": 20,
+   "portion_g": 40
+  },
+  {
+   "slug": "garlic-bread",
+   "name": "Garlic bread",
+   "category": "food_frozen",
+   "aliases": [
+    "garlic baguette"
+   ],
+   "calories_per_100g": 350,
+   "protein_g": 8.0,
+   "fat_g": 16.0,
+   "carbs_g": 43.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 30,
+   "portion_g": 60
+  },
+  {
+   "slug": "chapati",
+   "name": "Chapati",
+   "category": "food_ambient",
+   "aliases": [
+    "chapatis",
+    "roti"
+   ],
+   "calories_per_100g": 202.0,
+   "protein_g": 7.3,
+   "fat_g": 1.0,
+   "carbs_g": 43.7,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Chapatis, made without fat.",
+   "everyday": true,
+   "item_label": "chapati",
+   "grams_per_item": 45,
+   "portion_g": 45
+  },
+  {
+   "slug": "bacon-back-grilled",
+   "name": "Bacon, back rashers, grilled",
+   "category": "food_fresh",
+   "aliases": [
+    "back bacon",
+    "grilled bacon"
+   ],
+   "calories_per_100g": 287.0,
+   "protein_g": 23.2,
+   "fat_g": 21.6,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Bacon rashers, back, grilled.",
+   "everyday": true,
+   "item_label": "rasher",
+   "grams_per_item": 25,
+   "portion_g": 50
+  },
+  {
+   "slug": "bacon-streaky-grilled",
+   "name": "Bacon, streaky, grilled",
+   "category": "food_fresh",
+   "aliases": [
+    "streaky bacon",
+    "smoked streaky bacon"
+   ],
+   "calories_per_100g": 337.0,
+   "protein_g": 23.8,
+   "fat_g": 26.9,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Bacon rashers, streaky, grilled.",
+   "everyday": true,
+   "item_label": "rasher",
+   "grams_per_item": 15,
+   "portion_g": 30
+  },
+  {
+   "slug": "sausages-pork-grilled",
+   "name": "Sausages, pork, grilled",
+   "category": "food_fresh",
+   "aliases": [
+    "pork sausages",
+    "bangers",
+    "grilled sausages"
+   ],
+   "calories_per_100g": 294.0,
+   "protein_g": 14.5,
+   "fat_g": 22.1,
+   "carbs_g": 9.8,
+   "fibre_g": 2.3,
+   "basis": "CoFID 2019: Sausages, pork, chilled, grilled.",
+   "everyday": true,
+   "item_label": "sausage",
+   "grams_per_item": 57,
+   "portion_g": 114
+  },
+  {
+   "slug": "sausages-reduced-fat",
+   "name": "Sausages, reduced fat, grilled",
+   "category": "food_fresh",
+   "aliases": [
+    "reduced fat sausages",
+    "low fat sausages"
+   ],
+   "calories_per_100g": 160.0,
+   "protein_g": 16.2,
+   "fat_g": 6.1,
+   "carbs_g": 10.7,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Sausages, pork, reduced fat, grilled.",
+   "everyday": true,
+   "item_label": "sausage",
+   "grams_per_item": 57,
+   "portion_g": 114
+  },
+  {
+   "slug": "sausage-roll",
+   "name": "Sausage roll",
+   "category": "food_fresh",
+   "aliases": [
+    "sausage rolls"
+   ],
+   "calories_per_100g": 352.0,
+   "protein_g": 8.4,
+   "fat_g": 24.1,
+   "carbs_g": 27.0,
+   "fibre_g": 3.4,
+   "basis": "CoFID 2019: Sausage roll, flaky pastry, ready-to-eat, retail.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 130,
+   "portion_g": 130
+  },
+  {
+   "slug": "pork-pie",
+   "name": "Pork pie",
+   "category": "food_fresh",
+   "aliases": [
+    "pork pies",
+    "mini pork pie"
+   ],
+   "calories_per_100g": 370.0,
+   "protein_g": 9.9,
+   "fat_g": 26.0,
+   "carbs_g": 25.7,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Pork pie, individual.",
+   "everyday": true,
+   "item_label": "pie",
+   "grams_per_item": 140,
+   "portion_g": 140
+  },
+  {
+   "slug": "cornish-pasty",
+   "name": "Cornish pasty",
+   "category": "food_fresh",
+   "aliases": [
+    "pasty",
+    "steak bake"
+   ],
+   "calories_per_100g": 278.0,
+   "protein_g": 7.0,
+   "fat_g": 17.8,
+   "carbs_g": 24.0,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Cornish pasty, retail.",
+   "everyday": true,
+   "item_label": "pasty",
+   "grams_per_item": 230,
+   "portion_g": 230
+  },
+  {
+   "slug": "scotch-egg",
+   "name": "Scotch egg",
+   "category": "food_fresh",
+   "aliases": [
+    "scotch eggs"
+   ],
+   "calories_per_100g": 241.0,
+   "protein_g": 12.0,
+   "fat_g": 16.0,
+   "carbs_g": 13.1,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Scotch eggs, retail.",
+   "everyday": true,
+   "item_label": "egg",
+   "grams_per_item": 113,
+   "portion_g": 113
+  },
+  {
+   "slug": "quiche-lorraine",
+   "name": "Quiche Lorraine",
+   "category": "food_fresh",
+   "aliases": [
+    "quiche"
+   ],
+   "calories_per_100g": 269.0,
+   "protein_g": 9.1,
+   "fat_g": 17.6,
+   "carbs_g": 19.7,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Quiche, Lorraine, shortcrust pastry, retail.",
+   "everyday": true,
+   "portion_g": 150
+  },
+  {
+   "slug": "ham-sliced",
+   "name": "Ham, sliced",
+   "category": "food_fresh",
+   "aliases": [
+    "sliced ham",
+    "cooked ham"
+   ],
+   "calories_per_100g": 107.0,
+   "protein_g": 18.4,
+   "fat_g": 3.3,
+   "carbs_g": 1.0,
+   "fibre_g": 0.1,
+   "basis": "CoFID 2019: Ham.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 25,
+   "portion_g": 50
+  },
+  {
+   "slug": "salami",
+   "name": "Salami",
+   "category": "food_fresh",
+   "aliases": [
+    "pepperoni"
+   ],
+   "calories_per_100g": 438.0,
+   "protein_g": 20.9,
+   "fat_g": 39.2,
+   "carbs_g": 0.5,
+   "fibre_g": 0.4,
+   "basis": "CoFID 2019: Salami.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 8,
+   "portion_g": 30
+  },
+  {
+   "slug": "chicken-breast-roast",
+   "name": "Chicken breast, cooked",
+   "category": "food_fresh",
+   "aliases": [
+    "cooked chicken",
+    "roast chicken breast",
+    "chicken pieces cooked"
+   ],
+   "calories_per_100g": 148.0,
+   "protein_g": 32.0,
+   "fat_g": 2.2,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Chicken, breast, grilled without skin, meat only.",
+   "everyday": true,
+   "portion_g": 140
+  },
+  {
+   "slug": "crisps",
+   "name": "Crisps",
+   "category": "food_ambient",
+   "aliases": [
+    "packet of crisps",
+    "bag of crisps",
+    "potato crisps"
+   ],
+   "calories_per_100g": 493.0,
+   "protein_g": 6.2,
+   "fat_g": 28.8,
+   "carbs_g": 55.8,
+   "fibre_g": 4.4,
+   "basis": "CoFID 2019: Potato crisps, fried in sunflower oil.",
+   "everyday": true,
+   "item_label": "bag",
+   "grams_per_item": 25,
+   "portion_g": 25
+  },
+  {
+   "slug": "crisps-lower-fat",
+   "name": "Crisps, lower fat",
+   "category": "food_ambient",
+   "aliases": [
+    "lower fat crisps",
+    "baked crisps",
+    "low fat crisps"
+   ],
+   "calories_per_100g": 458.0,
+   "protein_g": 6.6,
+   "fat_g": 21.5,
+   "carbs_g": 63.5,
+   "fibre_g": 5.9,
+   "basis": "CoFID 2019: Potato crisps, low fat.",
+   "everyday": true,
+   "item_label": "bag",
+   "grams_per_item": 25,
+   "portion_g": 25
+  },
+  {
+   "slug": "tortilla-chips",
+   "name": "Tortilla chips",
+   "category": "food_ambient",
+   "aliases": [
+    "nachos"
+   ],
+   "calories_per_100g": 504.0,
+   "protein_g": 7.2,
+   "fat_g": 27.4,
+   "carbs_g": 60.8,
+   "fibre_g": 5.9,
+   "basis": "CoFID 2019: Tortilla chips fried in sunflower oil.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "popcorn-salted",
+   "name": "Popcorn, salted",
+   "category": "food_ambient",
+   "aliases": [
+    "popcorn"
+   ],
+   "calories_per_100g": 470.0,
+   "protein_g": 9.0,
+   "fat_g": 23.5,
+   "carbs_g": 59.3,
+   "fibre_g": 9.3,
+   "basis": "CoFID 2019: Popcorn, salted, retail.",
+   "everyday": true,
+   "item_label": "bag",
+   "grams_per_item": 30,
+   "portion_g": 30
+  },
+  {
+   "slug": "pretzels",
+   "name": "Pretzels",
+   "category": "food_ambient",
+   "aliases": [
+    "pretzel"
+   ],
+   "calories_per_100g": 380,
+   "protein_g": 10.0,
+   "fat_g": 3.5,
+   "carbs_g": 77.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "rice-cakes",
+   "name": "Rice cakes",
+   "category": "food_ambient",
+   "aliases": [
+    "rice cake"
+   ],
+   "calories_per_100g": 385,
+   "protein_g": 8.0,
+   "fat_g": 3.0,
+   "carbs_g": 80.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "cake",
+   "grams_per_item": 8,
+   "portion_g": 16
+  },
+  {
+   "slug": "milk-chocolate-bar",
+   "name": "Milk chocolate bar",
+   "category": "food_ambient",
+   "aliases": [
+    "chocolate bar",
+    "milk chocolate",
+    "bar of chocolate"
+   ],
+   "calories_per_100g": 519.0,
+   "protein_g": 7.3,
+   "fat_g": 31.1,
+   "carbs_g": 56.0,
+   "fibre_g": 2.3,
+   "basis": "CoFID 2019: Chocolate, milk.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 45,
+   "portion_g": 45
+  },
+  {
+   "slug": "caramel-chocolate-bar",
+   "name": "Chocolate bar with caramel",
+   "category": "food_ambient",
+   "aliases": [
+    "caramel bar",
+    "chocolate caramel bar",
+    "caramel chocolate"
+   ],
+   "calories_per_100g": 493.0,
+   "protein_g": 4.2,
+   "fat_g": 23.6,
+   "carbs_g": 70.2,
+   "fibre_g": 0.7,
+   "basis": "CoFID 2019: Caramel bars and sweets, chocolate covered.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 50,
+   "portion_g": 50
+  },
+  {
+   "slug": "chocolate-wafer-bar",
+   "name": "Chocolate covered wafer",
+   "category": "food_ambient",
+   "aliases": [
+    "wafer bar",
+    "chocolate wafer"
+   ],
+   "calories_per_100g": 509.0,
+   "protein_g": 5.5,
+   "fat_g": 28.6,
+   "carbs_g": 61.1,
+   "fibre_g": 2.7,
+   "basis": "CoFID 2019: Chocolate covered wafer biscuit.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 42,
+   "portion_g": 42
+  },
+  {
+   "slug": "cereal-bar",
+   "name": "Cereal bar",
+   "category": "food_ambient",
+   "aliases": [
+    "cereal bars",
+    "granola bar",
+    "oat bar"
+   ],
+   "calories_per_100g": 354.0,
+   "protein_g": 5.6,
+   "fat_g": 10.7,
+   "carbs_g": 62.9,
+   "fibre_g": 6.2,
+   "basis": "CoFID 2019: Cereal bars, with fruit and/or nuts, no chocolate, unfortified.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 30,
+   "portion_g": 30
+  },
+  {
+   "slug": "cereal-bar-chocolate",
+   "name": "Cereal bar with chocolate",
+   "category": "food_ambient",
+   "aliases": [
+    "chocolate cereal bar"
+   ],
+   "calories_per_100g": 436.0,
+   "protein_g": 6.0,
+   "fat_g": 18.3,
+   "carbs_g": 66.0,
+   "fibre_g": 5.1,
+   "basis": "CoFID 2019: Cereal bars, with fruit and/or nuts, with chocolate, unfortified.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 30,
+   "portion_g": 30
+  },
+  {
+   "slug": "protein-bar",
+   "name": "Protein bar",
+   "category": "food_ambient",
+   "aliases": [
+    "protein bars"
+   ],
+   "calories_per_100g": 370,
+   "protein_g": 30.0,
+   "fat_g": 12.0,
+   "carbs_g": 35.0,
+   "fibre_g": 8.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bar",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "flapjack",
+   "name": "Flapjack",
+   "category": "food_ambient",
+   "aliases": [
+    "flapjacks"
+   ],
+   "calories_per_100g": 434.0,
+   "protein_g": 5.1,
+   "fat_g": 22.8,
+   "carbs_g": 55.7,
+   "fibre_g": 5.2,
+   "basis": "CoFID 2019: Flapjacks, retail.",
+   "everyday": true,
+   "item_label": "flapjack",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "digestive-biscuit",
+   "name": "Digestive biscuits",
+   "category": "food_ambient",
+   "aliases": [
+    "digestives",
+    "digestive biscuit",
+    "biscuits",
+    "biscuit"
+   ],
+   "calories_per_100g": 463.0,
+   "protein_g": 6.2,
+   "fat_g": 21.3,
+   "carbs_g": 65.6,
+   "fibre_g": 3.8,
+   "basis": "CoFID 2019: Biscuits, digestive, plain.",
+   "everyday": true,
+   "item_label": "biscuit",
+   "grams_per_item": 15,
+   "portion_g": 30
+  },
+  {
+   "slug": "chocolate-digestive",
+   "name": "Chocolate digestive biscuits",
+   "category": "food_ambient",
+   "aliases": [
+    "chocolate digestives",
+    "chocolate biscuits"
+   ],
+   "calories_per_100g": 488.0,
+   "protein_g": 6.3,
+   "fat_g": 25.7,
+   "carbs_g": 61.8,
+   "fibre_g": 2.1,
+   "basis": "CoFID 2019: Biscuits, digestive, half coated in chocolate.",
+   "everyday": true,
+   "item_label": "biscuit",
+   "grams_per_item": 17,
+   "portion_g": 34
+  },
+  {
+   "slug": "shortbread",
+   "name": "Shortbread",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 515.0,
+   "protein_g": 5.3,
+   "fat_g": 29.0,
+   "carbs_g": 62.2,
+   "fibre_g": 2.2,
+   "basis": "CoFID 2019: Shortbread.",
+   "everyday": true,
+   "item_label": "finger",
+   "grams_per_item": 20,
+   "portion_g": 40
+  },
+  {
+   "slug": "cookies",
+   "name": "Chocolate chip cookies",
+   "category": "food_ambient",
+   "aliases": [
+    "cookie",
+    "cookies"
+   ],
+   "calories_per_100g": 471.0,
+   "protein_g": 5.4,
+   "fat_g": 24.9,
+   "carbs_g": 60.0,
+   "fibre_g": 3.0,
+   "basis": "CoFID 2019: Biscuits, cookies, chocolate chip, standard.",
+   "everyday": true,
+   "item_label": "cookie",
+   "grams_per_item": 25,
+   "portion_g": 50
+  },
+  {
+   "slug": "brownie",
+   "name": "Chocolate brownie",
+   "category": "food_ambient",
+   "aliases": [
+    "brownie",
+    "brownies"
+   ],
+   "calories_per_100g": 506.0,
+   "protein_g": 6.2,
+   "fat_g": 30.8,
+   "carbs_g": 54.3,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Brownies, chocolate, homemade.",
+   "everyday": true,
+   "item_label": "brownie",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "cake-sponge",
+   "name": "Sponge cake with filling",
+   "category": "food_ambient",
+   "aliases": [
+    "cake",
+    "sponge cake",
+    "victoria sponge",
+    "birthday cake"
+   ],
+   "calories_per_100g": 476.0,
+   "protein_g": 4.5,
+   "fat_g": 27.3,
+   "carbs_g": 56.2,
+   "fibre_g": 0.8,
+   "basis": "CoFID 2019: Cake, sponge, with butter icing, homemade.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 65,
+   "portion_g": 65
+  },
+  {
+   "slug": "ice-cream-vanilla",
+   "name": "Ice cream, vanilla",
+   "category": "food_frozen",
+   "aliases": [
+    "ice cream",
+    "vanilla ice cream"
+   ],
+   "calories_per_100g": 169.0,
+   "protein_g": 3.2,
+   "fat_g": 8.2,
+   "carbs_g": 22.0,
+   "fibre_g": 0.2,
+   "basis": "CoFID 2019: Ice cream, dairy, vanilla, soft scoop.",
+   "everyday": true,
+   "item_label": "scoop",
+   "grams_per_item": 60,
+   "portion_g": 120
+  },
+  {
+   "slug": "cheesecake",
+   "name": "Cheesecake",
+   "category": "food_frozen",
+   "aliases": [],
+   "calories_per_100g": 264.0,
+   "protein_g": 6.1,
+   "fat_g": 12.3,
+   "carbs_g": 34.5,
+   "fibre_g": 1.6,
+   "basis": "CoFID 2019: Cheesecake, fruit, individual.",
+   "everyday": true,
+   "item_label": "slice",
+   "grams_per_item": 100,
+   "portion_g": 100
+  },
+  {
+   "slug": "custard-ready",
+   "name": "Custard, ready to eat",
+   "category": "food_ambient",
+   "aliases": [
+    "custard",
+    "ready made custard"
+   ],
+   "calories_per_100g": 98.0,
+   "protein_g": 2.7,
+   "fat_g": 2.9,
+   "carbs_g": 16.3,
+   "fibre_g": 0,
+   "basis": "CoFID 2019: Custard, ready to eat, canned and tetra-pak.",
+   "everyday": true,
+   "portion_g": 125
+  },
+  {
+   "slug": "jelly-sweets",
+   "name": "Jelly and chewy sweets",
+   "category": "food_ambient",
+   "aliases": [
+    "sweets",
+    "jelly sweets",
+    "gummy sweets"
+   ],
+   "calories_per_100g": 377.0,
+   "protein_g": 0.9,
+   "fat_g": 6.0,
+   "carbs_g": 85.1,
+   "fibre_g": 0,
+   "basis": "CoFID 2019: Sweets, chew sweets.",
+   "everyday": true,
+   "item_label": "bag",
+   "grams_per_item": 40,
+   "portion_g": 40
+  },
+  {
+   "slug": "nuts-mixed",
+   "name": "Mixed nuts",
+   "category": "food_ambient",
+   "aliases": [
+    "nuts"
+   ],
+   "calories_per_100g": 581.0,
+   "protein_g": 23.8,
+   "fat_g": 49.1,
+   "carbs_g": 11.6,
+   "fibre_g": 6.2,
+   "basis": "CoFID 2019: Nuts, mixed.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "peanut-butter-crunchy",
+   "name": "Peanut butter, crunchy",
+   "category": "food_ambient",
+   "aliases": [
+    "crunchy peanut butter"
+   ],
+   "calories_per_100g": 615,
+   "protein_g": 24.0,
+   "fat_g": 52.0,
+   "carbs_g": 13.0,
+   "fibre_g": 7.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 20
+  },
+  {
+   "slug": "chocolate-spread",
+   "name": "Chocolate spread",
+   "category": "food_ambient",
+   "aliases": [
+    "chocolate hazelnut spread"
+   ],
+   "calories_per_100g": 575.0,
+   "protein_g": 3.3,
+   "fat_g": 37.7,
+   "carbs_g": 59.4,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Chocolate spread.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "baked-beans-reduced",
+   "name": "Baked beans, reduced sugar and salt",
+   "category": "food_ambient",
+   "aliases": [
+    "reduced sugar baked beans",
+    "lower sugar beans"
+   ],
+   "calories_per_100g": 75.0,
+   "protein_g": 5.0,
+   "fat_g": 0.5,
+   "carbs_g": 13.5,
+   "fibre_g": 4.9,
+   "basis": "CoFID 2019: Baked beans, canned in tomato sauce, reduced sugar, reduced salt.",
+   "everyday": true,
+   "item_label": "tin",
+   "grams_per_item": 415,
+   "portion_g": 200
+  },
+  {
+   "slug": "tinned-spaghetti",
+   "name": "Spaghetti in tomato sauce, tinned",
+   "category": "food_ambient",
+   "aliases": [
+    "tinned spaghetti",
+    "spaghetti hoops",
+    "hoops"
+   ],
+   "calories_per_100g": 72.0,
+   "protein_g": 2.1,
+   "fat_g": 0.3,
+   "carbs_g": 16.2,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Pasta, spaghetti, canned, in tomato sauce.",
+   "everyday": true,
+   "item_label": "tin",
+   "grams_per_item": 410,
+   "portion_g": 200
+  },
+  {
+   "slug": "tinned-soup-tomato",
+   "name": "Cream of tomato soup, tinned",
+   "category": "food_ambient",
+   "aliases": [
+    "tomato soup",
+    "tinned soup",
+    "cream of tomato soup"
+   ],
+   "calories_per_100g": 51.0,
+   "protein_g": 0.9,
+   "fat_g": 2.0,
+   "carbs_g": 7.8,
+   "fibre_g": 0.6,
+   "basis": "CoFID 2019: Soup, cream of tomato, canned.",
+   "everyday": true,
+   "item_label": "tin",
+   "grams_per_item": 400,
+   "portion_g": 300
+  },
+  {
+   "slug": "coleslaw",
+   "name": "Coleslaw",
+   "category": "food_fresh",
+   "aliases": [],
+   "calories_per_100g": 173.0,
+   "protein_g": 0.8,
+   "fat_g": 16.3,
+   "carbs_g": 6.0,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Coleslaw, not low calorie, retail.",
+   "everyday": true,
+   "portion_g": 50
+  },
+  {
+   "slug": "gravy-made",
+   "name": "Gravy, made from granules",
+   "category": "food_ambient",
+   "aliases": [
+    "gravy"
+   ],
+   "calories_per_100g": 30.0,
+   "protein_g": 0.3,
+   "fat_g": 1.2,
+   "carbs_g": 4.7,
+   "fibre_g": 0.1,
+   "basis": "CoFID 2019: Gravy instant granules, made up with water.",
+   "everyday": true,
+   "portion_g": 70
+  },
+  {
+   "slug": "stuffing-made",
+   "name": "Sage and onion stuffing",
+   "category": "food_ambient",
+   "aliases": [
+    "stuffing"
+   ],
+   "calories_per_100g": 97.0,
+   "protein_g": 2.8,
+   "fat_g": 1.5,
+   "carbs_g": 19.3,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Stuffing mix, dried, assorted flavours, made up.",
+   "everyday": true,
+   "portion_g": 70
+  },
+  {
+   "slug": "mayonnaise-light",
+   "name": "Mayonnaise, reduced fat",
+   "category": "food_ambient",
+   "aliases": [
+    "light mayonnaise",
+    "lighter mayonnaise",
+    "reduced fat mayonnaise",
+    "light mayo"
+   ],
+   "calories_per_100g": 288.0,
+   "protein_g": 1.0,
+   "fat_g": 28.1,
+   "carbs_g": 8.2,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Mayonnaise, reduced fat.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "salad-cream",
+   "name": "Salad cream",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 326.0,
+   "protein_g": 1.5,
+   "fat_g": 26.7,
+   "carbs_g": 21.2,
+   "fibre_g": 0.5,
+   "basis": "CoFID 2019: Salad cream.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "brown-sauce",
+   "name": "Brown sauce",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 110,
+   "protein_g": 1.0,
+   "fat_g": 0.1,
+   "carbs_g": 25.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "bbq-sauce",
+   "name": "Barbecue sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "bbq sauce"
+   ],
+   "calories_per_100g": 140.0,
+   "protein_g": 1.0,
+   "fat_g": 0.1,
+   "carbs_g": 36.1,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Barbecue sauce.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "sweet-chilli-sauce",
+   "name": "Sweet chilli sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "sweet chili sauce"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 0.5,
+   "fat_g": 0.3,
+   "carbs_g": 56.0,
+   "fibre_g": 0.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 15
+  },
+  {
+   "slug": "cook-in-curry-sauce",
+   "name": "Curry cooking sauce, jar",
+   "category": "food_ambient",
+   "aliases": [
+    "curry sauce",
+    "tikka masala sauce",
+    "korma sauce",
+    "jar of curry sauce"
+   ],
+   "calories_per_100g": 133.0,
+   "protein_g": 1.7,
+   "fat_g": 9.5,
+   "carbs_g": 10.9,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Sauce, Indian cook in, korma/tikka masala.",
+   "everyday": true,
+   "item_label": "jar",
+   "grams_per_item": 450,
+   "portion_g": 115
+  },
+  {
+   "slug": "pasta-sauce-jar",
+   "name": "Tomato pasta sauce, jar",
+   "category": "food_ambient",
+   "aliases": [
+    "pasta sauce",
+    "bolognese sauce",
+    "tomato pasta sauce",
+    "jar of pasta sauce"
+   ],
+   "calories_per_100g": 44.0,
+   "protein_g": 1.5,
+   "fat_g": 1.3,
+   "carbs_g": 6.9,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Sauce, pasta, tomato based, for bolognese.",
+   "everyday": true,
+   "item_label": "jar",
+   "grams_per_item": 500,
+   "portion_g": 125
+  },
+  {
+   "slug": "sandwich-chicken-salad",
+   "name": "Sandwich, chicken salad",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken sandwich",
+    "chicken salad sandwich",
+    "sandwich"
+   ],
+   "calories_per_100g": 172.0,
+   "protein_g": 10.7,
+   "fat_g": 4.9,
+   "carbs_g": 22.5,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Sandwich, white bread, chicken salad.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "sandwich-blt",
+   "name": "Sandwich, bacon, lettuce and tomato",
+   "category": "food_fresh",
+   "aliases": [
+    "blt",
+    "blt sandwich",
+    "bacon sandwich"
+   ],
+   "calories_per_100g": 230.0,
+   "protein_g": 8.2,
+   "fat_g": 11.9,
+   "carbs_g": 24.1,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Sandwich, white bread, bacon, lettuce and tomato.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "sandwich-cheese-pickle",
+   "name": "Sandwich, cheese and pickle",
+   "category": "food_fresh",
+   "aliases": [
+    "cheese sandwich",
+    "cheese and pickle sandwich",
+    "ploughmans sandwich"
+   ],
+   "calories_per_100g": 282.0,
+   "protein_g": 12.0,
+   "fat_g": 14.4,
+   "carbs_g": 27.7,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Sandwich, white bread, cheddar cheese and pickle.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "sandwich-egg-mayo",
+   "name": "Sandwich, egg mayonnaise",
+   "category": "food_fresh",
+   "aliases": [
+    "egg mayo sandwich",
+    "egg sandwich",
+    "egg mayonnaise sandwich"
+   ],
+   "calories_per_100g": 243.0,
+   "protein_g": 8.8,
+   "fat_g": 11.2,
+   "carbs_g": 28.5,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Sandwich, white bread, egg mayonnaise.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "sandwich-ham-salad",
+   "name": "Sandwich, ham salad",
+   "category": "food_fresh",
+   "aliases": [
+    "ham sandwich",
+    "ham salad sandwich"
+   ],
+   "calories_per_100g": 163.0,
+   "protein_g": 8.2,
+   "fat_g": 4.1,
+   "carbs_g": 25.0,
+   "fibre_g": 1.6,
+   "basis": "CoFID 2019: Sandwich, white bread, ham salad.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "sandwich-tuna-mayo",
+   "name": "Sandwich, tuna mayonnaise",
+   "category": "food_fresh",
+   "aliases": [
+    "tuna sandwich",
+    "tuna mayo sandwich",
+    "tuna and sweetcorn sandwich"
+   ],
+   "calories_per_100g": 237.0,
+   "protein_g": 12.5,
+   "fat_g": 10.2,
+   "carbs_g": 25.3,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Sandwich, white bread, tuna mayonnaise.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "falafel",
+   "name": "Falafel",
+   "category": "food_fresh",
+   "aliases": [
+    "falafels"
+   ],
+   "calories_per_100g": 183.0,
+   "protein_g": 6.4,
+   "fat_g": 11.2,
+   "carbs_g": 15.9,
+   "fibre_g": 3.5,
+   "basis": "CoFID 2019: Falafel, fried in rapeseed oil, homemade.",
+   "everyday": true,
+   "item_label": "falafel",
+   "grams_per_item": 20,
+   "portion_g": 100
+  },
+  {
+   "slug": "sushi-salmon",
+   "name": "Sushi, salmon",
+   "category": "food_fresh",
+   "aliases": [
+    "sushi",
+    "salmon sushi",
+    "sushi box"
+   ],
+   "calories_per_100g": 152.0,
+   "protein_g": 8.7,
+   "fat_g": 2.5,
+   "carbs_g": 25.2,
+   "fibre_g": 1.2,
+   "basis": "CoFID 2019: Sushi, salmon nigiri.",
+   "everyday": true,
+   "item_label": "piece",
+   "grams_per_item": 30,
+   "portion_g": 180
+  },
+  {
+   "slug": "quorn-pieces",
+   "name": "Mycoprotein pieces",
+   "category": "food_frozen",
+   "aliases": [
+    "quorn",
+    "quorn pieces",
+    "mycoprotein"
+   ],
+   "calories_per_100g": 73.0,
+   "protein_g": 14.0,
+   "fat_g": 1.4,
+   "carbs_g": 1.1,
+   "fibre_g": 8.3,
+   "basis": "CoFID 2019: Quorn, pieces, as purchased.",
+   "everyday": true,
+   "portion_g": 100
+  },
+  {
+   "slug": "rice-white-cooked",
+   "name": "Rice, white, cooked",
+   "category": "food_fresh",
+   "aliases": [
+    "cooked rice",
+    "boiled rice",
+    "steamed rice",
+    "microwave rice"
+   ],
+   "calories_per_100g": 131.0,
+   "protein_g": 2.8,
+   "fat_g": 0.4,
+   "carbs_g": 31.1,
+   "fibre_g": 0.5,
+   "basis": "CoFID 2019: Rice, white, long grain, boiled in unsalted water.",
+   "everyday": true,
+   "item_label": "pouch",
+   "grams_per_item": 250,
+   "portion_g": 180
+  },
+  {
+   "slug": "pasta-cooked",
+   "name": "Pasta, cooked",
+   "category": "food_fresh",
+   "aliases": [
+    "cooked pasta",
+    "boiled pasta"
+   ],
+   "calories_per_100g": 169.0,
+   "protein_g": 5.5,
+   "fat_g": 0.8,
+   "carbs_g": 37.2,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Pasta, white, dried, boiled in unsalted water.",
+   "everyday": true,
+   "portion_g": 220
+  },
+  {
+   "slug": "mashed-potato",
+   "name": "Mashed potato",
+   "category": "food_fresh",
+   "aliases": [
+    "mash"
+   ],
+   "calories_per_100g": 102.0,
+   "protein_g": 1.9,
+   "fat_g": 3.9,
+   "carbs_g": 15.9,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Potatoes, old, mashed with butter.",
+   "everyday": true,
+   "portion_g": 180
+  },
+  {
+   "slug": "roast-potatoes",
+   "name": "Roast potatoes",
+   "category": "food_fresh",
+   "aliases": [
+    "roasties"
+   ],
+   "calories_per_100g": 161.0,
+   "protein_g": 2.6,
+   "fat_g": 5.7,
+   "carbs_g": 26.4,
+   "fibre_g": 2.7,
+   "basis": "CoFID 2019: Potatoes, old, roasted in rapeseed oil.",
+   "everyday": true,
+   "portion_g": 200
+  },
+  {
+   "slug": "jacket-potato",
+   "name": "Jacket potato",
+   "category": "food_fresh",
+   "aliases": [
+    "baked potato"
+   ],
+   "calories_per_100g": 97.0,
+   "protein_g": 2.5,
+   "fat_g": 0.2,
+   "carbs_g": 22.6,
+   "fibre_g": 2.6,
+   "basis": "CoFID 2019: Potatoes, old, baked, flesh and skin.",
+   "everyday": true,
+   "item_label": "potato",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "eggs-scrambled",
+   "name": "Scrambled egg",
+   "category": "food_fresh",
+   "aliases": [
+    "scrambled eggs"
+   ],
+   "calories_per_100g": 237.0,
+   "protein_g": 11.0,
+   "fat_g": 21.2,
+   "carbs_g": 0.7,
+   "fibre_g": 0.1,
+   "basis": "CoFID 2019: Eggs, chicken, scrambled, with semi-skimmed milk.",
+   "everyday": true,
+   "portion_g": 120
+  },
+  {
+   "slug": "eggs-fried",
+   "name": "Fried egg",
+   "category": "food_fresh",
+   "aliases": [
+    "fried eggs"
+   ],
+   "calories_per_100g": 200.0,
+   "protein_g": 14.7,
+   "fat_g": 15.7,
+   "carbs_g": 0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Eggs, chicken, whole, fried in sunflower oil.",
+   "everyday": true,
+   "item_label": "egg",
+   "grams_per_item": 60,
+   "portion_g": 60
+  },
+  {
+   "slug": "eggs-boiled",
+   "name": "Boiled egg",
+   "category": "food_fresh",
+   "aliases": [
+    "boiled eggs",
+    "poached egg"
+   ],
+   "calories_per_100g": 143.0,
+   "protein_g": 14.1,
+   "fat_g": 9.6,
+   "carbs_g": 0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Eggs, chicken, whole, boiled.",
+   "everyday": true,
+   "item_label": "egg",
+   "grams_per_item": 50,
+   "portion_g": 100
+  },
+  {
+   "slug": "omelette-cheese",
+   "name": "Cheese omelette",
+   "category": "food_fresh",
+   "aliases": [
+    "omelette"
+   ],
+   "calories_per_100g": 268.0,
+   "protein_g": 15.9,
+   "fat_g": 22.7,
+   "carbs_g": 0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Omelette, cheese, homemade.",
+   "everyday": true,
+   "portion_g": 150
   }
  ]
 }

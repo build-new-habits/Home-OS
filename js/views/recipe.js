@@ -60,7 +60,9 @@ import { nutritionBars } from '../components/nutritionBars.js';
 import { describeRecipeTime } from '../lib/recipeTime.js';
 import { describeEquipment } from '../lib/recipeEquipment.js';
 import { getRecipeNote, setFavourite } from '../data/recipeNotes.js';
-import { listMeals, listIngredients, setFavourite as setMealFavourite } from '../data/meals.js';
+import { listMeals, listIngredients, updateIngredient, setFavourite as setMealFavourite } from '../data/meals.js';
+import { lookup as lookupReference } from '../data/foodReference.js';
+import { cleanFoodName } from '../data/nutritionRepair.js';
 import { listSteps, slugifyFoodName } from '../data/mealSteps.js';
 import { showToast } from '../components/toast.js';
 import { localIdFromHash, getLocal, linkLocal, deleteLocal } from '../data/localRecipes.js';
@@ -109,7 +111,7 @@ export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
     const food = row.foods || {};
     const ref = slugifyFoodName(food.name) || `food-${row.food_id}`;
     refMap.set(ref, food);
-    ingredients.push({ ref, name: food.name, quantity: row.quantity_g, unit: row.unit || 'g' });
+    ingredients.push({ ref, name: food.name, quantity: row.quantity_g, unit: row.unit || 'g', rowId: row.id });
   }
   const recipe = {
     slug: null,
@@ -149,6 +151,36 @@ export function uncountedFoods(recipe, refMap) {
     if (seen.has(key)) continue;
     seen.add(key);
     out.push({ food, unit: ing.unit });
+  }
+  return out;
+}
+
+/**
+ * Own-recipe amounts well under a typical portion for the people it serves
+ * (4 Oct 2026: "Fish and chips" had 200 g of fish for four). Only foods the
+ * reference knows a usual portion for are checked; nothing is changed here.
+ */
+export async function checkAmounts(recipe, refMap) {
+  const serves = Number(recipe && recipe.default_serves) || 1;
+  const out = [];
+  for (const ing of (recipe && recipe.ingredients) || []) {
+    if (!ing.rowId || !(Number(ing.quantity) > 0)) continue;
+    const food = refMap.get(ing.ref) || {};
+    const entry = (await lookupReference(food.name || ing.name)) || (await lookupReference(cleanFoodName(food.name || ing.name)));
+    const portion = entry && Number(entry.portion_g);
+    // Sauces and spreads are a spoonful either way; only the main parts are checked.
+    if (!(portion >= 50)) continue;
+    const perItem = Number(food.grams_per_item) || Number(entry.grams_per_item) || 0;
+    const perMl = Number(food.grams_per_ml) || Number(entry.grams_per_ml) || 1;
+    const grams = ing.unit === 'item' ? (perItem ? ing.quantity * perItem : null)
+      : ing.unit === 'ml' ? ing.quantity * perMl : Number(ing.quantity);
+    if (grams === null) continue;
+    const perServing = grams / serves;
+    if (perServing >= portion * 0.5) continue;
+    const newQuantity = ing.unit === 'item'
+      ? Math.max(1, Math.ceil((portion * serves) / perItem))
+      : ing.unit === 'ml' ? Math.round((portion * serves) / perMl) : portion * serves;
+    out.push({ rowId: ing.rowId, name: food.name || ing.name, perServing, portion, newQuantity });
   }
   return out;
 }
@@ -629,12 +661,48 @@ export function render(mountEl) {
         fix.appendChild(ul);
         nutritionWrap.appendChild(fix);
       }
+      // v (4 Oct 2026): amounts that look too small for the people it serves,
+      // against a typical portion from the reference, with a one-tap fix.
+      if (ownMeal && amountChecks.length) {
+        const box = el('section', { class: 'recipe-fix-nutrition recipe-amount-check', 'aria-labelledby': 'recipe-amounts-h' });
+        box.appendChild(el('h3', { id: 'recipe-amounts-h', text: 'Check the amounts' }));
+        box.appendChild(el('p', { class: 'field-hint', text: `For ${recipe.default_serves} ${recipe.default_serves === 1 ? 'person' : 'people'}, these look small.` }));
+        const ul = el('ul', { class: 'recipe-fix-list' });
+        amountChecks.forEach((c, i) => {
+          const li = el('li', { class: 'recipe-amount-row' });
+          li.appendChild(el('p', { class: 'recipe-amount-text', text: `${c.name}: ${Math.round(c.perServing)} g a serving. A usual portion is about ${c.portion} g.` }));
+          const b = el('button', { type: 'button', class: 'btn btn-small recipe-fix-btn', text: `Use about ${c.portion} g a serving` });
+          b.id = `recipe-amount-${i}`;
+          b.addEventListener('click', async () => {
+            b.disabled = true;
+            const result = await updateIngredient(c.rowId, { quantity_g: c.newQuantity });
+            if (destroyed) return;
+            if (!result.ok) { b.disabled = false; showToast('That did not save. Try again.'); return; }
+            announce(`${c.name} is now about ${c.portion} g a serving.`);
+            showToast(`${c.name} is now about ${c.portion} g a serving.`);
+            // The whole page follows the new amount: redraw it.
+            window.dispatchEvent(new HashChangeEvent('hashchange'));
+          }, { signal });
+          li.appendChild(b);
+          ul.appendChild(li);
+        });
+        box.appendChild(ul);
+        nutritionWrap.appendChild(box);
+      }
       if (focusAfter) {
         const next = document.getElementById(focusAfter) || document.getElementById('recipe-nutrition-h');
         if (next) { if (!next.hasAttribute('tabindex') && next.tagName.startsWith('H')) next.setAttribute('tabindex', '-1'); next.focus(); }
       }
     };
+    let amountChecks = [];
     paintNutrition();
+    if (ownMeal) {
+      checkAmounts(recipe, refMap).then((checks) => {
+        if (destroyed || !checks.length) return;
+        amountChecks = checks;
+        paintNutrition();
+      }).catch(() => {});
+    }
 
     // ---- Ingredients, scaled --------------------------------------------
     const ingSection = el('section', { class: 'recipe-page-section', 'aria-labelledby': 'recipe-ing-h' });

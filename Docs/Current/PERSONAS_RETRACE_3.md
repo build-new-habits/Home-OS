@@ -438,3 +438,25 @@ went from "no ingredients" to 1,482 kcal planned, ticking the ragu added
   one weighs when the recipe counts in items, and applies everywhere the
   food is used. Fibre picked this way is kept on the phone until
   foods.fibre_g exists (026).
+
+### Nutrition done for you (4 Oct, 20:00)
+"Can't you look at this and do it yourself?"
+- **Everyday foods in the reference** (scripts/everyday_foods.py, 131
+  generic entries, no brands): pizza, kebabs, burgers, bacon, ready-meal
+  lasagne, crumpets, crisps, chocolate and cereal bars, peanut butter,
+  shop sandwiches, breaded and battered fish, oven and chip-shop chips,
+  takeaway curries and Chinese, pies, pasties, cakes, biscuits, cereals,
+  sauces. Figures from CoFID 2019 wherever it has the food; eleven typical
+  label averages where it does not, labelled as such. Each carries an item
+  weight where it is bought by the item and a typical adult portion.
+- **The automatic pass** (data/nutritionRepair.js) runs once a day from
+  Today: every food with no calories is matched with brands and pack sizes
+  taken off ("Tesco Capers (190g)" is capers), first to the reference
+  (whole name, then the food word at the end: "cheese and onion crisps"
+  are crisps), then to the UK tables only where every word matches.
+  Unclear names wait. Today says how many were filled in; **Nutrition
+  filled in** (also in Settings) lists each with Change, and what is left
+  with Find nutrition.
+- **Check the amounts** on own recipes: a main ingredient under half a
+  usual portion for the people it serves is flagged with "Use about 125 g
+  a serving", one tap. Fish and chips went from 18 kcal to 593 kcal.

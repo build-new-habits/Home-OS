@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v125
+// service-worker.js — 04 Oct 2026 v126
+// v126: everyday foods in the reference; nutrition filled in by itself (data/nutritionRepair.js, views/nutritionFixes.js); recipe amounts checked. Shell v172.
 // v125: Find nutrition from the UK food tables (data/cofid.js, data/cofid.json, components/nutritionFinder.js). Shell v171.
 // v124: every ingredient row sends display_text and sort_order (live columns from 13 Sep). Shell v170.
 // v123: nutrition and the list read only the planned meals' ingredients and repair library meals left empty (data/plannedIngredients.js); readAll survives smaller caps; typed drinks counted. Shell v169.
@@ -269,9 +270,11 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v171';
+const CACHE_NAME = 'home-os-shell-v172';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/views/nutritionFixes.js',
+  './js/data/nutritionRepair.js',
   './data/cofid.json',
   './js/components/nutritionFinder.js',
   './js/data/cofid.js',
@@ -286,9 +289,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=171',
-  './css/base.css?v=171',
-  './css/components.css?v=171',
+  './css/tokens.css?v=172',
+  './css/base.css?v=172',
+  './css/components.css?v=172',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

@@ -1916,6 +1916,27 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('nothing typed, nothing found', C.searchFoods(foods, '   ').length, 0);
 }
 
+// ---- Nutrition filled in by itself (4 Oct 2026) ----
+{
+  const R = await import(pathToFileURL(path.join(REPO, 'js/data/nutritionRepair.js')).href);
+  eq('a shop and a pack size come off a name', R.cleanFoodName('Tesco Capers (190g)'), 'capers');
+  eq('a brand comes off a name', R.cleanFoodName("Hellmann's Light Mayonnaise"), 'light mayonnaise');
+  eq('multipacks come off a name', R.cleanFoodName('müller Strawberry Shortcake x3'), 'strawberry shortcake');
+  const ref = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+  const names = new Map();
+  for (const f of ref) { for (const k of [f.name, ...(f.aliases || [])]) names.set(k.toLowerCase(), f); }
+  for (const want of ['pizza', 'kebab', 'burger', 'bacon', 'frozen lasagne', 'crumpet', 'crisps', 'peanut butter', 'sandwich', 'chocolate bar', 'cereal bar', 'breaded fish', 'chips', 'fish fingers', 'light mayonnaise']) {
+    const hit = names.get(want);
+    check(`the reference knows "${want}"`, Boolean(hit && hit.calories_per_100g > 0), want);
+  }
+  check('everyday foods carry no brand names', ref.filter((f) => f.everyday).every((f) => !/tesco|sainsbury|heinz|mcdonald|big mac|kellogg|walkers|cadbury|nutella|weetabix/i.test(`${f.name} ${(f.aliases || []).join(' ')}`)));
+  check('breaded fish has a usual portion', (names.get('breaded fish') || {}).portion_g > 0);
+  const C = await import(pathToFileURL(path.join(REPO, 'js/data/cofid.js')).href);
+  const foods = C.indexFoods(JSON.parse(readFileSync(path.join(REPO, 'data/cofid.json'), 'utf8')).foods);
+  check('frozen peas match the tables with confidence', C.bestMatch(foods, 'frozen peas').confident);
+  check('a brand-only name is not matched with confidence', !C.bestMatch(foods, 'strawberry shortcake corner').confident || /strawberr/i.test(C.bestMatch(foods, 'strawberry shortcake corner').food.name));
+}
+
 console.log('');
 
 if (failures.length) {

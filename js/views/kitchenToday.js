@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v11
+// js/views/kitchenToday.js — 04 Oct 2026 v12
+// v12: foods with no nutrition are filled in once a day, and Today says so.
 // v11: nutrition reads only the planned meals' ingredients (data/plannedIngredients.js), and a library meal left with none is counted from its recipe and repaired.
 // v10: calmer (persona re-trace 3). The next meal says how many portions in
 // one line, with Change opening the portion choices in a sheet; drinks show
@@ -66,6 +67,7 @@ import { openItemSheet } from '../components/itemSheet.js';
 import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 import { eatenOf, setEaten } from '../data/eaten.js';
+import { repairNutrition, unseenFixes } from '../data/nutritionRepair.js';
 
 const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const TONIGHT_ROUTE = '#/tonight';
@@ -134,6 +136,19 @@ export function render(mountEl) {
   mountEl.appendChild(nextWrap);
 
   // What could be cooked from what is here (3 Oct 2026).
+  // Nutrition filled in by itself (4 Oct 2026, data/nutritionRepair.js):
+  // said once, with a way to see and change what was done.
+  const fixesNote = el('p', { class: 'today-fixes' });
+  fixesNote.hidden = true;
+  mountEl.appendChild(fixesNote);
+  function paintFixesNote() {
+    const n = unseenFixes();
+    fixesNote.hidden = n === 0;
+    if (!n) return;
+    fixesNote.replaceChildren(el('a', { class: 'btn btn-block', href: '#/nutrition-fixes', text: `${n} food${n === 1 ? ' now has its' : 's now have their'} nutrition. See what was filled in` }));
+  }
+  paintFixesNote();
+
   const tonightLink = el('p', { class: 'today-tonight' });
   tonightLink.appendChild(el('a', { class: 'btn btn-block', href: TONIGHT_ROUTE, text: 'What can I make with what I have?' }));
   mountEl.appendChild(tonightLink);
@@ -542,6 +557,17 @@ export function render(mountEl) {
   Promise.allSettled([loadMeals(), loadUseSoon(), loadShopping()]).then((results) => {
     for (const r of results) if (r.status === 'rejected') console.error('A Today section failed:', r.reason);
   });
+
+  // Once a day, after Today has drawn: fill in foods with no nutrition, and
+  // redraw the figures if anything changed.
+  setTimeout(() => {
+    if (destroyed) return;
+    repairNutrition().then((result) => {
+      if (destroyed || !result || !result.fixed || !result.fixed.length) return;
+      paintFixesNote();
+      loadMeals();
+    }).catch((error) => console.error('Nutrition pass failed:', error));
+  }, 2500);
 
   return () => {
     destroyed = true;

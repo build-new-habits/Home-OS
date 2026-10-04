@@ -1,4 +1,5 @@
-// js/views/settings.js — 04 Oct 2026 v20
+// js/views/settings.js — 04 Oct 2026 v21
+// v21: a link to Nutrition filled in.
 // v20: on a trial phone, Account explains the trial and offers Make an account.
 // v19: focus-area checkboxes hidden while KITCHEN_ONLY (K2).
 // v18: invite code renders below the button that creates it, and gains a
@@ -901,6 +902,12 @@ export function render(mountEl) {
     helpHint.className = 'field-hint';
     helpHint.textContent = 'Plans one meal with you, start to finish. Nothing is reset.';
     helpFieldset.appendChild(helpHint);
+    // 4 Oct 2026: where the automatic nutrition pass shows its work.
+    const fixesLink = document.createElement('a');
+    fixesLink.href = '#/nutrition-fixes';
+    fixesLink.className = 'btn btn-block';
+    fixesLink.textContent = 'Nutrition filled in';
+    helpFieldset.appendChild(fixesLink);
     const helpSection = helpFieldset;
 
     const accountFieldset = document.createElement('fieldset');

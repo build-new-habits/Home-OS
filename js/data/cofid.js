@@ -1,4 +1,5 @@
-// js/data/cofid.js — 04 Oct 2026 v1
+// js/data/cofid.js — 04 Oct 2026 v2
+// v2: bestMatch() for the automatic pass (data/nutritionRepair.js).
 // v1: the UK's own food composition tables, searchable on the phone.
 //
 // Graeme, 4 Oct 2026: fish and chips came to 18 kcal a serving, because
@@ -125,6 +126,21 @@ export function searchFoods(foods = [], query = '', limit = 12) {
     scored.push({ f, score });
   }
   return scored.sort((a, b) => b.score - a.score || a.f.name.length - b.f.name.length).slice(0, limit).map((x) => x.f);
+}
+
+/**
+ * The single best match, and whether it is safe to use without asking:
+ * every word of the name matched something in the food. Pure over `foods`.
+ */
+export function bestMatch(foods = [], query = '') {
+  const raw = words(query).filter((w) => !NOISE.has(w) && !/^\d+[a-z]*$/.test(w));
+  const [top] = searchFoods(foods, query, 1);
+  if (!top || !raw.length) return { food: null, confident: false };
+  const all = raw.every((w) => {
+    const options = [w, ...(SYNONYMS[w] || []).map((x) => words(x)[0])];
+    return options.some((o) => top.words.includes(o) || (o.length >= 4 && top.words.some((fw) => fw.startsWith(o))));
+  });
+  return { food: top, confident: all };
 }
 
 export async function search(query, limit = 12) {

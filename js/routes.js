@@ -1,4 +1,5 @@
-// js/routes.js — 03 Oct 2026 v6
+// js/routes.js — 04 Oct 2026 v7
+// v7: appends 'nutrition-fixes'.
 // v6: appends 'tonight'.
 // v5: appends 'recipe'.
 // Declarative route registry.
@@ -240,6 +241,13 @@ export const routes = [
     path: 'pantry-start',
     title: 'Pantry quick start',
     load: () => import('./views/pantry/start.js')
+  },
+  // 4 Oct 2026. Appended. What the automatic pass filled in, and what is
+  // still waiting for a match.
+  {
+    path: 'nutrition-fixes',
+    title: 'Nutrition filled in',
+    load: () => import('./views/nutritionFixes.js')
   }
 ];
 

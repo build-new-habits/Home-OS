@@ -1,0 +1,12 @@
+h1.shop-title"Nutrition filled in"
+p.shop-summary
+p.field-hint[role=status]
+button.btn.btn-block[type=button]"Check every food now"
+section.fixes-section
+  h2"Waiting for a match"
+  ul.fixes-list
+    li.field-hint
+section.fixes-section
+  h2"Filled in"
+  ul.fixes-list
+    li.field-hint

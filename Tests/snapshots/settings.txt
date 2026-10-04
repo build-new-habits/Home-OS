@@ -60,6 +60,7 @@ div
     legend"Getting started"
     a.btn"Walk me through it again"
     p.field-hint
+    a.btn.btn-block"Nutrition filled in"
   fieldset
     legend"Your data"
     button.btn.btn-block[type=button]"Export all data (JSON)"
