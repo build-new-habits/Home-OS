@@ -1817,8 +1817,18 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('other numbers are left alone', O.ovenWords('Cook 20 minutes, 2 C of rice'), 'Cook 20 minutes, 2 C of rice');
   const L = await import(pathToFileURL(path.join(REPO, 'js/data/listWindow.js')).href);
   const wed = new Date(2026, 9, 7, 12); // a Wednesday
-  const left = L.stillToCome([{ day_of_week: 'mon' }, { day_of_week: 'wed' }, { day_of_week: 'sun' }], wed).map((e) => e.day_of_week);
+  const left = L.stillToCome([{ week_start: '2026-10-05', day_of_week: 'mon' }, { week_start: '2026-10-05', day_of_week: 'wed' }, { week_start: '2026-10-05', day_of_week: 'sun' }], wed).map((e) => e.day_of_week);
   eq('the list leaves out days already gone', left.join(','), 'wed,sun');
+  const FW = await import(pathToFileURL(path.join(REPO, 'js/lib/foodWeek.js')).href);
+  const fri = FW.foodWeekDays(new Date(2026, 9, 7, 12), 0, 'fri');
+  eq('a Friday food week runs Friday to Thursday', fri.map((d) => d.short).join(' '), 'Fri Sat Sun Mon Tue Wed Thu');
+  eq('it starts on the Friday before a Wednesday', fri[0].iso, '2026-10-02');
+  eq('it crosses two calendar weeks', FW.mondaysOf(fri).join(','), '2026-09-28,2026-10-05');
+  check('Thursday is the night to shop for a Friday week', FW.looksAhead(new Date(2026, 9, 8, 20), 'fri'));
+  check('Wednesday is not', !FW.looksAhead(new Date(2026, 9, 7, 20), 'fri'));
+  check('a Monday week looks ahead on Sunday', FW.looksAhead(new Date(2026, 9, 4, 10), 'mon'));
+  eq('next food week starts a week later', FW.foodWeekDays(new Date(2026, 9, 7), 1, 'fri')[0].iso, '2026-10-09');
+  check('an entry is placed by its own Monday', FW.inDays({ week_start: '2026-09-28', day_of_week: 'sat' }, fri) && !FW.inDays({ week_start: '2026-10-05', day_of_week: 'sat' }, fri));
   const { weekendLooksAhead } = await import(pathToFileURL(path.join(REPO, 'js/lib/weeks.js')).href);
   check('Sunday plans next week', weekendLooksAhead(new Date(2026, 9, 4, 10)));
   check('Saturday morning is still this week', !weekendLooksAhead(new Date(2026, 9, 3, 10)));

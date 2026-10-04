@@ -5,6 +5,19 @@ div
       legend"Household"
       p.field-hint
   fieldset
+    legend"Your food week"
+    div.field
+      label"Your food week starts on"
+      select
+        option
+        option
+        option
+        option
+        option
+        option
+        option
+      p.field-hint
+  fieldset
     legend"What you use it for"
     div.checkbox-row
       input[type=checkbox]

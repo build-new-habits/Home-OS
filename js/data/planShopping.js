@@ -1,4 +1,5 @@
-// js/data/planShopping.js — 04 Oct 2026 v3
+// js/data/planShopping.js — 04 Oct 2026 v4
+// v4: 'this' and 'next' mean your food week.
 // v3: ingredients for the planned meals only, repairing empty library meals first.
 // v2: this week and next use the list's window (data/listWindow.js).
 //
@@ -38,9 +39,12 @@ import { todayIso } from '../lib/dates.js';
 export async function gatherForWeek(weekStart) {
   // 4 Oct 2026: this week or next means the list's window (data/listWindow.js):
   // meals still to come, with next week included when it is the one asked for.
-  const windowed = weekStart === thisWeekStart() || weekStart === nextWeekStart();
+  // v3: 'this' and 'next' mean your food week (lib/foodWeek.js), from the
+  // board; a calendar Monday still works for the full app's plan.
+  const next = weekStart === 'next' || weekStart === nextWeekStart();
+  const windowed = next || weekStart === 'this' || weekStart === thisWeekStart();
   const [plan, pantry, foodList] = await Promise.all([
-    windowed ? planForList({ includeNext: weekStart === nextWeekStart() }) : listPlan(weekStart),
+    windowed ? planForList({ includeNext: next }) : listPlan(weekStart),
     listStock(), listFoods()
   ]);
   const ingredients = plan.ok ? await ingredientsForEntries(plan.data || [], { awaitRepair: true }) : { ok: false };

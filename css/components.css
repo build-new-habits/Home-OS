@@ -1,4 +1,5 @@
-/* css/components.css — 04 Oct 2026 v96 */
+/* css/components.css — 04 Oct 2026 v97 */
+/* v97: your food week (4 Oct). */
 /* v96: Nutrition filled in; recipe amount check (4 Oct). */
 /* v95: Find nutrition (the UK food tables) (4 Oct). */
 /* v94: Try it on this phone (4 Oct). */
@@ -4777,6 +4778,7 @@ body.sheet-open {
 .fill-list label { display: flex; flex-direction: column; }
 .fill-when { font-size: var(--text-sm); color: var(--color-text-muted); }
 .fill-meal { font-weight: 600; }
+.plan-week-start { margin: var(--space-1) 0 0; font-size: var(--text-sm); }
 .plan-lookahead { margin: var(--space-1) 0 0; font-size: var(--text-sm); color: var(--color-text-muted); }
 .fill-about { font-size: var(--text-sm); color: var(--color-text-muted); }
 .fill-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }

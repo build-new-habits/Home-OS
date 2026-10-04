@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v12
+// js/views/kitchenToday.js — 04 Oct 2026 v13
+// v13: Plan tomorrow follows your food week.
 // v12: foods with no nutrition are filled in once a day, and Today says so.
 // v11: nutrition reads only the planned meals' ingredients (data/plannedIngredients.js), and a library meal left with none is counted from its recipe and repaired.
 // v10: calmer (persona re-trace 3). The next meal says how many portions in
@@ -68,6 +69,7 @@ import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
 import { eatenOf, setEaten } from '../data/eaten.js';
 import { repairNutrition, unseenFixes } from '../data/nutritionRepair.js';
+import { looksAhead } from '../lib/foodWeek.js';
 
 const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const TONIGHT_ROUTE = '#/tonight';
@@ -286,13 +288,13 @@ export function render(mountEl) {
     const tomorrowValue = DAY_VALUES[tomorrowIndex];
     // Sunday's tomorrow is next week's Monday.
     let entries = weekEntries;
-    let planHref = '#/plan-this-week';
     if (now.getDay() === 0) {
       const next = await listPlan(nextWeekStart());
       if (destroyed) return;
       entries = next.ok ? next.data || [] : [];
-      planHref = '#/plan-next-week';
     }
+    // Which Plan page tomorrow is on depends on YOUR food week (lib/foodWeek.js).
+    const planHref = looksAhead(now) ? '#/plan-next-week' : '#/plan-this-week?week=this';
     const planned = entries.filter((e) => e.day_of_week === tomorrowValue);
     tomorrowBody.replaceChildren();
     tomorrowSection.hidden = false;

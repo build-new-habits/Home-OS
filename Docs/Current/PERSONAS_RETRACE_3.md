@@ -460,3 +460,15 @@ went from "no ingredients" to 1,482 kcal planned, ticking the ragu added
 - **Check the amounts** on own recipes: a main ingredient under half a
   usual portion for the people it serves is flagged with "Use about 125 g
   a serving", one tap. Fish and chips went from 18 kcal to 593 kcal.
+
+### Your food week (4 Oct, 20:15)
+"When does the week start? I shop Thursday night for click and collect
+Friday afternoon. Others will have their start of the week differently."
+Settings has **Your food week starts on** (Monday unless changed; kept on
+the phone until user_settings has a column for it). Plan shows seven days
+from that day ("Friday 2 October to Thursday 8 October"), says which day it
+starts with a link to change it, and on the last day of the week (Thursday,
+the night you shop) opens on the next one. The shopping list is for the
+meals still to come in your week, plus all of the next one on that last
+day. Nothing in the database changed: a food week is a view over the
+existing Monday weeks, so each meal keeps its real date (lib/foodWeek.js).

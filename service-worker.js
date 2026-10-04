@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v126
+// service-worker.js — 04 Oct 2026 v127
+// v127: your food week starts on the day you choose (lib/foodWeek.js). Shell v173.
 // v126: everyday foods in the reference; nutrition filled in by itself (data/nutritionRepair.js, views/nutritionFixes.js); recipe amounts checked. Shell v172.
 // v125: Find nutrition from the UK food tables (data/cofid.js, data/cofid.json, components/nutritionFinder.js). Shell v171.
 // v124: every ingredient row sends display_text and sort_order (live columns from 13 Sep). Shell v170.
@@ -270,9 +271,10 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v172';
+const CACHE_NAME = 'home-os-shell-v173';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/lib/foodWeek.js',
   './js/views/nutritionFixes.js',
   './js/data/nutritionRepair.js',
   './data/cofid.json',
@@ -289,9 +291,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=172',
-  './css/base.css?v=172',
-  './css/components.css?v=172',
+  './css/tokens.css?v=173',
+  './css/base.css?v=173',
+  './css/components.css?v=173',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

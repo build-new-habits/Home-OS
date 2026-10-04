@@ -1,4 +1,5 @@
-// js/views/settings.js — 04 Oct 2026 v21
+// js/views/settings.js — 04 Oct 2026 v22
+// v22: Your food week — the day it starts.
 // v21: a link to Nutrition filled in.
 // v20: on a trial phone, Account explains the trial and offers Make an account.
 // v19: focus-area checkboxes hidden while KITCHEN_ONLY (K2).
@@ -34,6 +35,8 @@ import {
 } from '../data/household.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { isLocalMode, leaveLocalMode } from '../lib/localClient.js';
+import { WEEK_START_CHOICES, foodWeekStartDay, setFoodWeekStartDay } from '../lib/foodWeek.js';
+import { requestListSync } from '../data/listSync.js';
 
 const THEME_OPTIONS = [
   { value: 'default', label: 'Default' },
@@ -1055,8 +1058,42 @@ export function render(mountEl) {
 
     // Order: the things somebody else is waiting on, then what you use it
     // for, then everything that gets set once.
+    // ---- Your food week (4 Oct 2026) ----
+    // Graeme shops on Thursday night for a Friday collection: his week runs
+    // Friday to Thursday. Plan and the shopping list follow this
+    // (lib/foodWeek.js). Kept on this phone for now.
+    const weekSection = document.createElement('fieldset');
+    weekSection.id = 'food-week';
+    const weekLegend = document.createElement('legend');
+    weekLegend.textContent = 'Your food week';
+    weekSection.appendChild(weekLegend);
+    const weekField = el('div', { class: 'field' });
+    const weekSelect = el('select', { id: 'food-week-start', 'aria-describedby': 'food-week-hint' });
+    for (const choice of WEEK_START_CHOICES) {
+      const o = el('option', { value: choice.value, text: choice.label });
+      if (choice.value === foodWeekStartDay()) o.selected = true;
+      weekSelect.appendChild(o);
+    }
+    weekField.append(
+      el('label', { for: 'food-week-start', text: 'Your food week starts on' }),
+      weekSelect,
+      el('p', { id: 'food-week-hint', class: 'field-hint', text: 'The day your shop arrives, or the day you start eating what you bought. Plan shows your week from this day. On the day before, Plan moves on to the next week and the shopping list covers it, so you can shop for it.' })
+    );
+    weekSelect.addEventListener('change', () => {
+      if (setFoodWeekStartDay(weekSelect.value)) {
+        const label = (WEEK_START_CHOICES.find((c) => c.value === weekSelect.value) || {}).label;
+        announce(`Your food week now starts on ${label}.`);
+        showToast(`Your food week now starts on ${label}.`);
+        requestListSync();
+      } else {
+        showToast('This phone would not save that. Try again.');
+      }
+    });
+    weekSection.appendChild(weekField);
+
     bodyContainer.append(
       householdSlot,
+      weekSection,
       focusSection,
       notifSection,
       lookSection,
@@ -1066,6 +1103,14 @@ export function render(mountEl) {
     );
 
     bodyContainer.appendChild(buildBuildSection());
+
+    // Arrived from Plan's "Change the day": straight to it.
+    if (/[?&]focus=food-week\b/.test(window.location.hash || '')) {
+      setTimeout(() => {
+        const target = document.getElementById('food-week-start');
+        if (target) { target.scrollIntoView({ block: 'center' }); target.focus(); }
+      }, 0);
+    }
   }
 
   // ---- Which build is actually on this device -------------------------

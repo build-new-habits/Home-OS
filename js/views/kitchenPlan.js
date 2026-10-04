@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v12
+// js/views/kitchenPlan.js — 04 Oct 2026 v13
+// v13: your food week — seven days from the day you choose (lib/foodWeek.js).
 // v12: the week's nutrition reads only its planned meals' ingredients, with library meals left empty counted from their recipe and repaired.
 // v11: the view switch says Grid and Day by day ("Board" meant nothing to
 // Eileen in re-trace 3).
@@ -49,7 +50,7 @@ import {
 import { listMeals, groupByMeal, computeMacros } from '../data/meals.js';
 import { ingredientsForEntries } from '../data/plannedIngredients.js';
 import { dayNutrition, nutritionRows } from '../data/nutrition.js';
-import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
+import { foodWeekDays, foodWeekLabel, mondaysOf, inDays } from '../lib/foodWeek.js';
 import { buildWeekIntoList } from '../data/planShopping.js';
 import { requestListSync } from '../data/listSync.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
@@ -134,7 +135,13 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   const { signal } = controller;
   let destroyed = false;
 
-  const weekStart = week === 'next' ? nextWeekStart() : thisWeekStart();
+  // v12: YOUR food week (lib/foodWeek.js): seven days from the day you
+  // chose, which can cross two calendar weeks. Within seven days each day
+  // value is unique, so the board still keys its cells by day; writes and
+  // drinks use that day's own calendar Monday.
+  const days = foodWeekDays(new Date(), week === 'next' ? 1 : 0);
+  const weekStartFor = (day) => (days.find((d) => d.value === day) || days[0]).weekStart;
+  const weekStart = days[0].weekStart;
   const origin = week === 'next' ? 'next' : 'week';
   const todayValue = week === 'this' ? JS_DAY[new Date().getDay()] : null;
 
@@ -144,20 +151,25 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   let libraryCourse = new Map(); // library slug -> course
   let libraryRecipes = []; // the whole library, for Fill the week for me
   let members = []; // household, for portions
-  let sel = { day: todayValue || 'mon', slot: 'dinner' };
+  let sel = { day: todayValue || days[0].value, slot: 'dinner' };
 
   // ---------------------------------------------------------------- shell
   const header = el('header', { class: 'plan-header' });
   header.appendChild(el('h1', { class: 'plan-title', text: week === 'next' ? 'Next week' : 'This week' }));
-  header.appendChild(el('p', { class: 'plan-range', text: rangeLabel(weekStart) }));
+  header.appendChild(el('p', { class: 'plan-range', text: foodWeekLabel(days) }));
   const weekNav = el('p', { class: 'plan-week-switch' });
   weekNav.appendChild(week === 'next'
     ? el('a', { href: '#/plan-this-week?week=this', text: 'This week' })
     : el('a', { href: '#/plan-next-week', text: 'Next week' }));
   header.appendChild(weekNav);
+  // v12: say which day the week starts, and where to change it.
+  const startNote = el('p', { class: 'plan-week-start' });
+  startNote.appendChild(document.createTextNode(`Your food week starts on ${days[0].label}. `));
+  startNote.appendChild(el('a', { href: '#/settings?focus=food-week', text: 'Change the day' }));
+  header.appendChild(startNote);
   // v10: Plan opened on next week because it is the weekend. Said once, plainly.
   if (lookedAhead) {
-    header.insertBefore(el('p', { class: 'plan-lookahead', text: 'It is the weekend, so Plan has opened on next week.' }), weekNav);
+    header.insertBefore(el('p', { class: 'plan-lookahead', text: 'Today is the last day of your food week, so Plan has opened on the next one.' }), weekNav);
   }
   mountEl.appendChild(header);
 
@@ -168,7 +180,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   const help = el('p', { class: 'visually-hidden', id: 'plan-board-help',
     text: 'Each column is a day and each row is a meal. Use the arrow keys to move between squares.' });
   const table = el('table', { class: 'plan-board', 'aria-describedby': 'plan-board-help' });
-  table.appendChild(el('caption', { class: 'visually-hidden', text: `Meals planned, ${rangeLabel(weekStart)}` }));
+  table.appendChild(el('caption', { class: 'visually-hidden', text: `Meals planned, ${foodWeekLabel(days)}` }));
   const thead = el('thead');
   const tbody = el('tbody');
   table.append(thead, tbody);
@@ -230,7 +242,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   // Ideas from your own meals and the library together, chosen by
   // data/weekIdeas.js. Nothing is added until you say so.
   fillBtn.addEventListener('click', async () => {
-    const fromIndex = todayValue ? DAYS.findIndex((d) => d.value === todayValue) : 0;
+    const fromIndex = todayValue ? days.findIndex((d) => d.value === todayValue) : 0;
     let lib = libraryRecipes;
     if (!lib.length) {
       const loaded = await loadAllRecipes().catch(() => null);
@@ -249,7 +261,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
     const avoid = new Set();
     let proposals = [];
     const recompute = () => {
-      proposals = planWeek({ entries, candidates, diet, days: DAYS, fromDayIndex: Math.max(0, fromIndex), slots, seed: `${weekStart}:${round}`, avoid });
+      proposals = planWeek({ entries, candidates, diet, days: days, fromDayIndex: Math.max(0, fromIndex), slots, seed: `${weekStart}:${round}`, avoid });
     };
     recompute();
 
@@ -304,7 +316,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
           go.hidden = proposals.length === 0;
           again.hidden = proposals.length === 0;
           proposals.forEach((p, i) => {
-            const dayLabel = (DAYS.find((d) => d.value === p.day) || {}).label;
+            const dayLabel = (days.find((d) => d.value === p.day) || {}).label;
             const li = el('li', { class: 'fill-row' });
             const top = el('div', { class: 'checkbox-row' });
             const box = el('input', { type: 'checkbox', id: `fill-${i}` });
@@ -361,7 +373,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
               if (meal && !meals.some((m) => m.id === meal.id)) meals = [...meals, { ...meal, library_ref: p.pick.recipe.slug }];
             }
             if (!meal) { failed += 1; continue; }
-            const result = await addPlanEntry({ meal_id: meal.id, day_of_week: p.day, slot: p.slot, week_start: weekStart });
+            const result = await addPlanEntry({ meal_id: meal.id, day_of_week: p.day, slot: p.slot, week_start: weekStartFor(p.day) });
             if (destroyed) return;
             if (!result.ok) { failed += 1; continue; }
             entries = [...entries, { ...result.data, meals: meal }];
@@ -386,7 +398,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   // ---------------------------------------------------------------- board
   const headRow = el('tr');
   headRow.appendChild(el('td', { class: 'plan-corner' }));
-  for (const d of DAYS) {
+  for (const d of days) {
     const th = el('th', { scope: 'col', class: d.value === todayValue ? 'is-today' : '', abbr: d.label });
     th.appendChild(el('span', { class: 'plan-day-short', text: d.value === todayValue ? 'Today' : d.short }));
     th.appendChild(el('span', { class: 'visually-hidden', text: d.value === todayValue ? `, ${d.label}` : '' }));
@@ -407,7 +419,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
       th.appendChild(mealIcon(s.value, 18));
       th.appendChild(el('span', { class: 'visually-hidden', text: s.label }));
       tr.appendChild(th);
-      DAYS.forEach((d, c) => {
+      days.forEach((d, c) => {
         if (s.value === 'drink') { tr.appendChild(drinkCell(d, s, r, c)); return; }
         const here = cellEntries(d.value, s.value);
         const on = sel.day === d.value && sel.slot === s.value;
@@ -439,7 +451,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   }
 
   function drinkCell(d, s, r, c) {
-    const drinks = listDrinks(weekStart, d.value);
+    const drinks = listDrinks(weekStartFor(d.value), d.value);
     const on = sel.day === d.value && sel.slot === 'drink';
     const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
     const btn = el('button', {
@@ -463,13 +475,13 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   // The week in words: each day, each meal, tap one to work on it.
   function paintList() {
     listWrap.replaceChildren();
-    for (const d of DAYS) {
+    for (const d of days) {
       const day = el('section', { class: d.value === todayValue ? 'plan-list-day is-today' : 'plan-list-day', 'aria-labelledby': `plan-list-${d.value}` });
       day.appendChild(el('h2', { id: `plan-list-${d.value}`, class: 'plan-list-day-name', text: d.value === todayValue ? `${d.label} (today)` : d.label }));
       const ul = el('ul', { class: 'plan-list-slots' });
       for (const s of ROWS) {
         const here = cellEntries(d.value, s.value);
-        const drinks = s.value === 'drink' ? listDrinks(weekStart, d.value) : [];
+        const drinks = s.value === 'drink' ? listDrinks(weekStartFor(d.value), d.value) : [];
         const li = el('li');
         const filled = s.value === 'drink' ? drinks.length > 0 : here.length > 0;
         const b = el('button', { type: 'button', class: filled ? 'plan-list-slot' : 'plan-list-slot is-open' });
@@ -507,12 +519,12 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
     const moves = { ArrowLeft: [0, -1], ArrowRight: [0, 1], ArrowUp: [-1, 0], ArrowDown: [1, 0] };
     let move = moves[event.key];
     if (event.key === 'Home') move = [0, -c];
-    if (event.key === 'End') move = [0, DAYS.length - 1 - c];
+    if (event.key === 'End') move = [0, days.length - 1 - c];
     if (!move) return;
     event.preventDefault();
     const nr = Math.max(0, Math.min(ROWS.length - 1, r + move[0]));
-    const nc = Math.max(0, Math.min(DAYS.length - 1, c + move[1]));
-    select(DAYS[nc].value, ROWS[nr].value, false);
+    const nc = Math.max(0, Math.min(days.length - 1, c + move[1]));
+    select(days[nc].value, ROWS[nr].value, false);
     const target = tbody.querySelector(`[data-r="${nr}"][data-c="${nc}"]`);
     if (target) target.focus();
   }, { signal });
@@ -532,7 +544,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   // ------------------------------------------------------- day nutrition
   function paintDayNutrition() {
     dayNutri.replaceChildren();
-    const dayLabel = (DAYS.find((d) => d.value === sel.day) || {}).label || '';
+    const dayLabel = (days.find((d) => d.value === sel.day) || {}).label || '';
     const head = el('div', { class: 'plan-nutri-head' });
     head.appendChild(el('h2', { id: 'plan-nutri-h', text: `${dayLabel}’s nutrition` }));
     head.appendChild(el('span', { class: 'field-hint', text: 'Estimate, % of reference intake' }));
@@ -542,7 +554,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
       if (rows.length === 0) return null;
       const m = computeMacros(rows, { serves: (entry.meals && entry.meals.default_serves) || 1 });
       return { perServing: m.perServing, complete: m.complete };
-    }).filter(Boolean).concat(drinkNutritionItems(listDrinks(weekStart, sel.day)));
+    }).filter(Boolean).concat(drinkNutritionItems(listDrinks(weekStartFor(sel.day), sel.day)));
     if (items.length === 0) {
       dayNutri.appendChild(el('p', { class: 'field-hint', text: 'Nothing planned with ingredients yet.' }));
       return;
@@ -566,7 +578,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   // -------------------------------------------------------------- detail
   function paintDetail() {
     detail.replaceChildren();
-    const d = DAYS.find((x) => x.value === sel.day);
+    const d = days.find((x) => x.value === sel.day);
     const s = ROWS.find((x) => x.value === sel.slot);
     if (s.value === 'drink') { paintDrinks(d); return; }
     const here = cellEntries(sel.day, sel.slot);
@@ -609,7 +621,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
         // Eaten (4 Oct 2026): this week only; next week has not happened.
         if (week === 'this') {
           li.appendChild(eatenTick(entry, {
-            signal, members, entries, weekStart,
+            signal, members, entries, weekStart: entry.week_start,
             onChange: () => paintBoard(),
             onLeftovers: (row) => { entries = [...entries, row]; refreshAfterChange(`Leftovers of ${(entry.meals && entry.meals.name) || 'the meal'} planned.`); }
           }));
@@ -618,7 +630,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
           const lo = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Plan leftovers', 'aria-haspopup': 'dialog' });
           lo.setAttribute('aria-label', `Plan the leftovers of ${(entry.meals && entry.meals.name) || 'this meal'}`);
           lo.addEventListener('click', () => openLeftoverSheet({
-            entry, entries, weekStart, returnFocusTo: lo,
+            entry, entries, weekStart: entry.week_start, returnFocusTo: lo,
             onAdded(row) {
               entries = [...entries, row];
               refreshAfterChange(`Leftovers of ${(entry.meals && entry.meals.name) || 'the meal'} planned.`);
@@ -682,14 +694,14 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
     detail.appendChild(head);
     detail.appendChild(el('p', { class: 'field-hint', text: 'One tap for each drink. Kept on this phone, and counted in the day’s nutrition.' }));
     detail.appendChild(drinksQuickAdd({
-      weekStart, day: d.value, dayLabel: d.label, signal,
+      weekStart: weekStartFor(d.value), day: d.value, dayLabel: d.label, signal,
       onChange: () => { paintBoard(); paintDayNutrition(); }
     }));
   }
 
   async function addMeal(meal, button) {
     if (button) button.disabled = true;
-    const result = await addPlanEntry({ meal_id: meal.id, day_of_week: sel.day, slot: sel.slot, week_start: weekStart });
+    const result = await addPlanEntry({ meal_id: meal.id, day_of_week: sel.day, slot: sel.slot, week_start: weekStartFor(sel.day) });
     if (destroyed) return;
     if (!result.ok) {
       if (button) button.disabled = false;
@@ -715,7 +727,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   shopBtn.addEventListener('click', async () => {
     shopBtn.disabled = true;
     shopBtn.textContent = 'Updating…';
-    const result = await buildWeekIntoList(weekStart);
+    const result = await buildWeekIntoList(week === 'next' ? 'next' : 'this');
     if (destroyed) return;
     shopBtn.disabled = false;
     shopBtn.textContent = 'Update shopping list';
@@ -739,7 +751,14 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   paintDetail();
 
   (async () => {
-    const [plan, mealList, household] = await Promise.all([listPlan(weekStart), listMeals(), getHousehold().catch(() => null)]);
+    const mondays = mondaysOf(days);
+    const [reads, mealList, household] = await Promise.all([
+      Promise.all(mondays.map((monday) => listPlan(monday))),
+      listMeals(), getHousehold().catch(() => null)
+    ]);
+    const failedRead = reads.find((r) => !r.ok);
+    // Each row is placed by the Monday it was read for, should it not say.
+    const plan = failedRead || { ok: true, data: reads.flatMap((r, i) => (r.data || []).map((e) => (e.week_start ? e : { ...e, week_start: mondays[i] }))).filter((e) => inDays(e, days)) };
     const ingredients = await ingredientsForEntries(plan.ok ? (plan.data || []) : []);
     if (destroyed) return;
     members = household && household.ok ? ((household.data && household.data.members) || []) : [];

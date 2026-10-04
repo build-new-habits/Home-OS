@@ -3,6 +3,8 @@ header.plan-header
   p.plan-range
   p.plan-week-switch
     a"This week"
+  p.plan-week-start
+    a"Change the day"
 p.visually-hidden[role=status]
 div.plan-view-switch[role=group]
   button.chip-toggle[type=button][aria-pressed=true]"Grid"
