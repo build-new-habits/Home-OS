@@ -1134,8 +1134,7 @@ export function render(mountEl) {
 
     const hint = document.createElement('p');
     hint.className = 'field-hint';
-    hint.textContent = 'If an update is not showing, close the app fully and reopen it twice — '
-      + 'the first reopen installs the new version, the second uses it.';
+    hint.textContent = 'New versions are picked up when you come back to the app. If one is not showing, close the app fully and open it again.';
     fieldset.appendChild(hint);
 
     activeBuildName().then((name) => {

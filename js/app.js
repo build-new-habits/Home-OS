@@ -1,4 +1,6 @@
-// js/app.js — 05 Sep 2026 v6
+// js/app.js — 04 Oct 2026 v7
+// v7: DEFECT FIX, recorded like v6: new versions arrive on the next return
+// to the app (lib/updates.js) instead of the second reopen.
 // v6: DEFECT FIX, breaking the write-once convention deliberately. The
 // shell leaked a store listener on every rebuild and had no guard against
 // a rebuild landing on a live one. See the note above buildAppShell().
@@ -22,6 +24,7 @@ import { mountBottomNav } from './components/bottomNav.js';
 import { mountLiveRegion } from './components/liveRegion.js';
 import { setSession, setSettings, subscribe, getState } from './lib/store.js';
 import { buildSignInView, buildSetPasswordView } from './views/signin.js';
+import { watchForUpdates } from './lib/updates.js';
 
 let bottomNavHandle = null;
 let hasBootstrapped = false; // guards against Supabase firing a duplicate
@@ -129,6 +132,10 @@ async function init() {
     navigator.serviceWorker.register('./service-worker.js').catch((err) => {
       console.error('Service worker registration failed:', err);
     });
+    // 4 Oct 2026, a defect fix like v6's: updates reached the phone only on
+    // the second reopen. lib/updates.js checks on every return to the app
+    // and reloads into a new version (see that file).
+    watchForUpdates();
   }
 
   const { data: { session } } = await supabase.auth.getSession();
