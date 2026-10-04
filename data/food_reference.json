@@ -1,7 +1,7 @@
 {
  "version": 4,
  "updated": "2026-10-04",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
  "foods": [
   {
    "slug": "egg-small",
@@ -4703,8 +4703,7 @@
    "name": "Pork pie",
    "category": "food_fresh",
    "aliases": [
-    "pork pies",
-    "mini pork pie"
+    "pork pies"
    ],
    "calories_per_100g": 370.0,
    "protein_g": 9.9,
@@ -4722,8 +4721,7 @@
    "name": "Cornish pasty",
    "category": "food_fresh",
    "aliases": [
-    "pasty",
-    "steak bake"
+    "pasty"
    ],
    "calories_per_100g": 278.0,
    "protein_g": 7.0,
@@ -5683,6 +5681,1111 @@
    "item_label": "piece",
    "grams_per_item": 30,
    "portion_g": 180
+  },
+  {
+   "slug": "sandwich-chicken-bacon",
+   "name": "Chicken and bacon sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken bacon sandwich"
+   ],
+   "calories_per_100g": 240,
+   "protein_g": 14.0,
+   "fat_g": 10.5,
+   "carbs_g": 21.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 195,
+   "portion_g": 195
+  },
+  {
+   "slug": "sandwich-chicken-sweetcorn",
+   "name": "Chicken and sweetcorn sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken sweetcorn sandwich"
+   ],
+   "calories_per_100g": 220,
+   "protein_g": 11.5,
+   "fat_g": 9.0,
+   "carbs_g": 22.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "sandwich-chicken-stuffing",
+   "name": "Chicken and stuffing sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken stuffing sandwich"
+   ],
+   "calories_per_100g": 245,
+   "protein_g": 12.5,
+   "fat_g": 9.5,
+   "carbs_g": 26.5,
+   "fibre_g": 2.2,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "sandwich-coronation-chicken",
+   "name": "Coronation chicken sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "coronation chicken"
+   ],
+   "calories_per_100g": 245,
+   "protein_g": 10.5,
+   "fat_g": 11.0,
+   "carbs_g": 25.0,
+   "fibre_g": 2.2,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "sandwich-chicken-avocado",
+   "name": "Chicken and avocado sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken avocado sandwich"
+   ],
+   "calories_per_100g": 215,
+   "protein_g": 11.5,
+   "fat_g": 9.5,
+   "carbs_g": 20.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "sandwich-chicken-club",
+   "name": "Chicken club sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "club sandwich",
+    "chicken club"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 13.0,
+   "fat_g": 11.5,
+   "carbs_g": 22.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 260,
+   "portion_g": 260
+  },
+  {
+   "slug": "sandwich-all-day-breakfast",
+   "name": "All-day breakfast sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "all day breakfast sandwich",
+    "breakfast sandwich"
+   ],
+   "calories_per_100g": 240,
+   "protein_g": 11.0,
+   "fat_g": 11.5,
+   "carbs_g": 22.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 260,
+   "portion_g": 260
+  },
+  {
+   "slug": "sandwich-ham-cheese",
+   "name": "Ham and cheese sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "ham cheese sandwich"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 13.5,
+   "fat_g": 10.5,
+   "carbs_g": 24.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "sandwich-ham-mustard",
+   "name": "Ham and mustard sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "ham mustard sandwich"
+   ],
+   "calories_per_100g": 215,
+   "protein_g": 12.0,
+   "fat_g": 6.5,
+   "carbs_g": 26.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 160,
+   "portion_g": 160
+  },
+  {
+   "slug": "sandwich-cheese-onion",
+   "name": "Cheese and onion sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "cheese onion sandwich"
+   ],
+   "calories_per_100g": 295,
+   "protein_g": 10.5,
+   "fat_g": 17.0,
+   "carbs_g": 24.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "sandwich-cheese-tomato",
+   "name": "Cheese and tomato sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "cheese tomato sandwich"
+   ],
+   "calories_per_100g": 255,
+   "protein_g": 10.5,
+   "fat_g": 13.0,
+   "carbs_g": 24.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 165,
+   "portion_g": 165
+  },
+  {
+   "slug": "sandwich-egg-cress",
+   "name": "Egg and cress sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "egg cress sandwich",
+    "egg and cress"
+   ],
+   "calories_per_100g": 225,
+   "protein_g": 9.5,
+   "fat_g": 10.0,
+   "carbs_g": 23.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 165,
+   "portion_g": 165
+  },
+  {
+   "slug": "sandwich-egg-bacon",
+   "name": "Egg and bacon sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "egg bacon sandwich"
+   ],
+   "calories_per_100g": 245,
+   "protein_g": 12.0,
+   "fat_g": 12.0,
+   "carbs_g": 21.5,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "sandwich-tuna-cucumber",
+   "name": "Tuna and cucumber sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "tuna cucumber sandwich"
+   ],
+   "calories_per_100g": 200,
+   "protein_g": 11.0,
+   "fat_g": 7.5,
+   "carbs_g": 22.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "sandwich-prawn-mayo",
+   "name": "Prawn mayonnaise sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "prawn sandwich",
+    "prawn mayo sandwich",
+    "prawn cocktail sandwich"
+   ],
+   "calories_per_100g": 240,
+   "protein_g": 9.5,
+   "fat_g": 12.0,
+   "carbs_g": 23.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "sandwich-salmon-cream-cheese",
+   "name": "Smoked salmon and cream cheese sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "smoked salmon sandwich",
+    "salmon and cream cheese sandwich"
+   ],
+   "calories_per_100g": 240,
+   "protein_g": 11.0,
+   "fat_g": 10.0,
+   "carbs_g": 25.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 160,
+   "portion_g": 160
+  },
+  {
+   "slug": "sandwich-beef-horseradish",
+   "name": "Beef and horseradish sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "beef sandwich",
+    "roast beef sandwich"
+   ],
+   "calories_per_100g": 210,
+   "protein_g": 13.0,
+   "fat_g": 6.5,
+   "carbs_g": 24.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 180,
+   "portion_g": 180
+  },
+  {
+   "slug": "sandwich-falafel-hummus",
+   "name": "Falafel and hummus sandwich",
+   "category": "food_fresh",
+   "aliases": [
+    "falafel sandwich"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 7.0,
+   "fat_g": 9.0,
+   "carbs_g": 28.0,
+   "fibre_g": 4.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "sandwich",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "baguette-ham-cheese",
+   "name": "Ham and cheese baguette",
+   "category": "food_fresh",
+   "aliases": [
+    "jambon beurre",
+    "ham baguette"
+   ],
+   "calories_per_100g": 255,
+   "protein_g": 12.5,
+   "fat_g": 8.5,
+   "carbs_g": 31.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "baguette",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "baguette-brie-tomato",
+   "name": "Brie and tomato baguette",
+   "category": "food_fresh",
+   "aliases": [
+    "brie baguette"
+   ],
+   "calories_per_100g": 270,
+   "protein_g": 10.5,
+   "fat_g": 11.0,
+   "carbs_g": 31.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "baguette",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "baguette-chicken-bacon",
+   "name": "Chicken and bacon baguette",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken baguette"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 14.0,
+   "fat_g": 9.0,
+   "carbs_g": 28.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "baguette",
+   "grams_per_item": 240,
+   "portion_g": 240
+  },
+  {
+   "slug": "toastie-ham-cheese",
+   "name": "Ham and cheese toastie",
+   "category": "food_fresh",
+   "aliases": [
+    "croque monsieur",
+    "ham toastie"
+   ],
+   "calories_per_100g": 265,
+   "protein_g": 14.0,
+   "fat_g": 10.5,
+   "carbs_g": 27.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "toastie",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "toastie-cheese",
+   "name": "Cheese toastie",
+   "category": "food_fresh",
+   "aliases": [
+    "three cheese toastie",
+    "grilled cheese",
+    "cheese toasty"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 12.5,
+   "fat_g": 13.5,
+   "carbs_g": 28.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "toastie",
+   "grams_per_item": 160,
+   "portion_g": 160
+  },
+  {
+   "slug": "panini-mozzarella-tomato",
+   "name": "Mozzarella and tomato panini",
+   "category": "food_fresh",
+   "aliases": [
+    "mozzarella panini",
+    "tomato and mozzarella panini",
+    "margherita panini"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 11.0,
+   "fat_g": 9.5,
+   "carbs_g": 29.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "panini",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "panini-chicken-pesto",
+   "name": "Chicken and pesto panini",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken pesto panini",
+    "chicken panini",
+    "panini"
+   ],
+   "calories_per_100g": 240,
+   "protein_g": 13.5,
+   "fat_g": 8.5,
+   "carbs_g": 26.5,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "panini",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "panini-tuna-melt",
+   "name": "Tuna melt panini",
+   "category": "food_fresh",
+   "aliases": [
+    "tuna melt"
+   ],
+   "calories_per_100g": 245,
+   "protein_g": 13.0,
+   "fat_g": 9.5,
+   "carbs_g": 26.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "panini",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "bacon-roll",
+   "name": "Bacon roll",
+   "category": "food_fresh",
+   "aliases": [
+    "bacon bap",
+    "bacon butty"
+   ],
+   "calories_per_100g": 270,
+   "protein_g": 14.0,
+   "fat_g": 10.0,
+   "carbs_g": 30.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 140,
+   "portion_g": 140
+  },
+  {
+   "slug": "sausage-bap",
+   "name": "Sausage bap",
+   "category": "food_fresh",
+   "aliases": [
+    "sausage sandwich",
+    "sausage butty"
+   ],
+   "calories_per_100g": 280,
+   "protein_g": 11.0,
+   "fat_g": 13.0,
+   "carbs_g": 29.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bap",
+   "grams_per_item": 160,
+   "portion_g": 160
+  },
+  {
+   "slug": "croissant-ham-cheese",
+   "name": "Ham and cheese croissant",
+   "category": "food_fresh",
+   "aliases": [
+    "filled croissant"
+   ],
+   "calories_per_100g": 300,
+   "protein_g": 12.0,
+   "fat_g": 17.0,
+   "carbs_g": 24.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "croissant",
+   "grams_per_item": 120,
+   "portion_g": 120
+  },
+  {
+   "slug": "bagel-salmon-cream-cheese",
+   "name": "Smoked salmon and cream cheese bagel",
+   "category": "food_fresh",
+   "aliases": [
+    "salmon bagel",
+    "smoked salmon bagel",
+    "salmon and cream cheese bagel"
+   ],
+   "calories_per_100g": 235,
+   "protein_g": 12.0,
+   "fat_g": 7.0,
+   "carbs_g": 30.0,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bagel",
+   "grams_per_item": 170,
+   "portion_g": 170
+  },
+  {
+   "slug": "wrap-chicken-caesar",
+   "name": "Chicken Caesar wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "caesar wrap"
+   ],
+   "calories_per_100g": 230,
+   "protein_g": 12.0,
+   "fat_g": 10.0,
+   "carbs_g": 22.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "wrap-chicken-tikka",
+   "name": "Chicken tikka wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "tikka wrap"
+   ],
+   "calories_per_100g": 190,
+   "protein_g": 11.0,
+   "fat_g": 5.5,
+   "carbs_g": 23.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "wrap-southern-fried-chicken",
+   "name": "Southern fried chicken wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "fried chicken wrap"
+   ],
+   "calories_per_100g": 225,
+   "protein_g": 10.0,
+   "fat_g": 9.5,
+   "carbs_g": 24.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "wrap-chicken-fajita",
+   "name": "Chicken fajita wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "fajita wrap"
+   ],
+   "calories_per_100g": 185,
+   "protein_g": 10.5,
+   "fat_g": 5.0,
+   "carbs_g": 23.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "wrap-hoisin-duck",
+   "name": "Hoisin duck wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "duck wrap"
+   ],
+   "calories_per_100g": 205,
+   "protein_g": 8.5,
+   "fat_g": 5.5,
+   "carbs_g": 29.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 190,
+   "portion_g": 190
+  },
+  {
+   "slug": "wrap-falafel-hummus",
+   "name": "Falafel and hummus wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "falafel wrap",
+    "hummus wrap"
+   ],
+   "calories_per_100g": 210,
+   "protein_g": 6.0,
+   "fat_g": 8.0,
+   "carbs_g": 27.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "wrap-halloumi",
+   "name": "Halloumi wrap",
+   "category": "food_fresh",
+   "aliases": [],
+   "calories_per_100g": 240,
+   "protein_g": 10.5,
+   "fat_g": 11.0,
+   "carbs_g": 24.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "wrap-spicy-bean",
+   "name": "Spicy bean wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "bean wrap",
+    "mexican bean wrap"
+   ],
+   "calories_per_100g": 185,
+   "protein_g": 5.5,
+   "fat_g": 5.0,
+   "carbs_g": 28.5,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "wrap-plant-chicken",
+   "name": "Plant-based chicken wrap",
+   "category": "food_fresh",
+   "aliases": [
+    "vegan chicken wrap",
+    "no chicken wrap"
+   ],
+   "calories_per_100g": 200,
+   "protein_g": 9.0,
+   "fat_g": 7.5,
+   "carbs_g": 23.5,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "wrap",
+   "grams_per_item": 210,
+   "portion_g": 210
+  },
+  {
+   "slug": "samosa-meat",
+   "name": "Meat samosa",
+   "category": "food_fresh",
+   "aliases": [
+    "meat samosas",
+    "lamb samosa",
+    "keema samosa"
+   ],
+   "calories_per_100g": 272.0,
+   "protein_g": 11.4,
+   "fat_g": 17.3,
+   "carbs_g": 18.9,
+   "fibre_g": 2.4,
+   "basis": "CoFID 2019: Meat samosas, takeaway.",
+   "everyday": true,
+   "item_label": "samosa",
+   "grams_per_item": 60,
+   "portion_g": 120
+  },
+  {
+   "slug": "pasty-cheese-onion",
+   "name": "Cheese and onion pasty",
+   "category": "food_fresh",
+   "aliases": [
+    "cheese pasty",
+    "cheese and onion bake"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 8.0,
+   "fat_g": 17.5,
+   "carbs_g": 25.5,
+   "fibre_g": 1.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "pasty",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "pasty-vegetable",
+   "name": "Vegetable pasty",
+   "category": "food_fresh",
+   "aliases": [
+    "veg pasty"
+   ],
+   "calories_per_100g": 265,
+   "protein_g": 5.0,
+   "fat_g": 15.0,
+   "carbs_g": 27.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "pasty",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "steak-bake",
+   "name": "Steak bake",
+   "category": "food_fresh",
+   "aliases": [],
+   "calories_per_100g": 275,
+   "protein_g": 9.0,
+   "fat_g": 16.5,
+   "carbs_g": 23.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bake",
+   "grams_per_item": 145,
+   "portion_g": 145
+  },
+  {
+   "slug": "chicken-bake",
+   "name": "Chicken bake",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken pasty"
+   ],
+   "calories_per_100g": 270,
+   "protein_g": 9.5,
+   "fat_g": 16.0,
+   "carbs_g": 22.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "bake",
+   "grams_per_item": 145,
+   "portion_g": 145
+  },
+  {
+   "slug": "sausage-bean-cheese-melt",
+   "name": "Sausage bean and cheese melt",
+   "category": "food_fresh",
+   "aliases": [
+    "sausage and bean melt"
+   ],
+   "calories_per_100g": 285,
+   "protein_g": 8.5,
+   "fat_g": 17.0,
+   "carbs_g": 24.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "melt",
+   "grams_per_item": 145,
+   "portion_g": 145
+  },
+  {
+   "slug": "sausage-roll-plant",
+   "name": "Plant-based sausage roll",
+   "category": "food_fresh",
+   "aliases": [
+    "vegan sausage roll",
+    "vegetarian sausage roll",
+    "veggie sausage roll"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 7.5,
+   "fat_g": 17.0,
+   "carbs_g": 25.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "roll",
+   "grams_per_item": 100,
+   "portion_g": 100
+  },
+  {
+   "slug": "mini-pork-pie",
+   "name": "Mini pork pie",
+   "category": "food_fresh",
+   "aliases": [
+    "mini pork pies",
+    "snack pork pie"
+   ],
+   "calories_per_100g": 370.0,
+   "protein_g": 9.9,
+   "fat_g": 26.0,
+   "carbs_g": 25.7,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Pork pie, individual.",
+   "everyday": true,
+   "item_label": "pie",
+   "grams_per_item": 50,
+   "portion_g": 100
+  },
+  {
+   "slug": "salad-chicken-caesar",
+   "name": "Chicken Caesar salad",
+   "category": "food_fresh",
+   "aliases": [
+    "caesar salad"
+   ],
+   "calories_per_100g": 150,
+   "protein_g": 9.5,
+   "fat_g": 10.0,
+   "carbs_g": 5.5,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 240,
+   "portion_g": 240
+  },
+  {
+   "slug": "salad-chicken-bacon-pasta",
+   "name": "Chicken and bacon pasta salad",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken pasta salad"
+   ],
+   "calories_per_100g": 175,
+   "protein_g": 8.5,
+   "fat_g": 8.0,
+   "carbs_g": 17.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 300,
+   "portion_g": 300
+  },
+  {
+   "slug": "salad-tuna-sweetcorn-pasta",
+   "name": "Tuna and sweetcorn pasta salad",
+   "category": "food_fresh",
+   "aliases": [
+    "tuna pasta salad",
+    "tuna and sweetcorn pasta"
+   ],
+   "calories_per_100g": 160,
+   "protein_g": 8.0,
+   "fat_g": 6.5,
+   "carbs_g": 17.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 300,
+   "portion_g": 300
+  },
+  {
+   "slug": "salad-tomato-mozzarella-pasta",
+   "name": "Tomato and mozzarella pasta salad",
+   "category": "food_fresh",
+   "aliases": [
+    "pasta salad",
+    "italian pasta salad",
+    "pesto pasta salad"
+   ],
+   "calories_per_100g": 165,
+   "protein_g": 5.5,
+   "fat_g": 7.5,
+   "carbs_g": 19.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 300,
+   "portion_g": 300
+  },
+  {
+   "slug": "salad-falafel-couscous",
+   "name": "Falafel and couscous salad",
+   "category": "food_fresh",
+   "aliases": [
+    "falafel salad",
+    "couscous salad"
+   ],
+   "calories_per_100g": 165,
+   "protein_g": 5.0,
+   "fat_g": 6.5,
+   "carbs_g": 20.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 250,
+   "portion_g": 250
+  },
+  {
+   "slug": "salad-greek",
+   "name": "Greek salad",
+   "category": "food_fresh",
+   "aliases": [
+    "feta salad"
+   ],
+   "calories_per_100g": 110,
+   "protein_g": 4.5,
+   "fat_g": 8.5,
+   "carbs_g": 4.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "salad-chicken-grain",
+   "name": "Chicken and grain salad",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken quinoa salad",
+    "grain salad",
+    "superfood salad",
+    "quinoa salad"
+   ],
+   "calories_per_100g": 140,
+   "protein_g": 9.0,
+   "fat_g": 4.5,
+   "carbs_g": 15.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 260,
+   "portion_g": 260
+  },
+  {
+   "slug": "salad-roast-veg-grain",
+   "name": "Roasted vegetable and grain salad",
+   "category": "food_fresh",
+   "aliases": [
+    "vegetable grain salad",
+    "roasted vegetable salad",
+    "roast veg salad"
+   ],
+   "calories_per_100g": 150,
+   "protein_g": 4.5,
+   "fat_g": 6.0,
+   "carbs_g": 18.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 240,
+   "portion_g": 240
+  },
+  {
+   "slug": "salad-chicken-noodle",
+   "name": "Chicken noodle salad",
+   "category": "food_fresh",
+   "aliases": [
+    "noodle salad"
+   ],
+   "calories_per_100g": 140,
+   "protein_g": 7.5,
+   "fat_g": 4.0,
+   "carbs_g": 18.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 250,
+   "portion_g": 250
+  },
+  {
+   "slug": "salad-prawn-layered",
+   "name": "Prawn layered salad",
+   "category": "food_fresh",
+   "aliases": [
+    "prawn salad",
+    "prawn cocktail salad"
+   ],
+   "calories_per_100g": 130,
+   "protein_g": 5.0,
+   "fat_g": 7.0,
+   "carbs_g": 11.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "salad",
+   "grams_per_item": 220,
+   "portion_g": 220
+  },
+  {
+   "slug": "sushi-selection",
+   "name": "Sushi selection",
+   "category": "food_fresh",
+   "aliases": [
+    "sushi pack",
+    "california rolls",
+    "maki rolls"
+   ],
+   "calories_per_100g": 150,
+   "protein_g": 5.0,
+   "fat_g": 2.0,
+   "carbs_g": 28.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "selection",
+   "grams_per_item": 200,
+   "portion_g": 200
+  },
+  {
+   "slug": "pizza-mini-deep-cheese",
+   "name": "Mini deep-dish cheese pizza",
+   "category": "food_frozen",
+   "aliases": [
+    "chicago mini pizza",
+    "chicago pizza",
+    "chicago style pizza",
+    "mini deep dish pizza",
+    "mini deep pan pizza",
+    "mini cheese pizza",
+    "deep dish pizza",
+    "four cheese mini pizza"
+   ],
+   "calories_per_100g": 250,
+   "protein_g": 10.0,
+   "fat_g": 10.5,
+   "carbs_g": 28.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "item_label": "pizza",
+   "grams_per_item": 155,
+   "portion_g": 155
   },
   {
    "slug": "quorn-pieces",

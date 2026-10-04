@@ -1,0 +1,1829 @@
+{
+ "version": 1,
+ "updated": "2026-10-04",
+ "cuisine": "Grab and go",
+ "licence": "Original entries written for Home-OS. Generic shop-bought foods; no shop, brand or product is named or copied.",
+ "recipes": [
+  {
+   "slug": "bought-chicken-and-bacon-sandwich",
+   "name": "Chicken and bacon sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-bacon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-bacon}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-salad-sandwich",
+   "name": "Chicken salad sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-salad",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-salad}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-sweetcorn-sandwich",
+   "name": "Chicken and sweetcorn sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-sweetcorn",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-sweetcorn}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-stuffing-sandwich",
+   "name": "Chicken and stuffing sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-stuffing",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-stuffing}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-coronation-chicken-sandwich",
+   "name": "Coronation chicken sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-coronation-chicken",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-coronation-chicken}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-avocado-sandwich",
+   "name": "Chicken and avocado sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-avocado",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-avocado}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-club-sandwich",
+   "name": "Chicken club sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-chicken-club",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-chicken-club}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-all-day-breakfast-sandwich",
+   "name": "All-day breakfast sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-all-day-breakfast",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-all-day-breakfast}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-blt-sandwich",
+   "name": "BLT sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-blt",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-blt}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-and-cheese-sandwich",
+   "name": "Ham and cheese sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-ham-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-ham-cheese}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-and-mustard-sandwich",
+   "name": "Ham and mustard sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-ham-mustard",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-ham-mustard}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-salad-sandwich",
+   "name": "Ham salad sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-ham-salad",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-ham-salad}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-cheese-and-pickle-sandwich",
+   "name": "Cheese and pickle sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-cheese-pickle",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-cheese-pickle}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-cheese-and-onion-sandwich",
+   "name": "Cheese and onion sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-cheese-onion",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-cheese-onion}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-cheese-and-tomato-sandwich",
+   "name": "Cheese and tomato sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-cheese-tomato",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-cheese-tomato}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-egg-and-cress-sandwich",
+   "name": "Egg and cress sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-egg-cress",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-egg-cress}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-egg-and-bacon-sandwich",
+   "name": "Egg and bacon sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-egg-bacon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-egg-bacon}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-tuna-mayo-sandwich",
+   "name": "Tuna mayo sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-tuna-mayo",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-tuna-mayo}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-tuna-and-cucumber-sandwich",
+   "name": "Tuna and cucumber sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-tuna-cucumber",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-tuna-cucumber}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-prawn-mayonnaise-sandwich",
+   "name": "Prawn mayonnaise sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-prawn-mayo",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-prawn-mayo}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-smoked-salmon-and-cream-cheese-sandwich",
+   "name": "Smoked salmon and cream cheese sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-salmon-cream-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-salmon-cream-cheese}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-beef-and-horseradish-sandwich",
+   "name": "Beef and horseradish sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-beef-horseradish",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-beef-horseradish}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-falafel-and-hummus-sandwich",
+   "name": "Falafel and hummus sandwich",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sandwich-falafel-hummus",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sandwich-falafel-hummus}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-and-cheese-baguette",
+   "name": "Ham and cheese baguette",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "baguette-ham-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:baguette-ham-cheese}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-brie-and-tomato-baguette",
+   "name": "Brie and tomato baguette",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "baguette-brie-tomato",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:baguette-brie-tomato}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-bacon-baguette",
+   "name": "Chicken and bacon baguette",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "baguette-chicken-bacon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:baguette-chicken-bacon}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-smoked-salmon-and-cream-cheese-bagel",
+   "name": "Smoked salmon and cream cheese bagel",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "bagel-salmon-cream-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:bagel-salmon-cream-cheese}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-bacon-roll",
+   "name": "Bacon roll",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "bacon-roll",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:bacon-roll}} warm, as bought."
+    },
+    {
+     "instruction": "If it has cooled, warm it in the oven at 180C for 8 minutes.",
+     "duration_min": 8
+    }
+   ]
+  },
+  {
+   "slug": "bought-sausage-bap",
+   "name": "Sausage bap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sausage-bap",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:sausage-bap}} warm, as bought."
+    },
+    {
+     "instruction": "If it has cooled, warm it in the oven at 180C for 8 minutes.",
+     "duration_min": 8
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-and-cheese-croissant",
+   "name": "Ham and cheese croissant",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "croissant-ham-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:croissant-ham-cheese}} warm, as bought."
+    },
+    {
+     "instruction": "If it has cooled, warm it in the oven at 180C for 8 minutes.",
+     "duration_min": 8
+    }
+   ]
+  },
+  {
+   "slug": "bought-ham-and-cheese-toastie",
+   "name": "Ham and cheese toastie",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "toastie-ham-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat a dry frying pan over a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:toastie-ham-cheese}} for 3 minutes on each side, until the cheese melts.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Leave it 1 minute before cutting. The filling is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bought-cheese-toastie",
+   "name": "Cheese toastie",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "toastie-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat a dry frying pan over a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:toastie-cheese}} for 3 minutes on each side, until the cheese melts.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Leave it 1 minute before cutting. The filling is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bought-mozzarella-and-tomato-panini",
+   "name": "Mozzarella and tomato panini",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "panini-mozzarella-tomato",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat a dry frying pan over a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:panini-mozzarella-tomato}} for 3 minutes on each side, until the cheese melts.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Leave it 1 minute before cutting. The filling is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-pesto-panini",
+   "name": "Chicken and pesto panini",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "panini-chicken-pesto",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat a dry frying pan over a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:panini-chicken-pesto}} for 3 minutes on each side, until the cheese melts.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Leave it 1 minute before cutting. The filling is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bought-tuna-melt-panini",
+   "name": "Tuna melt panini",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "panini-tuna-melt",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat a dry frying pan over a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:panini-tuna-melt}} for 3 minutes on each side, until the cheese melts.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Leave it 1 minute before cutting. The filling is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-caesar-wrap",
+   "name": "Chicken Caesar wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-chicken-caesar",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-chicken-caesar}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-tikka-wrap",
+   "name": "Chicken tikka wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-chicken-tikka",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-chicken-tikka}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-southern-fried-chicken-wrap",
+   "name": "Southern fried chicken wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-southern-fried-chicken",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-southern-fried-chicken}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-fajita-wrap",
+   "name": "Chicken fajita wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-chicken-fajita",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-chicken-fajita}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-hoisin-duck-wrap",
+   "name": "Hoisin duck wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-hoisin-duck",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-hoisin-duck}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-falafel-and-hummus-wrap",
+   "name": "Falafel and hummus wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-falafel-hummus",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-falafel-hummus}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-halloumi-wrap",
+   "name": "Halloumi wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-halloumi",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-halloumi}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-spicy-bean-wrap",
+   "name": "Spicy bean wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-spicy-bean",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-spicy-bean}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-plant-based-chicken-wrap",
+   "name": "Plant-based chicken wrap",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "wrap-plant-chicken",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:wrap-plant-chicken}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-vegetable-samosas",
+   "name": "Vegetable samosas",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "samosa-vegetable",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:samosa-vegetable}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-meat-samosas",
+   "name": "Meat samosas",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "samosa-meat",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:samosa-meat}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-cornish-pasty",
+   "name": "Cornish pasty",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "cornish-pasty",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:cornish-pasty}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-cheese-and-onion-pasty",
+   "name": "Cheese and onion pasty",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "pasty-cheese-onion",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:pasty-cheese-onion}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-vegetable-pasty",
+   "name": "Vegetable pasty",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "pasty-vegetable",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:pasty-vegetable}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-steak-bake",
+   "name": "Steak bake",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "steak-bake",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:steak-bake}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-bake",
+   "name": "Chicken bake",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "chicken-bake",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:chicken-bake}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-sausage-bean-and-cheese-melt",
+   "name": "Sausage, bean and cheese melt",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sausage-bean-cheese-melt",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:sausage-bean-cheese-melt}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-sausage-roll",
+   "name": "Sausage roll",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sausage-roll",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:sausage-roll}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-plant-based-sausage-roll",
+   "name": "Plant-based sausage roll",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sausage-roll-plant",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Eat {{ing:sausage-roll-plant}} cold, or warm it through."
+    },
+    {
+     "instruction": "To warm it, heat the oven to 180C."
+    },
+    {
+     "instruction": "Bake on a tray for 10 minutes, until hot in the middle.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bought-scotch-egg",
+   "name": "Scotch egg",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "scotch-egg",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:scotch-egg}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-mini-pork-pies",
+   "name": "Mini pork pies",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "mini-pork-pie",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:mini-pork-pie}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-caesar-salad",
+   "name": "Chicken Caesar salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-chicken-caesar",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-chicken-caesar}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-bacon-pasta-salad",
+   "name": "Chicken and bacon pasta salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-chicken-bacon-pasta",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-chicken-bacon-pasta}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-tuna-and-sweetcorn-pasta-salad",
+   "name": "Tuna and sweetcorn pasta salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-tuna-sweetcorn-pasta",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-tuna-sweetcorn-pasta}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-tomato-and-mozzarella-pasta-salad",
+   "name": "Tomato and mozzarella pasta salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-tomato-mozzarella-pasta",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-tomato-mozzarella-pasta}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-falafel-and-couscous-salad",
+   "name": "Falafel and couscous salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-falafel-couscous",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-falafel-couscous}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-greek-salad",
+   "name": "Greek salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-greek",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-greek}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-and-grain-salad",
+   "name": "Chicken and grain salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-chicken-grain",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-chicken-grain}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-roasted-vegetable-and-grain-salad",
+   "name": "Roasted vegetable and grain salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-roast-veg-grain",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-roast-veg-grain}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-chicken-noodle-salad",
+   "name": "Chicken noodle salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-chicken-noodle",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-chicken-noodle}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-prawn-layered-salad",
+   "name": "Prawn layered salad",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "salad-prawn-layered",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:salad-prawn-layered}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-sushi-selection",
+   "name": "Sushi selection",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [],
+   "method_note": "Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "sushi-selection",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Keep {{ing:sushi-selection}} in the fridge until you eat it."
+    },
+    {
+     "instruction": "Eat it by the date on the pack."
+    }
+   ]
+  },
+  {
+   "slug": "bought-mini-deep-dish-cheese-pizza",
+   "name": "Mini deep-dish cheese pizza",
+   "cuisine": "Grab and go",
+   "budget_tier": "everyday",
+   "default_slot": "lunch",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Frozen. Bought ready made. The figures are typical of UK labels, so yours may differ a little.",
+   "ingredients": [
+    {
+     "ref": "pizza-mini-deep-cheese",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Bake {{ing:pizza-mini-deep-cheese}} from frozen on a tray for 17 minutes, until bubbling.",
+     "duration_min": 17
+    },
+    {
+     "instruction": "Leave it 2 minutes before eating. The cheese is very hot.",
+     "duration_min": 2
+    }
+   ]
+  }
+ ]
+}

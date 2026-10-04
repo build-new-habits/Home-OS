@@ -1,4 +1,7 @@
-// js/data/dietSwitch.js — 03 Oct 2026 v1
+// js/data/dietSwitch.js — 04 Oct 2026 v2
+// v2: vegan is offered only when something would change. A bought egg and
+// cress sandwich or a frozen cheese pizza is one food no rule covers, and
+// offering "Vegan" for it would change nothing while saying it had.
 // Kitchen rebuild. "Make it vegetarian" / "Make it vegan" in one tap.
 //
 // ---- Why ----
@@ -98,7 +101,8 @@ export function dietsFor(recipe) {
   const vegOk = tags.has('vegetarian') || refs.every((r) => !NOT_VEGETARIAN.test(r) || ruleFor(r, VEG_RULES));
   if (!tags.has('vegetarian') && vegOk && refs.some((r) => NOT_VEGETARIAN.test(r))) out.push('vegetarian');
   const veganOk = vegOk && refs.every((r) => (!NOT_VEGAN.test(r) || ruleFor(r, VEGAN_RULES)) && (!NOT_VEGETARIAN.test(r) || ruleFor(r, VEG_RULES)));
-  if (!tags.has('vegan') && veganOk) out.push('vegan');
+  const somethingChanges = refs.some((r) => NOT_VEGAN.test(r) || NOT_VEGETARIAN.test(r));
+  if (!tags.has('vegan') && veganOk && somethingChanges) out.push('vegan');
   return out;
 }
 

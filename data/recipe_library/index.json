@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-03",
+ "updated": "2026-10-04",
  "files": [
   {
    "cuisine": "African",
@@ -46,6 +46,11 @@
    "cuisine": "French",
    "path": "data/recipe_library/french.json",
    "count": 6
+  },
+  {
+   "cuisine": "Grab and go",
+   "path": "data/recipe_library/grab_and_go.json",
+   "count": 68
   },
   {
    "cuisine": "Greek",

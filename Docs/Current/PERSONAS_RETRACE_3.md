@@ -487,3 +487,7 @@ button, not as you type, at most every 6.5 seconds, because its search is
 limited to ten a minute. **Not yet tried against the live service from
 here** (the build environment cannot reach it); the barcode lookup already
 uses the same service and data shape.
+
+### Batch, 4 Oct 2026 (shell v177): Grab and go
+
+Graeme asked for the sandwiches, wraps, samosas, pasties and salads sold by sandwich shops, cafés and supermarkets, and a mini deep-dish cheese pizza. A new library group, **Grab and go**, has 68 bought items: 23 sandwiches, baguettes, a bagel, bacon roll, sausage bap, filled croissant, 2 toasties, 3 paninis, 9 wraps, samosas, pasties and bakes, sausage rolls, scotch egg, mini pork pies, 11 salads and pots including sushi, and the frozen pizza. Each one is a single food from `food_reference.json`, generic (no shop or brand names), with CoFID 2019 figures where it has them and typical UK label averages otherwise. They can go on the plan and the list, and they count towards the day's nutrition. Foods: `scripts/everyday_foods.py` v2; recipes: `scripts/grab_and_go.py`. While checking, I found the vegan switch was offered for recipes where nothing would change (a bought egg and cress sandwich). `dietSwitch.js` v2 now offers it only when an ingredient would change.

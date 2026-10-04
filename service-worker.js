@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v130
+// service-worker.js — 04 Oct 2026 v131
+// v131: Grab and go: 68 shop-bought sandwiches, wraps, bakes, salads and a mini deep-dish cheese pizza; vegan offered only when something changes Shell v177.
 // v130: updates arrive on the next return to the app (lib/updates.js). Shell v176.
 // v129: Clear the list, and Add everything from the plan. Shell v175.
 // v128: search over 10,000 foods and shop products (data/foodSearch.js, data/usda.json); plant-based and protein foods. Shell v174.
@@ -274,7 +275,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v176';
+const CACHE_NAME = 'home-os-shell-v177';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './js/lib/updates.js',
@@ -297,9 +298,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=176',
-  './css/base.css?v=176',
-  './css/components.css?v=176',
+  './css/tokens.css?v=177',
+  './css/base.css?v=177',
+  './css/components.css?v=177',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
