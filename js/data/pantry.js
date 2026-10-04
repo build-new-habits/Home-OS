@@ -1,4 +1,5 @@
-// js/data/pantry.js — 03 Oct 2026 v8
+// js/data/pantry.js — 04 Oct 2026 v9
+// v9: listStock reads every page.
 // v8: a row with a level and no amount does not need an amount.
 // v3: use_by (revision 7). freshness() prefers the printed date over the
 // shelf-life estimate, and describeFreshness() words them differently on
@@ -31,6 +32,7 @@
 // offline rather than failing silently (conventions §9).
 
 import { supabase } from '../supabaseClient.js';
+import { readAll } from '../lib/readAll.js';
 
 /**
  * Phase 31. A rough amount, for when a number is more precision than the
@@ -90,13 +92,13 @@ export function defaultShelfLife(category) {
 
 /** Everything in the pantry, each row with its food embedded. */
 export async function listStock() {
-  const { data, error } = await supabase
+  // Every page (4 Oct 2026): a pantry past the per-request limit lost its newest rows.
+  return readAll(() => supabase
     .from(TABLE)
     .select('id, food_id, default_location, shelf_life_days, current_qty, unit, last_restocked, reorder_at, use_by, level, level_set_at, '
       + 'foods(id, name, category, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label)')
-    .order('created_at', { ascending: true });
-  if (error) return { ok: false, error };
-  return { ok: true, data };
+    .order('created_at', { ascending: true })
+    .order('id', { ascending: true }));
 }
 
 /** The pantry row for a food, or null. Used to stop duplicate entries. */

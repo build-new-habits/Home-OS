@@ -1,4 +1,5 @@
-// js/data/drinks.js — 04 Oct 2026 v2
+// js/data/drinks.js — 04 Oct 2026 v3
+// v3: a drink typed in ("IPA", "latte", "prosecco") counts as the nearest kind.
 // v2: Beer or cider, Wine, Spirit, Cocktail — standard servings, never brands.
 // Kitchen rebuild. Drinks: a row on the plan and on Today, added in a tap.
 //
@@ -123,9 +124,43 @@ export function tallyText(drinks = []) {
  * Nutrition items for data/nutrition.js dayNutrition: one per drink, with
  * "Something else" marked as unknown. Pure.
  */
+/**
+ * What a drink typed under "Something else" most likely is (4 Oct 2026).
+ * Graeme typed "IPA" and it counted as nothing, so the day said "at least"
+ * and missed a pint. Common names map to the nearest kind; a strong pale
+ * ale is its own entry because a pint of it is a good deal more than a
+ * pint of ordinary bitter. Anything not recognised stays unknown. Pure.
+ */
+const GUESSES = [
+  { re: /\b(ipa|pale ale|apa|neipa|double ipa|dipa)\b/i, per: { calories: 245, carbs_g: 18, fat_g: 0, protein_g: 2, fibre_g: 0 }, as: 'a pint of IPA at about 5.5%' },
+  { re: /\b(beer|lager|ale|bitter|stout|porter|cider|pint|guinness|shandy)\b/i, kind: 'beer' },
+  { re: /\b(wine|prosecco|champagne|cava|ros[eé]|fizz)\b/i, kind: 'wine' },
+  { re: /\b(gin|vodka|whisky|whiskey|rum|brandy|tequila|bourbon|spirit)\b/i, kind: 'spirit' },
+  { re: /\b(cocktail|mojito|margarita|spritz|negroni|martini)\b/i, kind: 'cocktail' },
+  { re: /\b(latte|cappuccino|flat white|americano|espresso|mocha|coffee)\b/i, kind: 'coffee' },
+  { re: /\b(tea|chai)\b/i, kind: 'tea' },
+  { re: /\b(cola|coke|lemonade|fanta|sprite|pepsi)\b/i, kind: 'fizzy' }
+];
+
+export function guessDrink(name) {
+  const text = String(name || '').trim();
+  if (!text) return null;
+  for (const g of GUESSES) {
+    if (!g.re.test(text)) continue;
+    if (g.per) return { per: g.per, serving: g.as };
+    const kind = drinkKind(g.kind);
+    return { per: kind.per, serving: kind.serving };
+  }
+  return null;
+}
+
 export function drinkNutritionItems(drinks = []) {
   const unknown = { calories: false, carbs_g: false, fat_g: false, protein_g: false, fibre_g: false };
   return drinks.map((d) => {
+    if (d.kind === 'other') {
+      const guess = guessDrink(d.name);
+      if (guess) return { perServing: guess.per, complete: {} };
+    }
     const kind = drinkKind(d.kind);
     return kind.per
       ? { perServing: kind.per, complete: {} }

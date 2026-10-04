@@ -1855,6 +1855,30 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   if (hadStorage) globalThis.localStorage = before; else delete globalThis.localStorage;
 }
 
+// ---- Nothing lost to a row limit (Graeme, 4 Oct 2026, second report) ----
+{
+  const { readAll } = await import(pathToFileURL(path.join(REPO, 'js/lib/readAll.js')).href);
+  const table = Array.from({ length: 2345 }, (_, i) => ({ id: i }));
+  const capped = (cap, overflowError = false) => () => ({
+    range: async (a, b) => {
+      if (overflowError && a >= table.length) return { data: null, error: { code: 'PGRST103', message: 'Requested range not satisfiable' } };
+      return { data: table.slice(a, Math.min(b + 1, a + cap)), error: null };
+    }
+  });
+  eq('every row comes back under a 1,000 cap', (await readAll(capped(1000))).data.length, 2345);
+  eq('every row comes back under a smaller cap than asked for', (await readAll(capped(500))).data.length, 2345);
+  eq('a "range not satisfiable" after the last page is the end, not a failure', (await readAll(capped(1000, true))).data.length, 2345);
+  const D = await import(pathToFileURL(path.join(REPO, 'js/data/drinks.js')).href);
+  eq('an IPA typed in counts as a pint of IPA', D.drinkNutritionItems([{ kind: 'other', name: 'IPA' }])[0].perServing.calories, 245);
+  eq('a latte counts as a coffee', D.drinkNutritionItems([{ kind: 'other', name: 'Latte' }])[0].perServing.calories, 19);
+  check('an unknown drink stays unknown', D.drinkNutritionItems([{ kind: 'other', name: 'Kombucha' }])[0].complete.calories === false);
+  const PI = await import(pathToFileURL(path.join(REPO, 'js/data/plannedIngredients.js')).href);
+  const rows = PI.stand_inRows('m1', { ingredients: [{ ref: 'oats-rolled', quantity: 100, unit: 'g' }, { ref: 'honey', quantity: 1, unit: 'tbsp' }] }, new Map([['oats-rolled', { name: 'Oats', calories_per_100g: 379 }]]));
+  eq('a meal with no rows is counted from its library recipe', rows.length, 2);
+  eq('stand-in spoons are stored as ml', rows[1].unit, 'ml');
+  eq('stand-ins carry the reference food', rows[0].foods.calories_per_100g, 379);
+}
+
 console.log('');
 
 if (failures.length) {

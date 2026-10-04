@@ -1,4 +1,5 @@
-// js/components/drinksQuickAdd.js — 04 Oct 2026 v2
+// js/components/drinksQuickAdd.js — 04 Oct 2026 v3
+// v3: a typed drink says what it is counted as (data/drinks.js guessDrink).
 // v2: compact — the four drinks you add most (counted on this phone; water,
 // tea, coffee and juice to start), and More drinks for the rest. Thirteen
 // chips was the longest thing on Today (persona re-trace 3).
@@ -9,7 +10,7 @@
 import { el } from '../lib/dom.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from './toast.js';
-import { DRINKS, listDrinks, addDrink, removeDrink, tallyDrinks } from '../data/drinks.js';
+import { DRINKS, listDrinks, addDrink, removeDrink, tallyDrinks, guessDrink } from '../data/drinks.js';
 
 let counter = 0;
 
@@ -79,6 +80,14 @@ export function drinksQuickAdd({ weekStart, day, dayLabel = '', signal, onChange
     if (!result.ok) { showToast('That did not save. Try again.'); return false; }
     if (kind !== 'other') countUse(kind);
     const label = kind === 'other' ? (name || 'Something else') : DRINKS.find((d) => d.value === kind).label;
+    // v3: say what a typed drink is counted as, so the number is never hidden.
+    if (kind === 'other') {
+      const guess = guessDrink(name);
+      const words = guess ? `${label} added, counted as ${guess.serving}.` : `${label} added. Its nutrition is not known, so the day says "at least".`;
+      changed(words);
+      showToast(words);
+      return true;
+    }
     changed(`${label} added.`);
     return true;
   }

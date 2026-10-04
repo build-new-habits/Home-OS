@@ -1,4 +1,5 @@
-// js/data/listSync.js — 04 Oct 2026 v4
+// js/data/listSync.js — 04 Oct 2026 v5
+// v5: ingredients for the planned meals only, repairing empty library meals first.
 // v4: the list is for meals still to come (data/listWindow.js): not past or eaten ones, and next week at the weekend.
 // Phase 22. The shopping list follows the plan on its own.
 //
@@ -22,7 +23,7 @@
 // holiday item survives untouched. That is asserted by a test.
 
 import { planForList } from './listWindow.js';
-import { listIngredients } from './meals.js';
+import { ingredientsForEntries } from './plannedIngredients.js';
 import { listStock, todayIso } from './pantry.js';
 import { listFoods } from './foods.js';
 import { replaceGeneratedItems } from './shopping.js';
@@ -95,9 +96,12 @@ export async function syncNow() {
   running = true;
 
   try {
-    const [plan, ingredients, pantry, foods, household] = await Promise.all([
-      planForList(), listIngredients(), listStock(), listFoods(), getHousehold()
+    const [plan, pantry, foods, household] = await Promise.all([
+      planForList(), listStock(), listFoods(), getHousehold()
     ]);
+    // Only the planned meals' ingredients; an empty library meal is filled
+    // in first, so its shopping is not silently missing.
+    const ingredients = plan.ok ? await ingredientsForEntries(plan.data || [], { awaitRepair: true }) : { ok: false };
 
     if (!plan.ok || !ingredients.ok || !pantry.ok || !foods.ok) {
       const result = { ok: false, reason: 'read-failed' };

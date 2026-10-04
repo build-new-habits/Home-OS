@@ -397,3 +397,26 @@ Four people are at 9 (four and a half stars). The next fixes, in order:
 **moving a trial into a new account**, **freezer portions in the picker**
 (possible now on trial phones, and for everyone once 026 is in), then
 **week cost** and **import**, which need prices and a server.
+
+### Fix — Today's nutrition, second report (Graeme, 4 Oct, 14:00)
+449 kcal for overnight oats and a falafel bowl, and ticking the lentil ragu
+changed nothing. Worked out from the screenshot: 449 = oats (411) + two
+coffees (38). The falafel bowl and the ragu were read as having no
+ingredients, and the typed-in "IPA" counted as nothing.
+
+The earlier fix (read every page past 1,000 rows) stopped at the first short
+page, so it could still cut off; and a library recipe whose add failed part-
+way stayed empty forever, because every later add reused the empty meal.
+
+- Screens and the list now read only the planned meals' ingredients
+  (data/plannedIngredients.js), a few dozen rows, so no row limit applies.
+- A library meal with no ingredients is counted from its library recipe
+  at once and its ingredients written back; the shopping list waits for that.
+- Adding a library recipe is all or nothing; duplicates no longer block it.
+- readAll keeps reading after a short page until an empty one.
+- Typed drinks count as the nearest kind: an IPA as a pint at about 5.5%
+  (245 kcal), a latte as a coffee; the toast says what it was counted as.
+
+Reproduced in the browser with both faults and a 20-row server cap: Today
+went from "no ingredients" to 1,482 kcal planned, ticking the ragu added
+572, and an IPA added 245.

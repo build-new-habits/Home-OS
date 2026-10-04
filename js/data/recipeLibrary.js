@@ -1,4 +1,7 @@
-// js/data/recipeLibrary.js — 03 Oct 2026 v5
+// js/data/recipeLibrary.js — 04 Oct 2026 v6
+// v6: adding a library recipe is all or nothing; a meal left with no
+// ingredients is filled again (reseedLibraryIngredients); every food is read,
+// not the first page.
 // v5: foodsForReference() for the pantry quick start.
 // v4: recipes have a course (starter, main, pudding): filterable, and stored on
 // the meal once migration 026 adds meals.course.
@@ -23,6 +26,7 @@
 import { supabase } from '../supabaseClient.js';
 import { lookup as lookupReference, referencePatch } from './foodReference.js';
 import { toStorage } from '../lib/units.js';
+import { readAll } from '../lib/readAll.js';
 import { courseOf, isMissingColumnError } from './courses.js';
 
 const INDEX_URL = new URL('../../data/recipe_library/index.json', import.meta.url).href;
@@ -219,12 +223,78 @@ async function resolveFood(seedIngredient, existingFoods) {
 }
 
 /**
+ * Every food, past the server's per-request limit (4 Oct 2026). Reading only
+ * the first page meant a food already in the household could be missed and
+ * made again, so the pantry and the list saw two of the same thing.
+ */
+async function allFoods() {
+  return readAll(() => supabase.from('foods').select('*').order('created_at', { ascending: true }).order('id', { ascending: true }));
+}
+
+/** Writes one library recipe's ingredients against a meal. */
+async function writeIngredients(mealId, recipe, existingFoods) {
+  let reused = 0;
+  let created = 0;
+  for (const seed of recipe.ingredients || []) {
+    const resolved = await resolveFood(seed, existingFoods);
+    if (resolved.error) return { ok: false, error: resolved.error };
+    if (resolved.created) created += 1; else reused += 1;
+    const stored = toStorage(seed.quantity, seed.unit) || { value: seed.quantity, unit: seed.unit };
+    const row = await supabase.from('meal_ingredients').insert({
+      meal_id: mealId,
+      food_id: resolved.food.id,
+      quantity_g: stored.value,
+      unit: stored.unit,
+      option_group: seed.option_group || null,
+      option_label: seed.option_label || null,
+      is_selected: seed.option_group ? Boolean(seed.default) : true
+    });
+    if (row.error) return { ok: false, error: row.error };
+  }
+  return { ok: true, reused, created };
+}
+
+/**
+ * Puts a library meal's ingredients back when it has none (4 Oct 2026).
+ * A meal left empty by an add that failed part-way was reused by every
+ * later add, and counted as nothing in nutrition, the list and the pantry.
+ * Checks again just before writing, so two screens cannot both fill it.
+ */
+export async function reseedLibraryIngredients(mealId, recipe) {
+  const present = await supabase.from('meal_ingredients').select('id', { count: 'exact', head: true }).eq('meal_id', mealId);
+  if (present.error) return { ok: false, error: present.error };
+  if ((present.count || 0) > 0) return { ok: true, skipped: true };
+  const foodList = await allFoods();
+  if (!foodList.ok) return { ok: false, error: foodList.error };
+  const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
+  const written = await writeIngredients(mealId, recipe, existingFoods);
+  if (!written.ok) {
+    await supabase.from('meal_ingredients').delete().eq('meal_id', mealId);
+    return written;
+  }
+  // Steps too, if they went missing with the ingredients.
+  const steps = await supabase.from('meal_steps').select('id', { count: 'exact', head: true }).eq('meal_id', mealId);
+  if (!steps.error && (steps.count || 0) === 0 && (recipe.steps || []).length) {
+    await supabase.from('meal_steps').insert((recipe.steps || []).map((step, i) => ({
+      meal_id: mealId,
+      step_number: i + 1,
+      instruction: step.instruction,
+      note: step.note || null,
+      duration_min: step.duration_min || null,
+      step_group: step.step_group || null,
+      while_waiting: Boolean(step.while_waiting)
+    })));
+  }
+  return { ok: true, ...written };
+}
+
+/**
  * Makes sure there is a foods row for each reference slug, reusing any you
  * already have by name. For the pantry quick start (3 Oct 2026).
  * @returns {{ ok: true, data: Map<string, object> } | { ok: false, error }}
  */
 export async function foodsForReference(slugs = []) {
-  const foodList = await supabase.from('foods').select('*');
+  const foodList = await allFoods();
   if (foodList.error) return { ok: false, error: foodList.error };
   const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
   const out = new Map();
@@ -246,14 +316,19 @@ export async function foodsForReference(slugs = []) {
  * Reports what happened rather than doing it invisibly.
  */
 export async function addLibraryRecipe(recipe) {
-  const already = await supabase
-    .from('meals').select('id, name').eq('library_ref', recipe.slug).maybeSingle();
-  if (already.error) return { ok: false, error: already.error };
+  // limit(1), not maybeSingle(): two meals from the same recipe made
+  // maybeSingle fail, and the recipe could then never be added again.
+  const found = await supabase
+    .from('meals').select('id, name').eq('library_ref', recipe.slug).order('created_at', { ascending: true }).limit(1);
+  if (found.error) return { ok: false, error: found.error };
+  const already = { data: (found.data && found.data[0]) || null };
   if (already.data) {
+    // An earlier add that failed part-way left it empty: fill it now.
+    await reseedLibraryIngredients(already.data.id, recipe).catch(() => null);
     return { ok: false, error: new Error(`You already have ${already.data.name}.`), existing: already.data };
   }
 
-  const foodList = await supabase.from('foods').select('*');
+  const foodList = await allFoods();
   if (foodList.error) return { ok: false, error: foodList.error };
   const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
 
@@ -284,28 +359,15 @@ export async function addLibraryRecipe(recipe) {
   }
   if (meal.error) return { ok: false, error: meal.error };
 
-  let reused = 0;
-  let created = 0;
-  const slugToFood = new Map();
-
-  for (const seed of recipe.ingredients || []) {
-    const resolved = await resolveFood(seed, existingFoods);
-    if (resolved.error) return { ok: false, error: resolved.error };
-    if (resolved.created) created += 1; else reused += 1;
-    if (seed.ref) slugToFood.set(seed.ref, resolved.food);
-
-    const stored = toStorage(seed.quantity, seed.unit) || { value: seed.quantity, unit: seed.unit };
-    const row = await supabase.from('meal_ingredients').insert({
-      meal_id: meal.data.id,
-      food_id: resolved.food.id,
-      quantity_g: stored.value,
-      unit: stored.unit,
-      option_group: seed.option_group || null,
-      option_label: seed.option_label || null,
-      is_selected: seed.option_group ? Boolean(seed.default) : true
-    });
-    if (row.error) return { ok: false, error: row.error };
+  // v (4 Oct 2026): all or nothing. A failure part-way used to leave the
+  // meal with some or no ingredients, and every later add reused it.
+  const written = await writeIngredients(meal.data.id, recipe, existingFoods);
+  if (!written.ok) {
+    await supabase.from('meal_ingredients').delete().eq('meal_id', meal.data.id);
+    await supabase.from('meals').delete().eq('id', meal.data.id);
+    return { ok: false, error: written.error };
   }
+  const { reused, created } = written;
 
   const steps = (recipe.steps || []).map((step, i) => ({
     meal_id: meal.data.id,
@@ -347,7 +409,7 @@ export function describeAdd(result) {
  * @returns {{ ok: boolean, added?: number, skipped?: number, error?: Error }}
  */
 export async function addMissingToList(missing = []) {
-  const foodList = await supabase.from('foods').select('*');
+  const foodList = await allFoods();
   if (foodList.error) return { ok: false, error: foodList.error };
   const existingFoods = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
 

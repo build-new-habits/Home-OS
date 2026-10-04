@@ -1,4 +1,5 @@
-// js/data/planShopping.js — 04 Oct 2026 v2
+// js/data/planShopping.js — 04 Oct 2026 v3
+// v3: ingredients for the planned meals only, repairing empty library meals first.
 // v2: this week and next use the list's window (data/listWindow.js).
 //
 // Turning a week's plan into a shopping list.
@@ -19,7 +20,7 @@
 import { listPlan } from './mealPlan.js';
 import { planForList } from './listWindow.js';
 import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
-import { listIngredients } from './meals.js';
+import { ingredientsForEntries } from './plannedIngredients.js';
 import { listStock } from './pantry.js';
 import { listFoods } from './foods.js';
 import { getHousehold } from './household.js';
@@ -38,10 +39,11 @@ export async function gatherForWeek(weekStart) {
   // 4 Oct 2026: this week or next means the list's window (data/listWindow.js):
   // meals still to come, with next week included when it is the one asked for.
   const windowed = weekStart === thisWeekStart() || weekStart === nextWeekStart();
-  const [plan, ingredients, pantry, foodList] = await Promise.all([
+  const [plan, pantry, foodList] = await Promise.all([
     windowed ? planForList({ includeNext: weekStart === nextWeekStart() }) : listPlan(weekStart),
-    listIngredients(), listStock(), listFoods()
+    listStock(), listFoods()
   ]);
+  const ingredients = plan.ok ? await ingredientsForEntries(plan.data || [], { awaitRepair: true }) : { ok: false };
 
   // A failed household read is not fatal. An empty member list falls back to
   // each meal's own default_serves, which is the behaviour from before

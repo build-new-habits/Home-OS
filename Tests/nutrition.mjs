@@ -573,7 +573,8 @@ check('the library is not empty', count > 100, `${count}`);
   const build = () => ({ range: async (a, b) => { calls.push([a, b]); return { data: table.slice(a, Math.min(b + 1, a + 1000)), error: null }; } });
   const all = await readAll(build);
   eq('all 2,345 rows come back, not the first 1,000', all.data.length, 2345);
-  eq('in three pages', calls.length, 3);
+  // v2 of readAll asks once more after a short page, to tell the end from a server cap.
+  check('in three pages and one empty check', calls.length === 4, String(calls.length));
   const exact = await readAll(() => ({ range: async (a, b) => ({ data: Array.from({ length: 1000 }).slice(0, a === 0 ? 1000 : 0), error: null }) }));
   eq('exactly 1,000 rows asks once more, then stops', exact.data.length, 1000);
   const bad = await readAll(() => ({ range: async () => ({ data: null, error: new Error('x') }) }));

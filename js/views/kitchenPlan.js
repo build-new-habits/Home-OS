@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v11
+// js/views/kitchenPlan.js — 04 Oct 2026 v12
+// v12: the week's nutrition reads only its planned meals' ingredients, with library meals left empty counted from their recipe and repaired.
 // v11: the view switch says Grid and Day by day ("Board" meant nothing to
 // Eileen in re-trace 3).
 // v10: Fill the week for me — ideas from your meals AND the library
@@ -45,7 +46,8 @@ import {
   listPlan, addPlanEntry, removePlanEntry, servesFor, DAYS, SLOTS,
   isLeftover, leftoversReady
 } from '../data/mealPlan.js';
-import { listMeals, listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
+import { listMeals, groupByMeal, computeMacros } from '../data/meals.js';
+import { ingredientsForEntries } from '../data/plannedIngredients.js';
 import { dayNutrition, nutritionRows } from '../data/nutrition.js';
 import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
 import { buildWeekIntoList } from '../data/planShopping.js';
@@ -366,7 +368,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
             added += 1;
           }
           // New meals bring new ingredients: read them so nutrition counts them.
-          const fresh = await listIngredients();
+          const fresh = await ingredientsForEntries(entries);
           if (destroyed) return;
           if (fresh.ok) ingredientsByMeal = groupByMeal(fresh.data);
           api.close();
@@ -737,7 +739,8 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   paintDetail();
 
   (async () => {
-    const [plan, mealList, ingredients, household] = await Promise.all([listPlan(weekStart), listMeals(), listIngredients(), getHousehold().catch(() => null)]);
+    const [plan, mealList, household] = await Promise.all([listPlan(weekStart), listMeals(), getHousehold().catch(() => null)]);
+    const ingredients = await ingredientsForEntries(plan.ok ? (plan.data || []) : []);
     if (destroyed) return;
     members = household && household.ok ? ((household.data && household.data.members) || []) : [];
     entries = plan.ok ? (plan.data || []) : [];
