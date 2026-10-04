@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v128
+// service-worker.js — 04 Oct 2026 v129
+// v129: Clear the list, and Add everything from the plan. Shell v175.
 // v128: search over 10,000 foods and shop products (data/foodSearch.js, data/usda.json); plant-based and protein foods. Shell v174.
 // v127: your food week starts on the day you choose (lib/foodWeek.js). Shell v173.
 // v126: everyday foods in the reference; nutrition filled in by itself (data/nutritionRepair.js, views/nutritionFixes.js); recipe amounts checked. Shell v172.
@@ -272,7 +273,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v174';
+const CACHE_NAME = 'home-os-shell-v175';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './data/usda.json',
@@ -294,9 +295,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=174',
-  './css/base.css?v=174',
-  './css/components.css?v=174',
+  './css/tokens.css?v=175',
+  './css/base.css?v=175',
+  './css/components.css?v=175',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

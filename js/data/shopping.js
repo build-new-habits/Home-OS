@@ -1,4 +1,5 @@
-// js/data/shopping.js — 01 Sep 2026 v3
+// js/data/shopping.js — 04 Oct 2026 v4
+// v4: clearAll() and restoreItems() for Clear the list, with Undo.
 // All Supabase access for `shopping_list_items`.
 // Shared data-access contract: { ok, data|error }, error always checked,
 // nothing thrown at views, no user_id on inserts (RLS supplies it).
@@ -149,6 +150,38 @@ export async function removeItem(itemId) {
  * How many rows a regeneration would replace, so the confirm can say it
  * before anything is destroyed.
  */
+/**
+ * Empties the whole list: needed, basket, already-in-the-cupboard, and
+ * anything added by hand (4 Oct 2026, Graeme: "I need a clear all").
+ * Returns what was removed, so the view can offer Undo.
+ */
+export async function clearAll() {
+  const read = await supabase.from(TABLE).select('id, food_id, qty_needed, unit, source, status');
+  if (read.error) return { ok: false, error: read.error };
+  const rows = read.data || [];
+  const ids = rows.map((r) => r.id);
+  for (let i = 0; i < ids.length; i += 100) {
+    const { error } = await supabase.from(TABLE).delete().in('id', ids.slice(i, i + 100));
+    if (error) return { ok: false, error, removed: i };
+  }
+  return { ok: true, data: rows };
+}
+
+/** Puts cleared rows back, for Undo. */
+export async function restoreItems(rows = []) {
+  if (!rows.length) return { ok: true, data: [] };
+  const payload = rows.map((r) => ({
+    food_id: r.food_id,
+    qty_needed: r.qty_needed,
+    unit: r.unit,
+    source: r.source,
+    status: r.status
+  }));
+  const { data, error } = await supabase.from(TABLE).insert(payload).select();
+  if (error) return { ok: false, error };
+  return { ok: true, data };
+}
+
 export async function countReplaceable() {
   const { count, error } = await supabase
     .from(TABLE)

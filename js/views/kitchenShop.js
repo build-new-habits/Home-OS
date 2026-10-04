@@ -1,4 +1,5 @@
-// js/views/kitchenShop.js — 04 Oct 2026 v7
+// js/views/kitchenShop.js — 04 Oct 2026 v8
+// v8: Add everything from the plan, and Clear the list (with a confirm and Undo).
 // v7: a list in things you buy (lib/buyable.js): whole items, tins and
 // bulbs, loose food rounded up, spoonfuls and staples under Check the
 // cupboard. What you bought goes into the pantry, not the recipe fraction.
@@ -42,7 +43,9 @@
 // which is fast enough for two people in two aisles.
 
 import { el } from '../lib/dom.js';
-import { listItems, setStatus } from '../data/shopping.js';
+import { listItems, setStatus, clearAll, restoreItems } from '../data/shopping.js';
+import { buildWeekIntoList } from '../data/planShopping.js';
+import { confirmDialog } from '../components/confirmDialog.js';
 import { shelfFor, loadShelfChoices } from '../data/foodShelves.js';
 import { shelfLabel, shelfRank } from '../data/shelves.js';
 import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.js';
@@ -210,7 +213,59 @@ export function render(mountEl) {
     status.textContent = words;
     showToast(words);
   }, { signal });
-  actions.append(doneBtn, allBtn, shareBtn, addLink);
+  // ---- From the plan, and clearing (4 Oct 2026) ----
+  // "I need a clear all for the shopping list. Then add all ingredients
+  // from the plan." Add from the plan rebuilds the plan's part of the list
+  // for your food week (and the next one on its last day); things you
+  // added by hand and things in the basket stay.
+  const fromPlanBtn = el('button', { type: 'button', class: 'btn btn-block shop-from-plan', text: 'Add everything from the plan' });
+  fromPlanBtn.addEventListener('click', async () => {
+    fromPlanBtn.disabled = true;
+    fromPlanBtn.textContent = 'Working out what the plan needs…';
+    const result = await buildWeekIntoList('this');
+    fromPlanBtn.disabled = false;
+    fromPlanBtn.textContent = 'Add everything from the plan';
+    if (destroyed) return;
+    if (!result.ok) { showToast('The plan could not be read. Check your connection and try again.'); return; }
+    const n = (result.data.items || []).filter((i) => i.shortfall > 0).length;
+    const words = n
+      ? `${n} thing${n === 1 ? '' : 's'} from your plan on the list. What the pantry already has is left off.`
+      : 'Nothing to add: the pantry covers everything planned, or nothing is planned yet.';
+    status.textContent = words;
+    showToast(words);
+    await load();
+  }, { signal });
+
+  const clearBtn = el('button', { type: 'button', class: 'btn btn-block btn-quiet shop-clear', text: 'Clear the list' });
+  clearBtn.addEventListener('click', async () => {
+    if (!items.length) { showToast('The list is already clear.'); return; }
+    const sure = await confirmDialog({
+      title: 'Clear the shopping list?',
+      message: `All ${items.length} go: what is still to buy, the basket, and anything you added yourself. Nothing in the pantry changes. You can undo straight afterwards.`,
+      confirmLabel: 'Clear the list',
+      cancelLabel: 'Keep it'
+    });
+    if (!sure || destroyed) return;
+    const result = await clearAll();
+    if (destroyed) return;
+    if (!result.ok) { showToast('Not everything could be cleared. Check your connection and try again.'); await load(); return; }
+    const removed = result.data;
+    items = [];
+    paint();
+    const words = `The list is clear (${removed.length} removed).`;
+    status.textContent = words;
+    showToast(words, {
+      undo: async () => {
+        const back = await restoreItems(removed);
+        if (destroyed) return;
+        showToast(back.ok ? 'The list is back.' : 'It could not be put back. Use Add everything from the plan.');
+        await load();
+      }
+    });
+    fromPlanBtn.focus();
+  }, { signal });
+
+  actions.append(doneBtn, allBtn, fromPlanBtn, shareBtn, addLink, clearBtn);
   mountEl.appendChild(actions);
 
   const buildLink = el('p', { class: 'shop-build' });
