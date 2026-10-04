@@ -1,4 +1,5 @@
-// js/data/recipeLibrary.js — 04 Oct 2026 v6
+// js/data/recipeLibrary.js — 04 Oct 2026 v7
+// v7: every ingredient row sends display_text and sort_order (not null in the live database since 13 Sep; their absence made every library add fail).
 // v6: adding a library recipe is all or nothing; a meal left with no
 // ingredients is filled again (reseedLibraryIngredients); every food is read,
 // not the first page.
@@ -25,7 +26,7 @@
 
 import { supabase } from '../supabaseClient.js';
 import { lookup as lookupReference, referencePatch } from './foodReference.js';
-import { toStorage } from '../lib/units.js';
+import { toStorage, ingredientLine } from '../lib/units.js';
 import { readAll } from '../lib/readAll.js';
 import { courseOf, isMissingColumnError } from './courses.js';
 
@@ -235,16 +236,20 @@ async function allFoods() {
 async function writeIngredients(mealId, recipe, existingFoods) {
   let reused = 0;
   let created = 0;
+  let order = 0;
   for (const seed of recipe.ingredients || []) {
     const resolved = await resolveFood(seed, existingFoods);
     if (resolved.error) return { ok: false, error: resolved.error };
     if (resolved.created) created += 1; else reused += 1;
     const stored = toStorage(seed.quantity, seed.unit) || { value: seed.quantity, unit: seed.unit };
+    order += 1;
     const row = await supabase.from('meal_ingredients').insert({
       meal_id: mealId,
       food_id: resolved.food.id,
       quantity_g: stored.value,
       unit: stored.unit,
+      display_text: ingredientLine(stored.value, stored.unit, resolved.food),
+      sort_order: order,
       option_group: seed.option_group || null,
       option_label: seed.option_label || null,
       is_selected: seed.option_group ? Boolean(seed.default) : true

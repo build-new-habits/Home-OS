@@ -1,4 +1,5 @@
-// js/lib/units.js — 04 Oct 2026 v6
+// js/lib/units.js — 04 Oct 2026 v7
+// v7: ingredientLine() — the display_text every meal_ingredients row needs.
 // v6: plurals by the last word ("sweet potatoes"), -es after ch, sh and x.
 // v5 (worklist B1): packsFor() — grams also read as whole packs.
 // v4 (Phase 12): pack labels and household measures. formatQuantity() gains
@@ -321,3 +322,17 @@ export function itemNoun(food, count = 1) {
 }
 
 export { ML_PER_TSP, ML_PER_TBSP };
+
+
+/**
+ * The line as a person reads it, for meal_ingredients.display_text (not
+ * null in the live database since 13 Sep 2026): "250 g dried chickpeas",
+ * "2 tins chopped tomatoes", "salt" when there is no amount.
+ */
+export function ingredientLine(value, unit, food = null) {
+  const name = String((food && food.name) || 'ingredient').trim();
+  const n = Number(value);
+  if (value === null || value === undefined || !Number.isFinite(n) || n <= 0) return name.slice(0, 200);
+  if (unit === 'item' && !(food && food.item_label)) return `${Math.round(n * 100) / 100} ${name}`.slice(0, 200);
+  return `${formatPackQuantity(n, unit, food)} ${name}`.slice(0, 200);
+}

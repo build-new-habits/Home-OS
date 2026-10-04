@@ -53,6 +53,7 @@ Status values are deliberately blunt:
 | 004_recipe_units | unverified | — | predates this ledger |
 | 005_occurrences_and_classification | unverified | — | predates this ledger |
 | 006_holiday_todo_items | unverified | — | predates this ledger |
+| 006_recipes (household library, run from another chat) | applied | 13 Sep 2026 | **not in the repo until 4 Oct.** meals: method, prep_minutes, cook_minutes, source; meal_ingredients: display_text NOT NULL, sort_order NOT NULL default 0, component_meal_id, food_id and quantity_g made nullable. Confirmed live by the error "null value in column display_text … violates not-null constraint" (4 Oct). The app now sends display_text and sort_order on every insert |
 | 007_pantry_use_by | unverified | — | predates this ledger |
 | 008_household_foundation | unverified | — | predates this ledger |
 | 009_pack_labels | unverified | — | predates this ledger |

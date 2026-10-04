@@ -1053,6 +1053,11 @@ this column exists to prevent.
 | is_favourite | boolean | not null; default false (revision 5) |
 | meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
 | course | text | nullable; check in ('starter','main','pudding') (revision 25, **migration 026 — not yet applied**). Null reads as main |
+| method | text | nullable (13 Sep 2026, household library): a scanned recipe's method as written |
+| prep_minutes | int | nullable (13 Sep 2026) |
+| cook_minutes | int | nullable (13 Sep 2026) |
+| source | text | nullable (13 Sep 2026): book and page |
+| diet | text | nullable (13 Sep 2026): vegan, vegetarian, pescatarian or meat |
 
 ### meal_ingredients
 
@@ -1068,8 +1073,23 @@ migrations are what have kept this app safe. Read `unit` before using it.
 | option_group | text | nullable; check length 1–40. **Null = ordinary required ingredient** (revision 12) |
 | is_selected | boolean | not null default true; exactly one true per group, enforced in code (revision 12) |
 | option_label | text | nullable; check length 1–60; overrides the food name for display (revision 12) |
-| food_id | uuid | not null; references foods(id) **on delete restrict** |
-| quantity_g | numeric | not null |
+| food_id | uuid | **nullable since 13 Sep 2026** (recipe-library migration); references foods(id) **on delete restrict**. Exactly one of food_id / component_meal_id is set (check `meal_ingredients_target_chk`) |
+| quantity_g | numeric | **nullable since 13 Sep 2026**: "a splash", "to taste" |
+| display_text | text | **not null** (13 Sep 2026). The line as a person reads it, "250 g dried chickpeas". Every insert must send it |
+| sort_order | int | not null default 0 (13 Sep 2026). Order in the recipe |
+| component_meal_id | uuid | nullable (13 Sep 2026); references meals(id) on delete restrict. A sub-recipe (a dressing) used as one line; never equal to meal_id |
+
+#### Revision 26 — the columns the app did not know about (4 Oct 2026)
+
+The household recipe library (13 Sep 2026, built in a separate chat) added
+`display_text not null`, `sort_order`, `component_meal_id`, and made
+`food_id` and `quantity_g` nullable, directly in the Supabase editor. None of
+it reached this file or the repo's migrations, so no app code sent
+`display_text`. From then on **every ingredient insert failed**: adding a
+library recipe wrote the meal and then stopped, leaving it with no
+ingredients — the cause of Today's missing nutrition on 4 Oct. Recorded
+here from that chat's migration text; see MIGRATIONS_APPLIED.md
+(`006_recipes`, applied outside the repo).
 
 ### weekly_meal_plan
 | Column | Type | Notes |

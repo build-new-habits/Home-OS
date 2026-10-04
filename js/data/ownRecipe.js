@@ -1,4 +1,5 @@
-// js/data/ownRecipe.js — 03 Oct 2026 v3
+// js/data/ownRecipe.js — 04 Oct 2026 v4
+// v4: ingredient rows send display_text and sort_order (schema revision 26); every food is read.
 // v3: draftToRecipe carries course, tip, swaps and step notes, so a recipe
 // kept on the phone (data/localRecipes.js) shows in full.
 // v2: a recipe has a course (starter, main, pudding), stored once migration
@@ -32,6 +33,8 @@ import { supabase } from '../supabaseClient.js';
 import { referencePatch } from './foodReference.js';
 import { toStorage, ENTRY_UNITS } from '../lib/units.js';
 import { COURSES, isMissingColumnError } from './courses.js';
+import { ingredientLine } from '../lib/units.js';
+import { readAll } from '../lib/readAll.js';
 
 let courseColumn = null; // meals.course: null = not known yet (migration 026)
 
@@ -541,7 +544,7 @@ export async function saveDraft(draft, index) {
   if (oldIngredients.error) return { ok: false, error: oldIngredients.error };
   if (oldSteps.error) return { ok: false, error: oldSteps.error };
 
-  const foodList = await supabase.from('foods').select('*');
+  const foodList = await readAll(() => supabase.from('foods').select('*').order('created_at', { ascending: true }).order('id', { ascending: true }));
   if (foodList.error) return { ok: false, error: foodList.error };
   const foodsByName = new Map((foodList.data || []).map((f) => [normalise(f.name), f]));
 
@@ -552,9 +555,14 @@ export async function saveDraft(draft, index) {
     const { foodName, ...rest } = spec;
     // quantity_g is not nullable for every household's data; an unmeasured
     // ingredient ("salt") is stored as 1 item, which is what it means.
+    const qty = rest.quantity_g === null ? 1 : rest.quantity_g;
+    const unit = rest.quantity_g === null ? 'item' : rest.unit;
     rows.push({ meal_id: mealId, food_id: food.id, ...rest,
-      quantity_g: rest.quantity_g === null ? 1 : rest.quantity_g,
-      unit: rest.quantity_g === null ? 'item' : rest.unit });
+      quantity_g: qty,
+      unit,
+      // Not null in the live database since 13 Sep 2026 (schema revision 26).
+      display_text: rest.quantity_g === null ? String(food.name || foodName) : ingredientLine(qty, unit, { ...food, name: food.name || foodName }),
+      sort_order: rows.length + 1 });
   }
   if (rows.length) {
     const written = await supabase.from('meal_ingredients').insert(rows);

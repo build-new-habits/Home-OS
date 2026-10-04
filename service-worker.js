@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v123
+// service-worker.js — 04 Oct 2026 v124
+// v124: every ingredient row sends display_text and sort_order (live columns from 13 Sep). Shell v170.
 // v123: nutrition and the list read only the planned meals' ingredients and repair library meals left empty (data/plannedIngredients.js); readAll survives smaller caps; typed drinks counted. Shell v169.
 // v122: Try it on this phone (lib/localClient.js). Shell v168.
 // v121: fibre from the food reference; Grid and Day by day. Shell v167.
@@ -267,7 +268,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v169';
+const CACHE_NAME = 'home-os-shell-v170';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './js/data/plannedIngredients.js',
@@ -281,9 +282,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=169',
-  './css/base.css?v=169',
-  './css/components.css?v=169',
+  './css/tokens.css?v=170',
+  './css/base.css?v=170',
+  './css/components.css?v=170',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

@@ -1,4 +1,5 @@
-// js/data/meals.js — 04 Oct 2026 v10
+// js/data/meals.js — 04 Oct 2026 v11
+// v11: ingredient inserts send display_text and sort_order (schema revision 26).
 // v10: fibre filled from the food reference until foods.fibre_g exists.
 // v9: listIngredients reads every page (lib/readAll.js): past 1,000 rows
 // the newest meals' ingredients were silently missing.
@@ -49,6 +50,7 @@
 
 import { supabase } from '../supabaseClient.js';
 import { readAll } from '../lib/readAll.js';
+import { ingredientLine } from '../lib/units.js';
 
 const MEALS = 'meals';
 const INGREDIENTS = 'meal_ingredients';
@@ -350,9 +352,19 @@ export async function addIngredient({ meal_id, food_id, quantity_g, unit = 'g' }
   if (!meal_id || !food_id) {
     return { ok: false, error: new Error('Pick a meal and a food first.') };
   }
+  const named = await supabase.from('foods').select('id, name, item_label, grams_per_item').eq('id', food_id).maybeSingle();
+  const foodForLine = (named && named.data) || null;
   const { data, error } = await supabase
     .from(INGREDIENTS)
-    .insert({ meal_id, food_id, quantity_g: Math.round(qty * 100) / 100, unit })
+    .insert({
+      meal_id,
+      food_id,
+      quantity_g: Math.round(qty * 100) / 100,
+      unit,
+      // Not null in the live database since 13 Sep 2026 (schema revision 26).
+      display_text: ingredientLine(Math.round(qty * 100) / 100, unit, foodForLine),
+      sort_order: 0
+    })
     .select()
     .single();
   if (error) return { ok: false, error };
@@ -645,6 +657,8 @@ export async function addAlternative(existingRow, alternative = {}) {
       food_id: alternative.food_id,
       quantity_g: alternative.quantity_g,
       unit: alternative.unit,
+      display_text: ingredientLine(alternative.quantity_g, alternative.unit, { name: alternative.option_label || alternative.food_name || 'alternative' }),
+      sort_order: existingRow.sort_order || 0,
       option_group: groupName,
       option_label: alternative.option_label || null,
       is_selected: false

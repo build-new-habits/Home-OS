@@ -1879,6 +1879,27 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('stand-ins carry the reference food', rows[0].foods.calories_per_100g, 379);
 }
 
+// ---- meal_ingredients.display_text is not null in the live database ----
+// (schema revision 26). Its absence made every library add fail for three
+// weeks without a single gate noticing. Every insert must name it.
+{
+  const dir = path.join(REPO, 'js/data');
+  const offenders = [];
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.js'))) {
+    const src = readFileSync(path.join(dir, file), 'utf8');
+    for (const m of src.matchAll(/from\((?:'meal_ingredients'|INGREDIENTS)\)\s*\.insert\(/g)) {
+      const body = src.slice(m.index, m.index + 900);
+      const viaRows = /\.insert\(rows\)/.test(body.slice(0, 80));
+      const named = viaRows ? /display_text/.test(src) : /display_text/.test(body.split(').select(')[0].split('});')[0] + '}');
+      if (!named) offenders.push(file);
+    }
+  }
+  eq('every meal_ingredients insert sends display_text', offenders.join(', '), '');
+  const { ingredientLine } = await import(pathToFileURL(path.join(REPO, 'js/lib/units.js')).href);
+  eq('an ingredient line reads like a recipe', ingredientLine(250, 'g', { name: 'dried chickpeas' }), '250 g dried chickpeas');
+  eq('an ingredient with no amount is its name', ingredientLine(null, 'g', { name: 'Salt' }), 'Salt');
+}
+
 console.log('');
 
 if (failures.length) {
