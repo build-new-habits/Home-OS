@@ -1,4 +1,5 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v8
+// js/views/kitchenToday.js — 04 Oct 2026 v9
+// v9: today's links ask for this week by name, so the weekend look-ahead on Plan does not move them.
 // v8: portions — the next meal says how many it makes, with − and + and
 // "Double, freeze half"; Eaten and We cooked it take from the pantry once,
 // between them (data/pantryTaken.js), and spare portions are offered to the freezer.
@@ -134,7 +135,7 @@ export function render(mountEl) {
   const restSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-rest-h' });
   const restHead = el('div', { class: 'today-section-head' });
   restHead.appendChild(el('h2', { id: 'today-rest-h', text: 'The rest of today' }));
-  restHead.appendChild(el('a', { href: '#/plan-this-week', text: 'Change' }));
+  restHead.appendChild(el('a', { href: '#/plan-this-week?week=this', text: 'Change' }));
   restSection.appendChild(restHead);
   const restList = el('ul', { class: 'today-meals' });
   restSection.appendChild(restList);
@@ -313,7 +314,7 @@ export function render(mountEl) {
     if (!entry) {
       const empty = el('section', { class: 'today-next today-next-empty', 'aria-labelledby': 'today-next-h' });
       empty.appendChild(el('h2', { id: 'today-next-h', text: 'Nothing else planned today' }));
-      empty.appendChild(el('a', { class: 'btn btn-primary', href: '#/plan-this-week', text: 'Plan a meal' }));
+      empty.appendChild(el('a', { class: 'btn btn-primary', href: '#/plan-this-week?week=this', text: 'Plan a meal' }));
       nextWrap.appendChild(empty);
       return;
     }

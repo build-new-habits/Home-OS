@@ -1,4 +1,8 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v9
+// js/views/kitchenPlan.js — 04 Oct 2026 v10
+// v10: Fill the week for me — ideas from your meals AND the library
+// (data/weekIdeas.js): household diet, quick weekday dinners, variety, uses
+// up what needs using; dinners by default, lunches and breakfasts if asked;
+// Another idea per meal and Different ideas for the lot.
 // v9: portions on each planned meal (− / + / For us / Double, freeze half),
 // sized to the household; Eaten takes from the pantry once.
 // v8: a Drinks row on the board and the list; its panel adds a drink in one
@@ -56,7 +60,10 @@ import { portionsControl } from '../components/portionsControl.js';
 import { getHousehold } from '../data/household.js';
 import { isEaten } from '../data/eaten.js';
 import { courseOf, courseLabel, sortByCourse } from '../data/courses.js';
-import { loadAllRecipes } from '../data/recipeLibrary.js';
+import { loadAllRecipes, addLibraryRecipe } from '../data/recipeLibrary.js';
+import { candidatesFrom, planWeek, bestFor, householdDiet, describeIdea, seeded } from '../data/weekIdeas.js';
+import { listStock, useSoon } from '../data/pantry.js';
+import { DIETARY_TAGS } from '../data/household.js';
 import { listDrinks, tallyText, drinkNutritionItems } from '../data/drinks.js';
 import { drinksQuickAdd } from '../components/drinksQuickAdd.js';
 
@@ -118,7 +125,7 @@ export function proposeFills(entries, meals, fromDayIndex = 0) {
  * @param {HTMLElement} mountEl
  * @param {{ week: 'this' | 'next' }} opts
  */
-export function render(mountEl, { week = 'this' } = {}) {
+export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -131,6 +138,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   let meals = [];
   let ingredientsByMeal = new Map();
   let libraryCourse = new Map(); // library slug -> course
+  let libraryRecipes = []; // the whole library, for Fill the week for me
   let members = []; // household, for portions
   let sel = { day: todayValue || 'mon', slot: 'dinner' };
 
@@ -140,9 +148,13 @@ export function render(mountEl, { week = 'this' } = {}) {
   header.appendChild(el('p', { class: 'plan-range', text: rangeLabel(weekStart) }));
   const weekNav = el('p', { class: 'plan-week-switch' });
   weekNav.appendChild(week === 'next'
-    ? el('a', { href: '#/plan-this-week', text: 'This week' })
+    ? el('a', { href: '#/plan-this-week?week=this', text: 'This week' })
     : el('a', { href: '#/plan-next-week', text: 'Next week' }));
   header.appendChild(weekNav);
+  // v10: Plan opened on next week because it is the weekend. Said once, plainly.
+  if (lookedAhead) {
+    header.insertBefore(el('p', { class: 'plan-lookahead', text: 'It is the weekend, so Plan has opened on next week.' }), weekNav);
+  }
   mountEl.appendChild(header);
 
   const status = el('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
@@ -206,59 +218,163 @@ export function render(mountEl, { week = 'this' } = {}) {
 
   const actions = el('div', { class: 'plan-actions' });
   const shopBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Update shopping list' });
-  const fillBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Fill the open meals', 'aria-haspopup': 'dialog' });
+  const fillBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Fill the week for me', 'aria-haspopup': 'dialog' });
   actions.append(fillBtn, shopBtn);
   mountEl.appendChild(actions);
 
-  fillBtn.addEventListener('click', () => {
+  // ---- Fill the week for me (v10) ----------------------------------------
+  // Ideas from your own meals and the library together, chosen by
+  // data/weekIdeas.js. Nothing is added until you say so.
+  fillBtn.addEventListener('click', async () => {
     const fromIndex = todayValue ? DAYS.findIndex((d) => d.value === todayValue) : 0;
-    const proposals = proposeFills(entries, meals, Math.max(0, fromIndex));
-    if (proposals.length === 0) {
-      const words = meals.length === 0
-        ? 'Add some meals of your own first, and they will be suggested here.'
-        : 'Nothing to fill: every meal left this week is planned, or none of your meals suit the gaps.';
-      showToast(words);
-      announce(words);
-      return;
+    let lib = libraryRecipes;
+    if (!lib.length) {
+      const loaded = await loadAllRecipes().catch(() => null);
+      if (destroyed) return;
+      lib = (loaded && loaded.ok && loaded.data) || [];
+      libraryRecipes = lib;
     }
+    let soonNames = [];
+    const stock = await listStock().catch(() => null);
+    if (destroyed) return;
+    if (stock && stock.ok) soonNames = useSoon(stock.data || []).map((x) => (x.row.foods && x.row.foods.name) || '');
+    const candidates = candidatesFrom({ meals, recipes: lib, useSoonNames: soonNames });
+    const diet = householdDiet(members);
+    let slots = ['dinner'];
+    let round = 0;
+    const avoid = new Set();
+    let proposals = [];
+    const recompute = () => {
+      proposals = planWeek({ entries, candidates, diet, days: DAYS, fromDayIndex: Math.max(0, fromIndex), slots, seed: `${weekStart}:${round}`, avoid });
+    };
+    recompute();
+
     openDetailSheet({
-      title: 'Fill the open meals',
-      subtitle: 'From your own meals. Untick any you do not want.',
+      title: 'Fill the week for me',
+      subtitle: fromIndex > 0 ? 'Ideas for the open meals from today. Untick any you do not want.' : 'Ideas for the open meals. Untick any you do not want.',
       returnFocusTo: fillBtn,
       build(body, api) {
+        // Which meals to fill. Dinners by default: a whole week of three
+        // meals a day is a very long shopping list for a first try.
+        const which = el('fieldset', { class: 'fill-which' });
+        which.appendChild(el('legend', { text: 'Which meals' }));
+        const chips = el('div', { class: 'fill-which-chips' });
+        for (const [value, label] of [['breakfast', 'Breakfasts'], ['lunch', 'Lunches'], ['dinner', 'Dinners']]) {
+          const id = `fill-which-${value}`;
+          const wrap = el('div', { class: 'checkbox-row fill-which-row' });
+          const box = el('input', { type: 'checkbox', id, value });
+          box.checked = slots.includes(value);
+          box.addEventListener('change', () => {
+            const order = ['breakfast', 'lunch', 'dinner'];
+            const next = new Set(slots);
+            if (box.checked) next.add(value); else next.delete(value);
+            slots = order.filter((v) => next.has(v));
+            recompute();
+            paintIdeas();
+            announce(proposals.length ? `${proposals.length} ideas.` : 'No open meals of that kind.');
+          });
+          wrap.append(box, el('label', { for: id, text: label }));
+          chips.appendChild(wrap);
+        }
+        which.appendChild(chips);
+        body.appendChild(which);
+
+        if (diet.size) {
+          const words = DIETARY_TAGS.filter((t) => diet.has(t.value)).map((t) => t.label.toLowerCase());
+          body.appendChild(el('p', { class: 'field-hint fill-diet', text: `Every idea is ${words.join(' and ')}, to suit everyone at home.` }));
+        }
+
         const list = el('ul', { class: 'fill-list' });
-        const boxes = [];
-        proposals.forEach((p, i) => {
-          const li = el('li', { class: 'checkbox-row' });
-          const box = el('input', { type: 'checkbox', id: `fill-${i}` });
-          box.checked = true;
-          const dayLabel = (DAYS.find((d) => d.value === p.day) || {}).label;
-          const label = el('label', { for: `fill-${i}` });
-          label.appendChild(el('span', { class: 'fill-when', text: `${dayLabel} ${SLOT_WORDS[p.slot]}` }));
-          label.appendChild(el('span', { class: 'fill-meal', text: p.meal.name }));
-          li.append(box, label);
-          list.appendChild(li);
-          boxes.push(box);
-        });
         body.appendChild(list);
+        const empty = el('p', { class: 'fill-empty' });
+        body.appendChild(empty);
+        let boxes = [];
+
+        function paintIdeas() {
+          list.replaceChildren();
+          boxes = [];
+          empty.textContent = proposals.length ? '' : (slots.length
+            ? 'Every open meal of that kind already has something planned.'
+            : 'Choose at least one kind of meal above.');
+          empty.hidden = proposals.length > 0;
+          go.hidden = proposals.length === 0;
+          again.hidden = proposals.length === 0;
+          proposals.forEach((p, i) => {
+            const dayLabel = (DAYS.find((d) => d.value === p.day) || {}).label;
+            const li = el('li', { class: 'fill-row' });
+            const top = el('div', { class: 'checkbox-row' });
+            const box = el('input', { type: 'checkbox', id: `fill-${i}` });
+            box.checked = true;
+            const label = el('label', { for: `fill-${i}` });
+            label.appendChild(el('span', { class: 'fill-when', text: `${dayLabel} ${SLOT_WORDS[p.slot]}` }));
+            label.appendChild(el('span', { class: 'fill-meal', text: p.pick.name }));
+            const about = describeIdea(p.pick);
+            if (about) label.appendChild(el('span', { class: 'fill-about', text: about }));
+            top.append(box, label);
+            const swap = el('button', { type: 'button', class: 'btn btn-small fill-swap', text: 'Another idea' });
+            swap.setAttribute('aria-label', `Another idea for ${dayLabel} ${SLOT_WORDS[p.slot]}`);
+            swap.addEventListener('click', () => {
+              avoid.add(p.pick.key);
+              const used = new Set(proposals.filter((x, j) => j !== i).map((x) => x.pick.key));
+              for (const e of entries) if (e.meal_id) used.add(`meal:${e.meal_id}`);
+              const next = bestFor({ d: { value: p.day }, slot: p.slot, candidates, diet, used, avoid, rand: seeded(`${weekStart}:${p.day}:${avoid.size}`) });
+              if (!next) { showToast('No more ideas for that meal.'); return; }
+              proposals[i] = { ...p, pick: next };
+              paintIdeas();
+              const focusBack = document.getElementById(`fill-swap-${i}`);
+              if (focusBack) focusBack.focus();
+              announce(`${dayLabel} ${SLOT_WORDS[p.slot]}: ${next.name}.`);
+            });
+            swap.id = `fill-swap-${i}`;
+            li.append(top, swap);
+            list.appendChild(li);
+            boxes.push(box);
+          });
+        }
+
         const go = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Add these to the plan' });
+        const again = el('button', { type: 'button', class: 'btn btn-block', text: 'Different ideas' });
+        again.addEventListener('click', () => {
+          round += 1;
+          recompute();
+          paintIdeas();
+          announce(`${proposals.length} new ideas.`);
+        });
         go.addEventListener('click', async () => {
           go.disabled = true;
+          go.textContent = 'Adding…';
           let added = 0;
+          let failed = 0;
           for (let i = 0; i < proposals.length; i += 1) {
-            if (!boxes[i].checked) continue;
+            if (!boxes[i] || !boxes[i].checked) continue;
             const p = proposals[i];
-            const result = await addPlanEntry({ meal_id: p.meal.id, day_of_week: p.day, slot: p.slot, week_start: weekStart });
+            let meal = p.pick.meal;
+            if (!meal && p.pick.recipe) {
+              const made = await addLibraryRecipe(p.pick.recipe);
+              if (destroyed) return;
+              if (made.ok) meal = made.data;
+              else if (made.existing) meal = made.existing;
+              if (meal && !meals.some((m) => m.id === meal.id)) meals = [...meals, { ...meal, library_ref: p.pick.recipe.slug }];
+            }
+            if (!meal) { failed += 1; continue; }
+            const result = await addPlanEntry({ meal_id: meal.id, day_of_week: p.day, slot: p.slot, week_start: weekStart });
             if (destroyed) return;
-            if (!result.ok) { showToast('Some could not be added. Try again.'); break; }
-            entries = [...entries, { ...result.data, meals: p.meal }];
+            if (!result.ok) { failed += 1; continue; }
+            entries = [...entries, { ...result.data, meals: meal }];
             added += 1;
           }
+          // New meals bring new ingredients: read them so nutrition counts them.
+          const fresh = await listIngredients();
+          if (destroyed) return;
+          if (fresh.ok) ingredientsByMeal = groupByMeal(fresh.data);
           api.close();
           requestListSync();
-          refreshAfterChange(`${added} meal${added === 1 ? '' : 's'} added. The shopping list will follow.`);
+          refreshAfterChange(failed
+            ? `${added} added. ${failed} could not be added; try those again.`
+            : `${added} meal${added === 1 ? '' : 's'} added. The shopping list will follow.`);
         });
-        body.appendChild(go);
+        body.append(go, again);
+        paintIdeas();
       }
     });
   }, { signal });
@@ -648,6 +764,7 @@ export function render(mountEl, { week = 'this' } = {}) {
     // awaited before the first paint: the board is useful without it.
     loadAllRecipes().then((lib) => {
       if (destroyed || !lib || !lib.ok) return;
+      libraryRecipes = lib.data || [];
       libraryCourse = new Map((lib.data || []).map((r) => [r.slug, courseOf(r)]));
       paintDetail();
     }).catch(() => {});

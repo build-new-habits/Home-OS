@@ -1,4 +1,5 @@
-// js/data/planShopping.js — 08 Sep 2026 v1
+// js/data/planShopping.js — 04 Oct 2026 v2
+// v2: this week and next use the list's window (data/listWindow.js).
 //
 // Turning a week's plan into a shopping list.
 //
@@ -16,6 +17,8 @@
 // conversations and this is arithmetic.
 
 import { listPlan } from './mealPlan.js';
+import { planForList } from './listWindow.js';
+import { thisWeekStart, nextWeekStart } from '../lib/weeks.js';
 import { listIngredients } from './meals.js';
 import { listStock } from './pantry.js';
 import { listFoods } from './foods.js';
@@ -32,8 +35,12 @@ import { todayIso } from '../lib/dates.js';
  *   button silently building this week's list.
  */
 export async function gatherForWeek(weekStart) {
+  // 4 Oct 2026: this week or next means the list's window (data/listWindow.js):
+  // meals still to come, with next week included when it is the one asked for.
+  const windowed = weekStart === thisWeekStart() || weekStart === nextWeekStart();
   const [plan, ingredients, pantry, foodList] = await Promise.all([
-    listPlan(weekStart), listIngredients(), listStock(), listFoods()
+    windowed ? planForList({ includeNext: weekStart === nextWeekStart() }) : listPlan(weekStart),
+    listIngredients(), listStock(), listFoods()
   ]);
 
   // A failed household read is not fatal. An empty member list falls back to

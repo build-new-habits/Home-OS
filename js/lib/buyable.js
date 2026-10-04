@@ -1,4 +1,5 @@
-// js/lib/buyable.js — 04 Oct 2026 v1
+// js/lib/buyable.js — 04 Oct 2026 v2
+// v2: fresh herbs and ginger are bought as a pack or a piece, never a cupboard check.
 // v1: what you actually pick up in a shop, from what the recipes need.
 //
 // Persona re-trace 3, the most-felt fault in the app: for one portion of a
@@ -75,6 +76,14 @@ export function buyable(line, shelf = 'other') {
 
   const recipeAmount = recipeWords(n, unit, food);
   const check = () => ({ kind: 'check', text: 'Check you have some', detail: `Recipes use ${recipeAmount}`, qty: null, unit: unit || null });
+
+  // ---- Fresh herbs and ginger: small, but bought every time ----
+  // A few grams of fresh basil is still a pack from the shop; it does not
+  // keep in a cupboard, so it is never a "check you have some".
+  if (unit === 'g' && /\bfresh\b/i.test(String(food.name || '')) && !food.item_label) {
+    const piece = /ginger|galangal|turmeric/i.test(String(food.name));
+    return { kind: 'buy', text: piece ? '1 piece' : '1 pack', detail: `Recipes use ${recipeAmount}`, qty: Math.max(n, piece ? 50 : 30), unit };
+  }
 
   // ---- Cupboard staples and spoonfuls ----
   if (STAPLE_SHELVES.has(shelf) || isStockLike(food.name)) return check();

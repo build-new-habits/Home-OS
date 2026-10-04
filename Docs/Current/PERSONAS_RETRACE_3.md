@@ -320,3 +320,23 @@ Building starts at 1 and works down. Each batch is committed and pushed.
 ## Built from this review
 
 Recorded as each batch lands.
+
+### Batch 1 — a list in things you buy (`91fdd01`)
+Whole items, tins and bulbs with the recipe amount underneath; loose food
+rounded up; spoonfuls and staples under Check the cupboard; the pantry gets
+what you bought. No use-by asked for long-life food. "sweet potatoes".
+
+### Batch 2 — Fill the week for me, and a list for meals still to come
+- **Fill the week for me** draws on your meals and the whole library:
+  household diet as a hard rule (vegan counts as vegetarian; nut free reads
+  the ingredients), Monday to Thursday dinners 45 minutes or less, no
+  cuisine or main protein two days running, at most two specials, things
+  that need using up scored first, favourites first. Dinners by default,
+  lunches and breakfasts if ticked. Another idea per meal; Different ideas
+  for the lot. A new account now gets a whole week in two taps.
+- **The list is for meals still to come.** Past days and Eaten meals no
+  longer count (before, cooking Monday's dinner put its chicken back on
+  Tuesday's list), and at the weekend next week is included.
+- **Plan looks ahead at the weekend.** Sunday, or Saturday from 6 pm, opens
+  next week and says so; Today's links still go to this week.
+- Fresh herbs and ginger are a pack or a piece, never a cupboard check.

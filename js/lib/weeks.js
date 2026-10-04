@@ -1,4 +1,5 @@
-// js/lib/weeks.js — 08 Sep 2026 v1
+// js/lib/weeks.js — 04 Oct 2026 v2
+// v2: weekendLooksAhead() — Sunday, or Saturday evening, plans next week.
 //
 // Which Monday a plan belongs to.
 //
@@ -82,4 +83,16 @@ export function describeWeek(isoMonday) {
 export function isWeekStart(value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value || ''))) return false;
   return mondayOf(new Date(`${value}T00:00:00`)) === value;
+}
+
+
+/**
+ * Sunday, or Saturday from six in the evening (v2, 4 Oct 2026).
+ *
+ * This week has a day or less left, and that is when most households plan
+ * and shop. Plan opens on next week and the shopping list includes it.
+ */
+export function weekendLooksAhead(now = new Date()) {
+  const day = now.getDay();
+  return day === 0 || (day === 6 && now.getHours() >= 18);
 }

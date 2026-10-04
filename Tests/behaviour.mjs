@@ -1765,9 +1765,52 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('loose milk rounds up', buyable({ qty_needed: 330, unit: 'ml', foods: { name: 'Milk' } }, 'dairy').text, '350 ml');
   eq('300 g of flour is real shopping', buyable({ qty_needed: 300, unit: 'g', foods: { name: 'Flour' } }, 'baking').kind, 'weigh');
   eq('round up to a counter amount', roundUpNice(132), 150);
+  eq('fresh basil is a pack, not a check', buyable({ qty_needed: 4, unit: 'g', foods: { name: 'Fresh basil' } }, 'spices').text, '1 pack');
+  eq('fresh ginger is a piece', buyable({ qty_needed: 15, unit: 'g', foods: { name: 'Ginger, fresh' } }, 'veg').text, '1 piece');
   const { pluraliseLabel } = await import(pathToFileURL(path.join(REPO, 'js/lib/units.js')).href);
   eq('sweet potatoes, not potatos', pluraliseLabel('sweet potato', 2), 'sweet potatoes');
   eq('bunches', pluraliseLabel('bunch', 3), 'bunches');
+}
+
+// ---- Fill the week for me, and the list's window (re-trace 3) ----
+{
+  const W = await import(pathToFileURL(path.join(REPO, 'js/data/weekIdeas.js')).href);
+  const { DAYS } = await import(pathToFileURL(path.join(REPO, 'js/data/mealPlan.js')).href);
+  const step = (min) => ({ instruction: `Cook ${min} minutes, until done.` });
+  const r = (slug, extra = {}) => ({ slug, name: slug, default_slot: 'dinner', cuisine: 'British', budget_tier: 'budget', dietary_tags: [], ingredients: [{ ref: 'onion' }], steps: [step(20)], ...extra });
+  const recipes = [
+    r('veg-a', { dietary_tags: ['vegetarian'], cuisine: 'Indian' }),
+    r('veg-b', { dietary_tags: ['vegan'], cuisine: 'Thai' }),
+    r('meat-a', { ingredients: [{ ref: 'chicken-thigh' }] }),
+    r('slow-veg', { dietary_tags: ['vegetarian'], steps: [step(90)] }),
+    r('pud', { dietary_tags: ['vegetarian'], course: 'pudding' }),
+    r('nutty', { dietary_tags: ['vegan'], ingredients: [{ ref: 'peanut-butter' }] })
+  ];
+  const c = W.candidatesFrom({ meals: [], recipes });
+  const veg = W.planWeek({ candidates: c, diet: new Set(['vegetarian']), days: DAYS, slots: ['dinner'], seed: 'x' });
+  check('a vegetarian household is only offered vegetarian or vegan food', veg.every((p) => !p.pick.key.includes('meat')));
+  check('vegan food counts as vegetarian', veg.some((p) => p.pick.key === 'recipe:veg-b'));
+  check('puddings are never a main meal idea', veg.every((p) => p.pick.key !== 'recipe:pud'));
+  check('nothing twice in a week', new Set(veg.map((p) => p.pick.key)).size === veg.length);
+  check('weekday dinners stay quick', veg.filter((p) => ['mon', 'tue', 'wed', 'thu'].includes(p.day)).every((p) => p.pick.key !== 'recipe:slow-veg'));
+  const nutFree = W.planWeek({ candidates: c, diet: new Set(['nut_free']), days: DAYS, slots: ['dinner'], seed: 'y' });
+  check('nut free leaves out peanut butter', nutFree.every((p) => p.pick.key !== 'recipe:nutty'));
+  const fav = W.candidatesFrom({ meals: [{ id: 'm1', name: 'Our curry', default_slot: 'dinner', is_favourite: true }], recipes });
+  const withFav = W.planWeek({ candidates: fav, days: DAYS, slots: ['dinner'], seed: 'z' });
+  check('a favourite of yours is offered', withFav.some((p) => p.pick.key === 'meal:m1'));
+  const taken = W.planWeek({ entries: [{ day_of_week: 'mon', slot: 'dinner', meal_id: 'zz' }], candidates: c, days: DAYS, slots: ['dinner'], seed: 'q' });
+  check('a planned meal is left alone', taken.every((p) => !(p.day === 'mon' && p.slot === 'dinner')));
+  eq('the same seed gives the same week', JSON.stringify(W.planWeek({ candidates: c, days: DAYS, seed: 's' }).map((p) => p.pick.key)), JSON.stringify(W.planWeek({ candidates: c, days: DAYS, seed: 's' }).map((p) => p.pick.key)));
+
+  const L = await import(pathToFileURL(path.join(REPO, 'js/data/listWindow.js')).href);
+  const wed = new Date(2026, 9, 7, 12); // a Wednesday
+  const left = L.stillToCome([{ day_of_week: 'mon' }, { day_of_week: 'wed' }, { day_of_week: 'sun' }], wed).map((e) => e.day_of_week);
+  eq('the list leaves out days already gone', left.join(','), 'wed,sun');
+  const { weekendLooksAhead } = await import(pathToFileURL(path.join(REPO, 'js/lib/weeks.js')).href);
+  check('Sunday plans next week', weekendLooksAhead(new Date(2026, 9, 4, 10)));
+  check('Saturday morning is still this week', !weekendLooksAhead(new Date(2026, 9, 3, 10)));
+  check('Saturday evening plans next week', weekendLooksAhead(new Date(2026, 9, 3, 19)));
+  check('a Wednesday is this week', !weekendLooksAhead(wed));
 }
 
 console.log('');

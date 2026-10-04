@@ -1,4 +1,5 @@
-// js/data/listSync.js — 01 Sep 2026 v3
+// js/data/listSync.js — 04 Oct 2026 v4
+// v4: the list is for meals still to come (data/listWindow.js): not past or eaten ones, and next week at the weekend.
 // Phase 22. The shopping list follows the plan on its own.
 //
 // ---- The defect ----
@@ -20,7 +21,7 @@
 // only replaces `source = 'meal_plan'` rows, so a `usual` staple or a
 // holiday item survives untouched. That is asserted by a test.
 
-import { listPlan } from './mealPlan.js';
+import { planForList } from './listWindow.js';
 import { listIngredients } from './meals.js';
 import { listStock, todayIso } from './pantry.js';
 import { listFoods } from './foods.js';
@@ -95,7 +96,7 @@ export async function syncNow() {
 
   try {
     const [plan, ingredients, pantry, foods, household] = await Promise.all([
-      listPlan(), listIngredients(), listStock(), listFoods(), getHousehold()
+      planForList(), listIngredients(), listStock(), listFoods(), getHousehold()
     ]);
 
     if (!plan.ok || !ingredients.ok || !pantry.ok || !foods.ok) {

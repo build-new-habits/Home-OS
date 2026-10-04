@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v117
+// service-worker.js — 04 Oct 2026 v118
+// v118: Fill the week for me (data/weekIdeas.js); the list is for meals still to come (data/listWindow.js); Plan looks ahead at the weekend. Shell v164.
 // v117: a shopping list in things you buy (lib/buyable.js). Shell v163.
 // v116: portion chips for each head count. Shell v162.
 // v115: portions and pantry once (data/portions.js, data/pantryTaken.js, data/homeMade.js,
@@ -261,18 +262,20 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v163';
+const CACHE_NAME = 'home-os-shell-v164';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/data/listWindow.js',
+  './js/data/weekIdeas.js',
   './js/lib/buyable.js',
   './',
   './index.html',
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=163',
-  './css/base.css?v=163',
-  './css/components.css?v=163',
+  './css/tokens.css?v=164',
+  './css/base.css?v=164',
+  './css/components.css?v=164',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
