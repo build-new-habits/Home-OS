@@ -1810,6 +1810,11 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('days count from today', days.slice(0, 2).map((d) => d.label).join(','), 'Today,Tomorrow');
   eq('today on a Sunday is in this week', days[0].weekStart, '2026-09-28');
   eq('tomorrow on a Sunday is in next week', days[1].weekStart, '2026-10-05');
+  const O = await import(pathToFileURL(path.join(REPO, 'js/lib/oven.js')).href);
+  eq('an oven reads in every form', O.ovenWords('Heat the oven to 200C.'), 'Heat the oven to 200°C (180°C fan, gas 6).');
+  eq('180C is gas 4', O.ovenWords('Bake at 180C'), 'Bake at 180°C (160°C fan, gas 4)');
+  eq('a temperature already explained is left alone', O.ovenWords('200°C (180°C fan)'), '200°C (180°C fan)');
+  eq('other numbers are left alone', O.ovenWords('Cook 20 minutes, 2 C of rice'), 'Cook 20 minutes, 2 C of rice');
   const L = await import(pathToFileURL(path.join(REPO, 'js/data/listWindow.js')).href);
   const wed = new Date(2026, 9, 7, 12); // a Wednesday
   const left = L.stillToCome([{ day_of_week: 'mon' }, { day_of_week: 'wed' }, { day_of_week: 'sun' }], wed).map((e) => e.day_of_week);

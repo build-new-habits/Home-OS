@@ -5,7 +5,7 @@ p.today-offer
   a.btn"Show me how this works"
 div
   section.today-next.today-next-empty
-    h2"Nothing else planned today"
+    h2"Nothing planned today"
     a.btn.btn-primary"Plan a meal"
 p.today-tonight
   a.btn.btn-block"What can I make with what I have?"
@@ -60,29 +60,31 @@ section.today-section
         button.chip-toggle.drinks-chip[type=button]"+ Coffee"
       li
         button.chip-toggle.drinks-chip[type=button]"+ Juice"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Milk"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Smoothie"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Squash"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Fizzy drink"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Beer or cider"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Wine"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Spirit"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button]"+ Cocktail"
-      li
+      li[hidden=]
         button.chip-toggle.drinks-chip[type=button][aria-expanded=false]"+ Something else"
+      li
+        button.chip-toggle.drinks-more[type=button][aria-expanded=false]"More drinks"
     div.drinks-other[hidden=]
       label"What was it?"
       input[type=text]
       button.btn.btn-small[type=button]"Add it"
-    details.drinks-servings
+    details.drinks-servings[hidden=]
       summary"What each one counts as"
       ul
         li

@@ -1,4 +1,7 @@
-// js/components/drinksQuickAdd.js — 04 Oct 2026 v1
+// js/components/drinksQuickAdd.js — 04 Oct 2026 v2
+// v2: compact — the four drinks you add most (counted on this phone; water,
+// tea, coffee and juice to start), and More drinks for the rest. Thirteen
+// chips was the longest thing on Today (persona re-trace 3).
 // Kitchen rebuild. One day's drinks: what has been had, and a chip per kind
 // to add another in one tap (data/drinks.js). Used on the Plan panel and on
 // Today.
@@ -10,10 +13,34 @@ import { DRINKS, listDrinks, addDrink, removeDrink, tallyDrinks } from '../data/
 
 let counter = 0;
 
+const USE_KEY = 'home-os-drink-use';
+const STARTERS = ['water', 'tea', 'coffee', 'juice'];
+
+function readUse() {
+  try { return JSON.parse(localStorage.getItem(USE_KEY) || '{}') || {}; } catch { return {}; }
+}
+function countUse(kind) {
+  try {
+    const use = readUse();
+    use[kind] = (use[kind] || 0) + 1;
+    localStorage.setItem(USE_KEY, JSON.stringify(use));
+  } catch { /* a full store only loses the ordering */ }
+}
+
+/** The four kinds to show first: most added, then the usual four. Pure apart from the read. */
+export function favouriteDrinks(use = readUse(), n = 4) {
+  const kinds = DRINKS.map((d) => d.value).filter((v) => v !== 'other');
+  return kinds
+    .map((v, i) => ({ v, score: (use[v] || 0) * 10 + (STARTERS.includes(v) ? 5 - STARTERS.indexOf(v) : 0), i }))
+    .sort((a, b) => b.score - a.score || a.i - b.i)
+    .slice(0, n)
+    .map((x) => x.v);
+}
+
 /**
- * @param {{ weekStart: string, day: string, dayLabel?: string, signal?: AbortSignal, onChange?: () => void }} opts
+ * @param {{ weekStart: string, day: string, dayLabel?: string, signal?: AbortSignal, onChange?: () => void, compact?: boolean }} opts
  */
-export function drinksQuickAdd({ weekStart, day, dayLabel = '', signal, onChange } = {}) {
+export function drinksQuickAdd({ weekStart, day, dayLabel = '', signal, onChange, compact = false } = {}) {
   counter += 1;
   const uid = `drinks-${counter}`;
   const on = (node, type, fn) => node.addEventListener(type, fn, signal ? { signal } : undefined);
@@ -50,13 +77,17 @@ export function drinksQuickAdd({ weekStart, day, dayLabel = '', signal, onChange
   function add(kind, name = '') {
     const result = addDrink(weekStart, day, kind, name);
     if (!result.ok) { showToast('That did not save. Try again.'); return false; }
+    if (kind !== 'other') countUse(kind);
     const label = kind === 'other' ? (name || 'Something else') : DRINKS.find((d) => d.value === kind).label;
     changed(`${label} added.`);
     return true;
   }
 
+  const first = compact ? new Set(favouriteDrinks()) : null;
+  const rest = [];
   for (const d of DRINKS) {
     const li = el('li');
+    if (first && !first.has(d.value)) { li.hidden = true; rest.push(li); }
     const b = el('button', { type: 'button', class: 'chip-toggle drinks-chip', text: `+ ${d.label}` });
     b.setAttribute('aria-label', `Add ${d.value === 'other' ? 'another drink' : d.label.toLowerCase()}`);
     if (d.value === 'other') {
@@ -71,6 +102,21 @@ export function drinksQuickAdd({ weekStart, day, dayLabel = '', signal, onChange
     }
     li.appendChild(b);
     chips.appendChild(li);
+  }
+  if (compact && rest.length) {
+    const moreLi = el('li');
+    const more = el('button', { type: 'button', class: 'chip-toggle drinks-more', text: 'More drinks', 'aria-expanded': 'false' });
+    on(more, 'click', () => {
+      const open = more.getAttribute('aria-expanded') !== 'true';
+      for (const li of rest) li.hidden = !open;
+      more.setAttribute('aria-expanded', String(open));
+      more.textContent = open ? 'Fewer drinks' : 'More drinks';
+      if (open && rest[0]) rest[0].querySelector('button').focus();
+    });
+    moreLi.appendChild(more);
+    chips.appendChild(moreLi);
+    servings.hidden = true;
+    on(more, 'click', () => { servings.hidden = more.getAttribute('aria-expanded') !== 'true'; });
   }
 
   const addOther = () => {

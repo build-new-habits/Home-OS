@@ -349,3 +349,12 @@ right week (it used to put "Monday" into the week just gone on a Sunday);
 no Next on the day step, so choosing a recipe can no longer skip it; ends
 with Fill the rest of the week for me. One exit ("Not now"). Finishing
 updates settings at once, so Today stops offering the walk-through.
+
+### Batch 4 — a calmer Today, and ovens for every kitchen
+- The next meal says "Making 4 portions" with one Change button; the choices
+  open in a sheet and focus comes back. Nine controls became two.
+- Drinks show the four you add most (water, tea, coffee and juice to start;
+  the beer rises if it is the one you tap), with More drinks for the rest.
+- "Nothing planned today" when nothing is; "Nothing else" only after a meal.
+- Oven steps read "200°C (180°C fan, gas 6)" on the recipe page and in cook
+  mode; text that already mentions fan or gas is left alone.

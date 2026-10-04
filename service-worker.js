@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v119
+// service-worker.js — 04 Oct 2026 v120
+// v120: a calmer Today (portions in one line, the drinks you use); oven temperatures with fan and gas (lib/oven.js). Shell v166.
 // v119: first run asks who you cook for; days from today in the right week. Shell v165.
 // v118: Fill the week for me (data/weekIdeas.js); the list is for meals still to come (data/listWindow.js); Plan looks ahead at the weekend. Shell v164.
 // v117: a shopping list in things you buy (lib/buyable.js). Shell v163.
@@ -263,9 +264,10 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v165';
+const CACHE_NAME = 'home-os-shell-v166';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/lib/oven.js',
   './js/data/listWindow.js',
   './js/data/weekIdeas.js',
   './js/lib/buyable.js',
@@ -274,9 +276,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=165',
-  './css/base.css?v=165',
-  './css/components.css?v=165',
+  './css/tokens.css?v=166',
+  './css/base.css?v=166',
+  './css/components.css?v=166',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

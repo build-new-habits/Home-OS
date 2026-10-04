@@ -1,4 +1,5 @@
-// js/data/mealSteps.js — 03 Oct 2026 v5
+// js/data/mealSteps.js — 04 Oct 2026 v6
+// v6: oven temperatures read with fan and gas (lib/oven.js).
 // v5: counted things name themselves: "2 anchovy fillets", "½ tin of chopped tomatoes".
 // v4: "half of {{ing:x}}" reads "half of the 50 g butter".
 // v3: steps read "7 boneless chicken thighs", not "7 thighs of chicken thigh, boneless".
@@ -17,6 +18,7 @@
 import { countedName } from '../lib/foodNames.js';
 import { supabase } from '../supabaseClient.js';
 import { formatPackQuantity, packsFor } from '../lib/units.js';
+import { ovenWords } from '../lib/oven.js';
 
 const TABLE = 'meal_steps';
 
@@ -232,12 +234,12 @@ export function resolveTokens(instruction, ingredients = [], scale = 1) {
     if (food.name) index.set(slugifyFoodName(food.name), { row, food });
   }
 
-  return String(instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_match, slug, offset, whole) => {
+  return ovenWords(String(instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_match, slug, offset, whole) => {
     // "half of {{ing:butter}}" reads "half of the 50 g butter": a share of
     // an amount takes "the" (3 Oct 2026). "Juice of 1 lemon" does not.
     const share = /\b(half|rest|some|little|third|thirds|quarter|most) of $/i.test(whole.slice(0, offset));
     return (share ? 'the ' : '') + resolveOne(slug);
-  });
+  }));
 
   function resolveOne(slug) {
     const hit = index.get(String(slug).toLowerCase());

@@ -1,4 +1,5 @@
-/* css/components.css — 04 Oct 2026 v92 */
+/* css/components.css — 04 Oct 2026 v93 */
+/* v93: Today portions line; More drinks (4 Oct). */
 /* v92: first run asks who you cook for (4 Oct). */
 /* v91: Fill the week for me sheet (4 Oct). */
 /* v90: shopping list in things you buy; Check the cupboard (4 Oct). */
@@ -4268,6 +4269,14 @@ body.sheet-open {
   padding: var(--space-1) var(--space-3);
   font-size: var(--text-sm);
 }
+.today-portions { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); }
+.today-portions-words { font-weight: 600; }
+.today-next .btn.today-portions-change {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+}
+.drinks-more { min-height: var(--tap-min); font-weight: 600; }
 .today-next .btn.today-next-open {
   align-self: flex-start;
   background: var(--color-surface);

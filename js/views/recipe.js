@@ -1,4 +1,5 @@
-// js/views/recipe.js — 03 Oct 2026 v14
+// js/views/recipe.js — 04 Oct 2026 v15
+// v15: oven temperatures read with fan and gas (lib/oven.js).
 // v14: counted ingredients name themselves ("2 | Anchovy fillets").
 // v13: servings start at your household's size.
 // v12: Make it vegetarian / vegan (data/dietSwitch.js), as radio buttons.
@@ -68,6 +69,7 @@ import { confirmDialog } from '../components/confirmDialog.js';
 import { loadImages } from '../data/recipeImages.js';
 import { DIETS, dietsFor, switchRecipe, dietFromHash } from '../data/dietSwitch.js';
 import { recipePhoto } from '../components/recipePhoto.js';
+import { ovenWords } from '../lib/oven.js';
 
 const SLOT_WORDS = {
   breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', drink: 'Drink'
@@ -188,10 +190,10 @@ function ingredientName(ing, entry, amountIsOne) {
 }
 
 function stepText(step, refMap) {
-  return String(step.instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_, slug) => {
+  return ovenWords(String(step.instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_, slug) => {
     const entry = refMap.get(slug);
     return entry ? cookingName(entry.name).toLowerCase() : slug.replace(/-/g, ' ');
-  });
+  }));
 }
 
 export function render(mountEl) {

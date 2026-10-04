@@ -1,4 +1,8 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v9
+// js/views/kitchenToday.js — 04 Oct 2026 v10
+// v10: calmer (persona re-trace 3). The next meal says how many portions in
+// one line, with Change opening the portion choices in a sheet; drinks show
+// the four you add most, the rest one tap away; "Nothing planned today"
+// when nothing is.
 // v9: today's links ask for this week by name, so the weekend look-ahead on Plan does not move them.
 // v8: portions — the next meal says how many it makes, with − and + and
 // "Double, freeze half"; Eaten and We cooked it take from the pantry once,
@@ -37,7 +41,7 @@ import { getHousehold } from '../data/household.js';
 import { portionsControl } from '../components/portionsControl.js';
 import { eatenTick } from '../components/eatenTick.js';
 import { wasTaken, planForEntry, takeForEntry, markTaken } from '../data/pantryTaken.js';
-import { sparePortions } from '../data/portions.js';
+import { sparePortions, entryPortions, portionWords } from '../data/portions.js';
 import { openSpareSheet } from '../components/spareSheet.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
 import { nextWeekStart, thisWeekStart } from '../lib/weeks.js';
@@ -145,7 +149,7 @@ export function render(mountEl) {
   const drinksSection = el('section', { class: 'today-section', 'aria-labelledby': 'today-drinks-h' });
   drinksSection.appendChild(el('h2', { id: 'today-drinks-h', text: 'Drinks today' }));
   drinksSection.appendChild(drinksQuickAdd({
-    weekStart: thisWeekStart(), day: dayValue, signal: controller.signal,
+    weekStart: thisWeekStart(), day: dayValue, signal: controller.signal, compact: true,
     onChange: () => paintNutrition()
   }));
   mountEl.appendChild(drinksSection);
@@ -203,7 +207,7 @@ export function render(mountEl) {
     weekEntries = plan.ok ? (plan.data || []) : [];
     const entries = weekEntries.filter((e) => e.day_of_week === dayValue);
     const next = pickNext(entries, now);
-    paintNext(next);
+    paintNext(next, entries.length > 0);
     paintRest(entries, next);
     paintTomorrow(byMealFor(ingredients)).catch(() => {});
 
@@ -309,11 +313,35 @@ export function render(mountEl) {
     }
   }
 
-  function paintNext(entry) {
+  /** "Making 4 portions" and a Change button that opens the choices. */
+  function portionsLine(entry) {
+    const row = el('div', { class: 'today-portions' });
+    const words = el('span', { class: 'today-portions-words' });
+    const paint = () => { words.textContent = `Making ${portionWords(entryPortions(entry, members))}`; };
+    paint();
+    const change = el('button', { type: 'button', class: 'btn btn-small today-portions-change', text: 'Change', 'aria-haspopup': 'dialog' });
+    change.setAttribute('aria-label', `Change portions of ${(entry.meals && entry.meals.name) || 'this meal'}`);
+    change.addEventListener('click', () => openDetailSheet({
+      title: 'Portions',
+      subtitle: (entry.meals && entry.meals.name) || '',
+      returnFocusTo: change,
+      build(body, api) {
+        body.appendChild(portionsControl(entry, { members, signal: controller.signal, onChange: () => paint() }));
+        const done = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Done' });
+        done.addEventListener('click', () => api.close());
+        body.appendChild(done);
+      },
+      onClose: () => { paint(); paintNutrition(); }
+    }), { signal: controller.signal });
+    row.append(words, change);
+    return row;
+  }
+
+  function paintNext(entry, anyToday = true) {
     nextWrap.replaceChildren();
     if (!entry) {
       const empty = el('section', { class: 'today-next today-next-empty', 'aria-labelledby': 'today-next-h' });
-      empty.appendChild(el('h2', { id: 'today-next-h', text: 'Nothing else planned today' }));
+      empty.appendChild(el('h2', { id: 'today-next-h', text: anyToday ? 'Nothing else planned today' : 'Nothing planned today' }));
       empty.appendChild(el('a', { class: 'btn btn-primary', href: '#/plan-this-week?week=this', text: 'Plan a meal' }));
       nextWrap.appendChild(empty);
       return;
@@ -340,7 +368,8 @@ export function render(mountEl) {
     if (isLeftover(entry)) facts.appendChild(el('li', { text: `Leftovers, ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
     card.appendChild(facts);
-    if (!isLeftover(entry)) card.appendChild(portionsControl(entry, { members, signal: controller.signal }));
+    // v10: one line and a Change button, not nine controls on the card.
+    if (!isLeftover(entry)) card.appendChild(portionsLine(entry));
     card.appendChild(eatenTick(entry, tickOptions()));
     const buttons = el('div', { class: 'today-next-buttons' });
     buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
