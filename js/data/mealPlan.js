@@ -1,4 +1,5 @@
-// js/data/mealPlan.js — 03 Oct 2026 v6
+// js/data/mealPlan.js — 04 Oct 2026 v7
+// v7: listPlan also reads eaten_at (same migration as is_leftover; data/eaten.js).
 // v6: leftovers. listPlan reads is_leftover when the column exists
 // (migration 026) and quietly does without it until then; addPlanEntry can
 // write one; leftoverTargets() suggests where they could go.
@@ -78,7 +79,7 @@ export async function listPlan(weekStart = thisWeekStart()) {
   const embed = 'meals(id, name, default_serves, dietary_tags, library_ref)';
   const read = (withLeftover) => supabase
     .from(TABLE)
-    .select(withLeftover ? `${base}, is_leftover, ${embed}` : `${base}, ${embed}`)
+    .select(withLeftover ? `${base}, is_leftover, eaten_at, ${embed}` : `${base}, ${embed}`)
     .eq('week_start', weekStart)
     .order('created_at', { ascending: true });
 

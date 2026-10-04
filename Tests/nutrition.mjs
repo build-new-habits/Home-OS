@@ -521,6 +521,27 @@ check('the library is not empty', count > 100, `${count}`);
   eq('kinds have everyday labels', shelfLabel('dairy'), 'Dairy and eggs');
 }
 
+// ---- Eaten tick (04 Oct 2026) -----------------------------------------
+{
+  const mem = new Map();
+  const saved = globalThis.localStorage;
+  globalThis.localStorage = { getItem: (k) => (mem.has(k) ? mem.get(k) : null), setItem: (k, v) => mem.set(k, String(v)), removeItem: (k) => mem.delete(k) };
+  const { isEaten, setEaten, eatenOf, pruneEaten } = await import(`${REPO}/js/data/eaten.js`);
+  const now = Date.parse('2026-10-04T12:00:00Z');
+  const pruned = pruneEaten({ a: '2026-10-03T08:00:00Z', b: '2026-08-01T08:00:00Z', c: 'nonsense' }, now);
+  eq('old and broken ticks are forgotten', Object.keys(pruned).join(','), 'a');
+  check('a row with eaten_at is eaten', isEaten({ id: 'x', eaten_at: '2026-10-04T08:00:00Z' }));
+  const entry = { id: 'plan-9', meals: { name: 'Porridge' } };
+  check('an unticked meal is not eaten', !isEaten(entry));
+  const r = await setEaten(entry, true);
+  check('before migration 026 the tick is kept on this phone', r.ok && r.where === 'phone');
+  check('and reads back from the phone', isEaten({ id: 'plan-9' }));
+  eq('eatenOf picks the ticked ones', eatenOf([{ id: 'plan-9' }, { id: 'plan-10' }]).length, 1);
+  await setEaten(entry, false);
+  check('unticking forgets it', !isEaten({ id: 'plan-9' }) && !isEaten(entry));
+  globalThis.localStorage = saved;
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

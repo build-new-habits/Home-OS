@@ -4916,3 +4916,11 @@ body.sheet-open {
 /* Pantry by kind — 04 Oct 2026 */
 .shop-putaway-kind { grid-column: 1 / -1; font-size: var(--text-sm); color: var(--color-text-muted); margin: 0; }
 .shelf-picker select { min-height: var(--tap-min); width: 100%; }
+
+/* Eaten tick on a planned meal — 04 Oct 2026 */
+.eaten-tick { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--tap-min); }
+.eaten-tick input[type="checkbox"] { width: 1.25em; height: 1.25em; flex: 0 0 auto; margin: 0; }
+.eaten-tick label { cursor: pointer; font-size: var(--text-sm); padding-right: var(--space-2); min-height: var(--tap-min); display: inline-flex; align-items: center; }
+.today-meal-text { flex: 1; }
+.today-meal-entry { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.today-next .eaten-tick { margin-bottom: var(--space-2); }

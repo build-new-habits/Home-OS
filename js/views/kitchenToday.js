@@ -1,4 +1,6 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v5
+// js/views/kitchenToday.js — 04 Oct 2026 v6
+// v6: an Eaten tick on each of today's meals; nutrition eaten so far beside
+// the day as planned; "Take them out" after cooking ticks the meal too.
 // v5: Tomorrow — what is planned and what to take out of the freezer tonight;
 // the next meal shows its photo when it has one.
 // v4: leftovers — labelled, never taken from the pantry again, and the
@@ -44,6 +46,8 @@ import { nutritionBars } from '../components/nutritionBars.js';
 import { openItemSheet } from '../components/itemSheet.js';
 import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
+import { eatenTick } from '../components/eatenTick.js';
+import { eatenOf, setEaten } from '../data/eaten.js';
 
 const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const TONIGHT_ROUTE = '#/tonight';
@@ -180,22 +184,41 @@ export function render(mountEl) {
     paintRest(entries, next);
     paintTomorrow(byMealFor(ingredients)).catch(() => {});
 
-    // Nutrition: each planned meal's per-serving figures, one portion each.
-    const byMeal = ingredients.ok ? groupByMeal(ingredients.data) : new Map();
-    const items = entries.map((entry) => {
+    todayEntries = entries;
+    todayByMeal = byMealFor(ingredients);
+    paintNutrition();
+  }
+
+  let todayEntries = [];
+  let todayByMeal = new Map();
+
+  // Nutrition: each planned meal's per-serving figures, one portion each.
+  // Once anything is ticked as eaten, what has been eaten so far comes
+  // first, then the day as planned.
+  function paintNutrition() {
+    const entries = todayEntries;
+    const itemFor = (entry) => {
       const meal = entry.meals || {};
-      const rows = byMeal.get(entry.meal_id) || [];
+      const rows = todayByMeal.get(entry.meal_id) || [];
       if (rows.length === 0) return null;
       const m = computeMacros(rows, { serves: meal.default_serves || 1 });
       return { perServing: m.perServing, complete: m.complete };
-    }).filter(Boolean);
+    };
+    const items = entries.map(itemFor).filter(Boolean);
     nutritionWrap.replaceChildren();
+    const eaten = eatenOf(entries);
+    const eatenItems = eaten.map(itemFor).filter(Boolean);
+    if (eatenItems.length > 0) {
+      const day = dayNutrition(eatenItems);
+      const note = `${eaten.length} of ${entries.length} planned meal${entries.length === 1 ? '' : 's'} ticked as eaten. One portion of each, against UK adult reference intakes.`;
+      nutritionWrap.appendChild(nutritionBars({ id: 'today-eaten-h', title: 'Eaten so far today', totals: day.totals, complete: day.complete, note }));
+    }
     if (items.length > 0) {
       const day = dayNutrition(items);
       const skipped = entries.length - items.length;
       let note = 'An estimate for what is planned, one portion of each, against UK adult reference intakes.';
       if (skipped > 0) note += ` ${skipped} planned meal${skipped === 1 ? ' has' : 's have'} no ingredients yet, so ${skipped === 1 ? 'it is' : 'they are'} not counted.`;
-      nutritionWrap.appendChild(nutritionBars({ id: 'today-nutrition-h', title: "Today's nutrition", totals: day.totals, complete: day.complete, note }));
+      nutritionWrap.appendChild(nutritionBars({ id: 'today-nutrition-h', title: eatenItems.length ? 'Today as planned' : "Today's nutrition", totals: day.totals, complete: day.complete, note }));
     }
   }
 
@@ -289,6 +312,7 @@ export function render(mountEl) {
     facts.appendChild(el('li', { text: isLeftover(entry) ? 'Leftovers' : `Serves ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
     card.appendChild(facts);
+    card.appendChild(eatenTick(entry, { signal: controller.signal, onChange: paintNutrition }));
     const buttons = el('div', { class: 'today-next-buttons' });
     buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
     const cooked = el('button', { type: 'button', class: 'btn today-next-cooked', text: 'We cooked it', 'aria-haspopup': 'dialog' });
@@ -345,6 +369,13 @@ export function render(mountEl) {
           const done = await applyDepletion(changes);
           if (!done.ok) { yes.disabled = false; showToast('That did not save. Try again.'); return; }
           api.close();
+          // Cooked and taken out of the pantry: ticked as eaten too.
+          await setEaten(entry, true);
+          if (!destroyed) {
+            const box = nextWrap.querySelector('.eaten-tick input');
+            if (box) box.checked = true;
+            paintNutrition();
+          }
           const words = `Pantry updated: ${done.applied} thing${done.applied === 1 ? '' : 's'}.`;
           showToast(words);
           announce(words);
@@ -376,10 +407,12 @@ export function render(mountEl) {
         text.appendChild(el('span', { class: 'today-meal-none', text: 'Nothing planned' }));
       } else {
         const names = el('span', { class: 'today-meal-names' });
-        here.forEach((entry, i) => {
-          if (i) names.appendChild(document.createTextNode(', '));
-          names.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
-        });
+        for (const entry of here) {
+          const one = el('span', { class: 'today-meal-entry' });
+          one.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
+          one.appendChild(eatenTick(entry, { signal: controller.signal, onChange: paintNutrition }));
+          names.appendChild(one);
+        }
         text.appendChild(names);
       }
       li.appendChild(text);

@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 03 Oct 2026 v6
+// js/views/kitchenPlan.js — 04 Oct 2026 v7
+// v7: an Eaten tick on each planned meal this week (data/eaten.js).
 // v6: Board or List — the week in words, day by day, for a small phone.
 // v5: starters and puddings — listed in eating order with their course, and
 // Find a starter / Find a pudding for lunch and dinner.
@@ -46,6 +47,8 @@ import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
+import { eatenTick } from '../components/eatenTick.js';
+import { isEaten } from '../data/eaten.js';
 import { courseOf, courseLabel, sortByCourse } from '../data/courses.js';
 import { loadAllRecipes } from '../data/recipeLibrary.js';
 
@@ -276,7 +279,7 @@ export function render(mountEl, { week = 'this' } = {}) {
         const here = cellEntries(d.value, s.value);
         const on = sel.day === d.value && sel.slot === s.value;
         const td = el('td', { class: d.value === todayValue ? 'is-today' : '' });
-        const names = here.map((e) => `${(e.meals && e.meals.name) || 'a meal'}${isLeftover(e) ? ' (leftovers)' : ''}`).join(', ');
+        const names = here.map((e) => `${(e.meals && e.meals.name) || 'a meal'}${isLeftover(e) ? ' (leftovers)' : ''}${isEaten(e) ? ' (eaten)' : ''}`).join(', ');
         const allLeftover = here.length > 0 && here.every(isLeftover);
         const btn = el('button', {
           type: 'button',
@@ -317,7 +320,7 @@ export function render(mountEl, { week = 'this' } = {}) {
         const text = el('span', { class: 'plan-list-text' });
         text.appendChild(el('span', { class: 'plan-list-slot-name', text: s.label }));
         text.appendChild(el('span', { class: 'plan-list-meals', text: here.length
-          ? here.map((e) => `${(e.meals && e.meals.name) || 'A meal'}${isLeftover(e) ? ' (leftovers)' : ''}`).join(', ')
+          ? here.map((e) => `${(e.meals && e.meals.name) || 'A meal'}${isLeftover(e) ? ' (leftovers)' : ''}${isEaten(e) ? ' (eaten)' : ''}`).join(', ')
           : 'Open' }));
         b.appendChild(text);
         b.setAttribute('aria-label', `${d.label} ${SLOT_WORDS[s.value]}: ${here.length ? text.lastChild.textContent : 'open'}. Change it.`);
@@ -442,6 +445,8 @@ export function render(mountEl, { week = 'this' } = {}) {
           ? `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.`
           : `Serves ${servesFor(entry)}` }));
         li.appendChild(text);
+        // Eaten (4 Oct 2026): this week only; next week has not happened.
+        if (week === 'this') li.appendChild(eatenTick(entry, { signal, onChange: () => paintBoard() }));
         if (leftoversReady() && !isLeftover(entry)) {
           const lo = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Plan leftovers', 'aria-haspopup': 'dialog' });
           lo.setAttribute('aria-label', `Plan the leftovers of ${(entry.meals && entry.meals.name) || 'this meal'}`);
