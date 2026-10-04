@@ -1,4 +1,6 @@
-// js/data/meals.js — 03 Oct 2026 v8
+// js/data/meals.js — 04 Oct 2026 v9
+// v9: listIngredients reads every page (lib/readAll.js): past 1,000 rows
+// the newest meals' ingredients were silently missing.
 // v8: optional fibre in computeMacros (never marks a row incomplete).
 // v3: meal_type and is_favourite (schema revision 5). meal_type is
 // normalised here rather than sent raw — a CHECK violation surfaces as an
@@ -45,6 +47,7 @@
 // clearly in the UI; never fail silently").
 
 import { supabase } from '../supabaseClient.js';
+import { readAll } from '../lib/readAll.js';
 
 const MEALS = 'meals';
 const INGREDIENTS = 'meal_ingredients';
@@ -138,14 +141,16 @@ export async function listMeals() {
  * independently, so this returns only the user's own rows either way.
  */
 export async function listIngredients(mealId) {
-  let query = supabase
-    .from(INGREDIENTS)
-    .select('id, meal_id, food_id, quantity_g, unit, option_group, is_selected, option_label, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label, source)')
-    .order('created_at', { ascending: true });
-  if (mealId) query = query.eq('meal_id', mealId);
-  const { data, error } = await query;
-  if (error) return { ok: false, error };
-  return { ok: true, data };
+  const build = () => {
+    let query = supabase
+      .from(INGREDIENTS)
+      .select('id, meal_id, food_id, quantity_g, unit, option_group, is_selected, option_label, foods(id, name, barcode, calories_per_100g, protein_g, fat_g, carbs_g, grams_per_ml, grams_per_item, item_label, source)')
+      .order('created_at', { ascending: true })
+      .order('id', { ascending: true });
+    if (mealId) query = query.eq('meal_id', mealId);
+    return query;
+  };
+  return readAll(build);
 }
 
 /** Ingredient rows keyed by meal_id. */

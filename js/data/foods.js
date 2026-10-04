@@ -1,4 +1,5 @@
-// js/data/foods.js — 01 Sep 2026 v5
+// js/data/foods.js — 04 Oct 2026 v6
+// v6: listFoods reads every page (lib/readAll.js).
 // v3: `category` is now written and read. Revision 3 added the column but
 // nothing set it, so every food defaulted to food_ambient and the value was
 // dead weight — grouping or filtering by it would have been meaningless.
@@ -43,6 +44,7 @@
 // therefore checks the offline queue as well and reports which it found.
 
 import { supabase } from '../supabaseClient.js';
+import { readAll } from '../lib/readAll.js';
 import { enqueue, flush, list as listQueued } from '../lib/offlineQueue.js';
 import { attemptWrite } from '../lib/net.js';
 import { normaliseBarcode } from '../lib/barcode.js';
@@ -152,13 +154,13 @@ export async function listQueuedFoods() {
 }
 
 export async function listFoods() {
-  const { data, error } = await supabase
+  // Every page (lib/readAll.js): the foods table can pass 1,000 rows too.
+  return readAll(() => supabase
     .from(TABLE)
     .select('*')
     .order('category', { ascending: true })
-    .order('name', { ascending: true });
-  if (error) return { ok: false, error };
-  return { ok: true, data };
+    .order('name', { ascending: true })
+    .order('id', { ascending: true }));
 }
 
 /**
