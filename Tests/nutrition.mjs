@@ -500,6 +500,27 @@ check('the library is not empty', count > 100, `${count}`);
   eq('a timer is named for its step group', timerLabel({ step_group: 'Sauce' }, 3), 'Sauce (step 4)');
 }
 
+// ---- Pantry by kind (04 Oct 2026) -------------------------------------
+{
+  const { shelfOf, shelfFromName, groupByShelf, referenceShelfIndex, shelfLabel } = await import(`${REPO}/js/data/shelves.js`);
+  const cases = [
+    ['White wine vinegar', 'sauces'], ['Smoked haddock', 'fish'], ['Chicken thighs', 'meat'],
+    ['Coconut milk', 'tinned'], ['Milk, semi-skimmed', 'dairy'], ['Oat milk', 'drinks'],
+    ['Peanut butter', 'tinned'], ['Butter, block', 'dairy'], ['Spaghetti, dry', 'dried'],
+    ['Plain flour', 'baking'], ['Ground cumin', 'spices'], ['Lemon', 'fruit'], ['Onion, medium', 'veg'],
+    ['Crisps', 'snacks'], ['Tea bags', 'drinks'], ['Toilet roll', 'household'], ['Lemon juice', 'sauces']
+  ];
+  for (const [name, want] of cases) eq(`${name} is ${want}`, shelfFromName(name), want);
+  eq('frozen peas are frozen, not veg', shelfOf({ name: 'Peas', category: 'food_frozen' }), 'frozen');
+  eq('a chosen shelf wins', shelfOf({ name: 'Peas', shelf: 'veg', category: 'food_frozen' }), 'veg');
+  eq('an unknown thing is other', shelfOf({ name: 'Zzyzx', category: 'food_fresh' }), 'other');
+  const idx = referenceShelfIndex([{ name: 'Oats, rolled', shelf: 'dried' }]);
+  eq('the reference file is read, turned names too', shelfOf({ name: 'rolled oats' }, idx), 'dried');
+  const groups = groupByShelf([{ foods: { name: 'Crisps' } }, { foods: { name: 'Apple' } }, { foods: { name: 'Cheddar cheese' } }]);
+  eq('kinds come in shelf order', groups.map((g) => g.shelf).join(','), 'fruit,dairy,snacks');
+  eq('kinds have everyday labels', shelfLabel('dairy'), 'Dairy and eggs');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

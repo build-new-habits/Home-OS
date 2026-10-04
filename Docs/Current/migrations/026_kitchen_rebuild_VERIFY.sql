@@ -48,4 +48,14 @@ union all
 select 'meals.course',
        case when exists (select 1 from information_schema.columns
                           where table_name = 'meals' and column_name = 'course')
+       then 'PASS' else 'FAIL' end
+union all
+select 'foods.shelf',
+       case when exists (select 1 from information_schema.columns
+                          where table_name = 'foods' and column_name = 'shelf')
+       then 'PASS' else 'FAIL' end
+union all
+select 'weekly_meal_plan.eaten_at',
+       case when exists (select 1 from information_schema.columns
+                          where table_name = 'weekly_meal_plan' and column_name = 'eaten_at')
        then 'PASS' else 'FAIL' end;

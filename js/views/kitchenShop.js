@@ -1,4 +1,5 @@
-// js/views/kitchenShop.js — 03 Oct 2026 v5
+// js/views/kitchenShop.js — 04 Oct 2026 v6
+// v6: grouped by kind, like the pantry; put away asks only for a use-by.
 // v5: Bought everything — the whole list into the basket and pantry at once.
 // v4: Share the list — the phone's share sheet, or copied.
 // v3: a blank use-by says what the pantry will estimate instead.
@@ -37,12 +38,12 @@
 // which is fast enough for two people in two aisles.
 
 import { el } from '../lib/dom.js';
-import { listItems, setStatus, aisleRank } from '../data/shopping.js';
-import { categoryLabel } from '../data/foods.js';
+import { listItems, setStatus } from '../data/shopping.js';
+import { shelfFor, loadShelfChoices } from '../data/foodShelves.js';
+import { shelfLabel, shelfRank } from '../data/shelves.js';
 import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.js';
 import { formatPackQuantity } from '../lib/units.js';
 import { listStock, findByFood, addStock, updateStock, todayIso, defaultShelfLife } from '../data/pantry.js';
-import { COMMON_PLACES } from '../components/itemSheet.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 
@@ -50,14 +51,16 @@ const REFRESH_MS = 20000;
 
 /** Aisle groups in walking order. */
 export function groupByAisle(items) {
+  // 4 Oct 2026: by kind (Fruit, Veg, Meat, Dairy…), the same groups as the
+  // pantry, in roughly the order a supermarket is walked.
   const groups = new Map();
   for (const item of items) {
-    const category = (item.foods && item.foods.category) || 'other';
+    const category = shelfFor(item.foods || {});
     if (!groups.has(category)) groups.set(category, []);
     groups.get(category).push(item);
   }
   return [...groups.entries()]
-    .sort((a, b) => aisleRank(a[0]) - aisleRank(b[0]))
+    .sort((a, b) => shelfRank(a[0]) - shelfRank(b[0]))
     .map(([category, lines]) => ({
       category,
       lines: lines.sort((x, y) => String(x.foods && x.foods.name).localeCompare(String(y.foods && y.foods.name)))
@@ -83,7 +86,7 @@ export function listAsText(items, { title = 'Shopping list' } = {}) {
   if (needed.length === 0) return '';
   const lines = [title];
   for (const group of groupByAisle(needed)) {
-    lines.push('', categoryLabel(group.category));
+    lines.push('', shelfLabel(group.category));
     for (const line of group.lines) {
       const amount = amountOf(line);
       lines.push(`- ${nameOf(line)}${amount ? ` (${amount})` : ''}`);
@@ -127,8 +130,6 @@ export function render(mountEl) {
   basket.appendChild(basketList);
   basket.addEventListener('toggle', () => { basketOpen = basket.open; }, { signal });
   mountEl.appendChild(basket);
-  const placeList = el('datalist', { id: 'shop-places' });
-  mountEl.appendChild(placeList);
 
   const cupboard = el('details', { class: 'shop-fold' });
   const cupboardSummary = el('summary');
@@ -218,7 +219,7 @@ export function render(mountEl) {
     }
     for (const group of groupByAisle(needed)) {
       const section = el('section', { class: 'shop-group', 'aria-labelledby': `aisle-${group.category}` });
-      section.appendChild(el('h2', { id: `aisle-${group.category}`, class: 'shop-aisle', text: categoryLabel(group.category) }));
+      section.appendChild(el('h2', { id: `aisle-${group.category}`, class: 'shop-aisle', text: shelfLabel(group.category) }));
       const ul = el('ul', { class: 'shop-lines' });
       for (const line of group.lines) ul.appendChild(neededRow(line));
       section.appendChild(ul);
@@ -265,23 +266,19 @@ export function render(mountEl) {
     top.append(box, label);
     li.appendChild(top);
 
-    // ---- Put it away (3 Oct 2026) ----
-    // Where it lives and its use-by, right here in the basket. Saved to the
-    // pantry on change, so unpacking the bags is filling in two fields, not
-    // finding each thing again behind the pantry's doors.
+    // ---- Put it away (3 Oct 2026; 4 Oct: kind, not place) ----
+    // Use-by right here in the basket, saved to the pantry on change. Where
+    // it lives is no longer asked: "Is location important? I think not."
+    // What KIND of thing it is files itself (data/shelves.js), and says so.
     const stock = stockByFood.get(line.food_id) || null;
     const fields = el('div', { class: 'shop-putaway-fields' });
-    const placeId = `place-${line.id}`;
     const dateId = `useby-${line.id}`;
-    const place = el('input', { type: 'text', id: placeId, list: 'shop-places', autocomplete: 'off' });
-    place.value = (stock && stock.default_location) || '';
     const useBy = el('input', { type: 'date', id: dateId });
     useBy.value = (stock && stock.use_by) || '';
     const saved = el('span', { class: 'shop-putaway-saved', 'aria-live': 'polite' });
-    const placeWrap = el('div', { class: 'shop-putaway-field' });
-    placeWrap.append(el('label', { for: placeId, text: 'Where it goes' }), place);
+    const kind = el('p', { class: 'shop-putaway-kind', text: `Goes in the pantry under ${shelfLabel(shelfFor(line.foods || {}))}.` });
     const dateWrap = el('div', { class: 'shop-putaway-field' });
-    dateWrap.append(el('label', { for: dateId, text: 'Use by' }), useBy);
+    dateWrap.append(el('label', { for: dateId, text: 'Use by (optional)' }), useBy);
     // Leaving it blank is fine: the pantry estimates from how long this kind
     // of food keeps. Say what that estimate is, so blank is a choice.
     const keeps = defaultShelfLife(line.foods && line.foods.category);
@@ -292,16 +289,15 @@ export function render(mountEl) {
       dateWrap.appendChild(el('span', { id: hintId, class: 'shop-putaway-hint', text: `Blank: about ${est}` }));
       useBy.setAttribute('aria-describedby', hintId);
     }
-    fields.append(placeWrap, dateWrap, saved);
+    fields.append(kind, dateWrap, saved);
     li.appendChild(fields);
 
     const save = async () => {
       saved.textContent = 'Saving…';
-      const result = await putAway(line, { default_location: place.value, use_by: useBy.value || null });
+      const result = await putAway(line, { use_by: useBy.value || null });
       if (destroyed) return;
       saved.textContent = result.ok ? `Saved` : 'Not saved. Try again.';
     };
-    place.addEventListener('change', save, { signal });
     useBy.addEventListener('change', save, { signal });
     return li;
   }
@@ -322,7 +318,6 @@ export function render(mountEl) {
       current_qty: line.qty_needed == null ? null : Number(line.qty_needed),
       last_restocked: todayIso(),
       shelf_life_days: defaultShelfLife(line.foods && line.foods.category),
-      default_location: patch.default_location,
       use_by: patch.use_by
     });
     if (created.ok) stockByFood.set(line.food_id, created.data);
@@ -412,9 +407,9 @@ export function render(mountEl) {
     if (destroyed) return;
     if (stock.ok) {
       stockByFood = new Map((stock.data || []).map((r) => [r.food_id, r]));
-      placeList.replaceChildren(...[...new Set([...(stock.data || []).map((r) => r.default_location).filter(Boolean), ...COMMON_PLACES])]
-        .map((p) => el('option', { value: p })));
     }
+    await loadShelfChoices();
+    if (destroyed) return;
     // Never repaint under someone typing where a thing goes: the refresh
     // would wipe what they are typing. The next refresh picks it up.
     if (basket.contains(document.activeElement)) return;

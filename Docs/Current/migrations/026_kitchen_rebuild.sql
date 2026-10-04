@@ -24,6 +24,9 @@
 --    'main' or 'pudding', nullable (null reads as main). A course is not a
 --    slot: a starter and a pudding sit in the dinner slot beside the main,
 --    which the plan already allows (several entries per cell).
+-- 6. foods.shelf (added 4 Oct 2026): the kind of thing a food is, as the
+--    pantry and the shopping list group it. Null = worked out from the name.
+-- 7. weekly_meal_plan.eaten_at (added 4 Oct 2026): the Eaten tick.
 --
 -- ============================================================
 -- SAFE TO RUN AGAINST THE LIVE APP
@@ -90,3 +93,13 @@ alter table meals add column if not exists course text;
 alter table meals drop constraint if exists meals_course_check;
 alter table meals add constraint meals_course_check
   check (course is null or course in ('starter','main','pudding'));
+
+-- ---- 6. Shelves -----------------------------------------------------------
+alter table foods add column if not exists shelf text;
+alter table foods drop constraint if exists foods_shelf_check;
+alter table foods add constraint foods_shelf_check check (shelf is null or shelf in (
+  'fruit','veg','meat','fish','dairy','bread','frozen','tinned','dried','baking',
+  'spices','sauces','snacks','drinks','household','personal','pet','other'));
+
+-- ---- 7. Eaten -------------------------------------------------------------
+alter table weekly_meal_plan add column if not exists eaten_at timestamptz;

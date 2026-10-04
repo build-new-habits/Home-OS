@@ -1,4 +1,5 @@
-// js/components/itemSheet.js — 03 Oct 2026 v2
+// js/components/itemSheet.js — 04 Oct 2026 v3
+// v3: Kind (Dairy, Meat, Tinned…) can be changed here; where it lives is optional.
 // v2: ideasSection() exported for the pantry's own sheet.
 // Kitchen rebuild. One thing in your cupboard, and everything you might
 // want to do with it, in one place.
@@ -28,6 +29,7 @@ import { addItem } from '../data/shopping.js';
 import { loadAllRecipes } from '../data/recipeLibrary.js';
 import { lookup, referenceBySlug } from '../data/foodReference.js';
 import { ideasFor } from '../data/swaps.js';
+import { shelfPicker } from './shelfPicker.js';
 
 export const COMMON_PLACES = ['Fridge', 'Freezer', 'Cupboard', 'Fruit bowl', 'Bread bin', 'Spice rack'];
 
@@ -119,8 +121,10 @@ export function openItemSheet(row, { returnFocusTo, places = [], onChanged } = {
         changed = true;
         say(`${name}: details saved.`);
       });
+      // 4 Oct 2026: kind first; where it lives is optional.
+      edit.appendChild(shelfPicker(food, { onChanged: () => { changed = true; } }));
       edit.append(
-        el('label', { for: 'item-place', text: 'Where it lives' }), place, placeList,
+        el('label', { for: 'item-place', text: 'Where it lives (optional)' }), place, placeList,
         el('label', { for: 'item-useby', text: 'Use by' }), useBy,
         saveBtn
       );

@@ -656,12 +656,12 @@ check('pantry: unplaced items sort first, not last',
 
 await new Promise((r) => setTimeout(r, 20));
 
-// Named explicitly rather than taking the first: locations sort
-// alphabetically, and the row under test lives in the kitchen.
+// 4 Oct 2026: browse is by KIND now (Graeme: "Is location important? I
+// think not. But categories are."). Rolled oats are pasta, rice and dried.
 const panLocationTile = [...panMount.querySelectorAll('.location-tile')]
-  .find((b) => /Kitchen cupboard/.test(b.textContent));
-check('pantry: browse groups by where things live', !!panLocationTile,
-  'each place is a tile, and a tile opens its own page');
+  .find((b) => /Pasta, rice and dried/.test(b.textContent));
+check('pantry: browse groups by kind', !!panLocationTile,
+  'each kind is a tile, and a tile opens its own page');
 check('pantry: a tile says how much is in there before you open it',
   panLocationTile && /\d+ thing/.test(panLocationTile.textContent),
   panLocationTile && panLocationTile.textContent);
@@ -678,7 +678,7 @@ window.document.body.appendChild(panPlaceMount);
 const panPlaceCleanup = panMod.render(panPlaceMount, { section: 'place' });
 await new Promise((r) => setTimeout(r, 40));
 check('pantry: the place page shows the place you tapped',
-  /Kitchen cupboard/.test(panPlaceMount.textContent), panPlaceMount.textContent.slice(0, 120));
+  /Pasta, rice and dried/.test(panPlaceMount.textContent), panPlaceMount.textContent.slice(0, 120));
 check('pantry: and a way back to the places',
   [...panPlaceMount.querySelectorAll('a[href]')]
     .some((a) => a.getAttribute('href') === '#/pantry-browse'));

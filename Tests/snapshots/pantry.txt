@@ -21,7 +21,7 @@ ul.hub-list
         span.hub-status
       span.hub-chevron
   li.hub-item
-    a.hub-link"What's inYour cupboards, one at a time.›"
+    a.hub-link"What's inBy kind: dairy, meat, tins, veg and the rest.›"
       span.hub-text
         span.hub-title
         span.hub-blurb

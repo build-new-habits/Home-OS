@@ -158,7 +158,7 @@ export const MEALS_PAGES = [
 export const PANTRY_PAGES = [
   { path: 'pantry-start', title: 'Quick start', blurb: 'Tick the everyday things you already have.' },
   { path: 'pantry-find', title: 'Find something', blurb: 'Search by name, kind or place.' },
-  { path: 'pantry-browse', title: "What's in", blurb: 'Your cupboards, one at a time.' },
+  { path: 'pantry-browse', title: "What's in", blurb: 'By kind: dairy, meat, tins, veg and the rest.' },
   { path: 'pantry-fix', title: 'Needs an amount', blurb: 'Things logged without a quantity.' },
   { path: 'pantry-use-soon', title: 'Worth using up', blurb: 'Near its date, or been in a while.' },
   { path: 'pantry-add', title: 'Add something', blurb: 'Scan a barcode or type it in.' }

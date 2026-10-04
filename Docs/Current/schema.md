@@ -26,6 +26,8 @@ dropped.
 | `foods.fibre_g` | numeric, nullable, `>= 0`, **per 100 g** | fibre is one of the five figures shown. Null = not recorded, never zero |
 | `user_settings.show_nutrition` | boolean, not null, default true | one switch hides nutrition everywhere |
 | `weekly_meal_plan.is_leftover` | boolean, not null, default false | leftovers planned on another day. The shortfall skips them, so the ingredients are not bought twice |
+| `foods.shelf` | text, nullable, check in the 18 shelves | the kind of thing a food is (Dairy, Meat, Tinned…). Null = worked out from its name. A choice made before 026 is kept on the phone |
+| `weekly_meal_plan.eaten_at` | timestamptz, nullable | when a planned meal was eaten. Null = not ticked. Ticks made before 026 are kept on the phone |
 | `meals.course` | text, nullable, check in ('starter','main','pudding') | what part of a meal it is. Null reads as main. Not a slot: starters and puddings plan into the dinner (or lunch) slot beside the main. The app detects the column and stores it only once it exists |
 | `user_settings.nutrition_targets` | jsonb, nullable | personal targets keyed `calories`, `carbs_g`, `fat_g`, `protein_g`, `fibre_g`. Null = UK reference intakes. Bad values fall back per nutrient (`data/nutrition.js resolveTargets`) |
 
@@ -1006,6 +1008,7 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | name | text | not null |
 | barcode | text | nullable |
 | category | text | not null; check in the 9 values below; default `'food_ambient'` |
+| shelf | text | nullable; check in ('fruit','veg','meat','fish','dairy','bread','frozen','tinned','dried','baking','spices','sauces','snacks','drinks','household','personal','pet','other') (revision 25, **migration 026 — not yet applied**). What kind of thing it is, as the pantry and the shopping list group it. Null = worked out from the name (`data/shelves.js`) |
 | calories_per_100g | numeric | **canonical unit kcal per 100 g** |
 | grams_per_ml | numeric | nullable; `> 0`. How many grams one millilitre weighs (milk ~1.03, oil ~0.92). **Null means ml cannot be converted** — the ingredient is reported incomplete, never guessed |
 | item_label | text | nullable; singular noun for one item ('tin', 'egg', 'slice'). NULL reads as "item" (revision 9) |
@@ -1078,6 +1081,7 @@ migrations are what have kept this app safe. Read `unit` before using it.
 | member_ids | uuid[] | not null default '{}'. **Empty = everyone.** No FK possible; unknown ids ignored on read (revision 13) |
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
 | is_leftover | boolean | not null default false (revision 25, **migration 026 — not yet applied**). Food already cooked for another entry: counted in nutrition, skipped by the shortfall and by "We cooked it". The app detects the column on its first read and offers leftovers only once it exists (`data/mealPlan.js`) |
+| eaten_at | timestamptz | nullable (revision 25, **migration 026 — not yet applied**). When this meal was eaten; null = not ticked. Before 026 the tick is kept on the phone |
 
 #### Revision 24 — the plan gets weeks (8 Sep 2026)
 

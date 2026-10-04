@@ -1,4 +1,5 @@
-// js/views/pantry.js — 03 Oct 2026 v23
+// js/views/pantry.js — 04 Oct 2026 v24
+// v24: What's in is grouped by kind (Dairy, Meat, Tinned…), not by place.
 // v23: use-soon items open the item's sheet; the sheet offers ways to use it.
 // v22: the pantry is a hub of pages, not a page of folds.
 // v20: the cupboards start closed. Device test 6 Sep 2026.
@@ -75,6 +76,9 @@ import { el, field, selectFrom } from '../lib/dom.js';
 import { createDisclosureRow } from '../components/disclosureRow.js';
 import { PANTRY_PAGES } from '../navConfig.js';
 import { setPlace, readPlace } from '../lib/pantryPlace.js';
+import { loadShelfChoices, shelfFor } from '../data/foodShelves.js';
+import { shelfPicker } from '../components/shelfPicker.js';
+import { SHELVES, shelfLabel, shelfRank } from '../data/shelves.js';
 import { navigate } from '../router.js';
 const UNPLACED = 'No location recorded';
 
@@ -444,7 +448,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
 
     openDetailSheet({
       title: name,
-      subtitle: categoryLabel(food.category || 'food_ambient'),
+      subtitle: shelfLabel(shelfFor(food)),
       returnFocusTo,
       build: (body, { close }) => {
         // ---- What you have -------------------------------------------
@@ -463,6 +467,8 @@ export function render(mountEl, { section = 'hub' } = {}) {
         ]));
         qtyInput.addEventListener('change', () => saveQuantity(row, qtyInput), { signal });
         amountSection.appendChild(qtyRow);
+        // 4 Oct 2026: what kind of thing it is, changeable here.
+        amountSection.appendChild(shelfPicker(food, { onChanged: () => { if (!destroyed) renderBrowse(); } }));
 
         amountSection.appendChild(sheetFact('Where it lives', row.default_location || 'Not recorded'));
         amountSection.appendChild(sheetFact('Freshness', describeFreshness(freshness(row))));
@@ -703,6 +709,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
 
   /** What to call a group. Unplaced items are a to-do, so they say so. */
   function locationHeading(location, count) {
+    if (String(location).startsWith('shelf:')) return shelfLabel(String(location).slice(6));
     if (location !== UNPLACED) return location;
     return count > 5 ? 'Not put away yet' : 'No place set';
   }
@@ -730,13 +737,24 @@ export function render(mountEl, { section = 'hub' } = {}) {
       browseList.appendChild(startBtn);
       return;
     }
-    const groups = locationsOf(stock);
+    // 4 Oct 2026: by KIND, not by place. "Is location important? I think
+    // not. But categories are." Dairy, Meat, Tinned… worked out for you
+    // (data/shelves.js) and changeable on any item.
+    const byShelf = new Map();
+    for (const row of stock) {
+      const shelf = shelfFor(row.foods || {});
+      if (!byShelf.has(shelf)) byShelf.set(shelf, []);
+      byShelf.get(shelf).push(row);
+    }
+    const groups = [...byShelf.entries()]
+      .sort((a, b) => shelfRank(a[0]) - shelfRank(b[0]))
+      .map(([shelf, rows]) => [`shelf:${shelf}`, rows]);
     browseSummary.textContent =
-      `${stock.length} item${stock.length === 1 ? '' : 's'} across ${groups.length} `
-      + `place${groups.length === 1 ? '' : 's'}. Open one at a time.`;
+      `${stock.length} item${stock.length === 1 ? '' : 's'} in ${groups.length} `
+      + `kind${groups.length === 1 ? '' : 's'}. Open one at a time.`;
     setHubStatus('pantry-browse',
       `${stock.length} thing${stock.length === 1 ? '' : 's'} in ${groups.length} `
-      + `place${groups.length === 1 ? '' : 's'}`);
+      + `kind${groups.length === 1 ? '' : 's'}`);
 
     // ---- Tiles, not accordions (10 Sep 2026) --------------------------
     // This was a list of folds: tap a heading, sixty rows unfold underneath,
@@ -804,7 +822,11 @@ export function render(mountEl, { section = 'hub' } = {}) {
       placeSummary.textContent = 'No place chosen. Go back and tap one.';
       return;
     }
-    const rows = stock.filter((row) => (row.default_location || UNPLACED) === wanted);
+    const isShelf = String(wanted).startsWith('shelf:');
+    const rows = isShelf
+      ? stock.filter((row) => shelfFor(row.foods || {}) === wanted.slice(6))
+        .sort((a, b) => String(a.foods && a.foods.name).localeCompare(String(b.foods && b.foods.name)))
+      : stock.filter((row) => (row.default_location || UNPLACED) === wanted);
     placeHeading.textContent = locationHeading(wanted, rows.length);
     if (rows.length === 0) {
       // Genuinely empty, or emptied since you tapped it. Both are true
@@ -813,7 +835,13 @@ export function render(mountEl, { section = 'hub' } = {}) {
       return;
     }
     placeSummary.textContent = `${rows.length} thing${rows.length === 1 ? '' : 's'} in here.`;
-    placeBody.appendChild(renderGroupedRows(rows, { unplaced: wanted === UNPLACED }));
+    if (isShelf) {
+      const list = el('ul', { class: 'stock-rows' });
+      for (const row of rows) list.appendChild(buildStockRow(row, {}));
+      placeBody.appendChild(list);
+    } else {
+      placeBody.appendChild(renderGroupedRows(rows, { unplaced: wanted === UNPLACED }));
+    }
   }
 
   /** Within a location, category orders what is inside it. */
@@ -1793,6 +1821,7 @@ export function render(mountEl, { section = 'hub' } = {}) {
   }
 
   async function loadAll() {
+    await loadShelfChoices().catch(() => null);
     await loadFoodList();
     if (!destroyed) await loadStock();
   }
