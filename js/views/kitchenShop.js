@@ -1,4 +1,8 @@
-// js/views/kitchenShop.js — 04 Oct 2026 v6
+// js/views/kitchenShop.js — 04 Oct 2026 v7
+// v7: a list in things you buy (lib/buyable.js): whole items, tins and
+// bulbs, loose food rounded up, spoonfuls and staples under Check the
+// cupboard. What you bought goes into the pantry, not the recipe fraction.
+// Long-life food is not asked for a use-by.
 // v6: grouped by kind, like the pantry; put away asks only for a use-by.
 // v5: Bought everything — the whole list into the basket and pantry at once.
 // v4: Share the list — the phone's share sheet, or copied.
@@ -42,7 +46,7 @@ import { listItems, setStatus } from '../data/shopping.js';
 import { shelfFor, loadShelfChoices } from '../data/foodShelves.js';
 import { shelfLabel, shelfRank } from '../data/shelves.js';
 import { restockFromPurchase, describeRestock, RESTOCK } from '../data/restock.js';
-import { formatPackQuantity } from '../lib/units.js';
+import { buyable } from '../lib/buyable.js';
 import { listStock, findByFood, addStock, updateStock, todayIso, defaultShelfLife } from '../data/pantry.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
@@ -71,10 +75,24 @@ function nameOf(line) {
   return (line.foods && line.foods.name) || 'Something';
 }
 
-function amountOf(line) {
-  if (line.qty_needed === null || line.qty_needed === undefined) return '';
-  return formatPackQuantity(line.qty_needed, line.unit, line.foods || null);
+/** What to pick up for this line: see lib/buyable.js. */
+export function buyOf(line) {
+  return buyable(line, shelfFor((line && line.foods) || {}));
 }
+
+function amountOf(line) {
+  const b = buyOf(line);
+  return b.kind === 'check' ? '' : b.text;
+}
+
+/** The line as bought: the whole thing goes into the pantry, not the fraction. */
+function asBought(line) {
+  const b = buyOf(line);
+  return { ...line, qty_needed: b.qty, unit: b.unit || line.unit };
+}
+
+/** Days a food keeps before the pantry starts asking; long-life is not asked for a date. */
+const LONG_LIFE_DAYS = 90;
 
 /**
  * The list as plain text, for sharing (3 Oct 2026): aisle headings in
@@ -85,12 +103,17 @@ export function listAsText(items, { title = 'Shopping list' } = {}) {
   const needed = (items || []).filter((i) => i.status === 'needed');
   if (needed.length === 0) return '';
   const lines = [title];
-  for (const group of groupByAisle(needed)) {
+  const toCheck = needed.filter((i) => buyOf(i).kind === 'check');
+  for (const group of groupByAisle(needed.filter((i) => buyOf(i).kind !== 'check'))) {
     lines.push('', shelfLabel(group.category));
     for (const line of group.lines) {
       const amount = amountOf(line);
       lines.push(`- ${nameOf(line)}${amount ? ` (${amount})` : ''}`);
     }
+  }
+  if (toCheck.length) {
+    lines.push('', 'Check the cupboard first');
+    for (const line of toCheck) lines.push(`- ${nameOf(line)}`);
   }
   return lines.join('\n');
 }
@@ -177,7 +200,7 @@ export function render(mountEl) {
       const result = await setStatus(line.id, 'bought');
       if (destroyed) return;
       if (!result.ok) { line.status = 'needed'; failed += 1; continue; }
-      if (!result.queued) await restockFromPurchase(line, line.foods || {});
+      if (!result.queued) await restockFromPurchase(asBought(line), line.foods || {});
       if (destroyed) return;
     }
     paint();
@@ -201,10 +224,12 @@ export function render(mountEl) {
     const bought = items.filter((i) => i.status === 'bought');
     const have = items.filter((i) => i.status === 'have');
     const total = needed.length + bought.length;
+    const toCheck = needed.filter((i) => buyOf(i).kind === 'check');
+    const toBuy = needed.filter((i) => buyOf(i).kind !== 'check');
 
     summary.textContent = total === 0
       ? 'Nothing to buy.'
-      : `${needed.length} to buy, ${bought.length} in the basket`;
+      : `${toBuy.length} to buy${toCheck.length ? `, ${toCheck.length} to check` : ''}, ${bought.length} in the basket`;
     progressFill.style.width = total ? `${Math.round((bought.length / total) * 100)}%` : '0%';
     allBtn.hidden = needed.length < 2;
 
@@ -217,11 +242,21 @@ export function render(mountEl) {
         : 'Tap Done shopping when you are finished.' }));
       listWrap.appendChild(empty);
     }
-    for (const group of groupByAisle(needed)) {
+    for (const group of groupByAisle(toBuy)) {
       const section = el('section', { class: 'shop-group', 'aria-labelledby': `aisle-${group.category}` });
       section.appendChild(el('h2', { id: `aisle-${group.category}`, class: 'shop-aisle', text: shelfLabel(group.category) }));
       const ul = el('ul', { class: 'shop-lines' });
       for (const line of group.lines) ul.appendChild(neededRow(line));
+      section.appendChild(ul);
+      listWrap.appendChild(section);
+    }
+    // Spoonfuls and staples: a question about the cupboard, not a quantity.
+    if (toCheck.length) {
+      const section = el('section', { class: 'shop-group shop-check-group', 'aria-labelledby': 'aisle-check' });
+      section.appendChild(el('h2', { id: 'aisle-check', class: 'shop-aisle', text: 'Check the cupboard' }));
+      section.appendChild(el('p', { class: 'field-hint shop-check-hint', text: 'Small amounts of things most kitchens keep. Have it if there is some; tick it if you buy one.' }));
+      const ul = el('ul', { class: 'shop-lines' });
+      for (const line of toCheck.sort((x, y) => nameOf(x).localeCompare(nameOf(y)))) ul.appendChild(neededRow(line));
       section.appendChild(ul);
       listWrap.appendChild(section);
     }
@@ -244,8 +279,9 @@ export function render(mountEl) {
     const box = el('input', { type: 'checkbox', id, class: 'shop-check' });
     const label = el('label', { for: id, class: 'shop-label' });
     label.appendChild(el('span', { class: 'shop-name', text: nameOf(line) }));
-    const amount = amountOf(line);
-    if (amount) label.appendChild(el('span', { class: 'shop-amount', text: amount }));
+    const b = buyOf(line);
+    if (b.kind !== 'check' && b.text) label.appendChild(el('span', { class: 'shop-amount', text: b.text }));
+    if (b.detail) label.appendChild(el('span', { class: 'shop-amount-detail', text: b.detail }));
     box.addEventListener('change', () => { if (box.checked) change(line, 'bought'); }, { signal });
     const have = el('button', { type: 'button', class: 'btn btn-small shop-have', text: 'Have it' });
     have.setAttribute('aria-label', `I already have ${nameOf(line).toLowerCase()}`);
@@ -282,6 +318,14 @@ export function render(mountEl) {
     // Leaving it blank is fine: the pantry estimates from how long this kind
     // of food keeps. Say what that estimate is, so blank is a choice.
     const keeps = defaultShelfLife(line.foods && line.foods.category);
+    // v7: tins, spices, oils and dried food keep for months. Asking for a
+    // date on chilli powder is work for nothing; say it keeps instead.
+    const longLife = (keeps && keeps >= LONG_LIFE_DAYS && !useBy.value) || buyOf(line).kind === 'check';
+    if (longLife) {
+      fields.append(el('p', { class: 'shop-putaway-kind', text: `Goes in the pantry under ${shelfLabel(shelfFor(line.foods || {}))}. Keeps for months, so no date needed.` }));
+      li.appendChild(fields);
+      return li;
+    }
     if (!useBy.value && keeps) {
       const est = new Date(Date.now() + keeps * 86400000)
         .toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -315,7 +359,7 @@ export function render(mountEl) {
     const created = await addStock({
       food_id: line.food_id,
       unit,
-      current_qty: line.qty_needed == null ? null : Number(line.qty_needed),
+      current_qty: asBought(line).qty_needed == null ? null : Number(asBought(line).qty_needed),
       last_restocked: todayIso(),
       shelf_life_days: defaultShelfLife(line.foods && line.foods.category),
       use_by: patch.use_by
@@ -363,7 +407,7 @@ export function render(mountEl) {
     // Bought means it is in the cupboard (Phase 11). Never for a queued
     // write: stock for a purchase the server has not heard of yet.
     if (next === 'bought' && before !== 'bought' && !result.queued) {
-      const done = await restockFromPurchase(line, line.foods || {});
+      const done = await restockFromPurchase(asBought(line), line.foods || {});
       if (destroyed) return;
       if (!done.ok) {
         showToast(`${nameOf(line)} is in the basket, but the pantry did not update.`);

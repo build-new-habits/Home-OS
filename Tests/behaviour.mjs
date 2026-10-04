@@ -1748,6 +1748,28 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
     typeof describeRecipeTime({ steps: [{ instruction: 'Chop it.' }] }) === 'string');
 }
 
+// ---- A list in things you buy (persona re-trace 3, 4 Oct 2026) ----
+{
+  const { buyable, roundUpNice } = await import(pathToFileURL(path.join(REPO, 'js/lib/buyable.js')).href);
+  const item = (qty, label, per, name = 'X') => ({ qty_needed: qty, unit: 'item', foods: { name, item_label: label, grams_per_item: per } });
+  eq('a quarter of a sweet potato is one sweet potato', buyable(item(0.25, 'sweet potato', 200), 'veg').text, '1 sweet potato');
+  eq('the recipe amount is kept as a detail', buyable(item(0.25, 'sweet potato', 200), 'veg').detail, 'Recipes use ¼ sweet potato');
+  eq('one and a half thighs is two', buyable(item(1.5, 'thigh', 90), 'meat').text, '2 thighs');
+  eq('what goes in the pantry is what you bought', buyable(item(1.5, 'thigh', 90), 'meat').qty, 2);
+  eq('garlic is bought by the bulb', buyable(item(0.75, 'clove', 5), 'veg').text, '1 bulb');
+  eq('810 g of tins is two tins, not three', buyable({ qty_needed: 810, unit: 'g', foods: { item_label: 'tin', grams_per_item: 400 } }, 'tinned').text, '2 tins');
+  eq('a spice is a question, not a quantity', buyable({ qty_needed: 0.6, unit: 'ml', foods: { name: 'Chilli powder' } }, 'spices').kind, 'check');
+  eq('stock is a cupboard check', buyable({ qty_needed: 100, unit: 'ml', foods: { name: 'Stock, chicken' } }, 'other').kind, 'check');
+  eq('a check line puts no amount in the pantry', buyable({ qty_needed: 3.8, unit: 'ml', foods: { name: 'Oil' } }, 'sauces').qty, null);
+  eq('a spoonful reads as spoons', buyable({ qty_needed: 3.8, unit: 'ml', foods: { name: 'Oil' } }, 'sauces').detail, 'Recipes use about 1 tsp');
+  eq('loose milk rounds up', buyable({ qty_needed: 330, unit: 'ml', foods: { name: 'Milk' } }, 'dairy').text, '350 ml');
+  eq('300 g of flour is real shopping', buyable({ qty_needed: 300, unit: 'g', foods: { name: 'Flour' } }, 'baking').kind, 'weigh');
+  eq('round up to a counter amount', roundUpNice(132), 150);
+  const { pluraliseLabel } = await import(pathToFileURL(path.join(REPO, 'js/lib/units.js')).href);
+  eq('sweet potatoes, not potatos', pluraliseLabel('sweet potato', 2), 'sweet potatoes');
+  eq('bunches', pluraliseLabel('bunch', 3), 'bunches');
+}
+
 console.log('');
 
 if (failures.length) {

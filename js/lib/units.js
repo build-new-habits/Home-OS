@@ -1,4 +1,5 @@
-// js/lib/units.js — 01 Sep 2026 v5
+// js/lib/units.js — 04 Oct 2026 v6
+// v6: plurals by the last word ("sweet potatoes"), -es after ch, sh and x.
 // v5 (worklist B1): packsFor() — grams also read as whole packs.
 // v4 (Phase 12): pack labels and household measures. formatQuantity() gains
 // an OPTIONAL third argument, the food, so it can say "4 tins (1.6 kg)"
@@ -225,7 +226,9 @@ const IRREGULAR_PLURALS = {
   box: 'boxes',
   bunch: 'bunches',
   dish: 'dishes',
-  glass: 'glasses'
+  glass: 'glasses',
+  mango: 'mangoes',
+  chilli: 'chillies'
 };
 
 export function pluraliseLabel(label, count) {
@@ -234,7 +237,16 @@ export function pluraliseLabel(label, count) {
   if (count === 1) return word;
   const lower = word.toLowerCase();
   if (IRREGULAR_PLURALS[lower]) return IRREGULAR_PLURALS[lower];
+  // 4 Oct 2026: the last word decides, so "sweet potato" becomes "sweet
+  // potatoes" rather than "sweet potatos" (persona re-trace 3).
+  const parts = word.split(/(\s+)/);
+  const last = parts[parts.length - 1];
+  const lastLower = last.toLowerCase();
+  if (parts.length > 1 && IRREGULAR_PLURALS[lastLower]) {
+    return parts.slice(0, -1).join('') + IRREGULAR_PLURALS[lastLower];
+  }
   if (lower.endsWith('s')) return word; // already plural, or a word like "greens"
+  if (/(ch|sh|x)$/.test(lower)) return `${word}es`;
   return `${word}s`;
 }
 
