@@ -1,4 +1,6 @@
-// service-worker.js — 04 Oct 2026 v114
+// service-worker.js — 04 Oct 2026 v115
+// v115: portions and pantry once (data/portions.js, data/pantryTaken.js, data/homeMade.js,
+// components/portionsControl.js, components/spareSheet.js). Shell v161.
 // v114: drinks — beer, wine, spirit, cocktail. Shell v160.
 // v113: lib/readAll.js — ingredients and foods past 1,000 rows. Shell v159.
 // v112: drinks (data/drinks.js, components/drinksQuickAdd.js). Shell v158.
@@ -257,7 +259,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v160';
+const CACHE_NAME = 'home-os-shell-v161';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './',
@@ -265,9 +267,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=160',
-  './css/base.css?v=160',
-  './css/components.css?v=160',
+  './css/tokens.css?v=161',
+  './css/base.css?v=161',
+  './css/components.css?v=161',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -305,6 +307,11 @@ const SHELL_FILES = [
   './js/components/eatenTick.js',
   './js/data/drinks.js',
   './js/lib/readAll.js',
+  './js/data/portions.js',
+  './js/data/pantryTaken.js',
+  './js/data/homeMade.js',
+  './js/components/portionsControl.js',
+  './js/components/spareSheet.js',
   './js/components/drinksQuickAdd.js',
   './js/data/water.js',
   './js/data/foods.js',

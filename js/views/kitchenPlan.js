@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v8
+// js/views/kitchenPlan.js — 04 Oct 2026 v9
+// v9: portions on each planned meal (− / + / For us / Double, freeze half),
+// sized to the household; Eaten takes from the pantry once.
 // v8: a Drinks row on the board and the list; its panel adds a drink in one
 // tap (data/drinks.js), and the day's nutrition counts them.
 // v7: an Eaten tick on each planned meal this week (data/eaten.js).
@@ -50,6 +52,8 @@ import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
 import { eatenTick } from '../components/eatenTick.js';
+import { portionsControl } from '../components/portionsControl.js';
+import { getHousehold } from '../data/household.js';
 import { isEaten } from '../data/eaten.js';
 import { courseOf, courseLabel, sortByCourse } from '../data/courses.js';
 import { loadAllRecipes } from '../data/recipeLibrary.js';
@@ -127,6 +131,7 @@ export function render(mountEl, { week = 'this' } = {}) {
   let meals = [];
   let ingredientsByMeal = new Map();
   let libraryCourse = new Map(); // library slug -> course
+  let members = []; // household, for portions
   let sel = { day: todayValue || 'mon', slot: 'dinner' };
 
   // ---------------------------------------------------------------- shell
@@ -476,12 +481,19 @@ export function render(mountEl, { week = 'this' } = {}) {
         const text = el('span', { class: 'plan-detail-text' });
         text.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'A meal' }));
         if (showCourses) text.appendChild(el('span', { class: 'plan-detail-course', text: courseLabel(courseFor(entry)) }));
-        text.appendChild(el('span', { class: 'field-hint', text: isLeftover(entry)
-          ? `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.`
-          : `Serves ${servesFor(entry)}` }));
+        if (isLeftover(entry)) {
+          text.appendChild(el('span', { class: 'field-hint', text: `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.` }));
+        }
         li.appendChild(text);
+        if (!isLeftover(entry)) li.appendChild(portionsControl(entry, { members, signal }));
         // Eaten (4 Oct 2026): this week only; next week has not happened.
-        if (week === 'this') li.appendChild(eatenTick(entry, { signal, onChange: () => paintBoard() }));
+        if (week === 'this') {
+          li.appendChild(eatenTick(entry, {
+            signal, members, entries, weekStart,
+            onChange: () => paintBoard(),
+            onLeftovers: (row) => { entries = [...entries, row]; refreshAfterChange(`Leftovers of ${(entry.meals && entry.meals.name) || 'the meal'} planned.`); }
+          }));
+        }
         if (leftoversReady() && !isLeftover(entry)) {
           const lo = el('button', { type: 'button', class: 'btn btn-quiet btn-small', text: 'Plan leftovers', 'aria-haspopup': 'dialog' });
           lo.setAttribute('aria-label', `Plan the leftovers of ${(entry.meals && entry.meals.name) || 'this meal'}`);
@@ -607,8 +619,9 @@ export function render(mountEl, { week = 'this' } = {}) {
   paintDetail();
 
   (async () => {
-    const [plan, mealList, ingredients] = await Promise.all([listPlan(weekStart), listMeals(), listIngredients()]);
+    const [plan, mealList, ingredients, household] = await Promise.all([listPlan(weekStart), listMeals(), listIngredients(), getHousehold().catch(() => null)]);
     if (destroyed) return;
+    members = household && household.ok ? ((household.data && household.data.members) || []) : [];
     entries = plan.ok ? (plan.data || []) : [];
     meals = mealList.ok ? (mealList.data || []) : [];
     ingredientsByMeal = ingredients.ok ? groupByMeal(ingredients.data) : new Map();

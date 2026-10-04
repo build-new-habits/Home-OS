@@ -1,4 +1,7 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v7
+// js/views/kitchenToday.js — 04 Oct 2026 v8
+// v8: portions — the next meal says how many it makes, with − and + and
+// "Double, freeze half"; Eaten and We cooked it take from the pantry once,
+// between them (data/pantryTaken.js), and spare portions are offered to the freezer.
 // v7: Drinks today — one tap per drink (data/drinks.js), counted in nutrition.
 // v6: an Eaten tick on each of today's meals; nutrition eaten so far beside
 // the day as planned; "Take them out" after cooking ticks the meal too.
@@ -29,6 +32,12 @@
 import { el } from '../lib/dom.js';
 import { todayIso } from '../lib/dates.js';
 import { listPlan, servesFor, isLeftover, leftoversReady } from '../data/mealPlan.js';
+import { getHousehold } from '../data/household.js';
+import { portionsControl } from '../components/portionsControl.js';
+import { eatenTick } from '../components/eatenTick.js';
+import { wasTaken, planForEntry, takeForEntry, markTaken } from '../data/pantryTaken.js';
+import { sparePortions } from '../data/portions.js';
+import { openSpareSheet } from '../components/spareSheet.js';
 import { openLeftoverSheet } from '../components/leftoverSheet.js';
 import { nextWeekStart, thisWeekStart } from '../lib/weeks.js';
 import { listDrinks, drinkNutritionItems } from '../data/drinks.js';
@@ -39,7 +48,7 @@ import { recipePhoto } from '../components/recipePhoto.js';
 import { listIngredients, groupByMeal, computeMacros } from '../data/meals.js';
 import { dayNutrition } from '../data/nutrition.js';
 import { listStock, useSoon, describeFreshness } from '../data/pantry.js';
-import { planDepletion, applyDepletion, describeDepletion } from '../data/restock.js';
+import { describeDepletion } from '../data/restock.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { showToast } from '../components/toast.js';
 import { announce } from '../lib/a11y.js';
@@ -49,7 +58,6 @@ import { nutritionBars } from '../components/nutritionBars.js';
 import { openItemSheet } from '../components/itemSheet.js';
 import { dashboardLinks, FIRST_RUN_ACTION } from '../navConfig.js';
 import { getState } from '../lib/store.js';
-import { eatenTick } from '../components/eatenTick.js';
 import { eatenOf, setEaten } from '../data/eaten.js';
 
 const DAY_VALUES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -186,9 +194,11 @@ export function render(mountEl) {
   // ---------------------------------------------------------------- data
 
   let weekEntries = [];
+  let members = [];
   async function loadMeals() {
-    const [plan, ingredients] = await Promise.all([listPlan(), listIngredients()]);
+    const [plan, ingredients, household] = await Promise.all([listPlan(), listIngredients(), getHousehold().catch(() => null)]);
     if (destroyed) return;
+    members = household && household.ok ? ((household.data && household.data.members) || []) : [];
     weekEntries = plan.ok ? (plan.data || []) : [];
     const entries = weekEntries.filter((e) => e.day_of_week === dayValue);
     const next = pickNext(entries, now);
@@ -326,10 +336,11 @@ export function render(mountEl) {
       }).catch(() => {});
     }
     const facts = el('ul', { class: 'today-next-facts' });
-    facts.appendChild(el('li', { text: isLeftover(entry) ? 'Leftovers' : `Serves ${servesFor(entry)}` }));
+    if (isLeftover(entry)) facts.appendChild(el('li', { text: `Leftovers, ${servesFor(entry)}` }));
     for (const tag of meal.dietary_tags || []) facts.appendChild(el('li', { text: tag.replace(/_/g, ' ') }));
     card.appendChild(facts);
-    card.appendChild(eatenTick(entry, { signal: controller.signal, onChange: paintNutrition }));
+    if (!isLeftover(entry)) card.appendChild(portionsControl(entry, { members, signal: controller.signal }));
+    card.appendChild(eatenTick(entry, tickOptions()));
     const buttons = el('div', { class: 'today-next-buttons' });
     buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
     const cooked = el('button', { type: 'button', class: 'btn today-next-cooked', text: 'We cooked it', 'aria-haspopup': 'dialog' });
@@ -351,17 +362,42 @@ export function render(mountEl) {
    * Cooking is the one moment the app knows what left the cupboard. Offer to
    * take it out, show exactly what will change, and never do it silently.
    */
+  function tickOptions() {
+    return {
+      signal: controller.signal, members, entries: weekEntries,
+      onChange: () => { paintNutrition(); loadUseSoon(); },
+      onLeftovers: () => { if (!destroyed) loadMeals(); }
+    };
+  }
+
   async function offerDepletion(entry, returnFocusTo) {
     const meal = entry.meals || {};
-    const [ings, stock] = await Promise.all([listIngredients(entry.meal_id), listStock()]);
+    if (wasTaken(entry.id)) {
+      const words = `${meal.name || 'It'} has already come out of the pantry.`;
+      showToast(words);
+      announce(words);
+      return;
+    }
+    const plan = await planForEntry(entry, members);
     if (destroyed) return;
-    if (!ings.ok || !stock.ok) { showToast('The pantry could not be read. Try again.'); return; }
-    const scale = servesFor(entry) / (meal.default_serves || 1);
-    const changes = planDepletion(ings.data || [], stock.data || [], scale);
+    if (!plan.ok) { showToast('The pantry could not be read. Try again.'); return; }
+    const changes = plan.data;
+    const afterwards = async () => {
+      await setEaten(entry, true);
+      if (destroyed) return;
+      const box = nextWrap.querySelector('.eaten-tick input');
+      if (box) box.checked = true;
+      paintNutrition();
+      loadUseSoon();
+      const spare = sparePortions(entry, members);
+      if (spare > 0) openSpareSheet({ entry, spare, entries: weekEntries, returnFocusTo, onLeftovers: () => { if (!destroyed) loadMeals(); } });
+    };
     if (changes.length === 0) {
+      markTaken(entry);
       const words = `Enjoy ${meal.name || 'it'}. Nothing it uses is tracked in the pantry.`;
       showToast(words);
       announce(words);
+      await afterwards();
       return;
     }
     openDetailSheet({
@@ -383,20 +419,13 @@ export function render(mountEl) {
         const no = el('button', { type: 'button', class: 'btn', text: 'Not this time' });
         yes.addEventListener('click', async () => {
           yes.disabled = true;
-          const done = await applyDepletion(changes);
+          const done = await takeForEntry(entry, changes);
           if (!done.ok) { yes.disabled = false; showToast('That did not save. Try again.'); return; }
           api.close();
-          // Cooked and taken out of the pantry: ticked as eaten too.
-          await setEaten(entry, true);
-          if (!destroyed) {
-            const box = nextWrap.querySelector('.eaten-tick input');
-            if (box) box.checked = true;
-            paintNutrition();
-          }
           const words = `Pantry updated: ${done.applied} thing${done.applied === 1 ? '' : 's'}.`;
           showToast(words);
           announce(words);
-          if (!destroyed) loadUseSoon();
+          await afterwards();
         });
         no.addEventListener('click', () => api.close());
         row.append(yes, no);
@@ -427,7 +456,7 @@ export function render(mountEl) {
         for (const entry of here) {
           const one = el('span', { class: 'today-meal-entry' });
           one.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
-          one.appendChild(eatenTick(entry, { signal: controller.signal, onChange: paintNutrition }));
+          one.appendChild(eatenTick(entry, tickOptions()));
           names.appendChild(one);
         }
         text.appendChild(names);

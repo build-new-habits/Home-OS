@@ -580,6 +580,28 @@ check('the library is not empty', count > 100, `${count}`);
   check('an error is passed on, not thrown', bad.ok === false);
 }
 
+// ---- Portions (04 Oct 2026) --------------------------------------------
+{
+  const po = await import(`${REPO}/js/data/portions.js`);
+  const { pruneTaken } = await import(`${REPO}/js/data/pantryTaken.js`);
+  const { homeMadeName } = await import(`${REPO}/js/data/homeMade.js`);
+  const two = [{ id: 'a', portion_factor: 1 }, { id: 'b', portion_factor: 1 }];
+  const meal = { name: 'Lentil ragu', default_serves: 4 };
+  const entry = { id: 'e1', serves_override: null, member_ids: [], meals: meal };
+  eq('a recipe for four makes two for a household of two', po.entryPortions(entry, two), 2);
+  eq('with no household it makes what the recipe says', po.entryPortions(entry, []), 4);
+  eq('nothing is spare when it is made for us', po.sparePortions(entry, two), 0);
+  eq('doubled for two, two are spare', po.sparePortions({ ...entry, serves_override: 4 }, two), 2);
+  eq('just for one of us, one portion', po.entryPortions({ ...entry, member_ids: ['a'] }, two), 1);
+  eq('leftovers are never spare', po.sparePortions({ ...entry, serves_override: 4, is_leftover: true }, two), 0);
+  eq('choices: for us, double, as the recipe', po.portionChoices(entry, two).map((c) => c.value).join(','), '2,4');
+  eq('a household of one is just for me', po.portionChoices(entry, [two[0]])[0].label, 'Just for me (1)');
+  eq('the recipe size is offered when it differs', po.portionChoices({ ...entry, meals: { ...meal, default_serves: 6 } }, two).map((c) => c.value).join(','), '2,4,6');
+  eq('freezer food is named as home-made once', homeMadeName('Lentil ragu (home-made)'), 'Lentil ragu (home-made)');
+  const now = Date.parse('2026-10-04T12:00:00Z');
+  eq('old pantry records are forgotten', Object.keys(pruneTaken({ a: { at: '2026-10-01T00:00:00Z' }, b: { at: '2026-08-01T00:00:00Z' } }, now)).join(','), 'a');
+}
+
 console.log('');
 if (failures.length) {
   console.log(`NUTRITION GATE FAILED — ${failures.length} of ${pass + failures.length}`);

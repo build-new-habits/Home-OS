@@ -1,4 +1,5 @@
-// js/components/leftoverSheet.js — 03 Oct 2026 v1
+// js/components/leftoverSheet.js — 04 Oct 2026 v2
+// v2: `portions` prefills how many are left over (spare portions after cooking).
 // Kitchen rebuild. "Plan the leftovers": put what is left of a meal onto
 // a later lunch or dinner this week, in one tap.
 //
@@ -28,9 +29,9 @@ export function targetLabel(target) {
 
 /**
  * @param {{ entry: object, entries: object[], weekStart: string,
- *           returnFocusTo?: Element, onAdded?: (row: object) => void }} opts
+ *           returnFocusTo?: Element, onAdded?: (row: object) => void, portions?: number }} opts
  */
-export function openLeftoverSheet({ entry, entries = [], weekStart, returnFocusTo, onAdded }) {
+export function openLeftoverSheet({ entry, entries = [], weekStart, returnFocusTo, onAdded, portions: spare = 2 }) {
   const meal = entry.meals || {};
   const name = meal.name || 'This meal';
   const targets = leftoverTargets(entries, entry);
@@ -47,7 +48,7 @@ export function openLeftoverSheet({ entry, entries = [], weekStart, returnFocusT
         return;
       }
       const portions = el('input', { type: 'number', id: 'leftover-portions', min: '1', max: '12', step: '1', inputmode: 'numeric' });
-      portions.value = '2';
+      portions.value = String(Math.max(1, Math.min(12, Math.round(Number(spare) || 2))));
       const field = el('div', { class: 'field' });
       field.append(el('label', { for: 'leftover-portions', text: 'Portions left over' }), portions);
       body.appendChild(field);
