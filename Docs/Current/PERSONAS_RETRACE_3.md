@@ -420,3 +420,21 @@ way stayed empty forever, because every later add reused the empty meal.
 Reproduced in the browser with both faults and a 20-row server cap: Today
 went from "no ingredients" to 1,482 kcal planned, ticking the ragu added
 572, and an IPA added 245.
+
+### Fix — recipes would not add; fish and chips at 18 kcal (4 Oct, 18:00)
+- **display_text.** The household-library migration of 13 Sep made
+  meal_ingredients.display_text NOT NULL outside the repo. No app code sent
+  it, so every ingredient insert failed and library adds left empty meals
+  (the real cause of the morning's missing nutrition). Every insert now
+  sends display_text and sort_order; a behaviour check guards it; schema.md
+  revision 26 records the columns.
+- **The UK food tables.** data/cofid.json is CoFID 2019 (McCance and
+  Widdowson, Public Health England, Open Government Licence): 2,877 foods
+  with energy, protein, fat, carbohydrate, fibre and sugars per 100 g,
+  shipped with the app and searchable offline (data/cofid.js). A recipe page
+  with anything uncounted shows **Make these count**, one Find nutrition
+  button per food; the recipe editor does the same under its live preview.
+  A match is only ever saved by a tap (source 'reference'), asks how much
+  one weighs when the recipe counts in items, and applies everywhere the
+  food is used. Fibre picked this way is kept on the phone until
+  foods.fibre_g exists (026).

@@ -171,7 +171,10 @@ async function fibreFromReference(rows = []) {
   try {
     const { lookup } = await import('./foodReference.js');
     const seen = new Map();
+    const { rememberedFibre } = await import('./cofid.js');
     for (const row of missing) {
+      const picked = rememberedFibre(row.foods.id);
+      if (picked !== null) { row.foods.fibre_g = picked; continue; }
       const name = row.foods.name;
       if (!seen.has(name)) seen.set(name, await lookup(name));
       const entry = seen.get(name);

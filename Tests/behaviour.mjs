@@ -1900,6 +1900,22 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('an ingredient with no amount is its name', ingredientLine(null, 'g', { name: 'Salt' }), 'Salt');
 }
 
+// ---- The UK food tables (CoFID), 4 Oct 2026 ----
+{
+  const C = await import(pathToFileURL(path.join(REPO, 'js/data/cofid.js')).href);
+  const doc = JSON.parse(readFileSync(path.join(REPO, 'data/cofid.json'), 'utf8'));
+  check('the food tables ship with thousands of foods', doc.foods.length > 2500, String(doc.foods.length));
+  check('the licence travels with the data', /Open Government Licence/.test(doc.licence));
+  const foods = C.indexFoods(doc.foods);
+  const first = (q) => (C.searchFoods(foods, q, 1)[0] || {}).name || '';
+  check('"Chips" finds potato chips', /^Potato chips/.test(first('Chips')), first('Chips'));
+  check('"Frozen peas" finds frozen peas', /^Peas, frozen/.test(first('Frozen peas')), first('Frozen peas'));
+  check('"Breaded fish" finds fish in crumbs', /crumbs/i.test(first('Breaded Fish')), first('Breaded Fish'));
+  check('brands and pack sizes are ignored', /Mayonnaise/.test(first("Hellmann's Light Mayonnaise")), first("Hellmann's Light Mayonnaise"));
+  check('"courgette" finds raw courgette', /^Courgette, raw/.test(first('courgette')), first('courgette'));
+  eq('nothing typed, nothing found', C.searchFoods(foods, '   ').length, 0);
+}
+
 console.log('');
 
 if (failures.length) {

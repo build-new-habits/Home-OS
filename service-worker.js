@@ -1,4 +1,5 @@
-// service-worker.js — 04 Oct 2026 v124
+// service-worker.js — 04 Oct 2026 v125
+// v125: Find nutrition from the UK food tables (data/cofid.js, data/cofid.json, components/nutritionFinder.js). Shell v171.
 // v124: every ingredient row sends display_text and sort_order (live columns from 13 Sep). Shell v170.
 // v123: nutrition and the list read only the planned meals' ingredients and repair library meals left empty (data/plannedIngredients.js); readAll survives smaller caps; typed drinks counted. Shell v169.
 // v122: Try it on this phone (lib/localClient.js). Shell v168.
@@ -268,9 +269,12 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v170';
+const CACHE_NAME = 'home-os-shell-v171';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './data/cofid.json',
+  './js/components/nutritionFinder.js',
+  './js/data/cofid.js',
   './js/data/plannedIngredients.js',
   './js/lib/localClient.js',
   './js/lib/oven.js',
@@ -282,9 +286,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=170',
-  './css/base.css?v=170',
-  './css/components.css?v=170',
+  './css/tokens.css?v=171',
+  './css/base.css?v=171',
+  './css/components.css?v=171',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

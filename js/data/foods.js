@@ -1,4 +1,5 @@
-// js/data/foods.js — 04 Oct 2026 v6
+// js/data/foods.js — 04 Oct 2026 v7
+// v7: foods can be given source 'reference' (figures from the UK food tables).
 // v6: listFoods reads every page (lib/readAll.js).
 // v3: `category` is now written and read. Revision 3 added the column but
 // nothing set it, so every food defaulted to food_ambient and the value was
@@ -203,7 +204,7 @@ function buildFoodPayload(input = {}) {
     // A CHECK-constrained column: an invalid value comes back as an opaque
     // database error, so it is normalised here rather than sent through.
     category: isValidCategory(input.category) ? input.category : 'food_ambient',
-    source: source === 'openfoodfacts' ? 'openfoodfacts' : 'manual'
+    source: ['openfoodfacts', 'reference'].includes(source) ? source : 'manual'
   };
   for (const field of MACRO_FIELDS) {
     const raw = { calories_per_100g, protein_g, fat_g, carbs_g }[field];
@@ -286,6 +287,8 @@ export async function updateFood(foodId, patch) {
     }
     next.category = patch.category;
   }
+  // 4 Oct 2026: figures picked from the UK food tables are 'reference'.
+  if (['manual', 'openfoodfacts', 'reference'].includes(patch.source)) next.source = patch.source;
   for (const field of MACRO_FIELDS) {
     if (patch[field] === undefined) continue;
     if (patch[field] === null || patch[field] === '') {

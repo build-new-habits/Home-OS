@@ -1,4 +1,5 @@
-// js/views/recipe.js — 04 Oct 2026 v15
+// js/views/recipe.js — 04 Oct 2026 v16
+// v16: Make these count — find nutrition for any ingredient that could not be counted.
 // v15: oven temperatures read with fan and gas (lib/oven.js).
 // v14: counted ingredients name themselves ("2 | Anchovy fillets").
 // v13: servings start at your household's size.
@@ -70,6 +71,7 @@ import { loadImages } from '../data/recipeImages.js';
 import { DIETS, dietsFor, switchRecipe, dietFromHash } from '../data/dietSwitch.js';
 import { recipePhoto } from '../components/recipePhoto.js';
 import { ovenWords } from '../lib/oven.js';
+import { openNutritionFinder } from '../components/nutritionFinder.js';
 
 const SLOT_WORDS = {
   breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', drink: 'Drink'
@@ -127,6 +129,28 @@ export function ownMealAsRecipe(meal, ingredientRows = [], stepRows = []) {
     }))
   };
   return { recipe, refMap };
+}
+
+/**
+ * Ingredients the nutrition could not count, one per food (4 Oct 2026):
+ * no figures at all, or counted in items or millilitres with no weight.
+ */
+export function uncountedFoods(recipe, refMap) {
+  const out = [];
+  const seen = new Set();
+  for (const ing of (recipe && recipe.ingredients) || []) {
+    if (!(Number(ing.quantity) > 0)) continue;
+    const food = refMap.get(ing.ref) || { name: ing.name || ing.ref };
+    const noFigures = food.calories_per_100g === null || food.calories_per_100g === undefined;
+    const noWeight = (ing.unit === 'item' && !(Number(food.grams_per_item) > 0))
+      || (ing.unit === 'ml' && !(Number(food.grams_per_ml) > 0));
+    if (!noFigures && !noWeight) continue;
+    const key = food.id || food.name;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ food, unit: ing.unit });
+  }
+  return out;
 }
 
 export function slugFromHash(hash) {
@@ -562,7 +586,13 @@ export function render(mountEl) {
     }, { signal });
 
     // ---- Nutrition -------------------------------------------------------
-    {
+    // v (4 Oct 2026): anything that could not be counted gets a "Find
+    // nutrition" button (components/nutritionFinder.js, the UK food tables),
+    // and the figures repaint the moment one is found.
+    const nutritionWrap = el('div', { class: 'recipe-nutrition-wrap' });
+    body.appendChild(nutritionWrap);
+    const paintNutrition = (focusAfter = null) => {
+      nutritionWrap.replaceChildren();
       // Unmeasured things on a phone recipe ("salt") are listed, not counted.
       const result = recipeNutrition(kept ? measuredOnly(recipe) : recipe, refMap);
       let note = 'An estimate, from published averages for each ingredient. '
@@ -570,11 +600,41 @@ export function render(mountEl) {
       if (result.incompleteCount > 0) {
         note += ` ${result.incompleteNames.join(', ')} could not be counted, so the real figures are higher.`;
       }
-      body.appendChild(nutritionBars({
+      nutritionWrap.appendChild(nutritionBars({
         id: 'recipe-nutrition-h', title: 'Nutrition per serving',
         totals: result.perServing, complete: result.complete, note
       }));
-    }
+      const missing = uncountedFoods(kept ? measuredOnly(recipe) : recipe, refMap);
+      if (missing.length && (ownMeal || kept)) {
+        const fix = el('section', { class: 'recipe-fix-nutrition', 'aria-labelledby': 'recipe-fix-h' });
+        fix.appendChild(el('h3', { id: 'recipe-fix-h', text: 'Make these count' }));
+        fix.appendChild(el('p', { class: 'field-hint', text: 'Look each one up in the UK food tables and the figures above include it, here and everywhere it is used.' }));
+        const ul = el('ul', { class: 'recipe-fix-list' });
+        missing.forEach((m, i) => {
+          const b = el('button', { type: 'button', class: 'btn btn-small recipe-fix-btn', text: `Find nutrition for ${m.food.name}`, 'aria-haspopup': 'dialog' });
+          b.id = `recipe-fix-${i}`;
+          b.addEventListener('click', () => openNutritionFinder({
+            name: m.food.name, foodId: m.food.id || null, unit: m.unit,
+            itemLabel: m.food.item_label || null, gramsPerItem: m.food.grams_per_item, gramsPerMl: m.food.grams_per_ml,
+            returnFocusTo: b,
+            onSaved: (food) => {
+              for (const [key, f] of refMap) if (f === m.food || (f && food.id && f.id === food.id)) refMap.set(key, { ...f, ...food });
+              paintNutrition('recipe-fix-0');
+            }
+          }), { signal });
+          const li = el('li');
+          li.appendChild(b);
+          ul.appendChild(li);
+        });
+        fix.appendChild(ul);
+        nutritionWrap.appendChild(fix);
+      }
+      if (focusAfter) {
+        const next = document.getElementById(focusAfter) || document.getElementById('recipe-nutrition-h');
+        if (next) { if (!next.hasAttribute('tabindex') && next.tagName.startsWith('H')) next.setAttribute('tabindex', '-1'); next.focus(); }
+      }
+    };
+    paintNutrition();
 
     // ---- Ingredients, scaled --------------------------------------------
     const ingSection = el('section', { class: 'recipe-page-section', 'aria-labelledby': 'recipe-ing-h' });

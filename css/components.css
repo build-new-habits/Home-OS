@@ -1,4 +1,5 @@
-/* css/components.css — 04 Oct 2026 v94 */
+/* css/components.css — 04 Oct 2026 v95 */
+/* v95: Find nutrition (the UK food tables) (4 Oct). */
 /* v94: Try it on this phone (4 Oct). */
 /* v93: Today portions line; More drinks (4 Oct). */
 /* v92: first run asks who you cook for (4 Oct). */
@@ -4270,6 +4271,19 @@ body.sheet-open {
   padding: var(--space-1) var(--space-3);
   font-size: var(--text-sm);
 }
+.recipe-fix-nutrition { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
+.recipe-fix-nutrition h3 { margin: 0 0 var(--space-2); font-size: var(--text-lg); }
+.recipe-fix-list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.recipe-fix-btn { min-height: var(--tap-min); text-align: left; }
+.recipe-nutrition-wrap { display: block; }
+.own-fix-list { margin-bottom: var(--space-3); }
+.nf-results { list-style: none; margin: var(--space-2) 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.nf-match { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15em; width: 100%; text-align: left; min-height: var(--tap-min); padding: var(--space-3); }
+.nf-name { font-weight: 600; }
+.nf-figures { font-size: var(--text-sm); }
+.nf-group { font-size: var(--text-sm); color: var(--color-text-muted); }
+.nf-count { margin: var(--space-2) 0 0; }
+.nf-credit { margin-top: var(--space-3); }
 .signin-trial { margin: var(--space-4) 0 var(--space-5); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
 .signin-trial-title, .signin-have-title { font-family: var(--font-display); font-size: var(--text-lg); margin: 0 0 var(--space-2); }
 .settings-trial { margin: 0 0 var(--space-3); }

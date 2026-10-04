@@ -1,4 +1,5 @@
-// js/views/recipeEditor.js — 03 Oct 2026 v3
+// js/views/recipeEditor.js — 04 Oct 2026 v4
+// v4: Find nutrition for any ingredient not counted (the UK food tables).
 // v3: Save on this phone (no account needed); ?l=<id> changes a phone recipe;
 // ?from=<slug> starts your own version of a library recipe.
 // v2: Course (starter, main, pudding) beside Kind of meal.
@@ -40,6 +41,7 @@ import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { nutritionBars } from '../components/nutritionBars.js';
+import { openNutritionFinder } from '../components/nutritionFinder.js';
 import { referenceBySlug } from '../data/foodReference.js';
 import { listFoods } from '../data/foods.js';
 import { listStock } from '../data/pantry.js';
@@ -52,7 +54,7 @@ import {
   emptyDraft, newIngredient, newSwap, newStep,
   parseIngredientLine, parseMethod, stepHint,
   buildNameIndex, resolveName, draftToRecipe, unknownNutrition, measuredOnly,
-  validateDraft, draftFromMeal, saveDraft
+  validateDraft, draftFromMeal, saveDraft, normalise
 } from '../data/ownRecipe.js';
 
 const DRAFT_KEY = 'home-os-own-recipe-draft';
@@ -596,6 +598,39 @@ export function render(mountEl) {
         id: 'own-nutrition-h', title: 'Per serving', headingLevel: 'h3',
         totals: result.perServing, complete: result.complete, note: noteText
       }));
+      // 4 Oct 2026: look up anything not counted in the UK food tables,
+      // rather than leave the recipe as a guess.
+      if (unknown.length) {
+        const ul = el('ul', { class: 'recipe-fix-list own-fix-list' });
+        unknown.forEach((name, i) => {
+          const hit = resolveName(name, index);
+          const row = (draft.ingredients || []).find((r) => String(r.name || '').trim() === name) || {};
+          const unit = row.unit === 'tsp' || row.unit === 'tbsp' ? 'ml' : (row.unit || 'g');
+          const entry = (hit && hit.entry) || {};
+          const b = el('button', { type: 'button', class: 'btn btn-small recipe-fix-btn', text: `Find nutrition for ${name}`, 'aria-haspopup': 'dialog' });
+          b.id = `own-fix-${i}`;
+          b.addEventListener('click', () => openNutritionFinder({
+            name,
+            foodId: (hit && hit.foodId) || null,
+            unit,
+            itemLabel: entry.item_label || null,
+            gramsPerItem: entry.grams_per_item,
+            gramsPerMl: entry.grams_per_ml,
+            returnFocusTo: b,
+            onSaved: (food) => {
+              const key = normalise(name);
+              index.byName.set(key, { key: `food-${food.id}`, foodId: food.id, entry: { ...entry, ...food, name: food.name || name } });
+              paintPreview();
+              const next = document.getElementById('own-fix-0') || document.getElementById('own-nutrition-h');
+              if (next) next.focus();
+            }
+          }));
+          const li = el('li');
+          li.appendChild(b);
+          ul.appendChild(li);
+        });
+        previewBody.appendChild(ul);
+      }
     }
 
     function changed() {
