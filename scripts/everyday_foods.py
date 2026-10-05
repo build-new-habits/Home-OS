@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-# scripts/everyday_foods.py — 04 Oct 2026 v2
+# scripts/everyday_foods.py — 05 Oct 2026 v3
+# v3: things for a picky plate (crudités, dips, nibbles): mangetout, sugar
+# snaps, baby corn, radishes, dips, breadsticks, crackers, oatcakes, pickles.
 # v2: grab-and-go lunches — the sandwiches, wraps, bakes, salads and pots
 # sold by sandwich shops, cafés and supermarkets, generic (no shop names),
 # typical UK label averages; and a frozen mini deep-dish cheese pizza.
@@ -219,6 +221,20 @@ ITEMS = [
     ('salad-prawn-layered', 'Prawn layered salad', F, ['prawn salad', 'prawn cocktail salad'], (130, 5.0, 7.0, 11.0, 1.5), 'salad', 220, 220),
     ('sushi-selection', 'Sushi selection', F, ['sushi selection', 'sushi pack', 'california rolls', 'maki rolls'], (150, 5.0, 2.0, 28.0, 1.0), 'selection', 200, 200),
     ('pizza-mini-deep-cheese', 'Mini deep-dish cheese pizza', FR, ['chicago mini pizza', 'chicago pizza', 'chicago style pizza', 'mini deep dish pizza', 'mini deep pan pizza', 'mini cheese pizza', 'deep dish pizza', 'four cheese mini pizza'], (250, 10.0, 10.5, 28.0, 2.0), 'pizza', 155, 155),
+    # Picky plates and crudités (5 Oct 2026, v3), for Make a plate.
+    ('mangetout', 'Mangetout', F, ['mangetout', 'mange tout', 'mange-tout', 'snow peas'], 'Peas, mange-tout, raw', None, None, 80),
+    ('sugar-snap-peas', 'Sugar snap peas', F, ['sugar snap peas', 'sugar snaps', 'sugarsnap peas', 'snap peas'], 'Peas, sugar-snap, raw', None, None, 80),
+    ('baby-corn', 'Baby corn', F, ['baby corn', 'baby sweetcorn', 'baby corns', 'mini corn', 'sugar baby corn'], 'Sweetcorn, baby, boiled in unsalted water', 'cob', 10, 80),
+    ('radish', 'Radishes', F, ['radish', 'radishes'], 'Radish, red, flesh and skin, raw', 'radish', 8, 40),
+    ('tzatziki', 'Tzatziki', F, ['tzatziki'], 'Tzatziki', None, None, 30),
+    ('guacamole', 'Guacamole', F, ['guacamole', 'guac'], 'Guacamole, homemade', None, None, 30),
+    ('salsa-dip', 'Tomato salsa', A, ['salsa', 'tomato salsa', 'salsa dip'], (45, 1.2, 0.3, 8.5, 1.5), None, None, 30),
+    ('breadsticks', 'Breadsticks', A, ['breadsticks', 'breadstick', 'grissini'], 'Breadsticks, plain', 'breadstick', 5, 20),
+    ('cream-crackers', 'Crackers', A, ['crackers', 'cracker', 'cream crackers'], 'Cream crackers', 'cracker', 8, 24),
+    ('oatcakes', 'Oatcakes', A, ['oatcakes', 'oatcake'], 'Oatcakes, plain, retail', 'oatcake', 10, 20),
+    ('gherkins', 'Gherkins', A, ['gherkins', 'gherkin', 'cornichons', 'pickled gherkins'], 'Gherkins, pickled, drained', 'gherkin', 15, 30),
+    ('pickled-onions', 'Pickled onions', A, ['pickled onions', 'silverskin onions'], 'Onions, pickled, drained', 'onion', 10, 30),
+    ('mini-cheese', 'Mini cheese', F, ['mini cheese', 'mini cheeses', 'snack cheese', 'cheese bites', 'mini edam'], 'Cheese, Edam', 'cheese', 20, 20),
     ('quorn-pieces', 'Mycoprotein pieces', FR, ['mycoprotein pieces', 'mycoprotein'], 'Quorn, pieces, as purchased', None, None, 100),
     # Plant-based and protein foods (4 Oct 2026, v2): typical UK label averages.
     ('plant-chicken-pieces', 'Plant-based chicken-style pieces', FR, ['fake chicken', 'vegan chicken', 'vegetarian chicken', 'meat-free chicken', 'meat free chicken', 'plant-based chicken', 'chicken-style pieces', 'no chicken pieces'], (180, 20.0, 7.0, 6.0, 5.0), None, None, 100),

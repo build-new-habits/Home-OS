@@ -1970,6 +1970,40 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   check('a product with no energy is not offered', FS.fromProduct({ product_name: 'Mystery', nutriments: {} }) === null);
 }
 
+// ---- Make a plate (5 Oct 2026) ----
+{
+  const P = await import(pathToFileURL(path.join(REPO, 'js/data/plate.js')).href);
+  const N = await import(pathToFileURL(path.join(REPO, 'js/data/nutrition.js')).href);
+  const foods = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+  const refMap = new Map(foods.map((f) => [f.slug, f]));
+  const missing = P.PLATE_GROUPS.flatMap((g) => g.items).filter((i) => !refMap.has(i.ref)).map((i) => i.ref);
+  eq('every plate item is a known food', missing.join(','), '');
+  const items = P.plateItems();
+  eq('two carrots', P.amountWords(items.get('carrot-medium'), 2), '2 carrots');
+  eq('a portion of hummus in spoons', P.amountWords(items.get('hummus'), 1), '2 tablespoons (30 g)');
+  eq('two portions of hummus in grams', P.amountWords(items.get('hummus'), 2), '60 g');
+  eq('radishes', P.amountWords(items.get('radish'), 1), '4 radishes');
+  const picked = [
+    { item: items.get('eggs-boiled'), portions: 2 },
+    { item: items.get('carrot-medium'), portions: 1 },
+    { item: items.get('mangetout'), portions: 1 },
+    { item: items.get('baby-corn'), portions: 1 },
+    { item: items.get('hummus'), portions: 1 },
+    { item: items.get('olives-pitted'), portions: 1 }
+  ];
+  const kcal = N.recipeNutrition(P.plateRecipe(picked), refMap).perServing.calories;
+  // 2 eggs 143 + carrot 25 + mangetout 16 + baby corn 16 + hummus 50 + olives 44: about 290.
+  check('a crudités plate adds up to a believable lunch', kcal > 250 && kcal < 340, String(kcal));
+  const draft = P.plateDraft(picked, { name: 'Crudités', kind: 'lunch', refMap });
+  eq('the saved meal uses the reference names', draft.ingredients[0].name, 'Boiled egg');
+  eq('two eggs saved as two items', `${draft.ingredients[0].quantity} ${draft.ingredients[0].unit}`, '2 item');
+  eq('vegetables get a cutting step', draft.steps.length, 2);
+  eq('serves one', draft.serves, 1);
+  const extra = P.extraItem(refMap.get('pork-pie'));
+  eq('something typed in comes as one item when it is counted', `${extra.qty} ${extra.unit}`, '1 item');
+  eq('or as its usual portion in grams', P.extraItem(refMap.get('coleslaw')).qty, 50);
+}
+
 console.log('');
 
 if (failures.length) {

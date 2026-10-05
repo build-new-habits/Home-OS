@@ -1,4 +1,5 @@
-/* css/components.css — 04 Oct 2026 v98 */
+/* css/components.css — 05 Oct 2026 v99 */
+/* v99: Make a plate (5 Oct). */
 /* v98: Add everything from the plan; Clear the list (4 Oct). */
 /* v97: your food week (4 Oct). */
 /* v96: Nutrition filled in; recipe amount check (4 Oct). */
@@ -5033,3 +5034,20 @@ body.sheet-open {
 .portions-chip { min-height: var(--tap-min); }
 .portions-hint { margin: 0; }
 .spare-buttons { flex-wrap: wrap; }
+
+/* ---- Make a plate (5 Oct 2026, v99) ------------------------------------ */
+.plate { display: flex; flex-direction: column; gap: var(--space-4); }
+.plate-group { background: var(--color-surface); border-radius: var(--radius-lg); }
+.plate-group legend { font-weight: 700; }
+.plate-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-3); }
+.plate-row .checkbox-row { flex: 1 1 12em; }
+.plate-amount { min-height: var(--tap-min); max-width: 100%; flex: 0 1 auto; }
+.plate-amount[hidden] { display: none; }
+.plate-extras { margin-top: var(--space-2); }
+.plate-summary { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-3); }
+.plate-count { font-weight: 600; }
+.plate-save { display: flex; flex-direction: column; gap: var(--space-2); }
+.plate-running { position: sticky; top: 0; z-index: 40; background: var(--color-surface-raised); border-bottom: 1px solid var(--color-border); margin: 0 calc(var(--space-4) * -1); padding: var(--space-2) var(--space-4); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.plate-running-text { margin: 0; font-weight: 600; }
+/* Keyboard focus never lands under the pinned total (WCAG 2.4.11). */
+@supports selector(:has(a)) { html:has(.plate-running) { scroll-padding-top: 10em; } }

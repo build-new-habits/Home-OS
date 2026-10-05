@@ -1,7 +1,7 @@
 {
  "version": 4,
  "updated": "2026-10-04",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
  "foods": [
   {
    "slug": "egg-small",
@@ -6786,6 +6786,243 @@
    "item_label": "pizza",
    "grams_per_item": 155,
    "portion_g": 155
+  },
+  {
+   "slug": "mangetout",
+   "name": "Mangetout",
+   "category": "food_fresh",
+   "aliases": [
+    "mange tout",
+    "mange-tout",
+    "snow peas"
+   ],
+   "calories_per_100g": 32.0,
+   "protein_g": 3.6,
+   "fat_g": 0.2,
+   "carbs_g": 4.2,
+   "fibre_g": 2.3,
+   "basis": "CoFID 2019: Peas, mange-tout, raw.",
+   "everyday": true,
+   "portion_g": 80
+  },
+  {
+   "slug": "sugar-snap-peas",
+   "name": "Sugar snap peas",
+   "category": "food_fresh",
+   "aliases": [
+    "sugar snaps",
+    "sugarsnap peas",
+    "snap peas"
+   ],
+   "calories_per_100g": 34.0,
+   "protein_g": 3.4,
+   "fat_g": 0.2,
+   "carbs_g": 5.0,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Peas, sugar-snap, raw.",
+   "everyday": true,
+   "portion_g": 80
+  },
+  {
+   "slug": "baby-corn",
+   "name": "Baby corn",
+   "category": "food_fresh",
+   "aliases": [
+    "baby sweetcorn",
+    "baby corns",
+    "mini corn",
+    "sugar baby corn"
+   ],
+   "calories_per_100g": 31.0,
+   "protein_g": 2.2,
+   "fat_g": 0.6,
+   "carbs_g": 4.6,
+   "fibre_g": 2.4,
+   "basis": "CoFID 2019: Sweetcorn, baby, boiled in unsalted water.",
+   "everyday": true,
+   "item_label": "cob",
+   "grams_per_item": 10,
+   "portion_g": 80
+  },
+  {
+   "slug": "radish",
+   "name": "Radishes",
+   "category": "food_fresh",
+   "aliases": [
+    "radish"
+   ],
+   "calories_per_100g": 12.0,
+   "protein_g": 0.7,
+   "fat_g": 0.4,
+   "carbs_g": 1.4,
+   "fibre_g": 1.1,
+   "basis": "CoFID 2019: Radish, red, flesh and skin, raw.",
+   "everyday": true,
+   "item_label": "radish",
+   "grams_per_item": 8,
+   "portion_g": 40
+  },
+  {
+   "slug": "tzatziki",
+   "name": "Tzatziki",
+   "category": "food_fresh",
+   "aliases": [],
+   "calories_per_100g": 76.0,
+   "protein_g": 3.4,
+   "fat_g": 5.5,
+   "carbs_g": 3.4,
+   "fibre_g": 0.3,
+   "basis": "CoFID 2019: Tzatziki.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "guacamole",
+   "name": "Guacamole",
+   "category": "food_fresh",
+   "aliases": [
+    "guac"
+   ],
+   "calories_per_100g": 128.0,
+   "protein_g": 1.4,
+   "fat_g": 12.7,
+   "carbs_g": 2.2,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Guacamole, homemade.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "salsa-dip",
+   "name": "Tomato salsa",
+   "category": "food_ambient",
+   "aliases": [
+    "salsa",
+    "salsa dip"
+   ],
+   "calories_per_100g": 45,
+   "protein_g": 1.2,
+   "fat_g": 0.3,
+   "carbs_g": 8.5,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
+   "everyday": true,
+   "portion_g": 30
+  },
+  {
+   "slug": "breadsticks",
+   "name": "Breadsticks",
+   "category": "food_ambient",
+   "aliases": [
+    "breadstick",
+    "grissini"
+   ],
+   "calories_per_100g": 389.0,
+   "protein_g": 10.9,
+   "fat_g": 8.1,
+   "carbs_g": 72.9,
+   "fibre_g": 3.7,
+   "basis": "CoFID 2019: Breadsticks, plain.",
+   "everyday": true,
+   "item_label": "breadstick",
+   "grams_per_item": 5,
+   "portion_g": 20
+  },
+  {
+   "slug": "cream-crackers",
+   "name": "Crackers",
+   "category": "food_ambient",
+   "aliases": [
+    "cracker",
+    "cream crackers"
+   ],
+   "calories_per_100g": 445.0,
+   "protein_g": 8.9,
+   "fat_g": 16.4,
+   "carbs_g": 69.7,
+   "fibre_g": 3.9,
+   "basis": "CoFID 2019: Cream crackers.",
+   "everyday": true,
+   "item_label": "cracker",
+   "grams_per_item": 8,
+   "portion_g": 24
+  },
+  {
+   "slug": "oatcakes",
+   "name": "Oatcakes",
+   "category": "food_ambient",
+   "aliases": [
+    "oatcake"
+   ],
+   "calories_per_100g": 453.0,
+   "protein_g": 9.3,
+   "fat_g": 20.0,
+   "carbs_g": 62.8,
+   "fibre_g": 9.4,
+   "basis": "CoFID 2019: Oatcakes, plain, retail.",
+   "everyday": true,
+   "item_label": "oatcake",
+   "grams_per_item": 10,
+   "portion_g": 20
+  },
+  {
+   "slug": "gherkins",
+   "name": "Gherkins",
+   "category": "food_ambient",
+   "aliases": [
+    "gherkin",
+    "cornichons",
+    "pickled gherkins"
+   ],
+   "calories_per_100g": 14.0,
+   "protein_g": 0.9,
+   "fat_g": 0.1,
+   "carbs_g": 2.6,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Gherkins, pickled, drained.",
+   "everyday": true,
+   "item_label": "gherkin",
+   "grams_per_item": 15,
+   "portion_g": 30
+  },
+  {
+   "slug": "pickled-onions",
+   "name": "Pickled onions",
+   "category": "food_ambient",
+   "aliases": [
+    "silverskin onions"
+   ],
+   "calories_per_100g": 24.0,
+   "protein_g": 0.9,
+   "fat_g": 0.2,
+   "carbs_g": 4.9,
+   "fibre_g": 1.6,
+   "basis": "CoFID 2019: Onions, pickled, drained.",
+   "everyday": true,
+   "item_label": "onion",
+   "grams_per_item": 10,
+   "portion_g": 30
+  },
+  {
+   "slug": "mini-cheese",
+   "name": "Mini cheese",
+   "category": "food_fresh",
+   "aliases": [
+    "mini cheeses",
+    "snack cheese",
+    "cheese bites",
+    "mini edam"
+   ],
+   "calories_per_100g": 341.0,
+   "protein_g": 26.7,
+   "fat_g": 26.0,
+   "carbs_g": 0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Edam.",
+   "everyday": true,
+   "item_label": "cheese",
+   "grams_per_item": 20,
+   "portion_g": 20
   },
   {
    "slug": "quorn-pieces",

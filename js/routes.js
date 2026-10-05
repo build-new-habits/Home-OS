@@ -1,4 +1,5 @@
-// js/routes.js — 04 Oct 2026 v7
+// js/routes.js — 05 Oct 2026 v8
+// v8: appends 'plate'.
 // v7: appends 'nutrition-fixes'.
 // v6: appends 'tonight'.
 // v5: appends 'recipe'.
@@ -248,6 +249,13 @@ export const routes = [
     path: 'nutrition-fixes',
     title: 'Nutrition filled in',
     load: () => import('./views/nutritionFixes.js')
+  },
+  // 5 Oct 2026. Appended. Make a plate: tick crudités, dips and nibbles,
+  // and save the plate as one of your meals.
+  {
+    path: 'plate',
+    title: 'Make a plate',
+    load: () => import('./views/plate.js')
   }
 ];
 

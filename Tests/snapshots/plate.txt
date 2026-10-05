@@ -1,0 +1,43 @@
+a.back-link"Recipes"
+h1"Make a plate"
+p.field-hint
+div.plate
+  div.plate-running
+    p.plate-running-text[role=status]
+    a.btn.btn-small"Nutrition and save"
+  fieldset.plate-group
+    legend"Vegetables"
+  fieldset.plate-group
+    legend"Eggs, meat, fish and cheese"
+  fieldset.plate-group
+    legend"Dips"
+  fieldset.plate-group
+    legend"Nibbles and extras"
+  fieldset.plate-group
+    legend"Something else"
+    div.field
+      label"Add a food"
+      input[type=text]
+      datalist
+      p.field-hint
+    button.btn[type=button]"Add it"
+    p.field-hint[role=status]
+    div.plate-extras
+  section.plate-summary
+    h2"On your plate"
+    p.plate-count
+    div
+  section.plate-save
+    h2"Keep it"
+    div.field
+      label"What to call it"
+      input[type=text]
+    div.field
+      label"Kind of meal"
+      select
+        option
+        option
+        option
+        option
+    button.btn.btn-block.btn-primary[type=button]"Save to my meals"
+    p.field-hint[role=status]

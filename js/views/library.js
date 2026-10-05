@@ -1,4 +1,5 @@
-// js/views/library.js — 03 Oct 2026 v6
+// js/views/library.js — 05 Oct 2026 v7
+// v7: Make a plate, beside Write your own recipe.
 // v6: On this phone sits below the library until there is something on it.
 // v5: On this phone — recipes saved here, a backup file and restore.
 // v4: #/library?course=… opens on that course.
@@ -50,6 +51,8 @@ export function render(mountEl) {
   tonight.appendChild(el('a', { class: 'btn', href: '#/tonight', text: 'What can I make with what I have?' }));
   // 3 Oct 2026: your own recipes start here too.
   tonight.appendChild(el('a', { class: 'btn', href: '#/recipe-edit', text: 'Write your own recipe' }));
+  // 5 Oct 2026: crudités, dips and nibbles, ticked rather than written.
+  tonight.appendChild(el('a', { class: 'btn', href: '#/plate', text: 'Make a plate' }));
   tonight.appendChild(el('a', { class: 'btn btn-quiet', href: '#/meals', text: 'Your recipes' }));
   mountEl.appendChild(tonight);
 
