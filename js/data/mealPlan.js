@@ -1,4 +1,6 @@
-// js/data/mealPlan.js — 04 Oct 2026 v7
+// js/data/mealPlan.js — 17 Oct 2026 v8
+// v8: getPlanEntry() for a recipe opened from the plan; removing an entry
+// forgets what you said about its ingredients (data/plannedHave.js).
 // v7: listPlan also reads eaten_at (same migration as is_leftover; data/eaten.js).
 // v6: leftovers. listPlan reads is_leftover when the column exists
 // (migration 026) and quietly does without it until then; addPlanEntry can
@@ -30,6 +32,7 @@ import { supabase } from '../supabaseClient.js';
 
 const TABLE = 'weekly_meal_plan';
 import { thisWeekStart, isWeekStart } from '../lib/weeks.js';
+import { forgetEntry } from './plannedHave.js';
 
 /** Matches the day_of_week CHECK constraint exactly. Order is display order. */
 export const DAYS = [
@@ -273,7 +276,27 @@ export async function updatePlanEntry(entryId, { day_of_week, slot, serves_overr
 export async function removePlanEntry(entryId) {
   const { error } = await supabase.from(TABLE).delete().eq('id', entryId);
   if (error) return { ok: false, error };
+  forgetEntry(entryId);
   return { ok: true };
+}
+
+/**
+ * One planned meal, with its meal embedded, for a recipe opened from the
+ * plan (#/recipe?…&e=<entry id>). data: null when it is no longer planned.
+ */
+export async function getPlanEntry(entryId) {
+  if (!entryId) return { ok: true, data: null };
+  const base = 'id, day_of_week, slot, serves_override, member_ids, week_start, meal_id';
+  const embed = 'meals(id, name, default_serves, dietary_tags, library_ref)';
+  const read = (withLeftover) => supabase
+    .from(TABLE)
+    .select(withLeftover ? `${base}, is_leftover, eaten_at, ${embed}` : `${base}, ${embed}`)
+    .eq('id', entryId)
+    .limit(1);
+  let result = leftoverColumn !== false ? await read(true) : null;
+  if (!result || (result.error && isMissingColumn(result.error))) result = await read(false);
+  if (result.error) return { ok: false, error: result.error };
+  return { ok: true, data: (result.data && result.data[0]) || null };
 }
 
 /** Servings actually in force for an entry: the override, else the meal's default. */

@@ -1,4 +1,5 @@
-/* css/components.css — 05 Oct 2026 v99 */
+/* css/components.css — 17 Oct 2026 v100 */
+/* v100: shopping from a planned meal's recipe — Got it / Have some (17 Oct). */
 /* v99: Make a plate (5 Oct). */
 /* v98: Add everything from the plan; Clear the list (4 Oct). */
 /* v97: your food week (4 Oct). */
@@ -5051,3 +5052,24 @@ body.sheet-open {
 .plate-running-text { margin: 0; font-weight: 600; }
 /* Keyboard focus never lands under the pinned total (WCAG 2.4.11). */
 @supports selector(:has(a)) { html:has(.plate-running) { scroll-padding-top: 10em; } }
+
+/* ---- Shopping from a planned meal's recipe (17 Oct 2026, v100) --------- */
+/* State is carried by the status sentence and aria-pressed. The tick and the
+   filled background are reinforcement only (WCAG 1.4.1). Both buttons keep
+   the full 44px target: this is a repeated one-tap action. */
+.recipe-planned-intro { margin: var(--space-2) 0; font-weight: 600; }
+.recipe-planned-sync:empty { display: none; }
+.recipe-ingredient--planned { align-items: flex-start; }
+.recipe-ingredients--planned .recipe-ingredient-amount { padding-top: var(--space-1); }
+.planned-some { padding-left: var(--space-2); padding-right: var(--space-2); }
+.recipe-ingredient-body { flex: 1 1 auto; display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.recipe-ingredient-status { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+.recipe-ingredient-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-1); }
+.recipe-ingredient-actions .btn { min-height: var(--tap-min); min-width: var(--tap-min); }
+.planned-got-mark { visibility: hidden; font-weight: 700; }
+.planned-got[aria-pressed="true"] { background: var(--color-neutral-chip); font-weight: 700; }
+.planned-got[aria-pressed="true"] .planned-got-mark { visibility: visible; }
+.planned-some-form { display: flex; flex-direction: column; gap: var(--space-2); }
+.planned-some-row { display: flex; align-items: center; gap: var(--space-2); }
+.planned-some-row input { flex: 0 1 8em; min-height: var(--tap-min); }
+.planned-some-unit { font-weight: 600; }

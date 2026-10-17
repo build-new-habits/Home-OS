@@ -1,4 +1,6 @@
-// js/views/kitchenPlan.js — 04 Oct 2026 v13
+// js/views/kitchenPlan.js — 17 Oct 2026 v14
+// v14: a planned meal opens its recipe with the plan entry (&e=), so you can
+// say what you already have from the recipe itself.
 // v13: your food week — seven days from the day you choose (lib/foodWeek.js).
 // v12: the week's nutrition reads only its planned meals' ingredients, with library meals left empty counted from their recipe and repaired.
 // v11: the view switch says Grid and Day by day ("Board" meant nothing to
@@ -87,9 +89,13 @@ export function rangeLabel(isoMonday) {
   return `${fmt(start)} to ${fmt(end)}`;
 }
 
-function recipeHref(meal) {
-  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
-  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}`;
+function recipeHref(meal, entry = null) {
+  // 17 Oct 2026: opened from the plan, the recipe knows which planned meal
+  // it is (&e=) and offers "Got it" on each ingredient. Not for leftovers:
+  // nothing is bought for those.
+  const planned = entry && entry.id && !isLeftover(entry) ? `&e=${encodeURIComponent(entry.id)}` : '';
+  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}${planned}`;
+  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}${planned}`;
   return '#/meals';
 }
 
@@ -611,7 +617,7 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
       for (const entry of ordered) {
         const li = el('li');
         const text = el('span', { class: 'plan-detail-text' });
-        text.appendChild(el('a', { href: recipeHref(entry.meals), text: (entry.meals && entry.meals.name) || 'A meal' }));
+        text.appendChild(el('a', { href: recipeHref(entry.meals, entry), text: (entry.meals && entry.meals.name) || 'A meal' }));
         if (showCourses) text.appendChild(el('span', { class: 'plan-detail-course', text: courseLabel(courseFor(entry)) }));
         if (isLeftover(entry)) {
           text.appendChild(el('span', { class: 'field-hint', text: `Leftovers, ${servesFor(entry)} portion${servesFor(entry) === 1 ? '' : 's'}. Nothing to buy.` }));

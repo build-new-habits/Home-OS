@@ -1,4 +1,5 @@
-// service-worker.js — 05 Oct 2026 v132
+// service-worker.js — 17 Oct 2026 v133
+// v133: shopping from a planned meal's recipe — Got it / Have some (data/plannedHave.js). Shell v179.
 // v132: Make a plate: tick crudités, dips and nibbles, see the nutrition add up, save it as a meal Shell v178.
 // v131: Grab and go: 68 shop-bought sandwiches, wraps, bakes, salads and a mini deep-dish cheese pizza; vegan offered only when something changes Shell v177.
 // v130: updates arrive on the next return to the app (lib/updates.js). Shell v176.
@@ -276,7 +277,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v178';
+const CACHE_NAME = 'home-os-shell-v179';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './js/views/plate.js',
@@ -291,6 +292,7 @@ const SHELL_FILES = [
   './js/components/nutritionFinder.js',
   './js/data/cofid.js',
   './js/data/plannedIngredients.js',
+  './js/data/plannedHave.js',
   './js/lib/localClient.js',
   './js/lib/oven.js',
   './js/data/listWindow.js',
@@ -301,9 +303,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=178',
-  './css/base.css?v=178',
-  './css/components.css?v=178',
+  './css/tokens.css?v=179',
+  './css/base.css?v=179',
+  './css/components.css?v=179',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

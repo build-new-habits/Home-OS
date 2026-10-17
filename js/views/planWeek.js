@@ -1,4 +1,5 @@
-// js/views/planWeek.js — 01 Sep 2026 v2
+// js/views/planWeek.js — 17 Oct 2026 v3
+// v3: the list it writes includes what you said about each planned meal (data/plannedHave.js).
 // Phase 24. Sort out a week's food from one button.
 //
 // ---- Why this exists ----
@@ -22,6 +23,7 @@
 //    planned two meals. Two is better than none and the app has no opinion.
 // 4. Resumable, on the same six-hour rule as Cook Mode.
 
+import { readOverrides } from '../data/plannedHave.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { icon, countChip } from '../lib/icons.js';
@@ -376,7 +378,8 @@ export function render(mountEl) {
       pantry: stock,
       foods,
       todayISO: todayIso(),
-      householdMembers: members
+      householdMembers: members,
+      overrides: readOverrides()
     });
     shortfall = result.items;
 

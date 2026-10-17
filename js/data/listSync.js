@@ -1,4 +1,5 @@
-// js/data/listSync.js — 04 Oct 2026 v5
+// js/data/listSync.js — 17 Oct 2026 v6
+// v6: what you said about each planned meal (data/plannedHave.js) is applied.
 // v5: ingredients for the planned meals only, repairing empty library meals first.
 // v4: the list is for meals still to come (data/listWindow.js): not past or eaten ones, and next week at the weekend.
 // Phase 22. The shopping list follows the plan on its own.
@@ -29,6 +30,7 @@ import { listFoods } from './foods.js';
 import { replaceGeneratedItems } from './shopping.js';
 import { getHousehold } from './household.js';
 import { computeShortfall } from '../lib/shortfall.js';
+import { readOverrides } from './plannedHave.js';
 import { isOffline } from '../lib/net.js';
 import { addDueStaples } from './staples.js';
 import { notify, shoppingReadyMessage } from '../lib/notify.js';
@@ -115,7 +117,8 @@ export async function syncNow() {
       pantry: pantry.data,
       foods: foods.data,
       todayISO: todayIso(),
-      householdMembers: household.ok ? household.data.members : []
+      householdMembers: household.ok ? household.data.members : [],
+      overrides: readOverrides()
     });
 
     const written = await replaceGeneratedItems(items);

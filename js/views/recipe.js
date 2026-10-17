@@ -1,4 +1,9 @@
-// js/views/recipe.js — 04 Oct 2026 v16
+// js/views/recipe.js — 17 Oct 2026 v17
+// v17: opened from the plan (&e=<plan entry id>), each ingredient says
+// whether it is on the shopping list, with "Got it" and "Have some" right
+// there (data/plannedHave.js). Graeme, 15 Oct 2026: "I don't want to have
+// to remember one or two of them, go to the shopping list, add or remove
+// them, then come back."
 // v16: Make these count — find nutrition for any ingredient that could not be counted.
 // v15: oven temperatures read with fan and gas (lib/oven.js).
 // v14: counted ingredients name themselves ("2 | Anchovy fillets").
@@ -74,6 +79,12 @@ import { DIETS, dietsFor, switchRecipe, dietFromHash } from '../data/dietSwitch.
 import { recipePhoto } from '../components/recipePhoto.js';
 import { ovenWords } from '../lib/oven.js';
 import { openNutritionFinder } from '../components/nutritionFinder.js';
+import { getPlanEntry, isLeftover } from '../data/mealPlan.js';
+import { ingredientsForEntries } from '../data/plannedIngredients.js';
+import { overridesFor, setOverride } from '../data/plannedHave.js';
+import { computeShortfall } from '../lib/shortfall.js';
+import { todayIso } from '../lib/dates.js';
+import { onListSync, describeListSync } from '../data/listSync.js';
 
 const SLOT_WORDS = {
   breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', drink: 'Drink'
@@ -81,6 +92,47 @@ const SLOT_WORDS = {
 const COST_WORDS = { budget: 'Budget', everyday: 'Everyday', special: 'A treat' };
 const FRACTIONS = { 0.25: '¼', 0.5: '½', 0.75: '¾' };
 const MAX_SERVES = 12;
+
+/** The planned meal's id from #/recipe?…&e=..., or ''. */
+export function entryIdFromHash(hash) {
+  const match = String(hash || '').match(/[?&]e=([0-9a-z-]+)/i);
+  return match ? match[1] : '';
+}
+
+/**
+ * One planned meal's ingredients against the pantry and what you said,
+ * as { [foodId]: list items } — the same arithmetic the shopping list
+ * runs (lib/shortfall.js), for this meal alone. Pure.
+ */
+export function plannedStatus({ entry, rows = [], pantry = [], foods = [], members = [], overrides = {}, todayISO }) {
+  const { items } = computeShortfall({
+    plan: [entry], ingredients: rows, pantry, foods, todayISO,
+    householdMembers: members, overrides: { [entry.id]: overrides }
+  });
+  const byFood = new Map();
+  for (const item of items) {
+    if (!byFood.has(item.food.id)) byFood.set(item.food.id, []);
+    byFood.get(item.food.id).push(item);
+  }
+  return byFood;
+}
+
+/** What one ingredient's line says about the shopping list. Pure. */
+export function plannedWords(items = [], override = null, amountWords = (n, u) => `${n} ${u}`) {
+  const qty = items.map((i) => amountWords(i.shortfall, i.unit)).join(' and ');
+  if (items.length) {
+    if (override && override.mode === 'buy') return `On the list: ${qty}. You asked for it.`;
+    if (override && override.mode === 'have') return `On the list: ${qty}. You have ${amountWords(override.amount, override.unit)}.`;
+    const first = items[0];
+    if (!first.comparable) return `On the list: ${qty}. The pantry amount was never recorded.`;
+    if (first.have > 0) return `On the list: ${qty}. ${amountWords(first.have, first.unit)} in the pantry.`;
+    return `On the list: ${qty}.`;
+  }
+  if (override && override.mode === 'have') {
+    return override.amount == null ? 'You have it. Not on the list.' : 'You have enough. Not on the list.';
+  }
+  return 'In the pantry. Not on the list.';
+}
 
 /** The slug from #/recipe?r=..., or ''. */
 /** Your own meal's id from #/recipe?m=..., or ''. */
@@ -245,6 +297,13 @@ function ingredientName(ing, entry, amountIsOne) {
   return base;
 }
 
+function pluralWord(label) {
+  const word = String(label || '').trim().toLowerCase();
+  if (!word) return 'items';
+  if (/(s|sh|ch|x)$/.test(word)) return `${word}es`;
+  return `${word}s`;
+}
+
 function stepText(step, refMap) {
   return ovenWords(String(step.instruction || '').replace(/\{\{ing:([a-z0-9-]+)\}\}/gi, (_, slug) => {
     const entry = refMap.get(slug);
@@ -262,10 +321,11 @@ export function render(mountEl) {
   // 3 Oct 2026: a recipe kept on this phone (#/recipe?l=<id>).
   const localId = mealId ? '' : localIdFromHash(window.location.hash);
 
+  const entryId = localId ? '' : entryIdFromHash(window.location.hash);
   const back = el('a', {
     class: 'back-link',
-    href: mealId ? '#/meals' : '#/library',
-    text: mealId ? 'Your meals' : localId ? 'Recipes' : 'All recipes'
+    href: entryId ? '#/plan-this-week' : mealId ? '#/meals' : '#/library',
+    text: entryId ? 'Plan' : mealId ? 'Your meals' : localId ? 'Recipes' : 'All recipes'
   });
   mountEl.appendChild(back);
   const heading = el('h1', { class: 'recipe-page-title', text: 'Recipe' });
@@ -408,7 +468,7 @@ export function render(mountEl) {
         input.checked = d.value === current;
         input.addEventListener('change', () => {
           try { sessionStorage.setItem('home-os-diet-focus', id); } catch { /* fine */ }
-          const base = `#/recipe?r=${encodeURIComponent(original.slug)}`;
+          const base = `#/recipe?r=${encodeURIComponent(original.slug)}${entryId ? `&e=${encodeURIComponent(entryId)}` : ''}`;
           window.location.replace(d.value ? `${base}&diet=${d.value}` : base);
         }, { signal });
         const row = el('div', { class: 'recipe-diet-option' });
@@ -544,7 +604,9 @@ export function render(mountEl) {
     const haveBox = el('section', { class: 'recipe-have', 'aria-labelledby': 'recipe-have-h' });
     haveBox.hidden = true;
     body.appendChild(haveBox);
-    listStock().then((stockResult) => {
+    // Opened from the plan, each ingredient says it for itself (below), and
+    // adding the missing by hand would put them on the list twice.
+    if (!entryId) listStock().then((stockResult) => {
       if (destroyed || !stockResult.ok) return;
       const result = coverage(recipe, haveNames(stockResult.data || [], new Date().toISOString()), refMap);
       paintHave(result);
@@ -721,12 +783,14 @@ export function render(mountEl) {
 
     const baseServes = Number(recipe.default_serves) || 1;
     let serves = baseServes;
+    // Opened from the plan, the planned meal's rows take over the list.
+    let plannedActive = false;
     // 3 Oct 2026: start at your household's size, as the plan and the
     // shopping list already do (mealPlan.servingsForEntry). A recipe for
     // four opens as one for a household of one.
     const servesNote = el('p', { class: 'field-hint recipe-serves-note' });
     getHousehold().then((h) => {
-      if (destroyed || !h || !h.ok) return;
+      if (destroyed || plannedActive || !h || !h.ok) return;
       const members = (h.data && h.data.members) || [];
       if (members.length === 0) return;
       const size = servingsForEntry({ serves_override: null, member_ids: [] }, members);
@@ -737,6 +801,7 @@ export function render(mountEl) {
       paintIngredients();
     }).catch(() => {});
     const paintIngredients = () => {
+      if (plannedActive) return;
       count.textContent = `${serves} ${serves === 1 ? 'serving' : 'servings'}`;
       minus.disabled = serves <= 1;
       plus.disabled = serves >= MAX_SERVES;
@@ -755,6 +820,193 @@ export function render(mountEl) {
     plus.addEventListener('click', () => { if (serves < MAX_SERVES) { serves += 1; paintIngredients(); } }, { signal });
     paintIngredients();
     ingSection.appendChild(servesNote);
+
+    // ---- Opened from the plan: what goes on the shopping list (17 Oct) ----
+    // The ingredients become the planned meal's own rows — exactly what the
+    // list is built from — at the servings it is planned for. Each says
+    // whether it is on the list; "Got it" takes it off for this meal (or
+    // puts it on, when the pantry thought you had it); "Have some" takes
+    // off only what you have. The list follows by itself (data/listSync.js).
+    if (entryId) {
+      const plannedIntro = el('p', { class: 'recipe-planned-intro', id: 'recipe-planned-intro' });
+      const syncLine = el('p', { class: 'field-hint recipe-planned-sync', role: 'status' });
+      ingSection.insertBefore(plannedIntro, list);
+      ingSection.insertBefore(syncLine, list);
+      plannedIntro.hidden = true;
+      const stopSync = onListSync((result) => { if (!destroyed) syncLine.textContent = describeListSync(result); });
+      signal.addEventListener('abort', stopSync);
+      loadPlanned().catch((error) => console.error('Planned ingredients failed:', error));
+
+      async function loadPlanned() {
+        const [entryRes, household, stock, foodList] = await Promise.all([
+          getPlanEntry(entryId), getHousehold(), listStock(), listFoods()
+        ]);
+        if (destroyed) return;
+        if (!entryRes.ok || !stock.ok || !foodList.ok) {
+          plannedIntro.hidden = false;
+          plannedIntro.textContent = 'The shopping list for this meal could not be checked just now. The recipe is below as written.';
+          return;
+        }
+        const entry = entryRes.data;
+        if (!entry || isLeftover(entry)) {
+          if (!entry) {
+            plannedIntro.hidden = false;
+            plannedIntro.textContent = 'This meal is no longer in the plan.';
+          }
+          return;
+        }
+        const ingRes = await ingredientsForEntries([entry], { awaitRepair: true });
+        if (destroyed) return;
+        const rows = ingRes.ok ? (ingRes.data || []).filter((r) => r.meal_id === entry.meal_id
+          && !(r.option_group != null && r.is_selected === false) && r.foods && r.foods.id) : [];
+        if (!rows.length) {
+          plannedIntro.hidden = false;
+          plannedIntro.textContent = 'This meal has no ingredients to shop for yet.';
+          return;
+        }
+        const members = household && household.ok ? ((household.data && household.data.members) || []) : [];
+        paintPlanned({ entry, rows, pantry: stock.data || [], foods: foodList.data || [], members });
+      }
+
+      function paintPlanned(ctx, focusId = null) {
+        const { entry, rows } = ctx;
+        const meal = entry.meals || {};
+        const mealServes = Number(meal.default_serves) || baseServes;
+        const plannedServes = servingsForEntry(entry, ctx.members);
+        const scale = plannedServes / mealServes;
+        const said = overridesFor(entry.id);
+        const status = plannedStatus({ ...ctx, overrides: said, todayISO: todayIso() });
+        const dayLabel = (DAYS.find((d) => d.value === entry.day_of_week) || {}).label || '';
+        const slotLabel = (SLOT_WORDS[entry.slot] || entry.slot || '').toLowerCase();
+        const weekWords = entry.week_start === nextWeekStart() ? 'next ' : '';
+
+        plannedActive = true;
+        serves = plannedServes; // cook mode follows the plan too
+        stepper.hidden = true;
+        servesNote.textContent = `Planned for ${weekWords}${dayLabel} ${slotLabel}, ${plannedServes} ${plannedServes === 1 ? 'serving' : 'servings'}. Change servings on the plan.`;
+        const foodIds = [...new Set(rows.map((r) => r.foods.id))];
+        const onList = foodIds.filter((id) => status.has(id)).length;
+        plannedIntro.hidden = false;
+        plannedIntro.textContent = `${onList} of ${foodIds.length} on the shopping list. Tap Got it for anything you already have.`;
+
+        // "4 fillets", "2 tbsp", "300 g": amounts as you would shop for them.
+        const wordsFor = (food) => (n, unit) => {
+          if (unit === 'item') {
+            const count = scaledAmount(n, 'item', 1);
+            const label = food && food.item_label;
+            if (!label) return count;
+            return `${count} ${Number(n) > 1 ? pluralWord(label) : String(label).toLowerCase()}`;
+          }
+          return scaledAmount(n, unit, 1) || `0 ${unit}`;
+        };
+        const words = wordsFor(null);
+        list.replaceChildren();
+        list.classList.add('recipe-ingredients--planned');
+        rows.forEach((row, index) => {
+          const food = row.foods;
+          const amount = scaledAmount(row.quantity_g, row.unit || 'g', scale);
+          const one = row.unit === 'item' && (amount === '1' || /^[¼½¾]$/.test(amount));
+          const name = ingredientName({ unit: row.unit, ref: '' }, food, one);
+          const over = said[food.id] || null;
+          const items = status.get(food.id) || [];
+          const li = el('li', { class: 'recipe-ingredient recipe-ingredient--planned' });
+          li.appendChild(el('span', { class: 'recipe-ingredient-amount', text: amount }));
+          const bodyEl = el('div', { class: 'recipe-ingredient-body' });
+          bodyEl.appendChild(el('span', { class: 'recipe-ingredient-name', text: name }));
+          const statusId = `planned-status-${index}`;
+          bodyEl.appendChild(el('p', { class: 'recipe-ingredient-status', id: statusId, text: plannedWords(items, over, wordsFor(food)) }));
+          const buttons = el('div', { class: 'recipe-ingredient-actions' });
+          const got = el('button', {
+            type: 'button', class: 'btn btn-small planned-got', id: `planned-got-${index}`,
+            'aria-pressed': String(items.length === 0), 'aria-label': `Got it: ${name}`,
+            'aria-describedby': statusId
+          });
+          got.append(el('span', { class: 'planned-got-mark', 'aria-hidden': 'true', text: '✓' }), document.createTextNode(' Got it'));
+          got.addEventListener('click', () => {
+            const wasOff = items.length === 0;
+            setOverride(entry.id, food.id, null);
+            const auto = plannedStatus({ ...ctx, overrides: overridesFor(entry.id), todayISO: todayIso() });
+            const autoOff = !auto.has(food.id);
+            // A tap always flips it: off the list when it was on, on when it was off.
+            if (wasOff && autoOff) setOverride(entry.id, food.id, { mode: 'buy' });
+            if (!wasOff && !autoOff) setOverride(entry.id, food.id, { mode: 'have', amount: null });
+            changed(ctx, food.id, name, got.id);
+          }, { signal });
+          const some = el('button', {
+            type: 'button', class: 'btn btn-small btn-quiet planned-some', id: `planned-some-${index}`,
+            'aria-haspopup': 'dialog', 'aria-label': `Have some ${name.toLowerCase()}: say how much`, text: 'Have some'
+          });
+          some.addEventListener('click', () => openHaveSome(ctx, row, name, scale, some), { signal });
+          buttons.append(got, some);
+          bodyEl.appendChild(buttons);
+          li.appendChild(bodyEl);
+          list.appendChild(li);
+        });
+        if (focusId) {
+          const target = document.getElementById(focusId);
+          if (target) target.focus();
+        }
+        return { status, words, wordsFor };
+      }
+
+      function changed(ctx, foodId, name, focusId) {
+        const result = paintPlanned(ctx, focusId);
+        const food = (ctx.rows.find((r) => r.foods.id === foodId) || {}).foods;
+        const line = plannedWords(result.status.get(foodId) || [], overridesFor(ctx.entry.id)[foodId] || null, result.wordsFor(food));
+        announce(`${name}. ${line}`);
+        requestListSync();
+      }
+
+      function openHaveSome(ctx, row, name, scale, opener) {
+        const food = row.foods;
+        const unit = row.unit || 'g';
+        const unitWord = unit === 'item' ? (food.item_label ? pluralWord(food.item_label) : 'items') : unit;
+        const need = Math.round(Number(row.quantity_g) * scale * 100) / 100;
+        const current = overridesFor(ctx.entry.id)[food.id];
+        openDetailSheet({
+          title: `How much ${name.toLowerCase()} do you have?`,
+          returnFocusTo: opener,
+          build(sheetBody, api) {
+            const form = el('form', { class: 'planned-some-form' });
+            const input = el('input', {
+              id: 'planned-some-amount', type: 'number', inputmode: 'decimal', min: '0', step: 'any',
+              'aria-describedby': 'planned-some-hint'
+            });
+            if (current && current.mode === 'have' && current.amount != null) input.value = String(current.amount);
+            const row1 = el('div', { class: 'planned-some-row' });
+            row1.append(input, el('span', { class: 'planned-some-unit', text: unitWord }));
+            const save = el('button', { type: 'submit', class: 'btn btn-primary btn-block', text: 'Save' });
+            const reset = el('button', { type: 'button', class: 'btn btn-block', text: 'Use the pantry as usual' });
+            form.append(
+              el('label', { for: 'planned-some-amount', text: `You have (${unitWord})` }),
+              row1,
+              el('p', { class: 'field-hint', id: 'planned-some-hint', text: `This meal needs ${need} ${unitWord}. Only the rest goes on the list.` }),
+              save, reset
+            );
+            form.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const value = input.value.trim() === '' ? 0 : Number(input.value);
+              if (!Number.isFinite(value) || value < 0) {
+                input.setAttribute('aria-invalid', 'true');
+                announce('Enter an amount of zero or more.');
+                return;
+              }
+              const done = setOverride(ctx.entry.id, food.id, value > 0 ? { mode: 'have', amount: value, unit } : null);
+              if (!done.ok) { showToast('This phone would not save that.'); return; }
+              api.close();
+              changed(ctx, food.id, name, opener.id);
+            });
+            reset.addEventListener('click', () => {
+              setOverride(ctx.entry.id, food.id, null);
+              api.close();
+              changed(ctx, food.id, name, opener.id);
+            });
+            sheetBody.appendChild(form);
+            requestAnimationFrame(() => input.focus());
+          }
+        });
+      }
+    }
 
     if (recipe.swaps && recipe.swaps.length) {
       const swapList = el('ul', { class: 'recipe-swaps' });

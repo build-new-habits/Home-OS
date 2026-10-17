@@ -1,4 +1,5 @@
-// js/data/planShopping.js — 04 Oct 2026 v4
+// js/data/planShopping.js — 17 Oct 2026 v5
+// v5: what you said about each planned meal (data/plannedHave.js) is applied.
 // v4: 'this' and 'next' mean your food week.
 // v3: ingredients for the planned meals only, repairing empty library meals first.
 // v2: this week and next use the list's window (data/listWindow.js).
@@ -27,6 +28,7 @@ import { listFoods } from './foods.js';
 import { getHousehold } from './household.js';
 import { replaceGeneratedItems } from './shopping.js';
 import { computeShortfall } from '../lib/shortfall.js';
+import { readOverrides } from './plannedHave.js';
 import { todayIso } from '../lib/dates.js';
 
 /**
@@ -67,7 +69,8 @@ export async function gatherForWeek(weekStart) {
     pantry: pantry.data,
     foods: foodList.data,
     todayISO: todayIso(),
-    householdMembers: household.ok ? household.data.members : []
+    householdMembers: household.ok ? household.data.members : [],
+    overrides: readOverrides()
   });
 
   return { ok: true, data: { items, skipped, planned: plan.data.length } };

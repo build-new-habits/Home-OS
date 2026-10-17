@@ -1,4 +1,7 @@
-// js/lib/shortfall.js — 03 Oct 2026 v6
+// js/lib/shortfall.js — 17 Oct 2026 v7
+// v7: what you said about a planned meal (data/plannedHave.js) — "we have
+// it", "we have some", "buy it anyway" — is applied per plan entry before
+// the pantry is compared.
 // v6: leftovers (is_leftover) are skipped: that food is already cooked.
 // What you need, minus what you already have.
 //
@@ -48,7 +51,10 @@ export function computeShortfall({
   // Phase 20. Passed in so the list scales to who is actually eating: two
   // adults on the sea bass, two children at 0.6 on the sausages. Default
   // empty keeps the pre-Phase-20 behaviour exactly.
-  householdMembers = []
+  householdMembers = [],
+  // 17 Oct 2026. { [planEntryId]: { [foodId]: override } } from
+  // data/plannedHave.js. Default empty keeps the v6 behaviour exactly.
+  overrides = {}
 } = {}) {
   const foodById = new Map(foods.map((food) => [food.id, food]));
   const ingredientsByMeal = new Map();
@@ -63,6 +69,8 @@ export function computeShortfall({
 
   // ---- What the week needs, in grams where possible ----
   const needed = new Map(); // food_id -> { grams, raw: Map(unit -> amount), unreachable: [] }
+  // "Buy it anyway": listed in full, never compared with the pantry.
+  const forced = new Map();
   const skipped = [];
 
   for (const entry of plan) {
@@ -82,16 +90,30 @@ export function computeShortfall({
     }
     const serves = servesForEntry(entry, defaultServes, householdMembers);
     const scale = serves / defaultServes;
+    const said = (overrides && entry.id && overrides[entry.id]) || {};
 
     for (const row of rows) {
       const food = row.foods || foodById.get(row.food_id) || {};
       if (!food.id) continue;
-      if (!needed.has(food.id)) {
-        needed.set(food.id, { grams: 0, raw: new Map(), unreachable: [], units: new Set() });
-      }
-      const bucket = needed.get(food.id);
-      const quantity = Number(row.quantity_g) * scale;
+      let quantity = Number(row.quantity_g) * scale;
       if (!Number.isFinite(quantity) || quantity <= 0) continue;
+
+      // What you said about this food for this meal. "We have it" takes
+      // it off; "we have some" takes that much off (an amount that cannot
+      // be converted takes nothing off — over-buying is the safe failure);
+      // "buy it anyway" lists it in full, whatever the pantry holds.
+      const over = said[food.id];
+      if (over && over.mode === 'have') {
+        if (over.amount == null) continue;
+        const less = amountInUnit(over.amount, over.unit || row.unit || 'g', row.unit || 'g', food);
+        if (less != null) quantity = round2(quantity - less);
+        if (quantity <= 0) continue;
+      }
+      const target = over && over.mode === 'buy' ? forced : needed;
+      if (!target.has(food.id)) {
+        target.set(food.id, { grams: 0, raw: new Map(), unreachable: [], units: new Set() });
+      }
+      const bucket = target.get(food.id);
 
       // toGrams returns { grams, reason } — grams is NULL when it cannot
       // convert. There is no `ok` field; assuming one would have made every
@@ -124,57 +146,82 @@ export function computeShortfall({
   const items = [];
   for (const [foodId, bucket] of needed.entries()) {
     const food = foodById.get(foodId) || { id: foodId, name: 'Unknown' };
-    const stock = stockByFood.get(foodId);
+    items.push(...itemsForBucket(food, bucket, stockByFood.get(foodId)));
+  }
 
-    // Everything the plan needs for this food, expressed once.
-    const rawEntries = [...bucket.raw.entries()];
-    const wantsGrams = bucket.grams > 0;
-
-    // The simple, common case: everything reduces to grams.
-    if (wantsGrams && rawEntries.length === 0) {
-      const have = stockInGrams(stock, food);
-      // ---- Shop in the unit you BUY in ----
-      // The comparison is done in grams because that is the only common
-      // ground. But "206 g of milk" is not a thing you can pick off a
-      // shelf. Where every ingredient for this food used one unit, the
-      // answer is converted back into it. Arithmetic in grams, shopping in
-      // millilitres.
-      const display = displayUnitFor(bucket, food);
-      if (have.comparable) {
-        const short = round2(bucket.grams - have.grams);
-        // Rule 1: enough stock, no line at all.
-        if (short <= 0) continue;
-        items.push(makeItem(food, bucket.grams / display.factor, display.unit,
-          { comparable: true, amount: have.grams / display.factor },
-          short / display.factor, true, '', stock));
+  // Asked for whatever the pantry says: added on top, never compared.
+  for (const [foodId, bucket] of forced.entries()) {
+    const food = foodById.get(foodId) || { id: foodId, name: 'Unknown' };
+    for (const extra of itemsForBucket(food, bucket, undefined)) {
+      const same = items.find((i) => i.food.id === foodId && i.unit === extra.unit);
+      if (same) {
+        same.needed = round2(same.needed + extra.needed);
+        same.shortfall = round2(same.shortfall + extra.shortfall);
+        same.asked = true;
       } else {
-        // Rule 3/4: cannot compare, so list the full requirement and say why.
-        items.push(makeItem(food, bucket.grams / display.factor, display.unit, have,
-          bucket.grams / display.factor, false, have.reason, stock));
-      }
-      continue;
-    }
-
-    // Mixed or unconvertible units. Each unit is listed on its own terms;
-    // nothing is added across units that cannot be compared.
-    for (const [unit, amount] of rawEntries) {
-      const have = stockInUnit(stock, unit);
-      const short = have.comparable ? round2(amount - have.amount) : round2(amount);
-      if (have.comparable && short <= 0) continue;
-      const reason = have.comparable ? '' : (have.reason || bucket.unreachable[0] || '');
-      items.push(makeItem(food, amount, unit, have, short, have.comparable, reason, stock));
-    }
-    if (wantsGrams) {
-      const have = stockInGrams(stock, food);
-      const short = have.comparable ? round2(bucket.grams - have.grams) : round2(bucket.grams);
-      if (!(have.comparable && short <= 0)) {
-        items.push(makeItem(food, bucket.grams, 'g', have, short, have.comparable, have.reason, stock));
+        items.push({ ...extra, have: null, asked: true, reason: '' });
       }
     }
   }
 
   items.sort((a, b) => (a.food.name || '').localeCompare(b.food.name || ''));
   return { items, skipped };
+}
+
+/**
+ * The list lines for one food's requirement against its stock (undefined
+ * stock means none: rule 2). Split out in v7 so "buy it anyway" is listed
+ * by exactly the same rules as everything else.
+ */
+function itemsForBucket(food, bucket, stock) {
+  const out = [];
+
+  // Everything the plan needs for this food, expressed once.
+  const rawEntries = [...bucket.raw.entries()];
+  const wantsGrams = bucket.grams > 0;
+
+  // The simple, common case: everything reduces to grams.
+  if (wantsGrams && rawEntries.length === 0) {
+    const have = stockInGrams(stock, food);
+    // ---- Shop in the unit you BUY in ----
+    // The comparison is done in grams because that is the only common
+    // ground. But "206 g of milk" is not a thing you can pick off a
+    // shelf. Where every ingredient for this food used one unit, the
+    // answer is converted back into it. Arithmetic in grams, shopping in
+    // millilitres.
+    const display = displayUnitFor(bucket, food);
+    if (have.comparable) {
+      const short = round2(bucket.grams - have.grams);
+      // Rule 1: enough stock, no line at all.
+      if (short <= 0) return out;
+      out.push(makeItem(food, bucket.grams / display.factor, display.unit,
+        { comparable: true, amount: have.grams / display.factor },
+        short / display.factor, true, '', stock));
+    } else {
+      // Rule 3/4: cannot compare, so list the full requirement and say why.
+      out.push(makeItem(food, bucket.grams / display.factor, display.unit, have,
+        bucket.grams / display.factor, false, have.reason, stock));
+    }
+    return out;
+  }
+
+  // Mixed or unconvertible units. Each unit is listed on its own terms;
+  // nothing is added across units that cannot be compared.
+  for (const [unit, amount] of rawEntries) {
+    const have = stockInUnit(stock, unit);
+    const short = have.comparable ? round2(amount - have.amount) : round2(amount);
+    if (have.comparable && short <= 0) continue;
+    const reason = have.comparable ? '' : (have.reason || bucket.unreachable[0] || '');
+    out.push(makeItem(food, amount, unit, have, short, have.comparable, reason, stock));
+  }
+  if (wantsGrams) {
+    const have = stockInGrams(stock, food);
+    const short = have.comparable ? round2(bucket.grams - have.grams) : round2(bucket.grams);
+    if (!(have.comparable && short <= 0)) {
+      out.push(makeItem(food, bucket.grams, 'g', have, short, have.comparable, have.reason, stock));
+    }
+  }
+  return out;
 }
 
 /**
@@ -321,6 +368,20 @@ function stockInUnit(stock, unit) {
   return { comparable: true, amount: Number(row.current_qty), reason: '' };
 }
 
+/**
+ * An amount in one unit, expressed in another, through grams when the food
+ * records the factors. Null when it cannot be done honestly. Pure.
+ */
+function amountInUnit(amount, fromUnit, toUnit, food) {
+  const value = Number(amount);
+  if (!Number.isFinite(value)) return null;
+  if (fromUnit === toUnit) return value;
+  const have = toGrams(value, fromUnit, food);
+  const per = toGrams(1, toUnit, food);
+  if (!have || have.grams == null || !per || per.grams == null || !(per.grams > 0)) return null;
+  return have.grams / per.grams;
+}
+
 function round2(value) {
   return Math.round(Number(value) * 100) / 100;
 }
@@ -399,6 +460,9 @@ export function describeStockForMeal(result) {
  */
 export function describeShortfall(item) {
   const amount = `${item.shortfall} ${item.unit === 'item' ? (item.shortfall === 1 ? 'item' : 'items') : item.unit}`;
+  if (item.asked && !(item.have > 0)) {
+    return `${amount} — you asked for it on the list.`;
+  }
   if (!item.comparable) {
     return `Need ${item.needed} ${item.unit} — ${item.reason}, so the full amount is listed.`;
   }

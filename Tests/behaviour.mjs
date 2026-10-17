@@ -2004,6 +2004,49 @@ check('and a price never set is not stale', !isStalePrice({}, new Date().toISOSt
   eq('or as its usual portion in grams', P.extraItem(refMap.get('coleslaw')).qty, 50);
 }
 
+// ---- What you said about a planned meal (Graeme, 15 Oct 2026) ----
+// "I know we have some ingredients but I don't want to have to remember
+// them, go to the shopping list, add or remove them, then come back."
+{
+  const plan = [{ id: 'e1', meal_id: 'm1', serves_override: null, meals: { id: 'm1', name: 'Porridge', default_serves: 2 } }];
+  const run = (overrides, pantry = []) => computeShortfall({
+    plan, ingredients: sfIngredients, pantry, foods: sfFoods, todayISO: '2026-08-27', overrides
+  });
+  check('"we have it" takes it off the list', !find(run({ e1: { f1: { mode: 'have', amount: null } } }), 'Oats'));
+  eq('the rest of the meal is still listed', run({ e1: { f1: { mode: 'have', amount: null } } }).items.length, 2);
+  eq('"we have some" lists only the rest', find(run({ e1: { f2: { mode: 'have', amount: 80, unit: 'ml' } } }), 'Milk').shortfall, 120);
+  check('having more than enough takes it off', !find(run({ e1: { f1: { mode: 'have', amount: 500, unit: 'g' } } }), 'Oats'));
+  const asked = find(run({ e1: { f1: { mode: 'buy' } } }, [{ food_id: 'f1', current_qty: 500, unit: 'g', foods: sfOats }]), 'Oats');
+  check('"buy it anyway" lists it even with plenty in the pantry', asked && asked.shortfall === 100);
+  check('and the line says you asked', asked && /asked for it/.test(describeShortfall(asked)), asked && describeShortfall(asked));
+  check('what you said about one planned meal does not touch another',
+    find(run({ e9: { f1: { mode: 'have', amount: null } } }), 'Oats').shortfall === 100);
+  const two = [...plan, { id: 'e2', meal_id: 'm1', serves_override: null, meals: plan[0].meals }];
+  const both = computeShortfall({ plan: two, ingredients: sfIngredients, pantry: [], foods: sfFoods, todayISO: '2026-08-27',
+    overrides: { e1: { f1: { mode: 'have', amount: null } } } });
+  eq('the same recipe on another day is still shopped for', find(both, 'Oats').shortfall, 100);
+  eq('no overrides changes nothing', run(undefined).items.length, 3);
+
+  const store = new Map();
+  const hadStorage = 'localStorage' in globalThis;
+  const before = globalThis.localStorage;
+  globalThis.localStorage = { getItem: (k) => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, String(v)), removeItem: (k) => store.delete(k) };
+  const H = await import(pathToFileURL(path.join(REPO, 'js/data/plannedHave.js')).href);
+  H.setOverride('e1', 'f1', { mode: 'have', amount: null });
+  H.setOverride('e1', 'f2', { mode: 'have', amount: 30, unit: 'ml' });
+  eq('a planned meal remembers what you said', Object.keys(H.overridesFor('e1')).length, 2);
+  eq('in the shape the shortfall reads', H.readOverrides().e1.f2.amount, 30);
+  H.setOverride('e1', 'f1', null);
+  check('clearing puts it back to the pantry as usual', !H.overridesFor('e1').f1);
+  eq('"I have none" is not stored as an override', H.cleanOverride({ mode: 'have', amount: 0 }), null);
+  check('a nonsense mode is refused', H.cleanOverride({ mode: 'steal' }) === null);
+  const old = { e5: { at: '2026-01-01T00:00:00Z', foods: { f1: { mode: 'buy' } } } };
+  eq('six weeks on, it is forgotten', Object.keys(H.pruneHave(old, Date.parse('2026-03-01'))).length, 0);
+  H.forgetEntry('e1');
+  eq('a meal taken off the plan forgets', Object.keys(H.readOverrides()).length, 0);
+  if (hadStorage) globalThis.localStorage = before; else delete globalThis.localStorage;
+}
+
 console.log('');
 
 if (failures.length) {

@@ -1,4 +1,6 @@
-// js/views/kitchenToday.js — 04 Oct 2026 v13
+// js/views/kitchenToday.js — 17 Oct 2026 v14
+// v14: a planned meal opens its recipe with the plan entry (&e=), so you can
+// say what you already have from the recipe itself.
 // v13: Plan tomorrow follows your food week.
 // v12: foods with no nutrition are filled in once a day, and Today says so.
 // v11: nutrition reads only the planned meals' ingredients (data/plannedIngredients.js), and a library meal left with none is counted from its recipe and repaired.
@@ -101,9 +103,13 @@ export function pickNext(entries, now = new Date()) {
   return null;
 }
 
-function recipeHref(meal) {
-  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}`;
-  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}`;
+function recipeHref(meal, entry = null) {
+  // 17 Oct 2026: opened from the plan, the recipe knows which planned meal
+  // it is (&e=) and offers "Got it" on each ingredient. Not for leftovers:
+  // nothing is bought for those.
+  const planned = entry && entry.id && !isLeftover(entry) ? `&e=${encodeURIComponent(entry.id)}` : '';
+  if (meal && meal.library_ref) return `#/recipe?r=${encodeURIComponent(meal.library_ref)}${planned}`;
+  if (meal && meal.id) return `#/recipe?m=${encodeURIComponent(meal.id)}${planned}`;
   return '#/meals';
 }
 
@@ -313,7 +319,7 @@ export function render(mountEl) {
       li.appendChild(el('span', { class: 'today-meal-slot', text: `${slot.label}: ` }));
       here.forEach((entry, i) => {
         if (i) li.appendChild(document.createTextNode(', '));
-        li.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
+        li.appendChild(el('a', { href: recipeHref(entry.meals, entry), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
       });
       ul.appendChild(li);
     }
@@ -397,7 +403,7 @@ export function render(mountEl) {
     if (!isLeftover(entry)) card.appendChild(portionsLine(entry));
     card.appendChild(eatenTick(entry, tickOptions()));
     const buttons = el('div', { class: 'today-next-buttons' });
-    buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal), text: 'Open recipe' }));
+    buttons.appendChild(el('a', { class: 'btn today-next-open', href: recipeHref(meal, entry), text: 'Open recipe' }));
     const cooked = el('button', { type: 'button', class: 'btn today-next-cooked', text: 'We cooked it', 'aria-haspopup': 'dialog' });
     cooked.addEventListener('click', () => offerDepletion(entry, cooked), { signal: controller.signal });
     if (!isLeftover(entry)) buttons.appendChild(cooked);
@@ -510,7 +516,7 @@ export function render(mountEl) {
         const names = el('span', { class: 'today-meal-names' });
         for (const entry of here) {
           const one = el('span', { class: 'today-meal-entry' });
-          one.appendChild(el('a', { href: recipeHref(entry.meals), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
+          one.appendChild(el('a', { href: recipeHref(entry.meals, entry), text: `${(entry.meals && entry.meals.name) || 'Planned'}${isLeftover(entry) ? ' (leftovers)' : ''}` }));
           one.appendChild(eatenTick(entry, tickOptions()));
           names.appendChild(one);
         }
