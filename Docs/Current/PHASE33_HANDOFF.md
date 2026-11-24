@@ -54,7 +54,7 @@ before 027 (falls back to `source` without the URL) and after.
    this is a good moment to run both.*
 2. **Deploy the Edge Function.** In the dashboard, go to Edge Functions →
    Deploy a new function, name it `import-recipe`, and paste
-   `supabase/functions/import-recipe/index.ts`. Leave **Verify JWT on**.
+   `supabase/functions/import-recipe/index.ts`. Then turn **Verify JWT with legacy secret OFF** (the function checks sign-in itself, v2).
    Update the "Edge Functions deployed" table in `MIGRATIONS_APPLIED.md`.
    Note the current free allowance from the Supabase pricing page there.
 3. **Refresh the installed app on the phone.** Android picks up a new
