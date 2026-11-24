@@ -74,7 +74,7 @@ Status values are deliberately blunt:
 | 024_plan_weeks | applied | 8 Sep 2026 | week_start present and NOT NULL, Monday constraint on, index created; 6 existing meals backfilled to Monday 2026-09-07 |
 | 025_recipe_notes | applied | 8 Sep 2026 | both tables, both indexes, RLS true on both, policies present |
 | 026_kitchen_rebuild | NOT APPLIED | — | written 3 Oct 2026: drink slot, foods.fibre_g, show_nutrition, nutrition_targets, weekly_meal_plan.is_leftover, meals.course, foods.shelf, weekly_meal_plan.eaten_at. Run with Graeme, then VERIFY. Leftovers and courses switch on by themselves once it is in |
-| 027_recipe_source | NOT APPLIED | — | written 24 Nov 2026: meals.source_url, its check, and the per-household unique index. Independent of 026. Import works before it; the source link and the duplicate check switch on once it is in |
+| 027_recipe_source | applied | 24 Nov 2026 | run against "Home OS"; VERIFY returned three PASS rows: meals.source_url, source_url check, unique per household |
 
 ## The honest caveat
 

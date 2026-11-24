@@ -1074,7 +1074,7 @@ this column exists to prevent.
 | prep_minutes | int | nullable (13 Sep 2026) |
 | cook_minutes | int | nullable (13 Sep 2026) |
 | source | text | nullable (13 Sep 2026): book and page. For an imported recipe, the site's name (revision 27) |
-| source_url | text | nullable; check `^https?://`, ≤ 2000 chars; unique per household where not null (revision 27, **migration 027 — not yet applied**). The page an imported recipe came from |
+| source_url | text | nullable; check `^https?://`, ≤ 2000 chars; unique per household where not null (revision 27, migration 027 — applied 24 Nov 2026). The page an imported recipe came from |
 | diet | text | nullable (13 Sep 2026): vegan, vegetarian, pescatarian or meat |
 
 ### meal_ingredients
