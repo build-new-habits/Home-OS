@@ -1,4 +1,7 @@
-// js/views/recipeEditor.js — 24 Nov 2026 v5
+// js/views/recipeEditor.js — 24 Nov 2026 v6
+// v6: ingredients the name list cannot place are looked up in the offline
+// food tables automatically (data/ingredientMatch.js), so nutrition fills in
+// without a tap per ingredient.
 // v5: ?imported=1 — a recipe shared in (views/recipeImport.js) arrives here
 // filled in, to be checked and saved. Never overwrites a recipe you were
 // writing without asking.
@@ -44,6 +47,7 @@ import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { takeImportDraft, keepForLater } from '../data/recipeImport.js';
+import { autoMatch } from '../data/ingredientMatch.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { nutritionBars } from '../components/nutritionBars.js';
 import { openNutritionFinder } from '../components/nutritionFinder.js';
@@ -706,7 +710,7 @@ export function render(mountEl) {
         else { errors.hidden = true; errors.replaceChildren(); }
       }
       clearTimeout(previewTimer);
-      previewTimer = setTimeout(() => { if (!destroyed) paintPreview(); }, 400);
+      previewTimer = setTimeout(() => { if (!destroyed) matchThenPaint(); }, 400);
     }
 
     function openPaste({ title, hint, returnFocusTo, apply }) {
@@ -733,6 +737,14 @@ export function render(mountEl) {
     }
 
     paintAll();
+    matchThenPaint();
+
+    /** v6: look up what the name list missed, then repaint the preview. */
+    function matchThenPaint() {
+      autoMatch((draft.ingredients || []).map((r) => r.name), index, resolveName)
+        .catch(() => null) // the tables are an extra; the preview stands without them
+        .then(() => { if (!destroyed) paintPreview(); });
+    }
   }
 
   function focusId(id) {

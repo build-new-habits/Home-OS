@@ -1,4 +1,7 @@
-// Tests/import.mjs — 24 Nov 2026 v1
+// Tests/import.mjs — 24 Nov 2026 v2
+// v2 (Phase 34): kitchen measures to grams, matching ingredient lines to
+// foods without asking, the Meals tab's Recently added, and the copy of the
+// two new screens.
 // Gate 12. Phase 33: a recipe shared in from somewhere else.
 //
 // The Edge Function extracts; js/data/recipeImport.js interprets. Both are
@@ -163,13 +166,80 @@ check('servesFrom "Makes 24"', imp.servesFrom('Makes 24') === 24);
 check('servesFrom nothing → 4', imp.servesFrom(undefined) === 4);
 check('kindFrom never invents', imp.kindFrom('Italian') === '');
 
-// ---- 7. No-shame copy in the new screen -------------------------------------
-const view = readFileSync(path.join(REPO, 'js/views/recipeImport.js'), 'utf8');
-const strings = [...view.matchAll(/(['"`])((?:(?!\1)[^\\]|\\.)*)\1/g)].map((m) => m[2]).filter((s) => /\s/.test(s));
-for (const word of ['simply', 'just', 'obviously', 'quickly', 'easy', 'easily', 'merely', 'failed', 'error']) {
-  const hit = strings.find((s) => new RegExp(`\\b${word}\\b`, 'i').test(s));
-  check(`import screen copy avoids "${word}"`, !hit, hit);
+// ---- 7. No-shame copy in the new screens ------------------------------------
+for (const file of ['recipeImport.js', 'recipeCheck.js', 'mealsHome.js']) {
+  const view = readFileSync(path.join(REPO, 'js/views', file), 'utf8');
+  const strings = [...view.matchAll(/(['"`])((?:(?!\1)[^\\]|\\.)*)\1/g)].map((m) => m[2]).filter((s) => /\s/.test(s));
+  for (const word of ['simply', 'just', 'obviously', 'quickly', 'easy', 'easily', 'merely', 'failed', 'error']) {
+    const hit = strings.find((s) => new RegExp(`\\b${word}\\b`, 'i').test(s));
+    check(`${file} copy avoids "${word}"`, !hit, hit);
+  }
 }
+
+// ---- 8. Kitchen measures (Phase 34) -----------------------------------------
+const own = await import(pathToFileURL(path.join(REPO, 'js/data/ownRecipe.js')).href);
+const measures = [
+  ['1 cup plain flour', 125, 'g', 'plain flour'],
+  ['1/2 cup sugar', 100, 'g', 'sugar'],
+  ['2 cups whole milk', 480, 'ml', 'whole milk'],
+  ['a handful of fresh basil', 15, 'g', 'fresh basil'],
+  ['a handful of almonds', 30, 'g', 'almonds'],
+  ['1 tin coconut milk', 400, 'g', 'coconut milk'],
+  ['1 small bunch coriander', 30, 'g', 'coriander'],
+  ['a small knob of butter', 10, 'g', 'butter'],
+  ['1 knob of ginger', 15, 'g', 'ginger'],
+  ['8oz mushrooms', 225, 'g', 'mushrooms'],
+  ['1 lb ground beef', 455, 'g', 'ground beef'],
+  ['1 pint stock', 570, 'ml', 'stock'],
+  ['8 fl oz double cream', 225, 'ml', 'double cream'],
+  ['1 cup peanut butter', 250, 'g', 'peanut butter'],
+  ['1 cup mystery powder', 240, 'ml', 'mystery powder'],
+  ['2 garlic cloves', 2, 'item', 'garlic cloves'],
+  ['2 tbsp olive oil', 2, 'tbsp', 'olive oil'],
+  ['200g rice', 200, 'g', 'rice']
+];
+for (const [line, qty, unit, name] of measures) {
+  const p = own.parseIngredientLine(line);
+  check(`measure "${line}"`, p && Number(p.quantity) === qty && p.unit === unit && p.name === name,
+    p ? `got ${p.quantity} ${p.unit} "${p.name}"` : 'null');
+}
+
+// ---- 9. Matching without asking (Phase 34) -----------------------------------
+const reference = JSON.parse(readFileSync(path.join(REPO, 'data/food_reference.json'), 'utf8')).foods;
+const index = own.buildNameIndex(reference, []);
+const matches = [
+  ['large onion', 'Onion, large'],
+  ['garlic cloves, crushed', 'Garlic clove'],
+  ['carrots, peeled and diced', 'Carrot, medium'],
+  ['extra virgin olive oil', 'Olive oil'],
+  ['medium potatoes', 'Potato, medium'],
+  ['eggs', 'Egg, medium'],
+  ['ground beef', null],
+  ['cilantro', null],
+  ['spring onions, sliced', 'Spring onion']
+];
+for (const [name, want] of matches) {
+  const hit = own.resolveName(name, index);
+  check(`matches "${name}"`, hit && (want === null || hit.entry.name === want), hit ? hit.entry.name : 'nothing');
+}
+const im = await import(pathToFileURL(path.join(REPO, 'js/data/ingredientMatch.js')).href);
+const table = [{ code: 'T1', name: 'Lentils, red, split, dried, raw', source: 'uk', words: ['lentil', 'red', 'split', 'dried', 'raw'], calories_per_100g: 318, protein_g: 23.8, fat_g: 1.3, carbs_g: 56.3 }];
+const tidx = own.buildNameIndex([], []);
+const auto = await im.autoMatch(['red split lentils', 'salt and pepper', 'unicorn dust'], tidx, own.resolveName, { foods: table });
+check('table match found', auto.matched.includes('red split lentils'), JSON.stringify(auto));
+check('"salt and pepper" is not guessed', auto.unmatched.includes('salt and pepper'));
+check('no match is not invented', auto.unmatched.includes('unicorn dust'));
+check('table match resolves afterwards', own.resolveName('red split lentils', tidx)?.entry.calories_per_100g === 318);
+
+// ---- 10. Meals tab (Phase 34) ------------------------------------------------
+const home = await import(pathToFileURL(path.join(REPO, 'js/views/mealsHome.js')).href);
+const rows = home.recentlyAdded([
+  { id: 'a', name: 'Old stew', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'b', name: 'Pie', created_at: '2026-11-24T10:00:00Z', source_url: 'https://x.test', source: 'Pie Site' },
+  { id: 'c', name: 'Library curry', created_at: '2026-06-01T00:00:00Z', library_ref: 'curry' }
+], [{ id: 'l1', name: 'Phone soup', savedAt: '2026-11-20T00:00:00Z', draft: {} }]);
+check('recently added is newest first', rows.map((r) => r.name).join(',') === 'Pie,Phone soup,Library curry,Old stew', rows.map((r) => r.name).join(','));
+check('imported says where from', rows[0].origin === 'Imported from Pie Site', rows[0].origin);
 
 console.log(`  ${checks} checks`);
 if (failures.length) {

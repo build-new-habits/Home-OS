@@ -141,4 +141,4 @@ recorded here has not been shown to be live.
 
 | Function | Status | Date | Notes |
 |---|---|---|---|
-| import-recipe | deployed (code pending re-paste) | 24 Nov 2026 | created with the right name; the dashboard kept its starter code, so v2 of index.ts is to be pasted and deployed. "Verify JWT with legacy secret" OFF: v2 checks sign-in itself (publishable keys) |
+| import-recipe | deployed | 24 Nov 2026 | v2 pasted and deployed from the dashboard; Code tab line 1 confirmed v2. "Verify JWT with legacy secret" OFF (v2 checks sign-in itself, publishable keys) |

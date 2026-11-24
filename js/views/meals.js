@@ -1,4 +1,5 @@
-// js/views/meals.js — 03 Oct 2026 v33
+// js/views/meals.js — 24 Nov 2026 v34
+// v34: headed "My meals", with a way back to the Meals tab (Phase 34).
 // v33: the action bar opens the full recipe editor; the quick form stays at #/meals-add.
 // v32: #/meals?edit=<id> opens that meal's sheet (from the recipe page).
 // P5: three screens — meals, meals-match, meals-add.
@@ -248,7 +249,9 @@ export function render(mountEl, { section = 'list' } = {}) {
   // claiming an empty cupboard.
   let pantryStock = null;
 
-  mountEl.appendChild(pageHeading('Meals', 'meal'));
+  // Phase 34: "My meals", beside the Community library under the Meals tab.
+  mountEl.appendChild(el('a', { class: 'back-link', href: '#/meals-home', text: 'Meals' }));
+  mountEl.appendChild(pageHeading('My meals', 'meal'));
 
   const offlineNote = el('p', { class: 'field-hint' });
   offlineNote.hidden = true;
@@ -1170,7 +1173,7 @@ export function render(mountEl, { section = 'list' } = {}) {
     mealsSection.appendChild(el('ul', { class: 'hub-list' }, [
       hubTile('meals-match', 'What could I make?',
         'Recipes you could cook from the cupboards right now.'),
-      hubTile('library', 'Recipe library',
+      hubTile('library', 'Community library',
         'Recipes to add from, ready to cook.')
     ]));
     mountEl.append(mealsSection);

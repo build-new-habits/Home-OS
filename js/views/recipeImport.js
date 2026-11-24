@@ -1,4 +1,5 @@
-// js/views/recipeImport.js — 24 Nov 2026 v1
+// js/views/recipeImport.js — 24 Nov 2026 v2
+// v2: an import lands on Check and save (#/recipe-check), not the full editor.
 // Phase 33. "Import a recipe" (#/recipe-import).
 //
 // Arrived at three ways:
@@ -141,7 +142,7 @@ export function render(mountEl) {
     return { element: section, read, area };
   }
 
-  /** Into the editor, filled in. Replaces history so Back does not re-import. */
+  /** Onto Check and save, filled in. Replaces history so Back does not re-import. */
   function handOver(draft, said) {
     if (!stashImportDraft(draft)) {
       showToast('This phone would not hold the recipe for the next page. Try again, or close other tabs.');
@@ -149,7 +150,7 @@ export function render(mountEl) {
     }
     if (draft.sourceUrl) forgetKept(draft.sourceUrl);
     announce(said);
-    window.location.replace('#/recipe-edit?imported=1');
+    window.location.replace('#/recipe-check');
   }
 
   // ---- States ---------------------------------------------------------------------

@@ -1,4 +1,7 @@
-// js/data/ownRecipe.js — 24 Nov 2026 v5
+// js/data/ownRecipe.js — 24 Nov 2026 v6
+// v6: resolveName finds "large onion" as "Onion, large" and "garlic cloves,
+// finely chopped" as a garlic clove (data/ingredientMatch.js); a food matched
+// in the offline tables saves its figures, source 'reference'.
 // v5: an imported recipe (data/recipeImport.js) saves where it came from:
 // meals.source (the site's name), source_url (migration 027), prep and cook minutes.
 // v4: ingredient rows send display_text and sort_order (schema revision 26); every food is read.
@@ -37,6 +40,8 @@ import { toStorage, ENTRY_UNITS } from '../lib/units.js';
 import { COURSES, isMissingColumnError } from './courses.js';
 import { ingredientLine } from '../lib/units.js';
 import { readAll } from '../lib/readAll.js';
+import { candidateKeys, sortedKey } from './ingredientMatch.js';
+import { measureWord, toMetric } from '../lib/kitchenMeasures.js';
 
 let courseColumn = null; // meals.course: null = not known yet (migration 026)
 let sourceUrlColumn = null; // meals.source_url: null = not known yet (migration 027)
@@ -126,9 +131,41 @@ function readNumber(text) {
  *   "- a pinch of salt"    → salt, no amount
  * Bullets and numbering at the start are dropped. Never throws.
  */
+const SIZE_WORDS = /^(small|large|big|generous|good|heaped|level|rounded)$/i;
+
+/**
+ * v6: a kitchen measure ("cup", "handful", "oz", "tin") becomes grams or ml
+ * (lib/kitchenMeasures.js). `converted` keeps what the recipe said, so a
+ * screen can show "1 cup → 125 g". Null when the word is not a measure.
+ */
+function measured(amount, word, rest) {
+  let w = word;
+  let tail = String(rest || '').trim();
+  // "1 small bunch coriander": the size belongs to the measure.
+  if (SIZE_WORDS.test(w || '')) {
+    const next = tail.match(/^(\S+)\s+(?:of\s+)?(.+)$/);
+    if (next && measureWord(next[1])) { w = next[1]; tail = next[2]; } else return null;
+  }
+  // "8 fl oz milk"
+  if (/^fl$/i.test(w || '') && /^oz\.?\s/i.test(tail)) { w = 'floz'; tail = tail.replace(/^oz\.?\s+/i, ''); }
+  const canon = measureWord(w);
+  if (!canon) return null;
+  const name = tail.replace(/^of\s+/i, '').trim();
+  if (!name) return null;
+  const metric = toMetric(amount, canon, name);
+  if (!metric) return { quantity: Number(amount) > 0 ? Number(amount) : '', unit: 'item', name, converted: '' };
+  return { quantity: metric.quantity, unit: metric.unit, name, converted: metric.converted };
+}
+
 export function parseIngredientLine(line) {
   let text = String(line || '').replace(/^\s*([-*•·]|\d+[.)])\s+/, '').trim();
   if (!text) return null;
+  // v6: "a handful of basil", "a small knob of butter", "one cup of milk"
+  const worded = text.match(/^(a|an|one)\s+(\S+)\s+(.+)$/i);
+  if (worded) {
+    const hit = measured(1, worded[2], worded[3]);
+    if (hit) return hit;
+  }
   const m = text.match(/^((?:\d+(?:\.\d+)?)?\s*[½¼¾⅓⅔]|\d+\/\d+|\d+(?:\.\d+)?)\s*([a-zA-Z]+)?\.?\s+(?:of\s+)?(.+)$/);
   if (!m) {
     const pinch = text.replace(/^(a\s+)?(pinch|handful|dash|splash|few)\s+(of\s+)?/i, '');
@@ -136,6 +173,8 @@ export function parseIngredientLine(line) {
   }
   const qty = readNumber(m[1].replace(/\s+/g, ''));
   const word = m[2] || '';
+  const asMeasure = word ? measured(qty, word, m[3]) : null;
+  if (asMeasure) return asMeasure;
   for (const [pattern, unit, factor] of UNIT_WORDS) {
     if (pattern.test(word)) {
       return { quantity: qty === null ? '' : Math.round(qty * factor * 100) / 100, unit, name: m[3].trim() };
@@ -176,15 +215,19 @@ export function stepHint(instruction) {
  */
 export function buildNameIndex(referenceFoods = [], ownFoods = []) {
   const byName = new Map();
+  // v6: the same words in any order, singular (data/ingredientMatch.js).
+  const byKey = new Map();
   const names = new Set();
   for (const food of referenceFoods) {
     if (!food || !food.slug || !food.name) continue;
     const hit = { key: food.slug, ref: food.slug, entry: food };
     byName.set(normalise(food.name), hit);
     names.add(food.name);
+    if (!byKey.has(sortedKey(food.name))) byKey.set(sortedKey(food.name), hit);
     for (const alias of food.aliases || []) {
       const k = normalise(alias);
       if (!byName.has(k)) byName.set(k, hit);
+      if (!byKey.has(sortedKey(alias))) byKey.set(sortedKey(alias), hit);
     }
   }
   for (const food of ownFoods) {
@@ -194,15 +237,29 @@ export function buildNameIndex(referenceFoods = [], ownFoods = []) {
     const hasFigures = food.calories_per_100g !== null && food.calories_per_100g !== undefined;
     // Your own food with no figures yet should not hide the reference's.
     if (existing && !hasFigures) { byName.set(k, { ...existing, foodId: food.id }); continue; }
-    byName.set(k, { key: `food-${food.id}`, foodId: food.id, entry: food, ref: existing ? existing.ref : undefined });
+    const own = { key: `food-${food.id}`, foodId: food.id, entry: food, ref: existing ? existing.ref : undefined };
+    byName.set(k, own);
+    byKey.set(sortedKey(food.name), own);
     names.add(food.name);
   }
-  return { byName, names: [...names].sort((a, b) => a.localeCompare(b)) };
+  return { byName, byKey, names: [...names].sort((a, b) => a.localeCompare(b)) };
 }
 
+/**
+ * The food a name means. Exact first; then, v6, the same words in any
+ * order with preparation words removed and a size defaulted to medium
+ * where the food comes in sizes. See data/ingredientMatch.js.
+ */
 export function resolveName(name, index) {
   if (!index || !index.byName) return null;
-  return index.byName.get(normalise(name)) || null;
+  const exact = index.byName.get(normalise(name));
+  if (exact) return exact;
+  if (!index.byKey) return null;
+  for (const key of candidateKeys(name)) {
+    const hit = index.byKey.get(key);
+    if (hit) return hit;
+  }
+  return null;
 }
 
 function quantityFor(row) {
@@ -451,10 +508,15 @@ async function foodFor(name, index, foodsByName) {
   const existing = foodsByName.get(normalise(name)) || (hit && hit.entry && foodsByName.get(normalise(hit.entry.name)));
   if (existing) return { ok: true, id: existing.id };
 
-  const entry = hit && hit.ref ? hit.entry : null;
+  // A reference food, or (v6) a food matched in the offline tables: either
+  // way its published figures go with it, marked 'reference'.
+  const entry = hit && (hit.ref || hit.tableMatch) ? hit.entry : null;
   const patch = entry ? referencePatch(entry, {}) : {};
+  if (hit && hit.tableMatch && entry && entry.calories_per_100g != null) patch.source = 'reference';
   const { data, error } = await supabase.from('foods').insert({
-    name: entry ? entry.name : name,
+    // A table match keeps the cook's word ("red lentils"), not the table's
+    // ("Lentils, red, split, dried, raw"), which would read badly on the list.
+    name: entry && !hit.tableMatch ? entry.name : String(name).split(/,| - /)[0].trim() || name,
     category: (entry && entry.category) || 'food_ambient',
     source: patch.source || 'manual',
     calories_per_100g: patch.calories_per_100g ?? null,

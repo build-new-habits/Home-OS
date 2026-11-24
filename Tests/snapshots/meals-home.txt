@@ -1,0 +1,24 @@
+h1"Meals"
+ul.hub-list.meals-home__places
+  li.hub-item
+    a.hub-link"My mealsYours, imported, and ones you copied from the library.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+      span.hub-chevron
+  li.hub-item
+    a.hub-link"Community libraryRecipes that come with the app, ready to cook.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+      span.hub-chevron
+p.library-links
+  a.btn"Write your own"
+  a.btn"What can I make?"
+  a.btn"Make a plate"
+section.meals-home__recent
+  h2"Recently added"
+  div[role=status]
+    p.field-hint
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Import a recipe"

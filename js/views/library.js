@@ -1,4 +1,5 @@
-// js/views/library.js — 24 Nov 2026 v8
+// js/views/library.js — 24 Nov 2026 v9
+// v9: called the Community library; back link to Meals (Phase 34).
 // v8: Import a recipe, beside Write your own recipe (Phase 33).
 // v7: Make a plate, beside Write your own recipe.
 // v6: On this phone sits below the library until there is something on it.
@@ -41,7 +42,8 @@ export function render(mountEl) {
   const { signal } = controller;
   let destroyed = false;
 
-  mountEl.appendChild(el('h1', { text: 'Recipe library' }));
+  mountEl.appendChild(el('a', { class: 'back-link', href: '#/meals-home', text: 'Meals' }));
+  mountEl.appendChild(el('h1', { text: 'Community library' }));
   mountEl.appendChild(el('p', {
     class: 'field-hint',
     text: 'Recipes that come with the app. Open one to cook, plan it or make your own version.'
