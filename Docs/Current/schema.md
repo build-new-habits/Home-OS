@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-03 Oct 2026 v23
+24 Nov 2026 v24
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -13,6 +13,23 @@ policies**, 3 trigger functions, 22 update triggers.
 ownership; 5 remain personal. See §0f and §4.
 
 ---
+
+## 0v. Revision 27 — where a recipe came from (24 Nov 2026)
+
+Phase 33 lets a recipe be shared in from a web page. `meals.source_url`
+records the page: it is the credit line on the recipe and it stops the same
+page being imported twice into one household (partial unique index on
+`(household_id, source_url)`, the same job `library_ref` does for the
+library).
+
+The site's name goes in the existing `meals.source` column, which has meant
+"where this came from" since 13 Sep. No second name column.
+
+Imported recipes are household-private and never feed
+`data/recipe_library/` — the publishing standard in `ROADMAP.md` is
+untouched.
+
+Migration: `migrations/027_recipe_source.sql`. Independent of 026.
 
 ## 0u. Revision 25 — kitchen rebuild (03 Oct 2026)
 
@@ -1056,7 +1073,8 @@ this column exists to prevent.
 | method | text | nullable (13 Sep 2026, household library): a scanned recipe's method as written |
 | prep_minutes | int | nullable (13 Sep 2026) |
 | cook_minutes | int | nullable (13 Sep 2026) |
-| source | text | nullable (13 Sep 2026): book and page |
+| source | text | nullable (13 Sep 2026): book and page. For an imported recipe, the site's name (revision 27) |
+| source_url | text | nullable; check `^https?://`, ≤ 2000 chars; unique per household where not null (revision 27, **migration 027 — not yet applied**). The page an imported recipe came from |
 | diet | text | nullable (13 Sep 2026): vegan, vegetarian, pescatarian or meat |
 
 ### meal_ingredients

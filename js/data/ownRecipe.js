@@ -1,4 +1,6 @@
-// js/data/ownRecipe.js — 04 Oct 2026 v4
+// js/data/ownRecipe.js — 24 Nov 2026 v5
+// v5: an imported recipe (data/recipeImport.js) saves where it came from:
+// meals.source (the site's name), source_url (migration 027), prep and cook minutes.
 // v4: ingredient rows send display_text and sort_order (schema revision 26); every food is read.
 // v3: draftToRecipe carries course, tip, swaps and step notes, so a recipe
 // kept on the phone (data/localRecipes.js) shows in full.
@@ -37,6 +39,7 @@ import { ingredientLine } from '../lib/units.js';
 import { readAll } from '../lib/readAll.js';
 
 let courseColumn = null; // meals.course: null = not known yet (migration 026)
+let sourceUrlColumn = null; // meals.source_url: null = not known yet (migration 027)
 
 export const DIET_TAGS = [
   { value: 'vegetarian', label: 'Vegetarian' },
@@ -534,6 +537,16 @@ export async function saveDraft(draft, index) {
   const mealRow = written.data;
   mealId = mealRow.id;
 
+  // ---- Where an imported recipe came from (Phase 33) ----
+  // Written only for a NEW recipe that was imported: changing a recipe
+  // later never touches its credit. A separate write, after the meal is
+  // safely in, so a problem here can only lose the credit line, never the
+  // recipe. The URL column arrives with migration 027; before that the
+  // site's name still goes in meals.source, which has existed since 13 Sep.
+  const sourceSaved = !draft.mealId && draft.imported
+    ? await saveSource(mealId, draft)
+    : null;
+
   // Old rows, so they can go once the new ones are safely in.
   const [oldIngredients, oldSteps] = draft.mealId
     ? await Promise.all([
@@ -584,7 +597,38 @@ export async function saveDraft(draft, index) {
     const gone = await supabase.from('meal_steps').delete().in('id', oldStepIds);
     if (gone.error) return { ok: false, error: gone.error };
   }
-  return { ok: true, data: { id: mealId, name: mealRow.name }, courseSaved };
+  return { ok: true, data: { id: mealId, name: mealRow.name }, courseSaved, sourceSaved };
+}
+
+function minutesOrNull(value) {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 0 && n <= 2880 ? n : null;
+}
+
+/** meals.source, source_url, prep_minutes, cook_minutes for an imported recipe. Never fails the save. */
+async function saveSource(mealId, draft) {
+  const name = String(draft.sourceName || '').trim().slice(0, 80) || null;
+  const url = /^https?:\/\//i.test(String(draft.sourceUrl || '')) ? String(draft.sourceUrl).slice(0, 2000) : null;
+  const prep = minutesOrNull(draft.prepMinutes);
+  const cook = minutesOrNull(draft.cookMinutes);
+  const write = (withUrl) => (withUrl
+    ? supabase.from('meals').update({ source: name, source_url: url, prep_minutes: prep, cook_minutes: cook })
+    : supabase.from('meals').update({ source: name, prep_minutes: prep, cook_minutes: cook })
+  ).eq('id', mealId);
+  let result = await write(Boolean(url) && sourceUrlColumn !== false);
+  if (result.error && url && sourceUrlColumn !== false && isMissingColumnError(result.error, 'source_url')) {
+    sourceUrlColumn = false;
+    result = await write(false);
+  } else if (result.error && url && result.error.code === '23505') {
+    // Already imported into this household: the recipe is saved, without
+    // the link, rather than failing. The import screen checks first, so
+    // this only happens when two phones import the same page at once.
+    result = await write(false);
+  } else if (!result.error && url && sourceUrlColumn === null) {
+    sourceUrlColumn = true;
+  }
+  if (result.error) console.error('Saving where a recipe came from failed:', result.error);
+  return !result.error;
 }
 
 export { ENTRY_UNITS };

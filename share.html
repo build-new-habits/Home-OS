@@ -1,0 +1,29 @@
+<!-- share.html — 24 Nov 2026 v1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opening Home-OS</title>
+  <meta name="theme-color" content="#35635C">
+  <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+  <!--
+    Phase 33. Where the phone's Share menu lands (manifest share_target,
+    method GET). The app's router reads the #hash, and a share arrives as a
+    ?query, so this page turns one into the other and steps aside with
+    location.replace, so Back never returns here.
+
+    A separate page rather than a change to app.js: app.js and router.js
+    are write-once. Precached, and served from the cache whatever the query
+    (service-worker.js), so sharing works offline: the import screen then
+    keeps the link for later.
+  -->
+  <script src="./js/share.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Opening Home-OS</h1>
+    <p><a href="./#/recipe-import">Continue to Import a recipe</a></p>
+  </main>
+</body>
+</html>

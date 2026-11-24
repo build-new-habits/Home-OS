@@ -11,6 +11,7 @@ div.meal-picker
     button.chip-toggle[type=button][aria-pressed=false]"Library"
   div.meal-picker__chips[role=group]
     button.chip-toggle[type=button][aria-pressed=false]"Favourites (<n>)"
+    button.chip-toggle[type=button][aria-pressed=false][hidden=]"Recently imported (<n>)"
   div.meal-picker__more
     div.meal-picker__filters
       div.field.field-inline

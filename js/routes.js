@@ -1,4 +1,5 @@
-// js/routes.js — 05 Oct 2026 v8
+// js/routes.js — 24 Nov 2026 v9
+// v9: appends 'recipe-import'.
 // v8: appends 'plate'.
 // v7: appends 'nutrition-fixes'.
 // v6: appends 'tonight'.
@@ -256,6 +257,13 @@ export const routes = [
     path: 'plate',
     title: 'Make a plate',
     load: () => import('./views/plate.js')
+  },
+  // 24 Nov 2026. Appended. Import a recipe: shared from another app
+  // (via share.html), a pasted link, or a pasted caption (Phase 33).
+  {
+    path: 'recipe-import',
+    title: 'Import a recipe',
+    load: () => import('./views/recipeImport.js')
   }
 ];
 

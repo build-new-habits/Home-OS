@@ -1,4 +1,6 @@
-// js/views/recipe.js — 17 Oct 2026 v17
+// js/views/recipe.js — 24 Nov 2026 v18
+// v18: an imported recipe credits where it came from, linking to the original
+// (meals.source and source_url, Phase 33).
 // v17: opened from the plan (&e=<plan entry id>), each ingredient says
 // whether it is on the shopping list, with "Got it" and "Have some" right
 // there (data/plannedHave.js). Graeme, 15 Oct 2026: "I don't want to have
@@ -415,6 +417,25 @@ export function render(mountEl) {
 
     heading.textContent = recipe.name;
     document.title = `${recipe.name} · Home-OS`;
+
+    // ---- Where it came from (Phase 33) -------------------------------------
+    // An imported recipe is someone's work; the credit sits under the title
+    // and links back to it. A typed-in "book and page" shows as plain text.
+    if (ownMeal && (ownMeal.source_url || ownMeal.source)) {
+      const credit = el('p', { class: 'recipe-credit' });
+      const name = String(ownMeal.source || '').trim();
+      if (ownMeal.source_url && /^https?:\/\//i.test(ownMeal.source_url)) {
+        credit.append('From ');
+        credit.appendChild(el('a', {
+          href: ownMeal.source_url, target: '_blank', rel: 'noopener noreferrer',
+          text: name || new URL(ownMeal.source_url).hostname.replace(/^www\./, ''),
+          'aria-label': `${name || 'the original page'}, opens the original recipe in a new tab`
+        }));
+      } else {
+        credit.textContent = `From ${name}`;
+      }
+      body.appendChild(credit);
+    }
 
     // ---- Photo (3 Oct 2026) ---------------------------------------------
     // Library recipes, and your own versions of them. Only when there is a

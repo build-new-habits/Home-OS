@@ -1,5 +1,5 @@
 {
-  "//": "manifest.webmanifest — 18 Jul 2026 v1",
+  "//": "manifest.webmanifest — 24 Nov 2026 v2. v2: share_target (Phase 33) — Home-OS in the Share menu on Android; shares land on share.html.",
   "name": "Home-OS",
   "short_name": "Home-OS",
   "description": "Personal daily wellness, chores, meals, pantry, and holiday planning in one place.",
@@ -9,6 +9,15 @@
   "background_color": "#F7F5F1",
   "theme_color": "#35635C",
   "lang": "en",
+  "share_target": {
+    "action": "/Home-OS/share.html",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
   "icons": [
     {
       "src": "./assets/icons/icon.svg",

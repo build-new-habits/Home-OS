@@ -1,4 +1,5 @@
-// js/components/mealPicker.js — 10 Sep 2026 v5
+// js/components/mealPicker.js — 24 Nov 2026 v6
+// v6: Recently imported — recipes shared in during the last 14 days (Phase 33).
 // v5: a library that fails to load says so, and can be tried again.
 // v4: favourites, from both sources, filterable.
 // v2: filters shown, not folded — it has a screen of its own now.
@@ -102,7 +103,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
 
   const state = {
     term: '', cuisine: '', budget: '', dietary: [], proteins: [],
-    source: 'all', favouritesOnly: false
+    source: 'all', favouritesOnly: false, importedOnly: false
   };
 
   /** True for a meal of yours, whichever place its heart was set in. */
@@ -166,7 +167,39 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
     render();
   }, { signal });
   favRow.appendChild(favChip);
+
+  // ---- Recently imported (Phase 33) ---------------------------------------
+  // Saving a recipe is easy; cooking it is the point. Recipes shared in from
+  // a web page or a caption in the last fortnight, findable when the plan
+  // is being made. Never a count of what has not been cooked, never a badge:
+  // it only narrows the list, like Favourites beside it. Hidden until you
+  // have imported something, because a greyed chip for a feature you have
+  // never used tells you nothing about your recipes.
+  const importChip = el('button', { type: 'button', class: 'chip-toggle', text: 'Recently imported' });
+  importChip.setAttribute('aria-pressed', 'false');
+  importChip.hidden = true;
+  importChip.addEventListener('click', () => {
+    state.importedOnly = !state.importedOnly;
+    importChip.setAttribute('aria-pressed', String(state.importedOnly));
+    render();
+  }, { signal });
+  favRow.appendChild(importChip);
   root.appendChild(favRow);
+
+  const RECENT_MS = 14 * 24 * 60 * 60 * 1000;
+  function recentlyImported(meal) {
+    if (!meal.source_url) return false;
+    const at = Date.parse(meal.created_at || '');
+    return Number.isFinite(at) && Date.now() - at <= RECENT_MS;
+  }
+
+  function paintImportChip() {
+    const n = getMeals().filter(recentlyImported).length;
+    // Never hidden while it is switched on: the way out stays where it was.
+    importChip.hidden = n === 0 && !state.importedOnly;
+    importChip.textContent = `Recently imported (${n})`;
+    importChip.setAttribute('aria-label', `Show only the ${n} recipe${n === 1 ? '' : 's'} you imported in the last two weeks.`);
+  }
 
   /** Keeps the chip honest about how much is behind it. */
   function paintFavChip() {
@@ -366,6 +399,7 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
         if (tags.includes('vegetarian') || tags.includes('vegan')) return false;
       }
       if (state.favouritesOnly && !mealIsFavourite(m)) return false;
+      if (state.importedOnly && !recentlyImported(m)) return false;
       return true;
     });
   }
@@ -380,11 +414,14 @@ export function createMealPicker({ signal, getMeals, onChoose }) {
       term: state.term
     // Already imported? It is in "My meals", so showing it twice is noise.
     }).filter((r) => !owned.has(r.slug))
-      .filter((r) => !state.favouritesOnly || recipeIsFavourite(r));
+      .filter((r) => !state.favouritesOnly || recipeIsFavourite(r))
+      // Library recipes are not imported ones.
+      .filter(() => !state.importedOnly);
   }
 
   function render() {
     paintFavChip();
+    paintImportChip();
     const mine = state.source === 'library' ? [] : matchingMine();
     const lib = state.source === 'mine' ? [] : matchingLibrary();
 

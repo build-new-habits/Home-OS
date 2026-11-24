@@ -1,4 +1,7 @@
-// js/views/recipeEditor.js — 04 Oct 2026 v4
+// js/views/recipeEditor.js — 24 Nov 2026 v5
+// v5: ?imported=1 — a recipe shared in (views/recipeImport.js) arrives here
+// filled in, to be checked and saved. Never overwrites a recipe you were
+// writing without asking.
 // v4: Find nutrition for any ingredient not counted (the UK food tables).
 // v3: Save on this phone (no account needed); ?l=<id> changes a phone recipe;
 // ?from=<slug> starts your own version of a library recipe.
@@ -39,6 +42,8 @@ import { loadAllRecipes } from '../data/recipeLibrary.js';
 import { switchRecipe, dietFromHash } from '../data/dietSwitch.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { confirmDialog } from '../components/confirmDialog.js';
+import { takeImportDraft, keepForLater } from '../data/recipeImport.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { nutritionBars } from '../components/nutritionBars.js';
 import { openNutritionFinder } from '../components/nutritionFinder.js';
@@ -63,6 +68,16 @@ const UNIT_OPTIONS = ENTRY_UNITS.map((u) => ({ value: u.value, label: u.label })
 export function editIdFromHash(hash) {
   const match = String(hash || '').match(/[?&]m=([0-9a-z-]+)/i);
   return match ? match[1] : '';
+}
+
+/** #/recipe-edit?imported=1 — a draft handed over by the import screen. */
+export function importedFromHash(hash) {
+  return /[?&]imported=1\b/.test(String(hash || ''));
+}
+
+/** Fields an imported draft carries that a fresh one must not inherit. */
+function clearImport(draft) {
+  for (const key of ['imported', 'sourceUrl', 'sourceName', 'prepMinutes', 'cookMinutes']) delete draft[key];
 }
 
 function readStoredDraft() {
@@ -99,16 +114,18 @@ export function render(mountEl) {
   //   ?from=<slug>  your own version of a library recipe, kept on this phone
   const localId = editId ? '' : localIdFromHash(window.location.hash);
   const fromSlug = editId || localId ? '' : fromSlugFromHash(window.location.hash);
+  const imported = !editId && !localId && !fromSlug && importedFromHash(window.location.hash);
   const onPhone = Boolean(localId || fromSlug);
   const backHref = editId ? `#/recipe?m=${encodeURIComponent(editId)}`
     : localId ? `#/recipe?l=${encodeURIComponent(localId)}`
-      : fromSlug ? `#/recipe?r=${encodeURIComponent(fromSlug)}` : '#/library';
+      : fromSlug ? `#/recipe?r=${encodeURIComponent(fromSlug)}`
+        : imported ? '#/recipe-import' : '#/library';
   const back = el('a', {
     class: 'back-link',
     href: backHref,
-    text: editId || localId || fromSlug ? 'Back to the recipe' : 'Recipes'
+    text: editId || localId || fromSlug ? 'Back to the recipe' : imported ? 'Import a recipe' : 'Recipes'
   });
-  const heading = el('h1', { text: editId || localId ? 'Change your recipe' : fromSlug ? 'Your version' : 'Write your own recipe' });
+  const heading = el('h1', { text: editId || localId ? 'Change your recipe' : fromSlug ? 'Your version' : imported ? 'Check the imported recipe' : 'Write your own recipe' });
   const page = el('div', { class: 'own-recipe' });
   page.appendChild(el('p', { class: 'field-hint', text: 'Getting things ready…' }));
   mountEl.append(back, heading, page);
@@ -160,7 +177,33 @@ export function render(mountEl) {
       heading.textContent = `Your version of ${source.name}`;
     } else {
       const stored = readStoredDraft();
-      if (stored && hasContent(stored)) { draft = stored; restored = true; } else draft = emptyDraft();
+      const incoming = imported ? takeImportDraft() : null;
+      if (incoming) {
+        // ---- Never overwrite a recipe being written without asking ----
+        // Principle 9. A draft you were in the middle of is yours; an
+        // import arriving on top of it asks first. If you keep yours, the
+        // imported link is kept for later rather than thrown away.
+        let replace = true;
+        if (stored && hasContent(stored) && !stored.imported) {
+          replace = await confirmDialog({
+            title: 'You were writing a recipe',
+            message: `${stored.name ? `"${stored.name}"` : 'A recipe'} is not saved yet. Replace it with the imported one, or keep it? If you keep it, the imported link waits on the Import a recipe page.`,
+            confirmLabel: 'Replace with the import',
+            cancelLabel: 'Keep my recipe'
+          });
+          if (destroyed) return;
+        }
+        if (replace) {
+          draft = incoming;
+          storeDraft(draft); // so a reload or an accidental Back loses nothing
+        } else {
+          if (incoming.sourceUrl) keepForLater(incoming.sourceUrl, incoming.name);
+          draft = stored;
+          restored = true;
+          heading.textContent = 'Write your own recipe';
+        }
+      } else if (stored && hasContent(stored)) { draft = stored; restored = true; } else draft = emptyDraft();
+      heading.textContent = draft.imported ? 'Check the imported recipe' : 'Write your own recipe';
     }
     build(draft, index, haveSet, restored);
   })().catch((err) => {
@@ -177,7 +220,9 @@ export function render(mountEl) {
       const fresh = el('button', { type: 'button', class: 'btn btn-small', text: 'Start a new one instead' });
       fresh.addEventListener('click', () => {
         clearStoredDraft();
+        clearImport(draft);
         Object.assign(draft, emptyDraft());
+        importNote?.remove();
         kept.remove();
         paintAll();
         page.querySelector('#own-name')?.focus();
@@ -185,6 +230,25 @@ export function render(mountEl) {
       }, { signal });
       kept.appendChild(fresh);
       page.appendChild(kept);
+    }
+
+    // ---- Where an imported recipe came from (Phase 33) ---------------
+    // A fact and the next step, not a warning. Anything the import could not
+    // match to a food shows under "As it stands", the same as a typed one.
+    let importNote = null;
+    if (draft.imported) {
+      importNote = el('div', { class: 'own-kept own-imported', role: 'status' });
+      const from = String(draft.sourceName || '').trim();
+      importNote.appendChild(el('p', {
+        text: `${from ? `Imported from ${from}. ` : 'Imported. '}Check the amounts and the steps, then save. Nothing is in your meals until you do.`
+      }));
+      if (draft.sourceUrl) {
+        importNote.appendChild(el('a', {
+          href: draft.sourceUrl, target: '_blank', rel: 'noopener noreferrer',
+          text: `Open the original${from ? ` on ${from}` : ''} (opens in a new tab)`
+        }));
+      }
+      page.appendChild(importNote);
     }
 
     // ---- Problems on save --------------------------------------------

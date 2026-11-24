@@ -1,4 +1,5 @@
-// service-worker.js — 17 Oct 2026 v133
+// service-worker.js — 24 Nov 2026 v134
+// v134: Phase 33, share a recipe in — share.html, js/share.js, views/recipeImport.js, data/recipeImport.js; share.html served from cache whatever its query. Shell v180.
 // v133: shopping from a planned meal's recipe — Got it / Have some (data/plannedHave.js). Shell v179.
 // v132: Make a plate: tick crudités, dips and nibbles, see the nutrition add up, save it as a meal Shell v178.
 // v131: Grab and go: 68 shop-bought sandwiches, wraps, bakes, salads and a mini deep-dish cheese pizza; vegan offered only when something changes Shell v177.
@@ -277,9 +278,13 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v179';
+const CACHE_NAME = 'home-os-shell-v180';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './share.html',
+  './js/share.js',
+  './js/views/recipeImport.js',
+  './js/data/recipeImport.js',
   './js/views/plate.js',
   './js/data/plate.js',
   './js/lib/updates.js',
@@ -303,9 +308,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=179',
-  './css/base.css?v=179',
-  './css/components.css?v=179',
+  './css/tokens.css?v=180',
+  './css/base.css?v=180',
+  './css/components.css?v=180',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
@@ -502,6 +507,17 @@ self.addEventListener('notificationclick', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET') {
+    return;
+  }
+  // ---- A share (Phase 33) ----
+  // share.html arrives with the shared text in its query, which never
+  // matches the cached copy. Serve the cached page whatever the query, so a
+  // share works offline, and never cache each share as a page of its own.
+  if (isShellRequest(url) && url.pathname.endsWith('/share.html')) {
+    event.respondWith(
+      caches.match('./share.html', { ignoreSearch: true })
+        .then((cached) => cached || fetch(event.request))
+    );
     return;
   }
   if (isShellRequest(url)) {

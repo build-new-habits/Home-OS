@@ -1,4 +1,5 @@
-// js/views/library.js — 05 Oct 2026 v7
+// js/views/library.js — 24 Nov 2026 v8
+// v8: Import a recipe, beside Write your own recipe (Phase 33).
 // v7: Make a plate, beside Write your own recipe.
 // v6: On this phone sits below the library until there is something on it.
 // v5: On this phone — recipes saved here, a backup file and restore.
@@ -51,6 +52,8 @@ export function render(mountEl) {
   tonight.appendChild(el('a', { class: 'btn', href: '#/tonight', text: 'What can I make with what I have?' }));
   // 3 Oct 2026: your own recipes start here too.
   tonight.appendChild(el('a', { class: 'btn', href: '#/recipe-edit', text: 'Write your own recipe' }));
+  // 24 Nov 2026: from a web page or a caption (Phase 33).
+  tonight.appendChild(el('a', { class: 'btn', href: '#/recipe-import', text: 'Import a recipe' }));
   // 5 Oct 2026: crudités, dips and nibbles, ticked rather than written.
   tonight.appendChild(el('a', { class: 'btn', href: '#/plate', text: 'Make a plate' }));
   tonight.appendChild(el('a', { class: 'btn btn-quiet', href: '#/meals', text: 'Your recipes' }));

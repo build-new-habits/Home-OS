@@ -1,4 +1,5 @@
-// js/navConfig.js — 03 Oct 2026 v13
+// js/navConfig.js — 24 Nov 2026 v14
+// v14: Import a recipe, among the Meals pages (Phase 33).
 // v13: Pantry quick start, first in the pantry's pages.
 // v12: library blurb no longer counts its recipes (146 and growing).
 // v11: Pantry in the kitchen bar; drawn icons.
@@ -148,7 +149,8 @@ export const PLAN_PAGES = [
 // how meals-match came up orphaned the moment it was added.
 export const MEALS_PAGES = [
   { path: 'meals-match', title: 'What could I make?', blurb: 'Recipes you could cook from the cupboards right now.' },
-  { path: 'meals-add', title: 'Add a meal', blurb: 'Your own recipe, by hand.' }
+  { path: 'meals-add', title: 'Add a meal', blurb: 'Your own recipe, by hand.' },
+  { path: 'recipe-import', title: 'Import a recipe', blurb: 'From a web page, or a caption you paste.' }
 ];
 
 // The pantry's own pages. Declared here rather than inside the view for the
