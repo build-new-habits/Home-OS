@@ -141,4 +141,4 @@ recorded here has not been shown to be live.
 
 | Function | Status | Date | Notes |
 |---|---|---|---|
-| import-recipe | NOT DEPLOYED | — | Phase 33. Verify JWT ON. Until it is live, Import a recipe offers the paste box for every link ("That page did not open") — nothing breaks |
+| import-recipe | deployed (code pending re-paste) | 24 Nov 2026 | created with the right name; the dashboard kept its starter code, so v2 of index.ts is to be pasted and deployed. "Verify JWT with legacy secret" OFF: v2 checks sign-in itself (publishable keys) |

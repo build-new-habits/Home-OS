@@ -1,4 +1,7 @@
-// supabase/functions/import-recipe/index.ts — 24 Nov 2026 v1
+// supabase/functions/import-recipe/index.ts — 24 Nov 2026 v2
+// v2: checks sign-in itself. The project uses the newer publishable keys, so
+// the dashboard's "Verify JWT with legacy secret" switch is turned OFF, as
+// Supabase recommends, and this function asks Supabase Auth instead.
 // Phase 33. Fetch a recipe web page and return its schema.org Recipe data.
 //
 // ---- Deliberately simple ----
@@ -19,9 +22,11 @@
 //
 // ---- Deploy ----
 // Supabase dashboard → Edge Functions → Deploy a new function, name
-// "import-recipe", paste this file. Leave "Verify JWT" ON: only a
-// signed-in Home-OS user can call it. Or: supabase functions deploy
-// import-recipe. Record the deploy in Docs/Current/MIGRATIONS_APPLIED.md.
+// "import-recipe", paste this file. Then Settings → turn "Verify JWT with
+// legacy secret" OFF and save: signedIn() below is the check, and it works
+// with both the legacy and the newer signing keys. Only a signed-in Home-OS
+// user can use the function either way. Record the deploy in
+// Docs/Current/MIGRATIONS_APPLIED.md.
 //
 // Written as JavaScript-compatible TypeScript (erasable annotations only)
 // so Tests/import.mjs can import the pure functions under Node.
@@ -228,6 +233,25 @@ function corsHeaders(origin: string | null): Record<string, string> {
   };
 }
 
+/**
+ * True when the request carries a signed-in user's token. Asks Supabase
+ * Auth rather than checking a signature here, so it keeps working whichever
+ * signing keys the project uses. SUPABASE_URL and SUPABASE_ANON_KEY are
+ * provided to every Edge Function automatically.
+ */
+async function signedIn(authorization: string): Promise<boolean> {
+  const D = (globalThis as any).Deno;
+  const base = D && D.env.get('SUPABASE_URL');
+  const key = D && (D.env.get('SUPABASE_ANON_KEY') || D.env.get('SUPABASE_PUBLISHABLE_KEY'));
+  if (!base || !key || !/^Bearer\s+\S+/i.test(authorization || '')) return false;
+  try {
+    const res = await fetch(`${base}/auth/v1/user`, { headers: { Authorization: authorization, apikey: key } });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 export async function handle(req: Request): Promise<Response> {
   const cors = corsHeaders(req.headers.get('origin'));
   const reply = (body: unknown, status = 200) =>
@@ -235,6 +259,7 @@ export async function handle(req: Request): Promise<Response> {
 
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
   if (req.method !== 'POST') return reply({ ok: false, reason: 'method' }, 405);
+  if (!(await signedIn(req.headers.get('authorization') || ''))) return reply({ ok: false, reason: 'signed-out' }, 401);
 
   let url = '';
   try { url = String((await req.json()).url || ''); } catch { return reply({ ok: false, reason: 'bad-url' }, 400); }
