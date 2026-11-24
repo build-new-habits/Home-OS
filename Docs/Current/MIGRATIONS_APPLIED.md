@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 08 Sep 2026 v5 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 24 Nov 2026 v6 -->
 
 ## Why this file exists
 
@@ -74,6 +74,7 @@ Status values are deliberately blunt:
 | 024_plan_weeks | applied | 8 Sep 2026 | week_start present and NOT NULL, Monday constraint on, index created; 6 existing meals backfilled to Monday 2026-09-07 |
 | 025_recipe_notes | applied | 8 Sep 2026 | both tables, both indexes, RLS true on both, policies present |
 | 026_kitchen_rebuild | NOT APPLIED | — | written 3 Oct 2026: drink slot, foods.fibre_g, show_nutrition, nutrition_targets, weekly_meal_plan.is_leftover, meals.course, foods.shelf, weekly_meal_plan.eaten_at. Run with Graeme, then VERIFY. Leftovers and courses switch on by themselves once it is in |
+| 027_recipe_source | applied | 24 Nov 2026 | run against "Home OS"; VERIFY returned three PASS rows: meals.source_url, source_url check, unique per household |
 
 ## The honest caveat
 
@@ -132,3 +133,12 @@ Three rows. The pantry query can now succeed. 017 and 018 are marked
 applied on the strength of that query rather than on the strength of the
 app appearing to work — which is the distinction this whole file exists
 to hold on to.
+
+## Edge Functions deployed
+
+Same rule as migrations: a function in `supabase/functions/` that is not
+recorded here has not been shown to be live.
+
+| Function | Status | Date | Notes |
+|---|---|---|---|
+| import-recipe | NOT DEPLOYED | — | Phase 33. Verify JWT ON. Until it is live, Import a recipe offers the paste box for every link ("That page did not open") — nothing breaks |

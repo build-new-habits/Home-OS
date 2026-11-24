@@ -73,6 +73,7 @@ run "Contrast — every pair, all four themes"         contrast.mjs
 run "Schema conformance — columns vs schema.md"      schema-conformance.mjs
 run "Interaction trace — every control, every write" trace.mjs
 run "Recipe library — style guide and refs"          library.mjs
+run "Import — shared pages, captions and links"     import.mjs
 run "Platform — what only breaks on a device"        platform.mjs
 run "Snapshots — every view's structure, frozen"      snapshot.mjs
 

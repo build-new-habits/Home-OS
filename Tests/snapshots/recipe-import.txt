@@ -1,0 +1,18 @@
+a.back-link"Recipes"
+h1"Import a recipe"
+div.recipe-import
+  p
+  div.field
+    label"Link to the recipe"
+    input[type=url]
+    p.field-hint
+    p.field-error[hidden=]
+  section.import-paste
+    h2"Paste the recipe text"
+    label"Recipe text"
+    textarea
+    p.field-hint
+    p.field-error[hidden=]
+    button.btn[type=button]"Read this text"
+div.action-bar
+  button.action-bar__control.btn.btn-primary[type=button]"Get the recipe"
