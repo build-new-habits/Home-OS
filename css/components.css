@@ -1,4 +1,5 @@
-/* css/components.css — 24 Nov 2026 v101 */
+/* css/components.css — 24 Nov 2026 v102 */
+/* v102: Check and save, the Meals tab (Phase 34). */
 /* v101: Import a recipe (Phase 33): the import screen, kept links, the recipe credit. */
 /* v100: shopping from a planned meal's recipe — Got it / Have some (17 Oct). */
 /* v99: Make a plate (5 Oct). */
@@ -5105,3 +5106,27 @@ body.sheet-open {
 .own-imported a { display: inline-block; min-height: var(--tap-min); padding: var(--space-2) 0; }
 .recipe-credit { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
 .recipe-credit a { display: inline-block; min-height: var(--tap-min); padding: var(--space-2) 0; }
+
+/* ---- Check and save, the Meals tab (Phase 34) ----------------------------- */
+.recipe-check { display: flex; flex-direction: column; gap: var(--space-4); }
+.recipe-check > p { margin: 0; }
+.recipe-check input[type="text"] { width: 100%; min-height: var(--tap-min); }
+.check-serves { display: flex; align-items: center; gap: var(--space-3); }
+.check-serves__label { font-weight: 600; min-width: 4em; }
+.check-serves__btn { min-width: var(--tap-min); min-height: var(--tap-min); font-size: var(--text-lg); }
+.check-serves__count { min-width: 2em; text-align: center; font-size: var(--text-lg); font-weight: 600; }
+.check-section h2 { margin: 0 0 var(--space-2); }
+.check-ingredients { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.check-ing {
+  display: flex; gap: var(--space-3); align-items: center; justify-content: space-between;
+  padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.check-ing--open { border-color: var(--control-border); }
+.check-ing__text { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.check-ing__line { font-weight: 600; overflow-wrap: anywhere; }
+.check-ing__said, .check-ing__match { font-size: var(--text-sm); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.check-ing .btn { flex: 0 0 auto; min-height: var(--tap-min); }
+.check-steps { margin: 0; }
+.meals-home__places { margin-bottom: var(--space-4); }
+.meals-home__recent h2 { margin: var(--space-4) 0 var(--space-2); }

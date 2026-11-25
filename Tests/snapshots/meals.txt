@@ -1,4 +1,5 @@
-h1.page-heading"Meals"
+a.back-link"Meals"
+h1.page-heading"My meals"
   svg.icon.icon-meal
     g
       path
@@ -23,7 +24,7 @@ section
           span.hub-blurb
         span.hub-chevron
     li.hub-item
-      a.hub-link"Recipe libraryRecipes to add from, ready to cook.›"
+      a.hub-link"Community libraryRecipes to add from, ready to cook.›"
         span.hub-text
           span.hub-title
           span.hub-blurb

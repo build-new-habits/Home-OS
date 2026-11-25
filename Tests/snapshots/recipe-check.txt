@@ -1,0 +1,5 @@
+a.back-link"Import a recipe"
+h1"Check and save"
+div.recipe-check
+  p
+  a.btn"Import a recipe"

@@ -1,4 +1,5 @@
-// js/routes.js — 24 Nov 2026 v9
+// js/routes.js — 24 Nov 2026 v10
+// v10: appends 'recipe-check' and 'meals-home'.
 // v9: appends 'recipe-import'.
 // v8: appends 'plate'.
 // v7: appends 'nutrition-fixes'.
@@ -264,6 +265,19 @@ export const routes = [
     path: 'recipe-import',
     title: 'Import a recipe',
     load: () => import('./views/recipeImport.js')
+  },
+  // 24 Nov 2026. Appended. Check and save an imported recipe (Phase 34).
+  {
+    path: 'recipe-check',
+    title: 'Check and save',
+    load: () => import('./views/recipeCheck.js')
+  },
+  // 24 Nov 2026. Appended. The Meals tab: My meals and the Community
+  // library, with what was added lately (Phase 34).
+  {
+    path: 'meals-home',
+    title: 'Meals',
+    load: () => import('./views/mealsHome.js')
   }
 ];
 

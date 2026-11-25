@@ -1,4 +1,5 @@
-// js/navConfig.js — 24 Nov 2026 v14
+// js/navConfig.js — 24 Nov 2026 v15
+// v15: the Recipes tab is Meals (#/meals-home): My meals and the Community library.
 // v14: Import a recipe, among the Meals pages (Phase 33).
 // v13: Pantry quick start, first in the pantry's pages.
 // v12: library blurb no longer counts its recipes (146 and growing).
@@ -177,7 +178,7 @@ export const KITCHEN_PAGES = [
   // section of the Meals page. The Meals blurb loses its mention of it,
   // because two cards both claiming the library is behind them is worse
   // than the burial this replaces.
-  { path: 'library', title: 'Recipe library', blurb: 'Recipes to add from, ready to cook.' },
+  { path: 'library', title: 'Community library', blurb: 'Recipes that come with the app, ready to cook.' },
   { path: 'pantry', title: 'Pantry', blurb: 'What is in your cupboards.' },
   { path: 'foods', title: 'Things you buy', blurb: 'Food and everything else that ends up in the trolley.' }
 ];
@@ -209,7 +210,9 @@ export const KITCHEN_NAV_ITEMS = [
     svg: '<path d="M4 11l8-7 8 7v9H4z"/>' },
   { path: 'plan-this-week', label: 'Plan', icon: '▦', area: 'kitchen',
     svg: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>' },
-  { path: 'library', label: 'Recipes', icon: '☰', area: 'kitchen',
+  // v15 (Phase 34): "Recipes" became "Meals", opening on My meals and the
+  // Community library. Graeme, 24 Nov 2026.
+  { path: 'meals-home', label: 'Meals', icon: '☰', area: 'kitchen',
     svg: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>' },
   { path: 'shopping', label: 'Shop', icon: '✓', area: 'kitchen',
     svg: '<path d="M4 7h16l-1.5 11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2z"/><path d="M9 7a3 3 0 0 1 6 0"/>' },

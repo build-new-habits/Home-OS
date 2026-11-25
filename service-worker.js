@@ -1,4 +1,5 @@
-// service-worker.js — 24 Nov 2026 v134
+// service-worker.js — 24 Nov 2026 v135
+// v135: Phase 34, quick kitchen — views/recipeCheck.js, views/mealsHome.js, data/ingredientMatch.js, lib/kitchenMeasures.js. Shell v181.
 // v134: Phase 33, share a recipe in — share.html, js/share.js, views/recipeImport.js, data/recipeImport.js; share.html served from cache whatever its query. Shell v180.
 // v133: shopping from a planned meal's recipe — Got it / Have some (data/plannedHave.js). Shell v179.
 // v132: Make a plate: tick crudités, dips and nibbles, see the nutrition add up, save it as a meal Shell v178.
@@ -278,9 +279,13 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v180';
+const CACHE_NAME = 'home-os-shell-v181';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/views/recipeCheck.js',
+  './js/views/mealsHome.js',
+  './js/data/ingredientMatch.js',
+  './js/lib/kitchenMeasures.js',
   './share.html',
   './js/share.js',
   './js/views/recipeImport.js',
@@ -308,9 +313,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=180',
-  './css/base.css?v=180',
-  './css/components.css?v=180',
+  './css/tokens.css?v=181',
+  './css/base.css?v=181',
+  './css/components.css?v=181',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

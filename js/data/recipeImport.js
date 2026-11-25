@@ -1,4 +1,5 @@
-// js/data/recipeImport.js — 24 Nov 2026 v1
+// js/data/recipeImport.js — 24 Nov 2026 v2
+// v2: a converted measure keeps what the recipe said (`said`: "1 cup").
 // Phase 33. A recipe shared in from somewhere else, turned into a draft for
 // the recipe editor (data/ownRecipe.js). Nothing here writes a recipe: the
 // editor's Save does, after you have checked it.
@@ -165,7 +166,7 @@ export function importIngredient(line) {
     .replace(/\s+/g, ' ')
     .trim();
   if (!name) name = parsed.name.trim();
-  return newIngredient({ name: name.slice(0, 80), quantity: parsed.quantity, unit: parsed.unit });
+  return newIngredient({ name: name.slice(0, 80), quantity: parsed.quantity, unit: parsed.unit, said: parsed.converted || '' });
 }
 
 /** recipeInstructions in any of the shapes sites use, as plain step texts. */
