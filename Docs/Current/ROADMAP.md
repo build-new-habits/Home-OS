@@ -1,5 +1,5 @@
 # Home-OS: Roadmap
-01 Sep 2026 v2 (supersedes ROADMAP_11_17.md)
+25 Nov 2026 v3 (supersedes ROADMAP_11_17.md). v3: Phase 17 unparked as Premium; Phase 35 shopping list sections.
 
 **Decision, 01 Sep 2026: Home-OS is being built as a product, not a
 single-user app, and the recipe library will be published.** That is settled
@@ -91,6 +91,16 @@ rows. It is free to serve at any user count, cacheable, works offline, and
 needs no RLS reasoning. Move to tables only if user-contributed recipes
 become real.
 
-Phase 17 is parked for the same reason: per-use API cost becomes per-user
-cost at scale. The chat-based import route costs nothing and is available
-today. Revisit only with a pricing model that covers it.
+Phase 17 was parked for the same reason: per-use API cost becomes per-user
+cost at scale.
+
+**25 Nov 2026: Phase 17 unparked, as Premium** (Graeme). The pricing model
+that covers it now exists: £2.99 a month or £24.99 a year per household,
+with a fair-use cap on AI imports (COMPETITIVE_POSITION.md v2). Free keeps
+the no-cost import routes from Phase 33 (web link, pasted caption) with
+Phase 34's automatic nutrition. Premium adds what costs money to run:
+Instagram/TikTok posts read for you, photos of a cookbook page or card,
+video captions, and the plain-language rewrite with swaps. Phase 17 fills
+the same draft shape Phase 33 hands to Check and save, so nothing built so
+far is thrown away. It needs a server-side key (Edge Function secret),
+an entitlement check, and the fair-use counter before any AI call is made.
