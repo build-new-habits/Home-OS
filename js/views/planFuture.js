@@ -1,4 +1,5 @@
-// js/views/planFuture.js — 10 Sep 2026 v2
+// js/views/planFuture.js — 26 Nov 2026 v3
+// v3: weeks ahead are Hearth's; Free sees what Hearth adds (Phase 36a).
 // v2: recipes can be attached, so recipe_refs is no longer a column nobody
 //     can reach.
 //
@@ -21,6 +22,7 @@
 // library uses for exactly that. A route per note would need an id in the
 // path, which the router does not carry.
 
+import { loadHearth, isHearth, WHAT_HEARTH_ADDS } from '../data/hearth.js';
 import { el, field } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { announce } from '../lib/a11y.js';
@@ -35,7 +37,7 @@ import { listMeals } from '../data/meals.js';
 import { readDraft, writeDraft, clearDraft } from '../lib/planDraft.js';
 import { navigate } from '../router.js';
 
-export function render(mountEl) {
+function renderFuture(mountEl) {
   let destroyed = false;
   const controller = new AbortController();
   const signal = controller.signal;
@@ -371,4 +373,21 @@ export function render(mountEl) {
     destroyed = true;
     controller.abort();
   };
+}
+
+/** Phase 36a: weeks ahead are Hearth's. Free sees what Hearth adds. */
+export function render(mountEl) {
+  let cleanup = null;
+  let gone = false;
+  loadHearth().then(() => {
+    if (gone) return;
+    if (isHearth()) { cleanup = renderFuture(mountEl); return; }
+    mountEl.append(
+      el('a', { class: 'back-link', href: '#/plan-this-week', text: 'This week' }),
+      el('h1', { text: 'Weeks ahead' }),
+      el('p', { text: `Free plans this week. ${WHAT_HEARTH_ADDS.planAhead}` }),
+      el('a', { class: 'btn btn-primary', href: '#/hearth', text: 'See Hearth' })
+    );
+  });
+  return () => { gone = true; if (typeof cleanup === 'function') cleanup(); };
 }

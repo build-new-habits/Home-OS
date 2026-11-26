@@ -1,4 +1,5 @@
-// js/views/meals/library.js — 03 Oct 2026 v7
+// js/views/meals/library.js — 26 Nov 2026 v8
+// v8: Free sees this month's ten recipes, with what Hearth opens (Phase 36a).
 // v7: quick filters (vegetarian, vegan, 30 minutes or less, puddings); the
 // rest fold under More filters; rows show time instead of a step count.
 // v6: a photo or meal-colour tile beside each recipe.
@@ -40,6 +41,8 @@ import {
   loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
 } from '../../data/recipeLibrary.js';
 import { listRecipeNotes } from '../../data/recipeNotes.js';
+import { loadHearth, isHearth, libraryThisMonth, FREE_LIMITS } from '../../data/hearth.js';
+import { showHearthCard } from '../../components/hearthCard.js';
 
 /**
  * @param {{
@@ -66,6 +69,7 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
   const libraryList = el('ul', { class: 'library-list' });
 
   const destroyed = () => isDestroyed();
+  let libraryFullCount = 0;
 
   // ---- Position, corrected in the A1 pass ----
   // This was built last on the page, after the add-meal form, behind a
@@ -122,6 +126,15 @@ async function loadLibrary() {
   }
 
   libraryRecipes = recipes.data;
+  // Phase 36a: Free sees this month's ten. Recipes already copied into your
+  // meals are yours and are not affected.
+  await loadHearth();
+  if (destroyed()) return;
+  const fullCount = libraryRecipes.length;
+  if (!isHearth()) {
+    const open = new Set(libraryThisMonth(libraryRecipes.map((r) => r.slug)));
+    libraryRecipes = libraryRecipes.filter((r) => open.has(r.slug));
+  }
   libraryOwned = owned.ok ? owned.data : new Map();
   // A failed notes read narrows the panel rather than emptying it: no
   // hearts, no favourites chip, every recipe still browsable.
@@ -130,12 +143,21 @@ async function loadLibrary() {
   // complete one — same shape, fewer recipes, nothing said.
   librarySummary.textContent = `Browse the recipe library (${libraryRecipes.length})`
     + (recipes.missing ? ' — part of it did not load' : '');
+  libraryFullCount = fullCount;
   renderLibrary();
 }
 
 
 function renderLibrary() {
   libraryBody.replaceChildren();
+  if (!isHearth() && libraryFullCount) {
+    const note = el('p', { class: 'field-hint library-hearth-note' });
+    note.append(`This month’s ${FREE_LIMITS.libraryPerMonth} recipes. A new ${FREE_LIMITS.libraryPerMonth} arrive next month. `);
+    const more = el('button', { type: 'button', class: 'btn btn-small', text: `Hearth opens all ${libraryFullCount}` });
+    more.addEventListener('click', () => showHearthCard('library'), { signal });
+    note.appendChild(more);
+    libraryBody.appendChild(note);
+  }
 
   const filterRow = el('div', { class: 'library-filters' });
 

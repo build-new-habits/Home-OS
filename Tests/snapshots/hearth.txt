@@ -1,0 +1,64 @@
+a.back-link"Meals"
+h1"Hearth"
+p.hearth-lead
+p.hearth-status[role=status]
+div.hearth-table-wrap
+  table.hearth-table
+    caption"What Free and Hearth include"
+    thead
+      tr
+        th[scope=col]
+        th[scope=col]
+        th[scope=col]
+    tbody
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+      tr
+        th[scope=row]
+        td
+        td
+p.field-hint
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Back to Meals"

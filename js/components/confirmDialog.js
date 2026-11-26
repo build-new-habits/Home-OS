@@ -1,4 +1,6 @@
-// js/components/confirmDialog.js — 14 Jul 2026 v1
+// js/components/confirmDialog.js — 26 Nov 2026 v2
+// v2: `tone: 'primary'` for a confirm that is an invitation, not a deletion
+// (the Hearth card, Phase 36). Default stays the danger style.
 // Accessible modal confirm dialog. Deletions (a project, a meal, a
 // holiday) must go through this — behavioural principle 9.
 
@@ -9,7 +11,8 @@ export function confirmDialog({
   title = 'Are you sure?',
   message = '',
   confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel'
+  cancelLabel = 'Cancel',
+  tone = 'danger'
 } = {}) {
   return new Promise((resolve) => {
     const previouslyFocused = document.activeElement;
@@ -43,7 +46,7 @@ export function confirmDialog({
     cancelBtn.textContent = cancelLabel;
 
     const confirmBtn = document.createElement('button');
-    confirmBtn.className = 'btn btn-danger';
+    confirmBtn.className = tone === 'primary' ? 'btn btn-primary' : 'btn btn-danger';
     confirmBtn.type = 'button';
     confirmBtn.textContent = confirmLabel;
 
