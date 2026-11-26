@@ -1,4 +1,5 @@
-// js/routes.js — 24 Nov 2026 v10
+// js/routes.js — 26 Nov 2026 v11
+// v11: appends 'hearth'.
 // v10: appends 'recipe-check' and 'meals-home'.
 // v9: appends 'recipe-import'.
 // v8: appends 'plate'.
@@ -278,6 +279,13 @@ export const routes = [
     path: 'meals-home',
     title: 'Meals',
     load: () => import('./views/mealsHome.js')
+  },
+  // 26 Nov 2026. Appended. What Hearth adds, and which tier this
+  // household is on (Phase 36a).
+  {
+    path: 'hearth',
+    title: 'Hearth',
+    load: () => import('./views/hearth.js')
   }
 ];
 

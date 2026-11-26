@@ -1,4 +1,5 @@
-// js/views/pantry.js — 04 Oct 2026 v24
+// js/views/pantry.js — 26 Nov 2026 v25
+// v25: Free keeps 30 things in the pantry; adding past that shows the Hearth card (Phase 36a).
 // v24: What's in is grouped by kind (Dairy, Meat, Tinned…), not by place.
 // v23: use-soon items open the item's sheet; the sheet offers ways to use it.
 // v22: the pantry is a hub of pages, not a page of folds.
@@ -80,6 +81,8 @@ import { loadShelfChoices, shelfFor } from '../data/foodShelves.js';
 import { shelfPicker } from '../components/shelfPicker.js';
 import { SHELVES, shelfLabel, shelfRank } from '../data/shelves.js';
 import { navigate } from '../router.js';
+import { canAdd } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 const UNPLACED = 'No location recorded';
 
 // Local element helper, defined here rather than copied in.
@@ -1399,6 +1402,11 @@ export function render(mountEl, { section = 'hub' } = {}) {
   addForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     addError.hidden = true;
+
+    // Phase 36a: Free keeps 30 things. What is there already stays.
+    const room = await canAdd('pantry');
+    if (destroyed) return;
+    if (!room.ok) { await showHearthCard('pantry', room); return; }
 
     // Checked here as well as by the attribute: constraint validation is a
     // browser behaviour, and this path must not depend on it.

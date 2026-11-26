@@ -1,4 +1,5 @@
-// js/views/recipeImport.js — 24 Nov 2026 v2
+// js/views/recipeImport.js — 26 Nov 2026 v3
+// v3: Free imports 3 recipes a month; the Hearth card past that (Phase 36a).
 // v2: an import lands on Check and save (#/recipe-check), not the full editor.
 // Phase 33. "Import a recipe" (#/recipe-import).
 //
@@ -37,6 +38,8 @@ import {
   extractUrl, hostOf, isSocialHost, socialName, importFromUrl, findExisting,
   textToDraft, draftCounts, keptLinks, keepForLater, forgetKept, stashImportDraft
 } from '../data/recipeImport.js';
+import { canAdd, countImport } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 
 /** u, t and title from #/recipe-import?u=…&t=… */
 export function importParams(hash) {
@@ -120,7 +123,9 @@ export function render(mountEl) {
     const problem = el('p', { id: 'import-text-problem', class: 'field-error', hidden: '' });
     section.append(el('label', { for: 'import-text', text: 'Recipe text' }), area, hint, problem);
 
-    function read() {
+    async function read() {
+      if (!(await roomToImport())) return;
+      if (destroyed) return;
       const draft = textToDraft(area.value, { sourceUrl });
       const counts = draft ? draftCounts(draft) : { ingredients: 0, steps: 0 };
       if (!draft || (!draft.name && !counts.ingredients && !counts.steps)) {
@@ -144,6 +149,7 @@ export function render(mountEl) {
 
   /** Onto Check and save, filled in. Replaces history so Back does not re-import. */
   function handOver(draft, said) {
+    countImport(); // Phase 36a: Free imports 3 a month
     if (!stashImportDraft(draft)) {
       showToast('This phone would not hold the recipe for the next page. Try again, or close other tabs.');
       return;
@@ -283,7 +289,16 @@ export function render(mountEl) {
     actionBar(`Open ${meal.name}`, `#/recipe?m=${encodeURIComponent(meal.id)}`);
   }
 
+  /** Phase 36a: Free imports 3 a month. True when there is room. */
+  async function roomToImport() {
+    const room = await canAdd('imports');
+    if (!room.ok && !destroyed) await showHearthCard('imports', { ...room, fact: `Free imports ${room.limit} recipes a month.` });
+    return room.ok;
+  }
+
   async function importLink(url) {
+    if (!(await roomToImport())) { if (!destroyed) showStart({ url }); return; }
+    if (destroyed) return;
     if (isSocialHost(url)) { showSocial(url, sharedCaption); return; }
     show('Reading the recipe', `Reading the recipe from ${hostOf(url)}.`);
     page.appendChild(el('p', { class: 'import-working', role: 'status', text: `Reading the recipe from ${hostOf(url)}…` }));

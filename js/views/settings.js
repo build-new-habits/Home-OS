@@ -1,4 +1,5 @@
-// js/views/settings.js — 04 Oct 2026 v22
+// js/views/settings.js — 26 Nov 2026 v23
+// v23: a Hearth line under the heading: which tier, and what it adds (Phase 36a).
 // v22: Your food week — the day it starts.
 // v21: a link to Nutrition filled in.
 // v20: on a trial phone, Account explains the trial and offers Make an account.
@@ -21,6 +22,7 @@
 // the only honest response is to offer the path that resolves both.
 // v3: adds a Change password form under Account. Requested out-of-band
 // during the Phase 5 session; logged in PHASE5_HANDOFF.md.
+import { loadHearth, isHearth } from '../data/hearth.js';
 import { upsertSettings, exportAllData, downloadJson, signOutUser, changePassword, sendPasswordReset } from '../data/settings.js';
 import { announce } from '../lib/a11y.js';
 import { permissionState, requestPermission, describePermission, describeDelivery } from '../lib/notify.js';
@@ -635,6 +637,18 @@ export function render(mountEl) {
   const h1 = document.createElement('h1');
   h1.textContent = 'Settings';
   mountEl.appendChild(h1);
+
+  // Phase 36a: which tier this household is on, one tap from what Hearth adds.
+  const hearthLine = document.createElement('p');
+  hearthLine.className = 'settings-hearth';
+  const hearthLink = document.createElement('a');
+  hearthLink.href = '#/hearth';
+  hearthLink.textContent = 'Free and Hearth';
+  hearthLine.append('Your household: checking… ', hearthLink);
+  mountEl.appendChild(hearthLine);
+  loadHearth().then(() => {
+    hearthLine.firstChild.textContent = isHearth() ? 'Your household has Hearth. ' : 'Your household is on Free. ';
+  });
 
   async function saveAndRerender(patch, savedMessage) {
     const result = await upsertSettings(patch);

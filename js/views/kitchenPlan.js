@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 17 Oct 2026 v14
+// js/views/kitchenPlan.js — 26 Nov 2026 v15
+// v15: Free plans dinners: other meals show the Hearth card (Phase 36a).
 // v14: a planned meal opens its recipe with the plan entry (&e=), so you can
 // say what you already have from the recipe itself.
 // v13: your food week — seven days from the day you choose (lib/foodWeek.js).
@@ -44,6 +45,8 @@
 // An empty square is "open". Never missed, never red, never counted
 // against anyone (behavioural principle 1).
 
+import { loadHearth, isHearth } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 import { el } from '../lib/dom.js';
 import {
   listPlan, addPlanEntry, removePlanEntry, servesFor, DAYS, SLOTS,
@@ -137,6 +140,7 @@ export function proposeFills(entries, meals, fromDayIndex = 0) {
  * @param {{ week: 'this' | 'next' }} opts
  */
 export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
+  loadHearth(); // Phase 36a: known before anything is tapped
   const controller = new AbortController();
   const { signal } = controller;
   let destroyed = false;
@@ -287,6 +291,12 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
           const box = el('input', { type: 'checkbox', id, value });
           box.checked = slots.includes(value);
           box.addEventListener('change', () => {
+            // Phase 36a: Free plans dinners.
+            if (box.checked && value !== 'dinner' && !isHearth()) {
+              box.checked = false;
+              showHearthCard('planSlots');
+              return;
+            }
             const order = ['breakfast', 'lunch', 'dinner'];
             const next = new Set(slots);
             if (box.checked) next.add(value); else next.delete(value);

@@ -1,4 +1,5 @@
-// js/views/recipe.js — 24 Nov 2026 v18
+// js/views/recipe.js — 26 Nov 2026 v19
+// v19: Free plans this month's ten library recipes; others show the Hearth card (Phase 36a).
 // v18: an imported recipe credits where it came from, linking to the original
 // (meals.source and source_url, Phase 33).
 // v17: opened from the plan (&e=<plan entry id>), each ingredient says
@@ -52,6 +53,8 @@ import { toSpoons } from '../lib/units.js';
 import { courseOf, courseLabel } from '../data/courses.js';
 import { everydayName, countedName } from '../lib/foodNames.js';
 import { loadAllRecipes, existingLibraryRefs, addLibraryRecipe, addMissingToList } from '../data/recipeLibrary.js';
+import { loadHearth, libraryOpen } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 import { listStock } from '../data/pantry.js';
 import { haveNames, coverage } from '../data/recipeCoverage.js';
 import { addPlanEntry, DAYS, SLOTS, servingsForEntry } from '../data/mealPlan.js';
@@ -342,6 +345,7 @@ export function render(mountEl) {
     let ownMeal = null;
     let kept = null;     // a recipe kept on this phone
     let original = null; // a library recipe before any diet switch
+    let libraryLocked = false; // Phase 36a: a library recipe outside Free's ten this month
     let nameIndex = null;
     if (localId) {
       kept = getLocal(localId);
@@ -393,6 +397,10 @@ export function render(mountEl) {
         return;
       }
       refMap = refs;
+      await loadHearth();
+      if (destroyed) return;
+      // Phase 36a: still readable, but only this month's ten can be planned on Free.
+      libraryLocked = !libraryOpen(slug, library.data.map((r) => r.slug));
       recipe = library.data.find((r) => r.slug === slug) || null;
       // 3 Oct 2026: as written, or switched to vegetarian or vegan.
       if (recipe) {
@@ -548,7 +556,7 @@ export function render(mountEl) {
       ownedMeal = (refs.data instanceof Map && refs.data.get(recipe.slug)) || null;
     }).catch(() => {});
 
-    add.addEventListener('click', () => openPlanSheet(), { signal });
+    add.addEventListener('click', () => (libraryLocked ? showHearthCard('library') : openPlanSheet()), { signal });
 
     function openPlanSheet() {
       const todayIndex = (new Date().getDay() + 6) % 7; // Monday = 0

@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-24 Nov 2026 v24
+26 Nov 2026 v25
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -13,6 +13,27 @@ policies**, 3 trigger functions, 22 update triggers.
 ownership; 5 remain personal. See §0f and §4.
 
 ---
+
+## 0w. Revision 28 — Free and Hearth (26 Nov 2026)
+
+New table **`household_entitlements`**: which tier a household is on.
+
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | primary key, references households, on delete cascade |
+| plan | text | not null default 'free'; check in ('free','hearth') |
+| hearth_until | timestamptz | nullable. Empty = no end date (by hand, trials later) |
+| updated_at | timestamptz | not null default now() |
+
+**Select-only for members, writable by nobody else.** Members may update
+their `households` row, so a tier column there could be set by anyone in
+the house. Here they can read it and only the database owner can change it.
+
+No row is Free. Every household that existed when 028 ran was given Hearth.
+The app (data/hearth.js) treats a missing table as Hearth, so nothing
+shrinks before the migration is run.
+
+Migration: `migrations/028_hearth.sql`.
 
 ## 0v. Revision 27 — where a recipe came from (24 Nov 2026)
 
@@ -1301,6 +1322,17 @@ Redemption is **not** a direct insert. It goes through
 
 Style is canonical in `RECIPE_STEP_STYLE.md` and applies to every recipe in
 the app, seeded or typed.
+
+### household_entitlements
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | primary key, references households, on delete cascade |
+| plan | text | not null default 'free'; check in ('free','hearth') |
+| hearth_until | timestamptz | nullable; empty = no end date |
+| updated_at | timestamptz | not null default now() |
+
+Revision 28. **Select-only** for members (one policy, `for select`); no
+insert, update or delete policy. Only the database owner changes a tier.
 
 ---
 

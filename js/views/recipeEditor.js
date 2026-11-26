@@ -1,4 +1,5 @@
-// js/views/recipeEditor.js — 24 Nov 2026 v6
+// js/views/recipeEditor.js — 26 Nov 2026 v7
+// v7: Free keeps 10 of your own recipes; a new one past that shows the Hearth card (Phase 36a).
 // v6: ingredients the name list cannot place are looked up in the offline
 // food tables automatically (data/ingredientMatch.js), so nutrition fills in
 // without a tap per ingredient.
@@ -48,6 +49,8 @@ import { showToast } from '../components/toast.js';
 import { confirmDialog } from '../components/confirmDialog.js';
 import { takeImportDraft, keepForLater } from '../data/recipeImport.js';
 import { autoMatch } from '../data/ingredientMatch.js';
+import { canAdd } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 import { openDetailSheet } from '../components/detailSheet.js';
 import { nutritionBars } from '../components/nutritionBars.js';
 import { openNutritionFinder } from '../components/nutritionFinder.js';
@@ -435,6 +438,12 @@ export function render(mountEl) {
       if (typeof navigator !== 'undefined' && navigator.onLine === false) {
         saveStatus.textContent = 'You are offline, so it cannot go to your meals yet. Save on this phone keeps it here now.';
         return;
+      }
+      // Phase 36a: Free keeps 10 of your own recipes. Changing one never counts.
+      if (!draft.mealId) {
+        const room = await canAdd('recipes');
+        if (destroyed) return;
+        if (!room.ok) { await showHearthCard('recipes', room); return; }
       }
       save.disabled = true;
       saveStatus.textContent = 'Saving…';

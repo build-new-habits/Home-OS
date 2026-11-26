@@ -1,4 +1,5 @@
-// js/views/plate.js — 05 Oct 2026 v1
+// js/views/plate.js — 26 Nov 2026 v2
+// v2: a saved plate counts towards Free's 10 recipes (Phase 36a).
 // (the running total is pinned to the top, in view while you tick)
 // v1: Make a plate (#/plate). Tick what goes on it, choose how much, and
 // the nutrition adds up as you go. Save makes it one of your meals, so it
@@ -7,6 +8,8 @@
 // spinach, olives: "the option of being able to compile a concoction of
 // crudités". The portions and the save live in data/plate.js.
 
+import { canAdd } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 import { el, selectFrom } from '../lib/dom.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
@@ -195,6 +198,10 @@ export function render(mountEl) {
         saveStatus.textContent = 'Tick at least one thing first.';
         return;
       }
+      // Phase 36a: a saved plate is one of your recipes.
+      const room = await canAdd('recipes');
+      if (destroyed) return;
+      if (!room.ok) { await showHearthCard('recipes', room); return; }
       saveBtn.disabled = true;
       saveStatus.textContent = 'Saving…';
       const draft = plateDraft(picked, { name: nameInput.value, kind: kindSelect.value, refMap });

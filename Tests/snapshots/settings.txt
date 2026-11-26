@@ -1,4 +1,6 @@
 h1"Settings"
+p.settings-hearth
+  a"Free and Hearth"
 div
   div
     fieldset

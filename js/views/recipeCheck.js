@@ -1,4 +1,5 @@
-// js/views/recipeCheck.js — 24 Nov 2026 v1
+// js/views/recipeCheck.js — 26 Nov 2026 v2
+// v2: a saved import counts towards the 10 recipes Free keeps (Phase 36a).
 // Phase 34. "Check and save" (#/recipe-check): where an imported recipe lands.
 //
 // Graeme, 24 Nov 2026: "It's too procedural and complicated at the moment.
@@ -37,6 +38,8 @@ import {
 } from '../data/ownRecipe.js';
 import { autoMatch, matchSource } from '../data/ingredientMatch.js';
 import { takeImportDraft, stashImportDraft, draftCounts } from '../data/recipeImport.js';
+import { canAdd } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 
 export const CHECK_KEY = 'home-os-import-check';
 
@@ -285,6 +288,10 @@ export function render(mountEl) {
         }
         return;
       }
+      // Phase 36a: an imported recipe is one of your own.
+      const room = await canAdd('recipes');
+      if (destroyed) return;
+      if (!room.ok) { await showHearthCard('recipes', room); return; }
       bar.setDisabled(true);
       status.textContent = 'Saving…';
       const result = await saveDraft(draft, index);

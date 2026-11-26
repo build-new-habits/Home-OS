@@ -1,4 +1,5 @@
-// js/views/planChoose.js — 10 Sep 2026 v2
+// js/views/planChoose.js — 26 Nov 2026 v3
+// v3: Free chooses dinners for this week; anything else shows the Hearth card (Phase 36a).
 // v3: future plans ask the same question, so they use the same screen.
 // v2: the answer goes back to the page that asked the question.
 //
@@ -18,6 +19,8 @@
 // day and the meal time, you leave having decided, and the form you came
 // from is waiting with the answer filled in.
 
+import { loadHearth, isHearth } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
 import { el } from '../lib/dom.js';
 import { pageHeading } from '../lib/icons.js';
 import { listMeals } from '../data/meals.js';
@@ -95,6 +98,18 @@ export function render(mountEl) {
   });
 
   picker.setSlot(draft.slot || '');
+
+  // Phase 36a: a Free household plans dinners, this week.
+  loadHearth().then(() => {
+    if (destroyed || isHearth()) return;
+    const otherMeal = draft.slot && draft.slot !== 'dinner';
+    const ahead = draft.origin === 'next' || draft.origin === 'future';
+    if (otherMeal || ahead) {
+      showHearthCard(ahead ? 'planAhead' : 'planSlots').then(() => {
+        if (!destroyed) window.location.hash = `#/${returnPath || 'plan-this-week'}`;
+      });
+    }
+  });
   mountEl.appendChild(picker.element);
   picker.load();
 
