@@ -1,5 +1,8 @@
 # Home-OS: Competitive Position
-25 Nov 2026 v2
+26 Nov 2026 v3
+
+v3: Free and Hearth decided (name, price, the tighter Free tier, AI for
+import only). Supersedes v2's pricing section.
 
 v2 adds the November 2026 update below: the recipe-import apps (ReciMe and
 others), current prices and ratings, pricing and freemium for Home-OS, and
@@ -55,41 +58,45 @@ cookbook import (all Phase 17, now unparked for Premium); shopping list
 sections (Phase 35, next); iPhone share menu (native app needed); in-app
 grocery ordering; sharing collections with friends; recipe volume.
 
-## Pricing and freemium for Home-OS
+## Free and Hearth (decided 26 Nov 2026)
 
-The September insight still decides the line: **accessibility, no-shame
-design and the core loop are free. Premium is for things that cost money to
-run or that scale with use.** Charging for being usable is the complaint
-that sank Chore Focus's reviews.
+**Hearth** is the paid tier: Hestia's domain, the hearth, in plain English.
+"Hestia" itself was checked and is crowded (an iPhone recipe app in Food &
+Drink and an AI planner already use it). Check UK trademarks and both
+stores before launch.
 
-**Free — the whole kitchen loop, for one household**
-- Plan, shopping list (every sort option), pantry, cook mode
-- Your own recipes, unlimited
-- Import from a web link or pasted caption, with nutrition (no AI cost:
-  the Edge Function and food tables are effectively free to run)
-- The monthly rotating Community library recipes
+**£2.99 a month or £24.99 a year, per household. 14-day Hearth trial.**
 
-**Premium — £2.99 a month or £24.99 a year, per household**
-- AI import (Phase 17): Instagram/TikTok posts read for you, photos of a
-  cookbook page or a handwritten card, video captions
-- Plain-language rewrite and swaps (vegetarian, vegan, missing ingredient)
-- The full Community library, not just the month's rotation
-- Fair use on AI imports (e.g. 100 a month) so one heavy user cannot cost
-  more than they pay
+Graeme, 26 Nov 2026: Free was "insanely easy" and gave no reason to pay.
+Free now shows what the app does; Hearth does it for you.
 
-**Why these numbers.** £24.99 a year sits under ReciMe Plus ($39.99) and
-Samsung Food+ ($59.99), above AnyList's list-only household plan, and
-covers AI imports at pennies each with room to spare. Per household, not
-per person, because Home-OS is household-scoped already and families are
-the users who feel the shopping-list pain. Offer a 14-day Premium trial
-rather than a hard paywall, and the ReciMe-style student and over-60
-discount fits the Build New Habits audience.
+| | Free | Hearth |
+|---|---|---|
+| Plan | Dinners, this week | All meals, any week, repeat weeks |
+| Week Shaper | — | Rules and events; ~5 suggestions a day from your recipes and the full library |
+| Shopping list | One list from the plan, by kind | Groceries, Household and Toiletries lists; favourites and regulars; built for you each week; Where it goes or Aisle order; shared live |
+| Pantry | Simple list, up to 30 items | Unlimited; use-by; filled from shopping; taken off the list; use-it-soon |
+| Your recipes | Up to 10 | Unlimited |
+| Import | 3 a month, link or caption | Unlimited, plus AI import (Instagram, TikTok, photos, cookbook pages; fair use ~100 a month) |
+| Community library | 10 recipes this month | Full library |
+| Nutrition | Calories per serving | Full macros, daily %, per person |
+| Household | One phone | The whole family, synced |
+| Cook mode | ✓ | ✓ |
+| Accessibility settings, export and backup | ✓ always | ✓ always |
+| Ads | Never | Never |
+
+**Two things are never paid for:** accessibility, and getting your data
+out (principle 9). Charging for being usable is what costs trust and stars.
+
+**AI is used for one thing only: importing recipes** (Phase 17). Week
+Shaper is rules and filters, no AI (Graeme, 26 Nov 2026: "an unnecessary
+use of AI"). That keeps Hearth's running cost to the import fair use.
 
 **Store maths.** Google Play and the App Store take 15% on subscriptions
 for small developers in their reduced-fee programmes. Inside a store app,
 digital features generally have to be sold through the store's own billing;
 selling on the website as well is allowed in more places than before but
-varies by country and store. Decide this per store at submission.
+varies by country and store. Decide per store at submission.
 
 ## Getting onto Google Play and the App Store
 

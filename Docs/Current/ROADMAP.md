@@ -1,5 +1,5 @@
 # Home-OS: Roadmap
-25 Nov 2026 v3 (supersedes ROADMAP_11_17.md). v3: Phase 17 unparked as Premium; Phase 35 shopping list sections.
+26 Nov 2026 v4 (supersedes ROADMAP_11_17.md). v4: Hearth (paid tier) decided; Phases 36–37 added; AI for import only.
 
 **Decision, 01 Sep 2026: Home-OS is being built as a product, not a
 single-user app, and the recipe library will be published.** That is settled
@@ -104,3 +104,19 @@ video captions, and the plain-language rewrite with swaps. Phase 17 fills
 the same draft shape Phase 33 hands to Check and save, so nothing built so
 far is thrown away. It needs a server-side key (Edge Function secret),
 an entitlement check, and the fair-use counter before any AI call is made.
+
+---
+
+## Hearth: the paid tier (26 Nov 2026)
+
+Decided with Graeme; the full split is in `COMPETITIVE_POSITION.md` v3.
+AI is used for importing recipes only. Everything else is rules.
+
+| Phase | What | AI? |
+|---|---|---|
+| 35 | Shopping list by where it goes, or aisle order | No — **done 25 Nov** |
+| 36 | Hearth switch and Free limits; favourites and regulars; Household and Toiletries lists; the list built for you each week | No |
+| 37 | **Week Shaper**: your rules and the week's events give ~5 suggestions a day from your recipes and the full library; or **You choose for me**, one meal picked mostly from the pantry. Suggests, never plans without a tap | No |
+| 17 | AI import: Instagram, TikTok, photos, cookbook pages; plain-English rewrite and swaps | Yes, Hearth only, fair use |
+
+Brief for 36: `phase36_build_brief.md`. Brief for 37: `phase37_build_brief.md`.
