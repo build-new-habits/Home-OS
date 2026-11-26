@@ -3,6 +3,13 @@ header.shop-header
   p.shop-summary
   div.shop-progress
     span.shop-progress-fill
+  fieldset.shop-sort
+    legend.shop-sort__legend"Arrange the list"
+    div.shop-sort__options
+      input.shop-sort__input[type=radio]
+      label.shop-sort__label"Where it goes"
+      input.shop-sort__input[type=radio]
+      label.shop-sort__label"Aisle order"
 p.visually-hidden[role=status]
 div.shop-groups
   div.shop-empty

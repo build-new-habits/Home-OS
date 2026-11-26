@@ -1,4 +1,5 @@
-/* css/components.css — 24 Nov 2026 v102 */
+/* css/components.css — 25 Nov 2026 v103 */
+/* v103: shopping list arrangement switch and sub-headings (Phase 35). */
 /* v102: Check and save, the Meals tab (Phase 34). */
 /* v101: Import a recipe (Phase 33): the import screen, kept links, the recipe credit. */
 /* v100: shopping from a planned meal's recipe — Got it / Have some (17 Oct). */
@@ -5130,3 +5131,20 @@ body.sheet-open {
 .check-steps { margin: 0; }
 .meals-home__places { margin-bottom: var(--space-4); }
 .meals-home__recent h2 { margin: var(--space-4) 0 var(--space-2); }
+
+/* ---- Shopping list: Where it goes / Aisle order (Phase 35) ----------------- */
+.shop-sort { border: 0; margin: var(--space-3) 0 0; padding: 0; }
+.shop-sort__legend { font-weight: 600; margin-bottom: var(--space-2); padding: 0; }
+.shop-sort__options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.shop-sort__input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.shop-sort__label {
+  display: inline-flex; align-items: center; min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-4); border: 1px solid var(--control-border);
+  border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text);
+  cursor: pointer; font-weight: 600;
+}
+/* Chosen: a fill AND a tick, never colour alone. */
+.shop-sort__input:checked + .shop-sort__label { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-contrast); }
+.shop-sort__input:checked + .shop-sort__label::before { content: '✓ '; white-space: pre; }
+.shop-sort__input:focus-visible + .shop-sort__label { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.shop-subaisle { font-size: var(--text-base); color: var(--color-text-muted); margin: var(--space-3) 0 var(--space-2); }

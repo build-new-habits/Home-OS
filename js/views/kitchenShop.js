@@ -1,4 +1,7 @@
-// js/views/kitchenShop.js — 04 Oct 2026 v8
+// js/views/kitchenShop.js — 25 Nov 2026 v9
+// v9 (Phase 35): Where it goes (Fridge › Meat, Fish, Dairy; Freezer; Fruit;
+// Veg; Bakery; Cupboard › …; Drinks; Home › …) or Aisle order, chosen with
+// one switch and remembered (lib/shopSections.js). Shared text follows it.
 // v8: Add everything from the plan, and Clear the list (with a confirm and Undo).
 // v7: a list in things you buy (lib/buyable.js): whole items, tins and
 // bulbs, loose food rounded up, spoonfuls and staples under Check the
@@ -53,6 +56,7 @@ import { buyable } from '../lib/buyable.js';
 import { listStock, findByFood, addStock, updateStock, todayIso, defaultShelfLife } from '../data/pantry.js';
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
+import { arrange, readSort, saveSort, SORTS } from '../lib/shopSections.js';
 
 const REFRESH_MS = 20000;
 
@@ -102,16 +106,25 @@ const LONG_LIFE_DAYS = 90;
  * walking order, one line each, amounts after the name. Only what is still
  * needed; the basket and the cupboard are not shopping.
  */
-export function listAsText(items, { title = 'Shopping list' } = {}) {
+export function listAsText(items, { title = 'Shopping list', sort = readSort() } = {}) {
   const needed = (items || []).filter((i) => i.status === 'needed');
   if (needed.length === 0) return '';
   const lines = [title];
   const toCheck = needed.filter((i) => buyOf(i).kind === 'check');
-  for (const group of groupByAisle(needed.filter((i) => buyOf(i).kind !== 'check'))) {
-    lines.push('', shelfLabel(group.category));
-    for (const line of group.lines) {
-      const amount = amountOf(line);
-      lines.push(`- ${nameOf(line)}${amount ? ` (${amount})` : ''}`);
+  // Phase 35: in the order the list is showing — Where it goes or Aisle order.
+  const lineText = (line) => {
+    const amount = amountOf(line);
+    return `- ${nameOf(line)}${amount ? ` (${amount})` : ''}`;
+  };
+  for (const group of arrange(needed.filter((i) => buyOf(i).kind !== 'check'), (i) => shelfFor(i.foods || {}), sort)) {
+    lines.push('', group.label);
+    if (group.subs.length) {
+      for (const sub of group.subs) {
+        lines.push(`  ${sub.label}`);
+        for (const line of sub.lines) lines.push(lineText(line));
+      }
+    } else {
+      for (const line of group.lines) lines.push(lineText(line));
     }
   }
   if (toCheck.length) {
@@ -141,6 +154,29 @@ export function render(mountEl) {
   const progressFill = el('span', { class: 'shop-progress-fill' });
   progress.appendChild(progressFill);
   header.appendChild(progress);
+
+  // ---- Phase 35: how the list is arranged --------------------------------
+  // A two-option radio group, labelled, remembered on this phone. Changing
+  // it re-arranges the list in place and says so.
+  let sort = readSort();
+  const sortGroup = el('fieldset', { class: 'shop-sort' });
+  sortGroup.appendChild(el('legend', { class: 'shop-sort__legend', text: 'Arrange the list' }));
+  const sortOptions = el('div', { class: 'shop-sort__options' });
+  for (const option of SORTS) {
+    const id = `shop-sort-${option.value}`;
+    const input = el('input', { type: 'radio', name: 'shop-sort', id, value: option.value, class: 'shop-sort__input' });
+    input.checked = option.value === sort;
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
+      sort = option.value;
+      saveSort(sort);
+      paint();
+      status.textContent = `List arranged by ${option.label.toLowerCase()}.`;
+    }, { signal });
+    sortOptions.append(input, el('label', { for: id, class: 'shop-sort__label', text: option.label }));
+  }
+  sortGroup.appendChild(sortOptions);
+  header.appendChild(sortGroup);
   mountEl.appendChild(header);
 
   const status = el('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
@@ -297,12 +333,22 @@ export function render(mountEl) {
         : 'Tap Done shopping when you are finished.' }));
       listWrap.appendChild(empty);
     }
-    for (const group of groupByAisle(toBuy)) {
-      const section = el('section', { class: 'shop-group', 'aria-labelledby': `aisle-${group.category}` });
-      section.appendChild(el('h2', { id: `aisle-${group.category}`, class: 'shop-aisle', text: shelfLabel(group.category) }));
-      const ul = el('ul', { class: 'shop-lines' });
-      for (const line of group.lines) ul.appendChild(neededRow(line));
-      section.appendChild(ul);
+    for (const group of arrange(toBuy, (i) => shelfFor(i.foods || {}), sort)) {
+      const section = el('section', { class: 'shop-group', 'aria-labelledby': `aisle-${group.key}` });
+      section.appendChild(el('h2', { id: `aisle-${group.key}`, class: 'shop-aisle', text: group.label }));
+      if (group.subs.length) {
+        // Fridge › Meat, Fish, Dairy and eggs; Cupboard › Tins and jars…
+        for (const sub of group.subs) {
+          section.appendChild(el('h3', { class: 'shop-subaisle', text: sub.label }));
+          const ul = el('ul', { class: 'shop-lines' });
+          for (const line of sub.lines) ul.appendChild(neededRow(line));
+          section.appendChild(ul);
+        }
+      } else {
+        const ul = el('ul', { class: 'shop-lines' });
+        for (const line of group.lines) ul.appendChild(neededRow(line));
+        section.appendChild(ul);
+      }
       listWrap.appendChild(section);
     }
     // Spoonfuls and staples: a question about the cupboard, not a quantity.

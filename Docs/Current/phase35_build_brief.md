@@ -1,5 +1,20 @@
 # Home-OS: Phase 35 Build Brief — Shopping List Sections
-25 Nov 2026 v1
+25 Nov 2026 v2
+
+**v2 — as built.** Two changes from v1, both for the better:
+1. **Built on the existing kinds (`data/shelves.js`), not a new keyword
+   classifier.** The app already gives every food a kind (Fruit, Veg, Meat,
+   Fish, Dairy and eggs, Bread and bakery, Frozen, Tins and jars, Pasta,
+   rice and dried, Baking, Herbs and spices, Oils and sauces, Snacks,
+   Drinks, Household, Personal care, Pet), and each can be changed per food
+   in the pantry. Phase 35 only maps kinds to places, so a correction made
+   once is right in both orders. No second set of rules to drift.
+2. **Fridge first**, in Graeme's order: Fridge (Meat · Fish · Dairy and
+   eggs), Freezer, Fruit, Veg, Bakery, Cupboard (six kinds), Drinks, Home
+   (Household · Personal care · Pet). Aisle order is the kinds' existing
+   walking order. The shared list follows whichever is chosen.
+The live list is `js/views/kitchenShop.js` (the kitchen build), not
+`shopping.js`.
 
 Built directly in the architect chat. Read `SESSION_START.md` first.
 
