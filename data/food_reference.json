@@ -580,7 +580,8 @@
    "fat_g": 0.4,
    "carbs_g": 9.4,
    "fibre_g": 5.1,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "sweetcorn-tinned",
@@ -611,7 +612,8 @@
    "fat_g": 0.4,
    "carbs_g": 1.4,
    "fibre_g": 2.2,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.1
   },
   {
    "slug": "kale",
@@ -671,7 +673,8 @@
    "fat_g": 0.8,
    "carbs_g": 15.8,
    "fibre_g": 2.0,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "apple-medium",
@@ -899,7 +902,8 @@
    "fat_g": 0.5,
    "carbs_g": 75.5,
    "fibre_g": 3.7,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "dates-pitted",
@@ -935,7 +939,8 @@
    "fat_g": 0.3,
    "carbs_g": 6.0,
    "fibre_g": 1.0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 1.05
   },
   {
    "slug": "baked-beans",
@@ -1869,7 +1874,8 @@
    "carbs_g": 77.0,
    "fibre_g": 1.3,
    "portion_g": 75,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.85
   },
   {
    "slug": "rice-brown-dry",
@@ -1900,7 +1906,8 @@
    "carbs_g": 78.0,
    "fibre_g": 1.0,
    "portion_g": 75,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.85
   },
   {
    "slug": "spaghetti-dry",
@@ -1978,7 +1985,8 @@
    "carbs_g": 72.0,
    "fibre_g": 5.0,
    "portion_g": 65,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.75
   },
   {
    "slug": "flour-plain",
@@ -1993,7 +2001,8 @@
    "fat_g": 1.3,
    "carbs_g": 69.3,
    "fibre_g": 3.1,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "flour-self-raising",
@@ -2007,7 +2016,8 @@
    "fat_g": 1.2,
    "carbs_g": 68.3,
    "fibre_g": 3.1,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "flour-strong-white-bread",
@@ -2021,7 +2031,8 @@
    "fat_g": 1.4,
    "carbs_g": 68.0,
    "fibre_g": 3.3,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "cornflour",
@@ -2035,7 +2046,8 @@
    "fat_g": 0.7,
    "carbs_g": 86.0,
    "fibre_g": 0.1,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "oats-rolled",
@@ -2050,7 +2062,8 @@
    "fat_g": 8.1,
    "carbs_g": 60.1,
    "fibre_g": 9.0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.35
   },
   {
    "slug": "sugar-caster",
@@ -2065,7 +2078,8 @@
    "fat_g": 0.0,
    "carbs_g": 100.0,
    "fibre_g": 0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.85
   },
   {
    "slug": "sugar-soft-brown",
@@ -2079,7 +2093,8 @@
    "fat_g": 0.0,
    "carbs_g": 98.1,
    "fibre_g": 0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.9
   },
   {
    "slug": "icing-sugar",
@@ -2090,7 +2105,8 @@
    "fat_g": 0.0,
    "carbs_g": 99.5,
    "fibre_g": 0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.56
   },
   {
    "slug": "lentils-red-dry",
@@ -2105,7 +2121,8 @@
    "fat_g": 1.1,
    "carbs_g": 50.8,
    "fibre_g": 10.8,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.8
   },
   {
    "slug": "lentils-green-dry",
@@ -2149,7 +2166,8 @@
    "carbs_g": 57.2,
    "fibre_g": 7.0,
    "portion_g": 65,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.75
   },
   {
    "slug": "pearl-barley",
@@ -2177,7 +2195,8 @@
    "fat_g": 5.3,
    "carbs_g": 67.5,
    "fibre_g": 4.5,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.45
   },
   {
    "slug": "desiccated-coconut",
@@ -2188,7 +2207,8 @@
    "fat_g": 62.0,
    "carbs_g": 7.0,
    "fibre_g": 13.7,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.35
   },
   {
    "slug": "cocoa-powder",
@@ -2202,7 +2222,8 @@
    "fat_g": 13.7,
    "carbs_g": 24.9,
    "fibre_g": 33.0,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.42
   },
   {
    "slug": "dark-chocolate",
@@ -2230,7 +2251,8 @@
    "fat_g": 49.9,
    "carbs_g": 9.1,
    "fibre_g": 12.5,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "cashews",
@@ -2244,7 +2266,8 @@
    "fat_g": 43.9,
    "carbs_g": 26.9,
    "fibre_g": 3.3,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "walnuts",
@@ -2255,7 +2278,8 @@
    "fat_g": 65.2,
    "carbs_g": 7.0,
    "fibre_g": 6.7,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.45
   },
   {
    "slug": "peanuts",
@@ -2280,7 +2304,8 @@
    "fat_g": 51.5,
    "carbs_g": 11.4,
    "fibre_g": 8.6,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "pumpkin-seeds",
@@ -2291,7 +2316,8 @@
    "fat_g": 49.1,
    "carbs_g": 4.7,
    "fibre_g": 6.0,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.55
   },
   {
    "slug": "chia-seeds",
@@ -2302,7 +2328,8 @@
    "fat_g": 30.7,
    "carbs_g": 7.7,
    "fibre_g": 34.4,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.65
   },
   {
    "slug": "sesame-seeds",
@@ -2313,7 +2340,8 @@
    "fat_g": 49.7,
    "carbs_g": 11.6,
    "fibre_g": 11.8,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "raisin-and-oat-granola",
@@ -2528,7 +2556,8 @@
    "fat_g": 0.6,
    "carbs_g": 1.1,
    "fibre_g": 1.6,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.2
   },
   {
    "slug": "fresh-parsley",
@@ -2542,7 +2571,8 @@
    "fat_g": 0.8,
    "carbs_g": 3.0,
    "fibre_g": 3.3,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.2
   },
   {
    "slug": "fresh-coriander",
@@ -2556,7 +2586,8 @@
    "fat_g": 0.5,
    "carbs_g": 0.9,
    "fibre_g": 2.8,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.2
   },
   {
    "slug": "baking-powder",
@@ -2622,7 +2653,8 @@
    "fat_g": 0.9,
    "carbs_g": 1.7,
    "fibre_g": 3.2,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "olives-pitted",
@@ -2638,7 +2670,8 @@
    "fat_g": 15.3,
    "carbs_g": 0.5,
    "fibre_g": 3.3,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.6
   },
   {
    "slug": "anchovy-fillet",
@@ -2935,7 +2968,8 @@
    "fat_g": 34.9,
    "carbs_g": 0.1,
    "fibre_g": 0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.45
   },
   {
    "slug": "mozzarella",
@@ -2966,7 +3000,8 @@
    "fat_g": 29.0,
    "carbs_g": 4.1,
    "fibre_g": 0,
-   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson).",
+   "grams_per_ml": 0.45
   },
   {
    "slug": "feta",
@@ -3446,7 +3481,8 @@
    "fat_g": 0.7,
    "carbs_g": 1.6,
    "fibre_g": 6.8,
-   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.",
+   "grams_per_ml": 0.2
   },
   {
    "slug": "miso-paste",
@@ -5456,7 +5492,8 @@
    "fibre_g": 0,
    "basis": "CoFID 2019: Custard, ready to eat, canned and tetra-pak.",
    "everyday": true,
-   "portion_g": 125
+   "portion_g": 125,
+   "grams_per_ml": 1.05
   },
   {
    "slug": "jelly-sweets",
@@ -5708,7 +5745,8 @@
    "fibre_g": 0.8,
    "basis": "Typical of UK supermarket labels per 100 g; brands vary.",
    "everyday": true,
-   "portion_g": 15
+   "portion_g": 15,
+   "grams_per_ml": 1.3
   },
   {
    "slug": "cook-in-curry-sauce",
@@ -8911,7 +8949,7 @@
    "calories_per_100g": 300,
    "protein_g": 10.8,
    "fat_g": 9.7,
-   "carbs_g": 44.9,
+   "carbs_g": 29.3,
    "fibre_g": 33.3,
    "basis": "Worked out from its usual equal parts of star anise, cinnamon, fennel seed, cloves and pepper."
   },
@@ -9004,7 +9042,7 @@
    "calories_per_100g": 297,
    "protein_g": 8.4,
    "fat_g": 9.9,
-   "carbs_g": 43.7,
+   "carbs_g": 23.8,
    "fibre_g": 40.6,
    "basis": "Worked out from equal parts of thyme, oregano, sage and rosemary."
   },
@@ -10125,6 +10163,267 @@
    "carbs_g": 46.0,
    "fibre_g": 0.0,
    "basis": "Worked out from UK cordial labels (17 to 18 kcal per 100 ml diluted 1:10 to 1:15), undiluted, per 100 g."
+  },
+  {
+   "slug": "goose",
+   "name": "Goose",
+   "category": "food_fresh",
+   "aliases": [
+    "whole goose",
+    "goose crown"
+   ],
+   "grams_per_item": 1800,
+   "item_label": "goose",
+   "calories_per_100g": 361,
+   "protein_g": 16.5,
+   "fat_g": 32.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Goose, meat, raw, fat and skin. One goose is a 4.5 kg oven-ready bird: about 1.8 kg of meat and skin once the bones and the fat that runs off are taken away."
+  },
+  {
+   "slug": "pheasant",
+   "name": "Pheasant",
+   "category": "food_fresh",
+   "aliases": [
+    "pheasant breasts",
+    "pheasant breast",
+    "brace of pheasant"
+   ],
+   "calories_per_100g": 181,
+   "protein_g": 22.7,
+   "fat_g": 9.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Pheasant, raw, meat and skin. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "beef-topside",
+   "name": "Beef topside joint",
+   "category": "food_fresh",
+   "aliases": [
+    "topside",
+    "roast beef joint",
+    "beef roasting joint",
+    "silverside"
+   ],
+   "calories_per_100g": 198,
+   "protein_g": 20.4,
+   "fat_g": 12.9,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Beef, topside, raw, lean and fat."
+  },
+  {
+   "slug": "pork-belly",
+   "name": "Pork belly",
+   "category": "food_fresh",
+   "aliases": [
+    "pork belly joint",
+    "pork belly slices"
+   ],
+   "calories_per_100g": 258,
+   "protein_g": 19.1,
+   "fat_g": 20.2,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Pork, belly joint/slices, raw, lean and fat."
+  },
+  {
+   "slug": "haddock-smoked",
+   "name": "Smoked haddock",
+   "category": "food_fresh",
+   "aliases": [
+    "undyed smoked haddock",
+    "smoked haddock fillet"
+   ],
+   "calories_per_100g": 116,
+   "protein_g": 25.2,
+   "fat_g": 1.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Fish, haddock, smoked. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "wild-rice",
+   "name": "Wild rice",
+   "category": "food_ambient",
+   "aliases": [
+    "wild rice dry",
+    "wild rice blend"
+   ],
+   "grams_per_ml": 0.8,
+   "calories_per_100g": 343,
+   "protein_g": 12.2,
+   "fat_g": 1.1,
+   "carbs_g": 75.8,
+   "fibre_g": 4.3,
+   "basis": "CoFID 2019: Rice, wild, raw."
+  },
+  {
+   "slug": "ricotta",
+   "name": "Ricotta",
+   "category": "food_fresh",
+   "aliases": [
+    "ricotta cheese"
+   ],
+   "calories_per_100g": 144,
+   "protein_g": 9.4,
+   "fat_g": 11.0,
+   "carbs_g": 2.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Ricotta."
+  },
+  {
+   "slug": "figs-fresh",
+   "name": "Fresh figs",
+   "category": "food_fresh",
+   "aliases": [
+    "fig",
+    "fresh fig"
+   ],
+   "grams_per_item": 50,
+   "item_label": "fig",
+   "calories_per_100g": 43,
+   "protein_g": 1.3,
+   "fat_g": 0.3,
+   "carbs_g": 9.5,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Figs, whole green fruit, raw."
+  },
+  {
+   "slug": "cherries",
+   "name": "Cherries",
+   "category": "food_fresh",
+   "aliases": [
+    "frozen cherries",
+    "pitted cherries",
+    "black cherries"
+   ],
+   "calories_per_100g": 63,
+   "protein_g": 1.2,
+   "fat_g": 0.4,
+   "carbs_g": 14.6,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Cherries, flesh and skin, raw."
+  },
+  {
+   "slug": "blackberries",
+   "name": "Blackberries",
+   "category": "food_fresh",
+   "aliases": [
+    "frozen blackberries",
+    "brambles"
+   ],
+   "calories_per_100g": 27,
+   "protein_g": 1.1,
+   "fat_g": 0.2,
+   "carbs_g": 5.6,
+   "fibre_g": 3.4,
+   "basis": "CoFID 2019: Blackberries, raw."
+  },
+  {
+   "slug": "fennel-bulb",
+   "name": "Fennel bulb",
+   "category": "food_fresh",
+   "aliases": [
+    "fennel",
+    "florence fennel"
+   ],
+   "grams_per_item": 250,
+   "item_label": "bulb",
+   "calories_per_100g": 12,
+   "protein_g": 0.9,
+   "fat_g": 0.2,
+   "carbs_g": 1.8,
+   "fibre_g": 2.4,
+   "basis": "CoFID 2019: Fennel, Florence, raw."
+  },
+  {
+   "slug": "chicory",
+   "name": "Chicory",
+   "category": "food_fresh",
+   "aliases": [
+    "endive",
+    "red chicory",
+    "witlof"
+   ],
+   "grams_per_item": 120,
+   "item_label": "head",
+   "calories_per_100g": 11,
+   "protein_g": 0.5,
+   "fat_g": 0.6,
+   "carbs_g": 2.8,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Chicory, pale variety, raw."
+  },
+  {
+   "slug": "ginger-nut-biscuits",
+   "name": "Ginger nut biscuits",
+   "category": "food_ambient",
+   "aliases": [
+    "ginger nuts",
+    "ginger biscuits",
+    "gingernuts"
+   ],
+   "grams_per_item": 10,
+   "item_label": "biscuit",
+   "calories_per_100g": 443,
+   "protein_g": 4.8,
+   "fat_g": 15.7,
+   "carbs_g": 75.3,
+   "fibre_g": 2.2,
+   "basis": "CoFID 2019: Biscuits, ginger nuts."
+  },
+  {
+   "slug": "condensed-milk",
+   "name": "Condensed milk",
+   "category": "food_ambient",
+   "aliases": [
+    "sweetened condensed milk"
+   ],
+   "grams_per_ml": 1.3,
+   "calories_per_100g": 310,
+   "protein_g": 7.4,
+   "fat_g": 8.0,
+   "carbs_g": 55.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Milk, condensed, whole, sweetened."
+  },
+  {
+   "slug": "sourdough",
+   "name": "Sourdough bread",
+   "category": "food_fresh",
+   "aliases": [
+    "sourdough",
+    "french bread",
+    "crusty bread",
+    "ciabatta"
+   ],
+   "grams_per_item": 40,
+   "item_label": "slice",
+   "calories_per_100g": 272,
+   "protein_g": 10.8,
+   "fat_g": 2.4,
+   "carbs_g": 49.7,
+   "fibre_g": 2.2,
+   "basis": "USDA SR Legacy: Bread, french or vienna (includes sourdough). Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "cavolo-nero",
+   "name": "Cavolo nero",
+   "category": "food_fresh",
+   "aliases": [
+    "black kale",
+    "tuscan kale",
+    "lacinato kale"
+   ],
+   "calories_per_100g": 33,
+   "protein_g": 3.4,
+   "fat_g": 1.6,
+   "carbs_g": 1.4,
+   "fibre_g": 3.1,
+   "basis": "CoFID 2019: Curly kale, raw. Curly kale figures stand in for cavolo nero."
   }
  ]
 }

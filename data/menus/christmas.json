@@ -635,6 +635,885 @@
      }
     }
    ]
+  },
+  {
+   "slug": "roast-goose-feast",
+   "name": "Roast goose feast",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "The Dickensian Christmas: goose with apples, sharp red cabbage, figs to finish.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-chicory-pear-blue-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple and elderflower"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-roast-goose-apples",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A ripe Pinot Noir or a red Burgundy"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-braised-red-cabbage",
+      "xmas-sage-onion-stuffing",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-baked-figs-mascarpone",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "game-supper",
+   "name": "Winter game supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Pheasant with juniper and bacon, then sticky gingerbread.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-celeriac-apple-soup",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple juice, well chilled"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-pheasant-bacon",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Northern Rhône Syrah or a Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "xmas-bread-sauce",
+      "xmas-mustard-mash",
+      "xmas-creamed-leeks"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-gingerbread-cake",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A sweet Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lamb-and-rosemary",
+   "name": "Lamb, rosemary and dauphinoise",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Roast leg of lamb with creamy potatoes and a chocolate torte.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-whipped-feta-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A dry Greek or Provence-style rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-rosemary-garlic-lamb",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Rioja Reserva or a Bordeaux-style red"
+      }
+     },
+     "sides": [
+      "xmas-dauphinoise",
+      "xmas-maple-carrots",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-torte",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate, a small cup",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "venison-stew-supper",
+   "name": "Venison and red wine supper",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "A make-ahead casserole for a relaxed evening, then a fruit crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-smoked-mackerel-pate",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "A crisp Muscadet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-venison-red-wine",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Malbec or a Northern Rhône Syrah"
+      }
+     },
+     "sides": [
+      "xmas-mustard-mash",
+      "xmas-carrot-swede-mash",
+      "xmas-red-onion-marmalade"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-apple-blackberry-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A sweet late-harvest white"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "roast-beef-sunday-style",
+   "name": "Roast beef and Yorkshire puddings",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "A big British roast with all the trimmings and a lemon posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-potted-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry Chablis-style Chardonnay"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-roast-beef-topside",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Cabernet Sauvignon or a Rioja"
+      }
+     },
+     "sides": [
+      "xmas-yorkshire-puddings",
+      "xmas-roast-potatoes",
+      "xmas-cauliflower-cheese",
+      "xmas-maple-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-lemon-posset",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest sweet white"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "pork-belly-and-cider",
+   "name": "Pork belly and cider",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Crackling, apples and cider, with a pecan pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-leek-potato-stilton-soup",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple juice, well chilled"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-pork-belly-apple",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "Mulled cider, or an off-dry Riesling",
+       "recipe": "xmas-mulled-cider"
+      }
+     },
+     "sides": [
+      "xmas-hasselback-potatoes",
+      "xmas-braised-red-cabbage",
+      "xmas-roast-sprouts-pecans"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-pecan-pie",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chermoula-sea-bass-supper",
+   "name": "Chermoula sea bass supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "North African herbs and spice, bright and light, with a clementine almond cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-halloumi-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A dry Provence-style rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-chermoula-sea-bass",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An Albariño or a Picpoul de Pinet"
+      }
+     },
+     "sides": [
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-clementine-almond-cake",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "christmas-eve-fish-pie",
+   "name": "Christmas Eve fish pie",
+   "diet": "fish",
+   "serves": 6,
+   "summary": "Make-ahead comfort before the big day, with a Black Forest Eton mess.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-beetroot-cured-salmon",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry sparkling wine"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-smoked-haddock-fish-pie",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with cucumber and lemon"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy or an unoaked Chardonnay"
+      }
+     },
+     "sides": [
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-black-forest-eton-mess",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and mint mojito (no alcohol)",
+       "recipe": "xmas-cranberry-mojito-mocktail"
+      },
+      "alcoholic": {
+       "text": "A ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "feast-of-seafood",
+   "name": "Italian Christmas Eve seafood",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Garlic prawns, a big bowl of seafood linguine and tiramisu.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-garlic-king-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-seafood-linguine",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A Vermentino or a Soave"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-tiramisu",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A small glass of Marsala or Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "mussels-and-monkfish",
+   "name": "Mussels and monkfish",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Classic moules, monkfish wrapped in bacon, molten chocolate puddings.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-moules-mariniere",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "A Muscadet or a Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-monkfish-pancetta",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A light Pinot Noir or a Provence rosé"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-fondants",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate, a small cup",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegetarian-nut-loaf-christmas",
+   "name": "Classic vegetarian Christmas",
+   "diet": "vegetarian",
+   "serves": 8,
+   "summary": "Nut loaf with all the trimmings, then a cranberry Bakewell.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-baked-camembert",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple juice, well chilled"
+      },
+      "alcoholic": {
+       "text": "A dry Chenin Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-classic-nut-loaf",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A juicy Beaujolais or a light Pinot Noir"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-roast-sprouts-pecans",
+      "xmas-maple-carrots",
+      "xmas-sage-onion-stuffing",
+      "xmas-vegan-gravy",
+      "xmas-cranberry-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-cranberry-bakewell",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A small glass of cream sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "squash-celebration",
+   "name": "Butternut squash celebration",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Squash soup, a hasselback squash centrepiece, and a baked cheesecake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-fig-ricotta-crostini",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A dry Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-hasselback-squash",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay or a Viognier"
+      }
+     },
+     "sides": [
+      "xmas-hasselback-potatoes",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-cranberry-cheesecake",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A late-harvest sweet white"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegan-wellington-christmas",
+   "name": "Vegan Wellington Christmas",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Mushroom and chestnut Wellington with all the vegan trimmings.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-squash-sage-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-mushroom-chestnut-wellington",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-roast-sprouts-pecans",
+      "xmas-maple-carrots",
+      "xmas-vegan-gravy",
+      "xmas-cranberry-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-vegan-sticky-toffee",
+     "pairing": {
+      "soft": {
+       "text": "Spiced vegan hot chocolate",
+       "recipe": "xmas-vegan-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A ruby port labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegan-bourguignon-supper",
+   "name": "Vegan bourguignon supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Garlic mushrooms, a rich mushroom bourguignon, and dark chocolate truffles.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-chestnut-mushroom-soup",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-mushroom-bourguignon",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A red Burgundy labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-truffles",
+     "pairing": {
+      "soft": {
+       "text": "Spiced vegan hot chocolate",
+       "recipe": "xmas-vegan-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Orange liqueur over ice"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegan-stuffed-squash",
+   "name": "Vegan stuffed squash dinner",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Spiced lentil soup, wild rice stuffed squash and a winter fruit salad.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-spiced-lentil-carrot-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry white Rioja labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-wild-rice-stuffed-squash",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Grenache labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-sprouts-pecans"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-winter-fruit-salad",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea (maple, not honey)"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "boxing-day-leftovers",
+   "name": "Boxing Day leftovers",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Turkey pie or curry, bubble and squeak, and an apple mincemeat crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-sweet-potato-coconut-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-turkey-leek-pie",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A fruity Beaujolais"
+      }
+     },
+     "sides": [
+      "xmas-red-onion-marmalade",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-mince-pie-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "Mulled wine",
+       "recipe": "xmas-mulled-wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "thai-tom-yum-feast",
+   "name": "Thai seafood feast",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Hot and sour prawn soup, a green king prawn curry and coconut rice pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-tom-yum-prawn-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-thai-green-prawn-curry",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-coconut-lime-rice-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Iced jasmine tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest sweet Riesling"
+      }
+     }
+    }
+   ]
   }
  ]
 }

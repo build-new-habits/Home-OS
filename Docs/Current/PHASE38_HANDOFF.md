@@ -47,3 +47,14 @@ Every run checks:
 
 ## Gates
 18 gates, all passing: + Pantry (10,488 checks), + Menus (574 checks). Library 334 recipes.
+
+---
+
+# Phase 38b — many more Christmas recipes (27 Nov 2026)
+
+- **138 Christmas recipes** (was 52): 28 starters, 37 mains, 23 sides, 29 puddings, 21 drinks. New mains include mushroom and chestnut Wellington (vegan), classic nut loaf, chermoula sea bass, hasselback butternut squash, squash and sage risotto, squash and chickpea curry, wild-rice stuffed squash, roast goose, pheasant, leg of lamb, venison casserole, pork belly, roast beef, salmon en croûte, smoked haddock fish pie, seafood linguine, monkfish, mushroom bourguignon, vegan shepherd's pie, filo pie, and Boxing Day turkey pie and curry.
+- **29 menus** (was 12), including goose, game, lamb, beef, pork, two fish suppers, Italian seafood, vegan Wellington, vegan bourguignon and Boxing Day leftovers.
+- **16 more pantry foods** (goose, pheasant, topside, pork belly, smoked haddock, wild rice, ricotta, figs, cherries, blackberries, fennel, chicory, ginger nuts, condensed milk, sourdough, cavolo nero). 638 foods in all.
+- **Spoon weights for older foods** (`DENSITY_ADD`): cocoa, icing sugar, flours, sugars, seeds, nuts, herbs and more, so "1 tbsp cocoa" counts. The pantry gate found these.
+- Gate floors raised: at least 25 starters, 35 mains, 25 puddings, 20 sides, 25 menus.
+- Missing macros: none. Every food in the reference has all five figures and a source (the gate fails the build otherwise); only household, toiletry and pet items have none, on purpose. Foods in your own database with no figures are still filled once a day by the nutrition repair.
