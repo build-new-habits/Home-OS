@@ -1,4 +1,6 @@
-// js/data/mealCoach.js — 27 Nov 2026 v2
+// js/data/mealCoach.js — 27 Nov 2026 v3
+// v3: in-season food ranks a little higher (Phase 41). Nothing is hidden:
+// asking for Barbecue in December still finds it.
 // v2: "Season or occasion" in place of "What kind": the nine new seasons and
 // occasions beside Christmas, everyday cooking and grab and go (Phase 40).
 // Phase 39. Help me choose: a coach for a library too big to scroll.
@@ -33,6 +35,7 @@
 // else takes plain data, so the gate runs it as it is.
 
 import { suitsDiet, householdDiet } from './weekIdeas.js';
+import { seasonState } from './seasons.js';
 
 // ---- The questions ----------------------------------------------------------
 
@@ -375,14 +378,14 @@ export function coachLine(fitting = [], answers, { total = 0 } = {}) {
 
 // ---- Ranking ----------------------------------------------------------------------
 
-export const WEIGHTS = Object.freeze({ favourite: 3, own: 2, pantry: 2, soon: 2, fresh: 1, noTime: -2 });
+export const WEIGHTS = Object.freeze({ favourite: 3, own: 2, pantry: 2, soon: 2, fresh: 1, noTime: -2, season: 1 });
 
 /**
  * What fits, best first. Favourites and your own meals lead unless you asked
  * for something new; then what the pantry can make; then what you have not
  * had lately. Ties by name, so the list never shuffles.
  */
-export function rankFacts(fitting = [], answers) {
+export function rankFacts(fitting = [], answers, now = new Date()) {
   const a = normaliseAnswers(answers);
   const out = fitting.map((f) => {
     let score = 0;
@@ -394,6 +397,7 @@ export function rankFacts(fitting = [], answers) {
     if (f.usesSoon) score += WEIGHTS.soon;
     if (!f.recent) score += WEIGHTS.fresh;
     if (a.time !== 'any' && f.minutes === null) score += WEIGHTS.noTime;
+    if (seasonState(f.c.cuisine, now) === 'in') score += WEIGHTS.season;
     return { f, score: Math.round(score * 1000) / 1000, reasons: reasonsFor(f, a) };
   });
   out.sort((x, y) => y.score - x.score || x.f.c.name.localeCompare(y.f.c.name) || x.f.c.key.localeCompare(y.f.c.key));

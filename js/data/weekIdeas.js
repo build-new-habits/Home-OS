@@ -1,4 +1,6 @@
-// js/data/weekIdeas.js — 27 Nov 2026 v3
+// js/data/weekIdeas.js — 27 Nov 2026 v4
+// v4: seasons (Phase 41): a season's or occasion's recipe is only an idea in
+// its months (your own meals always are), and in-season food comes a little first.
 // v3: a library recipe marked side (roast potatoes, gravy, cranberry sauce)
 // is never offered as a meal on its own: its course reads 'side'.
 // v2: starterDinners() and nextSevenDays() for the first run.
@@ -35,6 +37,7 @@ import { courseOf } from './courses.js';
 import { proteinsOf } from './recipeLibrary.js';
 import { DAYS } from './mealPlan.js';
 import { mondayOf } from '../lib/weeks.js';
+import { seasonAllows, seasonState } from './seasons.js';
 
 /** A side goes beside a main; it is not a meal idea by itself. Pure. */
 export function courseOrSide(recipe) {
@@ -205,7 +208,9 @@ export function bestFor({ d, slot, prev = null, candidates, diet, used = new Set
     if (c.course && c.course !== 'main') continue;
     if (!suitsDiet(c, diet, c.ingredients ? null : [])) continue;
     if (slot === 'dinner' && WEEKDAYS.has(d.value) && c.minutes !== null && c.minutes > WEEKDAY_MAX_MINUTES) continue;
+    if (!seasonAllows(c, d.iso || null)) continue;
     let score = rand() * 2;
+    if (seasonState(c.cuisine, d.iso || null) === 'in') score += 1;
     if (c.favourite) score += 4;
     else if (c.own) score += 1.5;
     if (c.usesSoon) score += 2.5;

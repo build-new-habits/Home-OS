@@ -166,6 +166,43 @@ check('old events pruned', JSON.stringify(w.pruneEvents({ '2026-10-01': ['gym'],
 const recent = w.recentKeysFrom([{ week_start: '2026-11-16', day_of_week: 'fri', meal_id: '7' }, { week_start: '2026-11-23', day_of_week: 'sat', meal_id: '8' }], '2026-11-27');
 check('variety reads the last fortnight, not the days ahead', recent.has('meal:7') && !recent.has('meal:8'));
 
+// 11. Seasons (Phase 41): no barbecue in December unless the day asks for it.
+{
+  const seasons = await import(pathToFileURL(path.join(REPO, 'js/data/seasons.js')).href);
+  const ideasMod = await import(pathToFileURL(path.join(REPO, 'js/data/weekIdeas.js')).href);
+  const mk = (name, cuisine, extra = {}) => ({ ...make(name, { veg: true, lead: ['carb'] }), cuisine, ...extra });
+  const bbqRibs = mk('Barbecue veg skewers', 'BBQ');
+  const winterStew = mk('Winter root stew', 'Winter');
+  const summerSalad = mk('Summer salad', 'Summer');
+  const cake = mk('Birthday cake bake', 'Birthday');
+  const myBbq = mk('My own barbecue tofu', 'BBQ', { own: true });
+  const plain = mk('Plain pasta', 'Italian');
+  const pool2 = [bbqRibs, winterStew, summerSalad, cake, myBbq, plain];
+  const dec = '2026-12-08';
+  const decRank = w.rank({ candidates: pool2, date: dec, slot: 'dinner', rules: { rhythm: false }, events: {}, entries: [], members: [] });
+  const decNames = decRank.map((x) => x.c.name);
+  check('December: no barbecue or summer food from the library', !decNames.includes('Barbecue veg skewers') && !decNames.includes('Summer salad'), decNames.join(','));
+  check('December: birthday food waits for a birthday', !decNames.includes('Birthday cake bake'));
+  check('December: your own barbecue meal is still offered', decNames.includes('My own barbecue tofu'));
+  check('December: winter food is offered and says so', decRank.some((x) => x.c.name === 'Winter root stew' && x.reasons.includes('In season: Winter')));
+  check('in season comes ahead of everyday food', decNames.indexOf('Winter root stew') < decNames.indexOf('Plain pasta'));
+  const bbqDay = w.rank({ candidates: pool2, date: dec, slot: 'dinner', rules: { rhythm: false }, events: { [dec]: ['bbq'] }, entries: [], members: [] });
+  check('a Barbecue day brings barbecue food back, first', bbqDay[0] && ['Barbecue veg skewers', 'My own barbecue tofu'].includes(bbqDay[0].c.name) && bbqDay.some((x) => x.c.name === 'Barbecue veg skewers'), bbqDay.map((x) => x.c.name).join(','));
+  check('and says why', bbqDay.find((x) => x.c.name === 'Barbecue veg skewers').reasons.includes('Off the barbecue'));
+  const bday = w.rank({ candidates: pool2, date: dec, slot: 'dinner', rules: { rhythm: false }, events: { [dec]: ['birthday'] }, entries: [], members: [] });
+  check('a Birthday day brings birthday food', bday.some((x) => x.c.name === 'Birthday cake bake'));
+  const jul = w.rank({ candidates: pool2, date: '2026-07-08', slot: 'dinner', rules: { rhythm: false }, events: {}, entries: [], members: [] }).map((x) => x.c.name);
+  check('July: barbecue and summer food, no winter stew', jul.includes('Barbecue veg skewers') && jul.includes('Summer salad') && !jul.includes('Winter root stew'), jul.join(','));
+  check('Barbecue and Birthday are events', w.EVENTS.some((e) => e.value === 'bbq') && w.EVENTS.some((e) => e.value === 'birthday'));
+  check('new events survive saving', JSON.stringify(w.normaliseEvents({ [dec]: ['bbq', 'birthday'] })) === JSON.stringify({ [dec]: ['bbq', 'birthday'] }));
+  check('seasonState: everyday food has no season', seasons.seasonState('Italian', dec) === 'none' && seasons.seasonState('Christmas', dec) === 'in' && seasons.seasonState('Christmas', '2026-06-01') === 'out');
+  // Fill the week
+  const fillDec = ideasMod.bestFor({ d: { value: 'tue', iso: dec }, slot: 'dinner', candidates: [bbqRibs, summerSalad], diet: new Set(), rand: () => 0 });
+  check('Fill the week: nothing out of season in December', fillDec === null);
+  const fillJul = ideasMod.bestFor({ d: { value: 'sat', iso: '2026-07-11' }, slot: 'dinner', candidates: [plain, summerSalad], diet: new Set(), rand: () => 0 });
+  check('Fill the week: summer food first in July', fillJul && fillJul.name === 'Summer salad');
+}
+
 // 10. No shame: reasons and tallies are facts, never verdicts.
 const BANNED = /\b(missed|failed|fail|behind|should|must|only|bad|naughty|cheat|guilty)\b|!/i;
 const words = [

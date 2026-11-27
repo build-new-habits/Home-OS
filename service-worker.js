@@ -1,4 +1,5 @@
-// service-worker.js — 27 Nov 2026 v143
+// service-worker.js — 27 Nov 2026 v144
+// v144: Phase 41 — seasons in Shape my week and Fill the week: data/seasons.js. Shell v190.
 // v143: Phase 40 — seasons and occasions: views/occasions.js; nine new recipe files and menus (fetched on demand); 21 season foods in food_reference.json. Shell v189.
 // v142: Phase 39 — Help me choose: data/mealCoach.js, data/mealCoachLoad.js, views/mealCoach.js, views/mealCoachResults.js. Shell v188.
 // v141: Phase 38d — the chefs' Christmas batch (558 recipes, 130 menus, 22 new foods); a new cache so phones fetch the new library on their next open. Shell v187.
@@ -287,9 +288,10 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v189';
+const CACHE_NAME = 'home-os-shell-v190';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/data/seasons.js',
   './js/views/occasions.js',
   './js/data/mealCoach.js',
   './js/data/mealCoachLoad.js',
@@ -338,9 +340,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=189',
-  './css/base.css?v=189',
-  './css/components.css?v=189',
+  './css/tokens.css?v=190',
+  './css/base.css?v=190',
+  './css/components.css?v=190',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',
