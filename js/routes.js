@@ -294,6 +294,13 @@ export const routes = [
     path: 'shop-favourites',
     title: 'Favourites and regulars',
     load: () => import('./views/shopFavourites.js')
+  },
+  // 27 Nov 2026. Appended. Shape my week: ideas for a meal from your
+  // rules and the week's events (Phase 37, Hearth).
+  {
+    path: 'week-shaper',
+    title: 'Shape my week',
+    load: () => import('./views/weekShaper.js')
   }
 ];
 

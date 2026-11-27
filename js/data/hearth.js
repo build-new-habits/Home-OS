@@ -46,6 +46,7 @@ export const WHAT_HEARTH_ADDS = {
   library: 'Hearth opens the whole Community library, every month.',
   planAhead: 'Hearth plans any week ahead, and can repeat a week you liked.',
   planSlots: 'Hearth plans breakfasts, lunches, snacks and drinks as well as dinners.',
+  weekShaper: 'Hearth shapes your week from your rules: fish and veggie nights, a match or the gym, what suits everyone, and what is in the pantry.',
   favourites: 'Hearth keeps your favourites and regulars, splits Groceries, Household and Toiletries, and builds your list each week.'
 };
 

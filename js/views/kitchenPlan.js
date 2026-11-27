@@ -1,4 +1,5 @@
-// js/views/kitchenPlan.js — 26 Nov 2026 v15
+// js/views/kitchenPlan.js — 27 Nov 2026 v16
+// v16: Shape my week (Phase 37, Hearth) beside Fill the week for me.
 // v15: Free plans dinners: other meals show the Hearth card (Phase 36a).
 // v14: a planned meal opens its recipe with the plan entry (&e=), so you can
 // say what you already have from the recipe itself.
@@ -245,7 +246,14 @@ export function render(mountEl, { week = 'this', lookedAhead = false } = {}) {
   const actions = el('div', { class: 'plan-actions' });
   const shopBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Update shopping list' });
   const fillBtn = el('button', { type: 'button', class: 'btn btn-block', text: 'Fill the week for me', 'aria-haspopup': 'dialog' });
-  actions.append(fillBtn, shopBtn);
+  // v16: Shape my week. Free sees what Hearth adds, once, on a tap.
+  const shapeLink = el('a', { class: 'btn btn-block', href: `#/week-shaper?week=${week === 'next' ? 'next' : 'this'}`, text: 'Shape my week' });
+  shapeLink.addEventListener('click', (event) => {
+    if (isHearth()) return;
+    event.preventDefault();
+    showHearthCard('weekShaper');
+  }, { signal });
+  actions.append(shapeLink, fillBtn, shopBtn);
   mountEl.appendChild(actions);
 
   // ---- Fill the week for me (v10) ----------------------------------------

@@ -1,0 +1,85 @@
+a.back-link"This week"
+h1"Shape my week"
+p.visually-hidden[role=status]
+div.shaper
+  section.shaper-section
+    h2"This week so far"
+    ul.shaper-tally
+      li
+      li
+      li
+  section.shaper-section
+    h2"Which meal"
+    div.shaper-when
+      div.field
+        label"Day"
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+      div.field
+        label"Meal"
+        select
+          option
+          option
+          option
+  section.shaper-section
+    h2"What is on today"
+    div.shaper-chips[role=group]
+      button.chip-toggle[type=button][aria-pressed=false]"Match or race"
+      button.chip-toggle[type=button][aria-pressed=false]"Gym or training"
+      button.chip-toggle[type=button][aria-pressed=false]"Busy evening"
+      button.chip-toggle[type=button][aria-pressed=false]"Guests"
+    p.field-hint.shaper-shapes
+  div.shaper-modes[role=group]
+    button.chip-toggle.shaper-mode[type=button][aria-pressed=true]"Show me options"
+    button.chip-toggle.shaper-mode[type=button][aria-pressed=false]"You choose for me"
+  section.shaper-results.shaper-section
+    h2"Ideas for today dinner"
+    p
+  details.shaper-rules
+    summary"Your rules"
+    div.shaper-rules-body
+      p.field-hint
+      div.checkbox-row
+        input[type=checkbox]
+        label"Fish, meat and veggie nights"
+      div.shaper-steppers
+        div.shaper-stepper[role=group]
+          span.shaper-stepper-label
+          button.btn.btn-small[type=button]"−"
+          output.shaper-count
+          button.btn.btn-small[type=button]"+"
+        div.shaper-stepper[role=group]
+          span.shaper-stepper-label
+          button.btn.btn-small[type=button]"−"
+          output.shaper-count
+          button.btn.btn-small[type=button]"+"
+        p.field-hint
+      div.checkbox-row
+        input[type=checkbox]
+        label"Everyone eats the same meal"
+      div.field
+        label"<day> to <day> dinners"
+        select
+          option
+          option
+          option
+      div.field
+        label"<day> to <day> dinners"
+        select
+          option
+          option
+          option
+      div.checkbox-row
+        input[type=checkbox]
+        label"Use up what needs using first"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Something not cooked in the last two weeks"
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Back to the plan"

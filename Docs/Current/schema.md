@@ -1,18 +1,28 @@
 # Home PWA: Schema (Canonical)
-27 Nov 2026 v26
+27 Nov 2026 v27
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
 reconcile before writing anything (PROJECT_BLUEPRINT.md §3). No field is
 added, renamed, or removed anywhere without changing it here first.
 
-Backend: Supabase (PostgreSQL, **EU region**). **22 tables, 22 RLS
-policies**, 3 trigger functions, 22 update triggers.
+Backend: Supabase (PostgreSQL, **EU region**). **23 tables, 23 RLS
+policies**, 3 trigger functions, 23 update triggers.
 
 **No longer single-owner.** Revision 8 moved 13 tables to household
 ownership; 5 remain personal. See §0f and §4.
 
 ---
+
+## 0y. Revision 30 — Week Shaper (27 Nov 2026)
+
+New table **`week_shapes`** (Phase 37, Hearth): one row per household, the
+Week Shaper's rules (`rules` jsonb: rhythm, fish, meat, everyone, weeknights,
+weekends, useItUp, variety) and the week's events (`events` jsonb, by date:
+match, gym, busy, guests). Nothing about a recipe is stored; kind, time,
+carb-led and protein-led are worked out each time (`data/weekShaper.js`).
+Until it runs, the app keeps both on the phone.
+Migration: `migrations/030_week_shapes.sql`.
 
 ## 0x. Revision 29 — favourites and regulars (27 Nov 2026)
 
@@ -1054,7 +1064,7 @@ and no macros. `category` is what keeps non-food out of ingredient pickers.
 | name | text | not null |
 | barcode | text | nullable |
 | category | text | not null; check in the 9 values below; default `'food_ambient'` |
-| shelf | text | nullable; check in ('fruit','veg','meat','fish','dairy','bread','frozen','tinned','dried','baking','spices','sauces','snacks','drinks','household','personal','pet','other') (revision 25, **migration 026 — not yet applied**). What kind of thing it is, as the pantry and the shopping list group it. Null = worked out from the name (`data/shelves.js`) |
+| shelf | text | nullable; check in ('fruit','veg','meat','fish','dairy','bread','frozen','tinned','dried','baking','spices','sauces','snacks','drinks','household','personal','pet','other') (revision 25, **migration 026 — applied 27 Nov 2026**). What kind of thing it is, as the pantry and the shopping list group it. Null = worked out from the name (`data/shelves.js`) |
 | calories_per_100g | numeric | **canonical unit kcal per 100 g** |
 | grams_per_ml | numeric | nullable; `> 0`. How many grams one millilitre weighs (milk ~1.03, oil ~0.92). **Null means ml cannot be converted** — the ingredient is reported incomplete, never guessed |
 | item_label | text | nullable; singular noun for one item ('tin', 'egg', 'slice'). NULL reads as "item" (revision 9) |
@@ -1098,7 +1108,7 @@ this column exists to prevent.
 | default_serves | int | not null; default 4 |
 | is_favourite | boolean | not null; default false (revision 5) |
 | meal_type | text | nullable; check in ('breakfast','lunch','dinner','snack','drink') (revision 5) — what the recipe IS, not where it is planned |
-| course | text | nullable; check in ('starter','main','pudding') (revision 25, **migration 026 — not yet applied**). Null reads as main |
+| course | text | nullable; check in ('starter','main','pudding') (revision 25, **migration 026 — applied 27 Nov 2026**). Null reads as main |
 | method | text | nullable (13 Sep 2026, household library): a scanned recipe's method as written |
 | prep_minutes | int | nullable (13 Sep 2026) |
 | cook_minutes | int | nullable (13 Sep 2026) |
@@ -1147,8 +1157,8 @@ here from that chat's migration text; see MIGRATIONS_APPLIED.md
 | slot | text | not null; check in ('breakfast','lunch','dinner','snack') |
 | member_ids | uuid[] | not null default '{}'. **Empty = everyone.** No FK possible; unknown ids ignored on read (revision 13) |
 | serves_override | int | nullable; overrides meals.default_serves for this instance (principle 5) |
-| is_leftover | boolean | not null default false (revision 25, **migration 026 — not yet applied**). Food already cooked for another entry: counted in nutrition, skipped by the shortfall and by "We cooked it". The app detects the column on its first read and offers leftovers only once it exists (`data/mealPlan.js`) |
-| eaten_at | timestamptz | nullable (revision 25, **migration 026 — not yet applied**). When this meal was eaten; null = not ticked. Before 026 the tick is kept on the phone |
+| is_leftover | boolean | not null default false (revision 25, **migration 026 — applied 27 Nov 2026**). Food already cooked for another entry: counted in nutrition, skipped by the shortfall and by "We cooked it". The app detects the column on its first read and offers leftovers only once it exists (`data/mealPlan.js`) |
+| eaten_at | timestamptz | nullable (revision 25, **migration 026 — applied 27 Nov 2026**). When this meal was eaten; null = not ticked. Before 026 the tick is kept on the phone |
 
 #### Revision 24 — the plan gets weeks (8 Sep 2026)
 
@@ -1342,6 +1352,15 @@ the app, seeded or typed.
 | last_added_on | date | nullable; when a regular last went on the list |
 
 Revision 29.
+
+### week_shapes
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, default my_household_id(); unique |
+| rules | jsonb | not null default '{}'. Week Shaper rules; anything missing reads as its default |
+| events | jsonb | not null default '{}'. `{"YYYY-MM-DD": ["match","gym","busy","guests"]}`; older than 14 days dropped on save |
+
+Revision 30.
 
 ### household_entitlements
 | Column | Type | Notes |
