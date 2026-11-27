@@ -1,4 +1,5 @@
-// Tests/menus.mjs — 27 Nov 2026 v1
+// Tests/menus.mjs — 27 Nov 2026 v2
+// v2: the second batch: 138 recipes, 29 menus; the floors rise with them.
 // Gate 18. Phase 38. Christmas recipes and menus.
 //
 // Every menu is checked against the real library:
@@ -42,10 +43,10 @@ const { courseOf } = await import(pathToFileURL(path.join(REPO, 'js/data/courses
 const count = (pred) => xmas.filter(pred).length;
 const food = xmas.filter((r) => r.default_slot !== 'drink');
 check('Christmas is in the library index', index.files.some((f) => f.cuisine === 'Christmas' && f.count === xmas.length));
-check('at least 8 starters', count((r) => r.course === 'starter') >= 8);
-check('at least 10 mains', count((r) => r.course === 'main') >= 10);
-check('at least 8 puddings', count((r) => r.course === 'pudding') >= 8);
-check('at least 6 sides', count((r) => r.side === true) >= 6);
+check('at least 25 starters', count((r) => r.course === 'starter') >= 25);
+check('at least 35 mains', count((r) => r.course === 'main') >= 35);
+check('at least 25 puddings', count((r) => r.course === 'pudding') >= 25);
+check('at least 20 sides', count((r) => r.side === true) >= 20);
 const proteins = (r) => lib.proteinsOf(r);
 check('meat dishes', food.filter((r) => proteins(r).includes('meat')).length >= 5);
 check('fish dishes', food.filter((r) => r.ingredients.some((i) => /salmon|hake|cod|trout/.test(i.ref))).length >= 3);
@@ -83,7 +84,7 @@ const BRANDS = /\b(cointreau|grand marnier|baileys|bailey's|tia maria|disaronno|
 const SHAME = /\b(simply|just|obviously|quickly|easy|easily|merely|guilt|cheat|naughty|sinful)\b/i;
 
 const list = doc.menus || [];
-check('at least 10 menus', list.length >= 10, String(list.length));
+check('at least 25 menus', list.length >= 25, String(list.length));
 const seen = new Set();
 for (const m of list) {
   const id = `menu ${m.slug}`;

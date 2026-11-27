@@ -319,6 +319,41 @@ SPEC = [
   dict(slug='stem-ginger', name='Stem ginger in syrup', category='food_ambient', aliases=['stem ginger', 'preserved ginger', 'crystallised ginger'], grams_per_item=12, item_label='ball',
        src=('label', 280, 0.3, 0.2, 69.0, 1.5, LABEL)),
 
+  # ---------------- Christmas, second batch (27 Nov 2026) ----------------
+  dict(slug='goose', name='Goose', category='food_fresh', aliases=['whole goose', 'goose crown'], grams_per_item=1800, item_label='goose',
+       src=('uk', 'Goose, meat, raw, fat and skin'),
+       basis_extra='One goose is a 4.5 kg oven-ready bird: about 1.8 kg of meat and skin once the bones and the fat that runs off are taken away.'),
+  dict(slug='pheasant', name='Pheasant', category='food_fresh', aliases=['pheasant breasts', 'pheasant breast', 'brace of pheasant'],
+       src=('us', 'Pheasant, raw, meat and skin')),
+  dict(slug='beef-topside', name='Beef topside joint', category='food_fresh', aliases=['topside', 'roast beef joint', 'beef roasting joint', 'silverside'],
+       src=('uk', 'Beef, topside, raw, lean and fat')),
+  dict(slug='pork-belly', name='Pork belly', category='food_fresh', aliases=['pork belly joint', 'pork belly slices'],
+       src=('uk', 'Pork, belly joint/slices, raw, lean and fat')),
+  dict(slug='haddock-smoked', name='Smoked haddock', category='food_fresh', aliases=['undyed smoked haddock', 'smoked haddock fillet'],
+       src=('us', 'Fish, haddock, smoked')),
+  dict(slug='wild-rice', name='Wild rice', category='food_ambient', aliases=['wild rice dry', 'wild rice blend'], grams_per_ml=0.8,
+       src=('uk', 'Rice, wild, raw')),
+  dict(slug='ricotta', name='Ricotta', category='food_fresh', aliases=['ricotta cheese'],
+       src=('uk', 'Cheese, Ricotta')),
+  dict(slug='figs-fresh', name='Fresh figs', category='food_fresh', aliases=['fig', 'fresh fig'], grams_per_item=50, item_label='fig',
+       src=('uk', 'Figs, whole green fruit, raw')),
+  dict(slug='cherries', name='Cherries', category='food_fresh', aliases=['frozen cherries', 'pitted cherries', 'black cherries'],
+       src=('uk', 'Cherries, flesh and skin, raw')),
+  dict(slug='blackberries', name='Blackberries', category='food_fresh', aliases=['frozen blackberries', 'brambles'],
+       src=('uk', 'Blackberries, raw')),
+  dict(slug='fennel-bulb', name='Fennel bulb', category='food_fresh', aliases=['fennel', 'florence fennel'], grams_per_item=250, item_label='bulb',
+       src=('uk', 'Fennel, Florence, raw')),
+  dict(slug='chicory', name='Chicory', category='food_fresh', aliases=['endive', 'red chicory', 'witlof'], grams_per_item=120, item_label='head',
+       src=('uk', 'Chicory, pale variety, raw')),
+  dict(slug='ginger-nut-biscuits', name='Ginger nut biscuits', category='food_ambient', aliases=['ginger nuts', 'ginger biscuits', 'gingernuts'], grams_per_item=10, item_label='biscuit',
+       src=('uk', 'Biscuits, ginger nuts')),
+  dict(slug='condensed-milk', name='Condensed milk', category='food_ambient', aliases=['sweetened condensed milk'], grams_per_ml=1.3,
+       src=('uk', 'Milk, condensed, whole, sweetened')),
+  dict(slug='sourdough', name='Sourdough bread', category='food_fresh', aliases=['sourdough', 'french bread', 'crusty bread', 'ciabatta'], grams_per_item=40, item_label='slice',
+       src=('us', 'Bread, french or vienna (includes sourdough)')),
+  dict(slug='cavolo-nero', name='Cavolo nero', category='food_fresh', aliases=['black kale', 'tuscan kale', 'lacinato kale'],
+       src=('uk', 'Curly kale, raw'), basis_extra='Curly kale figures stand in for cavolo nero.'),
+
   # ---------------- Drinks and alcohol ----------------
   # Coffee had no figures at all. Instant dissolves, so it is the powder;
   # ground coffee is what the grounds give the cup, the way tea bags are.
@@ -366,6 +401,19 @@ ALIAS_DROPS = {
 # five-figure match cannot find (their fibre came from a newer table).
 LEGACY_TOTAL_CARBS = ['sweetcorn-tinned', 'raisins', 'honey', 'lemon-juice', 'coconut-cream', 'jam-strawberry',
                       'cocoa-powder', 'dark-chocolate', 'curry-powder', 'tofu-firm', 'peas-frozen', 'turmeric-ground']
+
+# Spoon measures for older foods that had none: a figure per 100 g is no use
+# for "1 tbsp cocoa" without the weight of a spoonful (g per ml).
+DENSITY_ADD = {
+    'cocoa-powder': 0.42, 'icing-sugar': 0.56, 'sugar-caster': 0.85, 'sugar-soft-brown': 0.9,
+    'flour-plain': 0.55, 'flour-self-raising': 0.55, 'flour-strong-white-bread': 0.55, 'cornflour': 0.55,
+    'oats-rolled': 0.35, 'breadcrumbs-dried': 0.45, 'desiccated-coconut': 0.35, 'chia-seeds': 0.65,
+    'sesame-seeds': 0.6, 'sunflower-seeds': 0.55, 'pumpkin-seeds': 0.55, 'ground-almonds': 0.4,
+    'couscous-dry': 0.75, 'rice-basmati-dry': 0.85, 'rice-arborio-dry': 0.85, 'lentils-red-dry': 0.8,
+    'quinoa-dry': 0.75, 'parmesan': 0.45, 'cheddar-cheese': 0.45, 'raisins': 0.6, 'sweet-chilli-sauce': 1.3,
+    'fresh-parsley': 0.2, 'fresh-coriander': 0.2, 'fresh-basil': 0.2, 'fresh-mint': 0.2, 'ginger-fresh': 0.6,
+    'spinach': 0.1, 'peas-frozen': 0.6, 'capers': 0.6, 'olives-pitted': 0.6, 'walnuts': 0.45, 'almonds': 0.6, 'cashews': 0.55, 'custard-ready': 1.05, 'cream-cheese': 1.0, 'chopped-tomatoes-tinned': 1.05,
+}
 
 LEGACY_BASIS = 'Published average from the original reference set (USDA or McCance and Widdowson).'
 USDA_FIXED = 'Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre.'
@@ -463,6 +511,10 @@ def main():
         if hit:
             f['carbs_g'] = r1(max(0.0, f['carbs_g'] - (f.get('fibre_g') or 0)))
             f['basis'] = USDA_FIXED
+
+    for f in foods:
+        if f['slug'] in DENSITY_ADD and not f.get('grams_per_ml'):
+            f['grams_per_ml'] = DENSITY_ADD[f['slug']]
 
     # Every food says where its figures come from.
     for f in foods:
