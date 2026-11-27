@@ -1,4 +1,6 @@
-// js/data/shelves.js — 04 Oct 2026 v1
+// js/data/shelves.js — 27 Nov 2026 v2
+// v2: whole spices and world pastes from the Christmas pantry (star anise,
+// cloves, juniper, sumac, shrimp paste, palm sugar...) and shellfish.
 // Kitchen rebuild. What KIND of thing a food is: Dairy, Meat, Fish, Fruit,
 // Veg, Tinned, Dried, Baking, Snacks, Drinks…
 //
@@ -56,16 +58,16 @@ const RULES = [
   ['frozen', /\b(frozen|ice cream|fish fingers|oven chips)\b/i],
   ['household', /\b(toilet roll|kitchen roll|bin bags|washing|detergent|bleach|cleaner|scourer|kitchen sponge|tin foil|foil|cling film|baking paper|dishwasher|light bulb|batter(y|ies)|fabric conditioner)/i],
   ['personal', /\b(shampoo|toothpaste|shower gel|deodorant|razor|soap|moisturiser|sun cream|plasters|paracetamol)/i],
-  ['spices', /\b(cumin|coriander, ground|ground coriander|turmeric|paprika|chilli powder|cinnamon|garam masala|curry powder|oregano|thyme|bay lea|nutmeg|mixed herbs|black pepper|salt|stock|spice)/i],
+  ['spices', /\b(cumin|coriander, ground|ground coriander|turmeric|paprika|chilli powder|cinnamon|garam masala|curry powder|oregano|thyme|bay lea|nutmeg|mixed herbs|black pepper|salt|stock|spice|star anise|(?<!garlic )cloves|allspice|cardamom|juniper|sumac|za'?atar|ras el hanout|saffron|mace|fennel seeds|caraway|mustard seeds|fenugreek|peppercorns|cayenne|white pepper|garlic powder|onion powder|dried sage|dried rosemary)/i],
   ['sauces', /\b(lemon juice|lime juice|vinegar)\b/i],
   ['dried', /\b(dry|dried)\b/i],
   ['tinned', /\b(tinned|canned|baked beans|coconut milk|coconut cream|chopped tomatoes|passata|tomato pur[eé]e|sweetcorn|chickpeas|kidney beans|butter beans|cannellini|black beans|olives|capers|jam|marmite|peanut butter|tahini|pesto|honey|hummus)\b/i],
   ['drinks', /\b(juice|squash|cola|lemonade|beer|lager|wine|cider|sparkling water|tea bags?|coffee|hot chocolate|oat milk|almond milk|soya milk|smoothie|water)\b/i],
-  ['sauces', /\b(oil|vinegar|soy sauce|fish sauce|worcestershire|ketchup|mayonnaise|mustard|sauce|curry paste|gochujang|miso|harissa|syrup)\b/i],
+  ['sauces', /\b(oil|vinegar|soy sauce|fish sauce|worcestershire|ketchup|mayonnaise|mustard|sauce|curry paste|gochujang|miso|harissa|syrup|shrimp paste|tamarind|pomegranate molasses|rose water|jelly)\b/i],
   ['baking', /\b(flour|sugar|baking powder|bicarbonate|yeast|vanilla|cocoa|icing|cornflour|desiccated coconut|chocolate chips|dark chocolate)\b/i],
   ['dried', /\b(rice|pasta|spaghetti|penne|noodles|couscous|quinoa|oats|barley|lentils|breadcrumbs|granola|cereal|raisins|dates)\b/i],
-  ['fish', /\b(fish|salmon|cod|haddock|tuna|sardine|mackerel|prawn|anchov|sea bass|trout|crab|mussels)/i],
-  ['meat', /\b(chicken|beef|lamb|pork|turkey|mince|bacon|sausage|ham|chorizo|steak|duck|gammon|salami)/i],
+  ['fish', /\b(fish|salmon|cod|haddock|tuna|sardine|mackerel|prawn|anchov|sea bass|trout|crab|mussel|hake|monkfish|scallop|lobster|squid)/i],
+  ['meat', /\b(chicken|beef|lamb|pork|turkey|mince|bacon|sausage|ham|chorizo|steak|duck|gammon|salami|pancetta|chipolata|venison|liver)/i],
   ['dairy', /\b(milk|cheese|cheddar|mozzarella|parmesan|feta|halloumi|yoghurt|yogurt|butter|cream|egg|eggs)\b/i],
   ['bread', /\b(bread|bagel|pitta|tortilla|wrap|naan|crumpet|roll|croissant|loaf)\b/i],
   ['snacks', /\b(crisps|biscuit|chocolate|nuts|almonds|cashews|walnuts|peanuts|seeds|popcorn|crackers|cereal bar|flapjack)\b/i],

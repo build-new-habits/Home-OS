@@ -1,4 +1,5 @@
-// js/routes.js — 27 Nov 2026 v12
+// js/routes.js — 27 Nov 2026 v13
+// v13: appends 'menus' and 'menu'.
 // v12: appends 'shop-favourites'.
 // v11: appends 'hearth'.
 // v10: appends 'recipe-check' and 'meals-home'.
@@ -301,6 +302,18 @@ export const routes = [
     path: 'week-shaper',
     title: 'Shape my week',
     load: () => import('./views/weekShaper.js')
+  },
+  // 27 Nov 2026. Appended. Complete menus with drinks to match, and one
+  // menu on its own page (Phase 38).
+  {
+    path: 'menus',
+    title: 'Menus',
+    load: () => import('./views/menus.js')
+  },
+  {
+    path: 'menu',
+    title: 'Menu',
+    load: () => import('./views/menu.js')
   }
 ];
 

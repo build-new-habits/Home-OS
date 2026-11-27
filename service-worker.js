@@ -1,4 +1,5 @@
-// service-worker.js — 27 Nov 2026 v138
+// service-worker.js — 27 Nov 2026 v140
+// v140: Phase 38 — Christmas recipes and menus (data/menus.js, views/menus.js, views/menu.js); world pantry in food_reference.json v5; recipe_library/index.json (334 recipes). Shell v186.
 // v139: Phase 37 — data/weekShaper.js, data/weekShape.js, views/weekShaper.js. Shell v185.
 // v138: Phase 36b — data/favourites.js, views/shopFavourites.js. Shell v184.
 // v137: Phase 36a, Hearth — data/hearth.js, components/hearthCard.js, views/hearth.js. Shell v183.
@@ -283,9 +284,12 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v185';
+const CACHE_NAME = 'home-os-shell-v186';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/data/menus.js',
+  './js/views/menus.js',
+  './js/views/menu.js',
   './js/data/favourites.js',
   './js/views/shopFavourites.js',
   './js/data/weekShaper.js',
@@ -326,9 +330,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=185',
-  './css/base.css?v=185',
-  './css/components.css?v=185',
+  './css/tokens.css?v=186',
+  './css/base.css?v=186',
+  './css/components.css?v=186',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

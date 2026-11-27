@@ -1,4 +1,8 @@
-// js/data/nutritionRepair.js — 04 Oct 2026 v2
+// js/data/nutritionRepair.js — 27 Nov 2026 v3
+// v3: foods filled from the app's own reference are brought up to date once
+// when the reference changes (v5, 27 Nov 2026: carbohydrate UK-style, the
+// world pantry). Only source 'reference': a figure typed or scanned is never
+// touched, and editing a food makes it 'manual'.
 // v2: the food's last word is tried too ("cheese and onion crisps" are crisps).
 // v1: give every food with no nutrition its figures, without being asked.
 //
@@ -28,6 +32,11 @@ import { loadCofid, bestMatch, rememberFibre } from './cofid.js';
 const LOG_KEY = 'home-os-nutrition-fixes';
 const RAN_KEY = 'home-os-nutrition-repair-at';
 const UNSEEN_KEY = 'home-os-nutrition-fixes-unseen';
+const REFRESHED_KEY = 'home-os-reference-refreshed';
+
+/** Bump when data/food_reference.json changes figures already in use. */
+export const REFERENCE_VERSION = 5;
+const COMPARED = ['calories_per_100g', 'protein_g', 'fat_g', 'carbs_g'];
 
 const BRANDS = [
   'tesco', 'sainsbury s', 'sainsburys', 'asda', 'morrisons', 'aldi', 'lidl', 'waitrose', 'm s', 'marks and spencer', 'co op', 'coop',
@@ -112,6 +121,50 @@ export function markFixesSeen() {
   try { localStorage.removeItem(UNSEEN_KEY); } catch { /* fine */ }
 }
 
+/**
+ * What a food filled from the reference should now read, or null when it
+ * already agrees. Pure: the gates check it without a database.
+ */
+export function referenceRefresh(food, figures) {
+  if (!food || !figures) return null;
+  const differs = COMPARED.some((k) => {
+    const want = Number(figures[k]);
+    const have = Number(food[k]);
+    return Number.isFinite(want) && !(Number.isFinite(have) && Math.abs(have - want) < 0.05);
+  });
+  if (!differs) return null;
+  const patch = { source: 'reference' };
+  for (const k of COMPARED) if (Number.isFinite(Number(figures[k]))) patch[k] = figures[k];
+  return patch;
+}
+
+/**
+ * Once per reference version: every food whose figures came from the
+ * reference, matched again by name, and updated where the reference now
+ * says something different. Logged like any other fix, so it shows on the
+ * Nutrition filled in page with a Change button.
+ */
+export async function refreshReferenceFoods({ force = false } = {}) {
+  try { if (!force && localStorage.getItem(REFRESHED_KEY) === String(REFERENCE_VERSION)) return { ok: true, refreshed: [], skipped: true }; } catch { /* run */ }
+  const read = await readAll(() => supabase.from('foods').select('*').eq('source', 'reference')
+    .order('created_at', { ascending: true }).order('id', { ascending: true }));
+  if (!read.ok) return { ok: false, refreshed: [] };
+  const refreshed = [];
+  for (const food of read.data || []) {
+    // An empty table list: the reference only, never the UK tables here.
+    const match = await matchFood(food, []);
+    if (!match || match.via !== 'reference') continue;
+    const patch = referenceRefresh(food, match.figures);
+    if (!patch) continue;
+    const saved = await updateFood(food.id, patch);
+    if (!saved.ok) continue;
+    rememberFibre(food.id, match.fibre);
+    refreshed.push({ foodId: food.id, name: food.name, matched: match.name, via: 'reference', kcal: patch.calories_per_100g ?? food.calories_per_100g, at: new Date().toISOString() });
+  }
+  try { localStorage.setItem(REFRESHED_KEY, String(REFERENCE_VERSION)); } catch { /* fine */ }
+  return { ok: true, refreshed };
+}
+
 /** Foods with no calories, read in full. */
 export async function foodsWithoutNutrition() {
   const read = await readAll(() => supabase.from('foods').select('*').is('calories_per_100g', null)
@@ -148,6 +201,8 @@ export function repairNutrition({ force = false } = {}) {
       log.push(entry);
       fixed.push(entry);
     }
+    const again = await refreshReferenceFoods().catch(() => ({ refreshed: [] }));
+    for (const entry of again.refreshed || []) { log.push(entry); fixed.push(entry); }
     writeLog(log);
     try {
       localStorage.setItem(RAN_KEY, today);

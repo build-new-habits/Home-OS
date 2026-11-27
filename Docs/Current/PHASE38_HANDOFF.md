@@ -1,0 +1,49 @@
+# Phase 38 handoff — Christmas menus and the macros rule
+27 Nov 2026 · shell v186
+
+## What shipped
+
+### 52 Christmas recipes (`data/recipe_library/christmas.json`, cuisine "Christmas")
+- **9 starters**: smoked salmon blinis, prawn cocktail, seared scallops with minted peas and pancetta, chicken liver pâté, beetroot with goats' cheese and walnuts, spiced parsnip and apple soup (vegan), Thai crab cakes with lime leaf, mushroom and chestnut pâté (vegan), Stilton, pear and walnut tartlets.
+- **13 mains**: turkey crown, honey and mustard gammon, beef fillet with green peppercorn sauce, slow-roast duck with orange and star anise, side of salmon with herb crumb, saffron fish and mussel stew, lobster tails in garlic butter, Thai green king prawn curry with galangal and lime leaves, squash and goats' cheese Wellington, cranberry and chestnut nut roast (vegan), whole roast cauliflower with tahini (vegan), celeriac steaks with green peppercorn sauce (vegan).
+- **10 sides** (marked `"side": true`): roast potatoes, honey-roast roots, sprouts with chestnuts, braised red cabbage, cranberry sauce, bread sauce, pigs in blankets, turkey gravy, vegan gravy, brandy butter. A side is never offered as a meal on its own by Fill the week or Shape my week (`weekIdeas.courseOrSide`).
+- **10 puddings**: Christmas pudding, mince pies, sherry trifle, yule log, clementine pavlova, sticky toffee, chocolate orange mousse (vegan), pears in mulled wine (vegan), panettone bread and butter pudding, coconut lime and lemongrass rice pudding (vegan).
+- **11 drinks**: with alcohol — mulled wine, mulled cider, cranberry and orange fizz, clementine and rosemary G&T, cooked eggnog; soft — spiced apple and cranberry punch, mulled red grape juice, orange hot chocolate, pomegranate and ginger fizz, elderflower and cranberry spritz, ginger lime and lemongrass cooler.
+- Every recipe in the house step style, with swaps (vegetarian, vegan, gluten free, dairy free, no alcohol). Spoons are stored as ml, like the rest of the library.
+
+### 12 menus (`data/menus/christmas.json`), Meals → Christmas menus
+- `#/menus` lists them with filter chips: All, Meat, Fish, Shellfish, Vegetarian (includes vegan), Vegan.
+- `#/menu?o=christmas&m=<slug>`: starter, main with its sides, pudding — each a card to the recipe — and under each course a **soft** and a **with alcohol** pairing. Drinks the app has a recipe for are links. Wines named by style or region, never brand. Vegan menus remind you to check wine labels.
+- One primary action: **Add this menu to My meals** (Hearth). Free sees the Hearth card.
+
+### The macros rule (`Tests/pantry.mjs`, gate 17)
+Every run checks:
+1. every food (not household, toiletries or pet) has all five figures — energy, protein, fat, carbohydrate, fibre;
+2. every food has a `basis` saying where they come from;
+3. a figure cited from CoFID or USDA matches that row exactly;
+4. energy adds up from the five figures (exceptions listed with reasons);
+5. no name or alias points at two foods;
+6. every library ingredient converts to grams (density for ml, weight for items);
+7. every library recipe's nutrition is complete — nothing unknown;
+8. 107 ingredient lines typed as a cook writes them (kaffir lime leaves, green peppercorns in brine, galangal, shrimp paste, star anise, sumac, za'atar…, and everyday ones) resolve to a food with figures and grams.
+
+### World pantry (`scripts/world_pantry.py`, `food_reference.json` v5)
+- **147 foods added or replaced**, 622 in all. CoFID 2019 first, USDA SR Legacy second, typical UK label values third (no brands), blends worked out from their parts. Each with spoon densities and item weights (a lime leaf 0.5 g, a star anise 0.6 g, a clove 0.1 g, a cinnamon stick 3 g).
+- **One carbohydrate, UK-style.** USDA counts fibre inside carbohydrate; UK labels and CoFID do not. 93 older entries had USDA totals (cinnamon 81 g → 28 g, chia 42 g → 8 g, cocoa 58 g → 25 g, avocado 8.5 g → 1.8 g). All corrected. New USDA figures arrive with fibre taken out.
+- Coffee had no figures at all; now it does.
+- To add a food: one line in `SPEC`, run the script, run the gates.
+
+### Also
+- Meat, fish and diet readers know the new foods: `recipeLibrary.proteinsOf` (hake, scallops, lobster, pancetta, venison…), `dietSwitch` (never offers duck or shellfish as vegetarian; crème fraîche, panettone not vegan), `shelves` (whole spices, world pastes).
+- `foodNames.countedName`: "6 kaffir lime leaves", "12 scallops", "6 juniper berries" (was "leaves of kaffir lime leaves").
+
+### Saved foods brought up to date
+- Foods already in your database with figures from the reference (`source = 'reference'`) are matched again by name once, on the next daily nutrition pass, and updated where the reference now differs (`nutritionRepair.refreshReferenceFoods`, `REFERENCE_VERSION = 5`). They appear on Nutrition filled in with a Change button. A figure you typed or scanned is never touched.
+- Find nutrition and the automatic ingredient match now read the US tables UK-style too (`cofid.ukCarbs`), so one carbohydrate runs through every source.
+
+## Not done / next
+- Duck figures are raw meat and skin; fat poured off after roasting is not subtracted.
+- No database change in this phase. Migration 030 (Phase 37) is still to run.
+
+## Gates
+18 gates, all passing: + Pantry (10,488 checks), + Menus (574 checks). Library 334 recipes.

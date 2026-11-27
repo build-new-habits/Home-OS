@@ -1,4 +1,6 @@
-// js/data/weekIdeas.js — 04 Oct 2026 v2
+// js/data/weekIdeas.js — 27 Nov 2026 v3
+// v3: a library recipe marked side (roast potatoes, gravy, cranberry sauce)
+// is never offered as a meal on its own: its course reads 'side'.
 // v2: starterDinners() and nextSevenDays() for the first run.
 // v1: Fill the week for me — ideas for every open meal from your own meals
 // AND the library, chosen the way a person would plan a week.
@@ -23,7 +25,7 @@
 //     dairy free or nut free, every idea is (a shared meal has to suit the
 //     whole table; swaps are still offered on the recipe)
 //   - Monday to Thursday dinners take 45 minutes or less of hands-on time
-//   - starters, puddings and drinks are courses, never a main meal idea
+//   - starters, puddings, sides and drinks are courses, never a main meal idea
 //   - nothing twice in one week
 //
 // No database calls: the view hands in what it has already read.
@@ -33,6 +35,11 @@ import { courseOf } from './courses.js';
 import { proteinsOf } from './recipeLibrary.js';
 import { DAYS } from './mealPlan.js';
 import { mondayOf } from '../lib/weeks.js';
+
+/** A side goes beside a main; it is not a meal idea by itself. Pure. */
+export function courseOrSide(recipe) {
+  return recipe && recipe.side === true ? 'side' : courseOf(recipe);
+}
 
 export const WEEKDAY_MAX_MINUTES = 45;
 const WEEKDAYS = new Set(['mon', 'tue', 'wed', 'thu']);
@@ -100,7 +107,7 @@ export function candidatesFrom({ meals = [], recipes = [], useSoonNames = [] } =
       meal: m,
       recipe,
       slot: m.default_slot || m.meal_type || (recipe && recipe.default_slot) || null,
-      course: recipe ? courseOf(recipe) : (m.course || 'main'),
+      course: recipe ? courseOrSide(recipe) : (m.course || 'main'),
       cuisine: m.cuisine || (recipe && recipe.cuisine) || '',
       budget: m.budget_tier || (recipe && recipe.budget_tier) || '',
       minutes: recipe ? estimateRecipeTime(recipe).total : null,
@@ -120,7 +127,7 @@ export function candidatesFrom({ meals = [], recipes = [], useSoonNames = [] } =
       meal: null,
       recipe: r,
       slot: r.default_slot,
-      course: courseOf(r),
+      course: courseOrSide(r),
       cuisine: r.cuisine || '',
       budget: r.budget_tier || '',
       minutes: estimateRecipeTime(r).total,

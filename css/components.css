@@ -1,4 +1,5 @@
-/* css/components.css — 27 Nov 2026 v105 */
+/* css/components.css — 27 Nov 2026 v106 */
+/* v106: Christmas menus — courses, sides and drinks (Phase 38). */
 /* v105: favourites and regulars, three lists (Phase 36b). */
 /* v104: Hearth page and the Free library note (Phase 36a). */
 /* v103: shopping list arrangement switch and sub-headings (Phase 35). */
@@ -5215,3 +5216,15 @@ body.sheet-open {
 .shaper-results h2:focus { outline: none; }
 .shaper-results h2:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .shaper-chosen { border-width: 2px; border-color: var(--control-border); }
+
+/* ---- Menus (Phase 38) ----
+   One menu: each course a section, its dish and sides as hub cards, and
+   what to drink as two plain lines. Spacing only; the cards are hub-link. */
+.menu-page > p { margin: 0 0 var(--space-3); }
+.menu-course { margin-top: var(--space-6); }
+.menu-course h2 { margin-bottom: 0; }
+.menu-course h3 { margin: var(--space-4) 0 0; font-size: var(--text-base); }
+.menu-drinks { list-style: none; margin: var(--space-2) 0 0; padding: 0; }
+.menu-drink { line-height: 1.5; }
+.menu-drink + .menu-drink { margin-top: var(--space-2); }
+.menu-drink a { min-height: var(--tap-min); display: inline-flex; align-items: center; }

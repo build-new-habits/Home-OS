@@ -1,4 +1,6 @@
-// js/data/cofid.js — 04 Oct 2026 v3
+// js/data/cofid.js — 27 Nov 2026 v4
+// v4: US rows give carbohydrate UK-style, without fibre, the way UK labels
+// and CoFID do (Phase 38: one carbohydrate across every table).
 // v3: one scorer over several tables (data/foodSearch.js); British words
 // find American names (courgette, zucchini).
 // v2: bestMatch() for the automatic pass (data/nutritionRepair.js).
@@ -54,11 +56,23 @@ export async function loadCofid() {
   return loading;
 }
 
+/**
+ * USDA counts fibre inside carbohydrate ("by difference"); UK labels and
+ * CoFID do not. One app, one carbohydrate: US figures lose their fibre.
+ * Pure. Exported for the gates.
+ */
+export function ukCarbs(carbs, fibre, source) {
+  if (source !== 'us' || carbs === null || carbs === undefined) return carbs;
+  const f = Number(fibre);
+  if (!Number.isFinite(f) || f <= 0) return carbs;
+  return Math.max(0, Math.round((Number(carbs) - f) * 10) / 10);
+}
+
 /** Rows to searchable objects. Exported for the gates. */
 export function indexFoods(rows = [], source = 'uk') {
   return rows.map(([code, name, kcal, protein, fat, carbs, fibre, sugars, group]) => ({
     code, name, group, source,
-    calories_per_100g: kcal, protein_g: protein, fat_g: fat, carbs_g: carbs, fibre_g: fibre, sugars_g: sugars,
+    calories_per_100g: kcal, protein_g: protein, fat_g: fat, carbs_g: ukCarbs(carbs, fibre, source), fibre_g: fibre, sugars_g: sugars,
     words: words(name)
   }));
 }

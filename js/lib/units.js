@@ -1,4 +1,5 @@
-// js/lib/units.js — 04 Oct 2026 v7
+// js/lib/units.js — 27 Nov 2026 v8
+// v8: berry, berries (juniper berries, Phase 38).
 // v7: ingredientLine() — the display_text every meal_ingredients row needs.
 // v6: plurals by the last word ("sweet potatoes"), -es after ch, sh and x.
 // v5 (worklist B1): packsFor() — grams also read as whole packs.
@@ -229,7 +230,8 @@ const IRREGULAR_PLURALS = {
   dish: 'dishes',
   glass: 'glasses',
   mango: 'mangoes',
-  chilli: 'chillies'
+  chilli: 'chillies',
+  berry: 'berries'
 };
 
 export function pluraliseLabel(label, count) {

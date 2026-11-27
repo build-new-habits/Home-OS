@@ -1,4 +1,5 @@
-// js/views/mealsHome.js — 24 Nov 2026 v1
+// js/views/mealsHome.js — 27 Nov 2026 v2
+// v2: Christmas menus, a third place beside My meals and the library (Phase 38).
 // Phase 34. The Meals tab (#/meals-home).
 //
 // Graeme, 24 Nov 2026: "'Recipes' in the app should be Meals and then
@@ -62,7 +63,8 @@ export function render(mountEl) {
   const places = el('ul', { class: 'hub-list meals-home__places' });
   const mine = hubLink('#/meals', 'My meals', 'Yours, imported, and ones you copied from the library.');
   const library = hubLink('#/library', 'Community library', 'Recipes that come with the app, ready to cook.');
-  places.append(mine.li, library.li);
+  const menus = hubLink('#/menus', 'Christmas menus', 'Whole menus from starter to pudding, with drinks to match.');
+  places.append(mine.li, library.li, menus.li);
   mountEl.appendChild(places);
 
   const more = el('p', { class: 'library-links' });

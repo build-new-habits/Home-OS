@@ -1,4 +1,6 @@
-// js/data/recipeLibrary.js — 04 Oct 2026 v7
+// js/data/recipeLibrary.js — 27 Nov 2026 v8
+// v8: meat and fish read from the Christmas and world pantry too (pancetta,
+// venison, chipolatas, livers; hake, monkfish, trout, scallops, lobster, mussels).
 // v7: every ingredient row sends display_text and sort_order (not null in the live database since 13 Sep; their absence made every library add fail).
 // v6: adding a library recipe is all or nothing; a meal left with no
 // ingredients is filled again (reseedLibraryIngredients); every food is read,
@@ -127,8 +129,8 @@ export async function loadAllRecipes() {
    neither, not automatically vegetarian, because "no meat in the list" and
    "suitable for vegetarians" are different claims and the second one is
    what the dietary tags are for. */
-const MEAT = /\b(beef|lamb|pork|chicken|turkey|bacon|sausage|ham|chorizo|duck|steak|gammon|mince)\b/;
-const FISH = /\b(salmon|tuna|cod|haddock|prawn|prawns|anchovy|mackerel|sardine|shrimp|squid|crab)\b/;
+const MEAT = /\b(beef|lamb|pork|chicken|turkey|bacon|sausage|sausagemeat|ham|chorizo|duck|steak|gammon|mince|pancetta|chipolatas?|venison|livers?|goose|pheasant)\b/;
+const FISH = /\b(salmon|tuna|cod|haddock|prawn|prawns|anchovy|mackerel|sardine|shrimp|squid|crab|hake|monkfish|trout|bass|scallops?|lobster|mussels?|clams?|oysters?|langoustines?|plaice|sole|kippers?)\b/;
 const FLAVOURING = /^(stock-|fish-sauce)/;
 
 /** @returns {string[]} some of ['meat', 'fish'] */

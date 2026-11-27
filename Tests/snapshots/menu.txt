@@ -1,0 +1,6 @@
+a.back-link"Christmas menus"
+h1"Menu not found"
+p.field-hint[role=status]
+div.menu-page
+div.action-bar
+  button.action-bar__control.btn.btn-primary[type=button]"Add this menu to My meals"

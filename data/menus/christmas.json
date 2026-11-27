@@ -1,0 +1,640 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Christmas",
+ "note": "Complete menus from the Christmas recipes. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "traditional-christmas-day",
+   "name": "Traditional Christmas Day",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Turkey with every trimming, from soup to flaming pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-parsnip-apple-soup",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple juice, well chilled"
+      },
+      "alcoholic": {
+       "text": "A chilled glass of dry fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-roast-turkey-crown",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A light, juicy red such as Pinot Noir or Beaujolais"
+      }
+     },
+     "sides": [
+      "xmas-pigs-in-blankets",
+      "xmas-roast-potatoes",
+      "xmas-honey-roast-roots",
+      "xmas-sprouts-chestnuts",
+      "xmas-braised-red-cabbage",
+      "xmas-cranberry-sauce",
+      "xmas-bread-sauce",
+      "xmas-turkey-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-christmas-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A small glass of tawny port"
+      }
+     },
+     "sides": [
+      "xmas-brandy-butter"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "beef-and-peppercorn",
+   "name": "Beef fillet and peppercorn sauce",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "A retro starter, a showpiece roast and the best sticky pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-prawn-cocktail",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry Provence-style rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-beef-fillet-peppercorn",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Bordeaux-style Cabernet blend or a Rioja Reserva"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-sprouts-chestnuts"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-sticky-toffee-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Tawny port or a sweet Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "duck-and-spice",
+   "name": "Duck, orange and spice",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Rich pâté, slow-roast duck with star anise, and a chocolate log.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-chicken-liver-pate",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry juice topped up with sparkling water"
+      },
+      "alcoholic": {
+       "text": "A small glass of sweet white, such as Sauternes style"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-duck-orange-star-anise",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A silky Pinot Noir"
+      }
+     },
+     "sides": [
+      "xmas-braised-red-cabbage",
+      "xmas-roast-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-yule-log",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "boxing-day-gammon",
+   "name": "Boxing Day gammon",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Make-ahead food for a relaxed day: tartlets, glazed gammon, mince pies.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-stilton-pear-tartlets",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple and elderflower"
+      },
+      "alcoholic": {
+       "text": "An off-dry Chenin Blanc, such as Vouvray"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-glazed-gammon",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Mulled cider, or a fruity Beaujolais",
+       "recipe": "xmas-mulled-cider"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-braised-red-cabbage",
+      "xmas-cranberry-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-mince-pies",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "Mulled wine",
+       "recipe": "xmas-mulled-wine"
+      }
+     },
+     "sides": [
+      "xmas-brandy-butter"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "christmas-eve-fish",
+   "name": "Christmas Eve fish supper",
+   "diet": "fish",
+   "serves": 8,
+   "summary": "Light and bright before the big day: salmon twice, then pavlova.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-smoked-salmon-blinis",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Dry sparkling wine: Champagne, Crémant or English sparkling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-salmon-side-herb-crust",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with cucumber and lemon"
+      },
+      "alcoholic": {
+       "text": "An unoaked Chardonnay such as Chablis, or a dry Riesling"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-sprouts-chestnuts"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-clementine-pavlova",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A lightly sparkling sweet Moscato"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "saffron-fish-stew-supper",
+   "name": "Saffron fish stew supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "A bowl of the Mediterranean in December, with a silky vegan mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-beetroot-goats-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A crisp Sauvignon Blanc, such as Sancerre"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-saffron-fish-mussel-stew",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Albariño, or a dry Provence-style rosé"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-orange-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate, a small cup",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Orange liqueur over ice, or ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "shellfish-feast",
+   "name": "Shellfish feast",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Scallops, then lobster tails in garlic butter, then wine-red pears.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-seared-scallops-pea",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Albariño or Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-lobster-garlic-butter",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A rich white Burgundy or an oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-mulled-wine-pears",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "Ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "thai-spiced-christmas",
+   "name": "Thai-spiced Christmas",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Lime leaf, galangal and lemongrass all the way through.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-thai-crab-cakes",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-thai-green-prawn-curry",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "Gewürztraminer or Pinot Gris"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-coconut-lime-rice-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Iced jasmine tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest sweet Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegetarian-christmas",
+   "name": "Vegetarian Christmas",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "A golden Wellington at the centre, and a proper sherry trifle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-beetroot-goats-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A crisp Sauvignon Blanc, such as Sancerre"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-butternut-wellington",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay or a light Pinot Noir"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-honey-roast-roots",
+      "xmas-braised-red-cabbage",
+      "xmas-vegan-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-sherry-trifle",
+     "pairing": {
+      "soft": {
+       "text": "Orange hot chocolate",
+       "recipe": "xmas-orange-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A small glass of cream sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegan-christmas",
+   "name": "Vegan Christmas",
+   "diet": "vegan",
+   "serves": 8,
+   "summary": "Nut roast with every trimming, and a chocolate orange mousse.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-mushroom-chestnut-pate",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-nut-roast",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir or Grenache labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-braised-red-cabbage",
+      "xmas-cranberry-sauce",
+      "xmas-vegan-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-orange-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A ruby port labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "middle-eastern-vegan",
+   "name": "Spiced vegan feast",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Warming soup, a whole roast cauliflower, wine-poached pears.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-parsnip-apple-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple and cranberry punch",
+       "recipe": "xmas-spiced-apple-punch"
+      },
+      "alcoholic": {
+       "text": "A dry white Rioja labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-roast-cauliflower-tahini",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Southern Rhône or Lebanese red labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-mulled-wine-pears",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vegan-winter-supper",
+   "name": "Vegan winter supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Celeriac steaks with green peppercorn sauce and a Thai rice pudding.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-mushroom-chestnut-pate",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "xmas-celeriac-steaks-peppercorn",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "xmas-braised-red-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-coconut-lime-rice-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A late-harvest sweet Riesling labelled vegan"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
