@@ -6,7 +6,8 @@ import importlib, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build import write_all, BuildError  # noqa: E402
 
-ORDER = ['spring', 'summer', 'autumn', 'winter', 'easter', 'birthday', 'halloween', 'bbq', 'outdoor', 'microwave']
+ORDER = ['spring', 'summer', 'autumn', 'winter', 'easter', 'birthday', 'halloween', 'bbq', 'outdoor', 'microwave',
+         'traybakes', 'slow', 'onepot', 'hob', 'panfried', 'grill', 'roasts', 'bakes', 'nocook', 'steamed', 'stirfry']
 
 books = []
 for name in ORDER:

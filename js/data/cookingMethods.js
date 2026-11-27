@@ -84,7 +84,8 @@ export function methodsOf(recipe) {
   if (roast) out.add('roast');
   if (baked) out.add('oven');
   const savoury = recipe.course !== 'pudding' && recipe.default_slot !== 'drink';
-  if (/\btray ?bake\b/.test(all) || (savoury && roast && /\b(roasting tin|in a tin|in one tin|one tin|into the tin|to the tin|in the tin)\b/.test(t)
+  // A traybake cake (lemon drizzle, jam and coconut) is a cake, not a one-tin dinner.
+  if ((savoury && /\btray ?bake\b/.test(all)) || (savoury && roast && /\b(roasting tin|in a tin|in one tin|one tin|into the tin|to the tin|in the tin)\b/.test(t)
       && !/\b(saucepan|frying pan|wok|blend|pan)\b/.test(t) && !/\bboil\b/.test(t) && !/\b(loaf|cake|square|\d+ cm) tin\b/.test(t))) out.add('traybake');
 
   // One pot: one pan, pot or casserole, and nothing else cooks.

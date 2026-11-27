@@ -829,6 +829,898 @@
      "instruction": "Squeeze over a little of the lemon juice."
     }
    ]
+  },
+  {
+   "slug": "mw-mug-vanilla",
+   "name": "Vanilla mug sponge with jam",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "jam-strawberry",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:jam-strawberry}} and {{ing:vanilla-extract}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-mug-banana",
+   "name": "Banana mug cake",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:banana-medium}} and {{ing:cinnamon-ground}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-mug-ginger",
+   "name": "Ginger and syrup mug pudding",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:golden-syrup}} and {{ing:ginger-ground}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-mug-blueberry",
+   "name": "Blueberry and lemon mug muffin",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:blueberries}} and {{ing:lemon}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-mug-coffee",
+   "name": "Coffee mug cake",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "coffee-instant",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:coffee-instant}} and {{ing:walnuts}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-mug-white-choc",
+   "name": "White chocolate and raspberry mug cake",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-chocolate",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:white-chocolate}} and {{ing:raspberries}}, chopped or mashed as needed."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-jacket-tuna",
+   "name": "Microwave jacket potato with tuna mayonnaise",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:tuna-tinned-in-spring-water}} and {{ing:mayonnaise}} and {{ing:sweetcorn-tinned}} in a bowl. Microwave 1 minute if it should be hot.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split the potatoes. Pile in the filling."
+    }
+   ]
+  },
+  {
+   "slug": "mw-jacket-chilli-beans",
+   "name": "Microwave jacket potato with spiced beans",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:kidney-beans-tinned}} and {{ing:passata}} and {{ing:chilli-powder}} in a bowl. Microwave 1 minute if it should be hot.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split the potatoes. Pile in the filling."
+    }
+   ]
+  },
+  {
+   "slug": "mw-jacket-coleslaw",
+   "name": "Microwave jacket potato with cheese and coleslaw",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "coleslaw",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:cheddar-cheese}} and {{ing:coleslaw}} in a bowl. Microwave 1 minute if it should be hot.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split the potatoes. Pile in the filling."
+    }
+   ]
+  },
+  {
+   "slug": "mw-jacket-coronation",
+   "name": "Microwave jacket potato with coronation chickpeas",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:chickpeas-tinned}} and {{ing:natural-yoghurt}} and {{ing:curry-powder}} in a bowl. Microwave 1 minute if it should be hot.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split the potatoes. Pile in the filling."
+    }
+   ]
+  },
+  {
+   "slug": "mw-sweet-potato-feta",
+   "name": "Microwave sweet potato with feta and spinach",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:sweet-potato}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Mix {{ing:feta}} and {{ing:spinach}} and {{ing:chilli-flakes}} in a bowl. Microwave 1 minute if it should be hot.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split the potatoes. Pile in the filling."
+    }
+   ]
+  },
+  {
+   "slug": "mw-cod-tomato",
+   "name": "Microwave cod with cherry tomatoes",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Lay {{ing:cod-fillet}} in a dish with halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cover. Microwave on high 4 minutes, until the fish flakes. Tear over {{ing:fresh-basil}}.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "mw-corn-butter",
+   "name": "Microwave corn on the cob",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "corn-on-the-cob",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Wrap each of {{ing:corn-on-the-cob}} in damp kitchen paper."
+    },
+    {
+     "instruction": "Microwave on high 4 minutes. Roll in {{ing:butter-unsalted}}.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "mw-lemon-curd",
+   "name": "Microwave lemon curd",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "lemon",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk the zest and juice of {{ing:lemon}}, {{ing:sugar-caster}}, melted {{ing:butter-unsalted}} and {{ing:egg-medium}} in a bowl."
+    },
+    {
+     "instruction": "Microwave on high in 1-minute bursts, whisking between, about 4 minutes, until thick.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "mw-peas-lettuce-mw",
+   "name": "Microwave minted peas",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "peas-frozen",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:peas-frozen}} in a bowl with 2 tbsp water. Cover."
+    },
+    {
+     "instruction": "Microwave on high 4 minutes. Stir in {{ing:butter-unsalted}} and chopped {{ing:fresh-mint}}.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "mw-egg-fried-rice-mw",
+   "name": "Microwave egg and vegetable rice",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:rice-white-cooked}}, {{ing:peas-frozen}} and {{ing:soy-sauce}} in a bowl. Microwave 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir in beaten {{ing:egg-medium}}. Microwave 1 minute, stir, then 1 minute more. Top with {{ing:spring-onion}}.",
+     "duration_min": 1
+    }
+   ]
   }
  ]
 }

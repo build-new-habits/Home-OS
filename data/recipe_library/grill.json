@@ -1,0 +1,5792 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Grilled",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "gr-greek-chicken",
+   "name": "Lemon and oregano chicken skewers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:lemon}}, {{ing:dried-oregano}}, {{ing:garlic-clove}} and {{ing:olive-oil}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Serve with {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-chicken",
+   "name": "Chicken tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-teriyaki-chicken",
+   "name": "Teriyaki chicken skewers",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:spring-onion}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-chicken",
+   "name": "Harissa chicken skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-chicken",
+   "name": "Chicken skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the chicken in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-chicken",
+   "name": "Satay chicken skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-chicken",
+   "name": "Jerk chicken skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-chicken",
+   "name": "Peri-peri chicken skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the chicken. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the chicken."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until cooked through.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-greek-lamb",
+   "name": "Lemon and oregano lamb kofta skewers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with a pinch of salt. Squeeze into 8 sausages round skewers."
+    },
+    {
+     "instruction": "Mix {{ing:lemon}}, {{ing:dried-oregano}}, {{ing:garlic-clove}} and {{ing:olive-oil}}. Coat the lamb kofta. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the lamb kofta."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until browned and cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Serve with {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-lamb",
+   "name": "Lamb kofta tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with a pinch of salt. Squeeze into 8 sausages round skewers."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the lamb kofta. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the lamb kofta."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until browned and cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-lamb",
+   "name": "Harissa lamb kofta skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with a pinch of salt. Squeeze into 8 sausages round skewers."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the lamb kofta. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the lamb kofta."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until browned and cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-lamb",
+   "name": "Lamb kofta skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with a pinch of salt. Squeeze into 8 sausages round skewers."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the lamb kofta in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the lamb kofta."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until browned and cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-lamb",
+   "name": "Peri-peri lamb kofta skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with a pinch of salt. Squeeze into 8 sausages round skewers."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the lamb kofta. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the lamb kofta."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until browned and cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-greek-pork",
+   "name": "Lemon and oregano pork skewers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:lemon}}, {{ing:dried-oregano}}, {{ing:garlic-clove}} and {{ing:olive-oil}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Serve with {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-pork",
+   "name": "Pork tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-teriyaki-pork",
+   "name": "Teriyaki pork skewers",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:spring-onion}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-pork",
+   "name": "Harissa pork skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-pork",
+   "name": "Pork skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the pork in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-pork",
+   "name": "Satay pork skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-pork",
+   "name": "Jerk pork skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-pork",
+   "name": "Peri-peri pork skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pork-tenderloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the pork. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the pork."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning often, until no longer pink inside.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-prawn",
+   "name": "King prawn tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-teriyaki-prawn",
+   "name": "Teriyaki king prawn skewers",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:spring-onion}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-prawn",
+   "name": "Harissa king prawn skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-prawn",
+   "name": "King prawn skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the king prawn in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-prawn",
+   "name": "Satay king prawn skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-prawn",
+   "name": "Jerk king prawn skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-prawn",
+   "name": "Peri-peri king prawn skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the king prawn. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the king prawn."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes, turning often, until pink all through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-greek-halloumi",
+   "name": "Lemon and oregano halloumi skewers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:lemon}}, {{ing:dried-oregano}}, {{ing:garlic-clove}} and {{ing:olive-oil}}. Coat the halloumi. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the halloumi."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until golden and striped.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Serve with {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-halloumi",
+   "name": "Harissa halloumi skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the halloumi. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the halloumi."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until golden and striped.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-halloumi",
+   "name": "Halloumi skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the halloumi in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the halloumi."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until golden and striped.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-halloumi",
+   "name": "Jerk halloumi skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the halloumi. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the halloumi."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until golden and striped.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-halloumi",
+   "name": "Peri-peri halloumi skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the halloumi. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the halloumi."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until golden and striped.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-paneer",
+   "name": "Paneer tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "paneer",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:paneer}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the paneer. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the paneer."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 8 minutes, turning often, until charred at the edges.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-paneer",
+   "name": "Harissa paneer skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "paneer",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:paneer}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the paneer. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the paneer."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 8 minutes, turning often, until charred at the edges.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-paneer",
+   "name": "Satay paneer skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "paneer",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:paneer}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the paneer. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the paneer."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 8 minutes, turning often, until charred at the edges.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-tikka-tofu",
+   "name": "Tofu tikka skewers",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}} and {{ing:ginger-fresh}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-teriyaki-tofu",
+   "name": "Teriyaki tofu skewers",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:spring-onion}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-tofu",
+   "name": "Harissa tofu skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-tofu",
+   "name": "Satay tofu skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-tofu",
+   "name": "Jerk tofu skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-tofu",
+   "name": "Peri-peri tofu skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the tofu. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the tofu."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning often, until charred and hot.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-greek-beef",
+   "name": "Lemon and oregano steak skewers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:lemon}}, {{ing:dried-oregano}}, {{ing:garlic-clove}} and {{ing:olive-oil}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Serve with {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-teriyaki-beef",
+   "name": "Teriyaki steak skewers",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:spring-onion}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-beef",
+   "name": "Harissa steak skewers with yoghurt",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:harissa-paste}}, {{ing:olive-oil}} and {{ing:lemon}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Serve with {{ing:greek-yoghurt}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chimichurri-beef",
+   "name": "Steak skewers with chimichurri",
+   "cuisine": "Argentinian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:garlic-clove}}, {{ing:white-wine-vinegar}} and {{ing:chilli-flakes}}. Coat the steak in half. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} with {{ing:dried-oregano}}. Stir into the rest of the marinade. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "gr-satay-beef",
+   "name": "Satay steak skewers",
+   "cuisine": "Indonesian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:curry-powder}} and {{ing:sugar-soft-brown}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} and the juice of {{ing:lime}}. Serve for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "gr-jerk-beef",
+   "name": "Jerk steak skewers with pineapple",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}}, {{ing:lime}} and {{ing:olive-oil}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} and {{ing:red-onion}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-peri-beef",
+   "name": "Peri-peri steak skewers",
+   "cuisine": "Portuguese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:beef-sirloin}} into chunks."
+    },
+    {
+     "instruction": "Mix {{ing:chilli-fresh}}, {{ing:smoked-paprika}}, {{ing:lemon}} and {{ing:olive-oil}}. Coat the steak. Leave 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into chunks. Thread onto skewers with the steak."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes, turning often, until browned but pink inside.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lemon-herb-mackerel",
+   "name": "Grilled mackerel with lemon and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:mackerel-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 1 minutes more, until cooked as you like it.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-mackerel",
+   "name": "Harissa grilled mackerel",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:harissa-paste}} and {{ing:olive-oil}}. Brush over {{ing:mackerel-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 1 minutes more, until cooked as you like it.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chilli-lime-mackerel",
+   "name": "Grilled mackerel with chilli and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:mackerel-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 1 minutes more, until cooked as you like it.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:chilli-fresh}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-miso-mackerel",
+   "name": "Miso-glazed grilled mackerel",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:olive-oil}}. Brush over {{ing:mackerel-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 1 minutes more, until cooked as you like it.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lemon-herb-salmon",
+   "name": "Grilled salmon with lemon and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:salmon-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Grill 3 minutes more, until cooked as you like it.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-salmon",
+   "name": "Harissa grilled salmon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:harissa-paste}} and {{ing:olive-oil}}. Brush over {{ing:salmon-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Grill 3 minutes more, until cooked as you like it.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chilli-lime-salmon",
+   "name": "Grilled salmon with chilli and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:salmon-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Grill 3 minutes more, until cooked as you like it.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:chilli-fresh}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-miso-salmon",
+   "name": "Miso-glazed grilled salmon",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:olive-oil}}. Brush over {{ing:salmon-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Grill 3 minutes more, until cooked as you like it.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lemon-herb-seabass",
+   "name": "Grilled sea bass with lemon and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:sea-bass-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-seabass",
+   "name": "Harissa grilled sea bass",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:harissa-paste}} and {{ing:olive-oil}}. Brush over {{ing:sea-bass-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chilli-lime-seabass",
+   "name": "Grilled sea bass with chilli and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:sea-bass-fillet}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:chilli-fresh}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-miso-seabass",
+   "name": "Miso-glazed grilled sea bass",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:olive-oil}}. Brush over {{ing:sea-bass-fillet}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lemon-herb-tuna",
+   "name": "Grilled tuna with lemon and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tuna-steak",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:tuna-steak}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-tuna",
+   "name": "Harissa grilled tuna",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tuna-steak",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:harissa-paste}} and {{ing:olive-oil}}. Brush over {{ing:tuna-steak}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chilli-lime-tuna",
+   "name": "Grilled tuna with chilli and lime",
+   "cuisine": "Thai",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tuna-steak",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:tuna-steak}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:chilli-fresh}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-miso-tuna",
+   "name": "Miso-glazed grilled tuna",
+   "cuisine": "Japanese",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tuna-steak",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:olive-oil}}. Brush over {{ing:tuna-steak}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lemon-herb-bream",
+   "name": "Grilled sea bream with lemon and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:sea-bream}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-harissa-bream",
+   "name": "Harissa grilled sea bream",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:harissa-paste}} and {{ing:olive-oil}}. Brush over {{ing:sea-bream}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chilli-lime-bream",
+   "name": "Grilled sea bream with chilli and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:sea-bream}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter chopped {{ing:chilli-fresh}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-miso-bream",
+   "name": "Miso-glazed grilled sea bream",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:miso-paste}}, {{ing:honey}} and {{ing:olive-oil}}. Brush over {{ing:sea-bream}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill skin side towards the heat 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Grill 2 minutes more, until cooked as you like it.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-lamb-burgers",
+   "name": "Lamb burgers with feta and mint",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:lamb-mince}} with {{ing:cumin-ground}} and chopped {{ing:fresh-mint}}. Shape into 4 burgers."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes a side, until cooked through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Toast {{ing:burger-bun}} on the grill."
+    },
+    {
+     "instruction": "Fill with the burgers, crumbled {{ing:feta}} and sliced {{ing:cucumber}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-chicken-burgers",
+   "name": "Grilled chicken burgers with avocado",
+   "cuisine": "American",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:chicken-breast-skinless}} through the middle to make 4 thin pieces."
+    },
+    {
+     "instruction": "Rub with {{ing:smoked-paprika}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes a side, until cooked through.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Fill {{ing:burger-bun}} with chicken, sliced {{ing:avocado}}, {{ing:lettuce-iceberg}} and {{ing:mayonnaise}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-pork-apple-burgers",
+   "name": "Pork and apple burgers",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-mince",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:apple-medium}}. Chop {{ing:fresh-sage}}. Mix into {{ing:pork-mince}}. Shape into 4 burgers."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 5 minutes a side, until cooked through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Toast {{ing:burger-bun}}."
+    },
+    {
+     "instruction": "Fill with burgers, {{ing:wholegrain-mustard}} and {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-aubergine",
+   "name": "Grilled aubergine with tahini and pomegranate",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tahini",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:aubergine}} into rounds. Brush with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes a side, until soft and striped.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Whisk {{ing:tahini}} with {{ing:lemon}} juice and water to a drizzle."
+    },
+    {
+     "instruction": "Pour over. Scatter {{ing:pomegranate-seeds}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-peppers-feta",
+   "name": "Grilled peppers with feta and basil",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "feta",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into wide strips."
+    },
+    {
+     "instruction": "Brush with 1 tbsp of {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 4 minutes a side, until charred.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Crumble over {{ing:feta}}. Add {{ing:fresh-basil}}, the rest of the oil and {{ing:balsamic-vinegar}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-portobello",
+   "name": "Grilled portobello mushrooms with garlic",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "portobello-mushroom",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:olive-oil}}, crushed {{ing:garlic-clove}} and {{ing:fresh-thyme}} leaves."
+    },
+    {
+     "instruction": "Brush over {{ing:portobello-mushroom}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 5 minutes a side, until juicy.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-courgette-salad",
+   "name": "Grilled courgette, lemon and ricotta salad",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "courgette",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "ricotta",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:courgette}} lengthways. Brush with 1 tbsp of {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 2 minutes a side, until striped.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Lay on a plate. Dot with {{ing:ricotta}}."
+    },
+    {
+     "instruction": "Dress with the rest of the oil, {{ing:lemon}}, {{ing:fresh-mint}} and {{ing:chilli-flakes}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-corn-lime",
+   "name": "Grilled corn with lime and chilli",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "corn-on-the-cob",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:corn-on-the-cob}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning, until charred all over.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Sprinkle {{ing:chilli-powder}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-halloumi-watermelon",
+   "name": "Grilled halloumi and watermelon salad",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "watermelon",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 2 minutes a side, until golden.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Cube {{ing:watermelon}}. Toss with {{ing:fresh-mint}}, {{ing:olive-oil}} and {{ing:lime}} juice."
+    },
+    {
+     "instruction": "Top with the hot halloumi."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-sweet-potato",
+   "name": "Grilled sweet potato with chilli and lime",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:sweet-potato}} into rounds. Boil 5 minutes. Drain.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 3 minutes a side, until charred.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-figs",
+   "name": "Grilled figs with honey and yoghurt",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "figs-fresh",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "pistachios",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:figs-fresh}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill cut side down 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}}. Serve with {{ing:greek-yoghurt}} and chopped {{ing:pistachios}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-plums",
+   "name": "Grilled plums with maple and coconut yoghurt",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "plums",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve and stone {{ing:plums}}. Brush with {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill cut side down 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve with {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-bananas",
+   "name": "Grilled bananas with toffee sauce",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "banana-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 80,
+     "unit": "ml"
+    },
+    {
+     "ref": "ice-cream-vanilla",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:banana-medium}} lengthways in their skins."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill cut side down 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} and {{ing:sugar-soft-brown}}. Bubble 2 minutes. Stir in {{ing:double-cream}}.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Serve the bananas with the sauce and {{ing:ice-cream-vanilla}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-apricots",
+   "name": "Grilled peaches with almonds and cream",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "peach",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve and stone {{ing:peach}}. Sprinkle the cut sides with {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill cut side down 4 minutes, until caramelised.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve with {{ing:creme-fraiche}} and chopped {{ing:almonds}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-halloumi-burger",
+   "name": "Grilled halloumi burgers",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:halloumi}} into 4 thick slabs."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 2 minutes a side, until golden.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Toast {{ing:burger-bun}}. Fill with halloumi, sliced {{ing:tomato-medium}}, {{ing:rocket}} and {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "gr-grilled-pineapple-salsa-chicken",
+   "name": "Grilled chicken with pineapple salsa",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rub {{ing:chicken-breast-skinless}} with {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Heat a griddle pan, the grill or the barbecue until very hot."
+    },
+    {
+     "instruction": "Grill 6 minutes a side, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Dice a quarter of {{ing:pineapple}} with {{ing:red-onion}}, {{ing:lime}} juice and {{ing:fresh-coriander}}. Spoon over."
+    }
+   ]
+  }
+ ]
+}

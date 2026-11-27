@@ -181,13 +181,15 @@ class Book:
         self.key, self.cuisine, self.prefix = key, cuisine, prefix
         self.recipes, self.menus = [], []
 
-    def R(self, slug, name, course, ings, steps, serves=4, tier='everyday', slot=None, swaps=(), note=None, drop=()):
+    def R(self, slug, name, course, ings, steps, serves=4, tier='everyday', slot=None, swaps=(), note=None, drop=(), cuisine=None):
         slug = f'{self.prefix}-{slug}'
         parsed = [parse_ing(i, slug) for i in ings]
         refs = [i['ref'] for i in parsed]
         if len(set(refs)) != len(refs):
             raise BuildError(f'{slug}: an ingredient is listed twice')
-        r = {'slug': slug, 'name': name, 'cuisine': self.cuisine, 'budget_tier': tier,
+        if any(x['name'] == name for x in self.recipes):
+            raise BuildError(f'{slug}: name "{name}" used twice in {self.key}')
+        r = {'slug': slug, 'name': name, 'cuisine': cuisine or self.cuisine, 'budget_tier': tier,
              'default_slot': slot or ('drink' if course == 'drink' else 'dinner'), 'default_serves': serves,
              'dietary_tags': [t for t in tags_for(refs) if t not in drop]}
         if note:
