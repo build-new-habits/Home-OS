@@ -58,3 +58,10 @@ Every run checks:
 - **Spoon weights for older foods** (`DENSITY_ADD`): cocoa, icing sugar, flours, sugars, seeds, nuts, herbs and more, so "1 tbsp cocoa" counts. The pantry gate found these.
 - Gate floors raised: at least 25 starters, 35 mains, 25 puddings, 20 sides, 25 menus.
 - Missing macros: none. Every food in the reference has all five figures and a source (the gate fails the build otherwise); only household, toiletry and pet items have none, on purpose. Foods in your own database with no figures are still filled once a day by the nutrition repair.
+
+## Phase 38c — luxury Christmas (27 Nov 2026)
+
+- Christmas library doubled to 279 recipes: 63 starters, 81 mains, 65 puddings, 34 sides and 36 drinks. The new recipes carry the `lux-` slug prefix. Examples: beef Wellington, lobster thermidor, miso black cod, turbot in Champagne butter, venison with dark chocolate, porchetta, beetroot Wellington, chestnut mushroom pithivier, yuzu tart, Mont Blanc and passion fruit pavlova.
+- 36 new foods in food_reference.json, among them quail, turbot, oysters, langoustines, caviar, yuzu, sake, mirin, burrata, truffle oil and nori. Each comes with full macros and a stated basis.
+- Menus doubled to 58. The 29 new luxury menus cover meat, fish, shellfish, vegetarian and vegan. Every course carries a soft drink and an alcoholic drink, and every vegan menu carries the vegan wine note.
+- Gate 18 floors raised: 50 menus, 55 starters, 70 mains, 55 puddings, 30 sides. Sake counts as a drink with alcohol.

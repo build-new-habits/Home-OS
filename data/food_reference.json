@@ -10424,6 +10424,602 @@
    "carbs_g": 1.4,
    "fibre_g": 3.1,
    "basis": "CoFID 2019: Curly kale, raw. Curly kale figures stand in for cavolo nero."
+  },
+  {
+   "slug": "prosciutto",
+   "name": "Prosciutto",
+   "category": "food_fresh",
+   "aliases": [
+    "parma ham",
+    "serrano ham",
+    "air-dried ham",
+    "cured ham"
+   ],
+   "grams_per_item": 15,
+   "item_label": "slice",
+   "calories_per_100g": 241,
+   "protein_g": 26.0,
+   "fat_g": 15.0,
+   "carbs_g": 0.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "quail",
+   "name": "Quail",
+   "category": "food_fresh",
+   "aliases": [
+    "quails",
+    "whole quail"
+   ],
+   "grams_per_item": 120,
+   "item_label": "quail",
+   "calories_per_100g": 192,
+   "protein_g": 19.6,
+   "fat_g": 12.1,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Quail, meat and skin, raw. Carbohydrate given UK-style, without fibre. One quail is about 120 g of meat and skin."
+  },
+  {
+   "slug": "duck-breast",
+   "name": "Duck breast",
+   "category": "food_fresh",
+   "aliases": [
+    "duck breasts",
+    "magret"
+   ],
+   "grams_per_item": 200,
+   "item_label": "breast",
+   "calories_per_100g": 404,
+   "protein_g": 11.5,
+   "fat_g": 39.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Duck, domesticated, meat and skin, raw. Carbohydrate given UK-style, without fibre. Raw, with its fat cap: some renders out in the pan."
+  },
+  {
+   "slug": "beef-ribeye",
+   "name": "Ribeye steak",
+   "category": "food_fresh",
+   "aliases": [
+    "rib eye",
+    "ribeye",
+    "rib-eye steak",
+    "rib of beef",
+    "cote de boeuf"
+   ],
+   "grams_per_item": 250,
+   "item_label": "steak",
+   "calories_per_100g": 274,
+   "protein_g": 17.5,
+   "fat_g": 22.1,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Beef, rib, eye, small end (ribs 10-12), separable lean and fat, trimmed to 0\" fat, choice, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "beef-sirloin",
+   "name": "Sirloin steak",
+   "category": "food_fresh",
+   "aliases": [
+    "sirloin",
+    "beef sirloin",
+    "striploin"
+   ],
+   "grams_per_item": 225,
+   "item_label": "steak",
+   "calories_per_100g": 201,
+   "protein_g": 21.6,
+   "fat_g": 12.7,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Beef, sirloin steak, raw, lean and fat."
+  },
+  {
+   "slug": "beef-braising",
+   "name": "Beef braising steak",
+   "category": "food_fresh",
+   "aliases": [
+    "braising steak",
+    "beef cheeks",
+    "ox cheek",
+    "short ribs",
+    "beef shin",
+    "chuck steak"
+   ],
+   "calories_per_100g": 160,
+   "protein_g": 20.7,
+   "fat_g": 8.6,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Beef, braising steak, raw, lean and fat."
+  },
+  {
+   "slug": "lamb-rack",
+   "name": "Rack of lamb",
+   "category": "food_fresh",
+   "aliases": [
+    "lamb rack",
+    "french-trimmed rack of lamb",
+    "lamb cutlets"
+   ],
+   "calories_per_100g": 283,
+   "protein_g": 17.3,
+   "fat_g": 23.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Lamb, rack of, raw, lean and fat."
+  },
+  {
+   "slug": "lamb-shank",
+   "name": "Lamb shank",
+   "category": "food_fresh",
+   "aliases": [
+    "lamb shanks"
+   ],
+   "grams_per_item": 300,
+   "item_label": "shank",
+   "calories_per_100g": 201,
+   "protein_g": 18.9,
+   "fat_g": 13.4,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Lamb, foreshank, separable lean and fat, trimmed to 1/4\" fat, choice, raw. Carbohydrate given UK-style, without fibre. One shank is about 300 g of meat."
+  },
+  {
+   "slug": "pork-tenderloin",
+   "name": "Pork fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "pork tenderloin",
+    "pork fillet"
+   ],
+   "calories_per_100g": 109,
+   "protein_g": 20.9,
+   "fat_g": 2.2,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Pork, fresh, loin, tenderloin, separable lean only, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "turbot",
+   "name": "Turbot fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "turbot",
+    "brill"
+   ],
+   "calories_per_100g": 95,
+   "protein_g": 16.1,
+   "fat_g": 3.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Fish, turbot, european, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "halibut",
+   "name": "Halibut fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "halibut"
+   ],
+   "calories_per_100g": 91,
+   "protein_g": 18.6,
+   "fat_g": 1.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Fish, halibut, Atlantic and Pacific, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "sea-bream",
+   "name": "Sea bream fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "sea bream",
+    "bream",
+    "dorade"
+   ],
+   "grams_per_item": 120,
+   "item_label": "fillet",
+   "calories_per_100g": 96,
+   "protein_g": 17.5,
+   "fat_g": 2.9,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Bream, Sea, raw."
+  },
+  {
+   "slug": "mackerel-fillet",
+   "name": "Mackerel fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "fresh mackerel",
+    "mackerel fillets"
+   ],
+   "grams_per_item": 100,
+   "item_label": "fillet",
+   "calories_per_100g": 233,
+   "protein_g": 18.0,
+   "fat_g": 17.9,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Mackerel, flesh only, raw."
+  },
+  {
+   "slug": "tuna-steak",
+   "name": "Tuna steak",
+   "category": "food_fresh",
+   "aliases": [
+    "fresh tuna",
+    "sashimi tuna",
+    "yellowfin tuna"
+   ],
+   "grams_per_item": 150,
+   "item_label": "steak",
+   "calories_per_100g": 107,
+   "protein_g": 25.2,
+   "fat_g": 0.7,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Tuna, flesh only, raw."
+  },
+  {
+   "slug": "oysters",
+   "name": "Oysters",
+   "category": "food_fresh",
+   "aliases": [
+    "oyster",
+    "rock oysters",
+    "native oysters"
+   ],
+   "grams_per_item": 12,
+   "item_label": "oyster",
+   "calories_per_100g": 65,
+   "protein_g": 10.8,
+   "fat_g": 1.3,
+   "carbs_g": 2.7,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Oysters, raw. One oyster is about 12 g of meat."
+  },
+  {
+   "slug": "langoustines",
+   "name": "Langoustines",
+   "category": "food_fresh",
+   "aliases": [
+    "langoustine",
+    "dublin bay prawns",
+    "scampi tails"
+   ],
+   "grams_per_item": 20,
+   "item_label": "langoustine",
+   "calories_per_100g": 86,
+   "protein_g": 19.7,
+   "fat_g": 0.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Langoustine, boiled. About 20 g of tail meat each."
+  },
+  {
+   "slug": "caviar",
+   "name": "Caviar",
+   "category": "food_fresh",
+   "aliases": [
+    "salmon roe",
+    "trout roe",
+    "lumpfish roe",
+    "keta"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 92,
+   "protein_g": 10.9,
+   "fat_g": 5.4,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Caviare, bottled in brine, drained. Stands in for salmon, trout and lumpfish roe."
+  },
+  {
+   "slug": "passion-fruit",
+   "name": "Passion fruit",
+   "category": "food_fresh",
+   "aliases": [
+    "passionfruit",
+    "passion fruits"
+   ],
+   "grams_per_item": 18,
+   "item_label": "passion fruit",
+   "calories_per_100g": 36,
+   "protein_g": 2.6,
+   "fat_g": 0.4,
+   "carbs_g": 5.8,
+   "fibre_g": 3.3,
+   "basis": "CoFID 2019: Passion fruit, flesh and pips. One fruit gives about 18 g of pulp."
+  },
+  {
+   "slug": "lychees",
+   "name": "Lychees",
+   "category": "food_fresh",
+   "aliases": [
+    "lychee",
+    "litchi"
+   ],
+   "grams_per_item": 12,
+   "item_label": "lychee",
+   "calories_per_100g": 58,
+   "protein_g": 0.9,
+   "fat_g": 0.1,
+   "carbs_g": 14.3,
+   "fibre_g": 0.7,
+   "basis": "CoFID 2019: Lychees, raw, flesh only."
+  },
+  {
+   "slug": "jerusalem-artichoke",
+   "name": "Jerusalem artichokes",
+   "category": "food_fresh",
+   "aliases": [
+    "jerusalem artichoke",
+    "sunchokes"
+   ],
+   "calories_per_100g": 73,
+   "protein_g": 2.0,
+   "fat_g": 0.0,
+   "carbs_g": 15.8,
+   "fibre_g": 1.6,
+   "basis": "USDA SR Legacy: Jerusalem-artichokes, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "beetroot-raw",
+   "name": "Raw beetroot",
+   "category": "food_fresh",
+   "aliases": [
+    "raw beetroot",
+    "golden beetroot",
+    "candy beetroot",
+    "chioggia"
+   ],
+   "grams_per_item": 150,
+   "item_label": "beetroot",
+   "calories_per_100g": 36,
+   "protein_g": 1.7,
+   "fat_g": 0.1,
+   "carbs_g": 7.6,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Beetroot, raw."
+  },
+  {
+   "slug": "quince",
+   "name": "Quince",
+   "category": "food_fresh",
+   "aliases": [
+    "quinces",
+    "membrillo fruit"
+   ],
+   "grams_per_item": 300,
+   "item_label": "quince",
+   "calories_per_100g": 57,
+   "protein_g": 0.4,
+   "fat_g": 0.1,
+   "carbs_g": 13.4,
+   "fibre_g": 1.9,
+   "basis": "USDA SR Legacy: Quinces, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "persimmon",
+   "name": "Persimmon",
+   "category": "food_fresh",
+   "aliases": [
+    "sharon fruit",
+    "kaki"
+   ],
+   "grams_per_item": 150,
+   "item_label": "persimmon",
+   "calories_per_100g": 73,
+   "protein_g": 0.8,
+   "fat_g": 0.0,
+   "carbs_g": 18.6,
+   "fibre_g": 1.6,
+   "basis": "CoFID 2019: Sharon fruit, flesh only."
+  },
+  {
+   "slug": "grapefruit",
+   "name": "Grapefruit",
+   "category": "food_fresh",
+   "aliases": [
+    "pink grapefruit",
+    "ruby grapefruit",
+    "blood orange",
+    "blood oranges"
+   ],
+   "grams_per_item": 250,
+   "item_label": "grapefruit",
+   "calories_per_100g": 34,
+   "protein_g": 0.9,
+   "fat_g": 0.5,
+   "carbs_g": 6.9,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Grapefruit, flesh only, raw. Also stands in for blood oranges."
+  },
+  {
+   "slug": "rhubarb",
+   "name": "Rhubarb",
+   "category": "food_fresh",
+   "aliases": [
+    "forced rhubarb",
+    "rhubarb stalks"
+   ],
+   "calories_per_100g": 7,
+   "protein_g": 0.9,
+   "fat_g": 0.1,
+   "carbs_g": 0.8,
+   "fibre_g": 1.4,
+   "basis": "CoFID 2019: Rhubarb, stems only, raw."
+  },
+  {
+   "slug": "plums",
+   "name": "Plums",
+   "category": "food_fresh",
+   "aliases": [
+    "plum",
+    "damsons"
+   ],
+   "grams_per_item": 60,
+   "item_label": "plum",
+   "calories_per_100g": 41,
+   "protein_g": 0.6,
+   "fat_g": 0.3,
+   "carbs_g": 9.7,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Plums, dessert, flesh and skin, raw."
+  },
+  {
+   "slug": "nori",
+   "name": "Nori",
+   "category": "food_ambient",
+   "aliases": [
+    "nori sheets",
+    "seaweed sheets"
+   ],
+   "grams_per_item": 3,
+   "item_label": "sheet",
+   "calories_per_100g": 136,
+   "protein_g": 30.7,
+   "fat_g": 1.5,
+   "carbs_g": 0.0,
+   "fibre_g": 44.4,
+   "basis": "CoFID 2019: Seaweed, nori, dried, raw."
+  },
+  {
+   "slug": "sake",
+   "name": "Sake",
+   "category": "drink",
+   "aliases": [
+    "rice wine",
+    "shaoxing wine",
+    "shaoxing"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 134,
+   "protein_g": 0.5,
+   "fat_g": 0.0,
+   "carbs_g": 5.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Alcoholic beverage, rice (sake). Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "mirin",
+   "name": "Mirin",
+   "category": "food_ambient",
+   "aliases": [
+    "japanese rice wine",
+    "aji mirin"
+   ],
+   "grams_per_ml": 1.15,
+   "calories_per_100g": 230,
+   "protein_g": 0.2,
+   "fat_g": 0.0,
+   "carbs_g": 41.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "yuzu-juice",
+   "name": "Yuzu juice",
+   "category": "food_ambient",
+   "aliases": [
+    "yuzu",
+    "ponzu"
+   ],
+   "grams_per_ml": 1.03,
+   "calories_per_100g": 25,
+   "protein_g": 0.5,
+   "fat_g": 0.1,
+   "carbs_g": 5.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "burrata",
+   "name": "Burrata",
+   "category": "food_fresh",
+   "aliases": [
+    "burrata cheese",
+    "stracciatella"
+   ],
+   "grams_per_item": 150,
+   "item_label": "burrata",
+   "calories_per_100g": 230,
+   "protein_g": 13.0,
+   "fat_g": 20.0,
+   "carbs_g": 1.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "truffle-oil",
+   "name": "Truffle oil",
+   "category": "food_ambient",
+   "aliases": [
+    "black truffle oil",
+    "white truffle oil"
+   ],
+   "grams_per_ml": 0.92,
+   "calories_per_100g": 824,
+   "protein_g": 0.0,
+   "fat_g": 91.6,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "Olive oil flavoured with truffle: typical of UK bottle labels per 100 g."
+  },
+  {
+   "slug": "dulce-de-leche",
+   "name": "Dulce de leche",
+   "category": "food_ambient",
+   "aliases": [
+    "caramel sauce",
+    "tinned caramel",
+    "salted caramel"
+   ],
+   "grams_per_ml": 1.3,
+   "calories_per_100g": 315,
+   "protein_g": 7.0,
+   "fat_g": 7.5,
+   "carbs_g": 55.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "coconut-yoghurt",
+   "name": "Coconut yoghurt",
+   "category": "food_fresh",
+   "aliases": [
+    "coconut yogurt",
+    "dairy free yoghurt",
+    "vegan yoghurt"
+   ],
+   "grams_per_ml": 1.03,
+   "calories_per_100g": 130,
+   "protein_g": 1.0,
+   "fat_g": 11.0,
+   "carbs_g": 6.0,
+   "fibre_g": 0.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "duck-fat",
+   "name": "Duck fat",
+   "category": "food_ambient",
+   "aliases": [
+    "goose fat",
+    "duck or goose fat",
+    "dripping"
+   ],
+   "grams_per_ml": 0.9,
+   "calories_per_100g": 900,
+   "protein_g": 0.0,
+   "fat_g": 99.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Fat, goose. Carbohydrate given UK-style, without fibre. Goose fat figures stand in for duck fat; both are almost all fat."
   }
  ]
 }
