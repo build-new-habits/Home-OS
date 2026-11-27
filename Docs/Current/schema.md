@@ -33,7 +33,7 @@ No row is Free. Every household that existed when 028 ran was given Hearth.
 The app (data/hearth.js) treats a missing table as Hearth, so nothing
 shrinks before the migration is run.
 
-Migration: `migrations/028_hearth.sql`.
+Migration: `migrations/028_hearth.sql` — applied 27 Nov 2026.
 
 ## 0v. Revision 27 — where a recipe came from (24 Nov 2026)
 
