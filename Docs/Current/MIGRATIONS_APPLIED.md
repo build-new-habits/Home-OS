@@ -76,6 +76,7 @@ Status values are deliberately blunt:
 | 026_kitchen_rebuild | NOT APPLIED | — | written 3 Oct 2026: drink slot, foods.fibre_g, show_nutrition, nutrition_targets, weekly_meal_plan.is_leftover, meals.course, foods.shelf, weekly_meal_plan.eaten_at. Run with Graeme, then VERIFY. Leftovers and courses switch on by themselves once it is in |
 | 027_recipe_source | applied | 24 Nov 2026 | run against "Home OS"; VERIFY returned three PASS rows: meals.source_url, source_url check, unique per household |
 | 028_hearth | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, read-only for members all PASS; every household then set to Hearth with an upsert, so the fourth check holds |
+| 029_shop_favourites | NOT APPLIED | — | written 27 Nov 2026: shop_favourites (favourites and regulars). Before it, Favourites says it is not ready yet; nothing else changes |
 
 ## The honest caveat
 

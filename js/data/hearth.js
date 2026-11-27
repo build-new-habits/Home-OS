@@ -45,7 +45,8 @@ export const WHAT_HEARTH_ADDS = {
   pantry: 'Hearth keeps your whole pantry, fills it from your shopping and tells you what to use soon.',
   library: 'Hearth opens the whole Community library, every month.',
   planAhead: 'Hearth plans any week ahead, and can repeat a week you liked.',
-  planSlots: 'Hearth plans breakfasts, lunches, snacks and drinks as well as dinners.'
+  planSlots: 'Hearth plans breakfasts, lunches, snacks and drinks as well as dinners.',
+  favourites: 'Hearth keeps your favourites and regulars, splits Groceries, Household and Toiletries, and builds your list each week.'
 };
 
 const CACHE_KEY = 'home-os-hearth';

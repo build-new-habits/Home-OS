@@ -1,4 +1,5 @@
-// js/routes.js — 26 Nov 2026 v11
+// js/routes.js — 27 Nov 2026 v12
+// v12: appends 'shop-favourites'.
 // v11: appends 'hearth'.
 // v10: appends 'recipe-check' and 'meals-home'.
 // v9: appends 'recipe-import'.
@@ -286,6 +287,13 @@ export const routes = [
     path: 'hearth',
     title: 'Hearth',
     load: () => import('./views/hearth.js')
+  },
+  // 27 Nov 2026. Appended. Favourites, regulars and the weekly list
+  // (Phase 36b, Hearth).
+  {
+    path: 'shop-favourites',
+    title: 'Favourites and regulars',
+    load: () => import('./views/shopFavourites.js')
   }
 ];
 
