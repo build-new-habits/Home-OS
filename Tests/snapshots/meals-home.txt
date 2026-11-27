@@ -1,6 +1,12 @@
 h1"Meals"
 ul.hub-list.meals-home__places
   li.hub-item
+    a.hub-link"Help me chooseA few taps, and the recipes that fit: what it is for, how long, wh"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+      span.hub-chevron
+  li.hub-item
     a.hub-link"My mealsYours, imported, and ones you copied from the library.›"
       span.hub-text
         span.hub-title

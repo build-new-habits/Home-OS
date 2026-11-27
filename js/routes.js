@@ -1,4 +1,5 @@
-// js/routes.js — 27 Nov 2026 v13
+// js/routes.js — 27 Nov 2026 v14
+// v14: appends 'meal-coach' and 'meal-coach-results'.
 // v13: appends 'menus' and 'menu'.
 // v12: appends 'shop-favourites'.
 // v11: appends 'hearth'.
@@ -314,6 +315,18 @@ export const routes = [
     path: 'menu',
     title: 'Menu',
     load: () => import('./views/menu.js')
+  },
+  // 27 Nov 2026. Appended. Help me choose: a few taps narrow the library
+  // and your meals to the best fits (Phase 39).
+  {
+    path: 'meal-coach',
+    title: 'Help me choose',
+    load: () => import('./views/mealCoach.js')
+  },
+  {
+    path: 'meal-coach-results',
+    title: 'Best fits',
+    load: () => import('./views/mealCoachResults.js')
   }
 ];
 

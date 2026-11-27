@@ -1,4 +1,5 @@
-// js/views/mealsHome.js — 27 Nov 2026 v2
+// js/views/mealsHome.js — 27 Nov 2026 v3
+// v3: Help me choose, first of the places: a few taps narrow 600 recipes (Phase 39).
 // v2: Christmas menus, a third place beside My meals and the library (Phase 38).
 // Phase 34. The Meals tab (#/meals-home).
 //
@@ -61,10 +62,11 @@ export function render(mountEl) {
   mountEl.appendChild(el('h1', { text: 'Meals' }));
 
   const places = el('ul', { class: 'hub-list meals-home__places' });
+  const coach = hubLink('#/meal-coach', 'Help me choose', 'A few taps, and the recipes that fit: what it is for, how long, what you feel like.');
   const mine = hubLink('#/meals', 'My meals', 'Yours, imported, and ones you copied from the library.');
   const library = hubLink('#/library', 'Community library', 'Recipes that come with the app, ready to cook.');
   const menus = hubLink('#/menus', 'Christmas menus', 'Whole menus from starter to pudding, with drinks to match.');
-  places.append(mine.li, library.li, menus.li);
+  places.append(coach.li, mine.li, library.li, menus.li);
   mountEl.appendChild(places);
 
   const more = el('p', { class: 'library-links' });

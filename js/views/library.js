@@ -1,4 +1,5 @@
-// js/views/library.js — 24 Nov 2026 v9
+// js/views/library.js — 27 Nov 2026 v10
+// v10: Help me choose, first of the links (Phase 39).
 // v9: called the Community library; back link to Meals (Phase 34).
 // v8: Import a recipe, beside Write your own recipe (Phase 33).
 // v7: Make a plate, beside Write your own recipe.
@@ -51,6 +52,8 @@ export function render(mountEl) {
 
   // 3 Oct 2026: straight to what the cupboard can make.
   const tonight = el('p', { class: 'library-links' });
+  // 27 Nov 2026: a few taps narrow the library (Phase 39).
+  tonight.appendChild(el('a', { class: 'btn', href: '#/meal-coach', text: 'Help me choose' }));
   tonight.appendChild(el('a', { class: 'btn', href: '#/tonight', text: 'What can I make with what I have?' }));
   // 3 Oct 2026: your own recipes start here too.
   tonight.appendChild(el('a', { class: 'btn', href: '#/recipe-edit', text: 'Write your own recipe' }));
