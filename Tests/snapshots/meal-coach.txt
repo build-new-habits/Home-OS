@@ -1,0 +1,228 @@
+a.back-link"Meals"
+h1"Help me choose"
+p.field-hint
+p.coach-line[role=status]
+div.coach
+  p.field-hint
+  fieldset.coach-question
+    legend"What is it for?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Breakfast <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Lunch <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Dinner <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Snack <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Starter <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"A side <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Pudding <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Drink <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"How long have you got?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"<n> minutes <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"<n> minutes <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"<n> minutes <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"An hour <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"What do you feel like?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Light <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Hearty <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Spicy <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Mild, no chilli <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"High protein <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"Made with"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Chicken <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Beef <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Pork, ham or bacon <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Lamb <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Turkey, duck or game <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Fish <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Shellfish <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Eggs <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Cheese <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Beans, lentils or chickpeas <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Tofu <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Pasta or noodles <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Rice <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Potatoes <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"Where from?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"British <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Italian, French, Spanish or Greek <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Middle Eastern or Turkish <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Indian or Sri Lankan <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Chinese, Japanese or Korean <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Thai, Vietnamese or Malaysian <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Mexican or Caribbean <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"African <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"Diet"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Vegetarian <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Vegan <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Gluten free <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Dairy free <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"What kind?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Everyday cooking <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Christmas <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Ready-made, grab and go <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"Cost"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Budget <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Everyday <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"A treat <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"From the pantry?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Mostly what I have <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Uses food to use soon <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
+    legend"New or known?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Something new to me <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"One of mine or a favourite <n>"
+        span
+        span.coach-count
+  button.btn[type=button]"Start again"
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Nothing fits yet"

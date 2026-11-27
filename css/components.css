@@ -1,4 +1,5 @@
-/* css/components.css — 27 Nov 2026 v106 */
+/* css/components.css — 27 Nov 2026 v107 */
+/* v107: Help me choose — the coach line, questions and counts (Phase 39). */
 /* v106: Christmas menus — courses, sides and drinks (Phase 38). */
 /* v105: favourites and regulars, three lists (Phase 36b). */
 /* v104: Hearth page and the Free library note (Phase 36a). */
@@ -5228,3 +5229,10 @@ body.sheet-open {
 .menu-drink { line-height: 1.5; }
 .menu-drink + .menu-drink { margin-top: var(--space-2); }
 .menu-drink a { min-height: var(--tap-min); display: inline-flex; align-items: center; }
+
+/* ---- Help me choose (Phase 39) ---- */
+.coach { margin-bottom: var(--space-4); }
+.coach-line { font-weight: 600; margin: var(--space-2) 0 var(--space-4); }
+.coach-question { border: 0; padding: 0; margin: 0 0 var(--space-4); min-width: 0; }
+.coach-question > legend { font-weight: 600; padding: 0; margin-bottom: var(--space-2); }
+.coach-count { font-weight: 700; font-variant-numeric: tabular-nums; }

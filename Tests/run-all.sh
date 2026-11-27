@@ -80,6 +80,7 @@ run "Favourites — regulars, lists, weekly build"   favourites.mjs
 run "Week Shaper — rules, events, no AI"          weekShaper.mjs
 run "Pantry — every food has macros, the rule"   pantry.mjs
 run "Menus — Christmas recipes, menus, pairings" menus.mjs
+run "Help me choose — the coach, counts, loosening" mealCoach.mjs
 run "Platform — what only breaks on a device"        platform.mjs
 run "Snapshots — every view's structure, frozen"      snapshot.mjs
 

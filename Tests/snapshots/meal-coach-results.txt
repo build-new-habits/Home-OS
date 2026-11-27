@@ -1,0 +1,9 @@
+a.back-link"Your answers"
+h1"Best fits"
+p.field-hint
+p.coach-line[role=status]
+section.shaper-results.shaper-section
+  h2"Loosen one answer"
+  p
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Change my answers"

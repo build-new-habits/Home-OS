@@ -1,4 +1,6 @@
-// js/data/weekShaper.js — 27 Nov 2026 v1
+// js/data/weekShaper.js — 27 Nov 2026 v2
+// v2: prepare() also carries cuisine and kcal a serving, for Help me choose
+// (Phase 39). Nothing the shaper scores has changed.
 // Phase 37 (Hearth). Week Shaper: what you might cook, read from rules.
 //
 // Graeme, 26 Nov 2026: "fish twice a week, meat once a week, veg the rest.
@@ -167,6 +169,14 @@ export function leadOf(perServing, complete = {}) {
   return leads;
 }
 
+/** Calories a serving, only when the figure is complete. Pure. */
+export function kcalOf(nutrition) {
+  if (!nutrition || !nutrition.perServing) return null;
+  if (nutrition.complete && nutrition.complete.calories === false) return null;
+  const k = Number(nutrition.perServing.calories);
+  return Number.isFinite(k) && k > 0 ? Math.round(k) : null;
+}
+
 function hasNuts(ingredients = []) {
   return ingredients.some((i) => NUTS.test(String(i.ref || i.name || '').replace(/-/g, ' ')));
 }
@@ -222,6 +232,8 @@ export function prepare({ meals = [], recipes = [], ingredientsByMeal = new Map(
       kind: kindOf({ ingredients, diet: c.meal && c.meal.diet }),
       minutes: Number.isFinite(minutes) && minutes > 0 ? minutes : null,
       lead: nutrition ? leadOf(nutrition.perServing, nutrition.complete) : null,
+      kcal: kcalOf(nutrition),
+      cuisine: c.cuisine || '',
       have: cover.have.length,
       total: cover.total,
       missing: cover.missing,
