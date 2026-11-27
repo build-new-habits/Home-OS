@@ -83,6 +83,11 @@
    "count": 4
   },
   {
+   "cuisine": "Grilled",
+   "path": "data/recipe_library/grill.json",
+   "count": 85
+  },
+  {
    "cuisine": "Halloween",
    "path": "data/recipe_library/halloween.json",
    "count": 35
@@ -125,7 +130,7 @@
   {
    "cuisine": "Microwave",
    "path": "data/recipe_library/microwave.json",
-   "count": 14
+   "count": 30
   },
   {
    "cuisine": "Middle Eastern",
@@ -133,9 +138,34 @@
    "count": 6
   },
   {
+   "cuisine": "No cooking",
+   "path": "data/recipe_library/nocook.json",
+   "count": 205
+  },
+  {
+   "cuisine": "On the hob",
+   "path": "data/recipe_library/hob.json",
+   "count": 186
+  },
+  {
+   "cuisine": "One pot",
+   "path": "data/recipe_library/onepot.json",
+   "count": 87
+  },
+  {
    "cuisine": "Outdoor cooking",
    "path": "data/recipe_library/outdoor.json",
    "count": 36
+  },
+  {
+   "cuisine": "Oven bakes",
+   "path": "data/recipe_library/bakes.json",
+   "count": 205
+  },
+  {
+   "cuisine": "Pan-fried",
+   "path": "data/recipe_library/panfried.json",
+   "count": 63
   },
   {
    "cuisine": "Persian",
@@ -146,6 +176,16 @@
    "cuisine": "Puddings",
    "path": "data/recipe_library/puddings.json",
    "count": 10
+  },
+  {
+   "cuisine": "Roasts",
+   "path": "data/recipe_library/roasts.json",
+   "count": 106
+  },
+  {
+   "cuisine": "Slow-cooked",
+   "path": "data/recipe_library/slow.json",
+   "count": 40
   },
   {
    "cuisine": "Snacks",
@@ -178,6 +218,16 @@
    "count": 8
   },
   {
+   "cuisine": "Steamed",
+   "path": "data/recipe_library/steamed.json",
+   "count": 20
+  },
+  {
+   "cuisine": "Stir-fries",
+   "path": "data/recipe_library/stirfry.json",
+   "count": 22
+  },
+  {
    "cuisine": "Summer",
    "path": "data/recipe_library/summer.json",
    "count": 37
@@ -186,6 +236,11 @@
    "cuisine": "Thai",
    "path": "data/recipe_library/thai.json",
    "count": 10
+  },
+  {
+   "cuisine": "Traybakes",
+   "path": "data/recipe_library/traybakes.json",
+   "count": 66
   },
   {
    "cuisine": "Turkish",

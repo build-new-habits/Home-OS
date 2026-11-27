@@ -1,0 +1,1801 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Stir-fries",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "sf-black-bean-chicken",
+   "name": "Chicken and pepper stir-fry with garlic and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:chicken-breast-skinless}} 5 minutes, until browned. Lift out.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:onion-medium}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chicken. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-teriyaki-chicken",
+   "name": "Teriyaki chicken stir-fry with broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:mirin}} and {{ing:honey}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-white-cooked}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:chicken-breast-skinless}} 5 minutes, until browned. Lift out.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir-fry {{ing:broccoli-head}} and {{ing:spring-onion}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chicken. Add the sauce and {{ing:rice-white-cooked}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-sweet-chilli-chicken",
+   "name": "Sweet chilli chicken stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-snap-peas",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:sweet-chilli-sauce}}, {{ing:lime}} and {{ing:fish-sauce}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:chicken-breast-skinless}} 5 minutes, until browned. Lift out.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:sugar-snap-peas}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chicken. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-hoisin-chicken",
+   "name": "Hoisin chicken with greens and noodles",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "hoisin-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:hoisin-sauce}}, {{ing:soy-sauce}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:chicken-breast-skinless}} 5 minutes, until browned. Lift out.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir-fry {{ing:pak-choi}} and {{ing:beansprouts}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chicken. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-peanut-chicken",
+   "name": "Peanut and lime chicken stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:peanut-butter}}, {{ing:soy-sauce}} and {{ing:lime}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:chicken-breast-skinless}} 5 minutes, until browned. Lift out.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir-fry {{ing:carrot-medium}} and {{ing:red-cabbage}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chicken. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-black-bean-beef",
+   "name": "Beef and pepper stir-fry with garlic and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:beef-sirloin}} thinly across the grain."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:beef-sirloin}} 2 minutes, until browned. Lift out.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:onion-medium}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the beef. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-teriyaki-beef",
+   "name": "Teriyaki beef stir-fry with broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:beef-sirloin}} thinly across the grain."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:mirin}} and {{ing:honey}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-white-cooked}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:beef-sirloin}} 2 minutes, until browned. Lift out.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir-fry {{ing:broccoli-head}} and {{ing:spring-onion}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the beef. Add the sauce and {{ing:rice-white-cooked}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-sweet-chilli-beef",
+   "name": "Sweet chilli beef stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-snap-peas",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:beef-sirloin}} thinly across the grain."
+    },
+    {
+     "instruction": "Mix {{ing:sweet-chilli-sauce}}, {{ing:lime}} and {{ing:fish-sauce}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:beef-sirloin}} 2 minutes, until browned. Lift out.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:sugar-snap-peas}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the beef. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-hoisin-beef",
+   "name": "Hoisin beef with greens and noodles",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "hoisin-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:beef-sirloin}} thinly across the grain."
+    },
+    {
+     "instruction": "Mix {{ing:hoisin-sauce}}, {{ing:soy-sauce}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:beef-sirloin}} 2 minutes, until browned. Lift out.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Stir-fry {{ing:pak-choi}} and {{ing:beansprouts}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the beef. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-black-bean-prawn",
+   "name": "King prawn and pepper stir-fry with garlic and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:king-prawns-raw}} 3 minutes, until browned. Lift out.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:onion-medium}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the king prawn. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-teriyaki-prawn",
+   "name": "Teriyaki king prawn stir-fry with broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:mirin}} and {{ing:honey}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-white-cooked}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:king-prawns-raw}} 3 minutes, until browned. Lift out.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir-fry {{ing:broccoli-head}} and {{ing:spring-onion}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the king prawn. Add the sauce and {{ing:rice-white-cooked}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-sweet-chilli-prawn",
+   "name": "Sweet chilli king prawn stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-snap-peas",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:sweet-chilli-sauce}}, {{ing:lime}} and {{ing:fish-sauce}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:king-prawns-raw}} 3 minutes, until browned. Lift out.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:sugar-snap-peas}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the king prawn. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-peanut-prawn",
+   "name": "Peanut and lime king prawn stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:king-prawns-raw}} dry."
+    },
+    {
+     "instruction": "Mix {{ing:peanut-butter}}, {{ing:soy-sauce}} and {{ing:lime}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:king-prawns-raw}} 3 minutes, until browned. Lift out.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir-fry {{ing:carrot-medium}} and {{ing:red-cabbage}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the king prawn. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-black-bean-tofu",
+   "name": "Tofu and pepper stir-fry with garlic and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:tofu-firm}} 6 minutes, until browned. Lift out.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:onion-medium}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the tofu. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-teriyaki-tofu",
+   "name": "Teriyaki tofu stir-fry with broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:mirin}} and {{ing:honey}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-white-cooked}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:tofu-firm}} 6 minutes, until browned. Lift out.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir-fry {{ing:broccoli-head}} and {{ing:spring-onion}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the tofu. Add the sauce and {{ing:rice-white-cooked}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-hoisin-tofu",
+   "name": "Hoisin tofu with greens and noodles",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "hoisin-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Mix {{ing:hoisin-sauce}}, {{ing:soy-sauce}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:tofu-firm}} 6 minutes, until browned. Lift out.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir-fry {{ing:pak-choi}} and {{ing:beansprouts}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the tofu. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-peanut-tofu",
+   "name": "Peanut and lime tofu stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Mix {{ing:peanut-butter}}, {{ing:soy-sauce}} and {{ing:lime}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:tofu-firm}} 6 minutes, until browned. Lift out.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir-fry {{ing:carrot-medium}} and {{ing:red-cabbage}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the tofu. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-black-bean-pork",
+   "name": "Pork and pepper stir-fry with garlic and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:pork-tenderloin}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:pork-tenderloin}} 4 minutes, until browned. Lift out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:onion-medium}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the pork. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-teriyaki-pork",
+   "name": "Teriyaki pork stir-fry with broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:pork-tenderloin}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:mirin}} and {{ing:honey}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-white-cooked}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:pork-tenderloin}} 4 minutes, until browned. Lift out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir-fry {{ing:broccoli-head}} and {{ing:spring-onion}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the pork. Add the sauce and {{ing:rice-white-cooked}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-sweet-chilli-pork",
+   "name": "Sweet chilli pork stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-snap-peas",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:pork-tenderloin}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:sweet-chilli-sauce}}, {{ing:lime}} and {{ing:fish-sauce}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:pork-tenderloin}} 4 minutes, until browned. Lift out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir-fry {{ing:pepper-bell}} and {{ing:sugar-snap-peas}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the pork. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-hoisin-pork",
+   "name": "Hoisin pork with greens and noodles",
+   "cuisine": "Chinese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "beansprouts",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "hoisin-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:pork-tenderloin}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:hoisin-sauce}}, {{ing:soy-sauce}} and {{ing:ginger-fresh}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:egg-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:pork-tenderloin}} 4 minutes, until browned. Lift out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir-fry {{ing:pak-choi}} and {{ing:beansprouts}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the pork. Add the sauce and {{ing:egg-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "sf-peanut-pork",
+   "name": "Peanut and lime pork stir-fry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Have everything cut before the wok goes on. It moves fast.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-tenderloin",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:pork-tenderloin}} thinly."
+    },
+    {
+     "instruction": "Mix {{ing:peanut-butter}}, {{ing:soy-sauce}} and {{ing:lime}} with 3 tbsp water."
+    },
+    {
+     "instruction": "Get {{ing:rice-noodles-dry}} ready: soak or heat as the packet says."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a wok on the highest heat until it shimmers."
+    },
+    {
+     "instruction": "Stir-fry {{ing:pork-tenderloin}} 4 minutes, until browned. Lift out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir-fry {{ing:carrot-medium}} and {{ing:red-cabbage}} 3 minutes, until bright but crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the pork. Add the sauce and {{ing:rice-noodles-dry}}. Toss 1 minute until glossy.",
+     "duration_min": 1
+    }
+   ]
+  }
+ ]
+}

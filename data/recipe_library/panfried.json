@@ -1,0 +1,4096 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Pan-fried",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "pf-caper-butter-salmon",
+   "name": "Pan-fried salmon with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:salmon-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-salmon",
+   "name": "Crisp-skinned salmon with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:salmon-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-salmon",
+   "name": "Pan-fried salmon with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:salmon-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-salmon",
+   "name": "Pan-fried salmon with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:salmon-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-cod",
+   "name": "Pan-fried cod with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:cod-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-cod",
+   "name": "Crisp-skinned cod with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:cod-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-cod",
+   "name": "Pan-fried cod with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:cod-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-cod",
+   "name": "Pan-fried cod with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:cod-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 3 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-seabass",
+   "name": "Pan-fried sea bass with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bass-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-seabass",
+   "name": "Crisp-skinned sea bass with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bass-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-seabass",
+   "name": "Pan-fried sea bass with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bass-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-seabass",
+   "name": "Pan-fried sea bass with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bass-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-hake",
+   "name": "Pan-fried hake with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:hake-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-hake",
+   "name": "Crisp-skinned hake with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:hake-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-hake",
+   "name": "Pan-fried hake with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:hake-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-hake",
+   "name": "Pan-fried hake with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:hake-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 4 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-mackerel",
+   "name": "Pan-fried mackerel with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:mackerel-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-mackerel",
+   "name": "Crisp-skinned mackerel with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:mackerel-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-mackerel",
+   "name": "Pan-fried mackerel with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:mackerel-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-mackerel",
+   "name": "Pan-fried mackerel with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:mackerel-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-trout",
+   "name": "Pan-fried trout with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:trout-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-trout",
+   "name": "Crisp-skinned trout with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:trout-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-trout",
+   "name": "Pan-fried trout with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:trout-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-trout",
+   "name": "Pan-fried trout with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:trout-fillet}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 2 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-caper-butter-bream",
+   "name": "Pan-fried sea bream with lemon and caper butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bream}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} to the pan. Let it foam. Add {{ing:capers}}, the juice of {{ing:lemon}} and {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salsa-verde-bream",
+   "name": "Crisp-skinned sea bream with salsa verde",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bream}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:capers}}. Mix with {{ing:olive-oil}} and {{ing:lemon}} juice. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-chilli-garlic-bream",
+   "name": "Pan-fried sea bream with chilli, garlic and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bream}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:chilli-fresh}} to the pan 1 minute. Squeeze in {{ing:lime}}. Scatter {{ing:fresh-coriander}}.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "pf-tomato-olive-bream",
+   "name": "Pan-fried sea bream with warm tomato and olive dressing",
+   "cuisine": "Mediterranean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Leave the fish alone while the skin crisps. It lets go of the pan when it is ready.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:sea-bream}} dry. Season with salt."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry skin side down 3 minutes, pressing gently, until the skin is crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minutes more, until the fish flakes. Lift onto plates.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add halved {{ing:cherry-tomato}}, {{ing:olives-pitted}} and {{ing:garlic-clove}} to the pan. Warm 3 minutes. Add {{ing:fresh-basil}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-peppercorn-steak",
+   "name": "Steak with green peppercorn sauce",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:beef-sirloin}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side for medium-rare, turning once.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Fry chopped {{ing:shallot}} in the pan 2 minutes. Add {{ing:green-peppercorns-brine}} and {{ing:double-cream}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-steak",
+   "name": "Steak with mushroom and thyme sauce",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:beef-sirloin}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side for medium-rare, turning once.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Fry sliced {{ing:mushroom-chestnut}} in the pan 4 minutes. Add {{ing:fresh-thyme}} and {{ing:creme-fraiche}}. Bubble 1 minute.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-garlic-butter-steak",
+   "name": "Steak with garlic and herb butter",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:beef-sirloin}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side for medium-rare, turning once.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} and crushed {{ing:garlic-clove}} to the pan. Spoon over the meat. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mustard-cream-steak",
+   "name": "Steak with mustard cream sauce",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:beef-sirloin}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side for medium-rare, turning once.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:wholegrain-mustard}} and {{ing:double-cream}} to the pan. Bubble 2 minutes. Snip in {{ing:chives}}.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-peppercorn-pork",
+   "name": "Pork chops with green peppercorn sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:pork-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 5 minutes a side, until no longer pink in the middle.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry chopped {{ing:shallot}} in the pan 2 minutes. Add {{ing:green-peppercorns-brine}} and {{ing:double-cream}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-pork",
+   "name": "Pork chops with mushroom and thyme sauce",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:pork-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 5 minutes a side, until no longer pink in the middle.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry sliced {{ing:mushroom-chestnut}} in the pan 4 minutes. Add {{ing:fresh-thyme}} and {{ing:creme-fraiche}}. Bubble 1 minute.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-garlic-butter-pork",
+   "name": "Pork chops with garlic and herb butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:pork-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 5 minutes a side, until no longer pink in the middle.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} and crushed {{ing:garlic-clove}} to the pan. Spoon over the meat. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mustard-cream-pork",
+   "name": "Pork chops with mustard cream sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:pork-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 5 minutes a side, until no longer pink in the middle.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:wholegrain-mustard}} and {{ing:double-cream}} to the pan. Bubble 2 minutes. Snip in {{ing:chives}}.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-peppercorn-lamb",
+   "name": "Lamb chops with green peppercorn sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:lamb-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until browned but pink inside.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry chopped {{ing:shallot}} in the pan 2 minutes. Add {{ing:green-peppercorns-brine}} and {{ing:double-cream}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-lamb",
+   "name": "Lamb chops with mushroom and thyme sauce",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:lamb-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until browned but pink inside.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry sliced {{ing:mushroom-chestnut}} in the pan 4 minutes. Add {{ing:fresh-thyme}} and {{ing:creme-fraiche}}. Bubble 1 minute.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-garlic-butter-lamb",
+   "name": "Lamb chops with garlic and herb butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:lamb-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until browned but pink inside.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} and crushed {{ing:garlic-clove}} to the pan. Spoon over the meat. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mustard-cream-lamb",
+   "name": "Lamb chops with mustard cream sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:lamb-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until browned but pink inside.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:wholegrain-mustard}} and {{ing:double-cream}} to the pan. Bubble 2 minutes. Snip in {{ing:chives}}.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-peppercorn-chicken",
+   "name": "Chicken breast with green peppercorn sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:chicken-breast-skinless}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 6 minutes a side, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry chopped {{ing:shallot}} in the pan 2 minutes. Add {{ing:green-peppercorns-brine}} and {{ing:double-cream}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-chicken",
+   "name": "Chicken breast with mushroom and thyme sauce",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:chicken-breast-skinless}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 6 minutes a side, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Fry sliced {{ing:mushroom-chestnut}} in the pan 4 minutes. Add {{ing:fresh-thyme}} and {{ing:creme-fraiche}}. Bubble 1 minute.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-garlic-butter-chicken",
+   "name": "Chicken breast with garlic and herb butter",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:chicken-breast-skinless}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 6 minutes a side, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} and crushed {{ing:garlic-clove}} to the pan. Spoon over the meat. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mustard-cream-chicken",
+   "name": "Chicken breast with mustard cream sauce",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:chicken-breast-skinless}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry 6 minutes a side, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Rest on a warm plate 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:wholegrain-mustard}} and {{ing:double-cream}} to the pan. Bubble 2 minutes. Snip in {{ing:chives}}.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-peppercorn-duck",
+   "name": "Duck breast with green peppercorn sauce",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "duck-breast",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:duck-breast}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Start skin side down in a cold pan. Fry 8 minutes, then 3 minutes on the other side.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Fry chopped {{ing:shallot}} in the pan 2 minutes. Add {{ing:green-peppercorns-brine}} and {{ing:double-cream}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-duck",
+   "name": "Duck breast with mushroom and thyme sauce",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "duck-breast",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:duck-breast}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Start skin side down in a cold pan. Fry 8 minutes, then 3 minutes on the other side.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Fry sliced {{ing:mushroom-chestnut}} in the pan 4 minutes. Add {{ing:fresh-thyme}} and {{ing:creme-fraiche}}. Bubble 1 minute.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-garlic-butter-duck",
+   "name": "Duck breast with garlic and herb butter",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "duck-breast",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:duck-breast}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Start skin side down in a cold pan. Fry 8 minutes, then 3 minutes on the other side.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Rest on a warm plate 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:butter-unsalted}} and crushed {{ing:garlic-clove}} to the pan. Spoon over the meat. Scatter {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spoon the sauce over to serve."
+    }
+   ]
+  },
+  {
+   "slug": "pf-sweetcorn-fritters",
+   "name": "Sweetcorn fritters with avocado salsa",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:flour-self-raising}}, {{ing:egg-medium}} and {{ing:milk-whole}} to a thick batter."
+    },
+    {
+     "instruction": "Stir in drained {{ing:sweetcorn-tinned}} and sliced {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry spoonfuls 3 minutes a side, until golden.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Dice {{ing:avocado}} with the juice of {{ing:lime}}. Spoon on top."
+    }
+   ]
+  },
+  {
+   "slug": "pf-pea-feta-fritters",
+   "name": "Pea and feta fritters",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "peas-frozen",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "feta",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Defrost {{ing:peas-frozen}}. Crush lightly."
+    },
+    {
+     "instruction": "Mix with crumbled {{ing:feta}}, {{ing:flour-self-raising}}, {{ing:egg-medium}} and chopped {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry spoonfuls 3 minutes a side, until golden.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "pf-rosti",
+   "name": "Potato rösti with fried eggs",
+   "cuisine": "Swiss",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:potato-large}} and {{ing:onion-medium}}. Squeeze out the water in a clean tea towel."
+    },
+    {
+     "instruction": "Melt half of {{ing:butter-unsalted}} in a frying pan."
+    },
+    {
+     "instruction": "Press in the potato. Fry 10 minutes, until golden underneath.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Slide onto a plate. Flip back into the pan. Fry 10 minutes more.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Fry {{ing:egg-medium}} in the rest of the butter. Serve on the rösti."
+    }
+   ]
+  },
+  {
+   "slug": "pf-salmon-fishcakes",
+   "name": "Salmon and dill fishcakes",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mashed-potato",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Poach {{ing:salmon-fillet}} in a little water in a frying pan 8 minutes. Flake.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Mix with cold {{ing:mashed-potato}}, chopped {{ing:fresh-dill}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Shape into 8 cakes. Dust with {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Wipe the pan. Fry the cakes in {{ing:vegetable-oil}} 4 minutes a side, until golden.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "pf-crab-cakes",
+   "name": "Crab and spring onion cakes",
+   "cuisine": "American",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "crab-white-meat",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:crab-white-meat}}, {{ing:breadcrumbs-dried}}, {{ing:egg-medium}}, {{ing:mayonnaise}} and sliced {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Shape into 8 small cakes. Chill 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry 3 minutes a side, until golden.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Serve with wedges of {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-cheese-ham-omelette",
+   "name": "Ham and cheese omelette",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "ham-slice",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:egg-medium}} with a pinch of salt."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a small frying pan on a medium heat."
+    },
+    {
+     "instruction": "Pour in the eggs. Stir gently 30 seconds, then leave 1 minute to set.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Scatter torn {{ing:ham-slice}} and grated {{ing:cheddar-cheese}} over half."
+    },
+    {
+     "instruction": "Fold over. Slide onto a plate."
+    }
+   ]
+  },
+  {
+   "slug": "pf-mushroom-omelette",
+   "name": "Mushroom and herb omelette",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chives",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Fry in half of {{ing:butter-unsalted}} 4 minutes in a small frying pan. Tip out.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Melt the rest of the butter. Pour in beaten {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Stir 30 seconds, then leave 1 minute to set.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the mushrooms and snipped {{ing:chives}}. Fold over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-spinach-feta-omelette",
+   "name": "Spinach and feta omelette",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Wilt {{ing:spinach}} in {{ing:olive-oil}} in a small frying pan 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour in beaten {{ing:egg-medium}}. Stir 30 seconds, then leave 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Crumble over {{ing:feta}}. Fold over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-tortilla",
+   "name": "Spanish tortilla",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:potato-medium}} and {{ing:onion-medium}} thinly."
+    },
+    {
+     "instruction": "Cook gently in {{ing:olive-oil}} in a frying pan 20 minutes, until soft, not brown.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Drain off most of the oil. Mix the potatoes into beaten {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Pour back into the pan. Cook 6 minutes on a low heat, until the edges set.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Flip onto a plate. Slide back in. Cook 4 minutes more.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "pf-pancakes-lemon",
+   "name": "Crêpes with lemon and sugar",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-plain",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:flour-plain}}, {{ing:egg-medium}} and {{ing:milk-whole}} to a smooth batter."
+    },
+    {
+     "instruction": "Melt a little {{ing:butter-unsalted}} in a frying pan on a medium-high heat."
+    },
+    {
+     "instruction": "Pour in a thin layer. Tilt to cover. Cook 1 minute, until golden underneath.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Flip. Cook 30 seconds."
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Sprinkle with {{ing:sugar-caster}}. Roll up."
+    }
+   ]
+  },
+  {
+   "slug": "pf-pancakes-american",
+   "name": "Fluffy American pancakes",
+   "cuisine": "American",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "baking-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:flour-self-raising}}, {{ing:baking-powder}}, {{ing:egg-medium}} and {{ing:milk-whole}} to a thick batter."
+    },
+    {
+     "instruction": "Melt a little {{ing:butter-unsalted}} in a frying pan on a medium heat."
+    },
+    {
+     "instruction": "Pour in small rounds. Cook 2 minutes, until bubbles pop on top.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Flip. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Serve with {{ing:maple-syrup}} and {{ing:blueberries}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-vegan-pancakes",
+   "name": "Vegan banana pancakes",
+   "cuisine": "American",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mash {{ing:banana-medium}}. Whisk with {{ing:oat-milk}} and {{ing:flour-self-raising}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add a little {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Pour in small rounds. Cook 2 minutes, until bubbles show.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Flip. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Serve with {{ing:maple-syrup}} and sliced {{ing:strawberries}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-quesadilla-chicken",
+   "name": "Chicken and pepper quesadillas",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-roast",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred {{ing:chicken-breast-roast}}. Slice {{ing:pepper-bell}} thinly."
+    },
+    {
+     "instruction": "Lay on 4 of {{ing:tortilla-wrap}} with grated {{ing:cheddar-cheese}}. Top with the other wraps."
+    },
+    {
+     "instruction": "Cook in a dry frying pan 3 minutes a side, until crisp and melted.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Cut into wedges. Serve with {{ing:salsa-dip}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-halloumi-pitta",
+   "name": "Crispy halloumi pittas",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "lunch",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tzatziki",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Fry in {{ing:olive-oil}} in a frying pan 2 minutes a side, until golden.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Warm {{ing:pitta-bread}} in the pan."
+    },
+    {
+     "instruction": "Fill with halloumi, sliced {{ing:tomato-medium}}, {{ing:cucumber}} and {{ing:tzatziki}}."
+    }
+   ]
+  },
+  {
+   "slug": "pf-falafel-patties",
+   "name": "Pan-fried chickpea and herb patties",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "tahini",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Blend drained {{ing:chickpeas-tinned}}, {{ing:onion-medium}}, {{ing:garlic-clove}}, {{ing:cumin-ground}} and {{ing:fresh-parsley}} to a rough paste."
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Shape into 12 patties."
+    },
+    {
+     "instruction": "Fry in {{ing:olive-oil}} in a frying pan 3 minutes a side, until crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Whisk {{ing:tahini}} with the juice of {{ing:lemon}} and a splash of water. Drizzle over."
+    }
+   ]
+  },
+  {
+   "slug": "pf-egg-fried-bread",
+   "name": "French toast with berries",
+   "cuisine": "French",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:cinnamon-ground}} in a wide dish."
+    },
+    {
+     "instruction": "Soak {{ing:bread-slice-medium}} 20 seconds a side."
+    },
+    {
+     "instruction": "Fry in {{ing:butter-unsalted}} in a frying pan 2 minutes a side, until golden.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Top with {{ing:raspberries}} and {{ing:maple-syrup}}."
+    }
+   ]
+  }
+ ]
+}

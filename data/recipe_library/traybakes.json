@@ -1,0 +1,5315 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Traybakes",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "tb-harissa-chicken",
+   "name": "Harissa chicken traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-chicken",
+   "name": "Pesto chicken traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-chicken",
+   "name": "Honey mustard chicken traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-chicken",
+   "name": "Smoky paprika chicken traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-thai-chicken",
+   "name": "Thai red chicken traybake with sweet potato",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:broccoli-head}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:thai-red-curry-paste}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-chicken",
+   "name": "Greek lemon and oregano chicken traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-miso-chicken",
+   "name": "Miso and sesame chicken traybake with aubergine",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}}, {{ing:broccoli-head}} and {{ing:spring-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:miso-paste}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-chicken",
+   "name": "Tandoori chicken traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-chicken",
+   "name": "Balsamic chicken traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-chicken",
+   "name": "Jerk chicken traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the chicken is golden and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-sausage",
+   "name": "Harissa sausage traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-sausage",
+   "name": "Pesto sausage traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-sausage",
+   "name": "Honey mustard sausage traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-sausage",
+   "name": "Smoky paprika sausage traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-sausage",
+   "name": "Greek lemon and oregano sausage traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-sausage",
+   "name": "Balsamic sausage traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-sausage",
+   "name": "Jerk sausage traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until the sausages are browned and cooked through.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-salmon",
+   "name": "Harissa salmon traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-salmon",
+   "name": "Pesto salmon traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-salmon",
+   "name": "Honey mustard salmon traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-salmon",
+   "name": "Smoky paprika salmon traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-thai-salmon",
+   "name": "Thai red salmon traybake with sweet potato",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:broccoli-head}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:thai-red-curry-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-salmon",
+   "name": "Greek lemon and oregano salmon traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-miso-salmon",
+   "name": "Miso and sesame salmon traybake with aubergine",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}}, {{ing:broccoli-head}} and {{ing:spring-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:miso-paste}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-salmon",
+   "name": "Tandoori salmon traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-salmon",
+   "name": "Balsamic salmon traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-salmon",
+   "name": "Jerk salmon traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:salmon-fillet}} to the tin. Roast 12 minutes more, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-cod",
+   "name": "Harissa cod traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-cod",
+   "name": "Pesto cod traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-cod",
+   "name": "Honey mustard cod traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-cod",
+   "name": "Smoky paprika cod traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-thai-cod",
+   "name": "Thai red cod traybake with sweet potato",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:broccoli-head}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:thai-red-curry-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-cod",
+   "name": "Greek lemon and oregano cod traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-miso-cod",
+   "name": "Miso and sesame cod traybake with aubergine",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}}, {{ing:broccoli-head}} and {{ing:spring-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:miso-paste}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-cod",
+   "name": "Tandoori cod traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:cod-fillet}} to the tin. Roast 12 minutes more, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-halloumi",
+   "name": "Harissa halloumi traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-halloumi",
+   "name": "Pesto halloumi traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-halloumi",
+   "name": "Honey mustard halloumi traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-halloumi",
+   "name": "Smoky paprika halloumi traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-halloumi",
+   "name": "Greek lemon and oregano halloumi traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-halloumi",
+   "name": "Tandoori halloumi traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-halloumi",
+   "name": "Balsamic halloumi traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-halloumi",
+   "name": "Jerk halloumi traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:halloumi}} to the tin. Roast 15 minutes more, until the halloumi is golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-chickpea",
+   "name": "Harissa chickpea traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-chickpea",
+   "name": "Pesto chickpea traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-chickpea",
+   "name": "Honey mustard chickpea traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-chickpea",
+   "name": "Smoky paprika chickpea traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-thai-chickpea",
+   "name": "Thai red chickpea traybake with sweet potato",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:broccoli-head}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:thai-red-curry-paste}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-chickpea",
+   "name": "Greek lemon and oregano chickpea traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-chickpea",
+   "name": "Tandoori chickpea traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-chickpea",
+   "name": "Balsamic chickpea traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-chickpea",
+   "name": "Jerk chickpea traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the chickpeas are crisp.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-tofu",
+   "name": "Harissa tofu traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-tofu",
+   "name": "Pesto tofu traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-tofu",
+   "name": "Smoky paprika tofu traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-thai-tofu",
+   "name": "Thai red tofu traybake with sweet potato",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:broccoli-head}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:thai-red-curry-paste}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-miso-tofu",
+   "name": "Miso and sesame tofu traybake with aubergine",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}}, {{ing:broccoli-head}} and {{ing:spring-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:miso-paste}} and {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-tofu",
+   "name": "Tandoori tofu traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-jerk-tofu",
+   "name": "Jerk tofu traybake with sweet potato and peppers",
+   "cuisine": "Caribbean",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:jerk-paste}}."
+    },
+    {
+     "instruction": "Cube {{ing:tofu-firm}}."
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Turn to coat."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until the tofu is crisp at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-harissa-lamb",
+   "name": "Harissa lamb chop traybake with peppers and red onion",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:harissa-paste}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-pesto-lamb",
+   "name": "Pesto lamb chop traybake with tomatoes and courgettes",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cherry-tomato",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cherry-tomato}}, {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}} and {{ing:pesto}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "tb-honey-mustard-lamb",
+   "name": "Honey mustard lamb chop traybake with new potatoes",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:new-potatoes}}, {{ing:carrot-medium}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:honey}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-smoky-lamb",
+   "name": "Smoky paprika lamb chop traybake with potatoes and peppers",
+   "cuisine": "Spanish",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-greek-lamb",
+   "name": "Greek lemon and oregano lamb chop traybake",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-medium}}, {{ing:red-onion}} and {{ing:lemon}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:dried-oregano}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter over {{ing:olives-pitted}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-tandoori-lamb",
+   "name": "Tandoori lamb chop traybake with cauliflower",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:garam-masala}}, {{ing:natural-yoghurt}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "tb-balsamic-lamb",
+   "name": "Balsamic lamb chop traybake with red onion and squash",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lamb-chops",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}}, {{ing:red-onion}} and {{ing:cherry-tomato}} into chunks."
+    },
+    {
+     "instruction": "Toss in a large roasting tin with {{ing:olive-oil}}, {{ing:balsamic-vinegar}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the vegetables start to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:lamb-chops}} to the tin. Roast 15 minutes more, until the chops are browned but pink inside.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:rocket}}."
+    }
+   ]
+  }
+ ]
+}

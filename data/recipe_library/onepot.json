@@ -1,0 +1,8101 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "One pot",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "op-korma-chicken",
+   "name": "Mild coconut chicken korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-chicken",
+   "name": "Chicken tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-chicken",
+   "name": "Thai green chicken curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-chicken",
+   "name": "Thai red chicken curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-chicken",
+   "name": "Massaman chicken curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-chicken",
+   "name": "Chicken jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-chicken",
+   "name": "Saag chicken with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-chicken",
+   "name": "Chicken dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-chicken",
+   "name": "Sri Lankan coconut chicken curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:chicken-thigh-boneless}}. Stir 3 minutes to seal.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the chicken is cooked through.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-prawn",
+   "name": "King prawn tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-prawn",
+   "name": "Thai green king prawn curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-prawn",
+   "name": "Thai red king prawn curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-prawn",
+   "name": "Massaman king prawn curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-prawn",
+   "name": "King prawn jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-prawn",
+   "name": "Saag king prawn with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-prawn",
+   "name": "Sri Lankan coconut king prawn curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Simmer 4 minutes, until the prawns are pink.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-chickpea",
+   "name": "Mild coconut chickpea korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-chickpea",
+   "name": "Chickpea tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-chickpea",
+   "name": "Thai green chickpea curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-chickpea",
+   "name": "Thai red chickpea curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-chickpea",
+   "name": "Massaman chickpea curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-chickpea",
+   "name": "Chickpea jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-chickpea",
+   "name": "Saag chickpea with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-chickpea",
+   "name": "Chickpea dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-chickpea",
+   "name": "Sri Lankan coconut chickpea curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:chickpeas-tinned}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the sauce is thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-paneer",
+   "name": "Mild coconut paneer korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-paneer",
+   "name": "Paneer tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-paneer",
+   "name": "Paneer jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-paneer",
+   "name": "Saag paneer with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-paneer",
+   "name": "Paneer dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-paneer",
+   "name": "Sri Lankan coconut paneer curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "paneer",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:paneer}}. Simmer 5 minutes, until the paneer is soft and hot.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-lentil",
+   "name": "Mild coconut red lentil korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Rinse and add {{ing:lentils-red-dry}} with 400 ml water."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, stirring now and then, until the lentils collapse.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-lentil",
+   "name": "Red lentil tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Rinse and add {{ing:lentils-red-dry}} with 400 ml water."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, stirring now and then, until the lentils collapse.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-lentil",
+   "name": "Sri Lankan coconut red lentil curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Rinse and add {{ing:lentils-red-dry}} with 400 ml water."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, stirring now and then, until the lentils collapse.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-cauliflower",
+   "name": "Mild coconut cauliflower korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-cauliflower",
+   "name": "Cauliflower tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-cauliflower",
+   "name": "Thai green cauliflower curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-cauliflower",
+   "name": "Thai red cauliflower curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-cauliflower",
+   "name": "Cauliflower jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-cauliflower",
+   "name": "Saag cauliflower with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-cauliflower",
+   "name": "Cauliflower dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-cauliflower",
+   "name": "Sri Lankan coconut cauliflower curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, stirring now and then, until the cauliflower is tender.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-egg",
+   "name": "Mild coconut egg korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes in a small pan. Cool, peel and halve.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:egg-medium}}. Simmer 3 minutes, until the eggs are hot through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-egg",
+   "name": "Egg tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes in a small pan. Cool, peel and halve.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:egg-medium}}. Simmer 3 minutes, until the eggs are hot through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-egg",
+   "name": "Saag egg with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes in a small pan. Cool, peel and halve.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:egg-medium}}. Simmer 3 minutes, until the eggs are hot through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-egg",
+   "name": "Egg dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes in a small pan. Cool, peel and halve.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:egg-medium}}. Simmer 3 minutes, until the eggs are hot through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-egg",
+   "name": "Sri Lankan coconut egg curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Boil {{ing:egg-medium}} 8 minutes in a small pan. Cool, peel and halve.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:egg-medium}}. Simmer 3 minutes, until the eggs are hot through.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-aubergine",
+   "name": "Mild coconut aubergine korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-tikka-aubergine",
+   "name": "Aubergine tikka masala",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:smoked-paprika}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Stir in {{ing:double-cream}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-aubergine",
+   "name": "Thai green aubergine curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-aubergine",
+   "name": "Thai red aubergine curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-aubergine",
+   "name": "Massaman aubergine curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-aubergine",
+   "name": "Aubergine jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-aubergine",
+   "name": "Saag aubergine with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-dhansak-aubergine",
+   "name": "Aubergine dhansak with lentils",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:cumin-ground}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, {{ing:lentils-red-dry}} and {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-aubergine",
+   "name": "Sri Lankan coconut aubergine curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Add {{ing:aubergine}}. Stir 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the aubergine is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-tofu",
+   "name": "Thai green tofu curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-tofu",
+   "name": "Thai red tofu curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-tofu",
+   "name": "Massaman tofu curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-tofu",
+   "name": "Tofu jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-tofu",
+   "name": "Saag tofu with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-tofu",
+   "name": "Sri Lankan coconut tofu curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until thickened.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:tofu-firm}}. Simmer 5 minutes, until the tofu is hot through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-korma-squash",
+   "name": "Mild coconut squash and spinach korma",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:garam-masala}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:ground-almonds}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-green-squash",
+   "name": "Thai green squash and spinach curry",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-green-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:green-beans}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-red-squash",
+   "name": "Thai red squash and spinach curry with peppers",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:thai-red-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-massaman-squash",
+   "name": "Massaman squash and spinach curry with potatoes",
+   "cuisine": "Thai",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "massaman-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peanuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:massaman-curry-paste}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:peanuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-jalfrezi-squash",
+   "name": "Squash and spinach jalfrezi",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}} and {{ing:chilli-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:pepper-bell}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-saag-squash",
+   "name": "Saag squash and spinach with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:garam-masala}}, {{ing:cumin-ground}} and {{ing:ginger-fresh}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:spinach}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Swirl in {{ing:natural-yoghurt}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} to serve."
+    }
+   ]
+  },
+  {
+   "slug": "op-srilankan-squash",
+   "name": "Sri Lankan coconut squash and spinach curry",
+   "cuisine": "Sri Lankan",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "All in one pan. Rice or bread on the side if you like.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-leaves",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and golden.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}, {{ing:curry-leaves}} and {{ing:cinnamon-stick}}. Fry 1 minute, until fragrant.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:butternut-squash}}."
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}} and {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring now and then, until the squash is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-tomato-basil",
+   "name": "One-pot tomato and basil pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:chopped-tomatoes-tinned}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Tear in {{ing:fresh-basil}}. Top with grated {{ing:parmesan}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-creamy-mushroom",
+   "name": "One-pot creamy mushroom pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:mushroom-chestnut}} and {{ing:garlic-clove}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}} and {{ing:fresh-thyme}} leaves."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-sausage-fennel",
+   "name": "One-pot sausage, fennel and tomato pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sausage-pork",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fennel-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:sausage-pork}} and {{ing:olive-oil}}. Fry 4 minutes, breaking the sausage out of its skins.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:fennel-seeds}} and {{ing:chilli-flakes}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:passata}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Top with grated {{ing:parmesan}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-lemon-spinach",
+   "name": "One-pot lemon, spinach and ricotta pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "ricotta",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}}, {{ing:ricotta}} and the zest and juice of {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-tuna-sweetcorn",
+   "name": "One-pot tuna and sweetcorn pasta",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "tuna-tinned-in-spring-water",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 80,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:passata}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in drained {{ing:tuna-tinned-in-spring-water}} and {{ing:sweetcorn-tinned}}. Top with grated {{ing:cheddar-cheese}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-pea-bacon",
+   "name": "One-pot pea and bacon pasta",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:bacon-rasher-back}} and {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}} and {{ing:stock-chicken}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:peas-frozen}} for the last 3 minutes, then {{ing:creme-fraiche}}.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-arrabbiata",
+   "name": "One-pot penne arrabbiata",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:chilli-flakes}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:chopped-tomatoes-tinned}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-broccoli-anchovy",
+   "name": "One-pot broccoli, anchovy and chilli pasta",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "anchovy-fillet",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}} and {{ing:anchovy-fillet}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:chilli-flakes}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-chorizo-pepper",
+   "name": "One-pot chorizo and pepper pasta",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chorizo",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:chorizo}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:pepper-bell}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:passata}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-pasta-aubergine-feta",
+   "name": "One-pot aubergine, tomato and feta pasta",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "The pasta cooks in the sauce, so its starch thickens it. Stir so it does not stick.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "aubergine",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "feta",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}. Fry 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:aubergine}} and {{ing:garlic-clove}}. Fry 4 minutes, until soft.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:penne-dry}}, {{ing:chopped-tomatoes-tinned}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is tender and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Crumble over {{ing:feta}}."
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-jambalaya",
+   "name": "Chicken and pepper jambalaya",
+   "cuisine": "American",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Brown 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:celery-stick}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-chicken}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:spring-onion}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-prawn-pilaf",
+   "name": "King prawn and pea pilaf",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:king-prawns-raw}} and {{ing:peas-frozen}}. Cover. Cook 5 minutes, until hot through and the rice is tender.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:lemon}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-mushroom-pilau",
+   "name": "Mushroom pilau rice",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cardamom",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:cardamom}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:fresh-coriander}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-spanish-veg-rice",
+   "name": "Spanish vegetable rice",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "saffron",
+     "quantity": 1.2,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:courgette}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}} and {{ing:saffron}} and {{ing:rice-arborio-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:peas-frozen}}. Cover. Cook 5 minutes, until hot through and the rice is tender.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:lemon}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-chicken-chorizo-rice",
+   "name": "Chicken and chorizo rice",
+   "cuisine": "Spanish",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chorizo",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Cut {{ing:chorizo}} and {{ing:chicken-thigh-boneless}} into chunks. Brown 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}} and {{ing:pepper-bell}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-chicken}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:fresh-parsley}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-egg-curry-rice",
+   "name": "Spiced egg and tomato rice",
+   "cuisine": "Indian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:curry-powder}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:stock-vegetable}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Make 4 dips in the rice. Crack in {{ing:egg-medium}}. Cover. Cook 5 minutes, until the whites set.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:fresh-coriander}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-black-bean-rice",
+   "name": "Black bean and corn rice",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Stir in {{ing:black-beans-tinned}} and {{ing:sweetcorn-tinned}}. Cover. Cook 5 minutes, until hot through and the rice is tender.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:lime}} and {{ing:fresh-coriander}}.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "op-rice-lemon-chicken-rice",
+   "name": "Lemon and herb chicken rice",
+   "cuisine": "Greek",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep the lid on while it simmers; the steam cooks the rice.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 700,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large, deep pan with a lid on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Brown 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:dried-oregano}} and {{ing:rice-basmati-dry}} for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}}. Cover. Simmer 12 minutes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Rest 5 minutes off the heat. Finish with {{ing:lemon}} and {{ing:fresh-parsley}}.",
+     "duration_min": 5
+    }
+   ]
+  }
+ ]
+}

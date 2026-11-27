@@ -1,0 +1,1145 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Steamed",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "st-fish-seabass-ginger",
+   "name": "Steamed sea bass with ginger and spring onion",
+   "cuisine": "Chinese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bass-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:sea-bass-fillet}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:ginger-fresh}}, {{ing:spring-onion}} and {{ing:soy-sauce}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 8 minutes, until cooked through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Finish with {{ing:sesame-oil}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-cod-lemongrass",
+   "name": "Steamed cod with lemongrass and lime",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:cod-fillet}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:lemongrass}}, {{ing:lime}} and {{ing:chilli-fresh}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 10 minutes, until cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Finish with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-salmon-miso",
+   "name": "Steamed salmon with miso and greens",
+   "cuisine": "Japanese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:salmon-fillet}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:miso-paste}}, {{ing:pak-choi}} and {{ing:sesame-seeds}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 10 minutes, until cooked through.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-hake-herbs",
+   "name": "Steamed hake with lemon and herbs",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:hake-fillet}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:lemon}}, {{ing:fresh-parsley}} and {{ing:fresh-dill}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 10 minutes, until cooked through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Finish with {{ing:olive-oil}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-prawn-dumpling-free",
+   "name": "Steamed king prawns with chilli and garlic",
+   "cuisine": "Chinese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:king-prawns-raw}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:garlic-clove}}, {{ing:chilli-fresh}} and {{ing:soy-sauce}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 5 minutes, until cooked through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Finish with {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-trout-fennel",
+   "name": "Steamed trout with fennel and orange",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "fennel-bulb",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:trout-fillet}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:fennel-bulb}}, {{ing:orange}} and {{ing:olive-oil}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 8 minutes, until cooked through.",
+     "duration_min": 8
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-mussels-steamed",
+   "name": "Steamed mussels with lemongrass and coconut",
+   "cuisine": "Thai",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "mussels-cooked",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:mussels-cooked}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:lemongrass}}, {{ing:coconut-milk-tinned}} and {{ing:lime}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 5 minutes, until cooked through.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Finish with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-fish-tofu-ginger",
+   "name": "Steamed silken tofu with ginger and soy",
+   "cuisine": "Chinese",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-silken",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Lay {{ing:tofu-silken}} on a heatproof plate that fits inside."
+    },
+    {
+     "instruction": "Scatter over {{ing:ginger-fresh}}, {{ing:soy-sauce}} and {{ing:spring-onion}}, sliced as needed."
+    },
+    {
+     "instruction": "Steam 8 minutes, until cooked through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Finish with {{ing:chilli-flakes}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-greens-garlic",
+   "name": "Steamed greens with garlic oil",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-greens",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:broccoli-head}}, {{ing:green-beans}} and {{ing:spring-greens}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-carrots-honey",
+   "name": "Steamed carrots with honey and thyme",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:carrot-medium}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:honey}}, {{ing:butter-unsalted}} and {{ing:fresh-thyme}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-new-potatoes-mint",
+   "name": "Steamed new potatoes with mint butter",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:new-potatoes}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:butter-unsalted}} and {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-pak-choi-oyster",
+   "name": "Steamed pak choi with soy and sesame",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pak-choi",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:pak-choi}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:soy-sauce}}, {{ing:sesame-oil}} and {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-asparagus-lemon",
+   "name": "Steamed asparagus with lemon butter",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "asparagus",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:asparagus}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:butter-unsalted}} and {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-veg-cauliflower-turmeric",
+   "name": "Steamed cauliflower with turmeric butter",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Add {{ing:cauliflower-head}}, cut as needed."
+    },
+    {
+     "instruction": "Steam 6 minutes, until bright and tender. Potatoes need 15.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Toss with {{ing:butter-unsalted}}, {{ing:turmeric-ground}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-treacle-sponge",
+   "name": "Steamed golden syrup sponge",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "golden-syrup",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter a 1 litre pudding basin."
+    },
+    {
+     "instruction": "Put {{ing:golden-syrup}} in the bottom, chopped or zested as needed."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-caster}} and {{ing:egg-medium}} until pale. Fold in {{ing:flour-self-raising}} and {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Spoon into the basin. Cover with baking paper and foil, pleated to let it rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water, until risen and springy.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-jam-sponge",
+   "name": "Steamed jam sponge",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "jam-strawberry",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter a 1 litre pudding basin."
+    },
+    {
+     "instruction": "Put {{ing:jam-strawberry}} in the bottom, chopped or zested as needed."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-caster}} and {{ing:egg-medium}} until pale. Fold in {{ing:flour-self-raising}} and {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Spoon into the basin. Cover with baking paper and foil, pleated to let it rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water, until risen and springy.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-chocolate-sponge",
+   "name": "Steamed chocolate sponge with chocolate sauce",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 25,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter a 1 litre pudding basin."
+    },
+    {
+     "instruction": "Put {{ing:dark-chocolate}} in the bottom, chopped or zested as needed."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-caster}} and {{ing:egg-medium}} until pale. Fold in {{ing:flour-self-raising}} and {{ing:cocoa-powder}}."
+    },
+    {
+     "instruction": "Spoon into the basin. Cover with baking paper and foil, pleated to let it rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water, until risen and springy.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-ginger-sponge",
+   "name": "Steamed ginger sponge",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "stem-ginger",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter a 1 litre pudding basin."
+    },
+    {
+     "instruction": "Put {{ing:stem-ginger}} in the bottom, chopped or zested as needed."
+    },
+    {
+     "instruction": "Beat {{ing:golden-syrup}}, {{ing:butter-unsalted}} and {{ing:sugar-soft-brown}} until pale. Fold in {{ing:egg-medium}} and {{ing:flour-self-raising}}."
+    },
+    {
+     "instruction": "Spoon into the basin. Cover with baking paper and foil, pleated to let it rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water, until risen and springy.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-lemon-sponge",
+   "name": "Steamed lemon curd sponge",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Butter a 1 litre pudding basin."
+    },
+    {
+     "instruction": "Put {{ing:lemon}} in the bottom, chopped or zested as needed."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-caster}} and {{ing:egg-medium}} until pale. Fold in {{ing:flour-self-raising}} and {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Spoon into the basin. Cover with baking paper and foil, pleated to let it rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water, until risen and springy.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "st-pud-spotted-dick",
+   "name": "Spotted dick",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep the water simmering, never boiling dry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "suet-vegetable",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "currants",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:suet-vegetable}}, {{ing:sugar-caster}}, {{ing:currants}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Stir in {{ing:milk-whole}} to a soft dough. Shape into a log."
+    },
+    {
+     "instruction": "Wrap loosely in baking paper, then foil, with a pleat for it to rise."
+    },
+    {
+     "instruction": "Set a steamer, or a colander covered with a lid, over a pan of simmering water."
+    },
+    {
+     "instruction": "Steam 1 hour 30 minutes, topping up the water.",
+     "duration_min": 60
+    }
+   ]
+  }
+ ]
+}

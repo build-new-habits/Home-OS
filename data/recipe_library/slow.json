@@ -1,0 +1,4119 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Slow-cooked",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "slow-red-wine-beef",
+   "name": "Slow-cooked beef in red wine with mushrooms",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-cider-beef",
+   "name": "Slow-cooked beef with cider and mustard",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:apple-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-sage}} and {{ing:bay-leaf}}."
+    },
+    {
+     "instruction": "Add {{ing:cider-dry}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Stir in {{ing:wholegrain-mustard}} and {{ing:creme-fraiche}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-moroccan-beef",
+   "name": "Slow-cooked Moroccan beef with apricots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:butternut-squash}} and {{ing:dried-apricots}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:ras-el-hanout}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-chilli-beef",
+   "name": "Slow-cooked beef chilli with black beans",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:black-beans-tinned}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-italian-beef",
+   "name": "Slow-cooked Italian beef with tomato and rosemary",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:celery-stick}} and {{ing:carrot-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-rosemary}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-greek-beef",
+   "name": "Slow-cooked Greek beef stifado",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "allspice",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:shallot}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cinnamon-stick}}, {{ing:bay-leaf}} and {{ing:allspice}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:wine-red}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-goulash-beef",
+   "name": "Slow-cooked beef goulash",
+   "cuisine": "Hungarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:pepper-bell}} and {{ing:potato-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}} and {{ing:caraway-seeds}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:soured-cream}} on each."
+    }
+   ]
+  },
+  {
+   "slug": "slow-bbq-beef",
+   "name": "Slow-cooked barbecue beef with smoky beans",
+   "cuisine": "American",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:cannellini-beans-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-curry-beef",
+   "name": "Slow-cooked beef curry with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:beef-braising}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the beef falls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-red-wine-lamb",
+   "name": "Slow-cooked lamb in red wine with mushrooms",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-cider-lamb",
+   "name": "Slow-cooked lamb with cider and mustard",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:apple-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-sage}} and {{ing:bay-leaf}}."
+    },
+    {
+     "instruction": "Add {{ing:cider-dry}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:wholegrain-mustard}} and {{ing:creme-fraiche}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-moroccan-lamb",
+   "name": "Slow-cooked Moroccan lamb with apricots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:butternut-squash}} and {{ing:dried-apricots}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:ras-el-hanout}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-chilli-lamb",
+   "name": "Slow-cooked lamb chilli with black beans",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:black-beans-tinned}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-italian-lamb",
+   "name": "Slow-cooked Italian lamb with tomato and rosemary",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:celery-stick}} and {{ing:carrot-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-rosemary}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-greek-lamb",
+   "name": "Slow-cooked Greek lamb stifado",
+   "cuisine": "Greek",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "allspice",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:shallot}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cinnamon-stick}}, {{ing:bay-leaf}} and {{ing:allspice}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:wine-red}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-goulash-lamb",
+   "name": "Slow-cooked lamb goulash",
+   "cuisine": "Hungarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:pepper-bell}} and {{ing:potato-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}} and {{ing:caraway-seeds}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:soured-cream}} on each."
+    }
+   ]
+  },
+  {
+   "slug": "slow-curry-lamb",
+   "name": "Slow-cooked lamb curry with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:lamb-leg}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the lamb is meltingly tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-red-wine-pork",
+   "name": "Slow-cooked pork in red wine with mushrooms",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-cider-pork",
+   "name": "Slow-cooked pork with cider and mustard",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:apple-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-sage}} and {{ing:bay-leaf}}."
+    },
+    {
+     "instruction": "Add {{ing:cider-dry}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Stir in {{ing:wholegrain-mustard}} and {{ing:creme-fraiche}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-moroccan-pork",
+   "name": "Slow-cooked Moroccan pork with apricots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:butternut-squash}} and {{ing:dried-apricots}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:ras-el-hanout}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-chilli-pork",
+   "name": "Slow-cooked pork chilli with black beans",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:black-beans-tinned}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-italian-pork",
+   "name": "Slow-cooked Italian pork with tomato and rosemary",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:celery-stick}} and {{ing:carrot-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-rosemary}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-goulash-pork",
+   "name": "Slow-cooked pork goulash",
+   "cuisine": "Hungarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:pepper-bell}} and {{ing:potato-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}} and {{ing:caraway-seeds}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:soured-cream}} on each."
+    }
+   ]
+  },
+  {
+   "slug": "slow-bbq-pork",
+   "name": "Slow-cooked barbecue pork with smoky beans",
+   "cuisine": "American",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:cannellini-beans-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-curry-pork",
+   "name": "Slow-cooked pork curry with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:pork-shoulder}} into large chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 3 hours, until the pork pulls apart.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-red-wine-chicken",
+   "name": "Slow-cooked chicken in red wine with mushrooms",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-cider-chicken",
+   "name": "Slow-cooked chicken with cider and mustard",
+   "cuisine": "British",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:apple-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-sage}} and {{ing:bay-leaf}}."
+    },
+    {
+     "instruction": "Add {{ing:cider-dry}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:wholegrain-mustard}} and {{ing:creme-fraiche}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-moroccan-chicken",
+   "name": "Slow-cooked Moroccan chicken with apricots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:butternut-squash}} and {{ing:dried-apricots}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:ras-el-hanout}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-chilli-chicken",
+   "name": "Slow-cooked chicken chilli with black beans",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:black-beans-tinned}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-italian-chicken",
+   "name": "Slow-cooked Italian chicken with tomato and rosemary",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:celery-stick}} and {{ing:carrot-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-rosemary}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Tear over {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-goulash-chicken",
+   "name": "Slow-cooked chicken goulash",
+   "cuisine": "Hungarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:pepper-bell}} and {{ing:potato-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}} and {{ing:caraway-seeds}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:soured-cream}} on each."
+    }
+   ]
+  },
+  {
+   "slug": "slow-bbq-chicken",
+   "name": "Slow-cooked barbecue chicken with smoky beans",
+   "cuisine": "American",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:cannellini-beans-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-curry-chicken",
+   "name": "Slow-cooked chicken curry with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into large chunks."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out.",
+     "note": "Browning in batches stops the meat stewing grey."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Return the meat. Cover with a lid."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the chicken is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-red-wine-bean",
+   "name": "Slow-cooked bean in red wine with mushrooms",
+   "cuisine": "French",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "wine, beer or cider",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  },
+  {
+   "slug": "slow-moroccan-bean",
+   "name": "Slow-cooked Moroccan bean with apricots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dried-apricots",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:butternut-squash}} and {{ing:dried-apricots}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:ras-el-hanout}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lemon}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-chilli-bean",
+   "name": "Slow-cooked bean chilli with black beans",
+   "cuisine": "Mexican",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:pepper-bell}} and {{ing:black-beans-tinned}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-italian-bean",
+   "name": "Slow-cooked Italian bean with tomato and rosemary",
+   "cuisine": "Italian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}}, {{ing:celery-stick}} and {{ing:carrot-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-rosemary}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Tear over {{ing:fresh-basil}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "wine, beer or cider",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  },
+  {
+   "slug": "slow-goulash-bean",
+   "name": "Slow-cooked bean goulash",
+   "cuisine": "Hungarian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:pepper-bell}} and {{ing:potato-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:paprika}} and {{ing:caraway-seeds}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, then {{ing:stock-cube}} crumbled into 300 ml water."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:soured-cream}} on each."
+    }
+   ]
+  },
+  {
+   "slug": "slow-bbq-bean",
+   "name": "Slow-cooked barbecue bean with smoky beans",
+   "cuisine": "American",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "passata",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}} and {{ing:garlic-clove}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Add {{ing:passata}} and {{ing:cannellini-beans-tinned}}."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "slow-curry-bean",
+   "name": "Slow-cooked bean curry with spinach",
+   "cuisine": "Indian",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Better the next day. It freezes well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "turmeric-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C."
+    },
+    {
+     "instruction": "Warm {{ing:olive-oil}} in a casserole on a medium heat."
+    },
+    {
+     "instruction": "Add {{ing:onion-large}}, {{ing:garlic-clove}} and {{ing:ginger-fresh}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:garam-masala}} and {{ing:turmeric-ground}}."
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Drain {{ing:butter-beans-tinned}}. Add to the casserole. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours, until the sauce is thick and rich.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Scatter with {{ing:fresh-coriander}}."
+    }
+   ]
+  }
+ ]
+}

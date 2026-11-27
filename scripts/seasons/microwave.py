@@ -123,3 +123,50 @@ R('lemon-mug-pudding', 'Lemon curd mug pudding', 'pudding',
    'Microwave on high 75 seconds, until risen.',
    'Squeeze over a little of the lemon juice.'],
   serves=1, tier='budget', note=W)
+
+# ---- Phase 44: more microwave ----
+MUGS = [
+  ('mug-vanilla', 'Vanilla mug sponge with jam', ['jam-strawberry 1tbsp', 'vanilla-extract 0.5tsp']),
+  ('mug-banana', 'Banana mug cake', ['banana-medium 1', 'cinnamon-ground 0.25tsp']),
+  ('mug-ginger', 'Ginger and syrup mug pudding', ['golden-syrup 1tbsp', 'ginger-ground 0.5tsp']),
+  ('mug-blueberry', 'Blueberry and lemon mug muffin', ['blueberries 30g', 'lemon 1']),
+  ('mug-coffee', 'Coffee mug cake', ['coffee-instant 1tsp', 'walnuts 10g']),
+  ('mug-white-choc', 'White chocolate and raspberry mug cake', ['white-chocolate 20g', 'raspberries 30g']),
+]
+for key, name, extra in MUGS:
+  ings = ['flour-self-raising 4tbsp', 'sugar-caster 2tbsp', 'egg-medium 1', 'milk-whole 2tbsp', 'vegetable-oil 1tbsp'] + extra
+  R(key, name, 'pudding', ings,
+    ['Mix {flour-self-raising} and {sugar-caster} in a large mug.',
+     'Beat in {egg-medium}, {milk-whole} and {vegetable-oil} with a fork until smooth.',
+     'Stir in ' + ' and '.join('{' + e.split()[0] + '}' for e in extra) + ', chopped or mashed as needed.',
+     'Microwave on high 90 seconds, until risen and set on top.',
+     'Leave 1 minute before eating. || The mug is very hot.'],
+    serves=1, tier='budget', note=W)
+
+TOPS = [
+  ('jacket-tuna', 'Microwave jacket potato with tuna mayonnaise', ['tuna-tinned-in-spring-water 1', 'mayonnaise 2tbsp', 'sweetcorn-tinned 1']),
+  ('jacket-chilli-beans', 'Microwave jacket potato with spiced beans', ['kidney-beans-tinned 1', 'passata 150g', 'chilli-powder 0.5tsp']),
+  ('jacket-coleslaw', 'Microwave jacket potato with cheese and coleslaw', ['cheddar-cheese 60g', 'coleslaw 150g']),
+  ('jacket-coronation', 'Microwave jacket potato with coronation chickpeas', ['chickpeas-tinned 1', 'natural-yoghurt 80g', 'curry-powder 1tsp']),
+  ('sweet-potato-feta', 'Microwave sweet potato with feta and spinach', ['feta 80g', 'spinach 50g', 'chilli-flakes 0.25tsp']),
+]
+for key, name, top in TOPS:
+  spud = 'sweet-potato 2' if key.startswith('sweet') else 'potato-large 2'
+  sref = spud.split()[0]
+  R(key, name, 'main', [spud] + top,
+    ['Prick {' + sref + '} all over with a fork.',
+     'Microwave on high 10 minutes, turning halfway, until soft all through.',
+     'Mix ' + ' and '.join('{' + x.split()[0] + '}' for x in top) + ' in a bowl. Microwave 1 minute if it should be hot.',
+     'Split the potatoes. Pile in the filling.'],
+    serves=2, tier='budget', note=W)
+
+QUICK = [
+  ('cod-tomato', 'Microwave cod with cherry tomatoes', ['cod-fillet 2', 'cherry-tomato 10', 'olives-pitted 30g', 'olive-oil 1tbsp', 'fresh-basil 5g'], 'Lay {cod-fillet} in a dish with halved {cherry-tomato}, {olives-pitted} and {olive-oil}.', 'Cover. Microwave on high 4 minutes, until the fish flakes. Tear over {fresh-basil}.'),
+  ('corn-butter', 'Microwave corn on the cob', ['corn-on-the-cob 2', 'butter-unsalted 15g'], 'Wrap each of {corn-on-the-cob} in damp kitchen paper.', 'Microwave on high 4 minutes. Roll in {butter-unsalted}.'),
+  ('lemon-curd', 'Microwave lemon curd', ['lemon 3', 'sugar-caster 150g', 'butter-unsalted 75g', 'egg-medium 3'], 'Whisk the zest and juice of {lemon}, {sugar-caster}, melted {butter-unsalted} and {egg-medium} in a bowl.', 'Microwave on high in 1-minute bursts, whisking between, about 4 minutes, until thick.'),
+  ('peas-lettuce-mw', 'Microwave minted peas', ['peas-frozen 300g', 'fresh-mint 10g', 'butter-unsalted 15g'], 'Put {peas-frozen} in a bowl with 2 tbsp water. Cover.', 'Microwave on high 4 minutes. Stir in {butter-unsalted} and chopped {fresh-mint}.'),
+  ('egg-fried-rice-mw', 'Microwave egg and vegetable rice', ['rice-white-cooked 1', 'peas-frozen 80g', 'egg-medium 2', 'soy-sauce 1tbsp', 'spring-onion 2'], 'Mix {rice-white-cooked}, {peas-frozen} and {soy-sauce} in a bowl. Microwave 2 minutes.', 'Stir in beaten {egg-medium}. Microwave 1 minute, stir, then 1 minute more. Top with {spring-onion}.'),
+]
+for key, name, ings, s1, s2 in QUICK:
+  R(key, name, 'side' if key in ('corn-butter', 'peas-lettuce-mw') else 'pudding' if key == 'lemon-curd' else 'main', ings, [s1, s2],
+    serves=2, tier='budget', note=W)

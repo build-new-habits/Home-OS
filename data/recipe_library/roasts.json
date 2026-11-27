@@ -1,0 +1,5885 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Roasts",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "rst-garlic-rosemary-carrots",
+   "name": "Roast carrots with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-carrots",
+   "name": "Honey and cumin roast carrots",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-carrots",
+   "name": "Chilli and lime roast carrots",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-carrots",
+   "name": "Parmesan roast carrots",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-carrots",
+   "name": "Za'atar roast carrots with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-carrots",
+   "name": "Miso and maple roast carrots",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-parsnips",
+   "name": "Roast parsnips with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-parsnips",
+   "name": "Honey and cumin roast parsnips",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-parsnips",
+   "name": "Chilli and lime roast parsnips",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-parsnips",
+   "name": "Parmesan roast parsnips",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-parsnips",
+   "name": "Za'atar roast parsnips with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-parsnips",
+   "name": "Miso and maple roast parsnips",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-potatoes",
+   "name": "Roast new potatoes with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-potatoes",
+   "name": "Chilli and lime roast new potatoes",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-potatoes",
+   "name": "Parmesan roast new potatoes",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-potatoes",
+   "name": "Za'atar roast new potatoes with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-cauliflower",
+   "name": "Roast cauliflower with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-cauliflower",
+   "name": "Honey and cumin roast cauliflower",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-cauliflower",
+   "name": "Chilli and lime roast cauliflower",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-cauliflower",
+   "name": "Parmesan roast cauliflower",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-cauliflower",
+   "name": "Za'atar roast cauliflower with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-cauliflower",
+   "name": "Miso and maple roast cauliflower",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-broccoli",
+   "name": "Roast broccoli with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-broccoli",
+   "name": "Chilli and lime roast broccoli",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-broccoli",
+   "name": "Parmesan roast broccoli",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-broccoli",
+   "name": "Za'atar roast broccoli with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-broccoli",
+   "name": "Miso and maple roast broccoli",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-squash",
+   "name": "Roast squash with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges. Scoop out the seeds."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-squash",
+   "name": "Honey and cumin roast squash",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges. Scoop out the seeds."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-squash",
+   "name": "Chilli and lime roast squash",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges. Scoop out the seeds."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-squash",
+   "name": "Za'atar roast squash with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges. Scoop out the seeds."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-squash",
+   "name": "Miso and maple roast squash",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges. Scoop out the seeds."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-beetroot",
+   "name": "Roast beetroot with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "beetroot-raw",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:beetroot-raw}}. Cut into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 45 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 45
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-beetroot",
+   "name": "Honey and cumin roast beetroot",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "beetroot-raw",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:beetroot-raw}}. Cut into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 45 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-beetroot",
+   "name": "Za'atar roast beetroot with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "beetroot-raw",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:beetroot-raw}}. Cut into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 45 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-beetroot",
+   "name": "Miso and maple roast beetroot",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "beetroot-raw",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:beetroot-raw}}. Cut into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 45 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-sweet-potato",
+   "name": "Roast sweet potato with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-sweet-potato",
+   "name": "Honey and cumin roast sweet potato",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-sweet-potato",
+   "name": "Chilli and lime roast sweet potato",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-sweet-potato",
+   "name": "Parmesan roast sweet potato",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-sweet-potato",
+   "name": "Za'atar roast sweet potato with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-sweet-potato",
+   "name": "Miso and maple roast sweet potato",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:sweet-potato}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-sprouts",
+   "name": "Roast sprouts with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-sprouts",
+   "name": "Honey and cumin roast sprouts",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-sprouts",
+   "name": "Chilli and lime roast sprouts",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-sprouts",
+   "name": "Parmesan roast sprouts",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-sprouts",
+   "name": "Miso and maple roast sprouts",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-fennel",
+   "name": "Roast fennel with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "fennel-bulb",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:fennel-bulb}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-fennel",
+   "name": "Honey and cumin roast fennel",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "fennel-bulb",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:fennel-bulb}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-fennel",
+   "name": "Parmesan roast fennel",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "fennel-bulb",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:fennel-bulb}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-fennel",
+   "name": "Za'atar roast fennel with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "fennel-bulb",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:fennel-bulb}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-peppers",
+   "name": "Roast peppers with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into wide strips."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-peppers",
+   "name": "Honey and cumin roast peppers",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into wide strips."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-peppers",
+   "name": "Chilli and lime roast peppers",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into wide strips."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-peppers",
+   "name": "Za'atar roast peppers with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pepper-bell}} into wide strips."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-tomatoes",
+   "name": "Roast vine tomatoes with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "tomato-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-tomatoes",
+   "name": "Parmesan roast vine tomatoes",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "tomato-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-tomatoes",
+   "name": "Za'atar roast vine tomatoes with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "tomato-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:tomato-medium}}."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-red-onions",
+   "name": "Roast red onions with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-red-onions",
+   "name": "Honey and cumin roast red onions",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-red-onions",
+   "name": "Chilli and lime roast red onions",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-red-onions",
+   "name": "Za'atar roast red onions with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-red-onions",
+   "name": "Miso and maple roast red onions",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-onion",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-celeriac",
+   "name": "Roast celeriac with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-celeriac",
+   "name": "Honey and cumin roast celeriac",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-celeriac",
+   "name": "Parmesan roast celeriac",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-celeriac",
+   "name": "Za'atar roast celeriac with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-celeriac",
+   "name": "Miso and maple roast celeriac",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-aubergine",
+   "name": "Roast aubergine with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-aubergine",
+   "name": "Chilli and lime roast aubergine",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-aubergine",
+   "name": "Parmesan roast aubergine",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-aubergine",
+   "name": "Za'atar roast aubergine with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-aubergine",
+   "name": "Miso and maple roast aubergine",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:aubergine}} into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-leeks",
+   "name": "Roast leeks with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:leek}} into short lengths."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-leeks",
+   "name": "Honey and cumin roast leeks",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:leek}} into short lengths."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-leeks",
+   "name": "Parmesan roast leeks",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:leek}} into short lengths."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-zaatar-leeks",
+   "name": "Za'atar roast leeks with lemon",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "zaatar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:leek}} into short lengths."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:zaatar}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-garlic-rosemary-swede",
+   "name": "Roast swede with garlic and rosemary",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:swede}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "rst-cumin-honey-swede",
+   "name": "Honey and cumin roast swede",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:swede}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-chilli-lime-swede",
+   "name": "Chilli and lime roast swede",
+   "cuisine": "Mexican",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:swede}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:chilli-flakes}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-parmesan-swede",
+   "name": "Parmesan roast swede",
+   "cuisine": "Italian",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:swede}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Grate over {{ing:parmesan}} for the last 5 minutes.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "rst-miso-maple-swede",
+   "name": "Miso and maple roast swede",
+   "cuisine": "Japanese",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "miso-paste",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:swede}}. Cut into chunks."
+    },
+    {
+     "instruction": "Toss in a roasting tin with {{ing:olive-oil}} and {{ing:miso-paste}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until tender and browned at the edges.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Toss with {{ing:maple-syrup}} for the last 10 minutes.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-lemon-thyme-chicken",
+   "name": "Roast chicken with lemon and thyme",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-whole",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Pat {{ing:chicken-whole}} dry. Rub with {{ing:lemon}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Sit on {{ing:butter-unsalted}} and {{ing:garlic-clove}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 20 minutes, until the juices run clear.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 15 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-harissa-chicken",
+   "name": "Harissa roast chicken",
+   "cuisine": "Middle Eastern",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-whole",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "harissa-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Pat {{ing:chicken-whole}} dry. Rub with {{ing:harissa-paste}} and {{ing:lemon}}."
+    },
+    {
+     "instruction": "Sit on {{ing:olive-oil}} and {{ing:red-onion}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 20 minutes, until the juices run clear.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 15 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-pork-crackling",
+   "name": "Roast pork shoulder with crackling",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 2000,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "fennel-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C."
+    },
+    {
+     "instruction": "Pat {{ing:pork-shoulder}} dry. Rub with {{ing:salt}} and {{ing:fennel-seeds}}."
+    },
+    {
+     "instruction": "Sit on {{ing:onion-large}} and {{ing:apple-medium}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 30 minutes. Turn the oven down to 170C.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Roast for the rest of 3 hours, until the meat is tender and the skin crackles.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Rest under foil 20 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-beef-topside",
+   "name": "Roast beef topside with mustard",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-topside",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C."
+    },
+    {
+     "instruction": "Pat {{ing:beef-topside}} dry. Rub with {{ing:mustard-dijon}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Sit on {{ing:onion-large}} and {{ing:fresh-thyme}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 30 minutes. Turn the oven down to 180C.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Roast for the rest of 1 hour, until it is pink in the middle.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 20 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-lamb-shoulder-style",
+   "name": "Slow-roast lamb with garlic and anchovy",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 1800,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "anchovy-fillet",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C."
+    },
+    {
+     "instruction": "Pat {{ing:lamb-leg}} dry. Rub with {{ing:garlic-clove}} and {{ing:anchovy-fillet}}."
+    },
+    {
+     "instruction": "Sit on {{ing:fresh-rosemary}} and {{ing:olive-oil}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 4 hours, until it falls from the bone.",
+     "duration_min": 240
+    },
+    {
+     "instruction": "Rest under foil 20 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-gammon-honey",
+   "name": "Honey and orange roast gammon",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "gammon-joint",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 16,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Pat {{ing:gammon-joint}} dry. Rub with {{ing:honey}} and {{ing:orange}}."
+    },
+    {
+     "instruction": "Sit on {{ing:mustard-dijon}} and {{ing:cloves}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 30 minutes, until the glaze is sticky.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 15 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-pork-belly-fennel",
+   "name": "Slow-roast pork belly with fennel",
+   "cuisine": "Italian",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-belly",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "fennel-seeds",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "fennel-bulb",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C."
+    },
+    {
+     "instruction": "Pat {{ing:pork-belly}} dry. Rub with {{ing:fennel-seeds}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Sit on {{ing:fennel-bulb}} and {{ing:garlic-clove}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 3 hours, until the meat is meltingly tender.",
+     "duration_min": 180
+    },
+    {
+     "instruction": "Rest under foil 15 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-chicken-tarragon-leeks",
+   "name": "Pot-roast chicken with leeks and tarragon",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-whole",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "leek",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-tarragon",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Pat {{ing:chicken-whole}} dry. Rub with {{ing:leek}} and {{ing:wine-white}}."
+    },
+    {
+     "instruction": "Sit on {{ing:fresh-tarragon}} and {{ing:butter-unsalted}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 30 minutes, until the juices run clear.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 10 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-duck-legs-orange",
+   "name": "Roast duck legs with orange",
+   "cuisine": "French",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "duck-leg",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Pat {{ing:duck-leg}} dry. Rub with {{ing:orange}} and {{ing:star-anise}}."
+    },
+    {
+     "instruction": "Sit on {{ing:honey}} and {{ing:salt}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 30 minutes, until the skin is crisp and the meat tender.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 5 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "rst-joint-turkey-thigh-sage",
+   "name": "Roast turkey with sage and onion",
+   "cuisine": "British",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "turkey-crown",
+     "quantity": 2000,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Pat {{ing:turkey-crown}} dry. Rub with {{ing:butter-unsalted}} and {{ing:fresh-sage}}."
+    },
+    {
+     "instruction": "Sit on {{ing:onion-large}} and {{ing:lemon}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 40 minutes, until the juices run clear.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 30 minutes before carving.",
+     "note": "Resting lets the juices settle back in.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-bream-lemon",
+   "name": "Whole roast sea bream with lemon and fennel",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sea-bream",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fennel-bulb",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Lay {{ing:sea-bream}} in a roasting tin. Add {{ing:lemon}}, {{ing:fennel-bulb}}, {{ing:olive-oil}} and {{ing:fresh-dill}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until the fish flakes.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-salmon-side-pesto",
+   "name": "Roast side of salmon with pesto crust",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Lay {{ing:salmon-fillet}} in a roasting tin. Add {{ing:pesto}}, {{ing:breadcrumbs-dried}} and {{ing:lemon}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until the fish flakes.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-cod-chorizo",
+   "name": "Roast cod with chorizo and butter beans",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chorizo",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Lay {{ing:cod-fillet}} in a roasting tin. Add {{ing:chorizo}}, {{ing:butter-beans-tinned}}, {{ing:cherry-tomato}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until the fish flakes.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-hake-potatoes",
+   "name": "Roast hake on lemon potatoes",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "hake-fillet",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Slice {{ing:potato-medium}} thinly. Toss with {{ing:olive-oil}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 25 minutes, until starting to crisp.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Lay {{ing:hake-fillet}} in a roasting tin. Add {{ing:lemon}} and {{ing:capers}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until the fish flakes.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-monkfish-pancetta",
+   "name": "Roast monkfish wrapped in pancetta",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "monkfish",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "pancetta",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Lay {{ing:monkfish}} in a roasting tin. Add {{ing:pancetta}}, {{ing:fresh-sage}}, {{ing:olive-oil}} and {{ing:lemon}}."
+    },
+    {
+     "instruction": "Roast 18 minutes, until the fish flakes.",
+     "duration_min": 18
+    }
+   ]
+  },
+  {
+   "slug": "rst-fish-trout-almonds-roast",
+   "name": "Roast trout with almonds and herbs",
+   "cuisine": "Mediterranean",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Lay {{ing:trout-fillet}} in a roasting tin. Add {{ing:almonds}}, {{ing:butter-unsalted}}, {{ing:fresh-parsley}} and {{ing:lemon}}."
+    },
+    {
+     "instruction": "Roast 12 minutes, until the fish flakes.",
+     "duration_min": 12
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-rhubarb-orange",
+   "name": "Roast rhubarb with orange and ginger",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "ginger-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:rhubarb}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:orange}}, {{ing:sugar-caster}} and {{ing:ginger-ground}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until soft and syrupy.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve warm with {{ing:greek-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-pears-honey",
+   "name": "Honey-roast pears with walnuts",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "pear",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pear}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:honey}} and {{ing:walnuts}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, until soft and syrupy.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Serve warm with {{ing:creme-fraiche}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-figs-port",
+   "name": "Roast figs with port",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "figs-fresh",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "port",
+     "quantity": 80,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mascarpone",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:figs-fresh}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:port}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until soft and syrupy.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve warm with {{ing:mascarpone}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-strawberries-balsamic",
+   "name": "Roast strawberries with balsamic and black pepper",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 1.2,
+     "unit": "ml"
+    },
+    {
+     "ref": "ice-cream-vanilla",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:strawberries}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:balsamic-vinegar}}, {{ing:sugar-caster}} and {{ing:black-pepper-ground}}."
+    },
+    {
+     "instruction": "Roast 12 minutes, until soft and syrupy.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Serve warm with {{ing:ice-cream-vanilla}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-apples-cinnamon",
+   "name": "Roast apples with cinnamon and maple",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:apple-medium}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:maple-syrup}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, until soft and syrupy.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Serve warm with {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-peaches-vanilla",
+   "name": "Vanilla roast peaches",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "peach",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:peach}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:sugar-caster}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until soft and syrupy.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve warm with {{ing:double-cream}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-pineapple-rum",
+   "name": "Roast pineapple with lime and coconut",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:pineapple}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:sugar-soft-brown}} and {{ing:lime}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, until soft and syrupy.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Serve warm with {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "rst-fruit-grapes-ricotta",
+   "name": "Roast grapes with ricotta and honey",
+   "cuisine": "British",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "grapes",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ricotta",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:grapes}} as needed. Lay in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}} and {{ing:ricotta}}."
+    },
+    {
+     "instruction": "Roast 15 minutes, until soft and syrupy.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve warm with {{ing:honey}}."
+    }
+   ]
+  }
+ ]
+}
