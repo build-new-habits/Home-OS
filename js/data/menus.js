@@ -1,4 +1,5 @@
-// js/data/menus.js — 27 Nov 2026 v2
+// js/data/menus.js — 27 Nov 2026 v3
+// v3: comingUp(): what starts next month, for Seasons and occasions (Phase 42).
 // v2: seasons and occasions (Phase 40): spring, summer, autumn, winter,
 // Easter, birthdays, Halloween, barbecue and outdoor cooking beside
 // Christmas, each with the months it is in season.
@@ -54,6 +55,13 @@ export function inSeason(now = new Date()) {
   const month = now.getMonth() + 1;
   const keys = Object.keys(OCCASIONS).filter((k) => k !== 'birthday' && OCCASIONS[k].months.includes(month));
   return [...keys, 'birthday'];
+}
+
+/** Occasions not in season now that start next month. Pure. */
+export function comingUp(now = new Date()) {
+  const next = ((now.getMonth() + 1) % 12) + 1;
+  const current = inSeason(now);
+  return Object.keys(OCCASIONS).filter((k) => !current.includes(k) && OCCASIONS[k].months.includes(next));
 }
 
 /** Every occasion, in season first, then the rest of the year in order. Pure. */

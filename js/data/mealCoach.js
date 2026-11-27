@@ -397,7 +397,9 @@ export function rankFacts(fitting = [], answers, now = new Date()) {
     if (f.usesSoon) score += WEIGHTS.soon;
     if (!f.recent) score += WEIGHTS.fresh;
     if (a.time !== 'any' && f.minutes === null) score += WEIGHTS.noTime;
-    if (seasonState(f.c.cuisine, now) === 'in') score += WEIGHTS.season;
+    const season = seasonState(f.c.cuisine, now);
+    if (season === 'in') score += WEIGHTS.season;
+    else if (season === 'near') score += WEIGHTS.season / 2;
     return { f, score: Math.round(score * 1000) / 1000, reasons: reasonsFor(f, a) };
   });
   out.sort((x, y) => y.score - x.score || x.f.c.name.localeCompare(y.f.c.name) || x.f.c.key.localeCompare(y.f.c.key));

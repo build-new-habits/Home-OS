@@ -1,4 +1,9 @@
-// js/data/seasons.js — 27 Nov 2026 v1
+// js/data/seasons.js — 27 Nov 2026 v2
+// v2: a month either side (Graeme, 27 Nov 2026: "Seasonal recipes - not their
+// only month. You might want to consider a month either side as an option.")
+// A month before or after a season is 'near': offered while the shoulder
+// option is on (the default), without the in-season lift, and said plainly:
+// "Christmas, a month early".
 // Phase 41. Is this recipe in season? One answer for Shape my week, Fill the
 // week and Help me choose.
 //
@@ -37,12 +42,26 @@ export function monthOf(when) {
   return d.getMonth() + 1;
 }
 
-/** 'in' | 'out' | 'none' for one cuisine in one month. */
+const wrap = (m) => ((m + 11) % 12) + 1; // 0 → 12, 13 → 1
+
+/** 'in' | 'near' | 'out' | 'none' for one cuisine in one month. */
 export function seasonState(cuisine, when) {
   const key = occasionOf(cuisine);
   if (!key) return 'none';
   if (key === 'birthday') return 'out';
-  return OCCASIONS[key].months.includes(monthOf(when)) ? 'in' : 'out';
+  const months = OCCASIONS[key].months;
+  const m = monthOf(when);
+  if (months.includes(m)) return 'in';
+  if (months.includes(wrap(m + 1)) || months.includes(wrap(m - 1))) return 'near';
+  return 'out';
+}
+
+/** For a 'near' recipe: "Christmas, a month early" or "Summer, a month late". */
+export function nearLabel(cuisine, when) {
+  const key = occasionOf(cuisine);
+  if (!key || seasonState(cuisine, when) !== 'near') return '';
+  const early = OCCASIONS[key].months.includes(wrap(monthOf(when) + 1));
+  return `${OCCASIONS[key].name}, a month ${early ? 'early' : 'late'}`;
 }
 
 /** The occasion's name for a chip: "In season: Winter". */
@@ -56,10 +75,12 @@ export function seasonLabel(cuisine) {
  * @param {object} c       a candidate with cuisine, own, favourite
  * @param {*} when         the day
  * @param {Set<string>} [asked]  occasion keys the day asks for ('bbq' asks for outdoor too)
+ * @param {{ shoulder?: boolean }} [o]  a month either side counts (default on)
  */
-export function seasonAllows(c, when, asked = new Set()) {
+export function seasonAllows(c, when, asked = new Set(), { shoulder = true } = {}) {
   if (c.own || c.favourite) return true;
   const state = seasonState(c.cuisine, when);
-  if (state !== 'out') return true;
+  if (state === 'in' || state === 'none') return true;
+  if (state === 'near' && shoulder) return true;
   return asked.has(occasionOf(c.cuisine));
 }
