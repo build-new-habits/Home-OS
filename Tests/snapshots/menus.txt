@@ -1,0 +1,14 @@
+a.back-link"Meals"
+h1"Christmas menus"
+p.field-hint
+div.toggle-group[role=group]
+  button.chip-toggle[type=button][aria-pressed=true]"All"
+  button.chip-toggle[type=button][aria-pressed=false]"Meat"
+  button.chip-toggle[type=button][aria-pressed=false]"Fish"
+  button.chip-toggle[type=button][aria-pressed=false]"Shellfish"
+  button.chip-toggle[type=button][aria-pressed=false]"Vegetarian"
+  button.chip-toggle[type=button][aria-pressed=false]"Vegan"
+p.field-hint[role=status]
+ul.hub-list
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Community library"

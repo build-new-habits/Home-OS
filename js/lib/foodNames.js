@@ -1,4 +1,7 @@
-// js/lib/foodNames.js — 03 Oct 2026 v2
+// js/lib/foodNames.js — 27 Nov 2026 v3
+// v3: a name already in the plural of its label counts itself: "6 kaffir
+// lime leaves", "12 scallops", "16 chipolatas", not "6 leaves of kaffir lime
+// leaves" (Phase 38, the world pantry).
 // v2: countedName() — "2 anchovy fillets", "½ tin of chopped tomatoes".
 // Reference names are written for sorting a list: "Rice, basmati, dry",
 // "Flour, plain", "Black pepper, ground". People say "basmati rice",
@@ -51,8 +54,11 @@ export function countedName(n, food = {}) {
   if (!label) rest = words;
   else {
     const plural = pluraliseLabel(label, numeric > 1 ? 2 : 1);
-    if (words === label || words.endsWith(` ${label}`)) rest = `${words.slice(0, words.length - label.length)}${plural}`.trim();
-    else if (words.endsWith(` ${label}s`)) rest = `${words.slice(0, words.length - label.length - 1)}${plural}`.trim();
+    const many = pluraliseLabel(label, 2);
+    const endsAs = (w) => words === w || words.endsWith(` ${w}`);
+    if (endsAs(label)) rest = `${words.slice(0, words.length - label.length)}${plural}`.trim();
+    else if (endsAs(many)) rest = `${words.slice(0, words.length - many.length)}${plural}`.trim();
+    else if (endsAs(`${label}s`)) rest = `${words.slice(0, words.length - label.length - 1)}${plural}`.trim();
     else rest = `${plural} of ${words}`;
   }
   return { count, rest, text: `${count} ${rest}` };

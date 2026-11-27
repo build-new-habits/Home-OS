@@ -1,0 +1,5071 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Christmas",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "xmas-smoked-salmon-blinis",
+   "name": "Smoked salmon blinis with lemon crème fraîche",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Assemble no more than an hour ahead, or the blinis go soft.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "blinis",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-salmon-cold",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Lay {{ing:blinis}} on a baking tray."
+    },
+    {
+     "instruction": "Warm them in the oven for 4 minutes, until soft and warm.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Grate the zest of {{ing:lemon}} into a bowl.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}} and half of the {{ing:fresh-dill}}."
+    },
+    {
+     "instruction": "Squeeze in 1 tsp of the lemon juice. Stir."
+    },
+    {
+     "instruction": "Put a teaspoon of the cream on each blini."
+    },
+    {
+     "instruction": "Tear {{ing:smoked-salmon-cold}} into strips. Fold a strip onto each blini."
+    },
+    {
+     "instruction": "Finish with the rest of the dill and {{ing:black-pepper-ground}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "smoked salmon",
+     "text": "Hot-smoked trout or cooked prawns"
+    },
+    {
+     "instead": "crème fraîche",
+     "text": "Thick oat-based crème fraîche, for a dairy-free version"
+    },
+    {
+     "instead": "blinis",
+     "text": "Thin slices of cucumber or rye crackers, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-prawn-cocktail",
+   "name": "Prawn cocktail",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Dry the prawns well on kitchen paper or the sauce goes thin.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "prawns-cooked",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "worcestershire-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cayenne-pepper",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "cos-lettuce",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pat {{ing:prawns-cooked}} dry with kitchen paper.",
+     "note": "Frozen prawns need to thaw in the fridge overnight first."
+    },
+    {
+     "instruction": "Mix {{ing:mayonnaise}}, {{ing:tomato-ketchup}} and {{ing:worcestershire-sauce}} in a bowl."
+    },
+    {
+     "instruction": "Squeeze in half of {{ing:lemon}}. Stir. Taste."
+    },
+    {
+     "instruction": "Stir the prawns into the sauce."
+    },
+    {
+     "instruction": "Shred {{ing:cos-lettuce}} finely."
+    },
+    {
+     "instruction": "Halve {{ing:avocado}}, remove the stone, then dice the flesh."
+    },
+    {
+     "instruction": "Divide the lettuce and avocado between four glasses or bowls."
+    },
+    {
+     "instruction": "Spoon the prawns on top."
+    },
+    {
+     "instruction": "Dust with {{ing:cayenne-pepper}}. Cut the other lemon half into wedges to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "Cooked crab meat, or chopped palm hearts for a vegan version with vegan mayonnaise"
+    },
+    {
+     "instead": "Worcestershire sauce",
+     "text": "A few drops of soy sauce, as most Worcestershire sauce contains anchovy"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-seared-scallops-pea",
+   "name": "Seared scallops with minted peas and crisp pancetta",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "A very hot pan and dry scallops give the golden crust. Do not move them while they sear.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "peas-frozen",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pancetta",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "scallops",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a pan of water on a high heat.",
+     "step_group": "Peas"
+    },
+    {
+     "instruction": "Boil {{ing:peas-frozen}} for 3 minutes, until bright green and tender.",
+     "duration_min": 3,
+     "step_group": "Peas"
+    },
+    {
+     "instruction": "Drain. Blend with {{ing:butter-block}} and {{ing:fresh-mint}} until nearly smooth.",
+     "step_group": "Peas"
+    },
+    {
+     "instruction": "Add a squeeze of {{ing:lemon}} and a pinch of salt. Keep warm.",
+     "step_group": "Peas"
+    },
+    {
+     "instruction": "Put a large frying pan on a medium heat.",
+     "step_group": "Pancetta"
+    },
+    {
+     "instruction": "Fry {{ing:pancetta}} for 5 minutes, until crisp. Lift onto kitchen paper.",
+     "duration_min": 5,
+     "step_group": "Pancetta"
+    },
+    {
+     "instruction": "Pat {{ing:scallops}} dry. Season both sides with salt.",
+     "step_group": "Scallops"
+    },
+    {
+     "instruction": "Turn the heat to high. Add {{ing:olive-oil}} to the pan.",
+     "step_group": "Scallops"
+    },
+    {
+     "instruction": "Lay the scallops in. Cook 90 seconds without moving them, until golden underneath.",
+     "duration_min": 2,
+     "step_group": "Scallops"
+    },
+    {
+     "instruction": "Turn them over. Cook 1 minute more.",
+     "note": "They should still feel slightly springy.",
+     "duration_min": 1,
+     "step_group": "Scallops"
+    },
+    {
+     "instruction": "Spoon peas onto plates. Top with three scallops and the pancetta.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pancetta",
+     "text": "Toasted hazelnuts, chopped, for a version with no meat"
+    },
+    {
+     "instead": "butter",
+     "text": "Olive oil, to make it dairy free"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-chicken-liver-pate",
+   "name": "Chicken liver pâté",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "Make it the day before. It sets in the fridge and the flavour is better.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "butter-block",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-livers",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "redcurrant-jelly",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Trim any white sinew from {{ing:chicken-livers}}. Pat dry."
+    },
+    {
+     "instruction": "Melt 25 g of {{ing:butter-block}} in a frying pan on a medium heat."
+    },
+    {
+     "instruction": "Chop {{ing:shallot}} and {{ing:garlic-clove}}. Fry 5 minutes, until soft.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add the livers and leaves from {{ing:fresh-thyme}}. Fry 4 minutes, turning once.",
+     "note": "They should be brown outside and just pink in the middle. Overcooked livers taste grainy.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}} (brandy). Let it bubble for 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Tip everything into a blender with the rest of the butter."
+    },
+    {
+     "instruction": "Blend until smooth. Season with salt and pepper."
+    },
+    {
+     "instruction": "Spoon into a dish. Cover and chill for at least 4 hours.",
+     "duration_min": 240
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}}. Cut into triangles.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Serve the pâté with the toast and {{ing:redcurrant-jelly}}.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "brandy",
+     "text": "Port, or 2 tbsp apple juice for no alcohol"
+    },
+    {
+     "instead": "toast",
+     "text": "Gluten-free toast or oatcakes labelled gluten free"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-beetroot-goats-cheese",
+   "name": "Beetroot, goats' cheese and walnut salad",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Vacuum-packed cooked beetroot works perfectly here.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "walnuts",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "beetroot",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "goats-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a dry frying pan on a medium heat."
+    },
+    {
+     "instruction": "Toast {{ing:walnuts}} for 3 minutes, until they smell nutty.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:honey}}. Stir 1 minute until coated. Tip onto baking paper.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Cut cooked {{ing:beetroot}} into wedges."
+    },
+    {
+     "instruction": "Whisk {{ing:olive-oil}} and {{ing:balsamic-vinegar}} with a pinch of salt."
+    },
+    {
+     "instruction": "Toss {{ing:rocket}} in half of the dressing. Divide between plates."
+    },
+    {
+     "instruction": "Add the beetroot. Crumble {{ing:goats-cheese}} over."
+    },
+    {
+     "instruction": "Scatter the walnuts. Drizzle the rest of the dressing."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "goats' cheese",
+     "text": "Crumbled feta, or a vegan soft cheese for a vegan version"
+    },
+    {
+     "instead": "honey",
+     "text": "Maple syrup, for a vegan version"
+    },
+    {
+     "instead": "walnuts",
+     "text": "Toasted pumpkin seeds, for a nut-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-parsnip-apple-soup",
+   "name": "Spiced parsnip and apple soup",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Freezes well for up to three months.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "oat-cream",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and see-through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Crush {{ing:garlic-clove}} into the pan. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and chop {{ing:parsnip}} and {{ing:apple-medium}} into chunks."
+    },
+    {
+     "instruction": "Add them with {{ing:curry-powder}}. Stir 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Pour in {{ing:stock-vegetable}}. Bring to the boil."
+    },
+    {
+     "instruction": "Simmer (small bubbles) for 25 minutes, until the parsnip is soft.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Blend until smooth."
+    },
+    {
+     "instruction": "Stir in {{ing:oat-cream}}. Season with salt and pepper.",
+     "note": "Too thick? Add a splash of hot water."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "oat cream",
+     "text": "Single cream"
+    },
+    {
+     "instead": "curry powder",
+     "text": "Ground cumin and a pinch of ground ginger"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-thai-crab-cakes",
+   "name": "Thai crab cakes with lime leaf and sweet chilli",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Chilling the cakes before frying stops them falling apart.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "crab-white-meat",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "lime-leaves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "panko",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:potato-large}} and cut into chunks.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Boil 12 minutes, until soft. Drain and mash. Cool.",
+     "duration_min": 12,
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Remove the stalks from {{ing:lime-leaves}}. Shred the leaves very finely.",
+     "step_group": "Mix",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Peel the tough outer layer off {{ing:lemongrass}}. Chop the inside very finely.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Chop {{ing:chilli-fresh}}, {{ing:spring-onion}} and {{ing:fresh-coriander}}.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Mix it all into the potato with {{ing:crab-white-meat}} and {{ing:fish-sauce}}.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Shape into 8 small cakes.",
+     "step_group": "Shape"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Dip each cake in egg, then in {{ing:panko}}.",
+     "step_group": "Shape"
+    },
+    {
+     "instruction": "Chill for 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Shape"
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a frying pan on a medium heat.",
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Fry the cakes 3 minutes a side, until golden.",
+     "duration_min": 6,
+     "step_group": "Fry"
+    },
+    {
+     "instruction": "Serve with {{ing:sweet-chilli-sauce}} and wedges of {{ing:lime}}.",
+     "step_group": "Fry"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "crab",
+     "text": "Cooked salmon or cooked prawns, chopped"
+    },
+    {
+     "instead": "panko",
+     "text": "Gluten-free breadcrumbs, for a gluten-free version (check the fish sauce too)"
+    },
+    {
+     "instead": "lime leaves",
+     "text": "The grated zest of 1 lime"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mushroom-chestnut-pate",
+   "name": "Mushroom and chestnut pâté",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Cook the mushrooms until the pan is dry. Wet mushrooms make a loose pâté.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sherry",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chestnuts-cooked",
+     "quantity": 180,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "oatcakes",
+     "quantity": 18,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:shallot}} and {{ing:garlic-clove}}. Fry 5 minutes, until soft.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Add with leaves from {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Fry 12 minutes, until the liquid has gone and they are browning.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:sherry}}. Bubble 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Blend with {{ing:chestnuts-cooked}} and {{ing:soy-sauce}} until nearly smooth."
+    },
+    {
+     "instruction": "Season. Spoon into a dish. Chill for 2 hours to firm up.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Serve with {{ing:oatcakes}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "sherry",
+     "text": "Apple juice, for no alcohol"
+    },
+    {
+     "instead": "soy sauce",
+     "text": "Tamari labelled gluten free, with gluten-free oatcakes, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-stilton-pear-tartlets",
+   "name": "Stilton, pear and walnut tartlets",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Ready-rolled pastry, straight from the fridge, is easiest to cut cleanly.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "puff-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pear",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stilton",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Line a baking tray with baking paper."
+    },
+    {
+     "instruction": "Unroll {{ing:puff-pastry}}. Cut into 6 rectangles. Put them on the tray."
+    },
+    {
+     "instruction": "Score a border 1 cm in from each edge, without cutting through.",
+     "note": "The border puffs up around the filling."
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Brush it over the borders."
+    },
+    {
+     "instruction": "Core {{ing:pear}} and slice thinly. Lay the slices inside the borders."
+    },
+    {
+     "instruction": "Crumble {{ing:stilton}} over. Scatter {{ing:walnuts}}."
+    },
+    {
+     "instruction": "Bake 18 minutes, until puffed and golden.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Drizzle with {{ing:honey}}. Scatter leaves from {{ing:fresh-thyme}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "Stilton",
+     "text": "Soft goats' cheese, or a vegan blue-style cheese with vegan pastry"
+    },
+    {
+     "instead": "walnuts",
+     "text": "Leave them out for a nut-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-roast-turkey-crown",
+   "name": "Roast turkey crown with lemon and thyme",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Resting for 30 minutes is part of the cooking. It keeps the meat juicy and frees the oven.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "turkey-crown",
+     "quantity": 2500,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 300,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Take {{ing:turkey-crown}} out of the fridge 1 hour before cooking.",
+     "note": "Cold meat cooks unevenly.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Mash {{ing:butter-block}} with the zest of {{ing:lemon}} and leaves from {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Crush {{ing:garlic-clove}} into the butter. Add a good pinch of salt."
+    },
+    {
+     "instruction": "Push the butter under the skin, over the breast meat.",
+     "note": "Loosen the skin with your fingers from the neck end first."
+    },
+    {
+     "instruction": "Thickly slice {{ing:onion-medium}} and {{ing:carrot-medium}}. Spread in a roasting tin."
+    },
+    {
+     "instruction": "Sit the turkey on top. Pour {{ing:stock-chicken}} into the tin."
+    },
+    {
+     "instruction": "Roast 2 hours 10 minutes for a 2.5 kg crown.",
+     "note": "About 45 minutes per kg plus 20. Cover loosely with foil if the skin browns too fast.",
+     "duration_min": 130
+    },
+    {
+     "instruction": "Check the thickest part reads 75C, or the juices run clear, not pink."
+    },
+    {
+     "instruction": "Lift onto a board. Cover loosely with foil. Rest 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Keep the tin and its juices for the gravy."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "Olive oil with the same lemon, thyme and garlic, to make it dairy free"
+    },
+    {
+     "instead": "turkey crown",
+     "text": "A whole turkey: roast 20 minutes per kg plus 90 minutes, and check the thigh"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-glazed-gammon",
+   "name": "Honey and mustard glazed gammon",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Simmer first, then glaze. Good hot on the day and cold on Boxing Day.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "gammon-joint",
+     "quantity": 2000,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-peppercorns",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-demerara",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:gammon-joint}} in a large pan. Cover with cold water.",
+     "step_group": "Simmer"
+    },
+    {
+     "instruction": "Add {{ing:onion-medium}} cut in half, {{ing:bay-leaf}} and {{ing:black-peppercorns}}.",
+     "step_group": "Simmer"
+    },
+    {
+     "instruction": "Bring to the boil, then simmer (small bubbles) for 1 hour 40 minutes.",
+     "note": "50 minutes per kg. Skim off any froth.",
+     "duration_min": 100,
+     "step_group": "Simmer"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Glaze",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Lift the gammon into a foil-lined roasting tin. Cool 10 minutes.",
+     "duration_min": 10,
+     "step_group": "Glaze"
+    },
+    {
+     "instruction": "Cut off the skin, leaving a thin layer of fat.",
+     "step_group": "Glaze"
+    },
+    {
+     "instruction": "Score the fat in diamonds. Push {{ing:cloves}} into the crossings.",
+     "step_group": "Glaze"
+    },
+    {
+     "instruction": "Mix {{ing:honey}}, {{ing:mustard-dijon}} and {{ing:sugar-demerara}}. Brush over the fat.",
+     "step_group": "Glaze"
+    },
+    {
+     "instruction": "Roast 25 minutes, until sticky and dark golden.",
+     "note": "Brush on more glaze halfway.",
+     "duration_min": 25,
+     "step_group": "Glaze"
+    },
+    {
+     "instruction": "Rest 15 minutes before carving.",
+     "duration_min": 15,
+     "step_group": "Glaze"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup"
+    },
+    {
+     "instead": "Dijon mustard",
+     "text": "English mustard, for more heat (check the label if you need gluten free)"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-beef-fillet-peppercorn",
+   "name": "Beef fillet with green peppercorn sauce",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "method_note": "A meat thermometer takes the guesswork out: 50C in the middle for medium-rare.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-fillet",
+     "quantity": 1200,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Take {{ing:beef-fillet}} out of the fridge 1 hour before.",
+     "duration_min": 60,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Heat the oven to 220C. Season the beef all over with salt.",
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Put a roasting tin on the hob on a high heat. Add {{ing:olive-oil}}.",
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Brown the beef on every side, 6 minutes in all.",
+     "duration_min": 6,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Roast 20 minutes for medium-rare.",
+     "note": "25 minutes for medium.",
+     "duration_min": 20,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Rest on a board under foil for 15 minutes.",
+     "duration_min": 15,
+     "step_group": "Beef"
+    },
+    {
+     "instruction": "Crumble {{ing:stock-cube}} into {{ing:water}} that has boiled. Stir.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Melt {{ing:butter-block}} in a frying pan on a medium heat.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Chop {{ing:shallot}} finely. Fry 4 minutes, until soft.",
+     "duration_min": 4,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}} (brandy). Bubble until almost gone.",
+     "note": "Stand back: it can flame. If it does, let it burn out.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Add the stock. Boil 5 minutes, until halved.",
+     "duration_min": 5,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Drain {{ing:green-peppercorns-brine}}. Crush lightly. Add with {{ing:double-cream}} and {{ing:mustard-dijon}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Simmer 3 minutes, until it coats a spoon.",
+     "duration_min": 3,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Slice the beef thickly. Serve with the sauce.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "brandy",
+     "text": "More stock with 1 tsp of red wine vinegar, for no alcohol"
+    },
+    {
+     "instead": "double cream",
+     "text": "Oat cream, with olive oil for the butter, to make it dairy free"
+    },
+    {
+     "instead": "stock cube",
+     "text": "A gluten-free stock cube, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-duck-orange-star-anise",
+   "name": "Slow-roast duck legs with orange and star anise",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Slow cooking renders the fat and leaves the meat falling off the bone. Keep the fat for roast potatoes.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "duck-leg",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "five-spice",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C."
+    },
+    {
+     "instruction": "Prick the skin of {{ing:duck-leg}} all over with a fork.",
+     "note": "Pricking lets the fat run out."
+    },
+    {
+     "instruction": "Rub with {{ing:five-spice}} and a good pinch of salt."
+    },
+    {
+     "instruction": "Slice {{ing:orange}} into rounds. Lay them in a roasting tin."
+    },
+    {
+     "instruction": "Add {{ing:star-anise}}, {{ing:cinnamon-stick}} and {{ing:garlic-clove}}, lightly crushed."
+    },
+    {
+     "instruction": "Slice {{ing:ginger-fresh}}. Add to the tin with {{ing:stock-chicken}}."
+    },
+    {
+     "instruction": "Sit the legs on top, skin up."
+    },
+    {
+     "instruction": "Roast 2 hours, until the meat is very tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}} and {{ing:honey}}. Brush over the skin."
+    },
+    {
+     "instruction": "Turn the oven to 200C. Roast 15 minutes more, until crisp.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Spoon off the fat. Serve with the orange juices from the tin."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "soy sauce",
+     "text": "Tamari labelled gluten free, for a gluten-free version"
+    },
+    {
+     "instead": "honey",
+     "text": "Maple syrup"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-salmon-side-herb-crust",
+   "name": "Baked side of salmon with lemon, dill and herb crumb",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "One whole side looks generous and cooks in 25 minutes.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 1200,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "panko",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Line a large tray with baking paper."
+    },
+    {
+     "instruction": "Lay {{ing:salmon-fillet}} skin down on the tray. Season."
+    },
+    {
+     "instruction": "Spread {{ing:mustard-dijon}} over the top."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-dill}} and {{ing:fresh-parsley}}. Grate in the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Crush in {{ing:garlic-clove}}. Mix with {{ing:panko}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Press the crumb over the salmon."
+    },
+    {
+     "instruction": "Bake 22 minutes, until it flakes in the thickest part.",
+     "duration_min": 22
+    },
+    {
+     "instruction": "Serve with the lemons cut into wedges."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "panko",
+     "text": "Gluten-free breadcrumbs, or chopped pistachios, for a gluten-free version"
+    },
+    {
+     "instead": "salmon",
+     "text": "A side of trout, baked for 15 minutes"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-saffron-fish-mussel-stew",
+   "name": "Saffron fish and mussel stew",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Add the fish at the end and let it poach gently, so it stays in large pieces.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "saffron",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "water",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "hake-fillet",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "mussels-cooked",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:saffron}} in 3 tbsp of hot water from the kettle."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Add with {{ing:smoked-paprika}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Pour in {{ing:wine-white}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, the saffron and {{ing:water}}."
+    },
+    {
+     "instruction": "Crumble in {{ing:stock-cube}}. Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Cut {{ing:hake-fillet}} into large chunks. Lay them in the sauce."
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}} and {{ing:mussels-cooked}}. Cover."
+    },
+    {
+     "instruction": "Cook 5 minutes, until the prawns are pink and the fish flakes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter chopped {{ing:fresh-parsley}}. Serve with crusty bread."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "white wine",
+     "text": "More water with a squeeze of lemon, for no alcohol"
+    },
+    {
+     "instead": "hake",
+     "text": "Cod, haddock or monkfish"
+    },
+    {
+     "instead": "stock cube",
+     "text": "Check the label says gluten free, if you need it"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-lobster-garlic-butter",
+   "name": "Lobster tails with garlic and herb butter",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Frozen raw tails thaw overnight in the fridge. Cutting through the shell lets the butter in.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lobster-tail",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "chives",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the grill to high."
+    },
+    {
+     "instruction": "Cut down the back of each shell of {{ing:lobster-tail}} with scissors.",
+     "note": "Stop at the tail fan."
+    },
+    {
+     "instruction": "Ease the meat up so it sits on top of the shell."
+    },
+    {
+     "instruction": "Mash {{ing:butter-block}} with crushed {{ing:garlic-clove}}, chopped {{ing:fresh-parsley}} and {{ing:chives}}."
+    },
+    {
+     "instruction": "Add the zest of {{ing:lemon}} and a pinch of salt."
+    },
+    {
+     "instruction": "Spread half the butter over the meat. Dust with {{ing:smoked-paprika}}."
+    },
+    {
+     "instruction": "Grill 8 minutes, until the meat is white all through.",
+     "note": "About 1 minute per 25 g of tail.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Melt the rest of the butter. Spoon over to serve, with lemon wedges."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "lobster tails",
+     "text": "Large raw king prawns, grilled for 3 minutes"
+    },
+    {
+     "instead": "butter",
+     "text": "Olive oil with the same garlic and herbs, to make it dairy free"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-thai-green-prawn-curry",
+   "name": "Thai green king prawn curry with lime leaves and galangal",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Galangal and lime leaves are what make it taste like a Thai restaurant. Both freeze well.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "rice-jasmine-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-green-curry-paste",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "galangal",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime-leaves",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "palm-sugar",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rinse {{ing:rice-jasmine-dry}}. Cook it the way the packet says.",
+     "note": "Keep it covered off the heat once cooked.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Peel and slice {{ing:galangal}} thinly.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Bash {{ing:lemongrass}} with a rolling pin to bruise it."
+    },
+    {
+     "instruction": "Put a wok or large pan on a medium heat. Add {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Fry {{ing:thai-green-curry-paste}} for 2 minutes, until fragrant.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:coconut-milk-tinned}}, the galangal, lemongrass and torn {{ing:lime-leaves}}."
+    },
+    {
+     "instruction": "Add {{ing:fish-sauce}} and {{ing:palm-sugar}}. Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Halve {{ing:green-beans}}. Add and simmer 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Cook 3 minutes, until pink all over.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Take out the lemongrass. Stir in {{ing:fresh-basil}}.",
+     "note": "Leave the galangal and lime leaves in, but they are not for eating."
+    },
+    {
+     "instruction": "Taste. Add a squeeze of {{ing:lime}}. Serve with the rice."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "prawns",
+     "text": "Chunks of firm tofu, with soy sauce for the fish sauce, for a vegan version (check the paste has no shrimp)"
+    },
+    {
+     "instead": "palm sugar",
+     "text": "Soft brown sugar"
+    },
+    {
+     "instead": "galangal",
+     "text": "The same weight of fresh ginger"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-butternut-wellington",
+   "name": "Squash, spinach and goats' cheese Wellington",
+   "cuisine": "Christmas",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Roast the squash and dry the spinach well, or the pastry base goes soggy.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chestnuts-cooked",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-cranberries",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "goats-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "puff-pastry",
+     "quantity": 640,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Peel {{ing:butternut-squash}}. Cut into 2 cm cubes.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Slice {{ing:red-onion}}. Toss both with {{ing:olive-oil}} and chopped {{ing:fresh-sage}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Roast 30 minutes, until soft and browning.",
+     "duration_min": 30,
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Wilt {{ing:spinach}} in a dry pan, 2 minutes.",
+     "duration_min": 2,
+     "step_group": "Filling",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Squeeze out all the water from the spinach in a clean tea towel.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Cool the squash. Mix with spinach, chopped {{ing:chestnuts-cooked}} and {{ing:dried-cranberries}}.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Crumble in {{ing:goats-cheese}}. Season.",
+     "step_group": "Filling"
+    },
+    {
+     "instruction": "Lay one sheet of {{ing:puff-pastry}} on a lined tray.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Pile the filling down the middle, leaving 3 cm clear all round.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Brush the clear edge.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Lay the second sheet over. Press the edges to seal. Trim.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Brush all over with egg. Cut three slits in the top.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Bake 35 minutes, until deep golden.",
+     "duration_min": 35,
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Rest 10 minutes before slicing.",
+     "duration_min": 10,
+     "step_group": "Bake"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "goats' cheese",
+     "text": "Vegan feta-style cheese, with plant milk to glaze and vegan pastry, for a vegan version"
+    },
+    {
+     "instead": "chestnuts",
+     "text": "Toasted pumpkin seeds"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-nut-roast",
+   "name": "Cranberry and chestnut nut roast",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Make it a day ahead and reheat in slices. It cuts more neatly cold.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chia-seeds",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-mixed-herbs",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cashews",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "pecans",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chestnuts-cooked",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "tahini",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cranberry-sauce",
+     "quantity": 120,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a 900 g loaf tin with baking paper."
+    },
+    {
+     "instruction": "Stir {{ing:chia-seeds}} into {{ing:water}}. Leave 10 minutes to thicken.",
+     "note": "This holds it together, the way egg would.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:celery-stick}} finely. Fry 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:mushroom-chestnut}}. Add with {{ing:dried-mixed-herbs}}. Fry 8 minutes, until dry.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Pulse {{ing:cashews}} and {{ing:pecans}} in a food processor until coarse."
+    },
+    {
+     "instruction": "Crumble {{ing:chestnuts-cooked}} into a big bowl. Add the nuts and vegetables."
+    },
+    {
+     "instruction": "Add {{ing:breadcrumbs-dried}}, {{ing:tahini}}, {{ing:soy-sauce}} and the chia. Mix well."
+    },
+    {
+     "instruction": "Spread {{ing:cranberry-sauce}} over the base of the tin."
+    },
+    {
+     "instruction": "Press the mixture in firmly. Cover with foil."
+    },
+    {
+     "instruction": "Bake 30 minutes. Take off the foil. Bake 15 minutes more.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Rest 15 minutes. Turn out, cranberry side up.",
+     "duration_min": 15
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pecans",
+     "text": "Walnuts or hazelnuts"
+    },
+    {
+     "instead": "breadcrumbs",
+     "text": "Gluten-free breadcrumbs and tamari, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-roast-cauliflower-tahini",
+   "name": "Whole roast spiced cauliflower with tahini and pomegranate",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Steaming first means the middle is tender by the time the outside is golden.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "ras-el-hanout",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tahini",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pomegranate-molasses",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "pistachios",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Trim the outer leaves from {{ing:cauliflower-head}}, keeping it whole."
+    },
+    {
+     "instruction": "Steam or boil it whole for 8 minutes. Drain well.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Mix {{ing:olive-oil}}, {{ing:ras-el-hanout}}, crushed {{ing:garlic-clove}} and a pinch of salt."
+    },
+    {
+     "instruction": "Rub it all over the cauliflower. Sit it in a roasting tin."
+    },
+    {
+     "instruction": "Roast 40 minutes, until golden and a knife slides in.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Whisk {{ing:tahini}} with the juice of {{ing:lemon}} and 3 tbsp water.",
+     "note": "It thickens before it loosens. Keep whisking.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Drizzle the tahini and {{ing:pomegranate-molasses}} over the cauliflower."
+    },
+    {
+     "instruction": "Scatter {{ing:pomegranate-seeds}}, chopped {{ing:pistachios}} and {{ing:fresh-mint}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pistachios",
+     "text": "Toasted pumpkin seeds, for a nut-free version"
+    },
+    {
+     "instead": "ras el hanout",
+     "text": "1 tsp ground cumin, 1 tsp smoked paprika and a pinch of cinnamon"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-celeriac-steaks-peppercorn",
+   "name": "Celeriac steaks with mushroom and green peppercorn sauce",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Thick slices roasted until golden eat like a steak. The sauce works with beef too.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "green-peppercorns-brine",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "oat-cream",
+     "quantity": 200,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Steaks"
+    },
+    {
+     "instruction": "Peel {{ing:celeriac}}. Cut into four 2 cm slices.",
+     "step_group": "Steaks"
+    },
+    {
+     "instruction": "Brush with 2 tbsp of {{ing:olive-oil}}. Season. Lay {{ing:fresh-thyme}} on top.",
+     "step_group": "Steaks"
+    },
+    {
+     "instruction": "Roast 45 minutes, turning once, until golden and tender.",
+     "duration_min": 45,
+     "step_group": "Steaks"
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat with the rest of the oil.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Chop {{ing:shallot}} and {{ing:garlic-clove}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Fry them 10 minutes, until browned and dry.",
+     "duration_min": 10,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Drain and crush {{ing:green-peppercorns-brine}}. Add with {{ing:mustard-dijon}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Pour in {{ing:oat-cream}}. Simmer 3 minutes, until thick.",
+     "duration_min": 3,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Spoon the sauce over the celeriac steaks.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "oat cream",
+     "text": "Double cream, for a vegetarian version"
+    },
+    {
+     "instead": "celeriac",
+     "text": "Thick slices of cauliflower or portobello mushrooms, roasted 25 minutes"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-roast-potatoes",
+   "name": "Crisp roast potatoes",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Roughing up the edges after boiling is what makes them crisp.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 7,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C. Put {{ing:vegetable-oil}} in a large roasting tin in the oven."
+    },
+    {
+     "instruction": "Peel {{ing:potato-large}}. Cut into large chunks."
+    },
+    {
+     "instruction": "Boil in salted water 8 minutes, until the edges soften.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Drain. Leave to steam dry 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Shake the pan to rough up the edges."
+    },
+    {
+     "instruction": "Carefully tip the potatoes into the hot oil. Turn to coat.",
+     "note": "The oil should sizzle. If not, heat it longer."
+    },
+    {
+     "instruction": "Roast 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Turn them. Add {{ing:fresh-rosemary}} and {{ing:garlic-clove}} in their skins."
+    },
+    {
+     "instruction": "Roast 20 minutes more, until deep golden and crisp.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Sprinkle with {{ing:salt}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "vegetable oil",
+     "text": "Duck or goose fat, for the classic flavour (not vegetarian)"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-honey-roast-roots",
+   "name": "Honey-roast parsnips and carrots",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Add the honey near the end. Added early, it burns.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel {{ing:parsnip}} and {{ing:carrot-medium}}. Cut into long batons."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}}, {{ing:fresh-thyme}} and a pinch of salt."
+    },
+    {
+     "instruction": "Spread in a roasting tin in one layer."
+    },
+    {
+     "instruction": "Roast 30 minutes, until starting to brown.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Drizzle {{ing:honey}} over. Toss."
+    },
+    {
+     "instruction": "Roast 10 minutes more, until sticky.",
+     "duration_min": 10
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "honey",
+     "text": "Maple syrup, for a vegan version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-sprouts-chestnuts",
+   "name": "Sprouts with chestnuts and bacon",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Halving the sprouts and frying them gives sweet, browned edges.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "brussels-sprouts",
+     "quantity": 750,
+     "unit": "g"
+    },
+    {
+     "ref": "bacon-streaky-raw",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "chestnuts-cooked",
+     "quantity": 180,
+     "unit": "g"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Trim and halve {{ing:brussels-sprouts}}."
+    },
+    {
+     "instruction": "Boil 3 minutes. Drain well.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Put a large frying pan on a medium heat."
+    },
+    {
+     "instruction": "Snip {{ing:bacon-streaky-raw}} into pieces. Fry 5 minutes, until crisp.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:butter-block}} and the sprouts. Fry 5 minutes, until browned.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Crumble in {{ing:chestnuts-cooked}}. Stir 2 minutes to warm.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Grate over {{ing:nutmeg}}. Add a squeeze of {{ing:lemon}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "bacon",
+     "text": "Smoked paprika and a little more butter, for a vegetarian version"
+    },
+    {
+     "instead": "butter",
+     "text": "Olive oil, to make it dairy free"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-braised-red-cabbage",
+   "name": "Braised red cabbage with apple and spice",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Make it up to three days ahead. It tastes better reheated.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 1000,
+     "unit": "g"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:red-onion}}. Fry 5 minutes, until soft.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Shred {{ing:red-cabbage}} finely, without the core."
+    },
+    {
+     "instruction": "Grate {{ing:apple-medium}}, skin and all, round the core."
+    },
+    {
+     "instruction": "Add both with {{ing:sugar-soft-brown}}, {{ing:balsamic-vinegar}} and {{ing:wine-red}}."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}} and a pinch of salt."
+    },
+    {
+     "instruction": "Cover. Cook on a low heat 1 hour, stirring now and then.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Take out the cinnamon and cloves. Taste for salt."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "red wine",
+     "text": "Apple juice, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-cranberry-sauce",
+   "name": "Cranberry and orange sauce",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "It thickens a lot as it cools. Keeps in the fridge for a week.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cranberries",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "port",
+     "quantity": 50,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:cranberries}} and {{ing:sugar-caster}} in a pan."
+    },
+    {
+     "instruction": "Add the zest and juice of {{ing:orange}}, {{ing:port}} and {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Heat gently, stirring, until the sugar dissolves."
+    },
+    {
+     "instruction": "Simmer 8 minutes, until most cranberries have burst.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Take out the cinnamon. Cool."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "port",
+     "text": "More orange juice, for no alcohol, or if your port is not labelled vegan"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-bread-sauce",
+   "name": "Bread sauce",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Infuse the milk an hour or more ahead if you can. The flavour comes from the wait.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-peppercorns",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 5,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:onion-medium}} in half. Push {{ing:cloves}} into it."
+    },
+    {
+     "instruction": "Put it in a pan with {{ing:milk-whole}}, {{ing:bay-leaf}} and {{ing:black-peppercorns}}."
+    },
+    {
+     "instruction": "Bring almost to the boil. Take off the heat."
+    },
+    {
+     "instruction": "Leave to infuse for at least 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cut the crusts off {{ing:bread-slice-medium}}. Whizz into crumbs."
+    },
+    {
+     "instruction": "Strain the milk. Return it to the pan."
+    },
+    {
+     "instruction": "Stir in the crumbs. Simmer 3 minutes, until thick.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:butter-block}}, {{ing:double-cream}} and {{ing:nutmeg}}. Season."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "milk",
+     "text": "Unsweetened oat milk, with olive oil for the butter, for a vegan version"
+    },
+    {
+     "instead": "bread",
+     "text": "Gluten-free bread, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-pigs-in-blankets",
+   "name": "Pigs in blankets",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Stretching the bacon with the back of a knife makes it go further and wrap tighter.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "bacon-streaky-raw",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "chipolatas",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Line a tray with baking paper."
+    },
+    {
+     "instruction": "Stretch each rasher of {{ing:bacon-streaky-raw}} with the back of a knife. Cut in half."
+    },
+    {
+     "instruction": "Wrap a piece of bacon round each of {{ing:chipolatas}}."
+    },
+    {
+     "instruction": "Lay them seam down on the tray."
+    },
+    {
+     "instruction": "Roast 25 minutes.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Mix {{ing:honey}} and {{ing:wholegrain-mustard}}. Brush over."
+    },
+    {
+     "instruction": "Roast 5 minutes more, until sticky and cooked through.",
+     "duration_min": 5
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "chipolatas",
+     "text": "Gluten-free sausages, for a gluten-free version"
+    },
+    {
+     "instead": "chipolatas and bacon",
+     "text": "Vegetarian sausages wrapped in thin strips of courgette"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-turkey-gravy",
+   "name": "Turkey gravy from the roasting tin",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "The browned bits in the tin are the flavour. Scrape them all up.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 750,
+     "unit": "ml"
+    },
+    {
+     "ref": "redcurrant-jelly",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour the juices from the turkey tin into a jug. Let the fat rise."
+    },
+    {
+     "instruction": "Spoon 2 tbsp of the fat back into the tin. Keep the juices."
+    },
+    {
+     "instruction": "Put the tin on the hob on a medium heat."
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}. Scrape up every browned bit."
+    },
+    {
+     "instruction": "Whisk in {{ing:stock-chicken}} and the juices from under the fat."
+    },
+    {
+     "instruction": "Simmer 8 minutes, until it coats a spoon.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:redcurrant-jelly}}. Season. Strain into a warm jug."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "flour",
+     "text": "Cornflour mixed with a little cold water, for a gluten-free version"
+    },
+    {
+     "instead": "red wine",
+     "text": "More stock, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-vegan-gravy",
+   "name": "Rich onion and mushroom gravy",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Take the onions to dark brown, slowly. That is where the depth comes from.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-thyme",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 750,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cranberry-sauce",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a pan on a medium-low heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}}. Cook 20 minutes, stirring, until dark brown.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Chop {{ing:mushroom-chestnut}}. Add with {{ing:dried-thyme}}. Cook 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Cook 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:wine-red}}. Bubble 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Whisk in {{ing:stock-vegetable}} and {{ing:soy-sauce}}."
+    },
+    {
+     "instruction": "Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Stir in {{ing:cranberry-sauce}}. Blend smooth, or strain."
+    },
+    {
+     "instruction": "Season and serve hot."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "red wine",
+     "text": "More stock with 1 tsp balsamic vinegar, for no alcohol (check the wine is labelled vegan)"
+    },
+    {
+     "instead": "flour",
+     "text": "Cornflour and tamari, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-brandy-butter",
+   "name": "Brandy butter",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Keeps in the fridge for two weeks. Take it out 30 minutes before serving.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:butter-unsalted}} in a bowl until soft and pale."
+    },
+    {
+     "instruction": "Sift in {{ing:icing-sugar}}. Beat until fluffy."
+    },
+    {
+     "instruction": "Beat in {{ing:spirit-40}} (brandy), a spoonful at a time.",
+     "note": "Added too fast, it can split."
+    },
+    {
+     "instruction": "Grate in the zest of {{ing:orange}}. Chill until needed."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "brandy",
+     "text": "Orange juice, for no alcohol"
+    },
+    {
+     "instead": "butter",
+     "text": "Dairy-free block, for a vegan version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-christmas-pudding",
+   "name": "Christmas pudding",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "dairy_free"
+   ],
+   "method_note": "Make it weeks ahead and keep it somewhere cool. It deepens with time.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "currants",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sultanas",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "raisins",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "mixed-peel",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "suet-vegetable",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-muscovado",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "mixed-spice",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-treacle",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:currants}}, {{ing:sultanas}}, {{ing:raisins}} and {{ing:mixed-peel}} in a big bowl.",
+     "step_group": "The night before"
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}} (brandy) and the zest and juice of {{ing:orange}}.",
+     "step_group": "The night before"
+    },
+    {
+     "instruction": "Cover. Leave overnight to soak.",
+     "duration_min": 720,
+     "step_group": "The night before"
+    },
+    {
+     "instruction": "Grease a 1.2 litre pudding basin well.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Grate {{ing:apple-medium}} into the fruit.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Add {{ing:suet-vegetable}}, {{ing:flour-self-raising}}, {{ing:breadcrumbs-dried}} and {{ing:sugar-muscovado}}.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Add {{ing:ground-almonds}} and {{ing:mixed-spice}}.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} with {{ing:black-treacle}}. Stir everything together well.",
+     "step_group": "Mix"
+    },
+    {
+     "instruction": "Spoon into the basin. Press down.",
+     "step_group": "Steam"
+    },
+    {
+     "instruction": "Cover with pleated baking paper and foil. Tie on with string.",
+     "note": "The pleat lets it rise.",
+     "step_group": "Steam"
+    },
+    {
+     "instruction": "Sit it on a saucer in a large pan. Pour boiling water halfway up.",
+     "step_group": "Steam"
+    },
+    {
+     "instruction": "Cover. Simmer 6 hours, topping up with boiling water.",
+     "note": "Check every hour. The pan must not boil dry.",
+     "duration_min": 360,
+     "step_group": "Steam"
+    },
+    {
+     "instruction": "Cool. Replace the paper and foil. Store somewhere cool and dark.",
+     "step_group": "Steam"
+    },
+    {
+     "instruction": "On the day, steam 2 hours to reheat.",
+     "duration_min": 120,
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "vegetable suet",
+     "text": "Cold butter, grated, for a richer pudding (no longer dairy free)"
+    },
+    {
+     "instead": "brandy",
+     "text": "Cold black tea, for no alcohol"
+    },
+    {
+     "instead": "flour and breadcrumbs",
+     "text": "Gluten-free flour and gluten-free breadcrumbs, for a gluten-free version"
+    },
+    {
+     "instead": "ground almonds",
+     "text": "More breadcrumbs, for a nut-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mince-pies",
+   "name": "Mince pies",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Keep everything cold for the crispest pastry.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-plain",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mincemeat",
+     "quantity": 400,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rub {{ing:butter-block}} into {{ing:flour-plain}} until it looks like crumbs.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Stir in 20 g of {{ing:icing-sugar}} and the zest of {{ing:orange}}.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Add half. Bring together into a dough.",
+     "note": "Add a few drops of cold water if it is dry.",
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Wrap. Chill 30 minutes.",
+     "duration_min": 30,
+     "step_group": "Pastry"
+    },
+    {
+     "instruction": "Heat the oven to 200C.",
+     "step_group": "Fill",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Roll the pastry thinly. Cut 12 rounds of 8 cm.",
+     "step_group": "Fill"
+    },
+    {
+     "instruction": "Press them into a 12-hole bun tin.",
+     "step_group": "Fill"
+    },
+    {
+     "instruction": "Spoon in {{ing:mincemeat}}, a heaped teaspoon each.",
+     "step_group": "Fill"
+    },
+    {
+     "instruction": "Re-roll the trimmings. Cut 12 small stars for the tops.",
+     "step_group": "Fill"
+    },
+    {
+     "instruction": "Brush the stars with the rest of the egg.",
+     "step_group": "Fill"
+    },
+    {
+     "instruction": "Bake 15 minutes, until golden.",
+     "duration_min": 15,
+     "step_group": "Bake"
+    },
+    {
+     "instruction": "Cool 5 minutes in the tin. Dust with the rest of the icing sugar.",
+     "duration_min": 5,
+     "step_group": "Bake"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter",
+     "text": "Dairy-free block and vegetarian mincemeat, with plant milk to glaze, for a vegan version"
+    },
+    {
+     "instead": "flour",
+     "text": "Gluten-free plain flour with 1/4 tsp xanthan gum, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-sherry-trifle",
+   "name": "Sherry trifle",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Assemble the morning of the day, so the sponge soaks through.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "sponge-fingers",
+     "quantity": 18,
+     "unit": "item"
+    },
+    {
+     "ref": "sherry",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "custard-ready",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Break {{ing:sponge-fingers}} into a glass bowl."
+    },
+    {
+     "instruction": "Spoon {{ing:sherry}} over evenly."
+    },
+    {
+     "instruction": "Scatter {{ing:raspberries}} on top. Press down lightly.",
+     "note": "Frozen raspberries are fine; their juice helps the soak."
+    },
+    {
+     "instruction": "Pour {{ing:custard-ready}} over in an even layer."
+    },
+    {
+     "instruction": "Chill 1 hour, until set.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} with {{ing:icing-sugar}} and {{ing:vanilla-extract}} to soft peaks."
+    },
+    {
+     "instruction": "Spread over the custard."
+    },
+    {
+     "instruction": "Toast {{ing:ground-almonds}} (flaked) in a dry pan. Scatter on top."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "sherry",
+     "text": "Orange juice, for no alcohol"
+    },
+    {
+     "instead": "flaked almonds",
+     "text": "Grated dark chocolate, for a nut-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-chocolate-yule-log",
+   "name": "Chocolate yule log",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 10,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Roll the sponge while it is warm, then it will roll again later without cracking.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 65,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Line a 23 x 33 cm Swiss roll tin.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Whisk {{ing:egg-medium}} and {{ing:sugar-caster}} for 5 minutes, until thick and pale.",
+     "note": "The mixture should leave a trail when the whisk is lifted.",
+     "duration_min": 5,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Sift in {{ing:flour-self-raising}} and 25 g of {{ing:cocoa-powder}}.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Fold in gently with a large spoon.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Spread into the tin. Bake 9 minutes, until springy.",
+     "duration_min": 9,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Turn onto baking paper dusted with sugar. Peel off the lining.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Roll up from a short end, with the paper inside. Cool.",
+     "duration_min": 30,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Melt {{ing:dark-chocolate}} with {{ing:butter-block}} and 100 ml of the cream.",
+     "step_group": "Icing",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Sift in {{ing:icing-sugar}} and the rest of the cocoa. Stir. Cool until spreadable.",
+     "step_group": "Icing"
+    },
+    {
+     "instruction": "Whip the rest of {{ing:double-cream}} to soft peaks.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Unroll the sponge. Spread with cream. Roll it up again.",
+     "step_group": "Assemble"
+    },
+    {
+     "instruction": "Cover with the icing. Drag a fork along to look like bark.",
+     "step_group": "Assemble"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "flour",
+     "text": "Gluten-free self-raising flour, for a gluten-free version"
+    },
+    {
+     "instead": "double cream",
+     "text": "Whipping cream"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-clementine-pavlova",
+   "name": "Pavlova with clementines and pomegranate",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Leave the meringue to cool in the switched-off oven, so it does not crack.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "egg-white",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "clementine",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "pistachios",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 140C. Draw a 22 cm circle on baking paper on a tray.",
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Whisk {{ing:egg-white}} in a clean bowl until stiff.",
+     "note": "Any trace of yolk or grease stops them whisking.",
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Add {{ing:sugar-caster}} a spoonful at a time, whisking, until glossy.",
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Whisk in {{ing:cornflour}} and {{ing:white-wine-vinegar}}.",
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Spread inside the circle, higher at the edges.",
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Turn the oven to 120C. Bake 1 hour 15 minutes.",
+     "duration_min": 75,
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Switch off the oven. Leave inside to cool completely.",
+     "duration_min": 120,
+     "step_group": "Meringue"
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} with {{ing:vanilla-extract}} to soft peaks.",
+     "step_group": "Top"
+    },
+    {
+     "instruction": "Peel {{ing:clementine}}. Slice into rounds.",
+     "step_group": "Top"
+    },
+    {
+     "instruction": "Pile the cream on the meringue. Add the clementines.",
+     "step_group": "Top"
+    },
+    {
+     "instruction": "Scatter {{ing:pomegranate-seeds}}, chopped {{ing:pistachios}} and {{ing:fresh-mint}}.",
+     "step_group": "Top"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "double cream",
+     "text": "Thick coconut yoghurt, for a dairy-free version"
+    },
+    {
+     "instead": "pistachios",
+     "text": "Leave them out, for a nut-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-sticky-toffee-pudding",
+   "name": "Sticky toffee pudding",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Pour some sauce over the hot sponge and let it soak in before serving.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dates-pitted",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-muscovado",
+     "quantity": 275,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-treacle",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Grease a 20 cm square tin.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Chop {{ing:dates-pitted}}. Put in a pan with {{ing:water}}.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Boil 5 minutes. Stir in {{ing:bicarbonate-of-soda}}. Leave to cool.",
+     "note": "It froths up. That is meant to happen.",
+     "duration_min": 5,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Beat 75 g of {{ing:butter-block}} with 150 g of {{ing:sugar-muscovado}}.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, one at a time.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}}, {{ing:vanilla-extract}} and the dates.",
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Pour into the tin. Bake 30 minutes, until springy.",
+     "duration_min": 30,
+     "step_group": "Sponge"
+    },
+    {
+     "instruction": "Melt the rest of the butter and sugar in a pan.",
+     "step_group": "Sauce",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Add {{ing:black-treacle}} and {{ing:double-cream}}.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Simmer 3 minutes, until glossy.",
+     "duration_min": 3,
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Spike the warm sponge with a skewer. Pour over a third of the sauce.",
+     "step_group": "To serve"
+    },
+    {
+     "instruction": "Serve in squares with the rest of the sauce.",
+     "step_group": "To serve"
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "butter and cream",
+     "text": "Dairy-free block and oat cream, for a dairy-free version"
+    },
+    {
+     "instead": "flour",
+     "text": "Gluten-free self-raising flour, for a gluten-free version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-chocolate-orange-mousse",
+   "name": "Chocolate orange mousse",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Silken tofu makes it smooth and rich, and nobody will guess.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate-70",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "tofu-silken",
+     "quantity": 350,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange-liqueur",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Melt {{ing:dark-chocolate-70}} in a bowl over a pan of simmering water.",
+     "note": "Do not let the bowl touch the water."
+    },
+    {
+     "instruction": "Cool 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Drain {{ing:tofu-silken}}. Blend until completely smooth."
+    },
+    {
+     "instruction": "Add the chocolate, {{ing:maple-syrup}} and {{ing:vanilla-extract}}. Blend again."
+    },
+    {
+     "instruction": "Grate in the zest of {{ing:orange}}. Add {{ing:orange-liqueur}}. Blend briefly."
+    },
+    {
+     "instruction": "Spoon into 6 small glasses."
+    },
+    {
+     "instruction": "Chill at least 2 hours, until set.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Top with thin strips of orange zest."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "orange liqueur",
+     "text": "Orange juice, for no alcohol"
+    },
+    {
+     "instead": "dark chocolate",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mulled-wine-pears",
+   "name": "Pears poached in mulled wine",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Make them a day ahead. They turn a deeper red sitting in the syrup overnight.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "wine-red",
+     "quantity": 750,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pear",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:wine-red}} and {{ing:sugar-caster}} in a pan the pears will fit in snugly."
+    },
+    {
+     "instruction": "Add strips of zest from {{ing:orange}}, {{ing:cinnamon-stick}}, {{ing:star-anise}} and {{ing:cloves}}."
+    },
+    {
+     "instruction": "Heat, stirring, until the sugar dissolves."
+    },
+    {
+     "instruction": "Peel {{ing:pear}}, keeping the stalks on. Trim the bases so they stand."
+    },
+    {
+     "instruction": "Lay them in the wine. Cover with a circle of baking paper."
+    },
+    {
+     "instruction": "Simmer 25 minutes, turning now and then, until tender.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Lift out the pears. Boil the wine 10 minutes, until syrupy.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Serve the pears with the syrup poured over."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "red wine",
+     "text": "Red grape juice with less sugar (50 g), for no alcohol (check the wine is labelled vegan)"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-panettone-pudding",
+   "name": "Panettone bread and butter pudding",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Soaking for 20 minutes before baking gives a soft middle and crisp top.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "panettone",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-block",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-demerara",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grease a 1.5 litre baking dish with a little of {{ing:butter-block}}."
+    },
+    {
+     "instruction": "Slice {{ing:panettone}} thickly. Butter one side of each slice."
+    },
+    {
+     "instruction": "Cut into triangles. Arrange in the dish, overlapping."
+    },
+    {
+     "instruction": "Whisk {{ing:egg-medium}}, {{ing:milk-whole}}, {{ing:double-cream}}, {{ing:sugar-caster}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Pour over the panettone. Leave 20 minutes to soak.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Heat the oven to 180C.",
+     "while_waiting": true
+    },
+    {
+     "instruction": "Sprinkle with {{ing:sugar-demerara}}."
+    },
+    {
+     "instruction": "Bake 35 minutes, until set and golden.",
+     "note": "It should wobble a little in the middle.",
+     "duration_min": 35
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "panettone",
+     "text": "Brioche or leftover white bread with a handful of sultanas"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-coconut-lime-rice-pudding",
+   "name": "Coconut, lime and lemongrass rice pudding",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Thai-style and dairy free. Good warm or chilled.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rice-jasmine-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "palm-sugar",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime-leaves",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mango",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:rice-jasmine-dry}}, {{ing:coconut-milk-tinned}}, {{ing:oat-milk}} and {{ing:palm-sugar}} in a pan."
+    },
+    {
+     "instruction": "Bruise {{ing:lemongrass}} with a rolling pin. Add with {{ing:lime-leaves}}."
+    },
+    {
+     "instruction": "Bring to a simmer, stirring."
+    },
+    {
+     "instruction": "Cook on a low heat 30 minutes, stirring often, until thick.",
+     "note": "Add a splash of oat milk if it gets too thick.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Take out the lemongrass and lime leaves."
+    },
+    {
+     "instruction": "Grate in the zest of {{ing:lime}}."
+    },
+    {
+     "instruction": "Peel and dice {{ing:mango}}. Spoon over to serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "mango",
+     "text": "Pineapple, or passion fruit"
+    },
+    {
+     "instead": "palm sugar",
+     "text": "Soft brown sugar"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mulled-wine",
+   "name": "Mulled wine",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Keep it hot, never boiling. Boiling drives off the alcohol and turns the spices bitter.",
+   "ingredients": [
+    {
+     "ref": "wine-red",
+     "quantity": 1500,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-demerara",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:wine-red}} into a large pan."
+    },
+    {
+     "instruction": "Slice {{ing:orange}}. Add with {{ing:sugar-demerara}}."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}}, {{ing:star-anise}} and {{ing:nutmeg}}."
+    },
+    {
+     "instruction": "Warm on a low heat, stirring, until the sugar dissolves."
+    },
+    {
+     "instruction": "Keep it steaming gently for 15 minutes.",
+     "note": "Small wisps of steam, no bubbles.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:spirit-40}} (brandy). Ladle into heatproof glasses."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "brandy",
+     "text": "Leave it out, for a lighter drink"
+    },
+    {
+     "instead": "red wine",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mulled-cider",
+   "name": "Mulled cider",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Apple and ginger keep it bright. Lovely with gammon.",
+   "ingredients": [
+    {
+     "ref": "cider-dry",
+     "quantity": 1500,
+     "unit": "ml"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:cider-dry}} into a large pan."
+    },
+    {
+     "instruction": "Slice {{ing:apple-medium}}, {{ing:orange}} and {{ing:ginger-fresh}}. Add them."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}} and {{ing:star-anise}}."
+    },
+    {
+     "instruction": "Warm on a low heat for 15 minutes, without boiling.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Sweeten with {{ing:maple-syrup}} to taste. Ladle into glasses."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "cider",
+     "text": "Cloudy apple juice, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-cranberry-orange-fizz",
+   "name": "Cranberry and orange fizz",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Chill everything well first. Pour the fizz last so it stays lively.",
+   "ingredients": [
+    {
+     "ref": "cranberry-juice",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange-liqueur",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-wine",
+     "quantity": 750,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cranberries",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put 3 or 4 frozen {{ing:cranberries}} in each glass."
+    },
+    {
+     "instruction": "Add 50 ml of {{ing:cranberry-juice}} and 10 ml of {{ing:orange-liqueur}} to each."
+    },
+    {
+     "instruction": "Top up slowly with {{ing:sparkling-wine}}."
+    },
+    {
+     "instruction": "Twist a strip of zest from {{ing:orange}} over each glass. Drop it in."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "sparkling wine",
+     "text": "Sparkling water or sparkling apple juice, with no liqueur, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-clementine-gin-tonic",
+   "name": "Clementine and rosemary gin and tonic",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Bruising the rosemary releases its scent into the glass.",
+   "ingredients": [
+    {
+     "ref": "clementine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "tonic-water",
+     "quantity": 600,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fill four glasses with ice."
+    },
+    {
+     "instruction": "Squeeze the juice of half of {{ing:clementine}} into each."
+    },
+    {
+     "instruction": "Bruise {{ing:fresh-rosemary}} between your hands. Add a sprig to each."
+    },
+    {
+     "instruction": "Pour 50 ml of {{ing:spirit-40}} (gin) into each glass."
+    },
+    {
+     "instruction": "Top up with {{ing:tonic-water}}. Stir once."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "gin",
+     "text": "Leave it out and add a splash of cranberry juice, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-cooked-eggnog",
+   "name": "Cooked eggnog",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Cooked gently to 71C, so the eggs are safe for everyone.",
+   "ingredients": [
+    {
+     "ref": "egg-yolk",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Whisk {{ing:egg-yolk}} and {{ing:sugar-caster}} in a bowl until pale."
+    },
+    {
+     "instruction": "Warm {{ing:milk-whole}} and {{ing:double-cream}} in a pan until steaming."
+    },
+    {
+     "instruction": "Pour a little onto the yolks, whisking. Then pour it all back into the pan."
+    },
+    {
+     "instruction": "Stir on a low heat 6 minutes, until it coats a spoon.",
+     "note": "71C on a thermometer. Do not let it boil, or it scrambles.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:vanilla-extract}} and half of {{ing:nutmeg}}."
+    },
+    {
+     "instruction": "Cool, then chill 2 hours.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Stir in {{ing:spirit-40}} (rum or brandy). Serve with the rest of the nutmeg."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "rum",
+     "text": "Leave it out, for no alcohol"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-spiced-apple-punch",
+   "name": "Hot spiced apple and cranberry punch",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Everything you love about mulled wine, with no alcohol. Children love it.",
+   "ingredients": [
+    {
+     "ref": "apple-juice",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "cranberry-juice",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:apple-juice}} and {{ing:cranberry-juice}} into a large pan."
+    },
+    {
+     "instruction": "Slice {{ing:orange}} and {{ing:ginger-fresh}}. Add them."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}} and {{ing:star-anise}}."
+    },
+    {
+     "instruction": "Warm on a low heat for 15 minutes, without boiling.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Ladle into mugs, leaving the spices behind."
+    }
+   ]
+  },
+  {
+   "slug": "xmas-mulled-grape-juice",
+   "name": "Mulled red grape juice",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A soft drink with the weight of red wine, for the main course.",
+   "ingredients": [
+    {
+     "ref": "grape-juice-red",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:grape-juice-red}} into a pan."
+    },
+    {
+     "instruction": "Slice {{ing:orange}} and {{ing:ginger-fresh}}. Add them."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}} and {{ing:star-anise}}."
+    },
+    {
+     "instruction": "Warm on a low heat for 10 minutes, without boiling.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Strain into glasses. Serve warm."
+    }
+   ]
+  },
+  {
+   "slug": "xmas-orange-hot-chocolate",
+   "name": "Orange hot chocolate",
+   "cuisine": "Christmas",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Real chocolate, melted in, makes it rich enough to be pudding.",
+   "ingredients": [
+    {
+     "ref": "milk-whole",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 1.25,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Warm {{ing:milk-whole}} in a pan with strips of zest from {{ing:orange}}."
+    },
+    {
+     "instruction": "Bring almost to the boil. Take off the heat. Leave 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Lift out the zest. Break in {{ing:dark-chocolate}}. Whisk until melted."
+    },
+    {
+     "instruction": "Whisk in {{ing:maple-syrup}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} lightly. Spoon onto each mug."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "milk and cream",
+     "text": "Oat milk and oat cream with vegan chocolate, for a vegan version"
+    }
+   ]
+  },
+  {
+   "slug": "xmas-pomegranate-ginger-fizz",
+   "name": "Pomegranate and ginger fizz",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Sharp, spicy and festive red. No alcohol.",
+   "ingredients": [
+    {
+     "ref": "pomegranate-juice",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-beer",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fill four glasses with ice."
+    },
+    {
+     "instruction": "Pour 75 ml of {{ing:pomegranate-juice}} into each."
+    },
+    {
+     "instruction": "Squeeze in a wedge of {{ing:lime}}."
+    },
+    {
+     "instruction": "Top up with {{ing:ginger-beer}}."
+    },
+    {
+     "instruction": "Spoon in {{ing:pomegranate-seeds}}. Add a sprig of {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "xmas-elderflower-cranberry-spritz",
+   "name": "Elderflower and cranberry spritz",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Light and floral: good with fish and starters. No alcohol.",
+   "ingredients": [
+    {
+     "ref": "elderflower-cordial",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "cranberry-juice",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 750,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cranberries",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a few frozen {{ing:cranberries}} and ice in each glass."
+    },
+    {
+     "instruction": "Add 15 ml of {{ing:elderflower-cordial}} and 50 ml of {{ing:cranberry-juice}} to each."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}}."
+    },
+    {
+     "instruction": "Add a thin slice of {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "xmas-ginger-lime-cooler",
+   "name": "Ginger, lime and lemongrass cooler",
+   "cuisine": "Christmas",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "A Thai-style syrup that keeps a week in the fridge. Made for spicy food.",
+   "ingredients": [
+    {
+     "ref": "ginger-fresh",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "lemongrass",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime-leaves",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 600,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:ginger-fresh}}. Bash {{ing:lemongrass}} with a rolling pin. Chop it."
+    },
+    {
+     "instruction": "Put them in a pan with {{ing:lime-leaves}}, {{ing:sugar-caster}} and {{ing:water}}."
+    },
+    {
+     "instruction": "Simmer 5 minutes. Cool. Strain.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Squeeze the juice of {{ing:lime}} into the syrup."
+    },
+    {
+     "instruction": "Divide between four glasses of ice. Top up with {{ing:sparkling-water}}."
+    }
+   ]
+  }
+ ]
+}

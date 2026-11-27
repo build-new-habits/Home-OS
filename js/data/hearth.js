@@ -1,4 +1,5 @@
-// js/data/hearth.js — 26 Nov 2026 v1
+// js/data/hearth.js — 27 Nov 2026 v2
+// v2: menus — a whole menu into My meals in one tap (Phase 38).
 // Phase 36a. Free and Hearth.
 //
 // Graeme, 26 Nov 2026: "Free needs to be basic and premium has all features."
@@ -47,7 +48,8 @@ export const WHAT_HEARTH_ADDS = {
   planAhead: 'Hearth plans any week ahead, and can repeat a week you liked.',
   planSlots: 'Hearth plans breakfasts, lunches, snacks and drinks as well as dinners.',
   weekShaper: 'Hearth shapes your week from your rules: fish and veggie nights, a match or the gym, what suits everyone, and what is in the pantry.',
-  favourites: 'Hearth keeps your favourites and regulars, splits Groceries, Household and Toiletries, and builds your list each week.'
+  favourites: 'Hearth keeps your favourites and regulars, splits Groceries, Household and Toiletries, and builds your list each week.',
+  menus: 'Hearth adds a whole menu to your meals in one tap, drinks included, ready to plan and shop for.'
 };
 
 const CACHE_KEY = 'home-os-hearth';

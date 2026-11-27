@@ -1,7 +1,7 @@
 {
- "version": 4,
- "updated": "2026-10-04",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion.",
+ "version": 5,
+ "updated": "2026-11-27",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v5 (27 Nov 2026): world pantry and Christmas ingredients; every food carries all five figures and a basis; carbohydrate is UK-style everywhere (fibre not counted), so USDA figures have fibre taken out.",
  "foods": [
   {
    "slug": "egg-small",
@@ -17,7 +17,8 @@
    "protein_g": 12.6,
    "fat_g": 9.5,
    "carbs_g": 0.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-medium",
@@ -35,7 +36,8 @@
    "protein_g": 12.6,
    "fat_g": 9.5,
    "carbs_g": 0.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-large",
@@ -51,7 +53,8 @@
    "protein_g": 12.6,
    "fat_g": 9.5,
    "carbs_g": 0.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-very-large",
@@ -66,7 +69,8 @@
    "protein_g": 12.6,
    "fat_g": 9.5,
    "carbs_g": 0.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-white",
@@ -81,7 +85,8 @@
    "protein_g": 10.9,
    "fat_g": 0.2,
    "carbs_g": 0.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-yolk",
@@ -96,7 +101,8 @@
    "protein_g": 15.9,
    "fat_g": 26.5,
    "carbs_g": 3.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "onion-medium",
@@ -112,8 +118,9 @@
    "calories_per_100g": 40,
    "protein_g": 1.1,
    "fat_g": 0.1,
-   "carbs_g": 9.3,
-   "fibre_g": 1.7
+   "carbs_g": 7.6,
+   "fibre_g": 1.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "onion-large",
@@ -127,8 +134,9 @@
    "calories_per_100g": 40,
    "protein_g": 1.1,
    "fat_g": 0.1,
-   "carbs_g": 9.3,
-   "fibre_g": 1.7
+   "carbs_g": 7.6,
+   "fibre_g": 1.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "red-onion",
@@ -142,8 +150,9 @@
    "calories_per_100g": 40,
    "protein_g": 1.1,
    "fat_g": 0.1,
-   "carbs_g": 9.3,
-   "fibre_g": 1.7
+   "carbs_g": 7.6,
+   "fibre_g": 1.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "shallot",
@@ -157,8 +166,9 @@
    "calories_per_100g": 72,
    "protein_g": 2.5,
    "fat_g": 0.1,
-   "carbs_g": 16.8,
-   "fibre_g": 3.2
+   "carbs_g": 13.6,
+   "fibre_g": 3.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "spring-onion",
@@ -173,8 +183,9 @@
    "calories_per_100g": 32,
    "protein_g": 1.8,
    "fat_g": 0.2,
-   "carbs_g": 7.3,
-   "fibre_g": 2.6
+   "carbs_g": 4.7,
+   "fibre_g": 2.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "garlic-clove",
@@ -190,8 +201,9 @@
    "calories_per_100g": 149,
    "protein_g": 6.4,
    "fat_g": 0.5,
-   "carbs_g": 33.1,
-   "fibre_g": 2.1
+   "carbs_g": 31.0,
+   "fibre_g": 2.1,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "carrot-medium",
@@ -206,8 +218,9 @@
    "calories_per_100g": 41,
    "protein_g": 0.9,
    "fat_g": 0.2,
-   "carbs_g": 9.6,
-   "fibre_g": 2.8
+   "carbs_g": 6.8,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "carrot-large",
@@ -221,8 +234,9 @@
    "calories_per_100g": 41,
    "protein_g": 0.9,
    "fat_g": 0.2,
-   "carbs_g": 9.6,
-   "fibre_g": 2.8
+   "carbs_g": 6.8,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "potato-medium",
@@ -237,8 +251,9 @@
    "calories_per_100g": 77,
    "protein_g": 2.0,
    "fat_g": 0.1,
-   "carbs_g": 17.5,
-   "fibre_g": 2.2
+   "carbs_g": 15.3,
+   "fibre_g": 2.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "potato-large",
@@ -253,8 +268,9 @@
    "calories_per_100g": 77,
    "protein_g": 2.0,
    "fat_g": 0.1,
-   "carbs_g": 17.5,
-   "fibre_g": 2.2
+   "carbs_g": 15.3,
+   "fibre_g": 2.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "sweet-potato",
@@ -268,8 +284,9 @@
    "calories_per_100g": 86,
    "protein_g": 1.6,
    "fat_g": 0.1,
-   "carbs_g": 20.1,
-   "fibre_g": 3.0
+   "carbs_g": 17.1,
+   "fibre_g": 3.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pepper-bell",
@@ -287,7 +304,8 @@
    "protein_g": 1.0,
    "fat_g": 0.3,
    "carbs_g": 6.0,
-   "fibre_g": 2.1
+   "fibre_g": 2.1,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "courgette",
@@ -302,8 +320,9 @@
    "calories_per_100g": 17,
    "protein_g": 1.2,
    "fat_g": 0.3,
-   "carbs_g": 3.1,
-   "fibre_g": 1.0
+   "carbs_g": 2.1,
+   "fibre_g": 1.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "aubergine",
@@ -318,8 +337,9 @@
    "calories_per_100g": 25,
    "protein_g": 1.0,
    "fat_g": 0.2,
-   "carbs_g": 5.9,
-   "fibre_g": 3.0
+   "carbs_g": 2.9,
+   "fibre_g": 3.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "tomato-medium",
@@ -334,8 +354,9 @@
    "calories_per_100g": 18,
    "protein_g": 0.9,
    "fat_g": 0.2,
-   "carbs_g": 3.9,
-   "fibre_g": 1.2
+   "carbs_g": 2.7,
+   "fibre_g": 1.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cherry-tomato",
@@ -349,8 +370,9 @@
    "calories_per_100g": 18,
    "protein_g": 0.9,
    "fat_g": 0.2,
-   "carbs_g": 3.9,
-   "fibre_g": 1.2
+   "carbs_g": 2.7,
+   "fibre_g": 1.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "leek",
@@ -364,8 +386,9 @@
    "calories_per_100g": 61,
    "protein_g": 1.5,
    "fat_g": 0.3,
-   "carbs_g": 14.2,
-   "fibre_g": 1.8
+   "carbs_g": 12.4,
+   "fibre_g": 1.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "celery-stick",
@@ -380,8 +403,9 @@
    "calories_per_100g": 16,
    "protein_g": 0.7,
    "fat_g": 0.2,
-   "carbs_g": 3.0,
-   "fibre_g": 1.6
+   "carbs_g": 1.4,
+   "fibre_g": 1.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "mushroom-chestnut",
@@ -397,8 +421,9 @@
    "calories_per_100g": 22,
    "protein_g": 3.1,
    "fat_g": 0.3,
-   "carbs_g": 3.3,
-   "fibre_g": 1.0
+   "carbs_g": 2.3,
+   "fibre_g": 1.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "portobello-mushroom",
@@ -413,7 +438,8 @@
    "protein_g": 3.1,
    "fat_g": 0.3,
    "carbs_g": 3.3,
-   "fibre_g": 1.3
+   "fibre_g": 1.3,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "broccoli-head",
@@ -427,8 +453,9 @@
    "calories_per_100g": 34,
    "protein_g": 2.8,
    "fat_g": 0.4,
-   "carbs_g": 6.6,
-   "fibre_g": 2.6
+   "carbs_g": 4.0,
+   "fibre_g": 2.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cauliflower-head",
@@ -442,8 +469,9 @@
    "calories_per_100g": 25,
    "protein_g": 1.9,
    "fat_g": 0.3,
-   "carbs_g": 5.0,
-   "fibre_g": 2.0
+   "carbs_g": 3.0,
+   "fibre_g": 2.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cabbage-white",
@@ -457,8 +485,9 @@
    "calories_per_100g": 25,
    "protein_g": 1.3,
    "fat_g": 0.1,
-   "carbs_g": 5.8,
-   "fibre_g": 2.5
+   "carbs_g": 3.3,
+   "fibre_g": 2.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cucumber",
@@ -472,8 +501,9 @@
    "calories_per_100g": 15,
    "protein_g": 0.7,
    "fat_g": 0.1,
-   "carbs_g": 3.6,
-   "fibre_g": 0.5
+   "carbs_g": 3.1,
+   "fibre_g": 0.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "parsnip",
@@ -487,8 +517,9 @@
    "calories_per_100g": 75,
    "protein_g": 1.2,
    "fat_g": 0.3,
-   "carbs_g": 18.0,
-   "fibre_g": 4.9
+   "carbs_g": 13.1,
+   "fibre_g": 4.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "beetroot",
@@ -502,8 +533,9 @@
    "calories_per_100g": 43,
    "protein_g": 1.6,
    "fat_g": 0.2,
-   "carbs_g": 9.6,
-   "fibre_g": 2.8
+   "carbs_g": 6.8,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "butternut-squash",
@@ -517,8 +549,9 @@
    "calories_per_100g": 45,
    "protein_g": 1.0,
    "fat_g": 0.1,
-   "carbs_g": 11.7,
-   "fibre_g": 2.0
+   "carbs_g": 9.7,
+   "fibre_g": 2.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "green-beans",
@@ -530,8 +563,9 @@
    "calories_per_100g": 31,
    "protein_g": 1.8,
    "fat_g": 0.2,
-   "carbs_g": 7.0,
-   "fibre_g": 2.7
+   "carbs_g": 4.3,
+   "fibre_g": 2.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "peas-frozen",
@@ -544,8 +578,9 @@
    "calories_per_100g": 81,
    "protein_g": 5.4,
    "fat_g": 0.4,
-   "carbs_g": 14.5,
-   "fibre_g": 5.1
+   "carbs_g": 9.4,
+   "fibre_g": 5.1,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "sweetcorn-tinned",
@@ -560,8 +595,9 @@
    "calories_per_100g": 86,
    "protein_g": 3.2,
    "fat_g": 1.2,
-   "carbs_g": 19.0,
-   "fibre_g": 2.4
+   "carbs_g": 16.6,
+   "fibre_g": 2.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "spinach",
@@ -573,8 +609,9 @@
    "calories_per_100g": 23,
    "protein_g": 2.9,
    "fat_g": 0.4,
-   "carbs_g": 3.6,
-   "fibre_g": 2.2
+   "carbs_g": 1.4,
+   "fibre_g": 2.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "kale",
@@ -584,7 +621,8 @@
    "protein_g": 4.3,
    "fat_g": 0.9,
    "carbs_g": 8.8,
-   "fibre_g": 4.1
+   "fibre_g": 4.1,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lettuce-iceberg",
@@ -598,8 +636,9 @@
    "calories_per_100g": 14,
    "protein_g": 0.9,
    "fat_g": 0.1,
-   "carbs_g": 3.0,
-   "fibre_g": 1.2
+   "carbs_g": 1.8,
+   "fibre_g": 1.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "chilli-fresh",
@@ -615,8 +654,9 @@
    "calories_per_100g": 40,
    "protein_g": 1.9,
    "fat_g": 0.4,
-   "carbs_g": 8.8,
-   "fibre_g": 1.5
+   "carbs_g": 7.3,
+   "fibre_g": 1.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "ginger-fresh",
@@ -629,8 +669,9 @@
    "calories_per_100g": 80,
    "protein_g": 1.8,
    "fat_g": 0.8,
-   "carbs_g": 17.8,
-   "fibre_g": 2.0
+   "carbs_g": 15.8,
+   "fibre_g": 2.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "apple-medium",
@@ -645,8 +686,9 @@
    "calories_per_100g": 52,
    "protein_g": 0.3,
    "fat_g": 0.2,
-   "carbs_g": 13.8,
-   "fibre_g": 2.4
+   "carbs_g": 11.4,
+   "fibre_g": 2.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "banana-medium",
@@ -661,8 +703,9 @@
    "calories_per_100g": 89,
    "protein_g": 1.1,
    "fat_g": 0.3,
-   "carbs_g": 22.8,
-   "fibre_g": 2.6
+   "carbs_g": 20.2,
+   "fibre_g": 2.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "lemon",
@@ -676,8 +719,9 @@
    "calories_per_100g": 29,
    "protein_g": 1.1,
    "fat_g": 0.3,
-   "carbs_g": 9.3,
-   "fibre_g": 2.8
+   "carbs_g": 6.5,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "lime",
@@ -691,8 +735,9 @@
    "calories_per_100g": 30,
    "protein_g": 0.7,
    "fat_g": 0.2,
-   "carbs_g": 10.5,
-   "fibre_g": 2.8
+   "carbs_g": 7.7,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "orange",
@@ -706,8 +751,9 @@
    "calories_per_100g": 47,
    "protein_g": 0.9,
    "fat_g": 0.1,
-   "carbs_g": 11.8,
-   "fibre_g": 2.4
+   "carbs_g": 9.4,
+   "fibre_g": 2.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "avocado",
@@ -721,8 +767,9 @@
    "calories_per_100g": 160,
    "protein_g": 2.0,
    "fat_g": 14.7,
-   "carbs_g": 8.5,
-   "fibre_g": 6.7
+   "carbs_g": 1.8,
+   "fibre_g": 6.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "strawberries",
@@ -734,8 +781,9 @@
    "calories_per_100g": 32,
    "protein_g": 0.7,
    "fat_g": 0.3,
-   "carbs_g": 7.7,
-   "fibre_g": 2.0
+   "carbs_g": 5.7,
+   "fibre_g": 2.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "blueberries",
@@ -747,8 +795,9 @@
    "calories_per_100g": 57,
    "protein_g": 0.7,
    "fat_g": 0.3,
-   "carbs_g": 14.5,
-   "fibre_g": 2.4
+   "carbs_g": 12.1,
+   "fibre_g": 2.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "raspberries",
@@ -760,8 +809,9 @@
    "calories_per_100g": 52,
    "protein_g": 1.2,
    "fat_g": 0.7,
-   "carbs_g": 11.9,
-   "fibre_g": 6.5
+   "carbs_g": 5.4,
+   "fibre_g": 6.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "grapes",
@@ -773,8 +823,9 @@
    "calories_per_100g": 69,
    "protein_g": 0.7,
    "fat_g": 0.2,
-   "carbs_g": 18.1,
-   "fibre_g": 0.9
+   "carbs_g": 17.2,
+   "fibre_g": 0.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pear",
@@ -788,8 +839,9 @@
    "calories_per_100g": 57,
    "protein_g": 0.4,
    "fat_g": 0.1,
-   "carbs_g": 15.2,
-   "fibre_g": 3.1
+   "carbs_g": 12.1,
+   "fibre_g": 3.1,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "kiwi",
@@ -804,8 +856,9 @@
    "calories_per_100g": 61,
    "protein_g": 1.1,
    "fat_g": 0.5,
-   "carbs_g": 14.7,
-   "fibre_g": 3.0
+   "carbs_g": 11.7,
+   "fibre_g": 3.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "mango",
@@ -819,8 +872,9 @@
    "calories_per_100g": 60,
    "protein_g": 0.8,
    "fat_g": 0.4,
-   "carbs_g": 15.0,
-   "fibre_g": 1.6
+   "carbs_g": 13.4,
+   "fibre_g": 1.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pineapple",
@@ -831,21 +885,21 @@
    "calories_per_100g": 50,
    "protein_g": 0.5,
    "fat_g": 0.1,
-   "carbs_g": 13.1,
-   "fibre_g": 1.4
+   "carbs_g": 11.7,
+   "fibre_g": 1.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "raisins",
    "name": "Raisins",
    "category": "food_ambient",
-   "aliases": [
-    "sultanas"
-   ],
+   "aliases": [],
    "calories_per_100g": 299,
    "protein_g": 3.1,
    "fat_g": 0.5,
-   "carbs_g": 79.2,
-   "fibre_g": 3.7
+   "carbs_g": 75.5,
+   "fibre_g": 3.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "dates-pitted",
@@ -860,8 +914,9 @@
    "calories_per_100g": 282,
    "protein_g": 2.5,
    "fat_g": 0.4,
-   "carbs_g": 75.0,
-   "fibre_g": 8.0
+   "carbs_g": 67.0,
+   "fibre_g": 8.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "chopped-tomatoes-tinned",
@@ -879,7 +934,8 @@
    "protein_g": 1.6,
    "fat_g": 0.3,
    "carbs_g": 6.0,
-   "fibre_g": 1.0
+   "fibre_g": 1.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "baked-beans",
@@ -895,7 +951,8 @@
    "protein_g": 4.7,
    "fat_g": 0.2,
    "carbs_g": 12.9,
-   "fibre_g": 3.7
+   "fibre_g": 3.7,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chickpeas-tinned",
@@ -911,7 +968,8 @@
    "protein_g": 7.0,
    "fat_g": 2.6,
    "carbs_g": 16.0,
-   "fibre_g": 4.4
+   "fibre_g": 4.4,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "kidney-beans-tinned",
@@ -926,7 +984,8 @@
    "protein_g": 6.8,
    "fat_g": 0.5,
    "carbs_g": 15.1,
-   "fibre_g": 6.2
+   "fibre_g": 6.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cannellini-beans-tinned",
@@ -942,7 +1001,8 @@
    "protein_g": 6.5,
    "fat_g": 0.5,
    "carbs_g": 14.7,
-   "fibre_g": 5.6
+   "fibre_g": 5.6,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "butter-beans-tinned",
@@ -957,7 +1017,8 @@
    "protein_g": 6.1,
    "fat_g": 0.5,
    "carbs_g": 13.9,
-   "fibre_g": 4.6
+   "fibre_g": 4.6,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "black-beans-tinned",
@@ -972,7 +1033,8 @@
    "protein_g": 7.0,
    "fat_g": 0.5,
    "carbs_g": 15.6,
-   "fibre_g": 6.9
+   "fibre_g": 6.9,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lentils-tinned",
@@ -987,7 +1049,8 @@
    "protein_g": 7.6,
    "fat_g": 0.4,
    "carbs_g": 13.0,
-   "fibre_g": 3.8
+   "fibre_g": 3.8,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "coconut-milk-tinned",
@@ -1003,7 +1066,8 @@
    "protein_g": 2.0,
    "fat_g": 21.3,
    "carbs_g": 2.8,
-   "fibre_g": 0.0
+   "fibre_g": 0.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "tuna-tinned-in-spring-water",
@@ -1019,7 +1083,8 @@
    "protein_g": 25.5,
    "fat_g": 0.6,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sardines-tinned",
@@ -1034,7 +1099,8 @@
    "protein_g": 24.6,
    "fat_g": 11.5,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "tomato-purée",
@@ -1049,7 +1115,8 @@
    "protein_g": 4.3,
    "fat_g": 0.5,
    "carbs_g": 14.1,
-   "fibre_g": 3.0
+   "fibre_g": 3.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "passata",
@@ -1065,7 +1132,8 @@
    "protein_g": 1.5,
    "fat_g": 0.2,
    "carbs_g": 5.8,
-   "fibre_g": 1.0
+   "fibre_g": 1.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "butter-block",
@@ -1080,7 +1148,8 @@
    "protein_g": 0.9,
    "fat_g": 81.1,
    "carbs_g": 0.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "bread-white-sliced-loaf",
@@ -1097,7 +1166,8 @@
    "protein_g": 9.0,
    "fat_g": 3.2,
    "carbs_g": 49.0,
-   "fibre_g": 2.5
+   "fibre_g": 2.5,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "bread-slice-medium",
@@ -1113,7 +1183,8 @@
    "protein_g": 9.0,
    "fat_g": 3.2,
    "carbs_g": 49.0,
-   "fibre_g": 2.5
+   "fibre_g": 2.5,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "wholemeal-bread-slice",
@@ -1128,7 +1199,8 @@
    "protein_g": 13.0,
    "fat_g": 3.4,
    "carbs_g": 41.0,
-   "fibre_g": 7.0
+   "fibre_g": 7.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "bagel-plain",
@@ -1144,7 +1216,8 @@
    "protein_g": 10.0,
    "fat_g": 1.5,
    "carbs_g": 50.0,
-   "fibre_g": 2.3
+   "fibre_g": 2.3,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "pitta-bread",
@@ -1159,8 +1232,9 @@
    "calories_per_100g": 275,
    "protein_g": 9.1,
    "fat_g": 1.2,
-   "carbs_g": 55.7,
-   "fibre_g": 2.4
+   "carbs_g": 53.3,
+   "fibre_g": 2.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "tortilla-wrap",
@@ -1177,7 +1251,8 @@
    "protein_g": 8.5,
    "fat_g": 7.3,
    "carbs_g": 49.0,
-   "fibre_g": 2.9
+   "fibre_g": 2.9,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "crumpet",
@@ -1192,7 +1267,8 @@
    "protein_g": 5.9,
    "fat_g": 0.9,
    "carbs_g": 35.7,
-   "fibre_g": 1.9
+   "fibre_g": 1.9,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "naan-bread",
@@ -1207,7 +1283,8 @@
    "protein_g": 8.9,
    "fat_g": 7.0,
    "carbs_g": 52.0,
-   "fibre_g": 2.0
+   "fibre_g": 2.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "water",
@@ -1218,7 +1295,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "milk-whole",
@@ -1233,7 +1311,8 @@
    "protein_g": 3.4,
    "fat_g": 3.6,
    "carbs_g": 4.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "milk-semi-skimmed",
@@ -1248,7 +1327,8 @@
    "protein_g": 3.6,
    "fat_g": 1.8,
    "carbs_g": 4.8,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "milk-skimmed",
@@ -1262,7 +1342,8 @@
    "protein_g": 3.6,
    "fat_g": 0.2,
    "carbs_g": 5.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "oat-milk",
@@ -1276,7 +1357,8 @@
    "protein_g": 1.0,
    "fat_g": 1.5,
    "carbs_g": 6.7,
-   "fibre_g": 0.8
+   "fibre_g": 0.8,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "almond-milk",
@@ -1287,7 +1369,8 @@
    "protein_g": 0.5,
    "fat_g": 1.2,
    "carbs_g": 2.4,
-   "fibre_g": 0.2
+   "fibre_g": 0.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "double-cream",
@@ -1301,7 +1384,8 @@
    "protein_g": 1.7,
    "fat_g": 48.0,
    "carbs_g": 2.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "single-cream",
@@ -1312,7 +1396,8 @@
    "protein_g": 2.6,
    "fat_g": 19.1,
    "carbs_g": 4.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "olive-oil",
@@ -1327,7 +1412,8 @@
    "protein_g": 0.0,
    "fat_g": 100.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "vegetable-oil",
@@ -1342,7 +1428,8 @@
    "protein_g": 0.0,
    "fat_g": 100.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sesame-oil",
@@ -1353,7 +1440,8 @@
    "protein_g": 0.0,
    "fat_g": 100.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "soy-sauce",
@@ -1368,8 +1456,9 @@
    "calories_per_100g": 53,
    "protein_g": 8.1,
    "fat_g": 0.6,
-   "carbs_g": 4.9,
-   "fibre_g": 0.8
+   "carbs_g": 4.1,
+   "fibre_g": 0.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "fish-sauce",
@@ -1383,7 +1472,8 @@
    "protein_g": 5.1,
    "fat_g": 0.0,
    "carbs_g": 3.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "worcestershire-sauce",
@@ -1394,7 +1484,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 19.5,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "balsamic-vinegar",
@@ -1408,7 +1499,8 @@
    "protein_g": 0.5,
    "fat_g": 0.0,
    "carbs_g": 17.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "white-wine-vinegar",
@@ -1423,7 +1515,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.4,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "honey",
@@ -1436,8 +1529,9 @@
    "calories_per_100g": 304,
    "protein_g": 0.3,
    "fat_g": 0.0,
-   "carbs_g": 82.4,
-   "fibre_g": 0.2
+   "carbs_g": 82.2,
+   "fibre_g": 0.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "maple-syrup",
@@ -1448,7 +1542,8 @@
    "protein_g": 0.0,
    "fat_g": 0.1,
    "carbs_g": 67.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "golden-syrup",
@@ -1459,7 +1554,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 79.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "stock-chicken",
@@ -1473,7 +1569,8 @@
    "protein_g": 0.5,
    "fat_g": 0.1,
    "carbs_g": 0.3,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "stock-vegetable",
@@ -1488,7 +1585,8 @@
    "protein_g": 0.3,
    "fat_g": 0.1,
    "carbs_g": 0.5,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lemon-juice",
@@ -1498,8 +1596,9 @@
    "calories_per_100g": 22,
    "protein_g": 0.4,
    "fat_g": 0.2,
-   "carbs_g": 6.9,
-   "fibre_g": 0.1
+   "carbs_g": 6.8,
+   "fibre_g": 0.1,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "coconut-cream",
@@ -1509,8 +1608,9 @@
    "calories_per_100g": 330,
    "protein_g": 3.6,
    "fat_g": 34.7,
-   "carbs_g": 6.7,
-   "fibre_g": 0.9
+   "carbs_g": 5.8,
+   "fibre_g": 0.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "orange-juice",
@@ -1521,7 +1621,8 @@
    "protein_g": 0.7,
    "fat_g": 0.2,
    "carbs_g": 10.4,
-   "fibre_g": 0.2
+   "fibre_g": 0.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "peanut-butter",
@@ -1535,7 +1636,8 @@
    "protein_g": 25.1,
    "fat_g": 50.4,
    "carbs_g": 20.0,
-   "fibre_g": 6.0
+   "fibre_g": 6.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "tahini",
@@ -1545,8 +1647,9 @@
    "calories_per_100g": 595,
    "protein_g": 17.0,
    "fat_g": 53.8,
-   "carbs_g": 21.2,
-   "fibre_g": 9.3
+   "carbs_g": 11.9,
+   "fibre_g": 9.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "mayonnaise",
@@ -1560,7 +1663,8 @@
    "protein_g": 1.0,
    "fat_g": 75.0,
    "carbs_g": 1.3,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "mustard-dijon",
@@ -1575,7 +1679,8 @@
    "protein_g": 4.4,
    "fat_g": 3.6,
    "carbs_g": 5.8,
-   "fibre_g": 3.3
+   "fibre_g": 3.3,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "wholegrain-mustard",
@@ -1586,7 +1691,8 @@
    "protein_g": 8.0,
    "fat_g": 9.0,
    "carbs_g": 6.0,
-   "fibre_g": 4.9
+   "fibre_g": 4.9,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "tomato-ketchup",
@@ -1600,7 +1706,8 @@
    "protein_g": 1.3,
    "fat_g": 0.1,
    "carbs_g": 25.8,
-   "fibre_g": 0.3
+   "fibre_g": 0.3,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "greek-yoghurt",
@@ -1614,7 +1721,8 @@
    "protein_g": 9.0,
    "fat_g": 5.0,
    "carbs_g": 3.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "natural-yoghurt",
@@ -1630,7 +1738,8 @@
    "protein_g": 3.5,
    "fat_g": 3.3,
    "carbs_g": 4.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cottage-cheese",
@@ -1641,7 +1750,8 @@
    "protein_g": 11.1,
    "fat_g": 4.3,
    "carbs_g": 3.4,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cream-cheese",
@@ -1655,7 +1765,8 @@
    "protein_g": 5.9,
    "fat_g": 34.0,
    "carbs_g": 4.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "jam-strawberry",
@@ -1668,8 +1779,9 @@
    "calories_per_100g": 278,
    "protein_g": 0.4,
    "fat_g": 0.1,
-   "carbs_g": 68.9,
-   "fibre_g": 0.8
+   "carbs_g": 68.1,
+   "fibre_g": 0.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "marmite",
@@ -1683,7 +1795,8 @@
    "protein_g": 34.0,
    "fat_g": 0.5,
    "carbs_g": 24.0,
-   "fibre_g": 3.5
+   "fibre_g": 3.5,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "harissa-paste",
@@ -1697,7 +1810,8 @@
    "protein_g": 3.0,
    "fat_g": 8.0,
    "carbs_g": 8.0,
-   "fibre_g": 4.0
+   "fibre_g": 4.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "curry-paste",
@@ -1708,7 +1822,8 @@
    "protein_g": 3.0,
    "fat_g": 15.0,
    "carbs_g": 12.0,
-   "fibre_g": 3.0
+   "fibre_g": 3.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "pesto",
@@ -1722,7 +1837,8 @@
    "protein_g": 4.5,
    "fat_g": 45.0,
    "carbs_g": 4.0,
-   "fibre_g": 1.5
+   "fibre_g": 1.5,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "hummus",
@@ -1736,7 +1852,8 @@
    "protein_g": 7.9,
    "fat_g": 9.6,
    "carbs_g": 14.3,
-   "fibre_g": 6.0
+   "fibre_g": 6.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "rice-basmati-dry",
@@ -1751,7 +1868,8 @@
    "fat_g": 0.9,
    "carbs_g": 77.0,
    "fibre_g": 1.3,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "rice-brown-dry",
@@ -1765,7 +1883,8 @@
    "fat_g": 2.8,
    "carbs_g": 72.0,
    "fibre_g": 3.5,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "rice-arborio-dry",
@@ -1780,7 +1899,8 @@
    "fat_g": 0.6,
    "carbs_g": 78.0,
    "fibre_g": 1.0,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "spaghetti-dry",
@@ -1795,7 +1915,8 @@
    "fat_g": 1.8,
    "carbs_g": 71.0,
    "fibre_g": 3.0,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "penne-dry",
@@ -1810,7 +1931,8 @@
    "fat_g": 1.8,
    "carbs_g": 71.0,
    "fibre_g": 3.0,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "egg-noodles-dry",
@@ -1825,7 +1947,8 @@
    "fat_g": 2.5,
    "carbs_g": 71.0,
    "fibre_g": 2.5,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "rice-noodles-dry",
@@ -1839,7 +1962,8 @@
    "fat_g": 0.6,
    "carbs_g": 83.0,
    "fibre_g": 1.6,
-   "portion_g": 75
+   "portion_g": 75,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "couscous-dry",
@@ -1851,9 +1975,10 @@
    "calories_per_100g": 376,
    "protein_g": 12.8,
    "fat_g": 0.6,
-   "carbs_g": 77.0,
+   "carbs_g": 72.0,
    "fibre_g": 5.0,
-   "portion_g": 65
+   "portion_g": 65,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "flour-plain",
@@ -1867,7 +1992,8 @@
    "protein_g": 9.4,
    "fat_g": 1.3,
    "carbs_g": 69.3,
-   "fibre_g": 3.1
+   "fibre_g": 3.1,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "flour-self-raising",
@@ -1880,7 +2006,8 @@
    "protein_g": 8.9,
    "fat_g": 1.2,
    "carbs_g": 68.3,
-   "fibre_g": 3.1
+   "fibre_g": 3.1,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "flour-strong-white-bread",
@@ -1893,7 +2020,8 @@
    "protein_g": 12.0,
    "fat_g": 1.4,
    "carbs_g": 68.0,
-   "fibre_g": 3.3
+   "fibre_g": 3.3,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cornflour",
@@ -1906,7 +2034,8 @@
    "protein_g": 0.6,
    "fat_g": 0.7,
    "carbs_g": 86.0,
-   "fibre_g": 0.1
+   "fibre_g": 0.1,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "oats-rolled",
@@ -1920,7 +2049,8 @@
    "protein_g": 13.2,
    "fat_g": 8.1,
    "carbs_g": 60.1,
-   "fibre_g": 9.0
+   "fibre_g": 9.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sugar-caster",
@@ -1934,7 +2064,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 100.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sugar-soft-brown",
@@ -1947,7 +2078,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 98.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "icing-sugar",
@@ -1957,7 +2089,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 99.5,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lentils-red-dry",
@@ -1971,7 +2104,8 @@
    "protein_g": 24.6,
    "fat_g": 1.1,
    "carbs_g": 50.8,
-   "fibre_g": 10.8
+   "fibre_g": 10.8,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lentils-green-dry",
@@ -1985,7 +2119,8 @@
    "protein_g": 24.3,
    "fat_g": 1.1,
    "carbs_g": 48.8,
-   "fibre_g": 10.7
+   "fibre_g": 10.7,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chickpeas-dry",
@@ -1998,7 +2133,8 @@
    "protein_g": 19.3,
    "fat_g": 6.0,
    "carbs_g": 61.0,
-   "fibre_g": 12.2
+   "fibre_g": 12.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "quinoa-dry",
@@ -2010,9 +2146,10 @@
    "calories_per_100g": 368,
    "protein_g": 14.1,
    "fat_g": 6.1,
-   "carbs_g": 64.2,
+   "carbs_g": 57.2,
    "fibre_g": 7.0,
-   "portion_g": 65
+   "portion_g": 65,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pearl-barley",
@@ -2024,22 +2161,23 @@
    "calories_per_100g": 352,
    "protein_g": 9.9,
    "fat_g": 1.2,
-   "carbs_g": 77.7,
-   "fibre_g": 15.6
+   "carbs_g": 62.1,
+   "fibre_g": 15.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "breadcrumbs-dried",
    "name": "Breadcrumbs, dried",
    "category": "food_ambient",
    "aliases": [
-    "breadcrumbs",
-    "panko"
+    "breadcrumbs"
    ],
    "calories_per_100g": 395,
    "protein_g": 13.4,
    "fat_g": 5.3,
-   "carbs_g": 72.0,
-   "fibre_g": 4.5
+   "carbs_g": 67.5,
+   "fibre_g": 4.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "desiccated-coconut",
@@ -2049,7 +2187,8 @@
    "protein_g": 5.6,
    "fat_g": 62.0,
    "carbs_g": 7.0,
-   "fibre_g": 13.7
+   "fibre_g": 13.7,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cocoa-powder",
@@ -2061,8 +2200,9 @@
    "calories_per_100g": 228,
    "protein_g": 19.6,
    "fat_g": 13.7,
-   "carbs_g": 57.9,
-   "fibre_g": 33.0
+   "carbs_g": 24.9,
+   "fibre_g": 33.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "dark-chocolate",
@@ -2074,8 +2214,9 @@
    "calories_per_100g": 546,
    "protein_g": 4.9,
    "fat_g": 31.3,
-   "carbs_g": 61.2,
-   "fibre_g": 10.9
+   "carbs_g": 50.3,
+   "fibre_g": 10.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "almonds",
@@ -2087,8 +2228,9 @@
    "calories_per_100g": 579,
    "protein_g": 21.2,
    "fat_g": 49.9,
-   "carbs_g": 21.6,
-   "fibre_g": 12.5
+   "carbs_g": 9.1,
+   "fibre_g": 12.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cashews",
@@ -2100,8 +2242,9 @@
    "calories_per_100g": 553,
    "protein_g": 18.2,
    "fat_g": 43.9,
-   "carbs_g": 30.2,
-   "fibre_g": 3.3
+   "carbs_g": 26.9,
+   "fibre_g": 3.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "walnuts",
@@ -2110,8 +2253,9 @@
    "calories_per_100g": 654,
    "protein_g": 15.2,
    "fat_g": 65.2,
-   "carbs_g": 13.7,
-   "fibre_g": 6.7
+   "carbs_g": 7.0,
+   "fibre_g": 6.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "peanuts",
@@ -2123,8 +2267,9 @@
    "calories_per_100g": 567,
    "protein_g": 25.8,
    "fat_g": 49.2,
-   "carbs_g": 16.1,
-   "fibre_g": 8.5
+   "carbs_g": 7.6,
+   "fibre_g": 8.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "sunflower-seeds",
@@ -2133,8 +2278,9 @@
    "calories_per_100g": 584,
    "protein_g": 20.8,
    "fat_g": 51.5,
-   "carbs_g": 20.0,
-   "fibre_g": 8.6
+   "carbs_g": 11.4,
+   "fibre_g": 8.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pumpkin-seeds",
@@ -2143,8 +2289,9 @@
    "calories_per_100g": 559,
    "protein_g": 30.2,
    "fat_g": 49.1,
-   "carbs_g": 10.7,
-   "fibre_g": 6.0
+   "carbs_g": 4.7,
+   "fibre_g": 6.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "chia-seeds",
@@ -2153,8 +2300,9 @@
    "calories_per_100g": 486,
    "protein_g": 16.5,
    "fat_g": 30.7,
-   "carbs_g": 42.1,
-   "fibre_g": 34.4
+   "carbs_g": 7.7,
+   "fibre_g": 34.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "sesame-seeds",
@@ -2163,8 +2311,9 @@
    "calories_per_100g": 573,
    "protein_g": 17.7,
    "fat_g": 49.7,
-   "carbs_g": 23.4,
-   "fibre_g": 11.8
+   "carbs_g": 11.6,
+   "fibre_g": 11.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "raisin-and-oat-granola",
@@ -2177,7 +2326,8 @@
    "protein_g": 10.0,
    "fat_g": 20.0,
    "carbs_g": 60.0,
-   "fibre_g": 6.0
+   "fibre_g": 6.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "salt",
@@ -2192,7 +2342,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "black-pepper-ground",
@@ -2206,8 +2357,9 @@
    "calories_per_100g": 251,
    "protein_g": 10.4,
    "fat_g": 3.3,
-   "carbs_g": 64.0,
-   "fibre_g": 25.3
+   "carbs_g": 38.7,
+   "fibre_g": 25.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cumin-ground",
@@ -2220,8 +2372,9 @@
    "calories_per_100g": 375,
    "protein_g": 17.8,
    "fat_g": 22.3,
-   "carbs_g": 44.2,
-   "fibre_g": 10.5
+   "carbs_g": 33.7,
+   "fibre_g": 10.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "coriander-ground",
@@ -2234,22 +2387,22 @@
    "calories_per_100g": 298,
    "protein_g": 12.4,
    "fat_g": 17.8,
-   "carbs_g": 55.0,
-   "fibre_g": 41.9
+   "carbs_g": 13.1,
+   "fibre_g": 41.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "paprika",
    "name": "Paprika",
    "category": "food_ambient",
-   "aliases": [
-    "smoked paprika"
-   ],
+   "aliases": [],
    "grams_per_ml": 0.46,
    "calories_per_100g": 282,
    "protein_g": 14.1,
    "fat_g": 12.9,
-   "carbs_g": 54.0,
-   "fibre_g": 34.9
+   "carbs_g": 19.1,
+   "fibre_g": 34.9,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "turmeric-ground",
@@ -2262,8 +2415,9 @@
    "calories_per_100g": 354,
    "protein_g": 7.8,
    "fat_g": 9.9,
-   "carbs_g": 65.0,
-   "fibre_g": 22.7
+   "carbs_g": 42.3,
+   "fibre_g": 22.7,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "chilli-powder",
@@ -2273,8 +2427,9 @@
    "calories_per_100g": 282,
    "protein_g": 13.5,
    "fat_g": 14.3,
-   "carbs_g": 49.7,
-   "fibre_g": 34.8
+   "carbs_g": 14.9,
+   "fibre_g": 34.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "cinnamon-ground",
@@ -2287,8 +2442,9 @@
    "calories_per_100g": 247,
    "protein_g": 4.0,
    "fat_g": 1.2,
-   "carbs_g": 81.0,
-   "fibre_g": 53.1
+   "carbs_g": 27.9,
+   "fibre_g": 53.1,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "garam-masala",
@@ -2299,7 +2455,8 @@
    "protein_g": 15.0,
    "fat_g": 15.0,
    "carbs_g": 45.0,
-   "fibre_g": 25.0
+   "fibre_g": 25.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "curry-powder",
@@ -2309,8 +2466,9 @@
    "calories_per_100g": 325,
    "protein_g": 14.3,
    "fat_g": 14.0,
-   "carbs_g": 55.8,
-   "fibre_g": 33.2
+   "carbs_g": 22.6,
+   "fibre_g": 33.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "dried-oregano",
@@ -2323,8 +2481,9 @@
    "calories_per_100g": 265,
    "protein_g": 9.0,
    "fat_g": 4.3,
-   "carbs_g": 68.9,
-   "fibre_g": 42.5
+   "carbs_g": 26.4,
+   "fibre_g": 42.5,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "dried-thyme",
@@ -2337,8 +2496,9 @@
    "calories_per_100g": 276,
    "protein_g": 9.1,
    "fat_g": 7.4,
-   "carbs_g": 63.9,
-   "fibre_g": 37.0
+   "carbs_g": 26.9,
+   "fibre_g": 37.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "bay-leaf",
@@ -2352,8 +2512,9 @@
    "calories_per_100g": 313,
    "protein_g": 7.6,
    "fat_g": 8.4,
-   "carbs_g": 75.0,
-   "fibre_g": 26.3
+   "carbs_g": 48.7,
+   "fibre_g": 26.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "fresh-basil",
@@ -2365,8 +2526,9 @@
    "calories_per_100g": 23,
    "protein_g": 3.2,
    "fat_g": 0.6,
-   "carbs_g": 2.7,
-   "fibre_g": 1.6
+   "carbs_g": 1.1,
+   "fibre_g": 1.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "fresh-parsley",
@@ -2378,8 +2540,9 @@
    "calories_per_100g": 36,
    "protein_g": 3.0,
    "fat_g": 0.8,
-   "carbs_g": 6.3,
-   "fibre_g": 3.3
+   "carbs_g": 3.0,
+   "fibre_g": 3.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "fresh-coriander",
@@ -2391,8 +2554,9 @@
    "calories_per_100g": 23,
    "protein_g": 2.1,
    "fat_g": 0.5,
-   "carbs_g": 3.7,
-   "fibre_g": 2.8
+   "carbs_g": 0.9,
+   "fibre_g": 2.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "baking-powder",
@@ -2403,7 +2567,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 28.0,
-   "fibre_g": 0.2
+   "fibre_g": 0.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "bicarbonate-of-soda",
@@ -2417,7 +2582,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "stock-cube",
@@ -2432,7 +2598,8 @@
    "protein_g": 12.0,
    "fat_g": 17.0,
    "carbs_g": 15.0,
-   "fibre_g": 0.5
+   "fibre_g": 0.5,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "vanilla-extract",
@@ -2443,7 +2610,8 @@
    "protein_g": 0.1,
    "fat_g": 0.1,
    "carbs_g": 12.7,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "capers",
@@ -2452,8 +2620,9 @@
    "calories_per_100g": 23,
    "protein_g": 2.4,
    "fat_g": 0.9,
-   "carbs_g": 4.9,
-   "fibre_g": 3.2
+   "carbs_g": 1.7,
+   "fibre_g": 3.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "olives-pitted",
@@ -2467,8 +2636,9 @@
    "calories_per_100g": 145,
    "protein_g": 1.0,
    "fat_g": 15.3,
-   "carbs_g": 3.8,
-   "fibre_g": 3.3
+   "carbs_g": 0.5,
+   "fibre_g": 3.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "anchovy-fillet",
@@ -2484,7 +2654,8 @@
    "protein_g": 29.0,
    "fat_g": 10.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chicken-breast-skinless",
@@ -2501,7 +2672,8 @@
    "fat_g": 3.6,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 150
+   "portion_g": 150,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chicken-thigh-boneless",
@@ -2518,7 +2690,8 @@
    "fat_g": 10.9,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 150
+   "portion_g": 150,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chicken-drumstick",
@@ -2534,7 +2707,8 @@
    "protein_g": 28.3,
    "fat_g": 5.7,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "beef-mince-5-fat",
@@ -2547,7 +2721,8 @@
    "protein_g": 21.0,
    "fat_g": 5.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "beef-mince-20-fat",
@@ -2561,7 +2736,8 @@
    "protein_g": 17.2,
    "fat_g": 20.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "pork-mince",
@@ -2572,7 +2748,8 @@
    "fat_g": 21.2,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 125
+   "portion_g": 125,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lamb-mince",
@@ -2583,7 +2760,8 @@
    "fat_g": 23.4,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 125
+   "portion_g": 125,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "turkey-mince",
@@ -2594,7 +2772,8 @@
    "fat_g": 7.0,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 125
+   "portion_g": 125,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "bacon-rasher-back",
@@ -2610,7 +2789,8 @@
    "protein_g": 22.0,
    "fat_g": 14.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sausage-pork",
@@ -2627,7 +2807,8 @@
    "fat_g": 24.0,
    "carbs_g": 7.0,
    "fibre_g": 0.6,
-   "portion_g": 114
+   "portion_g": 114,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "salmon-fillet",
@@ -2643,7 +2824,8 @@
    "fat_g": 13.4,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 120
+   "portion_g": 120,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cod-fillet",
@@ -2659,7 +2841,8 @@
    "fat_g": 0.7,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 140
+   "portion_g": 140,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sea-bass-fillet",
@@ -2675,7 +2858,8 @@
    "fat_g": 2.0,
    "carbs_g": 0.0,
    "fibre_g": 0,
-   "portion_g": 110
+   "portion_g": 110,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "prawns-cooked",
@@ -2690,7 +2874,8 @@
    "fat_g": 0.9,
    "carbs_g": 0.2,
    "fibre_g": 0,
-   "portion_g": 100
+   "portion_g": 100,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "chorizo",
@@ -2703,7 +2888,8 @@
    "protein_g": 24.1,
    "fat_g": 38.3,
    "carbs_g": 1.9,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "tofu-firm",
@@ -2717,9 +2903,10 @@
    "calories_per_100g": 144,
    "protein_g": 17.3,
    "fat_g": 8.7,
-   "carbs_g": 2.8,
+   "carbs_g": 1.6,
    "fibre_g": 1.2,
-   "portion_g": 125
+   "portion_g": 125,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "halloumi",
@@ -2732,7 +2919,8 @@
    "fat_g": 25.0,
    "carbs_g": 2.6,
    "fibre_g": 0,
-   "portion_g": 60
+   "portion_g": 60,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cheddar-cheese",
@@ -2746,7 +2934,8 @@
    "protein_g": 25.4,
    "fat_g": 34.9,
    "carbs_g": 0.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "mozzarella",
@@ -2761,7 +2950,8 @@
    "protein_g": 18.0,
    "fat_g": 22.0,
    "carbs_g": 2.2,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "parmesan",
@@ -2775,7 +2965,8 @@
    "protein_g": 38.0,
    "fat_g": 29.0,
    "carbs_g": 4.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "feta",
@@ -2790,7 +2981,8 @@
    "protein_g": 14.2,
    "fat_g": 21.3,
    "carbs_g": 4.1,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "ham-slice",
@@ -2805,7 +2997,8 @@
    "protein_g": 18.0,
    "fat_g": 3.5,
    "carbs_g": 1.5,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "toilet-roll",
@@ -2927,16 +3120,33 @@
    "category": "drink",
    "aliases": [
     "coffee",
-    "instant coffee"
-   ]
+    "instant coffee",
+    "coffee granules"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 353,
+   "protein_g": 12.2,
+   "fat_g": 0.5,
+   "carbs_g": 75.4,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Beverages, coffee, instant, regular, powder. Carbohydrate given UK-style, without fibre. Instant coffee dissolves, so the powder is what you drink: about 2 g, 7 kcal, a cup."
   },
   {
    "slug": "coffee-ground",
    "name": "Coffee, ground",
    "category": "drink",
    "aliases": [
-    "ground coffee"
-   ]
+    "ground coffee",
+    "espresso",
+    "filter coffee"
+   ],
+   "grams_per_ml": 0.35,
+   "calories_per_100g": 40,
+   "protein_g": 4.0,
+   "fat_g": 0.0,
+   "carbs_g": 6.0,
+   "fibre_g": 0.0,
+   "basis": "As brewed: what 10 g of ground coffee gives a 200 ml cup (CoFID 2019 Coffee, infusion, average: 2 kcal per 100 ml), scaled to 100 g of coffee."
   },
   {
    "slug": "squash-concentrated",
@@ -2950,7 +3160,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 2.4,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "cola",
@@ -2967,7 +3178,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 10.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "lemonade",
@@ -2980,7 +3192,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 9.5,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "apple-juice",
@@ -2991,7 +3204,8 @@
    "protein_g": 0.1,
    "fat_g": 0.1,
    "carbs_g": 11.3,
-   "fibre_g": 0.2
+   "fibre_g": 0.2,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "beer-lager",
@@ -3008,7 +3222,8 @@
    "protein_g": 0.5,
    "fat_g": 0.0,
    "carbs_g": 3.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "wine-red",
@@ -3024,7 +3239,8 @@
    "protein_g": 0.1,
    "fat_g": 0.0,
    "carbs_g": 2.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "wine-white",
@@ -3040,7 +3256,8 @@
    "protein_g": 0.1,
    "fat_g": 0.0,
    "carbs_g": 2.6,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "sparkling-water",
@@ -3056,7 +3273,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.0,
-   "fibre_g": 0
+   "fibre_g": 0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "hot-chocolate-powder",
@@ -3069,7 +3287,8 @@
    "protein_g": 5.0,
    "fat_g": 3.0,
    "carbs_g": 80.0,
-   "fibre_g": 5.0
+   "fibre_g": 5.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "laundry-detergent",
@@ -3225,8 +3444,9 @@
    "calories_per_100g": 44,
    "protein_g": 3.3,
    "fat_g": 0.7,
-   "carbs_g": 8.4,
-   "fibre_g": 6.8
+   "carbs_g": 1.6,
+   "fibre_g": 6.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "miso-paste",
@@ -3241,8 +3461,9 @@
    "calories_per_100g": 198,
    "protein_g": 12.8,
    "fat_g": 6.0,
-   "carbs_g": 25.4,
-   "fibre_g": 5.4
+   "carbs_g": 20.0,
+   "fibre_g": 5.4,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "rice-vinegar",
@@ -3256,7 +3477,8 @@
    "protein_g": 0.0,
    "fat_g": 0.0,
    "carbs_g": 0.0,
-   "fibre_g": 0.0
+   "fibre_g": 0.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "gochujang",
@@ -3271,7 +3493,8 @@
    "protein_g": 4.6,
    "fat_g": 1.6,
    "carbs_g": 44.0,
-   "fibre_g": 2.0
+   "fibre_g": 2.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "kimchi",
@@ -3281,8 +3504,9 @@
    "calories_per_100g": 15,
    "protein_g": 1.1,
    "fat_g": 0.5,
-   "carbs_g": 2.4,
-   "fibre_g": 1.6
+   "carbs_g": 0.8,
+   "fibre_g": 1.6,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "edamame-frozen",
@@ -3296,8 +3520,9 @@
    "calories_per_100g": 121,
    "protein_g": 11.9,
    "fat_g": 5.2,
-   "carbs_g": 8.9,
-   "fibre_g": 5.2
+   "carbs_g": 3.7,
+   "fibre_g": 5.2,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "pak-choi",
@@ -3313,8 +3538,9 @@
    "calories_per_100g": 13,
    "protein_g": 1.5,
    "fat_g": 0.2,
-   "carbs_g": 2.2,
-   "fibre_g": 1.0
+   "carbs_g": 1.2,
+   "fibre_g": 1.0,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "beansprouts",
@@ -3328,8 +3554,9 @@
    "calories_per_100g": 30,
    "protein_g": 3.0,
    "fat_g": 0.2,
-   "carbs_g": 5.9,
-   "fibre_g": 1.8
+   "carbs_g": 4.1,
+   "fibre_g": 1.8,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "smoked-salmon",
@@ -3343,7 +3570,8 @@
    "protein_g": 18.3,
    "fat_g": 4.3,
    "carbs_g": 0.0,
-   "fibre_g": 0.0
+   "fibre_g": 0.0,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "dried-apricots",
@@ -3356,8 +3584,9 @@
    "calories_per_100g": 241,
    "protein_g": 3.4,
    "fat_g": 0.5,
-   "carbs_g": 62.6,
-   "fibre_g": 7.3
+   "carbs_g": 55.3,
+   "fibre_g": 7.3,
+   "basis": "Published average (USDA SR Legacy). Carbohydrate given UK-style, without fibre."
   },
   {
    "slug": "thai-green-curry-paste",
@@ -3434,7 +3663,8 @@
    "fat_g": 30.0,
    "carbs_g": 0.0,
    "fibre_g": 0.0,
-   "portion_g": 100
+   "portion_g": 100,
+   "basis": "Published average from the original reference set (USDA or McCance and Widdowson)."
   },
   {
    "slug": "breaded-fish-baked",
@@ -4626,10 +4856,7 @@
    "slug": "bacon-streaky-grilled",
    "name": "Bacon, streaky, grilled",
    "category": "food_fresh",
-   "aliases": [
-    "streaky bacon",
-    "smoked streaky bacon"
-   ],
+   "aliases": [],
    "calories_per_100g": 337.0,
    "protein_g": 23.8,
    "fat_g": 26.9,
@@ -7552,6 +7779,2352 @@
    "basis": "CoFID 2019: Omelette, cheese, homemade.",
    "everyday": true,
    "portion_g": 150
+  },
+  {
+   "slug": "turkey-crown",
+   "name": "Turkey crown",
+   "category": "food_fresh",
+   "aliases": [
+    "turkey",
+    "turkey breast joint",
+    "turkey crown joint",
+    "whole turkey"
+   ],
+   "calories_per_100g": 157,
+   "protein_g": 21.9,
+   "fat_g": 7.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Turkey, all classes, breast, meat and skin, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "gammon-joint",
+   "name": "Gammon joint",
+   "category": "food_fresh",
+   "aliases": [
+    "gammon",
+    "ham joint",
+    "unsmoked gammon",
+    "smoked gammon"
+   ],
+   "calories_per_100g": 138,
+   "protein_g": 17.5,
+   "fat_g": 7.5,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Ham, gammon joint, raw."
+  },
+  {
+   "slug": "beef-fillet",
+   "name": "Beef fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "fillet steak",
+    "beef tenderloin",
+    "fillet of beef",
+    "tenderloin"
+   ],
+   "calories_per_100g": 155,
+   "protein_g": 20.9,
+   "fat_g": 7.9,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Beef, fillet steak, raw, lean and fat."
+  },
+  {
+   "slug": "duck-leg",
+   "name": "Duck leg",
+   "category": "food_fresh",
+   "aliases": [
+    "duck legs",
+    "duck"
+   ],
+   "grams_per_item": 200,
+   "item_label": "leg",
+   "calories_per_100g": 404,
+   "protein_g": 11.5,
+   "fat_g": 39.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Duck, domesticated, meat and skin, raw. Carbohydrate given UK-style, without fibre. One leg is the meat and skin of a 300 g leg, about 200 g."
+  },
+  {
+   "slug": "chicken-livers",
+   "name": "Chicken livers",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken liver",
+    "livers"
+   ],
+   "calories_per_100g": 92,
+   "protein_g": 17.7,
+   "fat_g": 2.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Liver, chicken, raw."
+  },
+  {
+   "slug": "bacon-streaky-raw",
+   "name": "Streaky bacon",
+   "category": "food_fresh",
+   "aliases": [
+    "streaky bacon rashers",
+    "smoked streaky bacon"
+   ],
+   "grams_per_item": 18,
+   "item_label": "rasher",
+   "calories_per_100g": 276,
+   "protein_g": 15.8,
+   "fat_g": 23.6,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Bacon rashers, streaky, raw."
+  },
+  {
+   "slug": "pancetta",
+   "name": "Pancetta",
+   "category": "food_fresh",
+   "aliases": [
+    "pancetta cubes",
+    "cubetti di pancetta",
+    "diced pancetta"
+   ],
+   "calories_per_100g": 330,
+   "protein_g": 17.0,
+   "fat_g": 29.0,
+   "carbs_g": 0.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "chipolatas",
+   "name": "Chipolatas",
+   "category": "food_fresh",
+   "aliases": [
+    "chipolata",
+    "cocktail sausages",
+    "pork chipolatas"
+   ],
+   "grams_per_item": 22,
+   "item_label": "chipolata",
+   "calories_per_100g": 309,
+   "protein_g": 11.9,
+   "fat_g": 25.0,
+   "carbs_g": 9.6,
+   "fibre_g": 2.8,
+   "basis": "CoFID 2019: Sausages, pork, raw."
+  },
+  {
+   "slug": "sausagemeat",
+   "name": "Sausage meat",
+   "category": "food_fresh",
+   "aliases": [
+    "sausagemeat",
+    "pork sausage meat"
+   ],
+   "calories_per_100g": 309,
+   "protein_g": 11.9,
+   "fat_g": 25.0,
+   "carbs_g": 9.6,
+   "fibre_g": 2.8,
+   "basis": "CoFID 2019: Sausages, pork, raw."
+  },
+  {
+   "slug": "venison-diced",
+   "name": "Venison",
+   "category": "food_fresh",
+   "aliases": [
+    "diced venison",
+    "venison steak"
+   ],
+   "calories_per_100g": 103,
+   "protein_g": 22.2,
+   "fat_g": 1.6,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Venison, meat only, raw."
+  },
+  {
+   "slug": "lamb-leg",
+   "name": "Leg of lamb",
+   "category": "food_fresh",
+   "aliases": [
+    "lamb leg",
+    "lamb leg joint"
+   ],
+   "calories_per_100g": 125,
+   "protein_g": 20.5,
+   "fat_g": 4.2,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Lamb, leg, shank half, separable lean only, trimmed to 1/4\" fat, choice, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "hake-fillet",
+   "name": "Hake fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "hake",
+    "white fish fillet"
+   ],
+   "calories_per_100g": 92,
+   "protein_g": 18.0,
+   "fat_g": 2.2,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Hake, flesh only, raw."
+  },
+  {
+   "slug": "monkfish",
+   "name": "Monkfish",
+   "category": "food_fresh",
+   "aliases": [
+    "monkfish tail",
+    "monkfish fillet"
+   ],
+   "calories_per_100g": 66,
+   "protein_g": 15.7,
+   "fat_g": 0.4,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Monkfish, flesh only, raw."
+  },
+  {
+   "slug": "trout-fillet",
+   "name": "Trout fillet",
+   "category": "food_fresh",
+   "aliases": [
+    "trout",
+    "rainbow trout"
+   ],
+   "calories_per_100g": 127,
+   "protein_g": 19.9,
+   "fat_g": 5.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Trout, rainbow, flesh only, raw."
+  },
+  {
+   "slug": "king-prawns-raw",
+   "name": "King prawns, raw",
+   "category": "food_frozen",
+   "aliases": [
+    "raw king prawns",
+    "raw prawns",
+    "tiger prawns"
+   ],
+   "grams_per_item": 15,
+   "item_label": "prawn",
+   "calories_per_100g": 77,
+   "protein_g": 17.6,
+   "fat_g": 0.7,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Prawns, king, raw."
+  },
+  {
+   "slug": "scallops",
+   "name": "Scallops",
+   "category": "food_fresh",
+   "aliases": [
+    "king scallops",
+    "scallop",
+    "scallops with roe"
+   ],
+   "grams_per_item": 25,
+   "item_label": "scallop",
+   "calories_per_100g": 69,
+   "protein_g": 12.1,
+   "fat_g": 0.5,
+   "carbs_g": 3.2,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Mollusks, scallop, mixed species, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "lobster-tail",
+   "name": "Lobster tail",
+   "category": "food_frozen",
+   "aliases": [
+    "lobster tails",
+    "lobster"
+   ],
+   "grams_per_item": 140,
+   "item_label": "tail",
+   "calories_per_100g": 77,
+   "protein_g": 16.5,
+   "fat_g": 0.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Crustaceans, lobster, northern, raw. Carbohydrate given UK-style, without fibre. One tail is about 140 g of meat."
+  },
+  {
+   "slug": "crab-white-meat",
+   "name": "White crab meat",
+   "category": "food_fresh",
+   "aliases": [
+    "crab meat",
+    "white crabmeat",
+    "crab"
+   ],
+   "calories_per_100g": 85,
+   "protein_g": 20.5,
+   "fat_g": 0.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Crab, white meat, purchased cooked."
+  },
+  {
+   "slug": "mussels-cooked",
+   "name": "Mussel meat, cooked",
+   "category": "food_frozen",
+   "aliases": [
+    "mussels",
+    "cooked mussels",
+    "mussel meat"
+   ],
+   "calories_per_100g": 104,
+   "protein_g": 17.7,
+   "fat_g": 2.2,
+   "carbs_g": 3.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Mussels, purchased cooked."
+  },
+  {
+   "slug": "squid",
+   "name": "Squid",
+   "category": "food_fresh",
+   "aliases": [
+    "squid rings",
+    "calamari"
+   ],
+   "calories_per_100g": 81,
+   "protein_g": 15.4,
+   "fat_g": 1.7,
+   "carbs_g": 1.2,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Squid, raw."
+  },
+  {
+   "slug": "smoked-salmon-cold",
+   "name": "Smoked salmon, cold-smoked",
+   "category": "food_fresh",
+   "aliases": [
+    "scottish smoked salmon",
+    "smoked salmon slices",
+    "smoked salmon trimmings"
+   ],
+   "calories_per_100g": 184,
+   "protein_g": 22.8,
+   "fat_g": 10.1,
+   "carbs_g": 0.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Salmon, smoked (cold-smoked)."
+  },
+  {
+   "slug": "shrimp-paste",
+   "name": "Shrimp paste",
+   "category": "food_ambient",
+   "aliases": [
+    "belacan",
+    "blachan",
+    "kapi",
+    "terasi",
+    "trassi"
+   ],
+   "grams_per_ml": 1.2,
+   "calories_per_100g": 133,
+   "protein_g": 20.0,
+   "fat_g": 3.5,
+   "carbs_g": 7.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of Thai and Malaysian shrimp-paste labels per 100 g; makers vary."
+  },
+  {
+   "slug": "brussels-sprouts",
+   "name": "Brussels sprouts",
+   "category": "food_fresh",
+   "aliases": [
+    "sprouts",
+    "brussel sprouts"
+   ],
+   "calories_per_100g": 42,
+   "protein_g": 3.5,
+   "fat_g": 1.4,
+   "carbs_g": 4.1,
+   "fibre_g": 4.1,
+   "basis": "CoFID 2019: Brussels sprouts, raw."
+  },
+  {
+   "slug": "red-cabbage",
+   "name": "Red cabbage",
+   "category": "food_fresh",
+   "aliases": [
+    "red cabbage head"
+   ],
+   "grams_per_item": 900,
+   "item_label": "cabbage",
+   "calories_per_100g": 21,
+   "protein_g": 1.1,
+   "fat_g": 0.3,
+   "carbs_g": 3.7,
+   "fibre_g": 2.9,
+   "basis": "CoFID 2019: Cabbage, red, raw."
+  },
+  {
+   "slug": "celeriac",
+   "name": "Celeriac",
+   "category": "food_fresh",
+   "aliases": [
+    "celery root"
+   ],
+   "calories_per_100g": 18,
+   "protein_g": 1.2,
+   "fat_g": 0.4,
+   "carbs_g": 2.3,
+   "fibre_g": 3.7,
+   "basis": "CoFID 2019: Celeriac, raw."
+  },
+  {
+   "slug": "swede",
+   "name": "Swede",
+   "category": "food_fresh",
+   "aliases": [
+    "rutabaga"
+   ],
+   "calories_per_100g": 24,
+   "protein_g": 0.7,
+   "fat_g": 0.3,
+   "carbs_g": 5.0,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Swede, flesh only, raw."
+  },
+  {
+   "slug": "chestnuts-cooked",
+   "name": "Chestnuts, cooked and peeled",
+   "category": "food_ambient",
+   "aliases": [
+    "chestnuts",
+    "vacuum packed chestnuts",
+    "cooked chestnuts",
+    "whole chestnuts"
+   ],
+   "calories_per_100g": 163,
+   "protein_g": 2.4,
+   "fat_g": 1.7,
+   "carbs_g": 33.0,
+   "fibre_g": 4.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "cranberries",
+   "name": "Cranberries",
+   "category": "food_fresh",
+   "aliases": [
+    "fresh cranberries",
+    "frozen cranberries"
+   ],
+   "calories_per_100g": 15,
+   "protein_g": 0.4,
+   "fat_g": 0.1,
+   "carbs_g": 3.4,
+   "fibre_g": 3.0,
+   "basis": "CoFID 2019: Cranberries."
+  },
+  {
+   "slug": "clementine",
+   "name": "Clementine",
+   "category": "food_fresh",
+   "aliases": [
+    "clementines",
+    "satsuma",
+    "satsumas",
+    "tangerine",
+    "easy peeler"
+   ],
+   "grams_per_item": 60,
+   "item_label": "clementine",
+   "calories_per_100g": 41,
+   "protein_g": 0.7,
+   "fat_g": 0.2,
+   "carbs_g": 9.6,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Citrus fruit, soft/easy peelers, flesh only."
+  },
+  {
+   "slug": "pomegranate-seeds",
+   "name": "Pomegranate seeds",
+   "category": "food_fresh",
+   "aliases": [
+    "pomegranate",
+    "pomegranate arils"
+   ],
+   "calories_per_100g": 51,
+   "protein_g": 1.3,
+   "fat_g": 0.2,
+   "carbs_g": 11.8,
+   "fibre_g": 3.4,
+   "basis": "CoFID 2019: Pomegranate, flesh and pips."
+  },
+  {
+   "slug": "cos-lettuce",
+   "name": "Cos lettuce",
+   "category": "food_fresh",
+   "aliases": [
+    "romaine",
+    "little gem",
+    "little gem lettuce",
+    "baby gem"
+   ],
+   "calories_per_100g": 17,
+   "protein_g": 1.2,
+   "fat_g": 0.3,
+   "carbs_g": 1.2,
+   "fibre_g": 2.1,
+   "basis": "USDA SR Legacy: Lettuce, cos or romaine, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "watercress",
+   "name": "Watercress",
+   "category": "food_fresh",
+   "aliases": [
+    "cress"
+   ],
+   "calories_per_100g": 10,
+   "protein_g": 1.9,
+   "fat_g": 0.3,
+   "carbs_g": 0.0,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Watercress, raw."
+  },
+  {
+   "slug": "rocket",
+   "name": "Rocket",
+   "category": "food_fresh",
+   "aliases": [
+    "arugula",
+    "wild rocket"
+   ],
+   "calories_per_100g": 18,
+   "protein_g": 3.6,
+   "fat_g": 0.4,
+   "carbs_g": 0.0,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Rocket, raw."
+  },
+  {
+   "slug": "galangal",
+   "name": "Galangal",
+   "category": "food_fresh",
+   "aliases": [
+    "galangal root",
+    "fresh galangal",
+    "blue ginger"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 71,
+   "protein_g": 1.0,
+   "fat_g": 0.0,
+   "carbs_g": 15.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK fresh and frozen galangal labels per 100 g."
+  },
+  {
+   "slug": "lime-leaves",
+   "name": "Kaffir lime leaves",
+   "category": "food_fresh",
+   "aliases": [
+    "kaffir lime leaf",
+    "makrut lime leaves",
+    "makrut lime leaf",
+    "lime leaves",
+    "lime leaf",
+    "thai lime leaves"
+   ],
+   "grams_per_item": 0.5,
+   "item_label": "leaf",
+   "calories_per_100g": 71,
+   "protein_g": 3.2,
+   "fat_g": 2.3,
+   "carbs_g": 7.4,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK fresh lime-leaf labels per 100 g. One leaf is about 0.5 g."
+  },
+  {
+   "slug": "curry-leaves",
+   "name": "Curry leaves",
+   "category": "food_fresh",
+   "aliases": [
+    "curry leaf",
+    "fresh curry leaves"
+   ],
+   "grams_per_item": 0.2,
+   "item_label": "leaf",
+   "calories_per_100g": 97,
+   "protein_g": 7.9,
+   "fat_g": 1.3,
+   "carbs_g": 13.3,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Curry leaves, fresh. No fibre figure is published; counted as 0."
+  },
+  {
+   "slug": "fresh-sage",
+   "name": "Fresh sage",
+   "category": "food_fresh",
+   "aliases": [
+    "sage",
+    "sage leaves"
+   ],
+   "grams_per_item": 0.5,
+   "item_label": "leaf",
+   "calories_per_100g": 119,
+   "protein_g": 3.9,
+   "fat_g": 4.6,
+   "carbs_g": 15.6,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Sage, fresh. No fibre figure is published; counted as 0."
+  },
+  {
+   "slug": "fresh-rosemary",
+   "name": "Fresh rosemary",
+   "category": "food_fresh",
+   "aliases": [
+    "rosemary",
+    "rosemary sprig",
+    "rosemary sprigs"
+   ],
+   "grams_per_item": 1,
+   "item_label": "sprig",
+   "calories_per_100g": 99,
+   "protein_g": 1.4,
+   "fat_g": 4.4,
+   "carbs_g": 13.5,
+   "fibre_g": 12.4,
+   "basis": "CoFID 2019: Rosemary, fresh."
+  },
+  {
+   "slug": "fresh-thyme",
+   "name": "Fresh thyme",
+   "category": "food_fresh",
+   "aliases": [
+    "thyme sprigs",
+    "thyme sprig",
+    "fresh thyme sprigs"
+   ],
+   "grams_per_item": 0.5,
+   "item_label": "sprig",
+   "grams_per_ml": 0.25,
+   "calories_per_100g": 95,
+   "protein_g": 3.0,
+   "fat_g": 2.5,
+   "carbs_g": 15.1,
+   "fibre_g": 12.3,
+   "basis": "CoFID 2019: Thyme, fresh."
+  },
+  {
+   "slug": "fresh-dill",
+   "name": "Fresh dill",
+   "category": "food_fresh",
+   "aliases": [
+    "dill"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 25,
+   "protein_g": 3.7,
+   "fat_g": 0.8,
+   "carbs_g": 0.9,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Dill, fresh."
+  },
+  {
+   "slug": "chives",
+   "name": "Chives",
+   "category": "food_fresh",
+   "aliases": [
+    "fresh chives"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 27,
+   "protein_g": 3.3,
+   "fat_g": 0.7,
+   "carbs_g": 1.9,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Chives, fresh."
+  },
+  {
+   "slug": "fresh-tarragon",
+   "name": "Fresh tarragon",
+   "category": "food_fresh",
+   "aliases": [
+    "tarragon"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 49,
+   "protein_g": 3.4,
+   "fat_g": 1.1,
+   "carbs_g": 6.3,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Tarragon, fresh. No fibre figure is published; counted as 0."
+  },
+  {
+   "slug": "lime-juice",
+   "name": "Lime juice",
+   "category": "food_fresh",
+   "aliases": [
+    "juice of a lime",
+    "fresh lime juice"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 25,
+   "protein_g": 0.4,
+   "fat_g": 0.1,
+   "carbs_g": 8.0,
+   "fibre_g": 0.4,
+   "basis": "USDA SR Legacy: Lime juice, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "horseradish-sauce",
+   "name": "Horseradish sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "horseradish",
+    "creamed horseradish"
+   ],
+   "grams_per_ml": 1.05,
+   "calories_per_100g": 153,
+   "protein_g": 2.5,
+   "fat_g": 8.4,
+   "carbs_g": 17.9,
+   "fibre_g": 2.5,
+   "basis": "CoFID 2019: Horseradish sauce."
+  },
+  {
+   "slug": "sun-dried-tomatoes",
+   "name": "Sun-dried tomatoes in oil",
+   "category": "food_ambient",
+   "aliases": [
+    "sundried tomatoes",
+    "sun dried tomatoes"
+   ],
+   "calories_per_100g": 213,
+   "protein_g": 5.1,
+   "fat_g": 14.1,
+   "carbs_g": 17.5,
+   "fibre_g": 5.8,
+   "basis": "USDA SR Legacy: Tomatoes, sun-dried, packed in oil, drained. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "shiitake-dried",
+   "name": "Dried mushrooms",
+   "category": "food_ambient",
+   "aliases": [
+    "dried shiitake",
+    "dried porcini",
+    "porcini",
+    "dried wild mushrooms"
+   ],
+   "calories_per_100g": 296,
+   "protein_g": 9.6,
+   "fat_g": 1.0,
+   "carbs_g": 63.9,
+   "fibre_g": 11.5,
+   "basis": "USDA SR Legacy: Mushrooms, shiitake, dried. Carbohydrate given UK-style, without fibre. Shiitake figures stand in for other dried mushrooms."
+  },
+  {
+   "slug": "green-peppercorns-brine",
+   "name": "Green peppercorns in brine",
+   "category": "food_ambient",
+   "aliases": [
+    "green peppercorns",
+    "bottled green peppercorns",
+    "green peppercorns in brine drained"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 76,
+   "protein_g": 2.9,
+   "fat_g": 1.5,
+   "carbs_g": 16.5,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK and EU jar labels per 100 g drained. Fibre is not on most labels; 2 g is from a producer specification."
+  },
+  {
+   "slug": "black-peppercorns",
+   "name": "Black peppercorns",
+   "category": "food_ambient",
+   "aliases": [
+    "peppercorns",
+    "whole black peppercorns",
+    "mixed peppercorns"
+   ],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 251,
+   "protein_g": 10.4,
+   "fat_g": 3.3,
+   "carbs_g": 38.7,
+   "fibre_g": 25.3,
+   "basis": "USDA SR Legacy: Spices, pepper, black. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "white-pepper",
+   "name": "White pepper",
+   "category": "food_ambient",
+   "aliases": [
+    "ground white pepper"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 296,
+   "protein_g": 10.4,
+   "fat_g": 2.1,
+   "carbs_g": 42.4,
+   "fibre_g": 26.2,
+   "basis": "USDA SR Legacy: Spices, pepper, white. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "cayenne-pepper",
+   "name": "Cayenne pepper",
+   "category": "food_ambient",
+   "aliases": [
+    "cayenne",
+    "ground cayenne"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 318,
+   "protein_g": 12.0,
+   "fat_g": 17.3,
+   "carbs_g": 29.4,
+   "fibre_g": 27.2,
+   "basis": "USDA SR Legacy: Spices, pepper, red or cayenne. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "smoked-paprika",
+   "name": "Smoked paprika",
+   "category": "food_ambient",
+   "aliases": [
+    "pimenton",
+    "sweet smoked paprika"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 282,
+   "protein_g": 14.1,
+   "fat_g": 12.9,
+   "carbs_g": 19.1,
+   "fibre_g": 34.9,
+   "basis": "USDA SR Legacy: Spices, paprika. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "cloves",
+   "name": "Cloves",
+   "category": "food_ambient",
+   "aliases": [
+    "whole cloves",
+    "ground cloves",
+    "clove"
+   ],
+   "grams_per_item": 0.1,
+   "item_label": "clove",
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 274,
+   "protein_g": 6.0,
+   "fat_g": 13.0,
+   "carbs_g": 31.6,
+   "fibre_g": 33.9,
+   "basis": "USDA SR Legacy: Spices, cloves, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "allspice",
+   "name": "Allspice",
+   "category": "food_ambient",
+   "aliases": [
+    "ground allspice",
+    "pimento",
+    "allspice berries"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 263,
+   "protein_g": 6.1,
+   "fat_g": 8.7,
+   "carbs_g": 50.5,
+   "fibre_g": 21.6,
+   "basis": "USDA SR Legacy: Spices, allspice, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "nutmeg",
+   "name": "Nutmeg",
+   "category": "food_ambient",
+   "aliases": [
+    "ground nutmeg",
+    "grated nutmeg",
+    "whole nutmeg"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 525,
+   "protein_g": 5.8,
+   "fat_g": 36.3,
+   "carbs_g": 28.5,
+   "fibre_g": 20.8,
+   "basis": "USDA SR Legacy: Spices, nutmeg, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "mace",
+   "name": "Mace",
+   "category": "food_ambient",
+   "aliases": [
+    "ground mace",
+    "blade mace"
+   ],
+   "grams_per_ml": 0.35,
+   "calories_per_100g": 475,
+   "protein_g": 6.7,
+   "fat_g": 32.4,
+   "carbs_g": 30.3,
+   "fibre_g": 20.2,
+   "basis": "USDA SR Legacy: Spices, mace, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "cardamom",
+   "name": "Cardamom",
+   "category": "food_ambient",
+   "aliases": [
+    "cardamom pods",
+    "green cardamom",
+    "ground cardamom",
+    "cardamom pod"
+   ],
+   "grams_per_item": 0.2,
+   "item_label": "pod",
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 311,
+   "protein_g": 10.8,
+   "fat_g": 6.7,
+   "carbs_g": 40.5,
+   "fibre_g": 28.0,
+   "basis": "USDA SR Legacy: Spices, cardamom. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "ginger-ground",
+   "name": "Ground ginger",
+   "category": "food_ambient",
+   "aliases": [
+    "ginger powder",
+    "dried ginger"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 335,
+   "protein_g": 9.0,
+   "fat_g": 4.2,
+   "carbs_g": 57.5,
+   "fibre_g": 14.1,
+   "basis": "USDA SR Legacy: Spices, ginger, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "star-anise",
+   "name": "Star anise",
+   "category": "food_ambient",
+   "aliases": [
+    "star anise pods",
+    "whole star anise",
+    "badian"
+   ],
+   "grams_per_item": 0.6,
+   "item_label": "pod",
+   "calories_per_100g": 385,
+   "protein_g": 17.6,
+   "fat_g": 15.9,
+   "carbs_g": 35.6,
+   "fibre_g": 14.6,
+   "basis": "Typical of UK jar labels per 100 g. One whole star is about 0.6 g."
+  },
+  {
+   "slug": "cinnamon-stick",
+   "name": "Cinnamon stick",
+   "category": "food_ambient",
+   "aliases": [
+    "cinnamon sticks",
+    "cinnamon quill",
+    "cassia bark"
+   ],
+   "grams_per_item": 3,
+   "item_label": "stick",
+   "calories_per_100g": 247,
+   "protein_g": 4.0,
+   "fat_g": 1.2,
+   "carbs_g": 27.5,
+   "fibre_g": 53.1,
+   "basis": "USDA SR Legacy: Spices, cinnamon, ground. Carbohydrate given UK-style, without fibre. The same spice as ground cinnamon. One stick is about 3 g."
+  },
+  {
+   "slug": "juniper-berries",
+   "name": "Juniper berries",
+   "category": "food_ambient",
+   "aliases": [
+    "juniper"
+   ],
+   "grams_per_item": 0.1,
+   "item_label": "berry",
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 385,
+   "protein_g": 19.8,
+   "fat_g": 14.6,
+   "carbs_g": 37.3,
+   "fibre_g": 12.7,
+   "basis": "Typical of UK jar labels per 100 g."
+  },
+  {
+   "slug": "fennel-seeds",
+   "name": "Fennel seeds",
+   "category": "food_ambient",
+   "aliases": [
+    "fennel seed"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 345,
+   "protein_g": 15.8,
+   "fat_g": 14.9,
+   "carbs_g": 12.5,
+   "fibre_g": 39.8,
+   "basis": "USDA SR Legacy: Spices, fennel seed. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "caraway-seeds",
+   "name": "Caraway seeds",
+   "category": "food_ambient",
+   "aliases": [
+    "caraway"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 333,
+   "protein_g": 19.8,
+   "fat_g": 14.6,
+   "carbs_g": 11.9,
+   "fibre_g": 38.0,
+   "basis": "USDA SR Legacy: Spices, caraway seed. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "mustard-seeds",
+   "name": "Mustard seeds",
+   "category": "food_ambient",
+   "aliases": [
+    "black mustard seeds",
+    "yellow mustard seeds",
+    "brown mustard seeds"
+   ],
+   "grams_per_ml": 0.65,
+   "calories_per_100g": 508,
+   "protein_g": 26.1,
+   "fat_g": 36.2,
+   "carbs_g": 15.9,
+   "fibre_g": 12.2,
+   "basis": "USDA SR Legacy: Spices, mustard seed, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "fenugreek-seeds",
+   "name": "Fenugreek seeds",
+   "category": "food_ambient",
+   "aliases": [
+    "fenugreek",
+    "methi seeds"
+   ],
+   "grams_per_ml": 0.7,
+   "calories_per_100g": 323,
+   "protein_g": 23.0,
+   "fat_g": 6.4,
+   "carbs_g": 33.8,
+   "fibre_g": 24.6,
+   "basis": "USDA SR Legacy: Spices, fenugreek seed. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "saffron",
+   "name": "Saffron",
+   "category": "food_ambient",
+   "aliases": [
+    "saffron strands",
+    "saffron threads",
+    "pinch of saffron"
+   ],
+   "grams_per_ml": 0.15,
+   "calories_per_100g": 310,
+   "protein_g": 11.4,
+   "fat_g": 5.8,
+   "carbs_g": 61.5,
+   "fibre_g": 3.9,
+   "basis": "USDA SR Legacy: Spices, saffron. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "sumac",
+   "name": "Sumac",
+   "category": "food_ambient",
+   "aliases": [
+    "ground sumac",
+    "sumak"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 324,
+   "protein_g": 3.8,
+   "fat_g": 16.6,
+   "carbs_g": 17.6,
+   "fibre_g": 44.6,
+   "basis": "Typical of UK jar labels per 100 g."
+  },
+  {
+   "slug": "zaatar",
+   "name": "Za'atar",
+   "category": "food_ambient",
+   "aliases": [
+    "zaatar",
+    "zatar",
+    "zahtar"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 427,
+   "protein_g": 15.1,
+   "fat_g": 31.6,
+   "carbs_g": 9.0,
+   "fibre_g": 23.2,
+   "basis": "Typical of UK jar labels per 100 g."
+  },
+  {
+   "slug": "ras-el-hanout",
+   "name": "Ras el hanout",
+   "category": "food_ambient",
+   "aliases": [
+    "ras el hanout spice",
+    "ras al hanout"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 301,
+   "protein_g": 8.4,
+   "fat_g": 8.8,
+   "carbs_g": 35.1,
+   "fibre_g": 24.0,
+   "basis": "Typical of UK jar labels per 100 g."
+  },
+  {
+   "slug": "five-spice",
+   "name": "Chinese five-spice",
+   "category": "food_ambient",
+   "aliases": [
+    "five spice",
+    "chinese five spice",
+    "5 spice",
+    "five-spice powder"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 300,
+   "protein_g": 10.8,
+   "fat_g": 9.7,
+   "carbs_g": 44.9,
+   "fibre_g": 33.3,
+   "basis": "Worked out from its usual equal parts of star anise, cinnamon, fennel seed, cloves and pepper."
+  },
+  {
+   "slug": "mixed-spice",
+   "name": "Mixed spice",
+   "category": "food_ambient",
+   "aliases": [
+    "ground mixed spice",
+    "pudding spice",
+    "pumpkin pie spice"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 342,
+   "protein_g": 5.8,
+   "fat_g": 12.6,
+   "carbs_g": 54.5,
+   "fibre_g": 14.8,
+   "basis": "USDA SR Legacy: Spices, pumpkin pie spice. Carbohydrate given UK-style, without fibre. Pumpkin pie spice is the same blend: cinnamon, ginger, nutmeg and allspice."
+  },
+  {
+   "slug": "garlic-powder",
+   "name": "Garlic powder",
+   "category": "food_ambient",
+   "aliases": [
+    "garlic granules"
+   ],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 331,
+   "protein_g": 16.6,
+   "fat_g": 0.7,
+   "carbs_g": 63.7,
+   "fibre_g": 9.0,
+   "basis": "USDA SR Legacy: Spices, garlic powder. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "onion-powder",
+   "name": "Onion powder",
+   "category": "food_ambient",
+   "aliases": [
+    "onion granules"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 341,
+   "protein_g": 10.4,
+   "fat_g": 1.0,
+   "carbs_g": 63.9,
+   "fibre_g": 15.2,
+   "basis": "USDA SR Legacy: Spices, onion powder. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "dried-sage",
+   "name": "Dried sage",
+   "category": "food_ambient",
+   "aliases": [
+    "rubbed sage",
+    "ground sage"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 315,
+   "protein_g": 10.6,
+   "fat_g": 12.8,
+   "carbs_g": 20.4,
+   "fibre_g": 40.3,
+   "basis": "USDA SR Legacy: Spices, sage, ground. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "dried-rosemary",
+   "name": "Dried rosemary",
+   "category": "food_ambient",
+   "aliases": [],
+   "grams_per_ml": 0.25,
+   "calories_per_100g": 331,
+   "protein_g": 4.9,
+   "fat_g": 15.2,
+   "carbs_g": 21.5,
+   "fibre_g": 42.6,
+   "basis": "USDA SR Legacy: Spices, rosemary, dried. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "dried-mixed-herbs",
+   "name": "Dried mixed herbs",
+   "category": "food_ambient",
+   "aliases": [
+    "mixed herbs",
+    "herbes de provence",
+    "italian seasoning"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 297,
+   "protein_g": 8.4,
+   "fat_g": 9.9,
+   "carbs_g": 43.7,
+   "fibre_g": 40.6,
+   "basis": "Worked out from equal parts of thyme, oregano, sage and rosemary."
+  },
+  {
+   "slug": "tamarind-pulp",
+   "name": "Tamarind",
+   "category": "food_ambient",
+   "aliases": [
+    "tamarind block",
+    "tamarind pulp",
+    "tamarind paste",
+    "tamarind concentrate"
+   ],
+   "grams_per_ml": 1.2,
+   "calories_per_100g": 273,
+   "protein_g": 3.2,
+   "fat_g": 0.3,
+   "carbs_g": 64.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Tamarind pulp, flesh only. No fibre figure is published; counted as 0."
+  },
+  {
+   "slug": "oyster-sauce",
+   "name": "Oyster sauce",
+   "category": "food_ambient",
+   "aliases": [],
+   "grams_per_ml": 1.2,
+   "calories_per_100g": 51,
+   "protein_g": 1.4,
+   "fat_g": 0.2,
+   "carbs_g": 10.6,
+   "fibre_g": 0.3,
+   "basis": "USDA SR Legacy: Sauce, oyster, ready-to-serve. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "hoisin-sauce",
+   "name": "Hoisin sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "hoisin"
+   ],
+   "grams_per_ml": 1.25,
+   "calories_per_100g": 220,
+   "protein_g": 3.3,
+   "fat_g": 3.4,
+   "carbs_g": 41.3,
+   "fibre_g": 2.8,
+   "basis": "USDA SR Legacy: Sauce, hoisin, ready-to-serve. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "pomegranate-molasses",
+   "name": "Pomegranate molasses",
+   "category": "food_ambient",
+   "aliases": [
+    "pomegranate syrup"
+   ],
+   "grams_per_ml": 1.35,
+   "calories_per_100g": 316,
+   "protein_g": 0.1,
+   "fat_g": 0.5,
+   "carbs_g": 77.6,
+   "fibre_g": 0.5,
+   "basis": "Typical of UK bottle labels per 100 g."
+  },
+  {
+   "slug": "rose-water",
+   "name": "Rose water",
+   "category": "food_ambient",
+   "aliases": [
+    "rosewater",
+    "orange blossom water",
+    "orange flower water"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 0,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "Distilled flower water: labels give no energy."
+  },
+  {
+   "slug": "nutritional-yeast",
+   "name": "Nutritional yeast",
+   "category": "food_ambient",
+   "aliases": [
+    "nutritional yeast flakes",
+    "yeast flakes",
+    "nooch"
+   ],
+   "grams_per_ml": 0.3,
+   "calories_per_100g": 349,
+   "protein_g": 47.0,
+   "fat_g": 5.0,
+   "carbs_g": 19.0,
+   "fibre_g": 20.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "palm-sugar",
+   "name": "Palm sugar",
+   "category": "food_ambient",
+   "aliases": [
+    "jaggery",
+    "coconut sugar",
+    "gula melaka"
+   ],
+   "grams_per_ml": 0.85,
+   "calories_per_100g": 383,
+   "protein_g": 0.5,
+   "fat_g": 0.1,
+   "carbs_g": 95.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "rice-jasmine-dry",
+   "name": "Jasmine rice",
+   "category": "food_ambient",
+   "aliases": [
+    "thai jasmine rice",
+    "thai fragrant rice",
+    "jasmine rice dry",
+    "long grain rice"
+   ],
+   "grams_per_ml": 0.85,
+   "calories_per_100g": 365,
+   "protein_g": 7.1,
+   "fat_g": 0.7,
+   "carbs_g": 78.7,
+   "fibre_g": 1.3,
+   "basis": "USDA SR Legacy: Rice, white, long-grain, regular, raw, unenriched. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "gravy-granules",
+   "name": "Gravy granules",
+   "category": "food_ambient",
+   "aliases": [
+    "gravy powder",
+    "instant gravy"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 407,
+   "protein_g": 4.4,
+   "fat_g": 16.1,
+   "carbs_g": 65.2,
+   "fibre_g": 1.6,
+   "basis": "CoFID 2019: Gravy instant granules."
+  },
+  {
+   "slug": "cranberry-sauce",
+   "name": "Cranberry sauce",
+   "category": "food_ambient",
+   "aliases": [
+    "cranberry jelly"
+   ],
+   "grams_per_ml": 1.3,
+   "calories_per_100g": 159,
+   "protein_g": 0.9,
+   "fat_g": 0.1,
+   "carbs_g": 39.3,
+   "fibre_g": 1.1,
+   "basis": "USDA SR Legacy: Cranberry sauce, canned, sweetened. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "redcurrant-jelly",
+   "name": "Redcurrant jelly",
+   "category": "food_ambient",
+   "aliases": [
+    "red currant jelly"
+   ],
+   "grams_per_ml": 1.35,
+   "calories_per_100g": 258,
+   "protein_g": 0.3,
+   "fat_g": 0.1,
+   "carbs_g": 64.0,
+   "fibre_g": 0.4,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "creme-fraiche",
+   "name": "Crème fraîche",
+   "category": "food_fresh",
+   "aliases": [
+    "creme fraiche",
+    "full fat creme fraiche"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 378,
+   "protein_g": 2.2,
+   "fat_g": 40.0,
+   "carbs_g": 2.4,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Creme fraiche, full fat."
+  },
+  {
+   "slug": "soured-cream",
+   "name": "Soured cream",
+   "category": "food_fresh",
+   "aliases": [
+    "sour cream"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 191,
+   "protein_g": 2.7,
+   "fat_g": 18.0,
+   "carbs_g": 4.3,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "whipping-cream",
+   "name": "Whipping cream",
+   "category": "food_fresh",
+   "aliases": [],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 381,
+   "protein_g": 2.0,
+   "fat_g": 40.3,
+   "carbs_g": 2.7,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cream, fresh, whipping."
+  },
+  {
+   "slug": "mascarpone",
+   "name": "Mascarpone",
+   "category": "food_fresh",
+   "aliases": [
+    "mascarpone cheese"
+   ],
+   "calories_per_100g": 435,
+   "protein_g": 4.6,
+   "fat_g": 44.5,
+   "carbs_g": 4.3,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Mascarpone."
+  },
+  {
+   "slug": "goats-cheese",
+   "name": "Soft goats' cheese",
+   "category": "food_fresh",
+   "aliases": [
+    "goats cheese",
+    "goat's cheese",
+    "goat cheese",
+    "chevre"
+   ],
+   "calories_per_100g": 320,
+   "protein_g": 21.1,
+   "fat_g": 25.8,
+   "carbs_g": 1.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, goats milk, full fat, soft, white rind."
+  },
+  {
+   "slug": "stilton",
+   "name": "Stilton",
+   "category": "food_fresh",
+   "aliases": [
+    "blue stilton",
+    "blue cheese"
+   ],
+   "calories_per_100g": 410,
+   "protein_g": 23.7,
+   "fat_g": 35.0,
+   "carbs_g": 0.1,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Stilton, blue."
+  },
+  {
+   "slug": "brie",
+   "name": "Brie",
+   "category": "food_fresh",
+   "aliases": [
+    "brie cheese"
+   ],
+   "calories_per_100g": 343,
+   "protein_g": 20.3,
+   "fat_g": 29.1,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Brie, with outer rind removed."
+  },
+  {
+   "slug": "camembert",
+   "name": "Camembert",
+   "category": "food_fresh",
+   "aliases": [
+    "whole camembert"
+   ],
+   "calories_per_100g": 290,
+   "protein_g": 21.5,
+   "fat_g": 22.7,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Camembert."
+  },
+  {
+   "slug": "gruyere",
+   "name": "Gruyère",
+   "category": "food_fresh",
+   "aliases": [
+    "gruyere",
+    "comte",
+    "emmental"
+   ],
+   "calories_per_100g": 409,
+   "protein_g": 27.2,
+   "fat_g": 33.3,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Gruyere."
+  },
+  {
+   "slug": "butter-unsalted",
+   "name": "Unsalted butter",
+   "category": "food_fresh",
+   "aliases": [
+    "butter unsalted"
+   ],
+   "grams_per_ml": 0.96,
+   "calories_per_100g": 744,
+   "protein_g": 0.6,
+   "fat_g": 82.2,
+   "carbs_g": 0.6,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Butter, unsalted."
+  },
+  {
+   "slug": "soya-milk",
+   "name": "Soya milk",
+   "category": "food_fresh",
+   "aliases": [
+    "soy milk",
+    "unsweetened soya milk"
+   ],
+   "grams_per_ml": 1.03,
+   "calories_per_100g": 26,
+   "protein_g": 2.4,
+   "fat_g": 1.6,
+   "carbs_g": 0.5,
+   "fibre_g": 0.5,
+   "basis": "CoFID 2019: Milk, soya, non-dairy alternative to milk, unsweetened, fortified."
+  },
+  {
+   "slug": "oat-cream",
+   "name": "Oat cream",
+   "category": "food_fresh",
+   "aliases": [
+    "oat single cream",
+    "dairy free cream",
+    "vegan cream"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 150,
+   "protein_g": 1.0,
+   "fat_g": 13.0,
+   "carbs_g": 6.0,
+   "fibre_g": 0.8,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "soya-cream",
+   "name": "Soya single cream",
+   "category": "food_fresh",
+   "aliases": [
+    "soy cream",
+    "soya cream"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 170,
+   "protein_g": 2.6,
+   "fat_g": 17.0,
+   "carbs_g": 1.6,
+   "fibre_g": 0.4,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "dairy-free-spread",
+   "name": "Dairy-free spread",
+   "category": "food_fresh",
+   "aliases": [
+    "vegan butter",
+    "plant butter",
+    "dairy free block",
+    "vegan block"
+   ],
+   "grams_per_ml": 0.96,
+   "calories_per_100g": 531,
+   "protein_g": 0.5,
+   "fat_g": 59.0,
+   "carbs_g": 0.5,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "tofu-silken",
+   "name": "Silken tofu",
+   "category": "food_fresh",
+   "aliases": [
+    "silken tofu firm",
+    "soft tofu"
+   ],
+   "calories_per_100g": 62,
+   "protein_g": 6.9,
+   "fat_g": 2.7,
+   "carbs_g": 2.3,
+   "fibre_g": 0.1,
+   "basis": "USDA SR Legacy: MORI-NU, Tofu, silken, firm. Carbohydrate given UK-style, without fibre. Silken tofu, firm."
+  },
+  {
+   "slug": "suet-vegetable",
+   "name": "Vegetable suet",
+   "category": "food_ambient",
+   "aliases": [
+    "suet",
+    "shredded suet",
+    "beef suet"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 718,
+   "protein_g": 2.5,
+   "fat_g": 65.7,
+   "carbs_g": 31.1,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Suet, vegetable, reduced fat. The only vegetable suet in the UK tables."
+  },
+  {
+   "slug": "currants",
+   "name": "Currants",
+   "category": "food_ambient",
+   "aliases": [
+    "dried currants"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 290,
+   "protein_g": 3.4,
+   "fat_g": 0.2,
+   "carbs_g": 72.6,
+   "fibre_g": 4.4,
+   "basis": "USDA SR Legacy: Currants, zante, dried. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "sultanas",
+   "name": "Sultanas",
+   "category": "food_ambient",
+   "aliases": [
+    "golden raisins"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 275,
+   "protein_g": 2.7,
+   "fat_g": 0.4,
+   "carbs_g": 69.4,
+   "fibre_g": 2.0,
+   "basis": "CoFID 2019: Sultanas."
+  },
+  {
+   "slug": "mixed-peel",
+   "name": "Mixed peel",
+   "category": "food_ambient",
+   "aliases": [
+    "candied peel",
+    "cut mixed peel"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 287,
+   "protein_g": 0.3,
+   "fat_g": 0.9,
+   "carbs_g": 74.1,
+   "fibre_g": 4.5,
+   "basis": "CoFID 2019: Peel, mixed."
+  },
+  {
+   "slug": "glace-cherries",
+   "name": "Glacé cherries",
+   "category": "food_ambient",
+   "aliases": [
+    "glace cherries",
+    "candied cherries"
+   ],
+   "calories_per_100g": 294,
+   "protein_g": 0.4,
+   "fat_g": 0.0,
+   "carbs_g": 78.1,
+   "fibre_g": 0.9,
+   "basis": "CoFID 2019: Cherries, glace."
+  },
+  {
+   "slug": "dried-cranberries",
+   "name": "Dried cranberries",
+   "category": "food_ambient",
+   "aliases": [
+    "craisins",
+    "sweetened dried cranberries"
+   ],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 308,
+   "protein_g": 0.2,
+   "fat_g": 1.1,
+   "carbs_g": 77.5,
+   "fibre_g": 5.3,
+   "basis": "USDA SR Legacy: Cranberries, dried, sweetened (Includes foods for USDA's Food Distribution Program). Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "dried-figs",
+   "name": "Dried figs",
+   "category": "food_ambient",
+   "aliases": [
+    "figs",
+    "ready to eat figs"
+   ],
+   "calories_per_100g": 186,
+   "protein_g": 3.1,
+   "fat_g": 1.2,
+   "carbs_g": 43.3,
+   "fibre_g": 10.0,
+   "basis": "CoFID 2019: Figs, ready-to-eat, semi-dried."
+  },
+  {
+   "slug": "prunes",
+   "name": "Prunes",
+   "category": "food_ambient",
+   "aliases": [
+    "pitted prunes",
+    "ready to eat prunes"
+   ],
+   "calories_per_100g": 160,
+   "protein_g": 2.8,
+   "fat_g": 0.5,
+   "carbs_g": 38.4,
+   "fibre_g": 6.5,
+   "basis": "CoFID 2019: Prunes, flesh and skin."
+  },
+  {
+   "slug": "mincemeat",
+   "name": "Mincemeat",
+   "category": "food_ambient",
+   "aliases": [
+    "mince pie filling",
+    "vegetarian mincemeat"
+   ],
+   "grams_per_ml": 1.2,
+   "calories_per_100g": 274,
+   "protein_g": 0.6,
+   "fat_g": 4.3,
+   "carbs_g": 62.1,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Mincemeat."
+  },
+  {
+   "slug": "marzipan",
+   "name": "Marzipan",
+   "category": "food_ambient",
+   "aliases": [
+    "almond paste"
+   ],
+   "calories_per_100g": 389,
+   "protein_g": 5.3,
+   "fat_g": 12.7,
+   "carbs_g": 67.6,
+   "fibre_g": 2.4,
+   "basis": "CoFID 2019: Marzipan, white and yellow, retail."
+  },
+  {
+   "slug": "black-treacle",
+   "name": "Black treacle",
+   "category": "food_ambient",
+   "aliases": [
+    "treacle",
+    "molasses"
+   ],
+   "grams_per_ml": 1.4,
+   "calories_per_100g": 257,
+   "protein_g": 1.2,
+   "fat_g": 0.0,
+   "carbs_g": 67.2,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Treacle, black."
+  },
+  {
+   "slug": "sugar-demerara",
+   "name": "Demerara sugar",
+   "category": "food_ambient",
+   "aliases": [
+    "demerara",
+    "raw cane sugar"
+   ],
+   "grams_per_ml": 0.9,
+   "calories_per_100g": 394,
+   "protein_g": 0.5,
+   "fat_g": 0.0,
+   "carbs_g": 104.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Sugar, Demerara."
+  },
+  {
+   "slug": "sugar-muscovado",
+   "name": "Dark muscovado sugar",
+   "category": "food_ambient",
+   "aliases": [
+    "muscovado",
+    "dark brown sugar",
+    "dark muscovado",
+    "light muscovado"
+   ],
+   "grams_per_ml": 0.8,
+   "calories_per_100g": 379,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 94.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "ground-almonds",
+   "name": "Ground almonds",
+   "category": "food_ambient",
+   "aliases": [
+    "almond flour",
+    "flaked almonds",
+    "almond meal"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 612,
+   "protein_g": 21.1,
+   "fat_g": 55.8,
+   "carbs_g": 6.9,
+   "fibre_g": 7.4,
+   "basis": "CoFID 2019: Almonds, flaked and ground."
+  },
+  {
+   "slug": "pecans",
+   "name": "Pecans",
+   "category": "food_ambient",
+   "aliases": [
+    "pecan nuts",
+    "pecan halves"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 689,
+   "protein_g": 9.2,
+   "fat_g": 70.1,
+   "carbs_g": 5.8,
+   "fibre_g": 4.7,
+   "basis": "CoFID 2019: Pecan nuts, kernel only."
+  },
+  {
+   "slug": "hazelnuts",
+   "name": "Hazelnuts",
+   "category": "food_ambient",
+   "aliases": [
+    "blanched hazelnuts",
+    "cobnuts"
+   ],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 650,
+   "protein_g": 14.1,
+   "fat_g": 63.5,
+   "carbs_g": 6.0,
+   "fibre_g": 6.9,
+   "basis": "CoFID 2019: Hazelnuts, kernel only."
+  },
+  {
+   "slug": "pistachios",
+   "name": "Pistachios",
+   "category": "food_ambient",
+   "aliases": [
+    "pistachio nuts",
+    "shelled pistachios"
+   ],
+   "grams_per_ml": 0.5,
+   "calories_per_100g": 560,
+   "protein_g": 20.2,
+   "fat_g": 45.3,
+   "carbs_g": 16.6,
+   "fibre_g": 10.6,
+   "basis": "USDA SR Legacy: Nuts, pistachio nuts, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "brazil-nuts",
+   "name": "Brazil nuts",
+   "category": "food_ambient",
+   "aliases": [
+    "brazils"
+   ],
+   "calories_per_100g": 683,
+   "protein_g": 14.3,
+   "fat_g": 68.2,
+   "carbs_g": 3.1,
+   "fibre_g": 4.3,
+   "basis": "CoFID 2019: Brazil nuts, kernel only."
+  },
+  {
+   "slug": "pine-nuts",
+   "name": "Pine nuts",
+   "category": "food_ambient",
+   "aliases": [
+    "pine kernels",
+    "pignoli"
+   ],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 688,
+   "protein_g": 14.0,
+   "fat_g": 68.6,
+   "carbs_g": 4.0,
+   "fibre_g": 1.9,
+   "basis": "CoFID 2019: Pine nuts, kernel only."
+  },
+  {
+   "slug": "dark-chocolate-70",
+   "name": "Dark chocolate, 70%",
+   "category": "food_ambient",
+   "aliases": [
+    "70% dark chocolate",
+    "plain chocolate 70",
+    "bitter chocolate",
+    "vegan dark chocolate"
+   ],
+   "calories_per_100g": 598,
+   "protein_g": 7.8,
+   "fat_g": 42.6,
+   "carbs_g": 35.0,
+   "fibre_g": 10.9,
+   "basis": "USDA SR Legacy: Chocolate, dark, 70-85% cacao solids. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "white-chocolate",
+   "name": "White chocolate",
+   "category": "food_ambient",
+   "aliases": [],
+   "calories_per_100g": 529,
+   "protein_g": 8.0,
+   "fat_g": 30.9,
+   "carbs_g": 58.3,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Chocolate, white. No fibre figure is published; counted as 0."
+  },
+  {
+   "slug": "custard-powder",
+   "name": "Custard powder",
+   "category": "food_ambient",
+   "aliases": [],
+   "grams_per_ml": 0.55,
+   "calories_per_100g": 354,
+   "protein_g": 0.6,
+   "fat_g": 0.7,
+   "carbs_g": 92.0,
+   "fibre_g": 0.1,
+   "basis": "CoFID 2019: Custard powder."
+  },
+  {
+   "slug": "puff-pastry",
+   "name": "Puff pastry",
+   "category": "food_fresh",
+   "aliases": [
+    "ready rolled puff pastry",
+    "all butter puff pastry",
+    "puff pastry sheet"
+   ],
+   "calories_per_100g": 384,
+   "protein_g": 5.3,
+   "fat_g": 26.2,
+   "carbs_g": 33.7,
+   "fibre_g": 2.8,
+   "basis": "CoFID 2019: Pastry, flaky/puff, retail, uncooked."
+  },
+  {
+   "slug": "shortcrust-pastry",
+   "name": "Shortcrust pastry",
+   "category": "food_fresh",
+   "aliases": [
+    "ready rolled shortcrust pastry",
+    "sweet shortcrust pastry",
+    "shortcrust pastry block"
+   ],
+   "calories_per_100g": 438,
+   "protein_g": 5.8,
+   "fat_g": 25.7,
+   "carbs_g": 44.3,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "filo-pastry",
+   "name": "Filo pastry",
+   "category": "food_fresh",
+   "aliases": [
+    "phyllo",
+    "filo",
+    "filo sheets"
+   ],
+   "grams_per_item": 25,
+   "item_label": "sheet",
+   "calories_per_100g": 278,
+   "protein_g": 7.6,
+   "fat_g": 2.9,
+   "carbs_g": 58.9,
+   "fibre_g": 3.4,
+   "basis": "CoFID 2019: Pastry, filo, retail, uncooked."
+  },
+  {
+   "slug": "blinis",
+   "name": "Blinis",
+   "category": "food_ambient",
+   "aliases": [
+    "cocktail blinis",
+    "mini blinis",
+    "blini"
+   ],
+   "grams_per_item": 8,
+   "item_label": "blini",
+   "calories_per_100g": 250,
+   "protein_g": 7.0,
+   "fat_g": 9.0,
+   "carbs_g": 34.0,
+   "fibre_g": 1.9,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "panko",
+   "name": "Panko breadcrumbs",
+   "category": "food_ambient",
+   "aliases": [
+    "panko",
+    "japanese breadcrumbs"
+   ],
+   "grams_per_ml": 0.2,
+   "calories_per_100g": 370,
+   "protein_g": 11.0,
+   "fat_g": 3.0,
+   "carbs_g": 74.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "panettone",
+   "name": "Panettone",
+   "category": "food_ambient",
+   "aliases": [
+    "pandoro",
+    "italian christmas cake"
+   ],
+   "calories_per_100g": 360,
+   "protein_g": 7.2,
+   "fat_g": 13.5,
+   "carbs_g": 52.0,
+   "fibre_g": 2.3,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "brioche",
+   "name": "Brioche",
+   "category": "food_ambient",
+   "aliases": [
+    "brioche loaf",
+    "brioche rolls"
+   ],
+   "calories_per_100g": 360,
+   "protein_g": 8.5,
+   "fat_g": 13.0,
+   "carbs_g": 50.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "sponge-fingers",
+   "name": "Sponge fingers",
+   "category": "food_ambient",
+   "aliases": [
+    "savoiardi",
+    "ladyfingers",
+    "trifle sponges"
+   ],
+   "grams_per_item": 6,
+   "item_label": "finger",
+   "calories_per_100g": 390,
+   "protein_g": 8.0,
+   "fat_g": 4.0,
+   "carbs_g": 80.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "stem-ginger",
+   "name": "Stem ginger in syrup",
+   "category": "food_ambient",
+   "aliases": [
+    "stem ginger",
+    "preserved ginger",
+    "crystallised ginger"
+   ],
+   "grams_per_item": 12,
+   "item_label": "ball",
+   "calories_per_100g": 280,
+   "protein_g": 0.3,
+   "fat_g": 0.2,
+   "carbs_g": 69.0,
+   "fibre_g": 1.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "port",
+   "name": "Port",
+   "category": "drink",
+   "aliases": [
+    "ruby port",
+    "tawny port"
+   ],
+   "grams_per_ml": 1.02,
+   "calories_per_100g": 160,
+   "protein_g": 0.2,
+   "fat_g": 0.0,
+   "carbs_g": 13.7,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Alcoholic beverage, wine, dessert, sweet. Carbohydrate given UK-style, without fibre. Sweet dessert wine stands in for port."
+  },
+  {
+   "slug": "sherry",
+   "name": "Sherry",
+   "category": "drink",
+   "aliases": [
+    "medium sherry",
+    "cream sherry",
+    "dry sherry",
+    "madeira",
+    "marsala"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 116,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 5.9,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Sherry, medium."
+  },
+  {
+   "slug": "spirit-40",
+   "name": "Brandy",
+   "category": "drink",
+   "aliases": [
+    "brandy",
+    "cognac",
+    "rum",
+    "dark rum",
+    "spiced rum",
+    "whisky",
+    "whiskey",
+    "gin",
+    "vodka",
+    "calvados"
+   ],
+   "grams_per_ml": 0.95,
+   "calories_per_100g": 222,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Spirits, 40% volume. Any 40% spirit: brandy, rum, whisky, gin, vodka."
+  },
+  {
+   "slug": "orange-liqueur",
+   "name": "Orange liqueur",
+   "category": "drink",
+   "aliases": [
+    "triple sec",
+    "cointreau",
+    "grand marnier",
+    "amaretto",
+    "liqueur"
+   ],
+   "grams_per_ml": 1.05,
+   "calories_per_100g": 314,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 24.4,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Liqueurs, high strength."
+  },
+  {
+   "slug": "sparkling-wine",
+   "name": "Sparkling wine",
+   "category": "drink",
+   "aliases": [
+    "prosecco",
+    "cava",
+    "champagne",
+    "sparkling white wine"
+   ],
+   "grams_per_ml": 0.99,
+   "calories_per_100g": 84,
+   "protein_g": 0.3,
+   "fat_g": 0.0,
+   "carbs_g": 5.1,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Wine, white, sparkling."
+  },
+  {
+   "slug": "cider-dry",
+   "name": "Cider",
+   "category": "drink",
+   "aliases": [
+    "dry cider",
+    "apple cider",
+    "medium cider"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 36,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 2.6,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cider, dry."
+  },
+  {
+   "slug": "ginger-ale",
+   "name": "Ginger ale",
+   "category": "drink",
+   "aliases": [
+    "dry ginger ale"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 34,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 8.8,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Beverages, carbonated, ginger ale. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "ginger-beer",
+   "name": "Ginger beer",
+   "category": "drink",
+   "aliases": [
+    "non alcoholic ginger beer",
+    "fiery ginger beer"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 38,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 9.4,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "tonic-water",
+   "name": "Tonic water",
+   "category": "drink",
+   "aliases": [
+    "tonic",
+    "indian tonic water"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 22,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 5.9,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Tonic water."
+  },
+  {
+   "slug": "cranberry-juice",
+   "name": "Cranberry juice",
+   "category": "drink",
+   "aliases": [
+    "cranberry juice drink"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 45,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 12.1,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cranberry fruit juice drink."
+  },
+  {
+   "slug": "pomegranate-juice",
+   "name": "Pomegranate juice",
+   "category": "drink",
+   "aliases": [],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 54,
+   "protein_g": 0.1,
+   "fat_g": 0.3,
+   "carbs_g": 13.0,
+   "fibre_g": 0.1,
+   "basis": "USDA SR Legacy: Pomegranate juice, bottled. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "grape-juice-red",
+   "name": "Red grape juice",
+   "category": "drink",
+   "aliases": [
+    "grape juice",
+    "red grape juice"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 62,
+   "protein_g": 0.3,
+   "fat_g": 0.1,
+   "carbs_g": 16.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Grape juice, unsweetened."
+  },
+  {
+   "slug": "elderflower-cordial",
+   "name": "Elderflower cordial",
+   "category": "drink",
+   "aliases": [
+    "elderflower",
+    "elderflower squash"
+   ],
+   "grams_per_ml": 1.25,
+   "calories_per_100g": 185,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 46.0,
+   "fibre_g": 0.0,
+   "basis": "Worked out from UK cordial labels (17 to 18 kcal per 100 ml diluted 1:10 to 1:15), undiluted, per 100 g."
   }
  ]
 }

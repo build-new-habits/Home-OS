@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-04",
+ "updated": "2026-11-27",
  "files": [
   {
    "cuisine": "African",
@@ -31,6 +31,11 @@
    "cuisine": "Chinese",
    "path": "data/recipe_library/chinese.json",
    "count": 5
+  },
+  {
+   "cuisine": "Christmas",
+   "path": "data/recipe_library/christmas.json",
+   "count": 52
   },
   {
    "cuisine": "Drinks",
