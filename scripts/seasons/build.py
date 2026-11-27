@@ -302,6 +302,8 @@ def write_all(books):
             json.dump(doc, fh, ensure_ascii=False, indent=1)
             fh.write('\n')
         files.append({'cuisine': b.cuisine, 'path': path, 'count': len(b.recipes)})
+        if not b.menus:
+            continue  # a recipe book with no menus (Microwave) writes no menus file
         mdoc = {'version': 1, 'updated': '2026-11-27', 'occasion': b.cuisine,
                 'note': f'Complete {b.cuisine.lower()} menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.',
                 'drinks_note': 'Every course has a soft pairing too, for drivers, children and anyone not drinking.',

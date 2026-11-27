@@ -1,4 +1,6 @@
-// js/data/mealCoach.js — 27 Nov 2026 v3
+// js/data/mealCoach.js — 27 Nov 2026 v4
+// v4: "How is it cooked?" from data/cookingMethods.js (Phase 43). Your own
+// meals have no method to read, so they fit only Any.
 // v3: in-season food ranks a little higher (Phase 41). Nothing is hidden:
 // asking for Barbecue in December still finds it.
 // v2: "Season or occasion" in place of "What kind": the nine new seasons and
@@ -36,6 +38,7 @@
 
 import { suitsDiet, householdDiet } from './weekIdeas.js';
 import { seasonState } from './seasons.js';
+import { METHODS, methodsOf } from './cookingMethods.js';
 
 // ---- The questions ----------------------------------------------------------
 
@@ -53,6 +56,7 @@ export const QUESTIONS = Object.freeze([
     ['poultry', 'Turkey, duck or game'], ['fish', 'Fish'], ['shellfish', 'Shellfish'], ['eggs', 'Eggs'],
     ['cheese', 'Cheese'], ['beans', 'Beans, lentils or chickpeas'], ['tofu', 'Tofu'],
     ['pasta', 'Pasta or noodles'], ['rice', 'Rice'], ['potato', 'Potatoes']] },
+  { id: 'how', label: 'How is it cooked?', choices: METHODS.map((m) => [m.value, m.label]) },
   { id: 'from', label: 'Where from?', choices: [
     ['british', 'British'], ['europe', 'Italian, French, Spanish or Greek'], ['middle', 'Middle Eastern or Turkish'],
     ['southasia', 'Indian or Sri Lankan'], ['eastasia', 'Chinese, Japanese or Korean'],
@@ -237,6 +241,7 @@ export function factsOf(c) {
     diet: tags,
     kind,
     cost: ['budget', 'everyday', 'special'].includes(c.budget) ? c.budget : 'everyday',
+    how: new Set(c.recipe ? methodsOf(c.recipe) : []),
     pantryShare: c.total ? c.have / c.total : 0,
     usesSoon: (c.usesSoon || []).length > 0,
     mine: Boolean(c.own || c.favourite),
@@ -255,6 +260,7 @@ export function fits(f, id, value) {
     case 'feel': return f.feel.has(value);
     case 'with': return f.with.has(value);
     case 'from': return f.from === value;
+    case 'how': return f.how.has(value);
     case 'diet': return f.diet.has(value);
     case 'kind': return f.kind === value;
     case 'cost': return f.cost === value;
@@ -422,6 +428,7 @@ export function reasonsFor(f, answers) {
     else out.push(choiceLabel('feel', a.feel));
   } else if (f.feel.has('spicy')) out.push('Spicy');
   if (a.with !== 'any') out.push(choiceLabel('with', a.with));
+  if (a.how !== 'any') out.push(choiceLabel('how', a.how));
   if (f.c.cuisine && !['Grab and go', 'Special', 'Snacks', 'Breakfast', 'Vegetarian', 'Drinks', 'Puddings', 'Lunch', 'Starters', 'Budget'].includes(f.c.cuisine)) out.push(f.c.cuisine);
   if (f.diet.has('vegan')) out.push('Vegan');
   else if (f.diet.has('vegetarian')) out.push('Vegetarian');

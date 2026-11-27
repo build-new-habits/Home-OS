@@ -123,6 +123,11 @@
    "count": 6
   },
   {
+   "cuisine": "Microwave",
+   "path": "data/recipe_library/microwave.json",
+   "count": 14
+  },
+  {
    "cuisine": "Middle Eastern",
    "path": "data/recipe_library/middle_eastern.json",
    "count": 6

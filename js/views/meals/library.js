@@ -1,4 +1,7 @@
-// js/views/meals/library.js — 26 Nov 2026 v8
+// js/views/meals/library.js — 27 Nov 2026 v9
+// v9: How it's cooked: roast, oven-baked, traybake, one pot, on the hob,
+// pan-fried, stir-fry, grilled, slow-cooked, steamed, microwave, no cooking,
+// each with its count (Phase 43).
 // v8: Free sees this month's ten recipes, with what Hearth opens (Phase 36a).
 // v7: quick filters (vegetarian, vegan, 30 minutes or less, puddings); the
 // rest fold under More filters; rows show time instead of a step count.
@@ -28,6 +31,7 @@
 
 import { el } from '../../lib/dom.js';
 import { COURSES } from '../../data/courses.js';
+import { METHODS } from '../../data/cookingMethods.js';
 import { estimateRecipeTime } from '../../lib/recipeTime.js';
 import { loadImages } from '../../data/recipeImages.js';
 import { recipePhoto } from '../../components/recipePhoto.js';
@@ -38,7 +42,7 @@ import { showToast } from '../../components/toast.js';
 // A literal, so the orphan gate can see the route is linked from here.
 const RECIPE_ROUTE = '#/recipe';
 import {
-  loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd
+  loadAllRecipes, filterRecipes, existingLibraryRefs, addLibraryRecipe, describeAdd, methodsCached
 } from '../../data/recipeLibrary.js';
 import { listRecipeNotes } from '../../data/recipeNotes.js';
 import { loadHearth, isHearth, libraryThisMonth, FREE_LIMITS } from '../../data/hearth.js';
@@ -63,7 +67,7 @@ export function createLibraryPanel({ signal, isDestroyed, onAdded, ownPage = fal
   let libraryNotes = new Map();
   let libraryLoaded = false;
   const libraryFilters = {
-    quick: false, term: '', cuisine: '', budget_tier: '', default_slot: '', course: COURSES.some((c) => c.value === course) ? course : '', dietary: [],
+    quick: false, term: '', cuisine: '', budget_tier: '', default_slot: '', course: COURSES.some((c) => c.value === course) ? course : '', dietary: [], method: '',
     favouritesOnly: false
   };
   const libraryList = el('ul', { class: 'library-list' });
@@ -174,7 +178,7 @@ function renderLibrary() {
   // 3 Oct 2026: on a phone, five dropdowns pushed the first recipe below
   // the fold. Search stays out; the rest fold away under "More filters",
   // which says how many are on and opens itself when any are.
-  const activeCount = ['cuisine', 'budget_tier', 'default_slot', 'course'].filter((k) => libraryFilters[k]).length
+  const activeCount = ['cuisine', 'budget_tier', 'default_slot', 'course', 'method'].filter((k) => libraryFilters[k]).length
     + ((libraryFilters.dietary || []).length ? 1 : 0);
   const more = el('details', { class: 'library-more' });
   if (activeCount) more.open = true;
@@ -198,6 +202,12 @@ function renderLibrary() {
   ]));
   // 3 Oct 2026: starters and puddings. A course, not a meal time.
   moreRow.appendChild(buildLibrarySelect('Course', 'course', COURSES));
+  // 27 Nov 2026: how it is cooked, read from the method. Each says how many
+  // recipes it has, so an empty one is never a surprise.
+  moreRow.appendChild(buildLibrarySelect('How it\'s cooked', 'method', METHODS.map((m) => {
+    const n = libraryRecipes.filter((r) => methodsCached(r).includes(m.value)).length;
+    return { value: m.value, label: `${m.label} (${n})` };
+  })));
 
   // Worklist C1. Ren, two traces: "You've written the function and not
   // the dropdown. I can tell, and that's a strange thing to be able to

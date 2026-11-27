@@ -122,6 +122,48 @@ div.coach
         span
         span.coach-count
   fieldset.coach-question
+    legend"How is it cooked?"
+    div.shaper-chips
+      button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Roast <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Oven-baked <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Traybake <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"One pot <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"On the hob <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Pan-fried <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Stir-fry <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Grilled or barbecued <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Slow-cooked <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Steamed <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Microwave <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"No cooking <n>"
+        span
+        span.coach-count
+  fieldset.coach-question
     legend"Where from?"
     div.shaper-chips
       button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
