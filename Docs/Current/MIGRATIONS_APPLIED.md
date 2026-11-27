@@ -77,6 +77,7 @@ Status values are deliberately blunt:
 | 027_recipe_source | applied | 24 Nov 2026 | run against "Home OS"; VERIFY returned three PASS rows: meals.source_url, source_url check, unique per household |
 | 028_hearth | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, read-only for members all PASS; every household then set to Hearth with an upsert, so the fourth check holds |
 | 029_shop_favourites | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, one food once per household — three PASS |
+| 030_week_shapes | NOT APPLIED | — | written 27 Nov 2026 (Phase 37): Week Shaper rules and events, one row per household. Until it runs, the app keeps both on the phone |
 
 ## The honest caveat
 

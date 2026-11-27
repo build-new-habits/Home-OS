@@ -5179,3 +5179,39 @@ body.sheet-open {
 .favs-amount select, .favs-controls select, .favs-when select, .favs-when input { min-height: var(--tap-min); }
 .favs-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .favs-star { min-height: var(--tap-min); }
+
+/* ---- Shape my week (Phase 37) ---------------------------------------------- */
+.shaper { display: flex; flex-direction: column; gap: var(--space-5); }
+.shaper-section h2 { margin: 0 0 var(--space-2); }
+.shaper-tally { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.shaper-tally li { font-weight: 600; }
+.shaper-when { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.shaper-when select { min-height: var(--tap-min); }
+.shaper-chips, .shaper-modes { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.shaper-shapes { margin: var(--space-2) 0 0; }
+.shaper-list { list-style: none; margin: 0 0 var(--space-3); padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.shaper-card {
+  padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface); display: flex; flex-direction: column; gap: var(--space-2);
+}
+.shaper-name { margin: 0; font-size: var(--text-lg); }
+.shaper-reasons { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-2); }
+.shaper-reasons li {
+  font-size: var(--text-sm); padding: 2px var(--space-2); border-radius: 999px;
+  border: 1px solid var(--color-border); color: var(--color-text);
+}
+.shaper-need { margin: 0; }
+.shaper-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.shaper-buttons .btn, .shaper-card > .btn { min-height: var(--tap-min); }
+.shaper-rules summary { cursor: pointer; font-weight: 700; min-height: var(--tap-min); display: flex; align-items: center; }
+.shaper-rules-body { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-2); }
+.shaper-steppers { display: flex; flex-direction: column; gap: var(--space-2); }
+.shaper-stepper { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+.shaper-stepper-label { min-width: 11em; }
+.shaper-stepper .btn { min-width: var(--tap-min); min-height: var(--tap-min); }
+.shaper-count { min-width: 2ch; text-align: center; font-weight: 700; font-size: var(--text-lg); }
+.shaper-rules select { min-height: var(--tap-min); }
+.shaper-mode { font-weight: 600; }
+.shaper-results h2:focus { outline: none; }
+.shaper-results h2:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.shaper-chosen { border-width: 2px; border-color: var(--control-border); }

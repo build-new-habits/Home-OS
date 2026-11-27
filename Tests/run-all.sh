@@ -77,6 +77,7 @@ run "Import — shared pages, captions and links"     import.mjs
 run "Shop sections — where it goes, aisle order"   shopSections.mjs
 run "Hearth — Free limits and the paid tier"        hearth.mjs
 run "Favourites — regulars, lists, weekly build"   favourites.mjs
+run "Week Shaper — rules, events, no AI"          weekShaper.mjs
 run "Platform — what only breaks on a device"        platform.mjs
 run "Snapshots — every view's structure, frozen"      snapshot.mjs
 

@@ -165,5 +165,6 @@ section.plan-detail
     button.btn[type=button]"Choose"
   p.plan-detail-open
 div.plan-actions
+  a.btn.btn-block"Shape my week"
   button.btn.btn-block[type=button]"Fill the week for me"
   button.btn.btn-block.btn-primary[type=button]"Update shopping list"

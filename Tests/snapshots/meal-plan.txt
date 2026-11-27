@@ -40,4 +40,11 @@ ul.hub-list
         span.hub-blurb
         span.hub-status
       span.hub-chevron
+  li.hub-item
+    a.hub-link"Shape my weekFive ideas for a meal, from your rules and what is on that day.›"
+      span.hub-text
+        span.hub-title
+        span.hub-blurb
+        span.hub-status
+      span.hub-chevron
 p.field-hint

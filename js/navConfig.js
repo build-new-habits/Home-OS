@@ -141,7 +141,10 @@ export const PLAN_PAGES = [
   // holds the plans that have no Monday attached — Christmas, when someone
   // visits, the thing you keep meaning to cook. The hub used to end with
   // "planning further ahead is not built yet" while the table sat unread.
-  { path: 'plan-future', title: 'Future plans', blurb: 'Ideas with no week attached.' }
+  { path: 'plan-future', title: 'Future plans', blurb: 'Ideas with no week attached.' },
+  // 27 Nov 2026 (Phase 37, Hearth): ideas for a meal from your rules and
+  // the week's events. Also a button on the week itself.
+  { path: 'week-shaper', title: 'Shape my week', blurb: 'Five ideas for a meal, from your rules and what is on that day.' }
 ];
 
 // Meals' own pages (P5). Declared here for the same reason as the pantry's:
