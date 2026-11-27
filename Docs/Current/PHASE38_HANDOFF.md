@@ -65,3 +65,15 @@ Every run checks:
 - 36 new foods in food_reference.json, among them quail, turbot, oysters, langoustines, caviar, yuzu, sake, mirin, burrata, truffle oil and nori. Each comes with full macros and a stated basis.
 - Menus doubled to 58. The 29 new luxury menus cover meat, fish, shellfish, vegetarian and vegan. Every course carries a soft drink and an alcoholic drink, and every vegan menu carries the vegan wine note.
 - Gate 18 floors raised: 50 menus, 55 starters, 70 mains, 55 puddings, 30 sides. Sake counts as a drink with alcohol.
+
+## Phase 38d — the chefs' batch (27 Nov 2026, night)
+
+- **558 Christmas recipes** (was 279): 127 starters, 161 mains, 130 puddings, 68 sides and 72 drinks. The new recipes use the `chef-` slug prefix. They take inspiration from this season's food writing and supermarket ranges: Ottolenghi-style spice and pomegranate, Guardian-style vegan and Indian cooking, BBC Good Food classics, and the 2026 trends for pistachio, maple, sour cherry, malt, vol-au-vents and aperitivo drinks. Every recipe and every word of method is written for Home-OS. No chef, shop or brand is named in the app.
+- **130 menus** (was 58): 29 more meat menus, 13 fish, 10 shellfish, 10 vegetarian and 10 vegan.
+- **22 new foods**, each with five figures and a stated basis: black garlic, dried sour cherries, radicchio, labneh, preserved lemon, orange blossom water, chilli flakes (pul biber, Aleppo, Urfa), bulgur, freekeh, malted milk powder, pecorino, 'nduja, plantain, paneer, polenta, clams, halva, sweet chestnut purée, jerk paste, dukkah (a blend), vermouth and bitter aperitivo (named in the app by style, never by brand). There is also a spoon weight for ice cream.
+- **Diet readers:**
+  - `recipeLibrary` v9 counts prosciutto, salami, 'nduja, quail and porchetta as meat, and turbot, halibut, bream, caviar and cockles as fish.
+  - `dietSwitch` v4 never offers those, or game birds and luxury shellfish, as vegetarian. It never offers burrata, ricotta, labneh, paneer or pecorino as vegan.
+- **Tags:** the build now adds `vegetarian` to every vegan recipe, so the vegetarian filter includes vegan dishes.
+- **Cache:** service worker v141, shell v187. Phones fetch the new library the first time they open the app.
+- **Gate 18 floors:** at least 110 menus, 120 starters, 150 mains, 120 puddings and 60 sides. Vermouth and bitter aperitivo count as drinks with alcohol.

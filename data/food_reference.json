@@ -5459,7 +5459,8 @@
    "everyday": true,
    "item_label": "scoop",
    "grams_per_item": 60,
-   "portion_g": 120
+   "portion_g": 120,
+   "grams_per_ml": 0.55
   },
   {
    "slug": "cheesecake",
@@ -9112,9 +9113,7 @@
    "name": "Rose water",
    "category": "food_ambient",
    "aliases": [
-    "rosewater",
-    "orange blossom water",
-    "orange flower water"
+    "rosewater"
    ],
    "grams_per_ml": 1.0,
    "calories_per_100g": 0,
@@ -10345,7 +10344,6 @@
    "category": "food_fresh",
    "aliases": [
     "endive",
-    "red chicory",
     "witlof"
    ],
    "grams_per_item": 120,
@@ -11020,6 +11018,374 @@
    "carbs_g": 0.0,
    "fibre_g": 0.0,
    "basis": "USDA SR Legacy: Fat, goose. Carbohydrate given UK-style, without fibre. Goose fat figures stand in for duck fat; both are almost all fat."
+  },
+  {
+   "slug": "black-garlic",
+   "name": "Black garlic",
+   "category": "food_ambient",
+   "aliases": [
+    "black garlic cloves",
+    "fermented garlic"
+   ],
+   "grams_per_item": 5,
+   "item_label": "clove",
+   "calories_per_100g": 195,
+   "protein_g": 6.0,
+   "fat_g": 0.5,
+   "carbs_g": 40.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "sour-cherries-dried",
+   "name": "Dried sour cherries",
+   "category": "food_ambient",
+   "aliases": [
+    "sour cherries",
+    "dried cherries",
+    "morello cherries dried"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 315,
+   "protein_g": 1.0,
+   "fat_g": 0.5,
+   "carbs_g": 75.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "radicchio",
+   "name": "Radicchio",
+   "category": "food_fresh",
+   "aliases": [
+    "treviso"
+   ],
+   "grams_per_item": 250,
+   "item_label": "head",
+   "calories_per_100g": 23,
+   "protein_g": 1.4,
+   "fat_g": 0.2,
+   "carbs_g": 3.6,
+   "fibre_g": 0.9,
+   "basis": "USDA SR Legacy: Radicchio, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "labneh",
+   "name": "Labneh",
+   "category": "food_fresh",
+   "aliases": [
+    "labne",
+    "strained yoghurt cheese"
+   ],
+   "grams_per_ml": 1.1,
+   "calories_per_100g": 138,
+   "protein_g": 8.0,
+   "fat_g": 10.0,
+   "carbs_g": 4.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "preserved-lemon",
+   "name": "Preserved lemon",
+   "category": "food_ambient",
+   "aliases": [
+    "preserved lemons",
+    "salted lemon"
+   ],
+   "grams_per_item": 40,
+   "item_label": "lemon",
+   "calories_per_100g": 19,
+   "protein_g": 0.5,
+   "fat_g": 0.5,
+   "carbs_g": 2.0,
+   "fibre_g": 2.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "orange-blossom-water",
+   "name": "Orange blossom water",
+   "category": "food_ambient",
+   "aliases": [
+    "orange flower water"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 0,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "Distilled flower water: UK bottle labels give nil for every figure."
+  },
+  {
+   "slug": "chilli-flakes",
+   "name": "Chilli flakes",
+   "category": "food_ambient",
+   "aliases": [
+    "pul biber",
+    "aleppo pepper",
+    "urfa chilli",
+    "urfa biber",
+    "dried chilli flakes",
+    "crushed chillies"
+   ],
+   "grams_per_ml": 0.4,
+   "calories_per_100g": 334,
+   "protein_g": 12.0,
+   "fat_g": 14.0,
+   "carbs_g": 25.0,
+   "fibre_g": 30.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "bulgur",
+   "name": "Bulgur wheat",
+   "category": "food_ambient",
+   "aliases": [
+    "bulgar wheat",
+    "cracked wheat"
+   ],
+   "grams_per_ml": 0.75,
+   "calories_per_100g": 352,
+   "protein_g": 10.6,
+   "fat_g": 2.0,
+   "carbs_g": 77.8,
+   "fibre_g": 6.7,
+   "basis": "CoFID 2019: Wheat, bulgur, raw."
+  },
+  {
+   "slug": "freekeh",
+   "name": "Freekeh",
+   "category": "food_ambient",
+   "aliases": [
+    "green wheat",
+    "frikeh"
+   ],
+   "grams_per_ml": 0.75,
+   "calories_per_100g": 345,
+   "protein_g": 12.5,
+   "fat_g": 2.5,
+   "carbs_g": 62.0,
+   "fibre_g": 12.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "malted-milk-powder",
+   "name": "Malted milk powder",
+   "category": "food_ambient",
+   "aliases": [
+    "malt powder",
+    "malted drink powder"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 405,
+   "protein_g": 10.0,
+   "fat_g": 7.0,
+   "carbs_g": 75.0,
+   "fibre_g": 1.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "pecorino",
+   "name": "Pecorino",
+   "category": "food_fresh",
+   "aliases": [
+    "pecorino romano",
+    "sheep cheese"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 398,
+   "protein_g": 32.0,
+   "fat_g": 30.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "nduja",
+   "name": "'Nduja",
+   "category": "food_fresh",
+   "aliases": [
+    "nduja",
+    "spreadable salami",
+    "spicy salami paste"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 461,
+   "protein_g": 12.0,
+   "fat_g": 45.0,
+   "carbs_g": 2.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "plantain",
+   "name": "Plantain",
+   "category": "food_fresh",
+   "aliases": [
+    "plantains",
+    "ripe plantain"
+   ],
+   "grams_per_item": 250,
+   "item_label": "plantain",
+   "calories_per_100g": 117,
+   "protein_g": 1.1,
+   "fat_g": 0.3,
+   "carbs_g": 29.4,
+   "fibre_g": 1.3,
+   "basis": "CoFID 2019: Plantain, green flesh, raw. One plantain is about 250 g of flesh."
+  },
+  {
+   "slug": "paneer",
+   "name": "Paneer",
+   "category": "food_fresh",
+   "aliases": [
+    "indian cheese"
+   ],
+   "grams_per_item": 225,
+   "item_label": "block",
+   "calories_per_100g": 328,
+   "protein_g": 26.0,
+   "fat_g": 24.5,
+   "carbs_g": 0.9,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Cheese, Paneer."
+  },
+  {
+   "slug": "polenta-dry",
+   "name": "Polenta",
+   "category": "food_ambient",
+   "aliases": [
+    "polenta",
+    "cornmeal",
+    "quick-cook polenta"
+   ],
+   "grams_per_ml": 0.7,
+   "calories_per_100g": 368,
+   "protein_g": 9.4,
+   "fat_g": 3.3,
+   "carbs_g": 73.1,
+   "fibre_g": 2.2,
+   "basis": "CoFID 2019: Cornmeal, sifted. Sifted cornmeal figures stand in for dry polenta."
+  },
+  {
+   "slug": "clams",
+   "name": "Clams",
+   "category": "food_fresh",
+   "aliases": [
+    "palourde clams",
+    "vongole",
+    "cockles"
+   ],
+   "grams_per_item": 12,
+   "item_label": "clam",
+   "calories_per_100g": 71,
+   "protein_g": 12.8,
+   "fat_g": 1.0,
+   "carbs_g": 2.6,
+   "fibre_g": 0.0,
+   "basis": "Meat only, raw: typical published average (USDA mixed clams); one clam in its shell gives about 12 g of meat."
+  },
+  {
+   "slug": "halva",
+   "name": "Halva",
+   "category": "food_ambient",
+   "aliases": [
+    "halvah",
+    "tahini halva"
+   ],
+   "grams_per_ml": 0.7,
+   "calories_per_100g": 526,
+   "protein_g": 12.0,
+   "fat_g": 30.0,
+   "carbs_g": 50.0,
+   "fibre_g": 4.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "chestnut-puree-sweet",
+   "name": "Sweet chestnut purée",
+   "category": "food_ambient",
+   "aliases": [
+    "chestnut spread",
+    "creme de marrons",
+    "sweetened chestnut puree"
+   ],
+   "grams_per_ml": 1.3,
+   "calories_per_100g": 240,
+   "protein_g": 1.5,
+   "fat_g": 1.0,
+   "carbs_g": 55.0,
+   "fibre_g": 2.5,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "jerk-paste",
+   "name": "Jerk paste",
+   "category": "food_ambient",
+   "aliases": [
+    "jerk seasoning",
+    "jerk marinade"
+   ],
+   "grams_per_ml": 1.1,
+   "calories_per_100g": 107,
+   "protein_g": 2.0,
+   "fat_g": 5.0,
+   "carbs_g": 12.0,
+   "fibre_g": 3.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
+  },
+  {
+   "slug": "dukkah",
+   "name": "Dukkah",
+   "category": "food_ambient",
+   "aliases": [
+    "dukka",
+    "duqqa"
+   ],
+   "grams_per_ml": 0.45,
+   "calories_per_100g": 550,
+   "protein_g": 15.1,
+   "fat_g": 49.1,
+   "carbs_g": 11.2,
+   "fibre_g": 13.7,
+   "basis": "Worked out from its parts: hazelnuts, sesame, coriander and cumin, by weight 50:25:15:10."
+  },
+  {
+   "slug": "vermouth",
+   "name": "Vermouth",
+   "category": "drink",
+   "aliases": [
+    "dry vermouth",
+    "sweet vermouth",
+    "aromatised wine",
+    "rosso vermouth"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 109,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 3.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Vermouth, dry."
+  },
+  {
+   "slug": "bitter-aperitivo",
+   "name": "Bitter aperitivo liqueur",
+   "category": "drink",
+   "aliases": [
+    "campari",
+    "aperol",
+    "bitter aperitif",
+    "red bitter"
+   ],
+   "grams_per_ml": 1.05,
+   "calories_per_100g": 230,
+   "protein_g": 0.0,
+   "fat_g": 0.0,
+   "carbs_g": 26.0,
+   "fibre_g": 0.0,
+   "basis": "About 25% alcohol with sugar: typical of UK bottle labels per 100 g."
   }
  ]
 }
