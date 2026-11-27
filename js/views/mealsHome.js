@@ -1,4 +1,5 @@
-// js/views/mealsHome.js — 27 Nov 2026 v3
+// js/views/mealsHome.js — 27 Nov 2026 v4
+// v4: Seasons and occasions in place of Christmas menus, saying what is in season (Phase 40).
 // v3: Help me choose, first of the places: a few taps narrow 600 recipes (Phase 39).
 // v2: Christmas menus, a third place beside My meals and the library (Phase 38).
 // Phase 34. The Meals tab (#/meals-home).
@@ -19,6 +20,7 @@ import { el } from '../lib/dom.js';
 import { createActionBar } from '../components/actionBar.js';
 import { listMeals } from '../data/meals.js';
 import { listLocal } from '../data/localRecipes.js';
+import { inSeasonWords } from '../data/menus.js';
 
 const RECENT = 6;
 
@@ -65,7 +67,7 @@ export function render(mountEl) {
   const coach = hubLink('#/meal-coach', 'Help me choose', 'A few taps, and the recipes that fit: what it is for, how long, what you feel like.');
   const mine = hubLink('#/meals', 'My meals', 'Yours, imported, and ones you copied from the library.');
   const library = hubLink('#/library', 'Community library', 'Recipes that come with the app, ready to cook.');
-  const menus = hubLink('#/menus', 'Christmas menus', 'Whole menus from starter to pudding, with drinks to match.');
+  const menus = hubLink('#/occasions', 'Seasons and occasions', `In season now: ${inSeasonWords()}. Whole menus with drinks to match.`);
   places.append(coach.li, mine.li, library.li, menus.li);
   mountEl.appendChild(places);
 

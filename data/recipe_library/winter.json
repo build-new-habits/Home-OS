@@ -1,0 +1,2474 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Winter",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "win-leek-potato-soup",
+   "name": "Leek and potato soup",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "leek",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:leek}} and chop {{ing:onion-medium}}. Fry 10 minutes, until soft but not brown.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Peel and dice {{ing:potato-medium}}. Add with {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, until the potato is soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Blend until smooth."
+    },
+    {
+     "instruction": "Snip {{ing:chives}} over the top."
+    }
+   ]
+  },
+  {
+   "slug": "win-french-onion-soup",
+   "name": "French onion soup with cheese toasts",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "gruyere",
+     "quantity": 120,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a large pan on a low heat."
+    },
+    {
+     "instruction": "Slice {{ing:onion-large}} thinly. Add with {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Cook 40 minutes, stirring now and then, until deep golden.",
+     "note": "Slow is the point. High heat burns them bitter.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Add {{ing:wine-white}}, {{ing:stock-vegetable}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}. Top with grated {{ing:gruyere}}. Grill until bubbling. Float on the soup."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "gruyere",
+     "text": "Most Gruyère is made with animal rennet; use a vegetarian Alpine-style cheese if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "win-scotch-broth",
+   "name": "Scotch broth",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "pearl-barley",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "swede",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "leek",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dice {{ing:lamb-leg}}. Put in a large pan with 1.5 litres of water and {{ing:stock-cube}}."
+    },
+    {
+     "instruction": "Rinse {{ing:pearl-barley}}. Add. Simmer 40 minutes.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Dice {{ing:onion-medium}}, {{ing:carrot-medium}}, {{ing:swede}} and {{ing:leek}}. Add."
+    },
+    {
+     "instruction": "Simmer 30 minutes more, until the barley and vegetables are tender.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Stir in chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-chicken-sweetcorn-soup",
+   "name": "Chicken and sweetcorn soup",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "stock-chicken",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Simmer {{ing:stock-chicken}} and {{ing:ginger-fresh}} in a pan."
+    },
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}} thinly. Add. Simmer 6 minutes, until cooked.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add drained {{ing:sweetcorn-tinned}} and {{ing:soy-sauce}}."
+    },
+    {
+     "instruction": "Mix {{ing:cornflour}} with 3 tbsp cold water. Stir in until the soup thickens."
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Pour in slowly, stirring, so it sets in ribbons."
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-orange-fennel-salad",
+   "name": "Orange, fennel and olive salad",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Blood oranges, when you can find them in January, make it.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "orange",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fennel-bulb",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut the peel and pith off {{ing:orange}}. Slice into rounds."
+    },
+    {
+     "instruction": "Slice {{ing:fennel-bulb}} and {{ing:red-onion}} very thinly."
+    },
+    {
+     "instruction": "Arrange on a plate with {{ing:olives-pitted}}."
+    },
+    {
+     "instruction": "Drizzle with {{ing:olive-oil}}. Scatter {{ing:fresh-mint}} leaves."
+    }
+   ]
+  },
+  {
+   "slug": "win-welsh-rarebit",
+   "name": "Welsh rarebit",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-yolk",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cayenne-pepper",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the grill to high."
+    },
+    {
+     "instruction": "Grate {{ing:cheddar-cheese}}. Mix with {{ing:mustard-dijon}}, {{ing:milk-whole}}, {{ing:egg-yolk}} and {{ing:cayenne-pepper}}."
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}} on one side."
+    },
+    {
+     "instruction": "Spread the cheese on the untoasted side."
+    },
+    {
+     "instruction": "Grill 3 minutes, until bubbling and browned.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "win-smoked-haddock-chowder",
+   "name": "Smoked haddock chowder",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "haddock-smoked",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a pan. Chop {{ing:onion-medium}}. Fry 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Dice {{ing:potato-medium}}. Add with {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Simmer 12 minutes, until the potato is tender.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Add {{ing:haddock-smoked}} in chunks and drained {{ing:sweetcorn-tinned}}."
+    },
+    {
+     "instruction": "Simmer 5 minutes, until the fish flakes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-garlic-prawns",
+   "name": "Sizzling garlic prawns",
+   "cuisine": "Winter",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Fry with {{ing:chilli-flakes}} 1 minute, until pale gold.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Turn up the heat. Add {{ing:king-prawns-raw}}. Cook 3 minutes, until pink.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Serve sizzling with {{ing:sourdough}} for the oil."
+    }
+   ]
+  },
+  {
+   "slug": "win-beef-stew-dumplings",
+   "name": "Beef stew with dumplings",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 800,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-purée",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "suet-vegetable",
+     "quantity": 75,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C. Dice {{ing:beef-braising}}. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} in a casserole, in batches. Lift out."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {tomato-purée}, {{ing:stock-cube}} in 800 ml water and {{ing:bay-leaf}}. Return the beef. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:suet-vegetable}} with cold water to a soft dough.",
+     "step_group": "Dumplings"
+    },
+    {
+     "instruction": "Roll into 8 balls. Sit on the stew. Cook uncovered 25 minutes, until risen.",
+     "duration_min": 25,
+     "step_group": "Dumplings"
+    }
+   ]
+  },
+  {
+   "slug": "win-toad-in-the-hole",
+   "name": "Toad in the hole with onion gravy",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The fat must be smoking hot when the batter goes in, or it will not rise.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 140,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "gravy-granules",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C. Put {{ing:sausage-pork}} and {{ing:vegetable-oil}} in a roasting tin."
+    },
+    {
+     "instruction": "Roast 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Whisk {{ing:flour-plain}}, {{ing:egg-medium}} and {{ing:milk-whole}} to a smooth batter."
+    },
+    {
+     "instruction": "Pour round the sausages at once, while the fat is sizzling."
+    },
+    {
+     "instruction": "Bake 30 minutes, until risen and golden. Do not open the oven.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Fry sliced {{ing:onion-medium}} 15 minutes until soft. Add {{ing:gravy-granules}} with 500 ml boiling water.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "win-lancashire-hotpot",
+   "name": "Lancashire hotpot",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 800,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "potato-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 25,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 170C. Dice {{ing:lamb-leg}}. Brown in {{ing:olive-oil}}. Lift out."
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}} and {{ing:carrot-medium}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Add {{ing:stock-cube}} in 500 ml water and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Return the lamb. Tip into a deep dish."
+    },
+    {
+     "instruction": "Slice {{ing:potato-large}} thinly. Layer over the top. Dot with {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Cover. Bake 1 hour 30 minutes. Uncover. Bake 30 minutes more, until golden.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "win-salmon-leeks-mustard",
+   "name": "Salmon with leeks and mustard sauce",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "leek",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in an ovenproof pan. Slice {{ing:leek}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Lay {{ing:salmon-fillet}} on top."
+    },
+    {
+     "instruction": "Bake 15 minutes, until the salmon flakes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter with {{ing:fresh-dill}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-fish-pie",
+   "name": "Classic fish pie",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "haddock-smoked",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Peel {{ing:potato-large}}. Boil 20 minutes. Mash with a third of {{ing:butter-unsalted}}.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Simmer {{ing:cod-fillet}} and {{ing:haddock-smoked}} in {{ing:milk-whole}} 6 minutes. Lift out. Keep the milk.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Melt the rest of the butter. Stir in {{ing:flour-plain}}. Add the milk slowly, stirring until thick."
+    },
+    {
+     "instruction": "Flake in the fish. Add {{ing:peas-frozen}} and chopped {{ing:fresh-parsley}}. Tip into a dish."
+    },
+    {
+     "instruction": "Top with the mash. Scatter {{ing:cheddar-cheese}}."
+    },
+    {
+     "instruction": "Bake 30 minutes, until golden and bubbling.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "win-prawn-noodle-soup",
+   "name": "King prawn noodle soup",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry {{ing:thai-red-curry-paste}} in a large pan 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}} and {{ing:coconut-milk-tinned}}. Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} in boiling water for the time on the packet. Drain into bowls."
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}} and halved {{ing:pak-choi}} to the soup. Cook 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:fish-sauce}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Ladle over the noodles. Top with {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-macaroni-cheese",
+   "name": "Macaroni cheese",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 350,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 8,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Cook {{ing:penne-dry}} 2 minutes less than the packet says. Drain.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}}. Stir in {{ing:flour-plain}} 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} slowly, stirring until thick."
+    },
+    {
+     "instruction": "Stir in most of {{ing:cheddar-cheese}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Mix with the pasta. Tip into a dish. Top with halved {{ing:cherry-tomato}} and the rest of the cheese."
+    },
+    {
+     "instruction": "Bake 20 minutes, until bubbling.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "win-leek-cheddar-bake",
+   "name": "Leek, potato and cheddar bake",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "leek",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Slice {{ing:potato-large}} thinly. Slice {{ing:leek}}."
+    },
+    {
+     "instruction": "Fry the leeks in {{ing:butter-unsalted}} 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Warm {{ing:double-cream}} with crushed {{ing:garlic-clove}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Layer potatoes, leeks and most of {{ing:cheddar-cheese}} in a dish. Pour over the cream."
+    },
+    {
+     "instruction": "Top with the rest of the cheese. Bake 1 hour, until tender and golden.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "win-mushroom-stroganoff",
+   "name": "Mushroom stroganoff",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} for the time on the packet."
+    },
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:olive-oil}} 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:mushroom-chestnut}}. Fry 8 minutes, until browned.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir in {{ing:smoked-paprika}}. Add {{ing:stock-vegetable}}. Bubble 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:soured-cream}}."
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-parsley}}. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "win-root-stew-dumplings",
+   "name": "Root vegetable stew with herb dumplings",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "parsnip",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "swede",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "lentils-green-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "tomato-purée",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "suet-vegetable",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:olive-oil}} 8 minutes in a casserole.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Dice {{ing:carrot-medium}}, {{ing:parsnip}} and {{ing:swede}}. Add with {{ing:lentils-green-dry}}."
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}} and {tomato-purée}. Simmer 25 minutes.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:suet-vegetable}} and chopped {{ing:fresh-parsley}} with cold water to a soft dough.",
+     "step_group": "Dumplings"
+    },
+    {
+     "instruction": "Roll into 8 balls. Sit on the stew. Cover. Simmer 20 minutes, until risen and fluffy.",
+     "duration_min": 20,
+     "step_group": "Dumplings"
+    }
+   ]
+  },
+  {
+   "slug": "win-chickpea-spinach-curry",
+   "name": "Chickpea and spinach curry",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}} for the time on the packet."
+    },
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:vegetable-oil}} 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}, {{ing:ginger-fresh}} and {{ing:curry-powder}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, drained {{ing:chickpeas-tinned}} and {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, until thick.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted."
+    }
+   ]
+  },
+  {
+   "slug": "win-sausage-bean-casserole",
+   "name": "Plant sausage and bean casserole",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Check the sausage packet says vegan; some plant sausages contain egg.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "plant-sausages",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "kale",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brown {{ing:plant-sausages}} in {{ing:olive-oil}} 6 minutes. Lift out. Slice.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:smoked-paprika}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}, drained {{ing:butter-beans-tinned}} and {{ing:stock-vegetable}}."
+    },
+    {
+     "instruction": "Return the sausages. Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:kale}}. Cook 4 minutes, until tender.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "win-buttery-mash",
+   "name": "Buttery mash",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and chop {{ing:potato-large}}. Boil 20 minutes, until soft.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Drain. Leave in the pan 2 minutes to steam dry.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Mash with {{ing:butter-unsalted}} and warm {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Season with {{ing:salt}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-caraway-cabbage",
+   "name": "Cabbage with caraway",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cabbage-white",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "caraway-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred half of {{ing:cabbage-white}} finely."
+    },
+    {
+     "instruction": "Fry {{ing:caraway-seeds}} in {{ing:olive-oil}} 30 seconds."
+    },
+    {
+     "instruction": "Add the cabbage and a splash of water. Stir-fry 6 minutes, until tender.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-maple-parsnips",
+   "name": "Maple roast parsnips",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "parsnip",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Quarter {{ing:parsnip}} lengthways. Toss with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Roast 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Drizzle with {{ing:maple-syrup}}. Add {{ing:fresh-thyme}}. Roast 10 minutes, until sticky.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "win-carrot-swede-mash",
+   "name": "Carrot and swede mash",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "swede",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and dice {{ing:swede}} and {{ing:carrot-large}}."
+    },
+    {
+     "instruction": "Boil 25 minutes, until soft.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Drain well. Mash with {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Season with plenty of {{ing:black-pepper-ground}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-braised-leeks",
+   "name": "Braised leeks",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "leek",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:leek}} into 5 cm lengths."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a wide pan. Add the leeks."
+    },
+    {
+     "instruction": "Add {{ing:stock-vegetable}} and {{ing:fresh-thyme}}. Cover."
+    },
+    {
+     "instruction": "Simmer 15 minutes, until soft. Uncover and bubble 3 minutes to reduce.",
+     "duration_min": 15
+    }
+   ]
+  },
+  {
+   "slug": "win-jam-roly-poly",
+   "name": "Jam roly-poly with custard",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "suet-vegetable",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "jam-strawberry",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "custard-ready",
+     "quantity": 500,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:suet-vegetable}} and {{ing:sugar-caster}}. Add {{ing:milk-whole}} to a soft dough."
+    },
+    {
+     "instruction": "Roll out to a 30 by 20 cm rectangle."
+    },
+    {
+     "instruction": "Spread with {{ing:jam-strawberry}}, leaving a border. Roll up from the short side."
+    },
+    {
+     "instruction": "Wrap loosely in greased foil. Bake 1 hour, until risen.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Slice. Serve with hot {{ing:custard-ready}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-treacle-tart",
+   "name": "Treacle tart",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "shortcrust-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C. Line a 23 cm tin with {{ing:shortcrust-pastry}}."
+    },
+    {
+     "instruction": "Bake 15 minutes with baking beans. Take them out.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Warm {{ing:golden-syrup}} until runny."
+    },
+    {
+     "instruction": "Stir in {{ing:breadcrumbs-dried}}, the zest and juice of {{ing:lemon}}, {{ing:egg-medium}} and {{ing:double-cream}}."
+    },
+    {
+     "instruction": "Pour into the case. Lower the oven to 170C."
+    },
+    {
+     "instruction": "Bake 30 minutes, until set with a slight wobble.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "win-chocolate-puddle-pudding",
+   "name": "Chocolate puddle pudding",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "It looks wrong going in. Trust it.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, 2 tbsp of {{ing:cocoa-powder}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}}. Whisk with {{ing:milk-whole}} and {{ing:egg-medium}}. Stir into the flour."
+    },
+    {
+     "instruction": "Spread in a baking dish."
+    },
+    {
+     "instruction": "Mix {{ing:sugar-soft-brown}} and the rest of the cocoa. Sprinkle over. Pour 300 ml boiling water on top."
+    },
+    {
+     "instruction": "Bake 30 minutes. The sauce sinks to the bottom.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "win-baked-rice-pudding",
+   "name": "Baked rice pudding",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "jam-strawberry",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C. Butter a baking dish with {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Put in {{ing:rice-arborio-dry}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Pour over {{ing:milk-whole}}. Grate over {{ing:nutmeg}}."
+    },
+    {
+     "instruction": "Bake 2 hours, stirring once after 30 minutes, until creamy with a golden skin.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Serve with a spoon of {{ing:jam-strawberry}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-poached-pears",
+   "name": "Spiced poached pears",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "sugar-caster",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pear",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:sugar-caster}}, {{ing:water}}, {{ing:cinnamon-stick}}, {{ing:star-anise}} and pared zest of {{ing:orange}} in a pan."
+    },
+    {
+     "instruction": "Heat until the sugar dissolves."
+    },
+    {
+     "instruction": "Peel {{ing:pear}}, keeping the stalks. Lower into the syrup."
+    },
+    {
+     "instruction": "Simmer 25 minutes, turning, until a knife slides in.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Lift out. Bubble the syrup 10 minutes, until thick. Spoon over. Serve with {{ing:coconut-yoghurt}}.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "win-sticky-date-pudding",
+   "name": "Vegan sticky date pudding",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dates-pitted",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "dairy-free-spread",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-muscovado",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a 20 cm square tin."
+    },
+    {
+     "instruction": "Chop {{ing:dates-pitted}}. Simmer in {{ing:oat-milk}} 5 minutes. Stir in {{ing:bicarbonate-of-soda}}.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Beat half of {{ing:dairy-free-spread}} with 100 g of {{ing:sugar-muscovado}}."
+    },
+    {
+     "instruction": "Stir in the dates and {{ing:flour-self-raising}}. Spread in the tin. Bake 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Melt the rest of the spread and sugar with {{ing:golden-syrup}}. Bubble 2 minutes. Pour over.",
+     "duration_min": 2,
+     "step_group": "Sauce"
+    }
+   ]
+  },
+  {
+   "slug": "win-citrus-salad",
+   "name": "Winter citrus salad with pomegranate",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "orange",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "grapefruit",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "clementine",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut the peel and pith off {{ing:orange}}, {{ing:grapefruit}} and {{ing:clementine}}."
+    },
+    {
+     "instruction": "Slice into rounds. Lay on a plate."
+    },
+    {
+     "instruction": "Scatter with {{ing:pomegranate-seeds}} and {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Drizzle with {{ing:maple-syrup}}."
+    }
+   ]
+  },
+  {
+   "slug": "win-hot-chocolate",
+   "name": "Proper hot chocolate",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "milk-whole",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Warm {{ing:milk-whole}} in a pan until steaming."
+    },
+    {
+     "instruction": "Break in {{ing:dark-chocolate}}. Whisk until melted."
+    },
+    {
+     "instruction": "Add {{ing:sugar-caster}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Pour into mugs."
+    }
+   ]
+  },
+  {
+   "slug": "win-ginger-lemon-tea",
+   "name": "Ginger, lemon and honey tea",
+   "cuisine": "Winter",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "ginger-fresh",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "water",
+     "quantity": 1000,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:ginger-fresh}}. Put in a pan with {{ing:water}}."
+    },
+    {
+     "instruction": "Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add the juice of {{ing:lemon}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Strain into mugs."
+    }
+   ]
+  },
+  {
+   "slug": "win-hot-toddy",
+   "name": "Hot toddy",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is whisky.",
+   "ingredients": [
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 400,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat {{ing:water}} until steaming."
+    },
+    {
+     "instruction": "Divide {{ing:spirit-40}} and {{ing:honey}} between 4 mugs."
+    },
+    {
+     "instruction": "Stick {{ing:cloves}} into slices of {{ing:lemon}}. Add one to each mug."
+    },
+    {
+     "instruction": "Pour over the hot water. Stir."
+    }
+   ]
+  },
+  {
+   "slug": "win-negroni",
+   "name": "Negroni",
+   "cuisine": "Winter",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is gin; the vermouth sweet red.",
+   "ingredients": [
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "vermouth",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "bitter-aperitivo",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fill a jug with ice."
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}}, {{ing:vermouth}} and {{ing:bitter-aperitivo}}. Stir 30 seconds."
+    },
+    {
+     "instruction": "Strain over fresh ice in 4 glasses."
+    },
+    {
+     "instruction": "Add a strip of peel from {{ing:orange}}."
+    }
+   ]
+  }
+ ]
+}

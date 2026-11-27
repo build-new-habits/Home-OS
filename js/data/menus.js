@@ -1,4 +1,7 @@
-// js/data/menus.js — 27 Nov 2026 v1
+// js/data/menus.js — 27 Nov 2026 v2
+// v2: seasons and occasions (Phase 40): spring, summer, autumn, winter,
+// Easter, birthdays, Halloween, barbecue and outdoor cooking beside
+// Christmas, each with the months it is in season.
 // Phase 38. Complete menus, each course with drinks to match.
 //
 // Graeme, 27 Nov 2026: "I want a huge variety of Christmas meals. Starters,
@@ -21,9 +24,50 @@
 // Everything below the loader is pure, so the gates can check every menu
 // against the real library without a database.
 
+// `months` are the months (1 to 12) an occasion is in season, for "In
+// season now". Birthdays are every month. The order is the order of a year.
 export const OCCASIONS = Object.freeze({
-  christmas: { path: 'data/menus/christmas.json', title: 'Christmas menus' }
+  spring: { path: 'data/menus/spring.json', title: 'Spring menus', name: 'Spring', months: [3, 4, 5],
+    blurb: 'Asparagus, new potatoes, peas, lamb and rhubarb.' },
+  easter: { path: 'data/menus/easter.json', title: 'Easter menus', name: 'Easter', months: [3, 4],
+    blurb: 'Lamb and glazed ham, simnel cake, hot cross buns and chocolate.' },
+  summer: { path: 'data/menus/summer.json', title: 'Summer menus', name: 'Summer', months: [6, 7, 8],
+    blurb: 'Tomatoes, peaches, salads, cold soups and berries.' },
+  bbq: { path: 'data/menus/bbq.json', title: 'Barbecue menus', name: 'Barbecue', months: [5, 6, 7, 8, 9],
+    blurb: 'Ribs, pulled pork, skewers and grilled puddings. All work indoors too.' },
+  outdoor: { path: 'data/menus/outdoor.json', title: 'Outdoor cooking menus', name: 'Outdoor cooking', months: [4, 5, 6, 7, 8, 9],
+    blurb: 'The campfire, the camping stove and the picnic: foil parcels and one pot.' },
+  autumn: { path: 'data/menus/autumn.json', title: 'Autumn menus', name: 'Autumn', months: [9, 10, 11],
+    blurb: 'Squash, mushrooms, apples, pies and crumbles.' },
+  halloween: { path: 'data/menus/halloween.json', title: 'Halloween menus', name: 'Halloween', months: [10, 11],
+    blurb: 'Pumpkin, toffee apples and spooky food for Halloween and Bonfire Night.' },
+  christmas: { path: 'data/menus/christmas.json', title: 'Christmas menus', name: 'Christmas', months: [11, 12],
+    blurb: 'Starter to pudding, every kind of Christmas table.' },
+  winter: { path: 'data/menus/winter.json', title: 'Winter menus', name: 'Winter', months: [1, 2, 12],
+    blurb: 'Soups, stews and dumplings, roots, citrus and steamed puddings.' },
+  birthday: { path: 'data/menus/birthday.json', title: 'Birthday menus', name: 'Birthdays', months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    blurb: 'Party food, cakes worth candles, and something for every diet.' }
 });
+
+/** Occasion keys in season this month, in year order; birthdays last. Pure. */
+export function inSeason(now = new Date()) {
+  const month = now.getMonth() + 1;
+  const keys = Object.keys(OCCASIONS).filter((k) => k !== 'birthday' && OCCASIONS[k].months.includes(month));
+  return [...keys, 'birthday'];
+}
+
+/** Every occasion, in season first, then the rest of the year in order. Pure. */
+export function occasionOrder(now = new Date()) {
+  const first = inSeason(now);
+  return [...first, ...Object.keys(OCCASIONS).filter((k) => !first.includes(k))];
+}
+
+/** "Winter, Christmas and birthdays": the in-season names as words. Pure. */
+export function inSeasonWords(now = new Date()) {
+  const names = inSeason(now).map((k) => (k === 'birthday' ? 'birthdays' : OCCASIONS[k].name));
+  if (names.length < 2) return names.join('');
+  return `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+}
 
 /** Filter chips, in this order. `diet` values in the menus file. */
 export const DIETS = Object.freeze([

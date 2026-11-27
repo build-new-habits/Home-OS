@@ -1,4 +1,5 @@
-// Tests/menus.mjs — 27 Nov 2026 v4
+// Tests/menus.mjs — 27 Nov 2026 v5
+// v5: the nine seasons and occasions (Phase 40), each checked like Christmas; In season now.
 // v4: the chefs' batch: 558 recipes, 130 menus; floors raised again; vermouth and bitter aperitivo count as drinks with alcohol.
 // v3: the luxury batch: 279 recipes, 58 menus; floors doubled; sake counts as a drink with alcohol.
 // v2: the second batch: 138 recipes, 29 menus; the floors rise with them.
@@ -150,9 +151,87 @@ check('menuSlugs lists food before drinks, once each',
   === JSON.stringify(['a', 'b', 'd']));
 check('a soft pairing is offered for drivers and children', /soft/i.test(doc.drinks_note || ''));
 
+// ---- v5: every season and occasion (Phase 40) ------------------------------------
+// The same checks as Christmas, for each of the other nine: every dish real
+// and the right course, every course paired soft and with alcohol, the label
+// the truth about the food, and at least two menus for every diet.
+let seasonMenus = 0;
+let seasonRecipes = 0;
+for (const key of Object.keys(menus.OCCASIONS).filter((k) => k !== 'christmas')) {
+  const meta = menus.OCCASIONS[key];
+  check(`${key} has a title, name, blurb and months`, Boolean(meta.title && meta.name && meta.blurb) && Array.isArray(meta.months) && meta.months.length > 0);
+  const file = index.files.find((f) => f.path === `data/recipe_library/${key}.json`);
+  check(`${key} recipes are in the library index`, Boolean(file));
+  const own = file ? (await read(file.path)).recipes : [];
+  seasonRecipes += own.length;
+  check(`${key} has at least 30 recipes`, own.length >= 30, String(own.length));
+  for (const course of ['starter', 'main', 'pudding']) {
+    check(`${key} has at least 6 ${course}s`, own.filter((r) => r.course === course).length >= 6);
+  }
+  check(`${key} has sides`, own.filter((r) => r.side === true).length >= 4);
+  const ownDrinks = own.filter((r) => r.default_slot === 'drink');
+  check(`${key} has soft drinks and drinks with alcohol`, ownDrinks.filter((r) => !boozy(r)).length >= 2 && ownDrinks.filter(boozy).length >= 2);
+  for (const r of own.filter((x) => x.default_slot !== 'drink')) {
+    const tags = r.dietary_tags || [];
+    if (tags.includes('vegetarian')) check(`${r.slug} tagged vegetarian has no meat or fish`, proteins(r).length === 0, proteins(r).join(','));
+  }
+  const mdoc = await read(meta.path);
+  const mlist = mdoc.menus || [];
+  seasonMenus += mlist.length;
+  check(`${key} has at least 10 menus`, mlist.length >= 10, String(mlist.length));
+  check(`${key} offers a soft pairing for drivers and children`, /soft/i.test(mdoc.drinks_note || ''));
+  for (const m of mlist) {
+    const id = `${key} menu ${m.slug}`;
+    check(`${id} has a unique slug`, Boolean(m.slug) && !seen.has(`${key}:${m.slug}`));
+    seen.add(`${key}:${m.slug}`);
+    check(`${id} diet is a filter`, menus.DIETS.some((d) => d.value && d.value === m.diet), m.diet);
+    check(`${id} words carry no shame`, !SHAME.test(`${m.name} ${m.summary} ${m.note || ''}`));
+    check(`${id} runs starter, main, pudding`, (m.courses || []).map((c) => c.course).join(',') === 'starter,main,pudding');
+    for (const c of m.courses || []) {
+      const dish = bySlug.get(c.recipe);
+      check(`${id} ${c.course} ${c.recipe} is a library ${c.course}`, Boolean(dish) && courseOf(dish) === c.course && !dish.side);
+      for (const sd of c.sides || []) check(`${id} side ${sd} is a side`, Boolean(bySlug.get(sd)) && bySlug.get(sd).side === true);
+      for (const kind of ['soft', 'alcoholic']) {
+        const p = c.pairing && c.pairing[kind];
+        check(`${id} ${c.course} has a ${kind} pairing`, Boolean(p && p.text && p.text.trim().length > 3));
+        if (p) check(`${id} ${kind} pairing names no brand`, !BRANDS.test(p.text), p.text);
+        if (p && p.recipe) {
+          const r = bySlug.get(p.recipe);
+          check(`${id} ${kind} drink ${p.recipe} is the right kind`, Boolean(r) && r.default_slot === 'drink' && (kind === 'soft' ? !boozy(r) : boozy(r)));
+        }
+      }
+    }
+    const suits = menus.menuSuits(m, bySlug);
+    const foodSlugs = menus.menuSlugs(m, { drinks: false });
+    const has = (k) => foodSlugs.some((sl) => bySlug.get(sl) && proteins(bySlug.get(sl)).includes(k));
+    const shell = foodSlugs.some((sl) => (bySlug.get(sl) || { ingredients: [] }).ingredients.some((i) => /prawn|scallop|lobster|crab|mussel|clam|oyster|langoustine|squid/.test(i.ref)));
+    if (m.diet === 'vegan') check(`${id} is vegan all through`, suits.includes('vegan'));
+    if (m.diet === 'vegetarian') check(`${id} is vegetarian all through`, suits.includes('vegetarian'));
+    if (m.diet === 'meat') check(`${id} has meat in it`, has('meat'));
+    if (m.diet === 'fish') check(`${id} has fish in it`, has('fish'));
+    if (m.diet === 'shellfish') check(`${id} has shellfish in it`, shell);
+    if (m.diet === 'vegan') check(`${id} says to check labels`, /vegan/i.test(m.note || ''));
+  }
+  for (const d of menus.DIETS.filter((x) => x.value && x.value !== 'shellfish')) {
+    check(`${key}: at least two ${d.label.toLowerCase()} menus`, menus.filterMenus(mlist, d.value).length >= 2);
+  }
+  check(`${key}: at least one shellfish menu`, menus.filterMenus(mlist, 'shellfish').length >= 1);
+}
+
+// In season now: every month has something, and birthdays are always there.
+for (let month = 0; month < 12; month += 1) {
+  const keys = menus.inSeason(new Date(2026, month, 15));
+  check(`month ${month + 1} has a season`, keys.length >= 2 && keys[keys.length - 1] === 'birthday', keys.join(','));
+  check(`month ${month + 1} lists every occasion once`, new Set(menus.occasionOrder(new Date(2026, month, 15))).size === Object.keys(menus.OCCASIONS).length);
+}
+check('July is summer and barbecue', ['summer', 'bbq'].every((k) => menus.inSeason(new Date(2026, 6, 1)).includes(k)));
+check('December is Christmas and winter', ['christmas', 'winter'].every((k) => menus.inSeason(new Date(2026, 11, 1)).includes(k)));
+check('October is Halloween and autumn', ['halloween', 'autumn'].every((k) => menus.inSeason(new Date(2026, 9, 1)).includes(k)));
+check('in-season words read as a list', menus.inSeasonWords(new Date(2026, 11, 1)) === 'Christmas, Winter and birthdays', menus.inSeasonWords(new Date(2026, 11, 1)));
+
 if (failures.length) {
   console.log(`MENUS GATE FAILED — ${failures.length} of ${checks} checks`);
   for (const f of failures.slice(0, 60)) console.log(`  ✗ ${f}`);
   process.exit(1);
 }
-console.log(`MENUS GATE PASSED — ${xmas.length} Christmas recipes, ${list.length} menus, ${checks} checks`);
+console.log(`MENUS GATE PASSED — ${xmas.length} Christmas recipes, ${list.length} Christmas menus; ${seasonRecipes} season and occasion recipes, ${seasonMenus} menus; ${checks} checks`);

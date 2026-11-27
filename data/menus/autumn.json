@@ -1,0 +1,667 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Autumn",
+ "note": "Complete autumn menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "harvest-pork",
+   "name": "Harvest supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Pork and apple sausage rolls, pork with cider and apples, apple and blackberry crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-pork-apple-sausage-rolls",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A glass of dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-pork-cider-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A dry Normandy cider or an oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "aut-celeriac-mash",
+      "aut-garlic-kale"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-apple-blackberry-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Hot custard and a pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Calvados"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "beef-casserole-sunday",
+   "name": "Casserole Sunday",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Garlic mushrooms on toast, beef and red wine casserole, sticky parkin.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-garlic-mushrooms-toast",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-beef-red-wine-casserole",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône or Malbec"
+      }
+     },
+     "sides": [
+      "aut-celeriac-mash",
+      "aut-roast-roots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-parkin",
+     "pairing": {
+      "soft": {
+       "text": "Hot milk with a pinch of ginger"
+      },
+      "alcoholic": {
+       "text": "A glass of tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chicken-pie-night",
+   "name": "Pie night",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Beetroot and apple salad, chicken leek and mushroom pie, caramel apple pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-beetroot-apple-salad",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-chicken-mushroom-pie",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     },
+     "sides": [
+      "aut-garlic-kale"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-caramel-apple-pots",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lamb-shank-feast",
+   "name": "Lamb shank feast",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chicken livers on toast, lamb shanks with plums, pear and almond tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-chicken-liver-toasts",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A glass of dry Amontillado sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-lamb-shanks-plums",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Rioja Reserva"
+      }
+     },
+     "sides": [
+      "aut-celeriac-mash",
+      "aut-roast-roots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-pear-frangipane",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Sauternes"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cod-lentil-supper",
+   "name": "Cod and lentils",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Smoked mackerel with beetroot, herb-crusted cod, roast plums.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-mackerel-beetroot",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-herb-crust-cod-lentils",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A white Rioja or Chablis"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-port-plums",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced tea"
+      },
+      "alcoholic": {
+       "text": "A glass of ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "haddock-gratin-supper",
+   "name": "Smoked haddock supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Roast squash soup, smoked haddock and leek gratin, baked apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-roast-squash-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-haddock-leek-gratin",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "An unoaked Chardonnay"
+      }
+     },
+     "sides": [
+      "aut-garlic-kale"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-baked-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot custard"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "scallop-curry",
+   "name": "Scallops and king prawns",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Scallops with cauliflower purée, a squash and king prawn red curry, plums roasted in port.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-scallops-cauliflower",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-squash-prawn-curry",
+     "pairing": {
+      "soft": {
+       "text": "Lime and lemongrass iced tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-port-plums",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "Blackberry gin sour",
+       "recipe": "aut-bramble"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "mushroom-risotto-night",
+   "name": "Mushroom risotto night",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Pear, Stilton and chicory salad, mushroom risotto, pear and ginger cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-pear-stilton-chicory",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Sauternes-style sweet white with the Stilton, or a dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-wild-mushroom-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-pear-ginger-cake",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "squash-pasta-supper",
+   "name": "Squash and sage",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Garlic mushrooms, roast squash and goats cheese pasta, brioche bread pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-garlic-mushrooms-toast",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Soave"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-squash-sage-pasta",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "aut-apple-fennel-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-marmalade-bread-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Hot milk"
+      },
+      "alcoholic": {
+       "text": "Blackberry gin sour",
+       "recipe": "aut-bramble"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cauliflower-cheese-night",
+   "name": "Cauliflower cheese night",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Beetroot, apple and walnut salad, cauliflower cheese, caramel apple pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-beetroot-apple-salad",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-cauliflower-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Chenin Blanc"
+      }
+     },
+     "sides": [
+      "aut-roast-roots",
+      "aut-garlic-kale"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-caramel-apple-pots",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cottage-pie-vegan",
+   "name": "Mushroom cottage pie",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Roast squash soup, mushroom and lentil cottage pie, apple and blackberry crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-roast-squash-soup",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-mushroom-lentil-cottage-pie",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "aut-garlic-kale",
+      "aut-roast-roots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-apple-blackberry-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Hot oat milk with cinnamon"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "chilli-vegan",
+   "name": "Pumpkin chilli",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Garlic mushrooms on toast, pumpkin and black bean chilli, baked apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-garlic-mushrooms-toast",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-pumpkin-black-bean-chilli",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A Zinfandel or Malbec"
+      }
+     },
+     "sides": [
+      "aut-roast-squash-wedges"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-baked-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced tea"
+      },
+      "alcoholic": {
+       "text": "Blackberry gin sour",
+       "recipe": "aut-bramble"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "beetroot-vegan",
+   "name": "Beetroot and lentils",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Roast squash soup, warm beetroot and lentil salad, roast plums with coconut yoghurt.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "aut-roast-squash-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple",
+       "recipe": "aut-spiced-apple"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "aut-beetroot-lentil-salad",
+     "pairing": {
+      "soft": {
+       "text": "Blackberry and apple soda",
+       "recipe": "aut-blackberry-soda"
+      },
+      "alcoholic": {
+       "text": "A light Pinot Noir"
+      }
+     },
+     "sides": [
+      "aut-apple-fennel-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "aut-port-plums",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced tea"
+      },
+      "alcoholic": {
+       "text": "Spiced pear and cider punch",
+       "recipe": "aut-pear-cider-punch"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

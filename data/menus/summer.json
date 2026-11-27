@@ -1,0 +1,616 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Summer",
+ "note": "Complete summer menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "greek-summer",
+   "name": "Greek summer table",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Watermelon and feta, chicken souvlaki pittas, roast peaches with honey.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-watermelon-feta",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A crisp Assyrtiko from Greece"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-chicken-souvlaki",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     },
+     "sides": [
+      "sum-cucumber-yoghurt",
+      "sum-tomato-basil-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-roast-peaches",
+     "pairing": {
+      "soft": {
+       "text": "Iced mint tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "steak-night",
+   "name": "Summer steak night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Melon and prosciutto, steak with chimichurri, Eton mess.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-melon-prosciutto",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A chilled fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-steak-chimichurri",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "An Argentinian Malbec"
+      }
+     },
+     "sides": [
+      "sum-potato-salad",
+      "sum-tomato-basil-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-eton-mess",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lamb-salsa-verde-supper",
+   "name": "Lamb and salsa verde",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Tomato bruschetta, lamb chops with salsa verde, cherry clafoutis.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-tomato-bruschetta",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A light Chianti"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-lamb-salsa-verde",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Rioja or Tempranillo"
+      }
+     },
+     "sides": [
+      "sum-potato-salad",
+      "sum-green-bean-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-cherry-clafoutis",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Kirsch-spiked cherry juice, or a sweet Banyuls"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "riviera-fish",
+   "name": "Riviera fish supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Gazpacho, sea bass with tomatoes and olives, watermelon granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-gazpacho",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A chilled fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-sea-bass-tomatoes",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Provence rosé"
+      }
+     },
+     "sides": [
+      "sum-herb-couscous"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-watermelon-granita",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with mint"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "nicoise-lunch",
+   "name": "Niçoise lunch",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Smoked salmon with cucumber, tuna niçoise, summer pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-smoked-salmon-cucumber",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-tuna-nicoise",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Côtes de Provence rosé"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-summer-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Single cream and a pot of tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest dessert wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "mussels-and-prawns",
+   "name": "Mussels and prawns",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Chilli lime prawns, mussels in white wine, mango and passion fruit.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-chilli-lime-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "An Albariño"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-moules",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "A Muscadet or Picpoul de Pinet"
+      }
+     },
+     "sides": [
+      "sum-green-bean-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-mango-passion-fruit",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "garden-party",
+   "name": "Garden party",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Burrata with peaches, a tomato galette, Victoria sponge.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-burrata-peaches",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-tomato-galette",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Pinot Grigio"
+      }
+     },
+     "sides": [
+      "sum-green-bean-salad",
+      "sum-potato-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-victoria-sponge",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-summer",
+   "name": "Halloumi summer",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Courgette fritters, griddled halloumi and peach salad, Eton mess.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-courgette-fritters",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Greek Assyrtiko"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-halloumi-peach-salad",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     },
+     "sides": [
+      "sum-herb-couscous"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-eton-mess",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "pasta-al-fresco",
+   "name": "Pasta al fresco",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Tomato bruschetta, courgette and ricotta pasta, raspberry ripple ice cream.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-tomato-bruschetta",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Vermentino"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-courgette-ricotta-pasta",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Soave"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-no-churn-ice-cream",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "Sangria",
+       "recipe": "sum-sangria"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "provencal-vegan",
+   "name": "Provençal supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Gazpacho, ratatouille with sourdough, watermelon granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-gazpacho",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A chilled fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-ratatouille",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "sum-green-bean-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-watermelon-granita",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with mint"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "couscous-vegan",
+   "name": "Roast pepper feast",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Tomato bruschetta, roast pepper couscous, mango and passion fruit.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-tomato-bruschetta",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-pepper-chickpea-couscous",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Grenache from the south of France"
+      }
+     },
+     "sides": [
+      "sum-tomato-basil-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-mango-passion-fruit",
+     "pairing": {
+      "soft": {
+       "text": "Iced mint tea"
+      },
+      "alcoholic": {
+       "text": "Sangria",
+       "recipe": "sum-sangria"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "rice-bowl-vegan",
+   "name": "Sesame tofu bowls",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Gazpacho, sesame tofu rice bowls, watermelon granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "sum-gazpacho",
+     "pairing": {
+      "soft": {
+       "text": "Watermelon and mint cooler",
+       "recipe": "sum-watermelon-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "sum-tofu-rice-bowl",
+     "pairing": {
+      "soft": {
+       "text": "Homemade lemonade",
+       "recipe": "sum-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "sum-watermelon-granita",
+     "pairing": {
+      "soft": {
+       "text": "Jasmine iced tea"
+      },
+      "alcoholic": {
+       "text": "Rosé and strawberry spritz",
+       "recipe": "sum-rose-spritz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

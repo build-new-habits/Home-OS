@@ -1,0 +1,609 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Spring",
+ "note": "Complete spring menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "spring-lamb-sunday",
+   "name": "Spring lamb Sunday",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Roast lamb with minted new potatoes and greens, rhubarb crumble to finish.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-pea-mint-soup",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A chilled glass of dry English white, such as Bacchus"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-roast-lamb",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "A medium red such as Rioja Crianza or Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "spr-minted-new-potatoes",
+      "spr-garlic-spring-greens",
+      "spr-honey-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-rhubarb-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Hot custard and a pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of late-harvest dessert wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chicken-tarragon-supper",
+   "name": "Chicken and tarragon supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Creamy tarragon chicken with peas and lettuce, lemon posset after.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-radish-whipped-feta",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A crisp Sauvignon Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-chicken-tarragon",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice with sparkling water"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay from Burgundy"
+      }
+     },
+     "sides": [
+      "spr-minted-new-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-lemon-posset",
+     "pairing": {
+      "soft": {
+       "text": "Chilled mint tea"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lamb-kofta-lunch",
+   "name": "Kofta and pork chop lunch",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Minted lamb koftas, then pork chops with ginger rhubarb.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-lamb-koftas",
+     "pairing": {
+      "soft": {
+       "text": "Mint lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry rosé from Provence"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-pork-rhubarb",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "A light, juicy red such as Beaujolais"
+      }
+     },
+     "sides": [
+      "spr-peas-lettuce",
+      "spr-minted-new-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-strawberries-mint-sugar",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "salmon-asparagus",
+   "name": "Salmon and asparagus",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Mackerel pâté, then a salmon and asparagus traybake, gooseberry fool to finish.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-smoked-mackerel-pate",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-salmon-asparagus-traybake",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling elderflower pressé"
+      },
+      "alcoholic": {
+       "text": "A Sancerre or other Loire Sauvignon Blanc"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-gooseberry-fool",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "Elderflower gin fizz",
+       "recipe": "spr-elderflower-gin-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "trout-supper",
+   "name": "Trout and almonds",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Asparagus soldiers, then trout in brown butter with new potatoes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-asparagus-soldiers",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A glass of English sparkling wine"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-trout-almonds",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and ginger iced tea"
+      },
+      "alcoholic": {
+       "text": "A Chablis or other unoaked Chardonnay"
+      }
+     },
+     "sides": [
+      "spr-minted-new-potatoes",
+      "spr-garlic-spring-greens"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-lemon-drizzle",
+     "pairing": {
+      "soft": {
+       "text": "A pot of Earl Grey"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "crab-and-prawn",
+   "name": "Crab and prawn",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Crab on toast, then prawn and pea linguine, strawberries to finish.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-crab-toast",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A chilled Albariño"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-prawn-pea-linguine",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "A Vermentino or Pinot Grigio"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-strawberries-mint-sugar",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "spring-garden-risotto",
+   "name": "Spring garden risotto",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Asparagus soldiers, an asparagus and pea risotto, rhubarb fool.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-asparagus-soldiers",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-asparagus-pea-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling elderflower pressé"
+      },
+      "alcoholic": {
+       "text": "A Soave or Gavi"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-rhubarb-fool",
+     "pairing": {
+      "soft": {
+       "text": "Chilled mint tea"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "spring-tart-lunch",
+   "name": "Spring tart lunch",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Broad bean crostini, an asparagus and goats cheese tart, lemon drizzle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-broad-bean-crostini",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-spring-tart",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Sancerre or Touraine Sauvignon"
+      }
+     },
+     "sides": [
+      "spr-radish-cucumber-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-lemon-drizzle",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "Elderflower gin fizz",
+       "recipe": "spr-elderflower-gin-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "frittata-supper",
+   "name": "Frittata supper",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Whipped feta and radishes, a herby frittata, lemon posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-radish-whipped-feta",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-herb-frittata",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A light Pinot Grigio"
+      }
+     },
+     "sides": [
+      "spr-peas-lettuce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-lemon-posset",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "green-spring-supper",
+   "name": "Green spring supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Pea and mint soup, a spring bean stew, rhubarb and orange compote.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-pea-mint-soup",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A crisp English Bacchus"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-white-bean-stew",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with cucumber"
+      },
+      "alcoholic": {
+       "text": "A Vinho Verde"
+      }
+     },
+     "sides": [
+      "spr-garlic-spring-greens"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-rhubarb-compote",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "spring-traybake-vegan",
+   "name": "Spring traybake",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Broad bean crostini, a chickpea and asparagus traybake, lemon sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-broad-bean-crostini",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-chickpea-traybake",
+     "pairing": {
+      "soft": {
+       "text": "Mint lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry Provence rosé"
+      }
+     },
+     "sides": [
+      "spr-radish-cucumber-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-lemon-elderflower-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "Elderflower gin fizz",
+       "recipe": "spr-elderflower-gin-fizz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "tofu-noodle-night",
+   "name": "Tofu and greens",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Pea soup, crispy tofu with spring greens and noodles, strawberries.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "spr-pea-mint-soup",
+     "pairing": {
+      "soft": {
+       "text": "Jasmine iced tea"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "spr-tofu-greens-noodles",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and mint spritz",
+       "recipe": "spr-elderflower-spritz"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "spr-strawberries-mint-sugar",
+     "pairing": {
+      "soft": {
+       "text": "Rhubarb and ginger soda",
+       "recipe": "spr-rhubarb-soda"
+      },
+      "alcoholic": {
+       "text": "Rhubarb fizz",
+       "recipe": "spr-rhubarb-fizz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

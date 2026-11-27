@@ -19,7 +19,7 @@ ul.hub-list.meals-home__places
         span.hub-blurb
       span.hub-chevron
   li.hub-item
-    a.hub-link"Christmas menusWhole menus from starter to pudding, with drinks to match.›"
+    a.hub-link"Seasons and occasionsIn season now: Barbecue, Outdoor cooking, Autumn and birthd"
       span.hub-text
         span.hub-title
         span.hub-blurb

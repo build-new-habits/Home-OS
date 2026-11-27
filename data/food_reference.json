@@ -1,7 +1,7 @@
 {
  "version": 5,
  "updated": "2026-11-27",
- "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v5 (27 Nov 2026): world pantry and Christmas ingredients; every food carries all five figures and a basis; carbohydrate is UK-style everywhere (fibre not counted), so USDA figures have fibre taken out.",
+ "note": "Published composition averages (USDA FoodData Central; McCance and Widdowson). Factual measurements, rounded. Foods created from these carry source='reference' and are shown as estimates until a real product is scanned. fibre_g (v3, 3 Oct 2026) is AOAC dietary fibre per 100 g, rounded. v4 (4 Oct 2026): everyday shop-bought and takeaway foods, generic, from CoFID 2019 (OGL v3.0) where it has them; portion_g is a typical adult portion. v5 (27 Nov 2026): world pantry and Christmas ingredients; every food carries all five figures and a basis; carbohydrate is UK-style everywhere (fibre not counted), so USDA figures have fibre taken out. v6 (27 Nov 2026): seasons and occasions foods (barbecue cuts, spring and summer produce, pumpkin, marshmallows, sprinkles).",
  "foods": [
   {
    "slug": "egg-small",
@@ -11386,6 +11386,358 @@
    "carbs_g": 26.0,
    "fibre_g": 0.0,
    "basis": "About 25% alcohol with sugar: typical of UK bottle labels per 100 g."
+  },
+  {
+   "slug": "corn-on-the-cob",
+   "name": "Corn on the cob",
+   "category": "food_fresh",
+   "aliases": [
+    "corn cobs",
+    "sweetcorn cobs",
+    "corn on the cob",
+    "corn cob"
+   ],
+   "grams_per_item": 150,
+   "item_label": "cob",
+   "calories_per_100g": 86,
+   "protein_g": 3.3,
+   "fat_g": 1.4,
+   "carbs_g": 16.7,
+   "fibre_g": 2.0,
+   "basis": "USDA SR Legacy: Corn, sweet, yellow, raw. Carbohydrate given UK-style, without fibre. One cob is about 150 g of kernels."
+  },
+  {
+   "slug": "pork-ribs",
+   "name": "Pork spare ribs",
+   "category": "food_fresh",
+   "aliases": [
+    "spare ribs",
+    "pork ribs",
+    "baby back ribs",
+    "rack of ribs"
+   ],
+   "calories_per_100g": 277,
+   "protein_g": 15.5,
+   "fat_g": 23.4,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Pork, fresh, spareribs, separable lean and fat, raw. Carbohydrate given UK-style, without fibre. Weighed as meat off the bone, about 60% of the rack."
+  },
+  {
+   "slug": "chicken-wings",
+   "name": "Chicken wings",
+   "category": "food_fresh",
+   "aliases": [
+    "chicken wing",
+    "wings"
+   ],
+   "grams_per_item": 90,
+   "item_label": "wing",
+   "calories_per_100g": 193,
+   "protein_g": 20.3,
+   "fat_g": 12.4,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Chicken, wing quarter, raw, meat and skin."
+  },
+  {
+   "slug": "chicken-whole",
+   "name": "Whole chicken",
+   "category": "food_fresh",
+   "aliases": [
+    "whole chicken",
+    "spatchcock chicken",
+    "roasting chicken"
+   ],
+   "calories_per_100g": 201,
+   "protein_g": 19.1,
+   "fat_g": 13.8,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Chicken, whole, raw, meat and skin. Weighed as meat and skin, about two thirds of the bird."
+  },
+  {
+   "slug": "lamb-chops",
+   "name": "Lamb loin chops",
+   "category": "food_fresh",
+   "aliases": [
+    "lamb chops",
+    "lamb chop"
+   ],
+   "grams_per_item": 90,
+   "item_label": "chop",
+   "calories_per_100g": 277,
+   "protein_g": 17.6,
+   "fat_g": 23.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Lamb, loin chops, raw, lean and fat."
+  },
+  {
+   "slug": "pork-chops",
+   "name": "Pork loin chops",
+   "category": "food_fresh",
+   "aliases": [
+    "pork chops",
+    "pork chop"
+   ],
+   "grams_per_item": 170,
+   "item_label": "chop",
+   "calories_per_100g": 270,
+   "protein_g": 18.6,
+   "fat_g": 21.7,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Pork, loin chops, raw, lean and fat."
+  },
+  {
+   "slug": "pork-shoulder",
+   "name": "Pork shoulder",
+   "category": "food_fresh",
+   "aliases": [
+    "pork shoulder joint",
+    "pork butt",
+    "pulled pork shoulder"
+   ],
+   "calories_per_100g": 236,
+   "protein_g": 17.2,
+   "fat_g": 18.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "USDA SR Legacy: Pork, fresh, shoulder, whole, separable lean and fat, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "beef-brisket",
+   "name": "Beef brisket",
+   "category": "food_fresh",
+   "aliases": [
+    "brisket",
+    "brisket joint"
+   ],
+   "calories_per_100g": 218,
+   "protein_g": 18.4,
+   "fat_g": 16.0,
+   "carbs_g": 0.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Beef, brisket, raw, lean and fat."
+  },
+  {
+   "slug": "marshmallows",
+   "name": "Marshmallows",
+   "category": "food_ambient",
+   "aliases": [
+    "marshmallow",
+    "mini marshmallows"
+   ],
+   "grams_per_item": 7,
+   "item_label": "marshmallow",
+   "calories_per_100g": 327,
+   "protein_g": 3.9,
+   "fat_g": 0.0,
+   "carbs_g": 83.1,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Marshmallows."
+  },
+  {
+   "slug": "asparagus",
+   "name": "Asparagus",
+   "category": "food_fresh",
+   "aliases": [
+    "asparagus spears",
+    "asparagus tips"
+   ],
+   "grams_per_item": 20,
+   "item_label": "spear",
+   "calories_per_100g": 25,
+   "protein_g": 2.9,
+   "fat_g": 0.6,
+   "carbs_g": 2.0,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Asparagus, raw."
+  },
+  {
+   "slug": "new-potatoes",
+   "name": "New potatoes",
+   "category": "food_fresh",
+   "aliases": [
+    "new potatoes",
+    "salad potatoes",
+    "baby potatoes",
+    "jersey royals"
+   ],
+   "grams_per_item": 40,
+   "item_label": "potato",
+   "calories_per_100g": 68,
+   "protein_g": 1.7,
+   "fat_g": 0.1,
+   "carbs_g": 16.1,
+   "fibre_g": 1.8,
+   "basis": "CoFID 2019: Potatoes, new and salad, flesh only, raw."
+  },
+  {
+   "slug": "broad-beans",
+   "name": "Broad beans",
+   "category": "food_frozen",
+   "aliases": [
+    "broad beans",
+    "fava beans"
+   ],
+   "grams_per_ml": 0.6,
+   "calories_per_100g": 59,
+   "protein_g": 5.7,
+   "fat_g": 1.0,
+   "carbs_g": 7.2,
+   "fibre_g": 6.1,
+   "basis": "CoFID 2019: Beans, broad, whole, raw."
+  },
+  {
+   "slug": "spring-greens",
+   "name": "Spring greens",
+   "category": "food_fresh",
+   "aliases": [
+    "spring cabbage",
+    "greens"
+   ],
+   "calories_per_100g": 33,
+   "protein_g": 3.0,
+   "fat_g": 1.0,
+   "carbs_g": 3.1,
+   "fibre_g": 3.4,
+   "basis": "CoFID 2019: Spring greens, raw."
+  },
+  {
+   "slug": "gooseberries",
+   "name": "Gooseberries",
+   "category": "food_fresh",
+   "aliases": [
+    "gooseberry",
+    "cooking gooseberries"
+   ],
+   "calories_per_100g": 19,
+   "protein_g": 1.1,
+   "fat_g": 0.4,
+   "carbs_g": 3.0,
+   "fibre_g": 2.4,
+   "basis": "CoFID 2019: Gooseberries, cooking, raw."
+  },
+  {
+   "slug": "peach",
+   "name": "Peach",
+   "category": "food_fresh",
+   "aliases": [
+    "peaches",
+    "nectarine",
+    "nectarines"
+   ],
+   "grams_per_item": 150,
+   "item_label": "peach",
+   "calories_per_100g": 33,
+   "protein_g": 1.0,
+   "fat_g": 0.1,
+   "carbs_g": 7.6,
+   "fibre_g": 1.5,
+   "basis": "CoFID 2019: Peaches, raw, flesh and skin."
+  },
+  {
+   "slug": "watermelon",
+   "name": "Watermelon",
+   "category": "food_fresh",
+   "aliases": [
+    "water melon"
+   ],
+   "calories_per_100g": 30,
+   "protein_g": 0.6,
+   "fat_g": 0.1,
+   "carbs_g": 7.1,
+   "fibre_g": 0.4,
+   "basis": "USDA SR Legacy: Watermelon, raw. Carbohydrate given UK-style, without fibre."
+  },
+  {
+   "slug": "wine-rose",
+   "name": "Rosé wine",
+   "category": "drink",
+   "aliases": [
+    "rose wine",
+    "rosé",
+    "rose"
+   ],
+   "grams_per_ml": 1.0,
+   "calories_per_100g": 79,
+   "protein_g": 0.1,
+   "fat_g": 0.0,
+   "carbs_g": 2.5,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Wine, rose, medium."
+  },
+  {
+   "slug": "meringue-nests",
+   "name": "Meringue nests",
+   "category": "food_ambient",
+   "aliases": [
+    "meringue",
+    "meringues",
+    "meringue nest"
+   ],
+   "grams_per_item": 13,
+   "item_label": "nest",
+   "calories_per_100g": 385,
+   "protein_g": 6.3,
+   "fat_g": 0.0,
+   "carbs_g": 96.0,
+   "fibre_g": 0.0,
+   "basis": "CoFID 2019: Meringue, homemade."
+  },
+  {
+   "slug": "pumpkin",
+   "name": "Pumpkin",
+   "category": "food_fresh",
+   "aliases": [
+    "pumpkin flesh",
+    "carving pumpkin",
+    "crown prince squash"
+   ],
+   "calories_per_100g": 13,
+   "protein_g": 0.7,
+   "fat_g": 0.2,
+   "carbs_g": 2.2,
+   "fibre_g": 1.0,
+   "basis": "CoFID 2019: Pumpkin, flesh only, raw."
+  },
+  {
+   "slug": "apple-cooking",
+   "name": "Cooking apple",
+   "category": "food_fresh",
+   "aliases": [
+    "cooking apples",
+    "bramley apple",
+    "bramley apples",
+    "bramleys"
+   ],
+   "grams_per_item": 220,
+   "item_label": "apple",
+   "calories_per_100g": 37,
+   "protein_g": 0.3,
+   "fat_g": 0.3,
+   "carbs_g": 8.9,
+   "fibre_g": 1.7,
+   "basis": "CoFID 2019: Apples, cooking, raw, flesh only, peeled."
+  },
+  {
+   "slug": "sprinkles",
+   "name": "Sprinkles",
+   "category": "food_ambient",
+   "aliases": [
+    "hundreds and thousands",
+    "sugar sprinkles",
+    "cake sprinkles"
+   ],
+   "grams_per_ml": 0.8,
+   "calories_per_100g": 395,
+   "protein_g": 0.5,
+   "fat_g": 1.5,
+   "carbs_g": 93.0,
+   "fibre_g": 0.0,
+   "basis": "Typical of UK supermarket labels per 100 g; brands vary."
   }
  ]
 }

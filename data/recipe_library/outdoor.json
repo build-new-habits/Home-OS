@@ -1,0 +1,2283 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Outdoor cooking",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "out-skillet-nachos",
+   "name": "Campfire skillet nachos",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Use thick oven gloves. The pan handle gets very hot.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "tortilla-chips",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a cast-iron pan on a grill over the fire."
+    },
+    {
+     "instruction": "Layer {{ing:tortilla-chips}}, drained {{ing:kidney-beans-tinned}} and grated {{ing:cheddar-cheese}}."
+    },
+    {
+     "instruction": "Cover with foil. Heat 5 minutes, until the cheese melts.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Spoon over {{ing:salsa-dip}}. Scatter sliced {{ing:chilli-fresh}} and {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-scotch-eggs",
+   "name": "Picnic Scotch eggs",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Make at home the day before. They travel well in a cool box.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 7,
+     "unit": "item"
+    },
+    {
+     "ref": "sausagemeat",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil 6 of {{ing:egg-medium}} 7 minutes. Cool in cold water. Peel.",
+     "duration_min": 7
+    },
+    {
+     "instruction": "Chop {{ing:fresh-sage}}. Mix into {{ing:sausagemeat}}. Split into 6."
+    },
+    {
+     "instruction": "Flatten each piece. Wrap round an egg. Seal well."
+    },
+    {
+     "instruction": "Roll in {{ing:flour-plain}}, then the last egg beaten, then {{ing:breadcrumbs-dried}}."
+    },
+    {
+     "instruction": "Heat the oven to 200C. Brush with {{ing:vegetable-oil}}. Bake 25 minutes, until golden and cooked through.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cool. Pack for the picnic."
+    }
+   ]
+  },
+  {
+   "slug": "out-mackerel-rillettes",
+   "name": "Smoked mackerel rillettes in a jar",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "smoked-mackerel",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "capers",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "oatcakes",
+     "quantity": 12,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Flake {{ing:smoked-mackerel}}. Throw away the skin."
+    },
+    {
+     "instruction": "Mix with {{ing:creme-fraiche}}, the juice of {{ing:lemon}} and chopped {{ing:capers}}."
+    },
+    {
+     "instruction": "Snip in {{ing:chives}}."
+    },
+    {
+     "instruction": "Pack into a jar with a lid. Keep cold."
+    },
+    {
+     "instruction": "Serve with {{ing:oatcakes}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-prawn-cocktail-jars",
+   "name": "Prawn cocktail jars",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "mayonnaise",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "tomato-ketchup",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "prawns-cooked",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:mayonnaise}}, {{ing:tomato-ketchup}} and the juice of half of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Stir in {{ing:prawns-cooked}}."
+    },
+    {
+     "instruction": "Shred {{ing:lettuce-iceberg}}. Put in the bottom of 4 jars."
+    },
+    {
+     "instruction": "Add diced {{ing:avocado}}. Spoon the prawns on top."
+    },
+    {
+     "instruction": "Dust with {{ing:paprika}}. Lid on. Keep cold until eating."
+    }
+   ]
+  },
+  {
+   "slug": "out-bread-on-a-stick",
+   "name": "Campfire bread on a stick",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Embers, not flames: flames burn the outside before the middle cooks.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "baking-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "jam-strawberry",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:baking-powder}} and {{ing:salt}} at home. Pack in a bag."
+    },
+    {
+     "instruction": "At camp, add {{ing:olive-oil}} and about 180 ml water. Knead to a soft dough."
+    },
+    {
+     "instruction": "Roll into 8 long snakes. Wind each round the end of a clean green stick."
+    },
+    {
+     "instruction": "Hold over hot embers, not flames, 10 minutes, turning, until golden and hollow-sounding.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Slide off. Fill the hole with {{ing:jam-strawberry}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-bean-salad-jars",
+   "name": "Tomato, olive and bean salad jars",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olives-pitted",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:cannellini-beans-tinned}}."
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}}. Chop {{ing:red-onion}} finely."
+    },
+    {
+     "instruction": "Mix with {{ing:olives-pitted}}, {{ing:olive-oil}} and {{ing:white-wine-vinegar}}."
+    },
+    {
+     "instruction": "Tear in {{ing:fresh-basil}}."
+    },
+    {
+     "instruction": "Pack into jars. It tastes better after a few hours."
+    }
+   ]
+  },
+  {
+   "slug": "out-roast-chestnuts",
+   "name": "Fire-roasted chestnuts",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chestnuts-cooked",
+     "quantity": 360,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Wrap {{ing:chestnuts-cooked}} in a foil parcel with {{ing:olive-oil}}, {{ing:salt}} and {{ing:fresh-rosemary}}."
+    },
+    {
+     "instruction": "Set at the edge of the embers."
+    },
+    {
+     "instruction": "Heat 10 minutes, shaking now and then, until hot and smoky.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Open carefully. Eat warm."
+    }
+   ]
+  },
+  {
+   "slug": "out-picnic-pasta-salad",
+   "name": "Picnic pesto pasta salad",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:penne-dry}} at home. Rinse under cold water. Drain well."
+    },
+    {
+     "instruction": "Stir in {{ing:pesto}}."
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}}. Tear {{ing:mozzarella}}."
+    },
+    {
+     "instruction": "Mix in. Pack in a box. Add {{ing:rocket}} on top as you serve."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "out-sausage-bean-pot",
+   "name": "One-pot sausage and bean stew",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sausage-pork",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a pot on the camping stove. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Brown {{ing:sausage-pork}} 8 minutes, turning.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add chopped {{ing:onion-medium}}. Fry 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:smoked-paprika}}, {{ing:chopped-tomatoes-tinned}} and {{ing:baked-beans}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, until the sausages are cooked through.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve with {{ing:sourdough}} toasted over the fire."
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-chicken",
+   "name": "Foil parcel chicken and potatoes",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Two layers of foil stop it tearing on the grill.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:new-potatoes}}. Cut {{ing:red-onion}} and {{ing:pepper-bell}} into chunks."
+    },
+    {
+     "instruction": "Toss everything with {{ing:chicken-thigh-boneless}}, {{ing:olive-oil}}, {{ing:smoked-paprika}} and sliced {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Split between 4 double-layered foil squares. Seal tightly."
+    },
+    {
+     "instruction": "Cook on a grill over hot embers 35 minutes, turning once.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Open one to check: the chicken should be cooked through and the potatoes soft."
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-breakfast-hash",
+   "name": "Camp stove breakfast hash",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "bacon-rasher-back",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dice {{ing:potato-medium}} small. Boil 6 minutes. Drain.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Fry chopped {{ing:bacon-rasher-back}} in {{ing:olive-oil}} in a big pan 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add the potatoes, chopped {{ing:onion-medium}} and {{ing:pepper-bell}}. Fry 12 minutes, until crisp.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Make 4 dips. Crack in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Cover. Cook 4 minutes, until the whites set.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Grind over {{ing:black-pepper-ground}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-campfire-steak-sandwich",
+   "name": "Campfire steak sandwich",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-sirloin",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rub {{ing:beef-sirloin}} with {{ing:olive-oil}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Cook on a grill over hot embers 3 minutes a side for medium-rare.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Rest 5 minutes. Slice thinly.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}}. Fry in the steak pan 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}} on the grill. Spread with {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Fill with steak, onions and {{ing:rocket}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-trout",
+   "name": "Foil-baked trout with lemon and herbs",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Lay {{ing:trout-fillet}} on double-layered foil."
+    },
+    {
+     "instruction": "Top with slices of {{ing:lemon}}, {{ing:fresh-dill}} and small pieces of {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Sprinkle with {{ing:salt}}. Seal into a parcel."
+    },
+    {
+     "instruction": "Cook on a grill over embers 12 minutes, until the fish flakes.",
+     "duration_min": 12
+    }
+   ]
+  },
+  {
+   "slug": "out-salmon-potato-parcels",
+   "name": "Salmon and new potato parcels",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:new-potatoes}} at home 10 minutes. Cool. Halve.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Lay the potatoes on 4 double-layered foil squares. Put {{ing:salmon-fillet}} on top."
+    },
+    {
+     "instruction": "Add sliced {{ing:spring-onion}}, {{ing:olive-oil}} and slices of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Seal tightly."
+    },
+    {
+     "instruction": "Cook over embers 15 minutes, until the salmon flakes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Snip over {{ing:chives}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-prawn-stove-noodles",
+   "name": "Camp stove king prawn noodles",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "egg-noodles-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:egg-noodles-dry}} in boiling water for the time on the packet. Drain."
+    },
+    {
+     "instruction": "Heat {{ing:vegetable-oil}} in a big pan. Fry {{ing:garlic-clove}} and {{ing:ginger-fresh}} 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Fry 3 minutes, until pink.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add halved {{ing:pak-choi}}. Fry 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the noodles, {{ing:soy-sauce}} and {{ing:sweet-chilli-sauce}}. Toss."
+    },
+    {
+     "instruction": "Top with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-skillet-shakshuka",
+   "name": "Skillet shakshuka",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a big pan over the fire or stove. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry sliced {{ing:onion-medium}} and {{ing:pepper-bell}} 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}, {{ing:cumin-ground}} and {{ing:smoked-paprika}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:chopped-tomatoes-tinned}}. Simmer 10 minutes, until thick.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Make 6 dips. Crack in {{ing:egg-medium}}. Cover. Cook 6 minutes, until the whites set.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Crumble over {{ing:feta}}. Mop up with {{ing:sourdough}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-cheesy-foil-potatoes",
+   "name": "Cheesy foil-packet potatoes",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-medium",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:potato-medium}} and {{ing:onion-medium}} thinly."
+    },
+    {
+     "instruction": "Split between 4 double-layered foil squares. Dot with {{ing:butter-unsalted}} and sliced {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Seal tightly. Cook on a grill over embers 35 minutes, until soft.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Open. Add grated {{ing:cheddar-cheese}}. Reseal 3 minutes to melt.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Snip over {{ing:chives}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-one-pot-pasta",
+   "name": "One-pot tomato and mozzarella pasta",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "One pot, so one thing to wash in the stream.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:penne-dry}}, {{ing:chopped-tomatoes-tinned}}, sliced {{ing:garlic-clove}}, {{ing:olive-oil}} and {{ing:dried-oregano}} in a pot."
+    },
+    {
+     "instruction": "Add 700 ml water. Bring to the boil on the stove."
+    },
+    {
+     "instruction": "Simmer 12 minutes, stirring often, until the pasta is cooked and the sauce thick.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Tear in {{ing:mozzarella}}. Stir until stringy."
+    },
+    {
+     "instruction": "Top with {{ing:fresh-basil}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-sweet-potatoes",
+   "name": "Foil-baked sweet potatoes with black beans",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:sweet-potato}}. Wrap each in double foil."
+    },
+    {
+     "instruction": "Bury in hot embers 45 minutes, turning once, until soft.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Warm drained {{ing:black-beans-tinned}} with {{ing:cumin-ground}} in a small pan."
+    },
+    {
+     "instruction": "Split the potatoes. Fill with beans and {{ing:salsa-dip}}."
+    },
+    {
+     "instruction": "Top with diced {{ing:avocado}}. Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-coconut-dal",
+   "name": "Camp stove coconut dal",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Check the stock cube and naan say vegan if you need them to be.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:vegetable-oil}} 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:curry-powder}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:lentils-red-dry}}, {{ing:coconut-milk-tinned}}, {{ing:stock-cube}} and 600 ml water."
+    },
+    {
+     "instruction": "Simmer 20 minutes, stirring, until thick.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}}."
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} over the fire."
+    }
+   ]
+  },
+  {
+   "slug": "out-mushroom-bean-stew",
+   "name": "Campfire mushroom and bean stew",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:olive-oil}} in a pot 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add sliced {{ing:mushroom-chestnut}}. Fry 6 minutes, until browned.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}} and {{ing:smoked-paprika}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add drained {{ing:butter-beans-tinned}}, {{ing:chopped-tomatoes-tinned}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Serve with {{ing:sourdough}} toasted on the fire."
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-new-potatoes",
+   "name": "Garlic foil-roast new potatoes",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:new-potatoes}}."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}}, whole {{ing:garlic-clove}}, {{ing:fresh-rosemary}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Seal in a double foil parcel."
+    },
+    {
+     "instruction": "Cook over embers 30 minutes, shaking now and then, until soft.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-corn",
+   "name": "Foil-roast corn with herb butter",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "corn-on-the-cob",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mash {{ing:butter-unsalted}} with chopped {{ing:fresh-parsley}} and crushed {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Spread over {{ing:corn-on-the-cob}}."
+    },
+    {
+     "instruction": "Wrap each in foil."
+    },
+    {
+     "instruction": "Cook over embers 20 minutes, turning, until tender.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "out-fire-peppers",
+   "name": "Fire-roasted peppers",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "pepper-bell",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:pepper-bell}} whole on the grill over hot embers."
+    },
+    {
+     "instruction": "Turn every few minutes for 15 minutes, until blackened.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Put in a bag to steam 10 minutes. Peel off the skins.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Slice. Dress with {{ing:olive-oil}}, crushed {{ing:garlic-clove}} and {{ing:white-wine-vinegar}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-picnic-slaw",
+   "name": "Crunchy picnic slaw",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-cabbage",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sunflower-seeds",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred {{ing:red-cabbage}}. Grate {{ing:carrot-medium}} and {{ing:apple-medium}}."
+    },
+    {
+     "instruction": "Toss with the juice of {{ing:lemon}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Pack in a box. Scatter {{ing:sunflower-seeds}} on top as you serve."
+    }
+   ]
+  },
+  {
+   "slug": "out-smores",
+   "name": "S'mores",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [],
+   "method_note": "Most marshmallows have gelatine in them, so these are not vegetarian.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "digestive-biscuit",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "marshmallows",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-chocolate-bar",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Push {{ing:marshmallows}} onto long sticks."
+    },
+    {
+     "instruction": "Toast over hot embers 1 minute, turning, until golden and puffed.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Put a square of {{ing:milk-chocolate-bar}} on one of {{ing:digestive-biscuit}}."
+    },
+    {
+     "instruction": "Slide the hot marshmallow on top. Press with a second biscuit."
+    }
+   ]
+  },
+  {
+   "slug": "out-foil-baked-apples",
+   "name": "Campfire baked apples",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sultanas",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "dairy-free-spread",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Core {{ing:apple-medium}}."
+    },
+    {
+     "instruction": "Mix {{ing:sultanas}}, {{ing:sugar-soft-brown}} and {{ing:cinnamon-ground}}. Stuff into the apples."
+    },
+    {
+     "instruction": "Top each with a little {{ing:dairy-free-spread}}."
+    },
+    {
+     "instruction": "Wrap in double foil. Set in the embers 25 minutes, until soft.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "out-chocolate-orange-cakes",
+   "name": "Campfire chocolate orange cakes",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Eat the orange flesh at breakfast.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "orange",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut the tops off {{ing:orange}}. Scoop out the flesh, leaving the shells whole."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-caster}} and {{ing:egg-medium}} at home. Fold in {{ing:flour-self-raising}} and {{ing:cocoa-powder}}. Pack in a tub."
+    },
+    {
+     "instruction": "Fill each orange shell half full. Put the tops back on."
+    },
+    {
+     "instruction": "Wrap each in double foil."
+    },
+    {
+     "instruction": "Set in the embers 20 minutes, until the cake is risen and springy.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "out-camp-pancakes",
+   "name": "Camp stove pancakes with berries",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} at home. Pack in a bottle with a wide neck."
+    },
+    {
+     "instruction": "At camp, add {{ing:egg-medium}} and {{ing:milk-whole}}. Shake hard until smooth."
+    },
+    {
+     "instruction": "Melt a little {{ing:butter-unsalted}} in a pan."
+    },
+    {
+     "instruction": "Pour in small rounds. Scatter with {{ing:blueberries}}. Cook 2 minutes, until bubbles show.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Flip. Cook 1 minute more.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drizzle with {{ing:maple-syrup}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-fruit-kebabs",
+   "name": "Maple grilled fruit kebabs",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut half of {{ing:pineapple}} and {{ing:banana-medium}} into chunks. Hull {{ing:strawberries}}."
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Brush with {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Grill over embers 4 minutes, turning, until caramelised.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-chocolate-fondue",
+   "name": "Campfire chocolate fondue",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate-70",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:dark-chocolate-70}} and half of {{ing:coconut-milk-tinned}} in a small pan."
+    },
+    {
+     "instruction": "Warm at the edge of the fire, stirring, until smooth."
+    },
+    {
+     "instruction": "Cut {{ing:banana-medium}} and {{ing:apple-medium}} into chunks."
+    },
+    {
+     "instruction": "Dip the fruit and {{ing:strawberries}} on sticks."
+    }
+   ]
+  },
+  {
+   "slug": "out-skillet-cookie",
+   "name": "Giant skillet cookie",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-chocolate-bar",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-soft-brown}} and {{ing:egg-medium}} at home. Stir in {{ing:flour-plain}} and {{ing:bicarbonate-of-soda}}."
+    },
+    {
+     "instruction": "Chop {{ing:milk-chocolate-bar}}. Stir in. Pack in a tub."
+    },
+    {
+     "instruction": "At camp, press into a cast-iron pan."
+    },
+    {
+     "instruction": "Cover with foil. Set on a grill over low embers 20 minutes, until set at the edges.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Eat warm from the pan with spoons."
+    }
+   ]
+  },
+  {
+   "slug": "out-cowboy-coffee",
+   "name": "Cowboy coffee",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "water",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "coffee-ground",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Bring {{ing:water}} to the boil in a pot over the fire."
+    },
+    {
+     "instruction": "Take off the heat. Stir in {{ing:coffee-ground}}."
+    },
+    {
+     "instruction": "Leave 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Splash in a little cold water to sink the grounds. Pour carefully. Sweeten with {{ing:sugar-soft-brown}}."
+    }
+   ]
+  },
+  {
+   "slug": "out-ginger-lime-cooler",
+   "name": "Honey, ginger and lime cooler",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "ginger-fresh",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 1000,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:ginger-fresh}} at home. Stir with {{ing:honey}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Pour into a bottle with {{ing:water}}."
+    },
+    {
+     "instruction": "Chill in a cool box or a stream."
+    },
+    {
+     "instruction": "Shake before pouring."
+    }
+   ]
+  },
+  {
+   "slug": "out-hot-buttered-rum",
+   "name": "Flask hot buttered rum",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "The spirit is dark rum.",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.2,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 160,
+     "unit": "ml"
+    },
+    {
+     "ref": "water",
+     "quantity": 600,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:butter-unsalted}}, {{ing:sugar-soft-brown}}, {{ing:cinnamon-ground}} and {{ing:nutmeg}} at home. Pack in a small tub."
+    },
+    {
+     "instruction": "Heat {{ing:water}} to steaming over the stove."
+    },
+    {
+     "instruction": "Stir in the spiced butter until melted."
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}}. Pour into a flask."
+    }
+   ]
+  },
+  {
+   "slug": "out-camp-shandy",
+   "name": "Lemon shandy",
+   "cuisine": "Outdoor cooking",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "beer-lager",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemonade",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chill {{ing:beer-lager}} and {{ing:lemonade}} in a cool box or a stream."
+    },
+    {
+     "instruction": "Pour half and half into cups."
+    },
+    {
+     "instruction": "Add a squeeze of {{ing:lemon}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "wine, beer or cider",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  }
+ ]
+}

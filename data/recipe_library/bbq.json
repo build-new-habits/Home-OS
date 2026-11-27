@@ -1,0 +1,2317 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "BBQ",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "bbq-sticky-wings",
+   "name": "Sticky barbecue chicken wings",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Sauce goes on at the end. Sugar burns if it goes on early.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chicken-wings",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "bbq-sauce",
+     "quantity": 90,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Toss {{ing:chicken-wings}} with {{ing:smoked-paprika}} and {{ing:garlic-powder}}."
+    },
+    {
+     "instruction": "Cook over medium coals 25 minutes, turning often, until cooked through.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Brush with {{ing:bbq-sauce}}. Cook 5 minutes more, turning, until sticky and charred.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-halloumi-skewers",
+   "name": "Halloumi, pepper and onion skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Soak wooden skewers in water 30 minutes first so they do not burn.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}}, {{ing:pepper-bell}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Brush with {{ing:olive-oil}}. Sprinkle with {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Grill over hot coals 8 minutes, turning, until charred.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-flatbreads",
+   "name": "Grilled garlic flatbreads",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "baking-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:baking-powder}} and {{ing:salt}}. Add 2 tbsp of {{ing:olive-oil}} and 180 ml warm water."
+    },
+    {
+     "instruction": "Knead 2 minutes to a soft dough. Split into 6.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Roll each thin."
+    },
+    {
+     "instruction": "Grill over hot coals 2 minutes each side, until puffed and charred.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Crush {{ing:garlic-clove}} into the rest of the oil with chopped {{ing:fresh-parsley}}. Brush over."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-baba-ganoush",
+   "name": "Smoky aubergine dip",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "The charred skin is where the smoke comes from.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "aubergine",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tahini",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "pomegranate-seeds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "pitta-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:aubergine}} whole on hot coals. Turn every few minutes for 20 minutes, until black and collapsed.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Cool. Scoop out the soft flesh. Throw away the skin."
+    },
+    {
+     "instruction": "Mash with {{ing:tahini}}, the juice of {{ing:lemon}} and crushed {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Spoon into a bowl. Drizzle with {{ing:olive-oil}}. Scatter {{ing:pomegranate-seeds}}."
+    },
+    {
+     "instruction": "Grill {{ing:pitta-bread}} 1 minute a side. Serve for dipping.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "bbq-prawn-skewers",
+   "name": "Garlic and chilli prawn skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:olive-oil}}, crushed {{ing:garlic-clove}}, {{ing:chilli-flakes}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Toss {{ing:king-prawns-raw}} in it. Leave 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Grill over hot coals 2 minutes each side, until pink.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over the lemon. Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-grilled-mackerel",
+   "name": "Grilled mackerel with lemon and herbs",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "mackerel-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slash the skin of {{ing:mackerel-fillet}} 3 times. Rub with {{ing:olive-oil}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Grill skin side down over hot coals 3 minutes, until crisp.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Turn. Cook 1 minute more.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}. Scatter chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-chorizo-skewers",
+   "name": "Chorizo and pepper skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chorizo",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chorizo}} into chunks. Cut {{ing:pepper-bell}} and {{ing:red-onion}} into squares."
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Brush with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Grill 8 minutes, turning, until the chorizo sizzles.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Scatter {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-charred-corn-salsa-cups",
+   "name": "Charred corn and bean salsa",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "corn-on-the-cob",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "tortilla-chips",
+     "quantity": 150,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grill {{ing:corn-on-the-cob}} 10 minutes, turning, until charred.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cut the kernels off the cobs."
+    },
+    {
+     "instruction": "Mix with drained {{ing:black-beans-tinned}}, chopped {{ing:red-onion}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-coriander}}."
+    },
+    {
+     "instruction": "Serve with {{ing:tortilla-chips}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-pulled-pork",
+   "name": "Pulled pork buns",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [],
+   "method_note": "Cook it the day before. It reheats on the barbecue in a foil parcel.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-shoulder",
+     "quantity": 2000,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "bbq-sauce",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 8,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C. Mix {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}}, {{ing:garlic-powder}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Rub all over {{ing:pork-shoulder}}. Sit in a roasting tin. Pour in {{ing:cider-dry}}."
+    },
+    {
+     "instruction": "Cover tightly with foil. Cook 6 hours, until it falls apart.",
+     "duration_min": 360
+    },
+    {
+     "instruction": "Shred with two forks. Throw away the fat."
+    },
+    {
+     "instruction": "Stir through {{ing:bbq-sauce}} and some of the juices."
+    },
+    {
+     "instruction": "Pile into {{ing:burger-bun}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-sticky-ribs",
+   "name": "Sticky pork ribs",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "900 g of meat is a rack of about 1.5 kg on the bone.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-ribs",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "bbq-sauce",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "apple-juice",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 150C. Rub {{ing:pork-ribs}} with {{ing:smoked-paprika}}, {{ing:sugar-soft-brown}} and {{ing:garlic-powder}}."
+    },
+    {
+     "instruction": "Wrap in foil with {{ing:apple-juice}}. Cook 2 hours 30 minutes, until tender.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Mix {{ing:bbq-sauce}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Unwrap the ribs. Brush with the glaze."
+    },
+    {
+     "instruction": "Finish over medium coals 10 minutes, turning and brushing, until sticky and charred.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bbq-peri-peri-chicken",
+   "name": "Spatchcock peri-peri chicken",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Indoors: roast at 200C for 45 minutes.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-whole",
+     "quantity": 1500,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Turn {{ing:chicken-whole}} breast down. Cut out the backbone with scissors. Press flat."
+    },
+    {
+     "instruction": "Blend {{ing:chilli-fresh}}, {{ing:garlic-clove}}, {{ing:smoked-paprika}}, the juice of {{ing:lemon}}, {{ing:olive-oil}} and {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Rub all over the chicken. Leave 1 hour.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Grill skin side up over medium coals with the lid on 25 minutes.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Turn. Cook 20 minutes more, until the juices run clear.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Rest 10 minutes before cutting.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bbq-brisket",
+   "name": "Smoky beef brisket",
+   "cuisine": "BBQ",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-brisket",
+     "quantity": 1800,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-muscovado",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bbq-sauce",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 140C. Mix {{ing:smoked-paprika}}, {{ing:sugar-muscovado}}, {{ing:black-pepper-ground}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Rub over {{ing:beef-brisket}}."
+    },
+    {
+     "instruction": "Slice {{ing:onion-large}}. Put in a tin. Sit the beef on top. Add {{ing:stock-cube}} in 300 ml water."
+    },
+    {
+     "instruction": "Cover with foil. Cook 6 hours, until it pulls apart.",
+     "duration_min": 360
+    },
+    {
+     "instruction": "Brush with {{ing:bbq-sauce}}. Char over hot coals 5 minutes a side.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Slice across the grain."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-chilli-lime-salmon",
+   "name": "Chilli and lime salmon parcels",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Lay each of {{ing:salmon-fillet}} on a square of foil."
+    },
+    {
+     "instruction": "Mix the juice of {{ing:lime}}, chopped {{ing:chilli-fresh}}, crushed {{ing:garlic-clove}}, {{ing:soy-sauce}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Spoon over the fish. Fold the foil into loose parcels."
+    },
+    {
+     "instruction": "Cook on the barbecue 12 minutes, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Open carefully. Scatter {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-tuna-steak-salsa",
+   "name": "Grilled tuna steaks with mango salsa",
+   "cuisine": "BBQ",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Tuna dries out fast. Take it off while the middle is still pink.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tuna-steak",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "mango",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dice {{ing:mango}}. Mix with chopped {{ing:red-onion}}, {{ing:chilli-fresh}}, {{ing:fresh-coriander}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Brush {{ing:tuna-steak}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Grill over very hot coals 90 seconds a side, for pink in the middle."
+    },
+    {
+     "instruction": "Serve with the salsa."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-prawn-pineapple-tacos",
+   "name": "King prawn and pineapple tacos",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Toss {{ing:king-prawns-raw}} with {{ing:smoked-paprika}} and {{ing:olive-oil}}. Thread onto skewers."
+    },
+    {
+     "instruction": "Cut a quarter of {{ing:pineapple}} into rings."
+    },
+    {
+     "instruction": "Grill the pineapple 2 minutes a side and the prawns 2 minutes a side.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Chop the pineapple. Shred {{ing:red-cabbage}}. Toss the cabbage with the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Warm {{ing:tortilla-wrap}} on the grill 20 seconds a side."
+    },
+    {
+     "instruction": "Fill with prawns, pineapple, cabbage and {{ing:soured-cream}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-portobello-burgers",
+   "name": "Portobello and halloumi burgers",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "portobello-mushroom",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "halloumi",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "pesto",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Brush {{ing:portobello-mushroom}} with {{ing:olive-oil}} and crushed {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Grill gill side down 4 minutes. Turn. Grill 4 minutes more.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Slice {{ing:halloumi}} into 4. Grill 2 minutes a side.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Toast {{ing:burger-bun}} on the grill."
+    },
+    {
+     "instruction": "Spread with {{ing:pesto}}. Fill with mushroom, halloumi and {{ing:rocket}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pesto",
+     "text": "Most pesto has parmesan in it; look for a vegetarian one if that matters"
+    }
+   ]
+  },
+  {
+   "slug": "bbq-paneer-tikka",
+   "name": "Paneer tikka skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "paneer",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "garam-masala",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "naan-bread",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:natural-yoghurt}}, {{ing:garam-masala}}, {{ing:chilli-powder}}, {{ing:ginger-fresh}} and the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Cube {{ing:paneer}}. Cut {{ing:pepper-bell}} and {{ing:red-onion}} into squares."
+    },
+    {
+     "instruction": "Coat in the yoghurt. Leave 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Grill over hot coals 10 minutes, turning, until charred.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Warm {{ing:naan-bread}} on the grill. Serve together."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-tofu-skewers",
+   "name": "Smoky tofu skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "courgette",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}}. Cut into cubes."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:maple-syrup}}, {{ing:smoked-paprika}} and crushed {{ing:garlic-clove}}. Toss the tofu. Leave 30 minutes.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cut {{ing:courgette}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Thread onto skewers with the tofu. Brush with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Grill 10 minutes, turning and brushing with the marinade, until charred.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bbq-cauliflower-steaks",
+   "name": "Grilled cauliflower steaks with chimichurri",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Use the leftover florets in a soup or curry.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 90,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut each of {{ing:cauliflower-head}} into 2 thick slices through the stalk."
+    },
+    {
+     "instruction": "Brush with 2 tbsp of {{ing:olive-oil}}. Sprinkle {{ing:smoked-paprika}}."
+    },
+    {
+     "instruction": "Grill over medium coals 8 minutes a side, until tender and charred.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}} and {{ing:garlic-clove}} finely."
+    },
+    {
+     "instruction": "Mix with {{ing:chilli-flakes}}, {{ing:white-wine-vinegar}} and the rest of the oil."
+    },
+    {
+     "instruction": "Spoon over the steaks."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-jerk-veg-skewers",
+   "name": "Jerk vegetable and pineapple skewers",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Check the jerk paste label; most are vegan.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "jerk-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-basmati-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dice {{ing:sweet-potato}}. Boil 5 minutes. Drain.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Mix {{ing:jerk-paste}} and {{ing:olive-oil}}. Toss with the potato, chunks of {{ing:pepper-bell}}, {{ing:red-onion}} and half of {{ing:pineapple}}."
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Grill 12 minutes, turning, until charred.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Cook {{ing:rice-basmati-dry}}. Stir in drained {{ing:kidney-beans-tinned}}."
+    },
+    {
+     "instruction": "Serve with {{ing:lime}} wedges."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-corn-salad",
+   "name": "Charred corn and tomato salad",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "corn-on-the-cob",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grill {{ing:corn-on-the-cob}} 10 minutes, turning, until charred.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cut off the kernels."
+    },
+    {
+     "instruction": "Halve {{ing:cherry-tomato}}. Slice {{ing:spring-onion}}."
+    },
+    {
+     "instruction": "Toss with the juice of {{ing:lime}}, {{ing:olive-oil}} and {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-coleslaw",
+   "name": "Classic coleslaw",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cabbage-white",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 75,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred a quarter of {{ing:cabbage-white}} finely."
+    },
+    {
+     "instruction": "Grate {{ing:carrot-medium}}. Slice {{ing:onion-medium}} very thinly."
+    },
+    {
+     "instruction": "Stir {{ing:white-wine-vinegar}} into {{ing:mayonnaise}}."
+    },
+    {
+     "instruction": "Toss everything together."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-smoky-beans",
+   "name": "Smoky barbecue beans",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} in {{ing:olive-oil}} 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:smoked-paprika}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add drained {{ing:cannellini-beans-tinned}}, {{ing:passata}}, {{ing:sugar-soft-brown}}, {{ing:mustard-dijon}} and {{ing:white-wine-vinegar}}."
+    },
+    {
+     "instruction": "Simmer 20 minutes, until thick.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "bbq-charred-courgettes",
+   "name": "Charred courgettes with mint",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "courgette",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:courgette}} lengthways into strips."
+    },
+    {
+     "instruction": "Brush with 1 tbsp of {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Grill 2 minutes a side, until striped.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Dress with the rest of the oil, the juice of {{ing:lemon}}, torn {{ing:fresh-mint}} and {{ing:chilli-flakes}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-watermelon-cucumber",
+   "name": "Watermelon and cucumber salad",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "watermelon",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cube {{ing:watermelon}}. Slice {{ing:cucumber}}."
+    },
+    {
+     "instruction": "Slice {{ing:red-onion}} thinly."
+    },
+    {
+     "instruction": "Toss with the juice of {{ing:lime}} and torn {{ing:fresh-mint}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-grilled-pineapple",
+   "name": "Grilled pineapple with rum and lime",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is rum. Leave it out for children.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel {{ing:pineapple}}. Cut into thick rings."
+    },
+    {
+     "instruction": "Mix {{ing:sugar-soft-brown}}, {{ing:spirit-40}} and the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Brush over the pineapple."
+    },
+    {
+     "instruction": "Grill 3 minutes a side, until caramelised.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Serve warm with {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-peaches-mascarpone",
+   "name": "Grilled peaches with honey mascarpone",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "peach",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "mascarpone",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pistachios",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve and stone {{ing:peach}}. Brush with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Grill cut side down 4 minutes, until charred.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Beat {{ing:mascarpone}} with {{ing:honey}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Spoon onto the peaches. Scatter chopped {{ing:pistachios}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-banana-boats",
+   "name": "Chocolate banana boats",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "banana-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "dark-chocolate-70",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "raspberries",
+     "quantity": 80,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slit {{ing:banana-medium}} lengthways through the skin, not right through."
+    },
+    {
+     "instruction": "Push squares of {{ing:dark-chocolate-70}} and {{ing:raspberries}} into the slit."
+    },
+    {
+     "instruction": "Wrap each in foil."
+    },
+    {
+     "instruction": "Cook on the barbecue 8 minutes, until the chocolate melts.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Eat from the skin with a spoon."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-maple-nectarines",
+   "name": "Maple grilled peaches with coconut yoghurt",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "peach",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "pecans",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve and stone {{ing:peach}}."
+    },
+    {
+     "instruction": "Brush with {{ing:maple-syrup}} mixed with {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Grill cut side down 4 minutes, until caramelised.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve with {{ing:coconut-yoghurt}}. Scatter chopped {{ing:pecans}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-key-lime-pie",
+   "name": "Key lime pie",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "digestive-biscuit",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "condensed-milk",
+     "quantity": 397,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-yolk",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 170C. Crush {{ing:digestive-biscuit}}. Mix with melted {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Press into a 23 cm tin. Bake 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Whisk {{ing:condensed-milk}}, {{ing:egg-yolk}} and the zest and juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Pour onto the base. Bake 15 minutes, until barely set.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Chill 3 hours. Top with whipped {{ing:double-cream}}.",
+     "duration_min": 180
+    }
+   ]
+  },
+  {
+   "slug": "bbq-no-bake-cheesecake",
+   "name": "No-bake strawberry cheesecake",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "digestive-biscuit",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:digestive-biscuit}}. Mix with melted {{ing:butter-unsalted}}. Press into a 20 cm tin."
+    },
+    {
+     "instruction": "Beat {{ing:cream-cheese}}, {{ing:icing-sugar}} and {{ing:vanilla-extract}} until smooth."
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} to soft peaks. Fold in."
+    },
+    {
+     "instruction": "Spread over the base. Chill 4 hours, until set.",
+     "duration_min": 240
+    },
+    {
+     "instruction": "Top with halved {{ing:strawberries}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-vegan-mango-sorbet",
+   "name": "Mango and lime sorbet",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "mango",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "water",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and chop {{ing:mango}}."
+    },
+    {
+     "instruction": "Warm {{ing:sugar-caster}} in {{ing:water}} until dissolved. Cool."
+    },
+    {
+     "instruction": "Blend the mango, syrup and the juice of {{ing:lime}} until smooth."
+    },
+    {
+     "instruction": "Freeze in a shallow box 4 hours, forking every hour.",
+     "duration_min": 240
+    }
+   ]
+  },
+  {
+   "slug": "bbq-strawberry-basil-lemonade",
+   "name": "Strawberry and basil lemonade",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 5,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:strawberries}} and {{ing:fresh-basil}} with {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Add the juice of {{ing:lemon}}. Sieve into a jug."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}} and ice."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-virgin-mojito",
+   "name": "Virgin mojito",
+   "cuisine": "BBQ",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "lime",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:lime}} into wedges. Crush in a jug with {{ing:fresh-mint}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Fill with crushed ice."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-mojito",
+   "name": "Mojito",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is white rum.",
+   "ingredients": [
+    {
+     "ref": "lime",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 160,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:lime}} into wedges. Crush in a jug with {{ing:fresh-mint}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}}. Fill with crushed ice."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}}."
+    }
+   ]
+  },
+  {
+   "slug": "bbq-strawberry-margarita",
+   "name": "Frozen strawberry margarita",
+   "cuisine": "BBQ",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is tequila.",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "orange-liqueur",
+     "quantity": 50,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Hull {{ing:strawberries}}. Freeze 2 hours.",
+     "duration_min": 120
+    },
+    {
+     "instruction": "Blend with {{ing:spirit-40}}, {{ing:orange-liqueur}}, the juice of {{ing:lime}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Add a handful of ice. Blend until slushy."
+    },
+    {
+     "instruction": "Pour into glasses."
+    }
+   ]
+  }
+ ]
+}

@@ -1,4 +1,5 @@
-// js/views/menus.js — 27 Nov 2026 v1
+// js/views/menus.js — 27 Nov 2026 v2
+// v2: any season or occasion (Phase 40); back to Seasons and occasions.
 // Phase 38. Christmas menus (#/menus?o=christmas).
 //
 // A list of complete menus, filtered by what the table eats: meat, fish,
@@ -33,11 +34,11 @@ export function render(mountEl) {
   const meta = OCCASIONS[occasion];
   let diet = dietFromHash();
 
-  mountEl.appendChild(el('a', { class: 'back-link', href: '#/meals-home', text: 'Meals' }));
+  mountEl.appendChild(el('a', { class: 'back-link', href: '#/occasions', text: 'Seasons and occasions' }));
   mountEl.appendChild(el('h1', { text: meta.title }));
   mountEl.appendChild(el('p', {
     class: 'field-hint',
-    text: 'Whole menus from starter to pudding, with a soft drink and a drink with alcohol for every course.'
+    text: `${meta.blurb} Whole menus from starter to pudding, with a soft drink and a drink with alcohol for every course.`
   }));
 
   const chips = el('div', { class: 'toggle-group', role: 'group', 'aria-label': 'Show menus for' });

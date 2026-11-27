@@ -1,0 +1,2636 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Autumn",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "aut-roast-squash-soup",
+   "name": "Roast squash and sage soup",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel and chop {{ing:butternut-squash}} and {{ing:onion-medium}}. Toss with {{ing:olive-oil}} in a tin."
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}. Roast 35 minutes, until soft and caramelised.",
+     "duration_min": 35
+    },
+    {
+     "instruction": "Tip into a pan with {{ing:stock-vegetable}}. Simmer 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Blend until smooth. Add {{ing:nutmeg}}."
+    },
+    {
+     "instruction": "Fry {{ing:fresh-sage}} leaves in a little oil until crisp. Float on top."
+    }
+   ]
+  },
+  {
+   "slug": "aut-garlic-mushrooms-toast",
+   "name": "Garlic mushrooms on toast",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "A hot, uncrowded pan browns mushrooms. A crowded one stews them.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Fry 6 minutes, until browned and the liquid has gone.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add sliced {{ing:garlic-clove}} and {{ing:fresh-thyme}} leaves. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Squeeze in half of {{ing:lemon}}. Stir in chopped {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}. Pile the mushrooms on top."
+    }
+   ]
+  },
+  {
+   "slug": "aut-beetroot-apple-salad",
+   "name": "Beetroot, apple and walnut salad",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "beetroot",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "rocket",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut cooked {{ing:beetroot}} into wedges."
+    },
+    {
+     "instruction": "Slice {{ing:apple-medium}} thinly."
+    },
+    {
+     "instruction": "Toast {{ing:walnuts}} in a dry pan 3 minutes, until fragrant.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Toss {{ing:rocket}}, the beetroot and apple on plates."
+    },
+    {
+     "instruction": "Whisk {{ing:olive-oil}} with {{ing:balsamic-vinegar}}. Spoon over. Scatter the walnuts."
+    }
+   ]
+  },
+  {
+   "slug": "aut-pear-stilton-chicory",
+   "name": "Pear, Stilton and chicory salad",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chicory",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pear",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stilton",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Separate the leaves of {{ing:chicory}}. Lay on plates."
+    },
+    {
+     "instruction": "Slice {{ing:pear}} thinly. Tuck between the leaves."
+    },
+    {
+     "instruction": "Crumble over {{ing:stilton}}. Scatter {{ing:walnuts}}."
+    },
+    {
+     "instruction": "Whisk {{ing:honey}}, {{ing:olive-oil}} and {{ing:white-wine-vinegar}}."
+    },
+    {
+     "instruction": "Spoon over the salad."
+    }
+   ]
+  },
+  {
+   "slug": "aut-mackerel-beetroot",
+   "name": "Smoked mackerel with beetroot and horseradish",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "smoked-mackerel",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "beetroot",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "horseradish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "watercress",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Flake {{ing:smoked-mackerel}} into large pieces. Take off the skin."
+    },
+    {
+     "instruction": "Slice {{ing:beetroot}}. Lay on plates with the fish."
+    },
+    {
+     "instruction": "Stir {{ing:horseradish-sauce}} into {{ing:creme-fraiche}}."
+    },
+    {
+     "instruction": "Spoon on beside the fish."
+    },
+    {
+     "instruction": "Top with {{ing:watercress}}. Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-scallops-cauliflower",
+   "name": "Scallops with cauliflower purée",
+   "cuisine": "Autumn",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "method_note": "Leave the scallops alone while they sear, so a crust forms.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "scallops",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into small florets. Simmer in {{ing:milk-whole}} 12 minutes, until soft.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Drain, keeping a little milk. Blend with half of {{ing:butter-unsalted}} until silky."
+    },
+    {
+     "instruction": "Pat {{ing:scallops}} dry with kitchen paper."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Sear the scallops 90 seconds a side, until golden. Add the rest of the butter."
+    },
+    {
+     "instruction": "Spoon purée onto plates. Top with scallops. Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-pork-apple-sausage-rolls",
+   "name": "Pork and apple sausage rolls",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "sausagemeat",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "puff-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fennel-seeds",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Grate {{ing:apple-medium}}. Chop {{ing:fresh-sage}}. Mix into {{ing:sausagemeat}}."
+    },
+    {
+     "instruction": "Cut {{ing:puff-pastry}} in half lengthways."
+    },
+    {
+     "instruction": "Lay a sausage of the meat along each strip. Roll the pastry over. Seal with a fork."
+    },
+    {
+     "instruction": "Brush with beaten {{ing:egg-medium}}. Sprinkle with {{ing:fennel-seeds}}. Cut into 12."
+    },
+    {
+     "instruction": "Bake 25 minutes, until puffed and golden.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "aut-chicken-liver-toasts",
+   "name": "Chicken livers with sherry on toast",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chicken-livers",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "shallot",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sherry",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Trim {{ing:chicken-livers}} of any sinew."
+    },
+    {
+     "instruction": "Put a frying pan on a high heat. Melt {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Chop {{ing:shallot}}. Fry 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the livers and {{ing:fresh-thyme}}. Fry 3 minutes, until browned but pink inside.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:sherry}}. Bubble 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}. Pile the livers and juices on top."
+    }
+   ]
+  },
+  {
+   "slug": "aut-pork-cider-apples",
+   "name": "Pork chops with cider and apples",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cider-dry",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Brown {{ing:pork-chops}} 4 minutes each side. Lift onto a plate.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Slice {{ing:onion-medium}} and {{ing:apple-medium}}. Fry 6 minutes, until golden.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:cider-dry}} and {{ing:fresh-sage}}. Bubble 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Return the chops. Simmer 6 minutes, until cooked through.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}} and {{ing:wholegrain-mustard}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-beef-red-wine-casserole",
+   "name": "Beef and red wine casserole",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Browning in batches stops the pan cooling and the meat stewing grey.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-braising",
+     "quantity": 900,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "bay-leaf",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C. Cut {{ing:beef-braising}} into chunks. Toss in {{ing:flour-plain}}."
+    },
+    {
+     "instruction": "Brown the beef in {{ing:olive-oil}} in a casserole, in batches. Lift out."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}} and {{ing:carrot-medium}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:mushroom-chestnut}}, {{ing:wine-red}}, {{ing:stock-cube}} crumbled in 300 ml water, {{ing:bay-leaf}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Return the beef. Cover."
+    },
+    {
+     "instruction": "Cook in the oven 2 hours 30 minutes, until the beef falls apart.",
+     "duration_min": 120
+    }
+   ]
+  },
+  {
+   "slug": "aut-chicken-mushroom-pie",
+   "name": "Chicken, leek and mushroom pie",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "leek",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 150,
+     "unit": "ml"
+    },
+    {
+     "ref": "puff-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Melt {{ing:butter-unsalted}} in a large pan."
+    },
+    {
+     "instruction": "Slice {{ing:leek}} and {{ing:mushroom-chestnut}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Cut {{ing:chicken-thigh-boneless}} into chunks. Add and fry 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Add {{ing:stock-chicken}} slowly, stirring until thick."
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}}. Tip into a pie dish."
+    },
+    {
+     "instruction": "Cover with {{ing:puff-pastry}}. Brush with beaten {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Bake 30 minutes, until puffed and golden.",
+     "duration_min": 30
+    }
+   ]
+  },
+  {
+   "slug": "aut-lamb-shanks-plums",
+   "name": "Lamb shanks with plums and star anise",
+   "cuisine": "Autumn",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-shank",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "plums",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "wine-red",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-cube",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C."
+    },
+    {
+     "instruction": "Brown {{ing:lamb-shank}} in {{ing:olive-oil}} in a casserole. Lift out."
+    },
+    {
+     "instruction": "Slice {{ing:red-onion}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Halve and stone {{ing:plums}}. Add with {{ing:star-anise}}, {{ing:wine-red}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Crumble in {{ing:stock-cube}} with 300 ml water. Return the lamb."
+    },
+    {
+     "instruction": "Cover. Cook 2 hours 30 minutes, until the meat falls off the bone.",
+     "duration_min": 120
+    }
+   ]
+  },
+  {
+   "slug": "aut-herb-crust-cod-lentils",
+   "name": "Herb-crusted cod with lentils",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lentils-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "cod-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Mix {{ing:breadcrumbs-dried}}, chopped {{ing:fresh-parsley}}, the zest of {{ing:lemon}} and 1 tbsp of {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Brush {{ing:cod-fillet}} with {{ing:mustard-dijon}}. Press the crumbs on top."
+    },
+    {
+     "instruction": "Bake 12 minutes, until the fish flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Warm drained {{ing:lentils-tinned}} in the rest of the oil with sliced {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}} until wilted. Add the lemon juice. Serve under the fish."
+    }
+   ]
+  },
+  {
+   "slug": "aut-haddock-leek-gratin",
+   "name": "Smoked haddock and leek gratin",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "haddock-smoked",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "leek",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Slice {{ing:potato-medium}} thinly. Boil 5 minutes. Drain.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Simmer {{ing:haddock-smoked}} in {{ing:milk-whole}} 5 minutes. Lift out the fish. Keep the milk.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a pan. Slice {{ing:leek}}. Fry 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}}. Add the milk slowly, stirring until thick."
+    },
+    {
+     "instruction": "Flake in the fish. Tip into a dish. Top with the potatoes."
+    },
+    {
+     "instruction": "Scatter {{ing:cheddar-cheese}}. Bake 25 minutes, until golden.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "aut-squash-prawn-curry",
+   "name": "Squash and king prawn red curry",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "thai-red-curry-paste",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-jasmine-dry",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-jasmine-dry}} for the time on the packet."
+    },
+    {
+     "instruction": "Fry {{ing:thai-red-curry-paste}} in {{ing:vegetable-oil}} 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}. Add with {{ing:coconut-milk-tinned}}."
+    },
+    {
+     "instruction": "Simmer 15 minutes, until the squash is soft.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}}. Cook 3 minutes, until pink.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}}, {{ing:fish-sauce}} and the juice of {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-wild-mushroom-risotto",
+   "name": "Mushroom and thyme risotto",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "shiitake-dried",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "wine-white",
+     "quantity": 125,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Soak {{ing:shiitake-dried}} in 200 ml boiling water 20 minutes. Chop. Add the water to {{ing:stock-vegetable}}.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} in a wide pan. Chop {{ing:onion-medium}}. Fry 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Fry with the shiitake 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir 1 minute. Add {{ing:wine-white}}.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the hot stock a ladle at a time, stirring, about 18 minutes.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Stir in {{ing:fresh-thyme}} leaves and grated {{ing:parmesan}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "aut-squash-sage-pasta",
+   "name": "Roast squash, sage and goats cheese pasta",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "penne-dry",
+     "quantity": 350,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-sage",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "goats-cheese",
+     "quantity": 120,
+     "unit": "g"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Peel and dice half of {{ing:butternut-squash}}. Toss with 2 tbsp of {{ing:olive-oil}} and {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Roast 30 minutes, until soft and browned.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Cook {{ing:penne-dry}} for the time on the packet. Keep a mug of water."
+    },
+    {
+     "instruction": "Fry {{ing:fresh-sage}} in the rest of the oil until crisp."
+    },
+    {
+     "instruction": "Toss the pasta, squash, sage and a splash of water. Top with {{ing:goats-cheese}} and {{ing:walnuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-cauliflower-cheese",
+   "name": "Cauliflower cheese with crispy crumbs",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cauliflower-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:cauliflower-head}} into florets. Boil 5 minutes. Drain well.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}}. Stir in {{ing:flour-plain}} 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:milk-whole}} slowly, stirring until thick and smooth."
+    },
+    {
+     "instruction": "Stir in two thirds of {{ing:cheddar-cheese}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Pour over the cauliflower. Top with the rest of the cheese and {{ing:breadcrumbs-dried}}."
+    },
+    {
+     "instruction": "Bake 25 minutes, until bubbling and golden.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "aut-mushroom-lentil-cottage-pie",
+   "name": "Mushroom and lentil cottage pie",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-purée",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Peel {{ing:potato-large}}. Boil 20 minutes. Mash with 2 tbsp of {{ing:olive-oil}}.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} and {{ing:carrot-medium}} in the rest of the oil 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:mushroom-chestnut}}. Fry 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add drained {{ing:lentils-tinned}}, {tomato-purée}, {{ing:soy-sauce}}, {{ing:stock-vegetable}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Simmer 10 minutes, until thick. Tip into a dish.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Top with the mash. Bake 25 minutes, until golden on top.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "aut-pumpkin-black-bean-chilli",
+   "name": "Pumpkin and black bean chilli",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "pumpkin",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes. Add {{ing:garlic-clove}}, {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:chilli-powder}}.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Dice {{ing:pumpkin}}. Add and stir 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add drained {{ing:black-beans-tinned}} and {{ing:chopped-tomatoes-tinned}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, until the pumpkin is tender.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Squeeze in {{ing:lime}}. Scatter with {{ing:fresh-coriander}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "pumpkin",
+     "text": "Butternut squash, the same weight"
+    }
+   ]
+  },
+  {
+   "slug": "aut-beetroot-lentil-salad",
+   "name": "Warm beetroot and lentil salad",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beetroot-raw",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lentils-green-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "walnuts",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "kale",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "balsamic-vinegar",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Peel and cut {{ing:beetroot-raw}} and {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss with 2 tbsp of {{ing:olive-oil}}. Roast 40 minutes, until tender.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Simmer {{ing:lentils-green-dry}} in water 25 minutes, until tender. Drain.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Strip {{ing:kale}} from its stalks. Add to the tin for the last 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Whisk the rest of the oil, {{ing:balsamic-vinegar}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Toss everything together. Scatter {{ing:walnuts}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-roast-squash-wedges",
+   "name": "Roast squash wedges with chilli",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butternut-squash",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-flakes",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:butternut-squash}} into wedges, skin on. Take out the seeds."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}}, {{ing:chilli-flakes}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until soft and charred at the edges.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "aut-garlic-kale",
+   "name": "Garlic kale",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "kale",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Strip {{ing:kale}} from its stalks. Tear into pieces."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the kale and a splash of water. Stir 4 minutes, until tender. Squeeze over {{ing:lemon}}.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "aut-celeriac-mash",
+   "name": "Celeriac and potato mash",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "celeriac",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "potato-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "nutmeg",
+     "quantity": 1.2,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel and dice {{ing:celeriac}} and {{ing:potato-medium}}."
+    },
+    {
+     "instruction": "Boil 20 minutes, until soft. Drain well.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Mash with {{ing:butter-unsalted}} and warm {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Grate in {{ing:nutmeg}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-roast-roots",
+   "name": "Thyme roast roots",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-large",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "parsnip",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut {{ing:carrot-large}}, {{ing:parsnip}} and {{ing:red-onion}} into chunks."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}} and {{ing:fresh-thyme}}."
+    },
+    {
+     "instruction": "Roast 40 minutes, turning once, until golden.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "aut-apple-fennel-slaw",
+   "name": "Apple and fennel slaw",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "fennel-bulb",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:fennel-bulb}}, {{ing:apple-medium}} and {{ing:red-cabbage}} very thinly."
+    },
+    {
+     "instruction": "Whisk the juice of {{ing:lemon}}, {{ing:olive-oil}} and {{ing:wholegrain-mustard}}."
+    },
+    {
+     "instruction": "Toss with the vegetables."
+    }
+   ]
+  },
+  {
+   "slug": "aut-apple-blackberry-crumble",
+   "name": "Apple and blackberry crumble",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Made with spread, so it is vegan. Butter works too.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-cooking",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "blackberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "dairy-free-spread",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-demerara",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Peel, core and slice {{ing:apple-cooking}}. Toss with {{ing:blackberries}}, {{ing:sugar-caster}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Tip into a baking dish."
+    },
+    {
+     "instruction": "Rub {{ing:dairy-free-spread}} into {{ing:flour-plain}} until like breadcrumbs. Stir in {{ing:sugar-demerara}}."
+    },
+    {
+     "instruction": "Scatter over the fruit."
+    },
+    {
+     "instruction": "Bake 35 minutes, until golden and bubbling.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "aut-baked-apples",
+   "name": "Baked apples with maple and pecans",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The scored line stops the skins bursting.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-cooking",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "pecans",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "sultanas",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C."
+    },
+    {
+     "instruction": "Core {{ing:apple-cooking}}. Score a line round the middle of each."
+    },
+    {
+     "instruction": "Chop {{ing:pecans}}. Mix with {{ing:sultanas}} and {{ing:cinnamon-ground}}."
+    },
+    {
+     "instruction": "Stuff into the apples. Stand them in a dish."
+    },
+    {
+     "instruction": "Pour over {{ing:maple-syrup}}. Bake 40 minutes, until soft and puffing.",
+     "duration_min": 40
+    }
+   ]
+  },
+  {
+   "slug": "aut-port-plums",
+   "name": "Plums roasted in port with coconut yoghurt",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "plums",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "port",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve and stone {{ing:plums}}. Lay cut side up in a dish."
+    },
+    {
+     "instruction": "Pour over {{ing:port}}. Sprinkle {{ing:sugar-soft-brown}}. Add {{ing:cinnamon-stick}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until soft and syrupy.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Serve warm with {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-pear-frangipane",
+   "name": "Pear and almond tart",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "shortcrust-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ground-almonds",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "pear",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C. Line a 23 cm tin with {{ing:shortcrust-pastry}}."
+    },
+    {
+     "instruction": "Bake 15 minutes with baking beans. Take them out.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}} and {{ing:sugar-caster}}. Beat in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Stir in {{ing:ground-almonds}}. Spread in the pastry case."
+    },
+    {
+     "instruction": "Peel, halve and core {{ing:pear}}. Slice. Press into the almond filling."
+    },
+    {
+     "instruction": "Bake 35 minutes, until golden and set.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "aut-pear-ginger-cake",
+   "name": "Pear and ginger upside-down cake",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "pear",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "ginger-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a 20 cm tin."
+    },
+    {
+     "instruction": "Spread {{ing:golden-syrup}} over the base. Peel and slice {{ing:pear}}. Lay on top."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}} and {{ing:sugar-soft-brown}} until fluffy."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}. Fold in {{ing:flour-self-raising}} and {{ing:ginger-ground}}."
+    },
+    {
+     "instruction": "Spread over the pears. Bake 40 minutes, until springy.",
+     "duration_min": 40
+    },
+    {
+     "instruction": "Turn out upside down while warm."
+    }
+   ]
+  },
+  {
+   "slug": "aut-marmalade-bread-pudding",
+   "name": "Brioche and marmalade bread pudding",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "brioche",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "jam-strawberry",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 170C."
+    },
+    {
+     "instruction": "Slice {{ing:brioche}}. Spread with {{ing:butter-unsalted}} and {{ing:jam-strawberry}}."
+    },
+    {
+     "instruction": "Layer in a baking dish."
+    },
+    {
+     "instruction": "Whisk {{ing:egg-medium}}, {{ing:milk-whole}}, {{ing:double-cream}} and {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Pour over. Leave 15 minutes to soak.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Bake 35 minutes, until set and golden.",
+     "duration_min": 35
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "strawberry jam",
+     "text": "Orange marmalade, for a bitter-sweet edge"
+    }
+   ]
+  },
+  {
+   "slug": "aut-caramel-apple-pots",
+   "name": "Caramel apple pots",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-nut-biscuits",
+     "quantity": 6,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel, core and dice {{ing:apple-medium}}."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}} and {{ing:sugar-soft-brown}} in a pan."
+    },
+    {
+     "instruction": "Add the apples. Cook 8 minutes, until soft and caramel-coated. Cool.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} to soft peaks."
+    },
+    {
+     "instruction": "Layer apples and cream in glasses."
+    },
+    {
+     "instruction": "Crumble {{ing:ginger-nut-biscuits}} on top."
+    }
+   ]
+  },
+  {
+   "slug": "aut-parkin",
+   "name": "Sticky ginger parkin",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "black-treacle",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "oats-rolled",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "ginger-ground",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 160C. Line a 20 cm square tin."
+    },
+    {
+     "instruction": "Melt {{ing:butter-unsalted}}, {{ing:golden-syrup}}, {{ing:black-treacle}} and {{ing:sugar-soft-brown}} together."
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:oats-rolled}} and {{ing:ginger-ground}} in a bowl."
+    },
+    {
+     "instruction": "Pour in the melted mix. Add {{ing:egg-medium}} and {{ing:milk-whole}}. Stir well."
+    },
+    {
+     "instruction": "Pour into the tin. Bake 45 minutes, until firm.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Cool. Wrap and leave a day before cutting.",
+     "note": "It turns stickier as it sits."
+    }
+   ]
+  },
+  {
+   "slug": "aut-spiced-apple",
+   "name": "Hot spiced apple",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "apple-juice",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cloves",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:apple-juice}} into a pan."
+    },
+    {
+     "instruction": "Add {{ing:cinnamon-stick}}, {{ing:cloves}} and sliced {{ing:orange}}."
+    },
+    {
+     "instruction": "Warm 10 minutes, without boiling.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Ladle into mugs."
+    }
+   ]
+  },
+  {
+   "slug": "aut-blackberry-soda",
+   "name": "Blackberry and apple soda",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "blackberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "apple-juice",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:blackberries}} with {{ing:sugar-caster}}. Leave 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Sieve out the seeds."
+    },
+    {
+     "instruction": "Stir in {{ing:apple-juice}}."
+    },
+    {
+     "instruction": "Pour over ice. Top up with {{ing:sparkling-water}}."
+    }
+   ]
+  },
+  {
+   "slug": "aut-pear-cider-punch",
+   "name": "Spiced pear and cider punch",
+   "cuisine": "Autumn",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "cider-dry",
+     "quantity": 1000,
+     "unit": "ml"
+    },
+    {
+     "ref": "pear",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cinnamon-stick",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "star-anise",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:cider-dry}} into a pan."
+    },
+    {
+     "instruction": "Slice {{ing:pear}}. Add with {{ing:cinnamon-stick}}, {{ing:star-anise}} and {{ing:honey}}."
+    },
+    {
+     "instruction": "Warm 10 minutes, without boiling.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Serve warm in mugs."
+    }
+   ]
+  },
+  {
+   "slug": "aut-bramble",
+   "name": "Blackberry gin sour",
+   "cuisine": "Autumn",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is gin.",
+   "ingredients": [
+    {
+     "ref": "blackberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:blackberries}} with {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Add {{ing:spirit-40}} and the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Strain over crushed ice in 4 glasses."
+    }
+   ]
+  }
+ ]
+}

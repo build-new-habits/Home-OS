@@ -1,0 +1,2353 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Spring",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "spr-asparagus-soldiers",
+   "name": "Asparagus soldiers with soft-boiled eggs",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "The asparagus should bend a little, not flop.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "asparagus",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a pan of water on a high heat until it boils."
+    },
+    {
+     "instruction": "Lower in {{ing:egg-medium}}. Boil 6 minutes for runny yolks.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Snap the woody ends off {{ing:asparagus}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Fry the asparagus 4 minutes, turning, until bright green and tender.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Sprinkle with {{ing:salt}}. Serve with the eggs in cups for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "spr-pea-mint-soup",
+   "name": "Pea and mint soup",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Five minutes is enough. Longer and the peas turn grey.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 800,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "black-pepper-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft and see-through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:peas-frozen}} and {{ing:stock-vegetable}}. Simmer 5 minutes, until the peas are tender.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Take off the heat. Add {{ing:fresh-mint}} leaves."
+    },
+    {
+     "instruction": "Blend until smooth."
+    },
+    {
+     "instruction": "Season with {{ing:black-pepper-ground}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-radish-whipped-feta",
+   "name": "Radishes with whipped feta and toast",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "feta",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "radish",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crumble {{ing:feta}} into a bowl."
+    },
+    {
+     "instruction": "Add {{ing:greek-yoghurt}} and the juice of {{ing:lemon}}. Beat until smooth."
+    },
+    {
+     "instruction": "Spread on a plate. Pour {{ing:olive-oil}} over the top."
+    },
+    {
+     "instruction": "Halve {{ing:radish}}."
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}. Serve the radishes and toast for scooping."
+    }
+   ]
+  },
+  {
+   "slug": "spr-broad-bean-crostini",
+   "name": "Broad bean, mint and lemon crostini",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "broad-beans",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:broad-beans}} 4 minutes. Drain and cool under cold water.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze the bright green beans out of their pale skins.",
+     "note": "Fiddly but worth it: the skins are tough."
+    },
+    {
+     "instruction": "Crush the beans with a fork. Add the zest and juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Stir in {{ing:olive-oil}} and chopped {{ing:fresh-mint}}."
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}. Rub with {{ing:garlic-clove}} cut in half."
+    },
+    {
+     "instruction": "Pile the beans on the toast."
+    }
+   ]
+  },
+  {
+   "slug": "spr-smoked-mackerel-pate",
+   "name": "Smoked mackerel pâté with oatcakes",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "Keeps two days in the fridge, covered.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "smoked-mackerel",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "horseradish-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "oatcakes",
+     "quantity": 12,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Peel the skin off {{ing:smoked-mackerel}}. Flake into a bowl."
+    },
+    {
+     "instruction": "Add {{ing:cream-cheese}}, {{ing:horseradish-sauce}} and the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Mash with a fork until mostly smooth."
+    },
+    {
+     "instruction": "Snip {{ing:chives}} over the top."
+    },
+    {
+     "instruction": "Serve with {{ing:oatcakes}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-crab-toast",
+   "name": "Crab on toast with watercress",
+   "cuisine": "Spring",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "crab-white-meat",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "watercress",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:crab-white-meat}} in a bowl. Pick out any shell."
+    },
+    {
+     "instruction": "Add {{ing:mayonnaise}} and the juice of half of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Chop {{ing:chilli-fresh}} finely. Stir in."
+    },
+    {
+     "instruction": "Toast {{ing:sourdough}}."
+    },
+    {
+     "instruction": "Pile on the crab. Top with {{ing:watercress}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-asparagus-prosciutto",
+   "name": "Asparagus wrapped in prosciutto",
+   "cuisine": "Spring",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "asparagus",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "prosciutto",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 20,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Snap the woody ends off {{ing:asparagus}}."
+    },
+    {
+     "instruction": "Tear {{ing:prosciutto}} in half lengthways. Wrap a strip round each spear."
+    },
+    {
+     "instruction": "Lay on a tray. Drizzle with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Roast 10 minutes, until the ham is crisp.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Grate {{ing:parmesan}} over."
+    }
+   ]
+  },
+  {
+   "slug": "spr-lamb-koftas",
+   "name": "Minted lamb koftas with yoghurt",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "lamb-mince",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 15,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "natural-yoghurt",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:lamb-mince}} in a bowl with {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-mint}}. Add two thirds to the lamb."
+    },
+    {
+     "instruction": "Grate in {{ing:garlic-clove}}. Mix with your hands."
+    },
+    {
+     "instruction": "Shape into 12 small sausages."
+    },
+    {
+     "instruction": "Fry in {{ing:olive-oil}} 8 minutes, turning, until browned all over.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Stir the rest of the mint into {{ing:natural-yoghurt}}. Serve with wedges of {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-roast-lamb",
+   "name": "Roast leg of lamb with rosemary and garlic",
+   "cuisine": "Spring",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lamb-leg",
+     "quantity": 1800,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-rosemary",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Take {{ing:lamb-leg}} out of the fridge an hour before. Heat the oven to 200C."
+    },
+    {
+     "instruction": "Cut 12 small slits in the lamb with a sharp knife."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Push a slice and a little {{ing:fresh-rosemary}} into each slit."
+    },
+    {
+     "instruction": "Rub with {{ing:olive-oil}} and {{ing:salt}}. Put in a roasting tin."
+    },
+    {
+     "instruction": "Roast 1 hour 20 minutes for pink, 1 hour 40 for well done.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Rest under foil 20 minutes. Squeeze over {{ing:lemon}} to serve.",
+     "note": "Resting lets the juices settle back into the meat.",
+     "duration_min": 20
+    }
+   ]
+  },
+  {
+   "slug": "spr-chicken-tarragon",
+   "name": "Chicken with leeks, peas and tarragon",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "chicken-thigh-boneless",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "leek",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-chicken",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "creme-fraiche",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-tarragon",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a wide pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Brown {{ing:chicken-thigh-boneless}} 6 minutes, turning once. Lift onto a plate.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Slice {{ing:leek}}. Fry in the same pan 6 minutes, until soft.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Add {{ing:stock-chicken}} and return the chicken. Simmer 15 minutes, until cooked through.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Add {{ing:peas-frozen}}. Cook 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Stir in {{ing:creme-fraiche}} and chopped {{ing:fresh-tarragon}}. Warm through."
+    }
+   ]
+  },
+  {
+   "slug": "spr-pork-rhubarb",
+   "name": "Pork chops with ginger rhubarb",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pork-chops",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "rhubarb",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Season {{ing:pork-chops}} with {{ing:salt}}."
+    },
+    {
+     "instruction": "Put a frying pan on a medium-high heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry the chops 5 minutes each side, until no longer pink in the middle.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Lift onto a warm plate to rest."
+    },
+    {
+     "instruction": "Cut {{ing:rhubarb}} into short lengths. Add to the pan with {{ing:sugar-soft-brown}} and {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Cook 5 minutes, until the rhubarb is soft but holds its shape. Spoon over the chops.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "spr-salmon-asparagus-traybake",
+   "name": "Salmon, asparagus and new potato traybake",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "One tin, one wash-up.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "asparagus",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}. Toss in a roasting tin with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Roast 20 minutes, until starting to colour.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Add {{ing:asparagus}} and {{ing:salmon-fillet}} to the tin. Slice {{ing:lemon}} over the fish."
+    },
+    {
+     "instruction": "Roast 12 minutes, until the salmon flakes.",
+     "duration_min": 12
+    },
+    {
+     "instruction": "Scatter with chopped {{ing:fresh-dill}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-trout-almonds",
+   "name": "Trout with almonds and brown butter",
+   "cuisine": "Spring",
+   "budget_tier": "special",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "trout-fillet",
+     "quantity": 520,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "almonds",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Dust {{ing:trout-fillet}} in {{ing:flour-plain}}. Shake off the extra."
+    },
+    {
+     "instruction": "Put a large frying pan on a medium heat. Melt half of {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Fry the trout skin side down 3 minutes. Turn and cook 2 minutes more.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Lift onto warm plates."
+    },
+    {
+     "instruction": "Add the rest of the butter and {{ing:almonds}}. Cook 2 minutes, until golden and nutty-smelling.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add the juice of {{ing:lemon}} and chopped {{ing:fresh-parsley}}. Spoon over the fish."
+    }
+   ]
+  },
+  {
+   "slug": "spr-prawn-pea-linguine",
+   "name": "Prawn, pea and lemon linguine",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 350,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan of salted water on to boil."
+    },
+    {
+     "instruction": "Cook {{ing:spaghetti-dry}} for the time on the packet. Keep a mug of the water."
+    },
+    {
+     "instruction": "Put a frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}} and {{ing:chilli-fresh}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:king-prawns-raw}} and {{ing:peas-frozen}}. Cook 3 minutes, until the prawns turn pink.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add the drained pasta, the zest and juice of {{ing:lemon}}, and {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Toss, adding pasta water until glossy."
+    }
+   ]
+  },
+  {
+   "slug": "spr-asparagus-pea-risotto",
+   "name": "Asparagus and pea risotto",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Wait for each ladle to soak in before the next.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "stock-vegetable",
+     "quantity": 1200,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 30,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "asparagus",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Warm {{ing:stock-vegetable}} in a pan."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat. Melt {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:rice-arborio-dry}}. Stir 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the stock a ladle at a time, stirring. Take about 18 minutes.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Cut {{ing:asparagus}} into short lengths. Add with {{ing:peas-frozen}} for the last 5 minutes.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in grated {{ing:parmesan}} and the zest of {{ing:lemon}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "spr-spring-tart",
+   "name": "Asparagus and goats cheese tart",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "puff-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "goats-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "asparagus",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Unroll {{ing:puff-pastry}} onto a lined tray."
+    },
+    {
+     "instruction": "Score a border 2 cm in from the edge. Do not cut through."
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}}. Brush over the border."
+    },
+    {
+     "instruction": "Crumble {{ing:goats-cheese}} inside the border."
+    },
+    {
+     "instruction": "Lay {{ing:asparagus}} and sliced {{ing:spring-onion}} on top. Drizzle with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Bake 25 minutes, until puffed and golden.",
+     "duration_min": 25
+    }
+   ]
+  },
+  {
+   "slug": "spr-herb-frittata",
+   "name": "New potato, spinach and feta frittata",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "feta",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "chives",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Boil {{ing:new-potatoes}} 15 minutes, until tender. Slice.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Put an ovenproof frying pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry the potatoes and sliced {{ing:spring-onion}} 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add {{ing:spinach}}. Stir until wilted."
+    },
+    {
+     "instruction": "Beat {{ing:egg-medium}} with snipped {{ing:chives}}. Pour into the pan."
+    },
+    {
+     "instruction": "Crumble over {{ing:feta}}. Cook 6 minutes, until the edges set.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Finish under a hot grill 3 minutes, until set in the middle.",
+     "duration_min": 3
+    }
+   ]
+  },
+  {
+   "slug": "spr-white-bean-stew",
+   "name": "Spring vegetable and white bean stew",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "leek",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "cannellini-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "asparagus",
+     "quantity": 10,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a large pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:leek}}. Fry 8 minutes, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Drain {{ing:cannellini-beans-tinned}}. Add with {{ing:stock-vegetable}}. Simmer 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Cut {{ing:asparagus}} into short lengths. Add with {{ing:peas-frozen}}. Cook 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Stir in the zest of {{ing:lemon}} and chopped {{ing:fresh-parsley}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-tofu-greens-noodles",
+   "name": "Crispy tofu with spring greens and noodles",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "tofu-firm",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cornflour",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-noodles-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-greens",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Press {{ing:tofu-firm}} between kitchen paper. Cut into cubes."
+    },
+    {
+     "instruction": "Toss in {{ing:cornflour}}."
+    },
+    {
+     "instruction": "Fry in {{ing:vegetable-oil}} 8 minutes, turning, until crisp. Lift out.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Soak {{ing:rice-noodles-dry}} in boiling water for the time on the packet. Drain."
+    },
+    {
+     "instruction": "Fry {{ing:garlic-clove}} and {{ing:ginger-fresh}} 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add shredded {{ing:spring-greens}}. Stir-fry 3 minutes.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Add the noodles, tofu, {{ing:soy-sauce}} and {{ing:sesame-oil}}. Toss. Top with sliced {{ing:spring-onion}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-chickpea-traybake",
+   "name": "New potato, asparagus and chickpea traybake",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 20,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "chickpeas-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "asparagus",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Halve {{ing:new-potatoes}}. Cut {{ing:red-onion}} into wedges."
+    },
+    {
+     "instruction": "Toss in a tin with 2 tbsp of {{ing:olive-oil}}. Roast 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Drain {{ing:chickpeas-tinned}}. Add with {{ing:asparagus}}. Roast 15 minutes more.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Chop {{ing:fresh-parsley}}, {{ing:fresh-mint}} and {{ing:garlic-clove}} together finely."
+    },
+    {
+     "instruction": "Mix with the juice of {{ing:lemon}} and the rest of the oil. Spoon over."
+    }
+   ]
+  },
+  {
+   "slug": "spr-minted-new-potatoes",
+   "name": "Minted new potatoes",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "new-potatoes",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "salt",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:new-potatoes}} in a pan. Cover with cold water and add {{ing:salt}}."
+    },
+    {
+     "instruction": "Bring to the boil. Simmer 15 minutes, until a knife slides in.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Drain. Return to the pan."
+    },
+    {
+     "instruction": "Add {{ing:olive-oil}} and chopped {{ing:fresh-mint}}. Shake to coat."
+    }
+   ]
+  },
+  {
+   "slug": "spr-peas-lettuce",
+   "name": "Buttered peas with lettuce",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 25,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "cos-lettuce",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 100,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put a pan on a medium heat. Melt {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Slice {{ing:spring-onion}}. Fry 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Add {{ing:peas-frozen}} and {{ing:stock-vegetable}}. Simmer 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Shred {{ing:cos-lettuce}}. Stir in until wilted."
+    }
+   ]
+  },
+  {
+   "slug": "spr-garlic-spring-greens",
+   "name": "Spring greens with garlic and lemon",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "spring-greens",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred {{ing:spring-greens}}, leaving out the thickest stalks."
+    },
+    {
+     "instruction": "Put a wide pan on a medium heat. Add {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Slice {{ing:garlic-clove}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add the greens and a splash of water. Stir-fry 4 minutes, until tender.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Squeeze over {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-honey-carrots",
+   "name": "Honey-glazed baby carrots",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "carrot-medium",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "honey",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "fresh-thyme",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:carrot-medium}} lengthways."
+    },
+    {
+     "instruction": "Put in a pan with {{ing:butter-unsalted}}, {{ing:honey}} and a splash of water."
+    },
+    {
+     "instruction": "Cover. Cook 8 minutes on a medium heat.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Uncover. Add {{ing:fresh-thyme}}. Cook 4 minutes, until glossy.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "spr-radish-cucumber-salad",
+   "name": "Radish, cucumber and mint salad",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "radish",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:radish}} and {{ing:cucumber}} thinly."
+    },
+    {
+     "instruction": "Tear in {{ing:fresh-mint}} leaves."
+    },
+    {
+     "instruction": "Whisk {{ing:white-wine-vinegar}} with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Toss with the salad as you serve it."
+    }
+   ]
+  },
+  {
+   "slug": "spr-rhubarb-crumble",
+   "name": "Rhubarb crumble",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-demerara",
+     "quantity": 50,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 190C."
+    },
+    {
+     "instruction": "Cut {{ing:rhubarb}} into short lengths. Toss with {{ing:sugar-caster}} in a baking dish."
+    },
+    {
+     "instruction": "Rub {{ing:butter-unsalted}} into {{ing:flour-plain}} until it looks like breadcrumbs."
+    },
+    {
+     "instruction": "Stir in {{ing:sugar-demerara}}."
+    },
+    {
+     "instruction": "Scatter over the rhubarb."
+    },
+    {
+     "instruction": "Bake 35 minutes, until golden and bubbling at the edges.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "spr-rhubarb-fool",
+   "name": "Rhubarb and ginger fool",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "stem-ginger",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:rhubarb}} into short lengths. Put in a pan with {{ing:sugar-caster}}."
+    },
+    {
+     "instruction": "Cook gently 10 minutes, until soft. Cool completely.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Chop {{ing:stem-ginger}} finely. Stir into the rhubarb."
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} to soft peaks (it holds a soft curl)."
+    },
+    {
+     "instruction": "Fold the rhubarb through the cream in ripples."
+    },
+    {
+     "instruction": "Chill 1 hour.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "spr-lemon-posset",
+   "name": "Lemon posset",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "The lemon sets the cream. No gelatine needed.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "double-cream",
+     "quantity": 600,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 3,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:double-cream}} and {{ing:sugar-caster}} in a pan."
+    },
+    {
+     "instruction": "Bring to the boil. Bubble 3 minutes, stirring.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Take off the heat. Stir in the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Pour into 6 small glasses."
+    },
+    {
+     "instruction": "Chill at least 3 hours, until set.",
+     "duration_min": 180
+    }
+   ]
+  },
+  {
+   "slug": "spr-rhubarb-compote",
+   "name": "Rhubarb and orange compote with coconut yoghurt",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "orange",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stem-ginger",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "coconut-yoghurt",
+     "quantity": 400,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:rhubarb}} into short lengths."
+    },
+    {
+     "instruction": "Put in a pan with {{ing:sugar-caster}} and the zest and juice of {{ing:orange}}."
+    },
+    {
+     "instruction": "Simmer 8 minutes, until soft but holding its shape.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Chop {{ing:stem-ginger}}. Stir in. Cool."
+    },
+    {
+     "instruction": "Spoon over {{ing:coconut-yoghurt}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-lemon-elderflower-sorbet",
+   "name": "Lemon and elderflower sorbet",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "sugar-caster",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "elderflower-cordial",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:sugar-caster}} and {{ing:water}} in a pan. Heat until the sugar dissolves."
+    },
+    {
+     "instruction": "Cool. Add the juice of {{ing:lemon}} and {{ing:elderflower-cordial}}."
+    },
+    {
+     "instruction": "Pour into a shallow box. Freeze 1 hour.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Fork it through to break up the ice."
+    },
+    {
+     "instruction": "Freeze 3 hours more, forking every hour, until firm and snowy.",
+     "duration_min": 180
+    }
+   ]
+  },
+  {
+   "slug": "spr-strawberries-mint-sugar",
+   "name": "Strawberries with mint sugar and lime",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Hull and halve {{ing:strawberries}}."
+    },
+    {
+     "instruction": "Chop {{ing:fresh-mint}} with {{ing:sugar-caster}} until green and fragrant."
+    },
+    {
+     "instruction": "Toss the strawberries with the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Sprinkle with the mint sugar."
+    }
+   ]
+  },
+  {
+   "slug": "spr-lemon-drizzle",
+   "name": "Lemon drizzle loaf",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a 900 g loaf tin."
+    },
+    {
+     "instruction": "Beat {{ing:butter-unsalted}} with {{ing:sugar-caster}} until pale."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}} one at a time."
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Bake 45 minutes, until a skewer comes out clean.",
+     "duration_min": 45
+    },
+    {
+     "instruction": "Mix the lemon juice with {{ing:icing-sugar}}. Pour over while warm."
+    }
+   ]
+  },
+  {
+   "slug": "spr-gooseberry-fool",
+   "name": "Gooseberry and elderflower fool",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "gooseberries",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "elderflower-cordial",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 300,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Top and tail {{ing:gooseberries}}."
+    },
+    {
+     "instruction": "Cook with {{ing:sugar-caster}} 10 minutes, until they burst. Cool.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Stir in {{ing:elderflower-cordial}}."
+    },
+    {
+     "instruction": "Whip {{ing:double-cream}} to soft peaks."
+    },
+    {
+     "instruction": "Fold the gooseberries through in ripples. Chill 1 hour.",
+     "duration_min": 60
+    }
+   ]
+  },
+  {
+   "slug": "spr-elderflower-spritz",
+   "name": "Elderflower and mint spritz",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "elderflower-cordial",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-mint",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:elderflower-cordial}} in a jug."
+    },
+    {
+     "instruction": "Add the juice of {{ing:lime}} and {{ing:fresh-mint}} leaves."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}} and ice."
+    }
+   ]
+  },
+  {
+   "slug": "spr-rhubarb-soda",
+   "name": "Rhubarb and ginger soda",
+   "cuisine": "Spring",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-ale",
+     "quantity": 500,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:rhubarb}}. Simmer with {{ing:sugar-caster}} and {{ing:water}} 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Strain through a sieve. Cool the pink syrup."
+    },
+    {
+     "instruction": "Pour a little into each glass with ice."
+    },
+    {
+     "instruction": "Top up with {{ing:ginger-ale}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-elderflower-gin-fizz",
+   "name": "Elderflower gin fizz",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is gin.",
+   "ingredients": [
+    {
+     "ref": "spirit-40",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "elderflower-cordial",
+     "quantity": 40,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tonic-water",
+     "quantity": 400,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fill 4 glasses with ice."
+    },
+    {
+     "instruction": "Divide {{ing:spirit-40}} and {{ing:elderflower-cordial}} between them."
+    },
+    {
+     "instruction": "Add a squeeze of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Top up with {{ing:tonic-water}}."
+    }
+   ]
+  },
+  {
+   "slug": "spr-rhubarb-fizz",
+   "name": "Rhubarb fizz",
+   "cuisine": "Spring",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "rhubarb",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-wine",
+     "quantity": 750,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:rhubarb}}. Simmer with {{ing:sugar-caster}} and {{ing:water}} 10 minutes.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Strain and chill the syrup."
+    },
+    {
+     "instruction": "Put a spoonful in each glass."
+    },
+    {
+     "instruction": "Top up with chilled {{ing:sparkling-wine}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "wine, beer or cider",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  }
+ ]
+}

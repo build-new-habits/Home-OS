@@ -1,0 +1,624 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Birthday",
+ "note": "Complete birthday menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "burger-party",
+   "name": "Burger birthday",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Cocktail sausages, homemade burgers with wedges, chocolate birthday cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-honey-mustard-sausages",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-beef-burgers",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "A Malbec or Zinfandel"
+      }
+     },
+     "sides": [
+      "bday-potato-wedges",
+      "bday-rainbow-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-chocolate-birthday-cake",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "fajita-party",
+   "name": "Fajita party",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Loaded nachos, chicken fajitas, rocky road.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-loaded-nachos",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Mexican-style lager with lime"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-chicken-fajitas",
+     "pairing": {
+      "soft": {
+       "text": "Lime and mint sparkling water"
+      },
+      "alcoholic": {
+       "text": "A Tempranillo"
+      }
+     },
+     "sides": [
+      "bday-sweetcorn-salsa",
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-rocky-road",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "meatball-party",
+   "name": "Meatballs and cake",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chicken satay skewers, spaghetti and meatballs, sprinkle birthday cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-chicken-satay",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-spaghetti-meatballs",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Chianti"
+      }
+     },
+     "sides": [
+      "bday-garlic-bread",
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-funfetti-cake",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "fish-finger-party",
+   "name": "Fish finger feast",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Salmon pinwheels, homemade fish fingers with wedges, ice cream sundaes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-salmon-pinwheels",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-fish-fingers",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Sauvignon Blanc"
+      }
+     },
+     "sides": [
+      "bday-potato-wedges",
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-sundaes",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "teriyaki-party",
+   "name": "Teriyaki birthday",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Salmon pinwheels, sticky salmon teriyaki, brownies.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-salmon-pinwheels",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-salmon-teriyaki",
+     "pairing": {
+      "soft": {
+       "text": "Jasmine iced tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-brownies",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "paella-party",
+   "name": "Paella party",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Sesame prawn toasts, king prawn paella, brownies.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-prawn-toast",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A chilled cava"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-prawn-paella",
+     "pairing": {
+      "soft": {
+       "text": "Lime and mint sparkling water"
+      },
+      "alcoholic": {
+       "text": "An Albariño or dry rosé"
+      }
+     },
+     "sides": [
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-brownies",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "pizza-party",
+   "name": "Pizza party",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Cheese straws, quick margherita pizza, cupcakes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-cheese-straws",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-quick-pizza",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Chianti or Montepulciano"
+      }
+     },
+     "sides": [
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-cupcakes",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-party",
+   "name": "Halloumi fajita party",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Pitta pizzas, halloumi fajitas, sprinkle birthday cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-pitta-pizzas",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Mexican-style lager with lime"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-halloumi-fajitas",
+     "pairing": {
+      "soft": {
+       "text": "Lime and mint sparkling water"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     },
+     "sides": [
+      "bday-sweetcorn-salsa",
+      "bday-rainbow-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-funfetti-cake",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "quesadilla-party",
+   "name": "Quesadilla party",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Loaded nachos, cheesy bean quesadillas, ice cream sundaes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-loaded-nachos",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-bean-quesadillas",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Garnacha"
+      }
+     },
+     "sides": [
+      "bday-sweetcorn-salsa"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-sundaes",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry milkshake",
+       "recipe": "bday-strawberry-milkshake"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "bean-burger-vegan",
+   "name": "Vegan burger birthday",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Loaded nachos, black bean burgers with wedges, vegan chocolate cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-loaded-nachos",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-bean-burgers",
+     "pairing": {
+      "soft": {
+       "text": "Lime and mint sparkling water"
+      },
+      "alcoholic": {
+       "text": "A Zinfandel"
+      }
+     },
+     "sides": [
+      "bday-potato-wedges",
+      "bday-rainbow-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-vegan-chocolate-cake",
+     "pairing": {
+      "soft": {
+       "text": "Oat milk, cold"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "taco-vegan",
+   "name": "Taco party",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Hummus cups, sweet potato and black bean tacos, rainbow fruit skewers.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-hummus-cups",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Mexican-style lager with lime"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-sweet-potato-tacos",
+     "pairing": {
+      "soft": {
+       "text": "Lime and mint sparkling water"
+      },
+      "alcoholic": {
+       "text": "A Grenache rosé"
+      }
+     },
+     "sides": [
+      "bday-sweetcorn-salsa"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-fruit-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Cold oat milk"
+      },
+      "alcoholic": {
+       "text": "Birthday rum punch",
+       "recipe": "bday-rum-punch"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "bolognese-vegan",
+   "name": "Spaghetti party",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Hummus cups, lentil bolognese, vegan chocolate chip cookies.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bday-hummus-cups",
+     "pairing": {
+      "soft": {
+       "text": "Pink lemonade",
+       "recipe": "bday-pink-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Prosecco"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bday-lentil-bolognese",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Sangiovese"
+      }
+     },
+     "sides": [
+      "bday-green-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bday-vegan-cookies",
+     "pairing": {
+      "soft": {
+       "text": "Cold oat milk"
+      },
+      "alcoholic": {
+       "text": "Raspberry sparkling fizz",
+       "recipe": "bday-raspberry-fizz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}
