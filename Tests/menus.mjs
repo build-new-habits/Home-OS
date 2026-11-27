@@ -1,4 +1,5 @@
-// Tests/menus.mjs — 27 Nov 2026 v2
+// Tests/menus.mjs — 27 Nov 2026 v3
+// v3: the luxury batch: 279 recipes, 58 menus; floors doubled; sake counts as a drink with alcohol.
 // v2: the second batch: 138 recipes, 29 menus; the floors rise with them.
 // Gate 18. Phase 38. Christmas recipes and menus.
 //
@@ -43,10 +44,10 @@ const { courseOf } = await import(pathToFileURL(path.join(REPO, 'js/data/courses
 const count = (pred) => xmas.filter(pred).length;
 const food = xmas.filter((r) => r.default_slot !== 'drink');
 check('Christmas is in the library index', index.files.some((f) => f.cuisine === 'Christmas' && f.count === xmas.length));
-check('at least 25 starters', count((r) => r.course === 'starter') >= 25);
-check('at least 35 mains', count((r) => r.course === 'main') >= 35);
-check('at least 25 puddings', count((r) => r.course === 'pudding') >= 25);
-check('at least 20 sides', count((r) => r.side === true) >= 20);
+check('at least 55 starters', count((r) => r.course === 'starter') >= 55);
+check('at least 70 mains', count((r) => r.course === 'main') >= 70);
+check('at least 55 puddings', count((r) => r.course === 'pudding') >= 55);
+check('at least 30 sides', count((r) => r.side === true) >= 30);
 const proteins = (r) => lib.proteinsOf(r);
 check('meat dishes', food.filter((r) => proteins(r).includes('meat')).length >= 5);
 check('fish dishes', food.filter((r) => r.ingredients.some((i) => /salmon|hake|cod|trout/.test(i.ref))).length >= 3);
@@ -54,7 +55,7 @@ check('shellfish dishes', food.filter((r) => r.ingredients.some((i) => /prawn|sc
 check('vegetarian dishes', food.filter((r) => (r.dietary_tags || []).includes('vegetarian')).length >= 12);
 check('vegan dishes', food.filter((r) => (r.dietary_tags || []).includes('vegan')).length >= 8);
 const drinks = xmas.filter((r) => r.default_slot === 'drink');
-const boozy = (r) => r.ingredients.some((i) => /^(wine-|sparkling-wine|cider-dry|spirit-40|orange-liqueur|port|sherry|beer-)/.test(i.ref));
+const boozy = (r) => r.ingredients.some((i) => /^(wine-.*|sparkling-wine|cider-dry|spirit-40|orange-liqueur|port|sherry|beer-.*|sake)$/.test(i.ref));
 check('soft drinks', drinks.filter((r) => !boozy(r)).length >= 5);
 check('drinks with alcohol', drinks.filter(boozy).length >= 4);
 
@@ -84,7 +85,7 @@ const BRANDS = /\b(cointreau|grand marnier|baileys|bailey's|tia maria|disaronno|
 const SHAME = /\b(simply|just|obviously|quickly|easy|easily|merely|guilt|cheat|naughty|sinful)\b/i;
 
 const list = doc.menus || [];
-check('at least 25 menus', list.length >= 25, String(list.length));
+check('at least 50 menus', list.length >= 50, String(list.length));
 const seen = new Set();
 for (const m of list) {
   const id = `menu ${m.slug}`;

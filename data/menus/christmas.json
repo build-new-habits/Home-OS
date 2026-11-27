@@ -1514,6 +1514,1473 @@
      }
     }
    ]
+  },
+  {
+   "slug": "lux-wellington-black-tie",
+   "name": "Black-tie beef Wellington",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Oysters, the classic Wellington, and a salted caramel tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-oysters-mignonette",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "Brut Champagne"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-beef-wellington-classic",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A mature claret (left-bank Bordeaux)"
+      }
+     },
+     "sides": [
+      "lux-truffle-mash",
+      "lux-glazed-chestnuts-shallots",
+      "lux-sprouts-pancetta-chestnut-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-salted-caramel-tart",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "Tawny port, 20 years old if you can"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-rib-of-beef-night",
+   "name": "Steakhouse Christmas",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Beef carpaccio, rib of beef with béarnaise, crème brûlée.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-beef-carpaccio-truffle",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A light Barbera or Valpolicella"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-rib-of-beef-bearnaise",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Malbec or a Napa Cabernet"
+      }
+     },
+     "sides": [
+      "lux-pommes-anna",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-creme-brulee-vanilla",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A Sauternes-style sweet white"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-short-rib-supper",
+   "name": "Slow-braised short rib supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Wild mushroom tartlets, glossy short rib, chocolate pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-wild-mushroom-tartlets-truffle",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-short-rib-red-wine",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Northern Rhône Syrah"
+      }
+     },
+     "sides": [
+      "lux-parsnip-purée-truffle",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-chocolate-pots-salted-caramel",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Banyuls or ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-duck-cherry-dinner",
+   "name": "Duck and cherries",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chicken liver parfait, pink duck with cherry and port, tarte tatin.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-duck-liver-parfait",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-duck-breast-cherry",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A red Burgundy (Pinot Noir)"
+      }
+     },
+     "sides": [
+      "lux-pommes-anna",
+      "lux-red-cabbage-port"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-tarte-tatin",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Calvados"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-lamb-pistachio",
+   "name": "Rack of lamb with pistachio",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Burrata with blood orange, pistachio lamb, cardamom panna cotta.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-burrata-blood-orange",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A crisp Vermentino"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-rack-of-lamb-pistachio",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Rioja Gran Reserva"
+      }
+     },
+     "sides": [
+      "lux-persian-jewelled-rice",
+      "lux-honey-roast-beetroot-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-cardamom-rose-panna-cotta",
+     "pairing": {
+      "soft": {
+       "text": "Chai-spiced white hot chocolate",
+       "recipe": "lux-chai-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-moroccan-lamb",
+   "name": "Moroccan lamb feast",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Sticky pomegranate quail, lamb shank tagine, saffron ice cream.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-quail-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A dry rosé from Provence"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-lamb-shanks-ras",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Lebanese red or a Grenache"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-honey-saffron-ice-cream",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "An orange Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-venison-chocolate",
+   "name": "Venison, blackberry and dark chocolate",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Seared venison twice over, with Mont Blanc to finish.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-venison-carpaccio-juniper",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-venison-loin-chocolate",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Barolo or Nebbiolo"
+      }
+     },
+     "sides": [
+      "lux-parsnip-purée-truffle",
+      "lux-gratin-celeriac-potato"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-chestnut-mont-blanc",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-porchetta-feast",
+   "name": "Porchetta feast",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Italian Christmas: figs with prosciutto, porchetta, panettone semifreddo.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-prosciutto-figs-burrata",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Prosecco Superiore"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-porchetta",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A Chianti Classico Riserva"
+      }
+     },
+     "sides": [
+      "lux-duck-fat-potatoes-rosemary",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-panettone-semifreddo",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A glass of Marsala"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-french-bistro",
+   "name": "French bistro Christmas",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Celeriac remoulade, pork with prunes and Armagnac, clafoutis.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-celeriac-remoulade-ham",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling apple and elderflower"
+      },
+      "alcoholic": {
+       "text": "A Chablis"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-pork-fillet-prunes-armagnac",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A Cahors or Madiran"
+      }
+     },
+     "sides": [
+      "lux-pommes-anna",
+      "xmas-creamed-leeks"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-amaretto-cherry-clafoutis",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A small Armagnac"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-korean-feast",
+   "name": "Korean-inspired feast",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Kimchi oysters, braised short ribs, lychee granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-oyster-kimchi",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-korean-short-ribs",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling or a Zinfandel"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-lychee-ginger-granita",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A chilled plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-turkey-ballotine-dinner",
+   "name": "Turkey ballotine for a smaller table",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Smoked salmon and caviar, a rolled stuffed turkey, profiteroles.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-smoked-salmon-caviar-blinis",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Classic Champagne cocktail",
+       "recipe": "lux-champagne-cocktail"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-turkey-ballotine",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais Cru such as Morgon"
+      }
+     },
+     "sides": [
+      "lux-duck-fat-potatoes-rosemary",
+      "lux-glazed-chestnuts-shallots",
+      "xmas-bread-sauce",
+      "xmas-turkey-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-hazelnut-praline-profiteroles",
+     "pairing": {
+      "soft": {
+       "text": "Chai-spiced white hot chocolate",
+       "recipe": "lux-chai-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A cream sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-turbot-champagne-dinner",
+   "name": "Turbot and Champagne",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Scallop crudo, turbot in Champagne butter, blood orange cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-scallop-crudo-yuzu",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-turbot-champagne",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "The same Champagne you cooked with"
+      }
+     },
+     "sides": [
+      "lux-truffle-mash"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-blood-orange-polenta-cake",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-japanese-christmas",
+   "name": "Japanese-style Christmas",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Tuna tartare, miso black cod, yuzu tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-tuna-tartare-avocado",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-miso-black-cod",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A chilled junmai sake"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-yuzu-tart",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A sweet umeshu (plum wine)"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-mediterranean-fish",
+   "name": "Mediterranean fish supper",
+   "diet": "fish",
+   "serves": 6,
+   "summary": "Sea bream ceviche, bouillabaisse with rouille, grapefruit sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-hamachi-style-sea-bream",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-seafood-bouillabaisse",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A Bandol or Provence rosé"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-grapefruit-campari-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Moscato d'Asti"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-salmon-coulibiac-dinner",
+   "name": "Salmon coulibiac",
+   "diet": "fish",
+   "serves": 8,
+   "summary": "Gravlax, a golden coulibiac, and a white chocolate cheesecake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-gravlax-dill-mustard",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "An ice-cold aquavit or a dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-salmon-coulibiac",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     },
+     "sides": [
+      "xmas-creamed-leeks"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-white-chocolate-cheesecake-raspberry",
+     "pairing": {
+      "soft": {
+       "text": "Chai-spiced white hot chocolate",
+       "recipe": "lux-chai-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A demi-sec Champagne"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-halibut-dinner",
+   "name": "Halibut and brown butter",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Torched mackerel, halibut with capers and prawns, pear frangipane.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-smoked-mackerel-beetroot-horseradish",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Muscadet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-halibut-brown-shrimp",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A Meursault-style Chardonnay"
+      }
+     },
+     "sides": [
+      "lux-truffle-mash",
+      "xmas-garlic-cavolo-nero"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-pear-frangipane-tart",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A Tokaji"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-indian-christmas",
+   "name": "Kerala Christmas",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Prawn tempura, Kerala halibut curry, mango sticky rice.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-king-prawn-tempura",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-kerala-halibut-curry",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer or Viognier"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-coconut-mango-sticky-rice",
+     "pairing": {
+      "soft": {
+       "text": "Chai-spiced white hot chocolate",
+       "recipe": "lux-chai-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-lobster-thermidor-night",
+   "name": "Lobster thermidor night",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Langoustines, lobster thermidor, chocolate soufflés.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-langoustines-garlic-butter",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-lobster-thermidor",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy or vintage Champagne"
+      }
+     },
+     "sides": [
+      "lux-pommes-anna"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-chocolate-orange-souffle",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "An orange liqueur over ice"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-crab-and-lobster",
+   "name": "Crab and lobster",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Lobster bisque, crab linguine, passion fruit pavlova.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-lobster-bisque",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-crab-linguine-chilli",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Gavi di Gavi"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-passion-fruit-pavlova",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "Passion fruit fizz martini",
+       "recipe": "lux-passion-fruit-martini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-cantonese-banquet",
+   "name": "Cantonese banquet",
+   "diet": "shellfish",
+   "serves": 2,
+   "summary": "Crispy duck pancakes, ginger and spring onion lobster, lychee granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-crispy-duck-pancakes",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-ginger-spring-onion-lobster",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-lychee-ginger-granita",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A chilled plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-scallop-risotto-dinner",
+   "name": "Scallops and risotto",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Crab thermidor pots, scallop risotto, lemon-bright yuzu tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-crab-thermidor-pots",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Chablis Premier Cru"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-scallop-pea-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cranberry spritz",
+       "recipe": "xmas-elderflower-cranberry-spritz"
+      },
+      "alcoholic": {
+       "text": "A Soave Classico"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-yuzu-tart",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-truffle-vegetarian",
+   "name": "Truffle and mushroom celebration",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Artichoke soup, wild mushroom risotto, chocolate fondants.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-jerusalem-artichoke-soup-truffle",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-mushroom-truffle-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Barolo or aged Nebbiolo"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "xmas-chocolate-fondants",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-beetroot-wellington-dinner",
+   "name": "Beetroot Wellington Christmas",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Goats' cheese soufflés, a ruby beetroot Wellington, Mont Blanc.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-goats-cheese-souffle",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-beetroot-wellington",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     },
+     "sides": [
+      "lux-gratin-celeriac-potato",
+      "lux-glazed-chestnuts-shallots",
+      "xmas-vegan-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-chestnut-mont-blanc",
+     "pairing": {
+      "soft": {
+       "text": "Gingerbread latte",
+       "recipe": "xmas-gingerbread-latte"
+      },
+      "alcoholic": {
+       "text": "A cream sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-italian-vegetarian",
+   "name": "Italian vegetarian feast",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Saffron arancini, aubergine parmigiana with burrata, tiramisu.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-pea-truffle-arancini",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Prosecco Superiore"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-aubergine-parmigiana-burrata",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Chianti Classico"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-tiramisu-espresso-martini",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-celeriac-centrepiece",
+   "name": "Whole roast celeriac",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Chicory tarte tatin, truffled whole celeriac, rhubarb trifle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-chicory-tarte-tatin",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A dry Vouvray"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-celeriac-wellington-truffle",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "An oaked white Rioja"
+      }
+     },
+     "sides": [
+      "lux-persian-jewelled-rice",
+      "lux-sprouts-pancetta-chestnut-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-rhubarb-custard-trifle",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea",
+       "recipe": "xmas-spiced-orange-tea"
+      },
+      "alcoholic": {
+       "text": "A Moscato d'Asti"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-vegan-pithivier",
+   "name": "Vegan pithivier Christmas",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Miso aubergine, a domed mushroom pithivier, espresso silk tart.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-miso-aubergine",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "A junmai sake"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-chestnut-mushroom-pithivier",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir labelled vegan"
+      }
+     },
+     "sides": [
+      "xmas-roast-potatoes",
+      "lux-red-cabbage-port",
+      "lux-glazed-chestnuts-shallots",
+      "xmas-vegan-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-espresso-chocolate-torte-vegan",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "An orange liqueur labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-vegan-moroccan",
+   "name": "Vegan Moroccan feast",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Beetroot tartare, saffron squash tagine, persimmon salad.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-beetroot-tartare",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A dry rosé labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-squash-saffron-tagine",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and ginger fizz",
+       "recipe": "xmas-pomegranate-ginger-fizz"
+      },
+      "alcoholic": {
+       "text": "A Grenache labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-persimmon-pomegranate-salad",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced orange and clove tea (maple, not honey)"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-vegan-romesco",
+   "name": "Vegan Spanish supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Chestnut soup, cauliflower steaks with romesco, chocolate chilli pots.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "xmas-chestnut-mushroom-soup",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A fino sherry labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-cauliflower-steak-romesco",
+     "pairing": {
+      "soft": {
+       "text": "Mulled cranberry and pomegranate",
+       "recipe": "lux-virgin-mulled-cranberry"
+      },
+      "alcoholic": {
+       "text": "A Tempranillo labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-chocolate-chilli-pots",
+     "pairing": {
+      "soft": {
+       "text": "Spiced vegan hot chocolate",
+       "recipe": "xmas-vegan-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez labelled vegan"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "lux-vegan-katsu",
+   "name": "Vegan Japanese supper",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Miso aubergine, sesame tofu katsu, mango sticky rice.",
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "lux-miso-aubergine",
+     "pairing": {
+      "soft": {
+       "text": "Lychee, ginger and lime sparkler",
+       "recipe": "lux-ginger-lychee-sparkler"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "lux-tofu-katsu-curry",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-coconut-mango-sticky-rice",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A plum wine labelled vegan"
+      }
+     }
+    }
+   ]
   }
  ]
 }

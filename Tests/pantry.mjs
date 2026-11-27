@@ -87,10 +87,11 @@ const ALCOHOL = /\b(wine|beer|lager|cider|spirit|brandy|port|sherry|liqueur|gin|
 // Published figures that do not add up by the general factors, for a reason:
 //   balsamic vinegar   acetic acid carries energy
 //   baking powder      the table counts it this way
+//   nori               seaweed fibre gives almost no energy; CoFID counts it so
 //   USDA spices, cocoa and herb blends: USDA energy uses specific factors and
 //                      counts more of the fibre, so its kcal runs higher
 const ENERGY_OK = new Set(['balsamic-vinegar', 'baking-powder', 'cocoa-powder', 'coriander-ground', 'turmeric-ground',
-  'cayenne-pepper', 'cloves', 'allspice', 'five-spice', 'dried-mixed-herbs', 'fresh-rosemary', 'fresh-thyme']);
+  'cayenne-pepper', 'cloves', 'allspice', 'five-spice', 'dried-mixed-herbs', 'fresh-rosemary', 'fresh-thyme', 'nori']);
 for (const f of foods) {
   if (ENERGY_OK.has(f.slug)) continue;
   const calc = 4 * f.protein_g + 9 * f.fat_g + 3.75 * f.carbs_g + 2 * f.fibre_g;
