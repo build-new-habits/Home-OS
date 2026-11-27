@@ -426,6 +426,52 @@ SPEC = [
   dict(slug='coconut-yoghurt', name='Coconut yoghurt', category='food_fresh', aliases=['coconut yogurt', 'dairy free yoghurt', 'vegan yoghurt'], grams_per_ml=1.03,
        src=('label', 130, 1.0, 11.0, 6.0, 0.5, LABEL)),
 
+  # ---------------- Chefs' Christmas batch (27 Nov 2026, night) ----------------
+  dict(slug='black-garlic', name='Black garlic', category='food_ambient', aliases=['black garlic cloves', 'fermented garlic'], grams_per_item=5, item_label='clove',
+       src=('label', 195, 6.0, 0.5, 40.0, 3.0, LABEL)),
+  dict(slug='sour-cherries-dried', name='Dried sour cherries', category='food_ambient', aliases=['sour cherries', 'dried cherries', 'morello cherries dried'], grams_per_ml=0.6,
+       src=('label', 315, 1.0, 0.5, 75.0, 3.0, LABEL)),
+  dict(slug='radicchio', name='Radicchio', category='food_fresh', aliases=['treviso'], grams_per_item=250, item_label='head',
+       src=('us', 'Radicchio, raw')),
+  dict(slug='labneh', name='Labneh', category='food_fresh', aliases=['labne', 'strained yoghurt cheese'], grams_per_ml=1.1,
+       src=('label', 138, 8.0, 10.0, 4.0, 0.0, LABEL)),
+  dict(slug='preserved-lemon', name='Preserved lemon', category='food_ambient', aliases=['preserved lemons', 'salted lemon'], grams_per_item=40, item_label='lemon',
+       src=('label', 19, 0.5, 0.5, 2.0, 2.0, LABEL)),
+  dict(slug='orange-blossom-water', name='Orange blossom water', category='food_ambient', aliases=['orange flower water'], grams_per_ml=1.0,
+       src=('label', 0, 0.0, 0.0, 0.0, 0.0, 'Distilled flower water: UK bottle labels give nil for every figure.')),
+  dict(slug='chilli-flakes', name='Chilli flakes', category='food_ambient', aliases=['pul biber', 'aleppo pepper', 'urfa chilli', 'urfa biber', 'dried chilli flakes', 'crushed chillies'], grams_per_ml=0.4,
+       src=('label', 334, 12.0, 14.0, 25.0, 30.0, LABEL)),
+  dict(slug='bulgur', name='Bulgur wheat', category='food_ambient', aliases=['bulgar wheat', 'cracked wheat'], grams_per_ml=0.75,
+       src=('uk', 'Wheat, bulgur, raw')),
+  dict(slug='freekeh', name='Freekeh', category='food_ambient', aliases=['green wheat', 'frikeh'], grams_per_ml=0.75,
+       src=('label', 345, 12.5, 2.5, 62.0, 12.0, LABEL)),
+  dict(slug='malted-milk-powder', name='Malted milk powder', category='food_ambient', aliases=['malt powder', 'malted drink powder'], grams_per_ml=0.45,
+       src=('label', 405, 10.0, 7.0, 75.0, 1.0, LABEL)),
+  dict(slug='pecorino', name='Pecorino', category='food_fresh', aliases=['pecorino romano', 'sheep cheese'], grams_per_ml=0.45,
+       src=('label', 398, 32.0, 30.0, 0.0, 0.0, LABEL)),
+  dict(slug='nduja', name="'Nduja", category='food_fresh', aliases=['nduja', 'spreadable salami', 'spicy salami paste'], grams_per_ml=1.0,
+       src=('label', 461, 12.0, 45.0, 2.0, 0.0, LABEL)),
+  dict(slug='plantain', name='Plantain', category='food_fresh', aliases=['plantains', 'ripe plantain'], grams_per_item=250, item_label='plantain',
+       src=('uk', 'Plantain, green flesh, raw'), basis_extra='One plantain is about 250 g of flesh.'),
+  dict(slug='paneer', name='Paneer', category='food_fresh', aliases=['indian cheese'], grams_per_item=225, item_label='block',
+       src=('uk', 'Cheese, Paneer')),
+  dict(slug='polenta-dry', name='Polenta', category='food_ambient', aliases=['polenta', 'cornmeal', 'quick-cook polenta'], grams_per_ml=0.7,
+       src=('uk', 'Cornmeal, sifted'), basis_extra='Sifted cornmeal figures stand in for dry polenta.'),
+  dict(slug='clams', name='Clams', category='food_fresh', aliases=['palourde clams', 'vongole', 'cockles'], grams_per_item=12, item_label='clam',
+       src=('label', 71, 12.8, 1.0, 2.6, 0.0, 'Meat only, raw: typical published average (USDA mixed clams); one clam in its shell gives about 12 g of meat.')),
+  dict(slug='halva', name='Halva', category='food_ambient', aliases=['halvah', 'tahini halva'], grams_per_ml=0.7,
+       src=('label', 526, 12.0, 30.0, 50.0, 4.0, LABEL)),
+  dict(slug='chestnut-puree-sweet', name='Sweet chestnut purée', category='food_ambient', aliases=['chestnut spread', 'creme de marrons', 'sweetened chestnut puree'], grams_per_ml=1.3,
+       src=('label', 240, 1.5, 1.0, 55.0, 2.5, LABEL)),
+  dict(slug='jerk-paste', name='Jerk paste', category='food_ambient', aliases=['jerk seasoning', 'jerk marinade'], grams_per_ml=1.1,
+       src=('label', 107, 2.0, 5.0, 12.0, 3.0, LABEL)),
+  dict(slug='dukkah', name='Dukkah', category='food_ambient', aliases=['dukka', 'duqqa'], grams_per_ml=0.45,
+       src=('blend', {'hazelnuts': 50, 'sesame-seeds': 25, 'coriander-ground': 15, 'cumin-ground': 10}, 'Worked out from its parts: hazelnuts, sesame, coriander and cumin, by weight 50:25:15:10.')),
+  dict(slug='vermouth', name='Vermouth', category='drink', aliases=['dry vermouth', 'sweet vermouth', 'aromatised wine', 'rosso vermouth'], grams_per_ml=1.0,
+       src=('uk', 'Vermouth, dry')),
+  dict(slug='bitter-aperitivo', name='Bitter aperitivo liqueur', category='drink', aliases=['campari', 'aperol', 'bitter aperitif', 'red bitter'], grams_per_ml=1.05,
+       src=('label', 230, 0.0, 0.0, 26.0, 0.0, 'About 25% alcohol with sugar: typical of UK bottle labels per 100 g.')),
+
   # ---------------- Drinks and alcohol ----------------
   # Coffee had no figures at all. Instant dissolves, so it is the powder;
   # ground coffee is what the grounds give the cup, the way tea bags are.
@@ -467,6 +513,8 @@ ALIAS_DROPS = {
     'breadcrumbs-dried': ['panko'],
     'paprika': ['smoked paprika'],
     'bacon-streaky-grilled': ['streaky bacon', 'smoked streaky bacon'],
+    'rose-water': ['orange blossom water', 'orange flower water'],
+    'chicory': ['red chicory'],
 }
 
 # Older entries whose USDA carbohydrate included fibre but which a strict
@@ -484,7 +532,7 @@ DENSITY_ADD = {
     'couscous-dry': 0.75, 'rice-basmati-dry': 0.85, 'rice-arborio-dry': 0.85, 'lentils-red-dry': 0.8,
     'quinoa-dry': 0.75, 'parmesan': 0.45, 'cheddar-cheese': 0.45, 'raisins': 0.6, 'sweet-chilli-sauce': 1.3,
     'fresh-parsley': 0.2, 'fresh-coriander': 0.2, 'fresh-basil': 0.2, 'fresh-mint': 0.2, 'ginger-fresh': 0.6,
-    'spinach': 0.1, 'peas-frozen': 0.6, 'capers': 0.6, 'olives-pitted': 0.6, 'walnuts': 0.45, 'almonds': 0.6, 'cashews': 0.55, 'custard-ready': 1.05, 'cream-cheese': 1.0, 'chopped-tomatoes-tinned': 1.05,
+    'spinach': 0.1, 'peas-frozen': 0.6, 'capers': 0.6, 'olives-pitted': 0.6, 'walnuts': 0.45, 'almonds': 0.6, 'cashews': 0.55, 'custard-ready': 1.05, 'ice-cream-vanilla': 0.55, 'cream-cheese': 1.0, 'chopped-tomatoes-tinned': 1.05,
 }
 
 LEGACY_BASIS = 'Published average from the original reference set (USDA or McCance and Widdowson).'

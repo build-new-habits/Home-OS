@@ -2981,6 +2981,3663 @@
      }
     }
    ]
+  },
+  {
+   "slug": "chef-harissa-ham-feast",
+   "name": "Orange harissa ham feast",
+   "diet": "meat",
+   "serves": 10,
+   "summary": "Whipped feta, a glazed ham, and a pistachio and sour cherry pavlova.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-whipped-feta-honey-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "Blood orange aperitivo spritz",
+       "recipe": "chef-blood-orange-aperitivo-spritz"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-ham-orange-harissa-glaze",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A juicy Grenache or Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "chef-lemon-coriander-seed-roasties",
+      "chef-harissa-carrots-pomegranate",
+      "chef-red-cabbage-apple-pomegranate-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-sour-cherry-pavlova",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-zaatar-turkey-dinner",
+   "name": "Za'atar turkey Christmas",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Gougères, a za'atar and lemon turkey, chocolate clementine semifreddo.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-gougeres-gruyere",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "French 75",
+       "recipe": "chef-french-75"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-turkey-crown-zaatar-lemon",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "An oaked white Rioja"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf",
+      "chef-sprouts-burnt-butter-black-garlic",
+      "chef-parsnips-maple-parmesan-pepper",
+      "chef-cranberry-orange-port-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-clementine-semifreddo",
+     "pairing": {
+      "soft": {
+       "text": "Salted caramel hot chocolate",
+       "recipe": "chef-salted-caramel-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "An orange Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-classic-turkey-sage",
+   "name": "The careful classic",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Prawn and crab platter, sage-butter turkey with every trimming, mince pie frangipane tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-scandi-seafood-platter",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "Clementine mimosa",
+       "recipe": "chef-clementine-mimosa"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-turkey-sage-butter-roast",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais Cru"
+      }
+     },
+     "sides": [
+      "chef-lemon-coriander-seed-roasties",
+      "chef-pigs-blankets-maple-chilli",
+      "chef-sausage-chestnut-stuffing-balls",
+      "chef-carrots-orange-star-anise",
+      "chef-cranberry-orange-port-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-mince-pie-frangipane-tart",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-turkey-porchetta-night",
+   "name": "Turkey porchetta",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Prosciutto figs, a rolled turkey porchetta, panettone tiramisu.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-prosciutto-figs-goats-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "Negroni sbagliato",
+       "recipe": "chef-negroni-sbagliato"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-turkey-porchetta",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Chianti Classico"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary",
+      "chef-roast-fennel-orange-olive",
+      "chef-roast-radicchio-orange-honey"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-panettone-tiramisu",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-sunday-best-beef",
+   "name": "Sunday best roast beef",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "French onion soup, horseradish-crusted topside, sticky treacle sponge.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-french-onion-soup",
+     "pairing": {
+      "soft": {
+       "text": "Apple, ginger and rosemary sparkle",
+       "recipe": "xmas-apple-rosemary-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-topside-horseradish-crust",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "chef-yorkshire-puddings",
+      "chef-hasselback-potatoes-sage",
+      "chef-carrot-swede-mash",
+      "chef-red-wine-onion-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-steamed-treacle-sponge",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Semillon"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-bourguignon-pie-supper",
+   "name": "Bourguignon pie supper",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Leeks vinaigrette, beef bourguignon pie, orange crème caramel.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-leeks-vinaigrette-egg-hazelnut",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-beef-bourguignon-pie",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A red Burgundy"
+      }
+     },
+     "sides": [
+      "chef-creamed-spinach-nutmeg",
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-orange-creme-caramel",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Armagnac"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-rendang-feast",
+   "name": "Indonesian rendang feast",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Crab and mango lettuce cups, beef rendang with sprout nasi goreng, coconut lime tres leches.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-crab-mango-lettuce-cups",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-beef-rendang",
+     "pairing": {
+      "soft": {
+       "text": "Pineapple and ginger punch",
+       "recipe": "chef-pineapple-ginger-punch"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-coconut-lime-tres-leches",
+     "pairing": {
+      "soft": {
+       "text": "Virgin piña colada",
+       "recipe": "chef-virgin-pina-colada"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "chef-dark-and-stormy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-salsa-verde-beef",
+   "name": "Beef fillet with salsa verde",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Burrata with roast grapes, rosy beef fillet, chocolate hazelnut tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-burrata-roast-grapes",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "Vermouth and tonic with orange",
+       "recipe": "chef-vermouth-tonic"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-beef-fillet-salsa-verde",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Brunello or Montepulciano"
+      }
+     },
+     "sides": [
+      "chef-dauphinoise",
+      "chef-balsamic-roast-shallots",
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-hazelnut-tart",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "Espresso martini",
+       "recipe": "chef-espresso-martini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-anchovy-lamb-lunch",
+   "name": "Long lamb lunch",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Labneh with crispy chickpeas, anchovy and rosemary lamb, roast figs with orange blossom.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-labneh-zaatar-crispy-chickpeas",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A crisp Assyrtiko"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-lamb-leg-anchovy-rosemary",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Rioja Reserva"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary",
+      "chef-roast-fennel-orange-olive",
+      "chef-freekeh-pomegranate-herbs"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-roast-figs-orange-blossom-labneh",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-indian-christmas-feast",
+   "name": "Indian Christmas feast",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Paneer tikka, slow-roast spiced lamb, saffron pistachio kheer.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-paneer-tikka-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Cardamom mango lassi",
+       "recipe": "chef-cardamom-mango-lassi"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-raan-spiced-lamb",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer or Viognier"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-saffron-pistachio-kheer",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "An orange Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-celebration-rice-table",
+   "name": "Celebration rice table",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Squash hummus with dukkah, a celebration pilaf with lamb and chicken, tahini brownies.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-squash-hummus-dukkah",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-celebration-rice-lamb-chicken",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Lebanese red"
+      }
+     },
+     "sides": [
+      "chef-red-cabbage-apple-pomegranate-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-tahini-chocolate-brownies",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-persian-shanks",
+   "name": "Persian lamb shanks",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Halloumi with pomegranate, saffron lamb shanks with sour cherries, cardamom kulfi.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-halloumi-pomegranate-zaatar",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-persian-lamb-shanks-sour-cherry",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Syrah"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-mango-kulfi",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-meatball-supper",
+   "name": "Christmas Eve meatballs",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Pickled squash toasts, lamb meatballs with pomegranate, baklava.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-pickled-squash-cannellini-toasts",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-lamb-meatballs-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Turkish or Greek red"
+      }
+     },
+     "sides": [
+      "chef-freekeh-pomegranate-herbs"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-baklava",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-pork-belly-cider",
+   "name": "Pork belly and cider",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Mussels in cider, slow pork belly with fennel and apples, apple and blackberry crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-mussels-cider-leek",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-pork-belly-cider-fennel",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry Normandy cider or Chenin Blanc"
+      }
+     },
+     "sides": [
+      "chef-hasselback-potatoes-sage",
+      "chef-sprouts-burnt-butter-black-garlic"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-apple-blackberry-hazelnut-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A small Calvados"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-saltimbocca-supper",
+   "name": "Roman supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Sprout Caesar, pork saltimbocca, zabaglione with berries.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-sprout-caesar",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Frascati"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-pork-saltimbocca-tenderloin",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Montepulciano d'Abruzzo"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary",
+      "chef-petits-pois-pancetta"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-zabaglione-berries",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Marsala"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-christmas-eve-buffet",
+   "name": "Christmas Eve buffet",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Devils on horseback, a sausage roll wreath, chocolate salami.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-devils-on-horseback-port",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "Blackberry and thyme royale",
+       "recipe": "chef-blackberry-royale"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-sausage-roll-wreath",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "Mulled white wine with pear",
+       "recipe": "chef-mulled-white-wine-pear"
+      }
+     },
+     "sides": [
+      "chef-red-cabbage-apple-pomegranate-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-salami",
+     "pairing": {
+      "soft": {
+       "text": "Salted caramel hot chocolate",
+       "recipe": "chef-salted-caramel-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Hot buttered rum",
+       "recipe": "chef-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-tropical-gammon",
+   "name": "Tropical gammon",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Gambas al ajillo, pineapple and chilli gammon, mango and passion fruit pavlova wreath.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-gambas-al-ajillo",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A chilled fino"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-gammon-pineapple-chilli",
+     "pairing": {
+      "soft": {
+       "text": "Pineapple and ginger punch",
+       "recipe": "chef-pineapple-ginger-punch"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     },
+     "sides": [
+      "chef-sweet-potato-mash-lime",
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-tropical-pavlova-wreath",
+     "pairing": {
+      "soft": {
+       "text": "Virgin piña colada",
+       "recipe": "chef-virgin-pina-colada"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "chef-dark-and-stormy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-duck-lentils-bistro",
+   "name": "Duck and lentils bistro",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chicken liver crostini, slow duck legs with lentils, dark chocolate mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-chicken-liver-crostini",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry amontillado sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-duck-legs-orange-lentils",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Cahors Malbec"
+      }
+     },
+     "sides": [
+      "chef-roast-radicchio-orange-honey"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-olive-oil-chocolate-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Banyuls"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-five-spice-duck",
+   "name": "Five-spice duck",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Duck filo cigars, five-spice duck breast with plums, lychee granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-duck-filo-cigars-plum",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-duck-breast-plum-five-spice",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-lychee-ginger-granita",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A chilled plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-game-night",
+   "name": "Game night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Pheasant terrine, pot-roast pheasant with cider, plum crumble cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-game-terrine-pistachio",
+     "pairing": {
+      "soft": {
+       "text": "Cranberry and rosemary shrub",
+       "recipe": "lux-cranberry-rosemary-shrub"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-pheasant-cider-apple",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider or white Burgundy"
+      }
+     },
+     "sides": [
+      "chef-fondant-swede-gratin",
+      "chef-carrots-orange-star-anise"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-plum-almond-crumble-cake",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-quail-supper",
+   "name": "Quail and grapes",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Pear and pecorino salad, sumac quail with grapes and freekeh, white chocolate cardamom mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-pear-prosciutto-pecorino-salad",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Soave"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-quail-sumac-grapes",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-white-chocolate-cardamom-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A demi-sec sparkling wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-venison-pie-night",
+   "name": "Venison pie night",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Celeriac and apple soup, venison and juniper pie, Black Forest trifle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-celeriac-apple-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry Chenin Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-venison-juniper-pie",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Northern Rhône Syrah"
+      }
+     },
+     "sides": [
+      "chef-carrot-swede-mash",
+      "chef-creamed-spinach-nutmeg"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-black-forest-trifle",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-venison-ragu-supper",
+   "name": "Venison ragù supper",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Jerusalem artichoke salad, slow venison ragù, roast plums with port.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-jerusalem-artichoke-hazelnut-salad",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Verdicchio"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-venison-ragu",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Nebbiolo"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-roast-plums-port-mascarpone",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-moroccan-chicken",
+   "name": "Moroccan chicken",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Harissa carrots on labneh, chicken tagine with preserved lemon, clementine almond cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-harissa-carrots-labneh",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-chicken-tagine-preserved-lemon",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-whole-clementine-almond-cake",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "An orange Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-caribbean-christmas",
+   "name": "Caribbean Christmas",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Salt and pepper squid, jerk chicken with rice and peas, coconut lime tres leches.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-salt-pepper-squid",
+     "pairing": {
+      "soft": {
+       "text": "Pineapple and ginger punch",
+       "recipe": "chef-pineapple-ginger-punch"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-jerk-chicken-rice-peas",
+     "pairing": {
+      "soft": {
+       "text": "Pineapple and ginger punch",
+       "recipe": "chef-pineapple-ginger-punch"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "chef-dark-and-stormy"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-coconut-lime-tres-leches",
+     "pairing": {
+      "soft": {
+       "text": "Virgin piña colada",
+       "recipe": "chef-virgin-pina-colada"
+      },
+      "alcoholic": {
+       "text": "Hot buttered rum",
+       "recipe": "chef-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-butter-chicken-night",
+   "name": "Butter chicken night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Tandoori prawns, butter chicken, mango kulfi.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-tandoori-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Cardamom mango lassi",
+       "recipe": "chef-cardamom-mango-lassi"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-chicken-makhani",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-mango-kulfi",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-pie-and-trifle",
+   "name": "Pie and trifle",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Smoked mackerel pâté, chicken and tarragon cider pie, ginger nut pear trifle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-smoked-mackerel-pate-pickles",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Muscadet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-chicken-cider-tarragon-pie",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     },
+     "sides": [
+      "chef-green-beans-almond-brown-butter",
+      "chef-carrots-orange-star-anise"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-ginger-nut-pear-trifle",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A cream sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-nduja-traybake-supper",
+   "name": "One-tray Christmas week",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Kimchi pancakes, 'nduja chicken with butter beans, banoffee pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-kimchi-pancakes",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-nduja-chicken-butter-beans",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Primitivo"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-banoffee-pie",
+     "pairing": {
+      "soft": {
+       "text": "Salted caramel hot chocolate",
+       "recipe": "chef-salted-caramel-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Maple whisky sour",
+       "recipe": "chef-maple-whisky-sour"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-boxing-day-laksa",
+   "name": "Boxing Day laksa",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Sesame prawn toast, turkey laksa, passion fruit posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-sesame-prawn-toast",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-turkey-laksa",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-passion-fruit-posset",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-jewelled-salmon-table",
+   "name": "Jewelled salmon",
+   "diet": "fish",
+   "serves": 8,
+   "summary": "Beetroot-cured salmon, a jewelled side of salmon, lemon posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-beetroot-cured-salmon",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "An ice-cold aquavit or dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-jewelled-salmon-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     },
+     "sides": [
+      "chef-lemon-coriander-seed-roasties",
+      "chef-freekeh-pomegranate-herbs"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-lemon-posset-shortbread",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A demi-sec sparkling wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-cantonese-sea-bass",
+   "name": "Cantonese sea bass",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Tuna tataki, steamed sea bass with sizzling ginger, lychee granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-tuna-tataki-ponzu",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-sea-bass-ginger-spring-onion",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A chilled junmai sake"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-lychee-ginger-granita",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-whole-bream-lunch",
+   "name": "Whole fish lunch",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Whipped ricotta with grapes, whole sea bream with preserved lemon, pomegranate granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-whipped-ricotta-roast-grapes",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Vermentino"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-sea-bream-preserved-lemon",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "An Assyrtiko"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pomegranate-sparkling-granita",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Moscato d'Asti"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-spanish-hake",
+   "name": "Spanish hake supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Clams with sherry and chorizo, hake with butter beans and saffron, cherry Bakewell.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-clams-sherry-chorizo",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "Sherry cobbler",
+       "recipe": "chef-sherry-cobbler"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-hake-chorizo-butter-beans",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "An Albariño"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-cherry-bakewell-tart",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-cod-lentils-supper",
+   "name": "Cod and lentils",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Smoked trout pâté, herb-crusted cod on lentils, rhubarb almond cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-smoked-trout-pate",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-cod-herb-crust-lentils",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Chablis"
+      }
+     },
+     "sides": [
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-rhubarb-almond-cake",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-monkfish-romesco-dinner",
+   "name": "Monkfish and romesco",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Cod brandade, roast monkfish with romesco, olive oil chocolate mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-cod-brandade",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-monkfish-romesco",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A white Rioja"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-olive-oil-chocolate-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-boxing-day-brunch",
+   "name": "Boxing Day brunch",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Salmon rillettes, hot-smoked salmon kedgeree, croissant chocolate pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-salmon-rillettes",
+     "pairing": {
+      "soft": {
+       "text": "Spiced virgin Mary",
+       "recipe": "chef-spiced-virgin-mary"
+      },
+      "alcoholic": {
+       "text": "Clementine mimosa",
+       "recipe": "chef-clementine-mimosa"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-smoked-salmon-kedgeree",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-croissant-chocolate-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Salted caramel hot chocolate",
+       "recipe": "chef-salted-caramel-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Espresso martini",
+       "recipe": "chef-espresso-martini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-tuna-beans-supper",
+   "name": "Tuna and beans",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Avocado, grapefruit and crab, seared tuna with salsa verde, affogato.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-avocado-grapefruit-crab",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Vinho Verde"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-tuna-salsa-verde-beans",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A light Pinot Noir, chilled"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-affogato",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "An amaretto-style liqueur"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-teriyaki-salmon-supper",
+   "name": "Teriyaki salmon",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Salmon tartare with yuzu, sticky teriyaki salmon, passion fruit posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-salmon-tartare-yuzu",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "Yuzu and sake highball",
+       "recipe": "lux-sake-yuzu-highball"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-salmon-teriyaki",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-passion-fruit-posset",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-greek-fish-supper",
+   "name": "Greek island supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Baked feta with pomegranate, sea bream with tomatoes and olives, baklava.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-baked-feta-pomegranate-sumac",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "An Assyrtiko"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-sea-bream-greek-tomato",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Greek white"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-baklava",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A Muscat of Samos"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-chowder-night",
+   "name": "Chowder night",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Cheese straws, smoked haddock chowder, sticky ginger parkin.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-cheese-straws-cumin",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-smoked-haddock-chowder",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-ginger-parkin",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "Hot toddy",
+       "recipe": "chef-hot-toddy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-goan-fish-feast",
+   "name": "Goan fish feast",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Roast cauliflower soup with curry leaves, Goan cod curry, kheer.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-curry-leaf-cauliflower-soup",
+     "pairing": {
+      "soft": {
+       "text": "Cardamom mango lassi",
+       "recipe": "chef-cardamom-mango-lassi"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-goan-fish-curry",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-saffron-pistachio-kheer",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-papillote-supper",
+   "name": "Parcels of salmon",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Beetroot carpaccio, salmon en papillote, chocolate orange pots de crème.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-beetroot-carpaccio-horseradish",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-salmon-papillote-citrus-fennel",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     },
+     "sides": [
+      "chef-hasselback-potatoes-sage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-orange-pots-de-creme",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Chocolate orange martini",
+       "recipe": "chef-chocolate-orange-martini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-vol-au-vent-party",
+   "name": "Seventies revival",
+   "diet": "shellfish",
+   "serves": 6,
+   "summary": "Lobster vol-au-vents, prawn and crab platter for the table, Christmas baked Alaska.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-lobster-vol-au-vents",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "Blackberry and thyme royale",
+       "recipe": "chef-blackberry-royale"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-shellfish-grill-garlic-butter",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Picpoul or Chablis"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-christmas-baked-alaska",
+     "pairing": {
+      "soft": {
+       "text": "Salted caramel hot chocolate",
+       "recipe": "chef-salted-caramel-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A demi-sec sparkling wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-lobster-mac-night",
+   "name": "Lobster mac night",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Crab crumpets, lobster mac and cheese, lemon posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-crab-crumpets-brown-butter",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Champagne-method sparkling wine"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-lobster-mac-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-lemon-posset-shortbread",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-lobster-for-two",
+   "name": "Lobster for two",
+   "diet": "shellfish",
+   "serves": 2,
+   "summary": "Grilled oysters, lobster spaghetti, chocolate brandy truffles.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-grilled-oysters-parmesan",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "French 75",
+       "recipe": "chef-french-75"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-lobster-spaghetti",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Gavi di Gavi"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-brandy-chocolate-truffles",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "Espresso martini",
+       "recipe": "chef-espresso-martini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-feast-of-seven-fishes",
+   "name": "Christmas Eve fishes",
+   "diet": "shellfish",
+   "serves": 6,
+   "summary": "Gambas, spaghetti alle vongole, panettone tiramisu: the Italian Christmas Eve.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-gambas-al-ajillo",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "Negroni sbagliato",
+       "recipe": "chef-negroni-sbagliato"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-linguine-vongole",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Verdicchio or Fiano"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-panettone-tiramisu",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-moules-bistro",
+   "name": "Moules bistro",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Caramelised onion tartlets, moules frites, chocolate orange pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-caramelised-onion-gruyere-tartlets",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Muscadet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-moules-frites",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Belgian-style blonde beer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-orange-pots-de-creme",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A small Armagnac"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-paella-party",
+   "name": "Paella party",
+   "diet": "shellfish",
+   "serves": 6,
+   "summary": "Prawn saganaki, seafood paella, orange crème caramel.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-prawn-saganaki",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A chilled fino"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-seafood-paella",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "An Albariño or a Spanish rosado"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-orange-creme-caramel",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-crab-risotto-dinner",
+   "name": "Crab risotto",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "'Nduja scallops, crab risotto with lemon and chilli, raspberry meringue roulade.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-nduja-scallops",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Soave Classico"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-crab-risotto-lemon",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Chablis"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-raspberry-meringue-roulade",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A demi-sec sparkling wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-south-indian-prawns",
+   "name": "South Indian prawns",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Paneer tikka, king prawn and tamarind curry, mango kulfi.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-paneer-tikka-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Cardamom mango lassi",
+       "recipe": "chef-cardamom-mango-lassi"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-prawn-tamarind-curry",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-mango-kulfi",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-scallop-cauliflower-dinner",
+   "name": "Scallops and cauliflower",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Potted crab, scallops with cauliflower and capers, chocolate chestnut roulade.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-potted-crab-mace",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Muscadet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-scallops-cauliflower-caper-raisin",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-chocolate-chestnut-roulade",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-laksa-night",
+   "name": "Laksa night",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Hoisin mushroom lettuce cups, king prawn laksa, coconut mango sticky rice.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-hoisin-mushroom-lettuce-cups",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-king-prawn-laksa",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "lux-coconut-mango-sticky-rice",
+     "pairing": {
+      "soft": {
+       "text": "Virgin piña colada",
+       "recipe": "chef-virgin-pina-colada"
+      },
+      "alcoholic": {
+       "text": "A plum wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-galette-christmas",
+   "name": "Squash and Stilton galette",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Chicory boats with pear, a squash and Stilton galette, apple and blackberry crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-chicory-pear-stilton-boats",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-squash-stilton-galette",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     },
+     "sides": [
+      "chef-parsnips-maple-parmesan-pepper",
+      "chef-sprouts-burnt-butter-black-garlic",
+      "chef-cranberry-orange-port-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-apple-blackberry-hazelnut-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-beetroot-tatin-dinner",
+   "name": "Beetroot tarte tatin",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Gougères, beetroot and goats' cheese tatin, lemon posset.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-gougeres-gruyere",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "French 75",
+       "recipe": "chef-french-75"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-beetroot-goats-cheese-tatin",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Sancerre"
+      }
+     },
+     "sides": [
+      "chef-green-beans-almond-brown-butter"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-lemon-posset-shortbread",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-paneer-feast",
+   "name": "Paneer feast",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Halloumi with pomegranate, paneer butter masala with pilaf, pistachio cardamom ice cream.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-halloumi-pomegranate-zaatar",
+     "pairing": {
+      "soft": {
+       "text": "Cardamom mango lassi",
+       "recipe": "chef-cardamom-mango-lassi"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-paneer-butter-masala",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     },
+     "sides": [
+      "chef-celebration-pilaf"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-cardamom-ice-cream",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "chef-ginger-lemon-honey-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-alpine-supper",
+   "name": "Alpine supper",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Leek and Gruyère vol-au-vents, Camembert tartiflette, roast plums with port.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-leek-gruyere-vol-au-vents",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Savoie white"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-camembert-tartiflette",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A Savoie or Jura white"
+      }
+     },
+     "sides": [
+      "chef-roast-radicchio-orange-honey"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-roast-plums-port-mascarpone",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A tawny port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-greek-pie-celebration",
+   "name": "Greek celebration pie",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Whipped feta with hot honey, spinach and feta filo pie, baklava.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-whipped-feta-honey-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "An Assyrtiko"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-spanakopita-pie",
+     "pairing": {
+      "soft": {
+       "text": "Elderflower and cucumber cooler",
+       "recipe": "chef-elderflower-cucumber-cooler"
+      },
+      "alcoholic": {
+       "text": "A Greek white"
+      }
+     },
+     "sides": [
+      "chef-roast-beetroot-orange-dill"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pistachio-baklava",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A Muscat of Samos"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-polenta-ragu-dinner",
+   "name": "Mushroom ragù and polenta",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Burrata with squash and sage, chestnut mushroom ragù on polenta, panettone tiramisu.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-roast-squash-burrata-sage",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "Vermouth and tonic with orange",
+       "recipe": "chef-vermouth-tonic"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-chestnut-mushroom-ragu-polenta",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Barbera"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-panettone-tiramisu",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A Vin Santo"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-leek-pie-night",
+   "name": "Leek and Cheddar pie",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Borscht with dill cream, leek, potato and Cheddar pie, gingerbread cheesecake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-beetroot-borscht-dill",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-leek-cheddar-mustard-pie",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     },
+     "sides": [
+      "chef-carrots-orange-star-anise"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-gingerbread-cheesecake",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "Hot buttered rum",
+       "recipe": "chef-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-truffle-bake-eve",
+   "name": "Christmas Eve bake",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Red onion tatin, mushroom and truffle pasta bake, Black Forest trifle.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-red-onion-tatin-goats-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Pinot Gris"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-mushroom-truffle-pasta-bake",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-black-forest-trifle",
+     "pairing": {
+      "soft": {
+       "text": "Fresh mint hot chocolate",
+       "recipe": "chef-fresh-mint-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-traybake-christmas",
+   "name": "Halloumi traybake",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Labneh with za'atar, halloumi and freekeh traybake, whole clementine cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-labneh-zaatar-crispy-chickpeas",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-halloumi-freekeh-traybake",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-whole-clementine-almond-cake",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "An orange Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-cauliflower-pilaf-feast",
+   "name": "Spiced cauliflower feast",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Beetroot carpaccio, spiced cauliflower on a jewelled pilaf, white chocolate cardamom mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-beetroot-carpaccio-horseradish",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-cauliflower-nut-pilaf",
+     "pairing": {
+      "soft": {
+       "text": "Masala chai",
+       "recipe": "chef-masala-chai"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-white-chocolate-cardamom-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A demi-sec sparkling wine"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "chef-vegan-port-wellington",
+   "name": "Mushroom and port Wellington",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Sprout and radicchio salad, a mushroom, red wine and port Wellington, chocolate tahini tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-sprout-radicchio-walnut-salad",
+     "pairing": {
+      "soft": {
+       "text": "Clementine and thyme sparkler",
+       "recipe": "chef-clementine-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry sparkling wine labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-mushroom-red-wine-port-wellington",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-lemon-coriander-seed-roasties",
+      "chef-vegan-sage-onion-stuffing",
+      "chef-balsamic-roast-shallots",
+      "chef-red-wine-onion-gravy",
+      "chef-cranberry-orange-port-sauce"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-chocolate-tahini-tart",
+     "pairing": {
+      "soft": {
+       "text": "Espresso tonic with orange",
+       "recipe": "lux-espresso-tonic"
+      },
+      "alcoholic": {
+       "text": "A ruby port labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-sausage-roll-eve",
+   "name": "Vegan Christmas Eve",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Squash hummus, a giant mushroom and barley sausage roll, mincemeat crumble bars.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-squash-hummus-dukkah",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-mushroom-barley-sausage-roll",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry cider labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-red-cabbage-apple-pomegranate-salad",
+      "chef-smashed-potatoes-rosemary"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-mincemeat-crumble-bars",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "chef-dark-and-stormy"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-nut-loaf-dinner",
+   "name": "Lentil and walnut loaf",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Chestnut and sage soup, a maple-glazed lentil loaf, sticky toffee date pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-chestnut-sage-soup",
+     "pairing": {
+      "soft": {
+       "text": "Hot apple and cinnamon punch",
+       "recipe": "chef-hot-apple-cinnamon-punch"
+      },
+      "alcoholic": {
+       "text": "A dry Chenin Blanc labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-lentil-walnut-loaf-maple",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Merlot labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-lemon-coriander-seed-roasties",
+      "chef-roast-fennel-orange-olive",
+      "chef-red-wine-onion-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-sticky-toffee-date",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "A tawny port labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-filo-crown",
+   "name": "Filo crown Christmas",
+   "diet": "vegan",
+   "serves": 8,
+   "summary": "Celeriac and apple soup, a chestnut, cranberry and squash filo crown, apple cranberry crumble.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-celeriac-apple-soup",
+     "pairing": {
+      "soft": {
+       "text": "Spiced pear sparkler",
+       "recipe": "chef-spiced-pear-sparkler"
+      },
+      "alcoholic": {
+       "text": "A dry white labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-chestnut-cranberry-filo-crown",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary",
+      "chef-celeriac-wedges-dukkah",
+      "chef-red-wine-onion-gravy"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-apple-cranberry-crumble",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "Hot toddy, with maple in place of honey"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-jerk-feast",
+   "name": "Vegan Caribbean feast",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Sweet potato falafel, jerk sweet potato and black beans with plantain, baked apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-sweet-potato-falafel-tahini",
+     "pairing": {
+      "soft": {
+       "text": "Pineapple and ginger punch",
+       "recipe": "chef-pineapple-ginger-punch"
+      },
+      "alcoholic": {
+       "text": "A cold lager labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-jerk-sweet-potato-black-bean",
+     "pairing": {
+      "soft": {
+       "text": "Virgin piña colada",
+       "recipe": "chef-virgin-pina-colada"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "chef-dark-and-stormy"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-baked-apples-maple-pecan",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "A spiced rum over ice"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-massaman-night",
+   "name": "Massaman night",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Hoisin mushroom lettuce cups, massaman squash curry, chocolate orange pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-hoisin-mushroom-lettuce-cups",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-massaman-squash-peanut",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A Gewürztraminer labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-chocolate-orange-pots",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "An orange liqueur labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-aubergine-feast",
+   "name": "Roast aubergine feast",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Spiced red lentil soup, whole roast aubergines with tahini, pomegranate sparkling granita.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-spiced-red-lentil-soup",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-whole-roast-aubergine-pomegranate",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Lebanese red labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-freekeh-pomegranate-herbs"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-pomegranate-sparkling-granita",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A Moscato labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-celeriac-roast",
+   "name": "Pot-roast celeriac",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Pickled squash toasts, pot-roast celeriac with mushroom gravy, pear and ginger cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-pickled-squash-cannellini-toasts",
+     "pairing": {
+      "soft": {
+       "text": "Pink grapefruit and rosemary soda",
+       "recipe": "chef-grapefruit-rosemary-soda"
+      },
+      "alcoholic": {
+       "text": "A dry sherry labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-celeriac-pot-roast",
+     "pairing": {
+      "soft": {
+       "text": "Mulled red grape juice",
+       "recipe": "xmas-mulled-grape-juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir labelled vegan"
+      }
+     },
+     "sides": [
+      "chef-smashed-potatoes-rosemary",
+      "chef-balsamic-roast-shallots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-pear-ginger-cake",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "A tawny port labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-pilaf-feast",
+   "name": "Saffron pilaf feast",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Roast cauliflower soup, whole cauliflower on saffron chickpea pilaf, chestnut chocolate truffles.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-curry-leaf-cauliflower-soup",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-saffron-chickpea-pilaf-cauliflower",
+     "pairing": {
+      "soft": {
+       "text": "Pomegranate and mint cooler",
+       "recipe": "chef-pomegranate-mint-cooler"
+      },
+      "alcoholic": {
+       "text": "A Viognier labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-chestnut-chocolate-truffles",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "A Pedro Ximénez labelled vegan"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
+  },
+  {
+   "slug": "chef-vegan-boxing-day",
+   "name": "Vegan Boxing Day",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Kimchi pancakes, sprout nasi goreng, mincemeat crumble bars.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "chef-kimchi-pancakes",
+     "pairing": {
+      "soft": {
+       "text": "Lychee and lime iced tea",
+       "recipe": "chef-lychee-lime-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A cold lager labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "chef-vegan-sprout-nasi-goreng",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lime and lemongrass cooler",
+       "recipe": "xmas-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling labelled vegan"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "chef-vegan-mincemeat-crumble-bars",
+     "pairing": {
+      "soft": {
+       "text": "Turmeric and ginger oat latte",
+       "recipe": "chef-turmeric-ginger-latte"
+      },
+      "alcoholic": {
+       "text": "A spiced rum over ice"
+      }
+     }
+    }
+   ],
+   "note": "Many wines and some ciders are cleared with animal products. Look for \"vegan\" on the label."
   }
  ]
 }

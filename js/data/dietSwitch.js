@@ -1,4 +1,7 @@
-// js/data/dietSwitch.js — 27 Nov 2026 v3
+// js/data/dietSwitch.js — 27 Nov 2026 v4
+// v4: cured meats, game birds and luxury fish (prosciutto, salami, 'nduja, quail,
+// goose, pheasant, turbot, halibut, bream, oysters, langoustines, clams, caviar) never
+// offered as vegetarian; burrata, ricotta, labneh, paneer, pecorino never vegan.
 // v3: the Christmas and world pantry (duck, gammon, pancetta, livers, shellfish,
 // shrimp paste; cream cheeses, crème fraîche, panettone) is never offered as
 // vegetarian or vegan when it is not.
@@ -55,8 +58,8 @@ const VEGAN_RULES = [
 
 // Foods no rule can stand in for. A recipe containing any of them is not
 // offered that diet.
-const NOT_VEGETARIAN = /chicken|beef|lamb|pork|turkey|bacon|sausage|ham-slice|chorizo|prawn|cod|salmon|sea-bass|tuna|sardine|anchov|mackerel|fish-sauce|worcestershire|stock-chicken|duck|gammon|pancetta|chipolata|venison|liver|hake|monkfish|trout|scallop|lobster|mussel|crab|squid|shrimp|oyster-sauce|suet-beef/;
-const NOT_VEGAN = /^(egg-|milk-|double-cream|single-cream|butter-block|butter-unsalted|cheddar|mozzarella|parmesan|feta|halloumi|cream-cheese|cottage-cheese|greek-yoghurt|natural-yoghurt|honey|mayonnaise|hot-chocolate-powder|raisin-and-oat-granola|creme-fraiche|soured-cream|whipping-cream|mascarpone|goats-cheese|stilton|brie|camembert|gruyere|custard|panettone|brioche|blinis|sponge-fingers|white-chocolate|redcurrant-jelly)/;
+const NOT_VEGETARIAN = /chicken|beef|lamb|pork|turkey|bacon|sausage|ham-slice|chorizo|prawn|cod|salmon|sea-bass|tuna|sardine|anchov|mackerel|fish-sauce|worcestershire|stock-chicken|duck|gammon|pancetta|chipolata|venison|liver|hake|monkfish|trout|scallop|lobster|mussel|crab|squid|shrimp|oyster-sauce|suet-beef|prosciutto|salami|nduja|quail|goose|pheasant|turbot|halibut|bream|oysters|langoustine|clams|caviar/;
+const NOT_VEGAN = /^(egg-|milk-|double-cream|single-cream|butter-block|butter-unsalted|cheddar|mozzarella|parmesan|feta|halloumi|cream-cheese|cottage-cheese|greek-yoghurt|natural-yoghurt|honey|mayonnaise|hot-chocolate-powder|raisin-and-oat-granola|creme-fraiche|soured-cream|whipping-cream|mascarpone|goats-cheese|stilton|brie|camembert|gruyere|custard|panettone|brioche|blinis|sponge-fingers|white-chocolate|redcurrant-jelly|burrata|ricotta|labneh|paneer|pecorino|dulce|condensed-milk|duck-fat|ice-cream|malted-milk)/;
 
 function ruleFor(ref, rules) {
   return rules.find((r) => r.from.includes(ref)) || null;
