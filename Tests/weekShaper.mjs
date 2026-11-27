@@ -203,6 +203,29 @@ check('variety reads the last fortnight, not the days ahead', recent.has('meal:7
   check('Fill the week: summer food first in July', fillJul && fillJul.name === 'Summer salad');
 }
 
+// 12. A month either side (Phase 42).
+{
+  const seasons = await import(pathToFileURL(path.join(REPO, 'js/data/seasons.js')).href);
+  const mk = (name, cuisine) => ({ ...make(name, { veg: true, lead: ['carb'] }), cuisine });
+  const pud = mk('Christmas pudding bake', 'Christmas');
+  const salad = mk('Summer salad two', 'Summer');
+  const plain2 = mk('Plain pasta two', 'Italian');
+  const pool3 = [pud, salad, plain2];
+  check('October is a month early for Christmas', seasons.seasonState('Christmas', '2026-10-10') === 'near' && seasons.nearLabel('Christmas', '2026-10-10') === 'Christmas, a month early');
+  check('September is a month late for summer', seasons.nearLabel('Summer', '2026-09-10') === 'Summer, a month late');
+  check('January wraps to Christmas, a month late', seasons.seasonState('Christmas', '2027-01-05') === 'near');
+  check('two months out is out', seasons.seasonState('Summer', '2026-10-10') === 'out');
+  const octOn = w.rank({ candidates: pool3, date: '2026-10-10', slot: 'dinner', rules: { rhythm: false }, events: {}, entries: [], members: [] });
+  check('with the rule on, October offers Christmas food, said plainly', octOn.some((x) => x.c.name === 'Christmas pudding bake' && x.reasons.includes('Christmas, a month early')));
+  check('a month early sits between in season and everyday', octOn.find((x) => x.c.name === 'Christmas pudding bake').parts.season === 0.5);
+  check('two months out stays out', !octOn.some((x) => x.c.name === 'Summer salad two'));
+  const octOff = w.rank({ candidates: pool3, date: '2026-10-10', slot: 'dinner', rules: { rhythm: false, shoulder: false }, events: {}, entries: [], members: [] });
+  check('with the rule off, October has no Christmas food', !octOff.some((x) => x.c.name === 'Christmas pudding bake'));
+  check('the rule is on by default and saved', w.normaliseRules({}).shoulder === true && w.normaliseRules({ shoulder: false }).shoulder === false);
+  const menusMod = await import(pathToFileURL(path.join(REPO, 'js/data/menus.js')).href);
+  check('coming up in November: winter', menusMod.comingUp(new Date(2026, 10, 15)).includes('winter') && !menusMod.comingUp(new Date(2026, 10, 15)).includes('christmas'));
+}
+
 // 10. No shame: reasons and tallies are facts, never verdicts.
 const BANNED = /\b(missed|failed|fail|behind|should|must|only|bad|naughty|cheat|guilty)\b|!/i;
 const words = [

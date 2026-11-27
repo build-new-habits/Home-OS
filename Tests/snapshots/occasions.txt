@@ -29,6 +29,15 @@ section
           span.hub-blurb
         span.hub-chevron
 section
+  h2"Coming up next month"
+  ul.hub-list
+    li.hub-item
+      a.hub-link"Halloween menusPumpkin, toffee apples and spooky food for Halloween and Bonfire "
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+section
   h2"The rest of the year"
   ul.hub-list
     li.hub-item
@@ -45,12 +54,6 @@ section
         span.hub-chevron
     li.hub-item
       a.hub-link"Summer menusTomatoes, peaches, salads, cold soups and berries.›"
-        span.hub-text
-          span.hub-title
-          span.hub-blurb
-        span.hub-chevron
-    li.hub-item
-      a.hub-link"Halloween menusPumpkin, toffee apples and spooky food for Halloween and Bonfire "
         span.hub-text
           span.hub-title
           span.hub-blurb

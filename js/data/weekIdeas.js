@@ -1,4 +1,5 @@
-// js/data/weekIdeas.js — 27 Nov 2026 v4
+// js/data/weekIdeas.js — 27 Nov 2026 v5
+// v5: a month either side of a season counts too, with half the lift (Phase 42).
 // v4: seasons (Phase 41): a season's or occasion's recipe is only an idea in
 // its months (your own meals always are), and in-season food comes a little first.
 // v3: a library recipe marked side (roast potatoes, gravy, cranberry sauce)
@@ -210,7 +211,9 @@ export function bestFor({ d, slot, prev = null, candidates, diet, used = new Set
     if (slot === 'dinner' && WEEKDAYS.has(d.value) && c.minutes !== null && c.minutes > WEEKDAY_MAX_MINUTES) continue;
     if (!seasonAllows(c, d.iso || null)) continue;
     let score = rand() * 2;
-    if (seasonState(c.cuisine, d.iso || null) === 'in') score += 1;
+    const season = seasonState(c.cuisine, d.iso || null);
+    if (season === 'in') score += 1;
+    else if (season === 'near') score += 0.5;
     if (c.favourite) score += 4;
     else if (c.own) score += 1.5;
     if (c.usesSoon) score += 2.5;

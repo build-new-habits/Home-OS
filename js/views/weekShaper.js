@@ -1,4 +1,5 @@
-// js/views/weekShaper.js — 27 Nov 2026 v1
+// js/views/weekShaper.js — 27 Nov 2026 v2
+// v2: the rule "Seasonal food a month either side" (Phase 42).
 // Phase 37 (Hearth). Shape my week (#/week-shaper?week=this|next).
 //
 // Pick a day and a meal, say what is on that day (a match, the gym, a busy
@@ -404,6 +405,7 @@ export function render(mountEl) {
     form.appendChild(select('shaper-weekends', 'Friday to Sunday dinners', rules.weekends, (v) => { rules.weekends = v; }));
     form.appendChild(checkbox('shaper-use', 'Use up what needs using first', rules.useItUp, (v) => { rules.useItUp = v; }));
     form.appendChild(checkbox('shaper-variety', 'Something not cooked in the last two weeks', rules.variety, (v) => { rules.variety = v; }));
+    form.appendChild(checkbox('shaper-shoulder', 'Seasonal food a month either side of its season', rules.shoulder, (v) => { rules.shoulder = v; }));
     if (members.some((m) => (m.dietary_tags || []).includes('nut_free'))) {
       form.appendChild(el('p', { class: 'field-hint', text: 'Nut free is always kept to, whatever these say.' }));
     }

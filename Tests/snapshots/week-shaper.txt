@@ -83,5 +83,8 @@ div.shaper
       div.checkbox-row
         input[type=checkbox]
         label"Something not cooked in the last two weeks"
+      div.checkbox-row
+        input[type=checkbox]
+        label"Seasonal food a month either side of its season"
 div.action-bar
   a.action-bar__control.btn.btn-primary"Back to the plan"

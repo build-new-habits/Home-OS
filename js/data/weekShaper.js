@@ -1,4 +1,6 @@
-// js/data/weekShaper.js — 27 Nov 2026 v3
+// js/data/weekShaper.js — 27 Nov 2026 v4
+// v4: a month either side of a season, as a rule (on by default): offered,
+// half the in-season lift, and the chip says "Christmas, a month early".
 // v3: seasons (Phase 41). A season's or occasion's recipe is offered only in
 // its months, unless the day asks for it: Barbecue and Birthday are events
 // now. In-season food scores a little higher and says so.
@@ -33,7 +35,7 @@ import { proteinsOf } from './recipeLibrary.js';
 import { recipeNutrition } from './nutrition.js';
 import { computeMacros } from './meals.js';
 import { coverage, normaliseName } from './recipeCoverage.js';
-import { seasonAllows, seasonState, seasonLabel, occasionOf } from './seasons.js';
+import { seasonAllows, seasonState, seasonLabel, nearLabel, occasionOf } from './seasons.js';
 
 /** The weights, in one table, so they can be tuned in one place. */
 export const WEIGHTS = Object.freeze({
@@ -49,7 +51,8 @@ export const DEFAULT_RULES = Object.freeze({
   weeknights: 'any', // 'any' | '30' | '45'
   weekends: 'any',
   useItUp: true,
-  variety: true
+  variety: true,
+  shoulder: true // seasonal food a month either side of its season
 });
 
 export const TIME_CHOICES = [
@@ -98,7 +101,8 @@ export function normaliseRules(raw = {}) {
     weeknights: time(r.weeknights),
     weekends: time(r.weekends),
     useItUp: bool(r.useItUp, DEFAULT_RULES.useItUp),
-    variety: bool(r.variety, DEFAULT_RULES.variety)
+    variety: bool(r.variety, DEFAULT_RULES.variety),
+    shoulder: bool(r.shoulder, DEFAULT_RULES.shoulder)
   };
 }
 
@@ -401,7 +405,7 @@ export function rank({
     const suitsAll = suitsDiet(c, table, c.ingredients.map((i) => i.ref || i.name || ''));
     if (r.everyone && !suitsAll) continue;
     if (limit !== null && c.minutes !== null && c.minutes > limit) continue;
-    if (!seasonAllows(c, date, asked)) continue; // no barbecue in December unless the day asks
+    if (!seasonAllows(c, date, asked, { shoulder: r.shoulder })) continue; // no barbecue in December unless the day asks
 
     // ---- The score: each part 0 to 1 (rule need can be -1) ----
     const parts = { need: 0, event: 0, soon: 0, pantry: 0, variety: 0, everyone: 0, season: 0 };
@@ -420,18 +424,19 @@ export function rank({
     parts.pantry = c.total ? c.have / c.total : 0;
     if (r.variety) parts.variety = recentKeys.has(c.key) || (c.recipe && recentKeys.has(`recipe:${c.recipe.slug}`)) ? 0 : 1;
     parts.everyone = suitsAll ? 1 : 0;
-    parts.season = seasonState(c.cuisine, date) === 'in' ? 1 : 0;
+    const season = seasonState(c.cuisine, date);
+    parts.season = season === 'in' ? 1 : season === 'near' && r.shoulder ? 0.5 : 0;
 
     let score = 0;
     for (const k of Object.keys(parts)) score += parts[k] * w[k];
-    out.push({ c, score: Math.round(score * 1000) / 1000, parts, shape: shapeHit, reasons: reasonsFor(c, { parts, shape: shapeHit, counts, rules: r, slot, members, mode }) });
+    out.push({ c, score: Math.round(score * 1000) / 1000, parts, shape: shapeHit, reasons: reasonsFor(c, { parts, shape: shapeHit, counts, rules: r, slot, members, mode, date }) });
   }
   out.sort((a, b) => b.score - a.score || a.c.name.localeCompare(b.c.name) || a.c.key.localeCompare(b.c.key));
   return out;
 }
 
 /** The chips on a suggestion: why it fits, in plain words. */
-export function reasonsFor(c, { parts, shape, counts, rules, slot, members = [], mode = 'options' }) {
+export function reasonsFor(c, { parts, shape, counts, rules, slot, members = [], mode = 'options', date = null }) {
   const out = [];
   if (shape && parts.event > 0) out.push(shape.reason);
   if (rules.rhythm && slot === 'dinner' && parts.need > 0 && c.kind !== 'veggie') {
@@ -440,7 +445,8 @@ export function reasonsFor(c, { parts, shape, counts, rules, slot, members = [],
     out.push(KIND_LABELS[c.kind]);
   }
   if (c.minutes) out.push(`${c.minutes} min`);
-  if (parts.season) out.push(`In season: ${seasonLabel(c.cuisine)}`);
+  if (parts.season === 1) out.push(`In season: ${seasonLabel(c.cuisine)}`);
+  else if (parts.season > 0) out.push(nearLabel(c.cuisine, date));
   if (c.usesSoon.length) out.push(`Uses ${c.usesSoon.slice(0, 2).map((n) => shortName(n)).join(' and ')}`);
   if (mode === 'chooseForMe' && c.total) out.push(c.have === c.total ? 'You have everything' : `You have ${c.have} of ${c.total}`);
   if (parts.everyone && members.length > 1) out.push('Suits everyone');
