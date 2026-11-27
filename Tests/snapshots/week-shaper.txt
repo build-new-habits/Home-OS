@@ -34,6 +34,8 @@ div.shaper
       button.chip-toggle[type=button][aria-pressed=false]"Gym or training"
       button.chip-toggle[type=button][aria-pressed=false]"Busy evening"
       button.chip-toggle[type=button][aria-pressed=false]"Guests"
+      button.chip-toggle[type=button][aria-pressed=false]"Barbecue"
+      button.chip-toggle[type=button][aria-pressed=false]"Birthday"
     p.field-hint.shaper-shapes
   div.shaper-modes[role=group]
     button.chip-toggle.shaper-mode[type=button][aria-pressed=true]"Show me options"

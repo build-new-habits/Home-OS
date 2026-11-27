@@ -1,4 +1,7 @@
-// js/data/weekShaper.js — 27 Nov 2026 v2
+// js/data/weekShaper.js — 27 Nov 2026 v3
+// v3: seasons (Phase 41). A season's or occasion's recipe is offered only in
+// its months, unless the day asks for it: Barbecue and Birthday are events
+// now. In-season food scores a little higher and says so.
 // v2: prepare() also carries cuisine and kcal a serving, for Help me choose
 // (Phase 39). Nothing the shaper scores has changed.
 // Phase 37 (Hearth). Week Shaper: what you might cook, read from rules.
@@ -30,11 +33,12 @@ import { proteinsOf } from './recipeLibrary.js';
 import { recipeNutrition } from './nutrition.js';
 import { computeMacros } from './meals.js';
 import { coverage, normaliseName } from './recipeCoverage.js';
+import { seasonAllows, seasonState, seasonLabel, occasionOf } from './seasons.js';
 
 /** The weights, in one table, so they can be tuned in one place. */
 export const WEIGHTS = Object.freeze({
-  options: Object.freeze({ need: 3, event: 3, soon: 2, pantry: 1, variety: 1, everyone: 1 }),
-  chooseForMe: Object.freeze({ need: 3, event: 3, soon: 4, pantry: 3, variety: 1, everyone: 1 })
+  options: Object.freeze({ need: 3, event: 3, soon: 2, pantry: 1, variety: 1, everyone: 1, season: 1 }),
+  chooseForMe: Object.freeze({ need: 3, event: 3, soon: 4, pantry: 3, variety: 1, everyone: 1, season: 1 })
 });
 
 export const DEFAULT_RULES = Object.freeze({
@@ -58,7 +62,9 @@ export const EVENTS = [
   { value: 'match', label: 'Match or race' },
   { value: 'gym', label: 'Gym or training' },
   { value: 'busy', label: 'Busy evening' },
-  { value: 'guests', label: 'Guests' }
+  { value: 'guests', label: 'Guests' },
+  { value: 'bbq', label: 'Barbecue' },
+  { value: 'birthday', label: 'Birthday' }
 ];
 
 export const KIND_LABELS = { fish: 'Fish', meat: 'Meat', veggie: 'Veggie' };
@@ -313,6 +319,18 @@ export function shapesFor(dateIso, slot, events = {}) {
   if (slot === 'breakfast' && yesterday.includes('gym')) out.push({ want: 'protein', reason: 'Protein-led the morning after training' });
   if (slot === 'dinner' && today.includes('busy')) out.push({ want: 'quick', reason: 'Quick for a busy evening' });
   if (slot === 'dinner' && today.includes('guests')) out.push({ want: 'serves', reason: 'Serves a crowd' });
+  if (slot !== 'breakfast' && today.includes('bbq')) out.push({ want: 'bbq', reason: 'Off the barbecue' });
+  if (slot !== 'breakfast' && today.includes('birthday')) out.push({ want: 'birthday', reason: 'Birthday food' });
+  return out;
+}
+
+/** The occasions a day's events ask for: a barbecue takes outdoor cooking too. */
+export function askedOccasions(shapes = []) {
+  const out = new Set();
+  for (const s of shapes) {
+    if (s.want === 'bbq') { out.add('bbq'); out.add('outdoor'); }
+    if (s.want === 'birthday') out.add('birthday');
+  }
   return out;
 }
 
@@ -331,6 +349,8 @@ function eventFit(c, shape, guests) {
     case 'quick': return c.minutes !== null && c.minutes <= QUICK_MINUTES ? 1 : 0;
     case 'familiar': return c.favourite ? 1 : c.own && c.budget !== 'special' ? 0.7 : 0;
     case 'serves': return c.budget === 'special' || (c.serves && c.serves >= guests) ? 1 : 0;
+    case 'bbq': return ['bbq', 'outdoor'].includes(occasionOf(c.cuisine)) ? 1 : 0;
+    case 'birthday': return occasionOf(c.cuisine) === 'birthday' ? 1 : 0;
     default: return 0;
   }
 }
@@ -368,6 +388,7 @@ export function rank({
   const limit = timeLimit(date, slot, r);
   const guests = (members.length || 2) + 2;
   const planned = new Set(entries.flatMap(entryKeys));
+  const asked = askedOccasions(shapes);
 
   const out = [];
   for (const c of candidates) {
@@ -380,9 +401,10 @@ export function rank({
     const suitsAll = suitsDiet(c, table, c.ingredients.map((i) => i.ref || i.name || ''));
     if (r.everyone && !suitsAll) continue;
     if (limit !== null && c.minutes !== null && c.minutes > limit) continue;
+    if (!seasonAllows(c, date, asked)) continue; // no barbecue in December unless the day asks
 
     // ---- The score: each part 0 to 1 (rule need can be -1) ----
-    const parts = { need: 0, event: 0, soon: 0, pantry: 0, variety: 0, everyone: 0 };
+    const parts = { need: 0, event: 0, soon: 0, pantry: 0, variety: 0, everyone: 0, season: 0 };
     if (r.rhythm && slot === 'dinner') {
       // Fish and meat nights are asked for by number; veggie is the rest.
       // So a night the week still asks for comes first, and veggie fills.
@@ -398,6 +420,7 @@ export function rank({
     parts.pantry = c.total ? c.have / c.total : 0;
     if (r.variety) parts.variety = recentKeys.has(c.key) || (c.recipe && recentKeys.has(`recipe:${c.recipe.slug}`)) ? 0 : 1;
     parts.everyone = suitsAll ? 1 : 0;
+    parts.season = seasonState(c.cuisine, date) === 'in' ? 1 : 0;
 
     let score = 0;
     for (const k of Object.keys(parts)) score += parts[k] * w[k];
@@ -417,6 +440,7 @@ export function reasonsFor(c, { parts, shape, counts, rules, slot, members = [],
     out.push(KIND_LABELS[c.kind]);
   }
   if (c.minutes) out.push(`${c.minutes} min`);
+  if (parts.season) out.push(`In season: ${seasonLabel(c.cuisine)}`);
   if (c.usesSoon.length) out.push(`Uses ${c.usesSoon.slice(0, 2).map((n) => shortName(n)).join(' and ')}`);
   if (mode === 'chooseForMe' && c.total) out.push(c.have === c.total ? 'You have everything' : `You have ${c.have} of ${c.total}`);
   if (parts.everyone && members.length > 1) out.push('Suits everyone');
