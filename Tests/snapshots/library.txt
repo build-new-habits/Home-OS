@@ -2,6 +2,7 @@ a.back-link"Meals"
 h1"Community library"
 p.field-hint
 p.library-links
+  a.btn"Help me choose"
   a.btn"What can I make with what I have?"
   a.btn"Write your own recipe"
   a.btn"Import a recipe"
