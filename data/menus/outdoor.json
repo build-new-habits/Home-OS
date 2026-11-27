@@ -1,0 +1,677 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Outdoor cooking",
+ "note": "Complete outdoor cooking menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "campfire-sausages",
+   "name": "Campfire supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Bread on a stick, a one-pot sausage and bean stew, s'mores.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-bread-on-a-stick",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-sausage-bean-pot",
+     "pairing": {
+      "soft": {
+       "text": "Hot chocolate from a flask"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     },
+     "sides": [
+      "out-foil-corn"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-smores",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "foil-chicken-night",
+   "name": "Foil parcel night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Fire-roasted chestnuts, foil parcel chicken, campfire baked apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-roast-chestnuts",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A glass of red from a flask cup"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-foil-chicken",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "A fruity Grenache"
+      }
+     },
+     "sides": [
+      "out-fire-peppers"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-foil-baked-apples",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "steak-fire",
+   "name": "Steak over the fire",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Skillet nachos, campfire steak sandwiches, chocolate orange cakes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-skillet-nachos",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-campfire-steak-sandwich",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Malbec"
+      }
+     },
+     "sides": [
+      "out-foil-new-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-chocolate-orange-cakes",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "picnic-day",
+   "name": "Picnic day",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Scotch eggs, a breakfast hash for brunch, pancakes with berries.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-scotch-eggs",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-breakfast-hash",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "A Bloody Mary-style spiced tomato juice with vodka, or a cold lager"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-camp-pancakes",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "trout-camp",
+   "name": "Riverside trout",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Mackerel rillettes, foil-baked trout, maple fruit kebabs.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-mackerel-rillettes",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A chilled Sauvignon Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-foil-trout",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling elderflower"
+      },
+      "alcoholic": {
+       "text": "An unoaked Chardonnay"
+      }
+     },
+     "sides": [
+      "out-foil-new-potatoes",
+      "out-picnic-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-fruit-kebabs",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "salmon-camp",
+   "name": "Salmon parcels",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Bean salad jars, salmon and new potato parcels, chocolate fondue.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-bean-salad-jars",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-salmon-potato-parcels",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     },
+     "sides": [
+      "out-fire-peppers"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-chocolate-fondue",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "prawn-camp",
+   "name": "Camp stove prawns",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Prawn cocktail jars, king prawn noodles, maple fruit kebabs.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-prawn-cocktail-jars",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-prawn-stove-noodles",
+     "pairing": {
+      "soft": {
+       "text": "Jasmine iced tea from a flask"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-fruit-kebabs",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "shakshuka-camp",
+   "name": "Skillet brunch",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Picnic pesto pasta, skillet shakshuka, camp stove pancakes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-picnic-pasta-salad",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-skillet-shakshuka",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "A Bloody Mary-style spiced tomato juice with vodka"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-camp-pancakes",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cheesy-potato-camp",
+   "name": "Cheesy potatoes",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Skillet nachos, cheesy foil-packet potatoes, giant skillet cookie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-skillet-nachos",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-cheesy-foil-potatoes",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais"
+      }
+     },
+     "sides": [
+      "out-fire-peppers",
+      "out-foil-corn"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-skillet-cookie",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "one-pot-camp",
+   "name": "One-pot pasta night",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Bread on a stick, one-pot tomato and mozzarella pasta, chocolate orange cakes.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-bread-on-a-stick",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-one-pot-pasta",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "A Chianti"
+      }
+     },
+     "sides": [
+      "out-picnic-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-chocolate-orange-cakes",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "sweet-potato-vegan",
+   "name": "Ember-baked sweet potatoes",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Fire-roasted chestnuts, foil-baked sweet potatoes with black beans, chocolate fondue.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-roast-chestnuts",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-foil-sweet-potatoes",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "A fruity Grenache"
+      }
+     },
+     "sides": [
+      "out-fire-peppers"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-chocolate-fondue",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "mushroom-stew-vegan",
+   "name": "Campfire stew",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Tomato, olive and bean salad jars, mushroom and bean stew, campfire baked apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-bean-salad-jars",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-mushroom-bean-stew",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "out-foil-new-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-foil-baked-apples",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "fruit-camp-vegan",
+   "name": "Bread and fire",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Bread on a stick, mushroom and bean stew, maple fruit kebabs.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "out-bread-on-a-stick",
+     "pairing": {
+      "soft": {
+       "text": "Honey, ginger and lime cooler",
+       "recipe": "out-ginger-lime-cooler"
+      },
+      "alcoholic": {
+       "text": "Lemon shandy",
+       "recipe": "out-camp-shandy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "out-mushroom-bean-stew",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple juice from a flask"
+      },
+      "alcoholic": {
+       "text": "A dark lager"
+      }
+     },
+     "sides": [
+      "out-fire-peppers"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "out-fruit-kebabs",
+     "pairing": {
+      "soft": {
+       "text": "Cowboy coffee",
+       "recipe": "out-cowboy-coffee"
+      },
+      "alcoholic": {
+       "text": "Flask hot buttered rum",
+       "recipe": "out-hot-buttered-rum"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

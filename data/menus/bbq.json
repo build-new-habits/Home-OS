@@ -1,0 +1,685 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "BBQ",
+ "note": "Complete bbq menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "pulled-pork-party",
+   "name": "Pulled pork party",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Sticky wings, pulled pork buns with slaw and beans, no-bake cheesecake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-sticky-wings",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold American-style pale lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-pulled-pork",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A Zinfandel or a hoppy pale ale"
+      }
+     },
+     "sides": [
+      "bbq-coleslaw",
+      "bbq-smoky-beans",
+      "bbq-corn-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-no-bake-cheesecake",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "ribs-and-wings",
+   "name": "Ribs and wings",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chorizo skewers, sticky pork ribs, chocolate banana boats.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-chorizo-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-sticky-ribs",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A Shiraz or Zinfandel"
+      }
+     },
+     "sides": [
+      "bbq-coleslaw",
+      "bbq-corn-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-banana-boats",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "peri-peri-feast",
+   "name": "Peri-peri feast",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Charred corn salsa, spatchcock peri-peri chicken, grilled pineapple.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-charred-corn-salsa-cups",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-peri-peri-chicken",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Portuguese Vinho Verde or a dry rosé"
+      }
+     },
+     "sides": [
+      "bbq-charred-courgettes",
+      "bbq-watermelon-cucumber"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-grilled-pineapple",
+     "pairing": {
+      "soft": {
+       "text": "Coconut water with lime"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "brisket-feast",
+   "name": "Brisket feast",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Smoky aubergine dip with flatbreads, smoky brisket, key lime pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-baba-ganoush",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-brisket",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A Malbec or Zinfandel"
+      }
+     },
+     "sides": [
+      "bbq-smoky-beans",
+      "bbq-coleslaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-key-lime-pie",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "salmon-parcels",
+   "name": "Salmon on the grill",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Grilled mackerel, chilli and lime salmon parcels, grilled peaches with mascarpone.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-grilled-mackerel",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Sauvignon Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-chilli-lime-salmon",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     },
+     "sides": [
+      "bbq-corn-salad",
+      "bbq-charred-courgettes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-peaches-mascarpone",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "tuna-grill",
+   "name": "Tuna and mango",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Grilled mackerel, tuna steaks with mango salsa, mango sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-grilled-mackerel",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A chilled fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-tuna-steak-salsa",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Provence rosé"
+      }
+     },
+     "sides": [
+      "bbq-watermelon-cucumber"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-vegan-mango-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Coconut water"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "prawn-taco-grill",
+   "name": "Prawn taco grill",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Garlic prawn skewers, prawn and pineapple tacos, key lime pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-prawn-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "An Albariño"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-prawn-pineapple-tacos",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Mexican-style lager with lime"
+      }
+     },
+     "sides": [
+      "bbq-corn-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-key-lime-pie",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "halloumi-grill",
+   "name": "Halloumi grill",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Halloumi skewers, portobello burgers, grilled peaches with mascarpone.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-halloumi-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Greek white"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-portobello-burgers",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     },
+     "sides": [
+      "bbq-coleslaw",
+      "bbq-corn-salad"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-peaches-mascarpone",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "tikka-grill",
+   "name": "Tikka on the grill",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Smoky aubergine dip, paneer tikka skewers with naan, mango sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-baba-ganoush",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-paneer-tikka",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "An off-dry Gewürztraminer"
+      }
+     },
+     "sides": [
+      "bbq-watermelon-cucumber"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-vegan-mango-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Mango lassi-style yoghurt drink"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cheesecake-grill",
+   "name": "Garden grill",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Grilled flatbreads, halloumi and portobello burgers, no-bake cheesecake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-flatbreads",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-portobello-burgers",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A light Pinot Noir"
+      }
+     },
+     "sides": [
+      "bbq-charred-courgettes",
+      "bbq-smoky-beans"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-no-bake-cheesecake",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "tofu-grill-vegan",
+   "name": "Vegan barbecue",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Smoky aubergine dip, smoky tofu skewers, chocolate banana boats.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-baba-ganoush",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-tofu-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     },
+     "sides": [
+      "bbq-corn-salad",
+      "bbq-smoky-beans"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-banana-boats",
+     "pairing": {
+      "soft": {
+       "text": "Coconut water"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "cauliflower-grill-vegan",
+   "name": "Cauliflower steaks",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Grilled garlic flatbreads, cauliflower steaks with chimichurri, maple grilled peaches.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-flatbreads",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A Vinho Verde"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-cauliflower-steaks",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "An Argentinian Malbec"
+      }
+     },
+     "sides": [
+      "bbq-charred-courgettes",
+      "bbq-watermelon-cucumber"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-maple-nectarines",
+     "pairing": {
+      "soft": {
+       "text": "Iced tea"
+      },
+      "alcoholic": {
+       "text": "Frozen strawberry margarita",
+       "recipe": "bbq-strawberry-margarita"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "jerk-grill-vegan",
+   "name": "Jerk grill",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Charred corn salsa, jerk vegetable and pineapple skewers, grilled pineapple.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "bbq-charred-corn-salsa-cups",
+     "pairing": {
+      "soft": {
+       "text": "Virgin mojito",
+       "recipe": "bbq-virgin-mojito"
+      },
+      "alcoholic": {
+       "text": "A Caribbean-style lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "bbq-jerk-veg-skewers",
+     "pairing": {
+      "soft": {
+       "text": "Strawberry and basil lemonade",
+       "recipe": "bbq-strawberry-basil-lemonade"
+      },
+      "alcoholic": {
+       "text": "A fruity Grenache"
+      }
+     },
+     "sides": [
+      "bbq-watermelon-cucumber"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "bbq-grilled-pineapple",
+     "pairing": {
+      "soft": {
+       "text": "Coconut water with lime"
+      },
+      "alcoholic": {
+       "text": "Mojito",
+       "recipe": "bbq-mojito"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

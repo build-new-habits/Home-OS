@@ -8,6 +8,21 @@
    "count": 3
   },
   {
+   "cuisine": "Autumn",
+   "path": "data/recipe_library/autumn.json",
+   "count": 38
+  },
+  {
+   "cuisine": "BBQ",
+   "path": "data/recipe_library/bbq.json",
+   "count": 36
+  },
+  {
+   "cuisine": "Birthday",
+   "path": "data/recipe_library/birthday.json",
+   "count": 38
+  },
+  {
    "cuisine": "Breakfast",
    "path": "data/recipe_library/breakfast.json",
    "count": 13
@@ -43,6 +58,11 @@
    "count": 11
   },
   {
+   "cuisine": "Easter",
+   "path": "data/recipe_library/easter.json",
+   "count": 37
+  },
+  {
    "cuisine": "Filipino",
    "path": "data/recipe_library/filipino.json",
    "count": 1
@@ -61,6 +81,11 @@
    "cuisine": "Greek",
    "path": "data/recipe_library/greek.json",
    "count": 4
+  },
+  {
+   "cuisine": "Halloween",
+   "path": "data/recipe_library/halloween.json",
+   "count": 35
   },
   {
    "cuisine": "Indian",
@@ -103,6 +128,11 @@
    "count": 6
   },
   {
+   "cuisine": "Outdoor cooking",
+   "path": "data/recipe_library/outdoor.json",
+   "count": 36
+  },
+  {
    "cuisine": "Persian",
    "path": "data/recipe_library/persian.json",
    "count": 2
@@ -128,6 +158,11 @@
    "count": 14
   },
   {
+   "cuisine": "Spring",
+   "path": "data/recipe_library/spring.json",
+   "count": 37
+  },
+  {
    "cuisine": "Sri Lankan",
    "path": "data/recipe_library/srilankan.json",
    "count": 3
@@ -136,6 +171,11 @@
    "cuisine": "Starters",
    "path": "data/recipe_library/starters.json",
    "count": 8
+  },
+  {
+   "cuisine": "Summer",
+   "path": "data/recipe_library/summer.json",
+   "count": 37
   },
   {
    "cuisine": "Thai",
@@ -156,6 +196,11 @@
    "cuisine": "Vietnamese",
    "path": "data/recipe_library/vietnamese.json",
    "count": 2
+  },
+  {
+   "cuisine": "Winter",
+   "path": "data/recipe_library/winter.json",
+   "count": 36
   }
  ]
 }

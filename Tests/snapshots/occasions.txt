@@ -1,0 +1,71 @@
+a.back-link"Meals"
+h1"Seasons and occasions"
+p.field-hint
+section
+  h2"In season now"
+  ul.hub-list
+    li.hub-item
+      a.hub-link"Barbecue menusRibs, pulled pork, skewers and grilled puddings. All work indoors "
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Outdoor cooking menusThe campfire, the camping stove and the picnic: foil parcel"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Autumn menusSquash, mushrooms, apples, pies and crumbles.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Birthday menusParty food, cakes worth candles, and something for every diet.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+section
+  h2"The rest of the year"
+  ul.hub-list
+    li.hub-item
+      a.hub-link"Spring menusAsparagus, new potatoes, peas, lamb and rhubarb.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Easter menusLamb and glazed ham, simnel cake, hot cross buns and chocolate.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Summer menusTomatoes, peaches, salads, cold soups and berries.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Halloween menusPumpkin, toffee apples and spooky food for Halloween and Bonfire "
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Christmas menusStarter to pudding, every kind of Christmas table.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+    li.hub-item
+      a.hub-link"Winter menusSoups, stews and dumplings, roots, citrus and steamed puddings.›"
+        span.hub-text
+          span.hub-title
+          span.hub-blurb
+        span.hub-chevron
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Help me choose"

@@ -1,0 +1,608 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Winter",
+ "note": "Complete winter menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "winter-stew",
+   "name": "Stew and dumplings",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Leek and potato soup, beef stew with dumplings, jam roly-poly and custard.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-leek-potato-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A glass of dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-beef-stew-dumplings",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Shiraz or Malbec"
+      }
+     },
+     "sides": [
+      "win-carrot-swede-mash",
+      "win-caraway-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-jam-roly-poly",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Hot toddy",
+       "recipe": "win-hot-toddy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "toad-supper",
+   "name": "Toad in the hole night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Chicken and sweetcorn soup, toad in the hole, chocolate puddle pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-chicken-sweetcorn-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-toad-in-the-hole",
+     "pairing": {
+      "soft": {
+       "text": "Ginger beer"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "win-buttery-mash",
+      "win-braised-leeks"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-chocolate-puddle-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Proper hot chocolate",
+       "recipe": "win-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "A glass of ruby port"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "hotpot-night",
+   "name": "Hotpot night",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Scotch broth, Lancashire hotpot, treacle tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-scotch-broth",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A malt whisky and water, or a dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-lancashire-hotpot",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Rioja"
+      }
+     },
+     "sides": [
+      "win-caraway-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-treacle-tart",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "Hot toddy",
+       "recipe": "win-hot-toddy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "fish-pie-night",
+   "name": "Fish pie night",
+   "diet": "fish",
+   "serves": 6,
+   "summary": "Orange and fennel salad, classic fish pie, baked rice pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-orange-fennel-salad",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-fish-pie",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lemon"
+      },
+      "alcoholic": {
+       "text": "An unoaked Chardonnay"
+      }
+     },
+     "sides": [
+      "win-braised-leeks"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-baked-rice-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "salmon-leek-supper",
+   "name": "Salmon and leeks",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Smoked haddock chowder, salmon with leeks and mustard, spiced pears.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-smoked-haddock-chowder",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A Chablis"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-salmon-leeks-mustard",
+     "pairing": {
+      "soft": {
+       "text": "Apple and elderflower pressé"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     },
+     "sides": [
+      "win-buttery-mash"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-poached-pears",
+     "pairing": {
+      "soft": {
+       "text": "Proper hot chocolate",
+       "recipe": "win-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Negroni",
+       "recipe": "win-negroni"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "prawn-winter",
+   "name": "Prawns two ways",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Sizzling garlic prawns, king prawn noodle soup, citrus salad.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-garlic-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-prawn-noodle-soup",
+     "pairing": {
+      "soft": {
+       "text": "Lime and lemongrass iced tea"
+      },
+      "alcoholic": {
+       "text": "An off-dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-citrus-salad",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Negroni",
+       "recipe": "win-negroni"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "mac-cheese-night",
+   "name": "Comfort night",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "French onion soup, macaroni cheese, chocolate puddle pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-french-onion-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A glass of dry white Burgundy"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-macaroni-cheese",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy lemonade"
+      },
+      "alcoholic": {
+       "text": "A Beaujolais"
+      }
+     },
+     "sides": [
+      "win-caraway-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-chocolate-puddle-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Proper hot chocolate",
+       "recipe": "win-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Hot toddy",
+       "recipe": "win-hot-toddy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "leek-bake-supper",
+   "name": "Leek and cheddar supper",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Welsh rarebit, leek potato and cheddar bake, treacle tart.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-welsh-rarebit",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A cold ale-style lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-leek-cheddar-bake",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "win-maple-parsnips"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-treacle-tart",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of sweet sherry"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "stroganoff-night",
+   "name": "Stroganoff night",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Orange and fennel salad, mushroom stroganoff, baked rice pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-orange-fennel-salad",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-mushroom-stroganoff",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     },
+     "sides": [
+      "win-caraway-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-baked-rice-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Proper hot chocolate",
+       "recipe": "win-hot-chocolate"
+      },
+      "alcoholic": {
+       "text": "Hot toddy",
+       "recipe": "win-hot-toddy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "root-stew-vegan",
+   "name": "Root stew and dumplings",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Leek and potato soup, root vegetable stew with herb dumplings, sticky date pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-leek-potato-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-root-stew-dumplings",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     },
+     "sides": [
+      "win-maple-parsnips"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-sticky-date-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Hot oat milk with cinnamon"
+      },
+      "alcoholic": {
+       "text": "A glass of tawny port"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "curry-vegan",
+   "name": "Winter curry night",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Orange and fennel salad, chickpea and spinach curry, spiced poached pears.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-orange-fennel-salad",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-chickpea-spinach-curry",
+     "pairing": {
+      "soft": {
+       "text": "Mango and lime sparkling water"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-poached-pears",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Negroni",
+       "recipe": "win-negroni"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "casserole-vegan",
+   "name": "Sausage casserole",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Leek and potato soup, plant sausage and bean casserole, winter citrus salad.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "win-leek-potato-soup",
+     "pairing": {
+      "soft": {
+       "text": "Ginger, lemon and honey tea",
+       "recipe": "win-ginger-lemon-tea"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "win-sausage-bean-casserole",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Tempranillo"
+      }
+     },
+     "sides": [
+      "win-caraway-cabbage"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "win-citrus-salad",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Negroni",
+       "recipe": "win-negroni"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

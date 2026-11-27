@@ -1,0 +1,609 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Halloween",
+ "note": "Complete halloween menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "cauldron-night",
+   "name": "Witch's cauldron night",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Mummy sausages, cauldron chilli, chocolate graveyard pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-mummy-sausages",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-cauldron-chilli",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A Zinfandel or Malbec"
+      }
+     },
+     "sides": [
+      "hal-chilli-corn"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-graveyard-pots",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "bonfire-night",
+   "name": "Bonfire night",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Sticky bat wings, bonfire hot dogs, toffee apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-bat-wings",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A dark lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-bonfire-hot-dogs",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A mug of warm spiced cider"
+      }
+     },
+     "sides": [
+      "hal-roast-pumpkin-seeds",
+      "hal-blood-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-toffee-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot chocolate"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "hal-dark-and-stormy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "pumpkin-supper",
+   "name": "Pumpkin patch supper",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Spiced pumpkin soup, chicken pumpkin and sage traybake, pumpkin pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-pumpkin-soup",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-pumpkin-chicken-traybake",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     },
+     "sides": [
+      "hal-colcannon"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-pumpkin-pie",
+     "pairing": {
+      "soft": {
+       "text": "Hot milk"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "blackened-salmon-night",
+   "name": "Blackened salmon",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Crispy fish bones, blackened salmon with pumpkin mash, blood orange sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-fish-bones",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A Sauvignon Blanc"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-blackened-salmon",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir, lightly chilled"
+      }
+     },
+     "sides": [
+      "hal-blood-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-blood-orange-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "kedgeree-night",
+   "name": "Kedgeree supper",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Spiced pumpkin soup, smoked haddock kedgeree, barmbrack.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-pumpkin-soup",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-kedgeree",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "An off-dry Gewürztraminer"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-barmbrack",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Irish whiskey"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "swamp-gumbo",
+   "name": "Swamp gumbo",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Devil's prawns, prawn gumbo, caramel popcorn.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-devils-prawns",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A chilled fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-prawn-gumbo",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     },
+     "sides": [
+      "hal-chilli-corn"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-caramel-popcorn",
+     "pairing": {
+      "soft": {
+       "text": "Hot chocolate"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "hal-dark-and-stormy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "eyeball-spaghetti",
+   "name": "Spooky spaghetti night",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Halloumi fries, spaghetti with mozzarella eyeballs, chocolate graveyard pots.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-halloumi-fries",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-spooky-spaghetti",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A Chianti"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-graveyard-pots",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "jacket-bonfire",
+   "name": "Bonfire jackets",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Beetroot hummus, cheese and bean jacket potatoes, toffee apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-beetroot-blood-hummus",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-bonfire-jackets",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A mug of warm spiced cider"
+      }
+     },
+     "sides": [
+      "hal-blood-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-toffee-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot chocolate"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "hal-dark-and-stormy"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "squash-halves",
+   "name": "Stuffed squash supper",
+   "diet": "vegetarian",
+   "serves": 4,
+   "summary": "Spiced pumpkin soup, baked squash with feta and lentils, pumpkin pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-pumpkin-soup",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-stuffed-squash",
+     "pairing": {
+      "soft": {
+       "text": "Pumpkin spice hot milk",
+       "recipe": "hal-pumpkin-spice-milk"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir"
+      }
+     },
+     "sides": [
+      "hal-colcannon"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-pumpkin-pie",
+     "pairing": {
+      "soft": {
+       "text": "Hot milk"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "risotto-vegan",
+   "name": "Pumpkin risotto night",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Graveyard guacamole, roast pumpkin risotto, blood orange sorbet.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-graveyard-guacamole",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A cold lager"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-vegan-pumpkin-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Sparkling water with lime"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-blood-orange-sorbet",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Vampire's kiss",
+       "recipe": "hal-vampires-kiss"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "bonfire-vegan",
+   "name": "Vegan bonfire night",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Beetroot hummus, plant sausage hot dogs, toffee apples.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-beetroot-blood-hummus",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A dry cider"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-vegan-hot-dogs",
+     "pairing": {
+      "soft": {
+       "text": "Hot spiced apple juice"
+      },
+      "alcoholic": {
+       "text": "A dark lager"
+      }
+     },
+     "sides": [
+      "hal-roast-pumpkin-seeds",
+      "hal-blood-slaw"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-toffee-apples",
+     "pairing": {
+      "soft": {
+       "text": "Hot oat milk with cinnamon"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "hal-dark-and-stormy"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "cauldron-vegan",
+   "name": "Lentil cauldron",
+   "diet": "vegan",
+   "serves": 6,
+   "summary": "Graveyard guacamole, red lentil cauldron stew, spiced pumpkin loaf.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "hal-graveyard-guacamole",
+     "pairing": {
+      "soft": {
+       "text": "Blood-red potion",
+       "recipe": "hal-potion"
+      },
+      "alcoholic": {
+       "text": "A Mexican-style lager with lime"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "hal-lentil-cauldron-stew",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Côtes du Rhône"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "hal-spiced-pumpkin-loaf",
+     "pairing": {
+      "soft": {
+       "text": "Hot oat milk with cinnamon"
+      },
+      "alcoholic": {
+       "text": "Dark and stormy",
+       "recipe": "hal-dark-and-stormy"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

@@ -1,4 +1,6 @@
-// js/data/mealCoach.js — 27 Nov 2026 v1
+// js/data/mealCoach.js — 27 Nov 2026 v2
+// v2: "Season or occasion" in place of "What kind": the nine new seasons and
+// occasions beside Christmas, everyday cooking and grab and go (Phase 40).
 // Phase 39. Help me choose: a coach for a library too big to scroll.
 //
 // Graeme, 27 Nov 2026: "We need to build a coach that supports recipe
@@ -54,8 +56,10 @@ export const QUESTIONS = Object.freeze([
     ['seasia', 'Thai, Vietnamese or Malaysian'], ['americas', 'Mexican or Caribbean'], ['africa', 'African']] },
   { id: 'diet', label: 'Diet', choices: [
     ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan'], ['gluten_free', 'Gluten free'], ['dairy_free', 'Dairy free']] },
-  { id: 'kind', label: 'What kind?', choices: [
-    ['everyday', 'Everyday cooking'], ['christmas', 'Christmas'], ['grab', 'Ready-made, grab and go']] },
+  { id: 'kind', label: 'Season or occasion', choices: [
+    ['everyday', 'Everyday cooking'], ['spring', 'Spring'], ['summer', 'Summer'], ['autumn', 'Autumn'], ['winter', 'Winter'],
+    ['easter', 'Easter'], ['birthday', 'Birthday'], ['halloween', 'Halloween'], ['bbq', 'Barbecue'],
+    ['outdoor', 'Outdoor cooking'], ['christmas', 'Christmas'], ['grab', 'Ready-made, grab and go']] },
   { id: 'cost', label: 'Cost', choices: [
     ['budget', 'Budget'], ['everyday', 'Everyday'], ['special', 'A treat']] },
   { id: 'pantry', label: 'From the pantry?', choices: [
@@ -156,6 +160,11 @@ const SPICY_REF = /\b(chilli|chili|chillies|cayenne|curry paste|curry powder|har
 const SPICY_NAME = /\b(spicy|chilli|chili|curry|jerk|piri|peri|vindaloo|madras|tikka|jalfrezi|arrabbiata|diavola|harissa|kimchi|sambal|rendang|laksa|szechuan|sichuan)\b/i;
 const HEARTY_NAME = /\b(pie|stew|casserole|roast|bake|lasagne|hotpot|hot pot|cottage|shepherd|mash|dumplings?|gratin|bourguignon|wellington|crumble|chilli con|moussaka|risotto|curry|tagine|cassoulet)\b/i;
 const LIGHT_KCAL = 450;
+// A season or occasion is the cuisine of its library file.
+const KIND_OF = Object.freeze({
+  Christmas: 'christmas', 'Grab and go': 'grab', Spring: 'spring', Summer: 'summer', Autumn: 'autumn', Winter: 'winter',
+  Easter: 'easter', Birthday: 'birthday', Halloween: 'halloween', BBQ: 'bbq', 'Outdoor cooking': 'outdoor'
+});
 const HEARTY_KCAL = 650;
 
 const REGION = {
@@ -212,7 +221,7 @@ export function factsOf(c) {
   if ((kcal !== null && kcal >= HEARTY_KCAL) || (HEARTY_NAME.test(name) && !(kcal !== null && kcal <= LIGHT_KCAL))) feel.add('hearty');
   if (Array.isArray(c.lead) && c.lead.includes('protein')) feel.add('protein');
   const cuisine = String(c.cuisine || '');
-  const kind = cuisine === 'Christmas' ? 'christmas' : cuisine === 'Grab and go' ? 'grab' : 'everyday';
+  const kind = KIND_OF[cuisine] || 'everyday';
   const tags = new Set(c.dietary_tags || []);
   if (tags.has('vegan')) tags.add('vegetarian');
   return {
@@ -407,7 +416,7 @@ export function reasonsFor(f, answers) {
     else out.push(choiceLabel('feel', a.feel));
   } else if (f.feel.has('spicy')) out.push('Spicy');
   if (a.with !== 'any') out.push(choiceLabel('with', a.with));
-  if (f.c.cuisine && !['Christmas', 'Grab and go', 'Special', 'Snacks', 'Breakfast', 'Vegetarian', 'Drinks', 'Puddings', 'Lunch', 'Starters', 'Budget'].includes(f.c.cuisine)) out.push(f.c.cuisine);
+  if (f.c.cuisine && !['Grab and go', 'Special', 'Snacks', 'Breakfast', 'Vegetarian', 'Drinks', 'Puddings', 'Lunch', 'Starters', 'Budget'].includes(f.c.cuisine)) out.push(f.c.cuisine);
   if (f.diet.has('vegan')) out.push('Vegan');
   else if (f.diet.has('vegetarian')) out.push('Vegetarian');
   if (a.diet === 'gluten_free') out.push('Gluten free');

@@ -1,0 +1,623 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "occasion": "Easter",
+ "note": "Complete easter menus. Each course is paired with a soft drink and a drink with alcohol; wines are named by style or region, never by brand.",
+ "drinks_note": "Every course has a soft pairing too, for drivers, children and anyone not drinking.",
+ "menus": [
+  {
+   "slug": "easter-lamb",
+   "name": "Easter Sunday lamb",
+   "diet": "meat",
+   "serves": 6,
+   "summary": "Pea and ham soup, slow-cooked lamb with lemon and oregano, simnel cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-pea-ham-soup",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry fino sherry"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-lamb-kleftiko",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Rioja Reserva or Greek Agiorgitiko"
+      }
+     },
+     "sides": [
+      "eas-minted-peas",
+      "eas-cumin-honey-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-simnel-cake",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Madeira"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-gammon",
+   "name": "Glazed gammon lunch",
+   "diet": "meat",
+   "serves": 8,
+   "summary": "Devilled eggs, maple and orange gammon, lemon meringue pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-devilled-eggs",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "Peach bellini",
+       "recipe": "eas-bellini"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-maple-orange-gammon",
+     "pairing": {
+      "soft": {
+       "text": "Cloudy apple juice"
+      },
+      "alcoholic": {
+       "text": "A Pinot Noir or dry rosé"
+      }
+     },
+     "sides": [
+      "eas-rosemary-new-potatoes",
+      "eas-creamed-spinach",
+      "eas-cumin-honey-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-lemon-meringue-pie",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A sweet Moscato"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-chicken",
+   "name": "Easter roast chicken",
+   "diet": "meat",
+   "serves": 4,
+   "summary": "Spiced lamb flatbreads, lemon and tarragon chicken, hot cross bun pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-lamb-flatbreads",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-lemon-tarragon-chicken",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     },
+     "sides": [
+      "eas-rosemary-new-potatoes",
+      "eas-broccoli-almonds"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-hot-cross-bun-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk or a pot of tea"
+      },
+      "alcoholic": {
+       "text": "Orange blossom spritz",
+       "recipe": "eas-orange-blossom-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-salmon",
+   "name": "Good Friday salmon",
+   "diet": "fish",
+   "serves": 6,
+   "summary": "Smoked salmon pâté, a herb-crusted side of salmon, carrot cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-smoked-salmon-pate",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "Peach bellini",
+       "recipe": "eas-bellini"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-herb-crust-salmon",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Sancerre or Albariño"
+      }
+     },
+     "sides": [
+      "eas-rosemary-new-potatoes",
+      "eas-minted-peas"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-carrot-cake",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A late-harvest Riesling"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-hake",
+   "name": "Hake and crushed peas",
+   "diet": "fish",
+   "serves": 4,
+   "summary": "Carrot and ginger soup, hake with crushed peas, chocolate nests.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-carrot-ginger-soup",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-hake-pea-crush",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Picpoul de Pinet"
+      }
+     },
+     "sides": [
+      "eas-rosemary-new-potatoes"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-chocolate-nests",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "Orange blossom spritz",
+       "recipe": "eas-orange-blossom-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-scallops",
+   "name": "Crab and scallops",
+   "diet": "shellfish",
+   "serves": 4,
+   "summary": "Crab and avocado, scallop and pea risotto, chocolate-dipped strawberries.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-crab-avocado",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A chilled Albariño"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-scallop-pea-risotto",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A white Burgundy"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-chocolate-strawberries",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Peach bellini",
+       "recipe": "eas-bellini"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-spanakopita",
+   "name": "Greek Easter table",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Baked camembert, spinach and feta filo pie, lemon meringue pie.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-baked-camembert",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry Assyrtiko"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-spanakopita",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Greek white or a Provence rosé"
+      }
+     },
+     "sides": [
+      "eas-broccoli-almonds",
+      "eas-cumin-honey-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-lemon-meringue-pie",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "Orange blossom spritz",
+       "recipe": "eas-orange-blossom-spritz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-leek-tart",
+   "name": "Leek tart lunch",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Devilled eggs, leek and Gruyère tart, hot cross bun pudding.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-devilled-eggs",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "Peach bellini",
+       "recipe": "eas-bellini"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-leek-gruyere-tart",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "An Alsace Pinot Blanc"
+      }
+     },
+     "sides": [
+      "eas-minted-peas"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-hot-cross-bun-pudding",
+     "pairing": {
+      "soft": {
+       "text": "Cold milk"
+      },
+      "alcoholic": {
+       "text": "A sweet Muscat"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-veg-pie",
+   "name": "Spring vegetable pie",
+   "diet": "vegetarian",
+   "serves": 6,
+   "summary": "Pea and mint hummus, a spring vegetable pie, simnel cake.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-pea-hummus",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A Grüner Veltliner"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-spring-veg-pie",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "An oaked Chardonnay"
+      }
+     },
+     "sides": [
+      "eas-cumin-honey-carrots"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-simnel-cake",
+     "pairing": {
+      "soft": {
+       "text": "A pot of tea"
+      },
+      "alcoholic": {
+       "text": "A small glass of Madeira"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "slug": "easter-cauliflower-vegan",
+   "name": "Easter roast cauliflower",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Carrot and ginger soup, whole roast cauliflower, silky chocolate mousse.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-carrot-ginger-soup",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry Riesling"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-herb-cauliflower",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Provence rosé"
+      }
+     },
+     "sides": [
+      "eas-rosemary-new-potatoes",
+      "eas-minted-peas"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-vegan-chocolate-mousse",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Peach bellini",
+       "recipe": "eas-bellini"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "easter-tagine-vegan",
+   "name": "Easter tagine",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Pea and mint hummus, a spring vegetable tagine, chocolate-dipped strawberries.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-pea-hummus",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A dry rosé"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-chickpea-tagine",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Grenache"
+      }
+     }
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-chocolate-strawberries",
+     "pairing": {
+      "soft": {
+       "text": "Mint tea"
+      },
+      "alcoholic": {
+       "text": "Orange blossom spritz",
+       "recipe": "eas-orange-blossom-spritz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  },
+  {
+   "slug": "easter-peppers-vegan",
+   "name": "Stuffed peppers",
+   "diet": "vegan",
+   "serves": 4,
+   "summary": "Carrot and ginger soup, lentil-stuffed peppers, banana and chocolate loaf.",
+   "courses": [
+    {
+     "course": "starter",
+     "recipe": "eas-carrot-ginger-soup",
+     "pairing": {
+      "soft": {
+       "text": "Orange and passion fruit sparkle",
+       "recipe": "eas-orange-passion-sparkle"
+      },
+      "alcoholic": {
+       "text": "A Viognier"
+      }
+     }
+    },
+    {
+     "course": "main",
+     "recipe": "eas-stuffed-peppers",
+     "pairing": {
+      "soft": {
+       "text": "Lemon and mint iced tea",
+       "recipe": "eas-mint-iced-tea"
+      },
+      "alcoholic": {
+       "text": "A Tempranillo"
+      }
+     },
+     "sides": [
+      "eas-broccoli-almonds"
+     ]
+    },
+    {
+     "course": "pudding",
+     "recipe": "eas-banana-chocolate-loaf",
+     "pairing": {
+      "soft": {
+       "text": "Hot oat milk"
+      },
+      "alcoholic": {
+       "text": "Orange blossom spritz",
+       "recipe": "eas-orange-blossom-spritz"
+      }
+     }
+    }
+   ],
+   "note": "Check wine and beer labels say vegan; some are fined with animal products."
+  }
+ ]
+}

@@ -1,4 +1,5 @@
-// js/routes.js — 27 Nov 2026 v14
+// js/routes.js — 27 Nov 2026 v15
+// v15: appends 'occasions'.
 // v14: appends 'meal-coach' and 'meal-coach-results'.
 // v13: appends 'menus' and 'menu'.
 // v12: appends 'shop-favourites'.
@@ -327,6 +328,13 @@ export const routes = [
     path: 'meal-coach-results',
     title: 'Best fits',
     load: () => import('./views/mealCoachResults.js')
+  },
+  // 27 Nov 2026. Appended. Seasons and occasions: every season's and
+  // occasion's menus, in season first (Phase 40).
+  {
+    path: 'occasions',
+    title: 'Seasons and occasions',
+    load: () => import('./views/occasions.js')
   }
 ];
 

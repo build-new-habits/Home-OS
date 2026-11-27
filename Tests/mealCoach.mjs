@@ -112,6 +112,9 @@ check('green beans are not "beans"', !facts.some((f) => f.with.has('beans') && (
 const sides = facts.filter((f) => f.c.recipe && f.c.recipe.side === true);
 check('a side is For: A side, never Dinner', sides.length > 10 && sides.every((f) => f.for === 'side'));
 check('Christmas recipes read as Christmas', facts.filter((f) => f.kind === 'christmas').length >= 200);
+for (const k of ['spring', 'summer', 'autumn', 'winter', 'easter', 'birthday', 'halloween', 'bbq', 'outdoor']) {
+  check(`${k} recipes read as ${k}`, facts.filter((f) => f.kind === k).length >= 30);
+}
 check('light and hearty never both', !facts.some((f) => f.feel.has('light') && f.feel.has('hearty')));
 check('spicy and mild never both, always one', facts.every((f) => f.feel.has('spicy') !== f.feel.has('mild')));
 check('light needs complete calories', facts.filter((f) => f.feel.has('light')).every((f) => f.kcal !== null && f.kcal <= 450));

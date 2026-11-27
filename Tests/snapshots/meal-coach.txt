@@ -170,12 +170,39 @@ div.coach
         span
         span.coach-count
   fieldset.coach-question
-    legend"What kind?"
+    legend"Season or occasion"
     div.shaper-chips
       button.chip-toggle[type=button][aria-pressed=true]"Any <n>"
         span
         span.coach-count
       button.chip-toggle[type=button][aria-pressed=false]"Everyday cooking <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Spring <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Summer <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Autumn <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Winter <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Easter <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Birthday <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Halloween <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Barbecue <n>"
+        span
+        span.coach-count
+      button.chip-toggle[type=button][aria-pressed=false]"Outdoor cooking <n>"
         span
         span.coach-count
       button.chip-toggle[type=button][aria-pressed=false]"Christmas <n>"

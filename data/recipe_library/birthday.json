@@ -1,0 +1,2514 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Birthday",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "bday-pitta-pizzas",
+   "name": "Pitta bread pizzas",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Children can make their own. Lay the toppings out in bowls.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "pitta-bread",
+     "quantity": 6,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Lay {{ing:pitta-bread}} on a tray."
+    },
+    {
+     "instruction": "Mix {{ing:passata}} with {{ing:dried-oregano}}. Spread over the pittas."
+    },
+    {
+     "instruction": "Tear over {{ing:mozzarella}}. Add halved {{ing:cherry-tomato}}."
+    },
+    {
+     "instruction": "Bake 10 minutes, until the cheese bubbles.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Scatter with {{ing:fresh-basil}}. Cut into quarters."
+    }
+   ]
+  },
+  {
+   "slug": "bday-cheese-straws",
+   "name": "Cheese straws",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "puff-pastry",
+     "quantity": 320,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "paprika",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Unroll {{ing:puff-pastry}}."
+    },
+    {
+     "instruction": "Brush with beaten {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Scatter half with grated {{ing:cheddar-cheese}} and {{ing:paprika}}. Fold the other half over. Press down."
+    },
+    {
+     "instruction": "Cut into 1 cm strips. Twist each one."
+    },
+    {
+     "instruction": "Lay on a lined tray. Bake 12 minutes, until golden and crisp.",
+     "duration_min": 12
+    }
+   ]
+  },
+  {
+   "slug": "bday-honey-mustard-sausages",
+   "name": "Honey and mustard cocktail sausages",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chipolatas",
+     "quantity": 24,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "wholegrain-mustard",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Twist each of {{ing:chipolatas}} in the middle to make two."
+    },
+    {
+     "instruction": "Snip apart. Roast on a tray 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Mix {{ing:honey}} and {{ing:wholegrain-mustard}}. Toss with the hot sausages."
+    },
+    {
+     "instruction": "Roast 5 minutes more, until sticky.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Scatter with {{ing:sesame-seeds}}. Serve on sticks."
+    }
+   ]
+  },
+  {
+   "slug": "bday-chicken-satay",
+   "name": "Chicken satay skewers",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Peanuts: tell guests, and keep these well apart if anyone has an allergy.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "peanut-butter",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sweet-chilli-sauce",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:chicken-breast-skinless}} into strips. Toss with {{ing:soy-sauce}} and {{ing:curry-powder}}."
+    },
+    {
+     "instruction": "Thread onto skewers."
+    },
+    {
+     "instruction": "Grill on a high heat 8 minutes, turning, until cooked through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Warm {{ing:peanut-butter}} with half of {{ing:coconut-milk-tinned}} until smooth.",
+     "step_group": "Sauce"
+    },
+    {
+     "instruction": "Stir in the juice of {{ing:lime}} and {{ing:sweet-chilli-sauce}}. Serve for dipping.",
+     "step_group": "Sauce"
+    }
+   ]
+  },
+  {
+   "slug": "bday-prawn-toast",
+   "name": "Sesame prawn toasts",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-white",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 90,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Blend {{ing:king-prawns-raw}}, {{ing:spring-onion}}, {{ing:ginger-fresh}}, {{ing:egg-white}} and {{ing:soy-sauce}} to a paste."
+    },
+    {
+     "instruction": "Spread thickly over {{ing:bread-slice-medium}}."
+    },
+    {
+     "instruction": "Press the paste side into {{ing:sesame-seeds}}."
+    },
+    {
+     "instruction": "Shallow-fry in {{ing:vegetable-oil}}, paste side down, 2 minutes. Turn. Fry 1 minute more.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Drain on kitchen paper. Cut into triangles."
+    }
+   ]
+  },
+  {
+   "slug": "bday-salmon-pinwheels",
+   "name": "Smoked salmon pinwheels",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cream-cheese",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-dill",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-salmon",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:cream-cheese}} with chopped {{ing:fresh-dill}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Spread over {{ing:tortilla-wrap}}."
+    },
+    {
+     "instruction": "Lay {{ing:smoked-salmon}} on top. Add thin strips of {{ing:cucumber}}."
+    },
+    {
+     "instruction": "Roll up tightly. Wrap in cling film. Chill 1 hour.",
+     "duration_min": 60
+    },
+    {
+     "instruction": "Slice into rounds."
+    }
+   ]
+  },
+  {
+   "slug": "bday-loaded-nachos",
+   "name": "Loaded nachos with guacamole and salsa",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "tortilla-chips",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "guacamole",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "chilli-fresh",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Spread {{ing:tortilla-chips}} on a tray."
+    },
+    {
+     "instruction": "Drain {{ing:black-beans-tinned}}. Toss with {{ing:cumin-ground}}. Scatter over."
+    },
+    {
+     "instruction": "Bake 8 minutes, until warm.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Spoon over {{ing:salsa-dip}} and {{ing:guacamole}}."
+    },
+    {
+     "instruction": "Scatter sliced {{ing:spring-onion}} and {{ing:chilli-fresh}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-hummus-cups",
+   "name": "Hummus and crudité cups",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "One cup each means no double dipping.",
+   "course": "starter",
+   "ingredients": [
+    {
+     "ref": "hummus",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "breadsticks",
+     "quantity": 12,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Spoon {{ing:hummus}} into the bottom of 6 small cups."
+    },
+    {
+     "instruction": "Cut {{ing:carrot-medium}}, {{ing:cucumber}} and {{ing:pepper-bell}} into long sticks."
+    },
+    {
+     "instruction": "Stand the sticks and {{ing:breadsticks}} in the hummus."
+    }
+   ]
+  },
+  {
+   "slug": "bday-beef-burgers",
+   "name": "Homemade beef burgers",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "method_note": "The dip stops them doming as they cook.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-mince-20-fat",
+     "quantity": 600,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "burger-bun",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "lettuce-iceberg",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grate {{ing:onion-medium}}. Mix into {{ing:beef-mince-20-fat}} with {{ing:mustard-dijon}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Shape into 4 burgers, a little wider than {{ing:burger-bun}}. Press a dip in the middle."
+    },
+    {
+     "instruction": "Put a griddle pan on a high heat."
+    },
+    {
+     "instruction": "Cook the burgers 4 minutes each side.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Add a slice of {{ing:cheddar-cheese}} for the last minute."
+    },
+    {
+     "instruction": "Serve in toasted buns with {{ing:lettuce-iceberg}} and sliced {{ing:tomato-medium}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-chicken-fajitas",
+   "name": "Chicken fajitas",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "chicken-breast-skinless",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "soured-cream",
+     "quantity": 150,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Slice {{ing:chicken-breast-skinless}}, {{ing:pepper-bell}} and {{ing:red-onion}} into strips."
+    },
+    {
+     "instruction": "Toss with {{ing:smoked-paprika}}, {{ing:cumin-ground}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Put a large frying pan on a high heat."
+    },
+    {
+     "instruction": "Fry 10 minutes, stirring, until the chicken is cooked and the peppers charred.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    },
+    {
+     "instruction": "Serve in warm {{ing:tortilla-wrap}} with {{ing:soured-cream}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-spaghetti-meatballs",
+   "name": "Spaghetti and meatballs",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "beef-mince-5-fat",
+     "quantity": 500,
+     "unit": "g"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 40,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "passata",
+     "quantity": 700,
+     "unit": "g"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 400,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:beef-mince-5-fat}}, {{ing:breadcrumbs-dried}}, {{ing:egg-medium}} and half of {{ing:parmesan}}. Roll 20 balls."
+    },
+    {
+     "instruction": "Brown in {{ing:olive-oil}} 8 minutes, turning. Lift out.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Fry sliced {{ing:garlic-clove}} 1 minute. Add {{ing:passata}}. Simmer 10 minutes.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Return the meatballs. Simmer 15 minutes, until cooked through.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Cook {{ing:spaghetti-dry}} for the time on the packet."
+    },
+    {
+     "instruction": "Serve with the sauce, torn {{ing:fresh-basil}} and the rest of the parmesan."
+    }
+   ]
+  },
+  {
+   "slug": "bday-fish-fingers",
+   "name": "Homemade fish fingers",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "cod-fillet",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "panko",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mayonnaise",
+     "quantity": 60,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C. Cut {{ing:cod-fillet}} into thick fingers."
+    },
+    {
+     "instruction": "Roll in {{ing:flour-plain}}. Dip in beaten {{ing:egg-medium}}. Press into {{ing:panko}}."
+    },
+    {
+     "instruction": "Lay on an oiled tray. Drizzle with {{ing:vegetable-oil}}."
+    },
+    {
+     "instruction": "Bake 15 minutes, turning once, until golden.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir the zest of {{ing:lemon}} into {{ing:mayonnaise}} for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "bday-salmon-teriyaki",
+   "name": "Sticky salmon teriyaki with rice",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "rice-jasmine-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "honey",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "mirin",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sesame-seeds",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cook {{ing:rice-jasmine-dry}} for the time on the packet."
+    },
+    {
+     "instruction": "Mix {{ing:soy-sauce}}, {{ing:honey}}, {{ing:mirin}} and {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Fry {{ing:salmon-fillet}} skin side down 4 minutes. Turn.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Pour in the sauce. Bubble 3 minutes, spooning it over, until sticky.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Steam {{ing:broccoli-head}} florets 4 minutes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve with the rice. Sprinkle {{ing:sesame-seeds}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-prawn-paella",
+   "name": "King prawn and pea paella",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "No stirring after the stock goes in. The crust on the bottom is the best bit.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "saffron",
+     "quantity": 1.2,
+     "unit": "ml"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 900,
+     "unit": "ml"
+    },
+    {
+     "ref": "king-prawns-raw",
+     "quantity": 400,
+     "unit": "g"
+    },
+    {
+     "ref": "peas-frozen",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Fry chopped {{ing:onion-medium}} and {{ing:pepper-bell}} in {{ing:olive-oil}} in a wide pan 8 minutes.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}, {{ing:smoked-paprika}} and {{ing:saffron}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Stir in {{ing:rice-arborio-dry}}. Add {{ing:stock-vegetable}}. Do not stir again."
+    },
+    {
+     "instruction": "Simmer 15 minutes.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Push {{ing:king-prawns-raw}} and {{ing:peas-frozen}} into the rice. Cook 5 minutes, until the prawns are pink.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Rest 5 minutes. Serve with {{ing:lemon}} wedges.",
+     "duration_min": 5
+    }
+   ]
+  },
+  {
+   "slug": "bday-quick-pizza",
+   "name": "Quick margherita pizza",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "No yeast and no waiting: the yoghurt makes it rise.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "greek-yoghurt",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "passata",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mozzarella",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-basil",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 240C."
+    },
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:greek-yoghurt}} to a soft dough. Knead 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Split in two. Roll each thinly. Lay on oiled trays."
+    },
+    {
+     "instruction": "Spread with {{ing:passata}} mixed with crushed {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Tear over {{ing:mozzarella}}. Drizzle with {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Bake 12 minutes, until crisp. Scatter {{ing:fresh-basil}}.",
+     "duration_min": 12
+    }
+   ]
+  },
+  {
+   "slug": "bday-halloumi-fajitas",
+   "name": "Halloumi fajitas",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "halloumi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "guacamole",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:halloumi}} into fingers. Slice {{ing:pepper-bell}} and {{ing:red-onion}}."
+    },
+    {
+     "instruction": "Toss the vegetables with {{ing:smoked-paprika}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Fry in a hot pan 8 minutes, until charred. Push to one side.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Fry the halloumi 2 minutes each side, until golden.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Squeeze over {{ing:lime}}."
+    },
+    {
+     "instruction": "Serve in warm {{ing:tortilla-wrap}} with {{ing:guacamole}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-bean-quesadillas",
+   "name": "Cheesy bean quesadillas",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 200,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:kidney-beans-tinned}} and {{ing:sweetcorn-tinned}}. Mash the beans roughly with {{ing:cumin-ground}}."
+    },
+    {
+     "instruction": "Spread over 4 of {{ing:tortilla-wrap}}. Scatter sweetcorn and grated {{ing:cheddar-cheese}}."
+    },
+    {
+     "instruction": "Top with the other wraps."
+    },
+    {
+     "instruction": "Cook in a dry frying pan 3 minutes each side, until crisp and melted.",
+     "duration_min": 3
+    },
+    {
+     "instruction": "Cut into wedges. Serve with {{ing:salsa-dip}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-bean-burgers",
+   "name": "Spiced black bean burgers",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "Chilling firms them so they hold together in the pan.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "breadcrumbs-dried",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "bread-roll-white",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "avocado",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tomato-medium",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:black-beans-tinned}}. Mash in a bowl, leaving some whole."
+    },
+    {
+     "instruction": "Grate in {{ing:red-onion}} and {{ing:garlic-clove}}. Add {{ing:cumin-ground}}, {{ing:smoked-paprika}} and {{ing:breadcrumbs-dried}}."
+    },
+    {
+     "instruction": "Shape into 4 burgers. Chill 20 minutes.",
+     "duration_min": 20
+    },
+    {
+     "instruction": "Fry in {{ing:olive-oil}} 4 minutes each side, until crisp.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Serve in {{ing:bread-roll-white}} with sliced {{ing:avocado}} and {{ing:tomato-medium}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-sweet-potato-tacos",
+   "name": "Sweet potato and black bean tacos",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "tortilla-wrap",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "red-cabbage",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C. Dice {{ing:sweet-potato}}. Toss with {{ing:olive-oil}} and {{ing:chilli-powder}}."
+    },
+    {
+     "instruction": "Roast 25 minutes, until soft and charred.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Warm drained {{ing:black-beans-tinned}} in a pan."
+    },
+    {
+     "instruction": "Shred {{ing:red-cabbage}}. Toss with the juice of one {{ing:lime}}."
+    },
+    {
+     "instruction": "Fill warm {{ing:tortilla-wrap}} with potato, beans and cabbage."
+    },
+    {
+     "instruction": "Top with {{ing:fresh-coriander}}. Serve with lime wedges."
+    }
+   ]
+  },
+  {
+   "slug": "bday-lentil-bolognese",
+   "name": "Lentil bolognese",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "celery-stick",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "dried-oregano",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "spaghetti-dry",
+     "quantity": 400,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}, {{ing:carrot-medium}} and {{ing:celery-stick}} finely."
+    },
+    {
+     "instruction": "Fry in {{ing:olive-oil}} 10 minutes, until soft.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Add {{ing:garlic-clove}}. Fry 1 minute.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Add {{ing:lentils-red-dry}}, {{ing:chopped-tomatoes-tinned}}, {{ing:stock-vegetable}} and {{ing:dried-oregano}}."
+    },
+    {
+     "instruction": "Simmer 25 minutes, until thick.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cook {{ing:spaghetti-dry}} for the time on the packet. Serve with the sauce."
+    }
+   ]
+  },
+  {
+   "slug": "bday-potato-wedges",
+   "name": "Crispy potato wedges",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "smoked-paprika",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salt",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 220C."
+    },
+    {
+     "instruction": "Cut {{ing:potato-large}} into wedges, skin on."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}}, {{ing:smoked-paprika}} and {{ing:salt}}."
+    },
+    {
+     "instruction": "Roast 35 minutes, turning once, until crisp.",
+     "duration_min": 35
+    }
+   ]
+  },
+  {
+   "slug": "bday-rainbow-slaw",
+   "name": "Rainbow slaw",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "red-cabbage",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "carrot-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "pepper-bell",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Shred {{ing:red-cabbage}}. Grate {{ing:carrot-medium}}."
+    },
+    {
+     "instruction": "Slice {{ing:pepper-bell}} and {{ing:spring-onion}} thinly."
+    },
+    {
+     "instruction": "Toss with the juice of {{ing:lime}} and {{ing:olive-oil}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-garlic-bread",
+   "name": "Homemade garlic bread",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-parsley",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "sourdough",
+     "quantity": 8,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 200C."
+    },
+    {
+     "instruction": "Mash soft {{ing:butter-unsalted}} with crushed {{ing:garlic-clove}} and chopped {{ing:fresh-parsley}}."
+    },
+    {
+     "instruction": "Spread over {{ing:sourdough}}."
+    },
+    {
+     "instruction": "Wrap in foil. Bake 10 minutes. Open the foil. Bake 5 minutes more.",
+     "duration_min": 10
+    }
+   ]
+  },
+  {
+   "slug": "bday-green-salad",
+   "name": "Simple green salad",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "cos-lettuce",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cucumber",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 45,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Tear {{ing:cos-lettuce}} into a bowl. Slice in {{ing:cucumber}}."
+    },
+    {
+     "instruction": "Whisk {{ing:mustard-dijon}}, {{ing:white-wine-vinegar}} and {{ing:olive-oil}}."
+    },
+    {
+     "instruction": "Toss as you serve."
+    }
+   ]
+  },
+  {
+   "slug": "bday-sweetcorn-salsa",
+   "name": "Sweetcorn and tomato salsa",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "sweetcorn-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cherry-tomato",
+     "quantity": 16,
+     "unit": "item"
+    },
+    {
+     "ref": "red-onion",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "fresh-coriander",
+     "quantity": 10,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Drain {{ing:sweetcorn-tinned}}."
+    },
+    {
+     "instruction": "Quarter {{ing:cherry-tomato}}. Chop {{ing:red-onion}} finely."
+    },
+    {
+     "instruction": "Mix with the juice of {{ing:lime}} and chopped {{ing:fresh-coriander}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-chocolate-birthday-cake",
+   "name": "Chocolate birthday cake",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line two 20 cm tins."
+    },
+    {
+     "instruction": "Beat 225 g of {{ing:butter-unsalted}} with {{ing:sugar-caster}} until pale."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}. Fold in {{ing:flour-self-raising}}, 50 g of {{ing:cocoa-powder}} and {{ing:milk-whole}}."
+    },
+    {
+     "instruction": "Divide between the tins. Bake 25 minutes, until springy. Cool.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Beat the rest of the butter with {{ing:icing-sugar}}, the rest of the cocoa and melted {{ing:dark-chocolate}}.",
+     "step_group": "Icing"
+    },
+    {
+     "instruction": "Sandwich and cover the cakes. Add candles.",
+     "step_group": "Icing"
+    }
+   ]
+  },
+  {
+   "slug": "bday-funfetti-cake",
+   "name": "Sprinkle vanilla birthday cake",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 375,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 225,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "sprinkles",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line two 20 cm tins."
+    },
+    {
+     "instruction": "Beat 225 g of {{ing:butter-unsalted}} with {{ing:sugar-caster}}. Beat in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}}, half of {{ing:vanilla-extract}} and half of {{ing:sprinkles}}."
+    },
+    {
+     "instruction": "Divide between the tins. Bake 25 minutes. Cool.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Beat the rest of the butter, {{ing:icing-sugar}}, {{ing:milk-whole}} and the rest of the vanilla until fluffy."
+    },
+    {
+     "instruction": "Sandwich and cover. Shower with the rest of the sprinkles."
+    }
+   ]
+  },
+  {
+   "slug": "bday-brownies",
+   "name": "Fudgy chocolate brownies",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "They firm up as they cool. Underbaked is right.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dark-chocolate",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 175,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 275,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 40,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line a 20 cm square tin."
+    },
+    {
+     "instruction": "Melt {{ing:dark-chocolate}} and {{ing:butter-unsalted}} together. Cool a little."
+    },
+    {
+     "instruction": "Whisk {{ing:sugar-caster}} and {{ing:egg-medium}} until thick and pale."
+    },
+    {
+     "instruction": "Fold in the chocolate, then {{ing:flour-plain}} and {{ing:cocoa-powder}}."
+    },
+    {
+     "instruction": "Bake 25 minutes, until set at the edges with a slight wobble.",
+     "duration_min": 25
+    },
+    {
+     "instruction": "Cool in the tin before cutting into 16."
+    }
+   ]
+  },
+  {
+   "slug": "bday-cupcakes",
+   "name": "Vanilla cupcakes with buttercream",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 275,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "sprinkles",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Put 12 cases in a bun tin."
+    },
+    {
+     "instruction": "Beat 125 g of {{ing:butter-unsalted}} with {{ing:sugar-caster}}. Beat in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Divide between the cases. Bake 18 minutes. Cool.",
+     "duration_min": 18
+    },
+    {
+     "instruction": "Beat the rest of the butter with {{ing:icing-sugar}} until fluffy."
+    },
+    {
+     "instruction": "Pipe or spread on top. Add {{ing:sprinkles}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-rocky-road",
+   "name": "Rocky road",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [],
+   "method_note": "Most marshmallows have gelatine in them, so this is not vegetarian.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "milk-chocolate-bar",
+     "quantity": 4,
+     "unit": "item"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "golden-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "digestive-biscuit",
+     "quantity": 12,
+     "unit": "item"
+    },
+    {
+     "ref": "marshmallows",
+     "quantity": 15,
+     "unit": "item"
+    },
+    {
+     "ref": "glace-cherries",
+     "quantity": 60,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Line a 20 cm square tin."
+    },
+    {
+     "instruction": "Melt {{ing:milk-chocolate-bar}}, {{ing:dark-chocolate}}, {{ing:butter-unsalted}} and {{ing:golden-syrup}} together."
+    },
+    {
+     "instruction": "Break {{ing:digestive-biscuit}} into pieces. Halve {{ing:marshmallows}} and {{ing:glace-cherries}}."
+    },
+    {
+     "instruction": "Stir everything into the chocolate."
+    },
+    {
+     "instruction": "Press into the tin. Chill 2 hours, until firm. Cut into squares.",
+     "duration_min": 120
+    }
+   ]
+  },
+  {
+   "slug": "bday-sundaes",
+   "name": "Build-your-own ice cream sundaes",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "ice-cream-vanilla",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "strawberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "dark-chocolate",
+     "quantity": 80,
+     "unit": "g"
+    },
+    {
+     "ref": "double-cream",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "sprinkles",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Melt {{ing:dark-chocolate}} into warm {{ing:double-cream}} for a sauce."
+    },
+    {
+     "instruction": "Slice {{ing:strawberries}}."
+    },
+    {
+     "instruction": "Put scoops of {{ing:ice-cream-vanilla}} in glasses."
+    },
+    {
+     "instruction": "Let everyone add strawberries, sauce and {{ing:sprinkles}}."
+    }
+   ]
+  },
+  {
+   "slug": "bday-vegan-chocolate-cake",
+   "name": "Vegan chocolate birthday cake",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "method_note": "The vinegar and bicarbonate make it rise without eggs.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-plain",
+     "quantity": 300,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 75,
+     "unit": "g"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 10,
+     "unit": "ml"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 350,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "white-wine-vinegar",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "dairy-free-spread",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "icing-sugar",
+     "quantity": 300,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line two 20 cm tins."
+    },
+    {
+     "instruction": "Mix {{ing:flour-plain}}, {{ing:sugar-caster}}, 50 g of {{ing:cocoa-powder}} and {{ing:bicarbonate-of-soda}}."
+    },
+    {
+     "instruction": "Whisk {{ing:oat-milk}}, {{ing:vegetable-oil}} and {{ing:white-wine-vinegar}}. Stir into the flour."
+    },
+    {
+     "instruction": "Divide between the tins. Bake 30 minutes. Cool.",
+     "duration_min": 30
+    },
+    {
+     "instruction": "Beat {{ing:dairy-free-spread}} with {{ing:icing-sugar}} and the rest of the cocoa."
+    },
+    {
+     "instruction": "Sandwich and cover the cakes."
+    }
+   ]
+  },
+  {
+   "slug": "bday-fruit-skewers",
+   "name": "Rainbow fruit skewers with chocolate dip",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "kiwi",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "blueberries",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "grapes",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "dark-chocolate-70",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Hull {{ing:strawberries}}. Peel and chunk half of {{ing:pineapple}} and {{ing:kiwi}}."
+    },
+    {
+     "instruction": "Thread onto skewers in rainbow order with {{ing:grapes}} and {{ing:blueberries}}."
+    },
+    {
+     "instruction": "Melt {{ing:dark-chocolate-70}} over a pan of barely simmering water."
+    },
+    {
+     "instruction": "Serve the skewers with the chocolate for dipping."
+    }
+   ]
+  },
+  {
+   "slug": "bday-vegan-cookies",
+   "name": "Vegan chocolate chip cookies",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 12,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "dairy_free"
+   ],
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "dairy-free-spread",
+     "quantity": 125,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-soft-brown",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "oat-milk",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "vanilla-extract",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "flour-plain",
+     "quantity": 200,
+     "unit": "g"
+    },
+    {
+     "ref": "bicarbonate-of-soda",
+     "quantity": 2.5,
+     "unit": "ml"
+    },
+    {
+     "ref": "dark-chocolate-70",
+     "quantity": 100,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Heat the oven to 180C. Line two trays."
+    },
+    {
+     "instruction": "Beat {{ing:dairy-free-spread}} and {{ing:sugar-soft-brown}}. Add {{ing:oat-milk}} and {{ing:vanilla-extract}}."
+    },
+    {
+     "instruction": "Stir in {{ing:flour-plain}} and {{ing:bicarbonate-of-soda}}."
+    },
+    {
+     "instruction": "Chop {{ing:dark-chocolate-70}}. Stir in."
+    },
+    {
+     "instruction": "Roll 16 balls. Space well apart on the trays."
+    },
+    {
+     "instruction": "Bake 11 minutes, until golden at the edges. Cool on the trays.",
+     "duration_min": 11
+    }
+   ]
+  },
+  {
+   "slug": "bday-pink-lemonade",
+   "name": "Pink lemonade",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "raspberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sparkling-water",
+     "quantity": 2,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Crush {{ing:raspberries}} with {{ing:sugar-caster}} and the juice of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Sieve into a jug."
+    },
+    {
+     "instruction": "Top up with {{ing:sparkling-water}} and ice."
+    }
+   ]
+  },
+  {
+   "slug": "bday-strawberry-milkshake",
+   "name": "Strawberry milkshake",
+   "cuisine": "Birthday",
+   "budget_tier": "budget",
+   "default_slot": "drink",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "strawberries",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "ice-cream-vanilla",
+     "quantity": 4,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Hull {{ing:strawberries}}."
+    },
+    {
+     "instruction": "Blend with {{ing:milk-whole}} and {{ing:ice-cream-vanilla}} until frothy."
+    },
+    {
+     "instruction": "Pour into glasses with straws."
+    }
+   ]
+  },
+  {
+   "slug": "bday-raspberry-fizz",
+   "name": "Raspberry sparkling fizz",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 6,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "ingredients": [
+    {
+     "ref": "raspberries",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "orange-liqueur",
+     "quantity": 40,
+     "unit": "ml"
+    },
+    {
+     "ref": "sparkling-wine",
+     "quantity": 750,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put 3 {{ing:raspberries}} in each glass."
+    },
+    {
+     "instruction": "Add a little {{ing:orange-liqueur}}."
+    },
+    {
+     "instruction": "Top up with chilled {{ing:sparkling-wine}}."
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "wine, beer or cider",
+     "text": "Check the label says vegan if you need it to be"
+    }
+   ]
+  },
+  {
+   "slug": "bday-rum-punch",
+   "name": "Birthday rum punch",
+   "cuisine": "Birthday",
+   "budget_tier": "everyday",
+   "default_slot": "drink",
+   "default_serves": 8,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "The spirit is rum. Make a jug without it for the drivers.",
+   "ingredients": [
+    {
+     "ref": "spirit-40",
+     "quantity": 200,
+     "unit": "ml"
+    },
+    {
+     "ref": "pineapple",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "orange-juice",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "lime",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-ale",
+     "quantity": 500,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Pour {{ing:spirit-40}} and {{ing:orange-juice}} into a big jug."
+    },
+    {
+     "instruction": "Add the juice of {{ing:lime}}."
+    },
+    {
+     "instruction": "Chunk half of {{ing:pineapple}}. Add."
+    },
+    {
+     "instruction": "Top up with {{ing:ginger-ale}} and lots of ice."
+    }
+   ]
+  }
+ ]
+}
