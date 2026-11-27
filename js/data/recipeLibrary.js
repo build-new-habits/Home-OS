@@ -1,4 +1,6 @@
-// js/data/recipeLibrary.js — 27 Nov 2026 v9
+// js/data/recipeLibrary.js — 27 Nov 2026 v10
+// v10: filterRecipes takes `method` (roast, one pot, traybake, microwave...),
+// read from each recipe's method by data/cookingMethods.js (Phase 43).
 // v9: prosciutto, salami, 'nduja, quail and porchetta count as meat; turbot,
 // halibut, bream, caviar and cockles as fish.
 // v8: meat and fish read from the Christmas and world pantry too (pancetta,
@@ -28,6 +30,7 @@
 //
 // A recipe becomes rows only when you tap add.
 
+import { methodsOf } from './cookingMethods.js';
 import { supabase } from '../supabaseClient.js';
 import { lookup as lookupReference, referencePatch } from './foodReference.js';
 import { toStorage, ingredientLine } from '../lib/units.js';
@@ -148,9 +151,16 @@ export function proteinsOf(recipe) {
   return [...out];
 }
 
+/** How a recipe is cooked, read once per recipe object. */
+const methodCache = new WeakMap();
+export function methodsCached(recipe) {
+  if (!methodCache.has(recipe)) methodCache.set(recipe, methodsOf(recipe));
+  return methodCache.get(recipe);
+}
+
 /** Filters a recipe list. Every filter is optional and they combine. */
 export function filterRecipes(recipes = [], {
-  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = '', proteins = [], course = ''
+  cuisine = '', budget_tier = '', default_slot = '', dietary = [], term = '', proteins = [], course = '', method = ''
 } = {}) {
   const q = normalise(term);
   return recipes.filter((r) => {
@@ -158,6 +168,7 @@ export function filterRecipes(recipes = [], {
     if (budget_tier && r.budget_tier !== budget_tier) return false;
     if (default_slot && r.default_slot !== default_slot) return false;
     if (course && courseOf(r) !== course) return false;
+    if (method && !methodsCached(r).includes(method)) return false;
     // A recipe must carry EVERY tag asked for. Tags say what a meal is, and
     // asking for vegan means vegan, not "vegan or vegetarian".
     if (dietary.length && !dietary.every((t) => (r.dietary_tags || []).includes(t))) return false;

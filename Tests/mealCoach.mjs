@@ -123,6 +123,29 @@ check('a recipe with no time is never called quick', (() => {
   return own && own.minutes === null && coach.reasonsFor(own, { ...blank, time: '15' }).includes('No time given');
 })());
 
+// 4b. How it is cooked (Phase 43), read from the method.
+{
+  const cm = await import(pathToFileURL(path.join(REPO, 'js/data/cookingMethods.js')).href);
+  const bySlug = new Map(recipes.map((r) => [r.slug, r]));
+  const has = (slug, m) => cm.methodsOf(bySlug.get(slug) || {}).includes(m);
+  check('a mug sponge is microwave', has('mw-mug-chocolate-sponge', 'microwave'));
+  check('roast lamb is a roast, in the oven', has('spr-roast-lamb', 'roast') && has('spr-roast-lamb', 'oven'));
+  check('the chicken traybake is a traybake', has('hal-pumpkin-chicken-traybake', 'traybake'));
+  check('one-pot pasta is one pot', has('out-one-pot-pasta', 'one-pot'));
+  check('tofu noodles are a stir-fry', has('spr-tofu-greens-noodles', 'stir-fry'));
+  check('tuna steaks are grilled', has('bbq-tuna-steak-salsa', 'grilled'));
+  check('beef casserole is slow-cooked', has('aut-beef-red-wine-casserole', 'slow'));
+  check('Eton mess needs no cooking', has('sum-eton-mess', 'no-cook'));
+  check('smoky barbecue beans are not grilled just for the name', !has('bbq-smoky-beans', 'grilled'));
+  check('a hot chocolate is not steamed', !has('win-hot-chocolate', 'steamed'));
+  check('a pudding is never a traybake', !recipes.some((r) => r.course === 'pudding' && cm.methodsOf(r).includes('traybake')));
+  for (const m of cm.METHODS) check(`the library has ${m.label}`, recipes.filter((r) => cm.methodsOf(r).includes(m.value)).length >= 10, m.value);
+  const lib = await import(pathToFileURL(path.join(REPO, 'js/data/recipeLibrary.js')).href);
+  const roasts = lib.filterRecipes(recipes, { method: 'roast' });
+  check('the library filter takes a method', roasts.length > 50 && roasts.every((r) => cm.methodsOf(r).includes('roast')));
+  check('your own meals fit only Any for method', facts.filter((f) => f.c.meal && !f.c.recipe).every((f) => f.how.size === 0));
+}
+
 // 5. Nut free always holds, even with Suits everyone off.
 const nutTable = coach.tableTest([{ dietary_tags: ['nut_free'] }, { dietary_tags: [] }]);
 const nutsLeft = coach.filterFacts(facts, { ...blank, everyone: false }, nutTable);

@@ -1,0 +1,834 @@
+{
+ "version": 1,
+ "updated": "2026-11-27",
+ "cuisine": "Microwave",
+ "licence": "Original formulations written for Home-OS. Ingredient lists and functional method are facts and procedures; nothing is transcribed from any published source.",
+ "recipes": [
+  {
+   "slug": "mw-mug-chocolate-sponge",
+   "name": "Chocolate mug sponge",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "cocoa-powder",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}}, {{ing:sugar-caster}} and {{ing:cocoa-powder}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}} and {{ing:vegetable-oil}} with a fork until smooth."
+    },
+    {
+     "instruction": "Microwave on high 90 seconds, until risen and set on top."
+    },
+    {
+     "instruction": "Leave 1 minute before eating.",
+     "note": "The mug is very hot.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-jacket-potato",
+   "name": "Microwave jacket potatoes with cheese and beans",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher. For crisp skins, finish in a hot oven 10 minutes.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "potato-large",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "baked-beans",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 60,
+     "unit": "g"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 15,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:potato-large}} all over with a fork."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, turning halfway, until soft all through.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Heat {{ing:baked-beans}} in a covered bowl 2 minutes, stirring once.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Split the potatoes. Add {{ing:butter-unsalted}}, the beans and grated {{ing:cheddar-cheese}}."
+    }
+   ]
+  },
+  {
+   "slug": "mw-porridge",
+   "name": "Microwave porridge with banana",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "ingredients": [
+    {
+     "ref": "oats-rolled",
+     "quantity": 50,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-semi-skimmed",
+     "quantity": 250,
+     "unit": "ml"
+    },
+    {
+     "ref": "banana-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "honey",
+     "quantity": 5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:oats-rolled}} and {{ing:milk-semi-skimmed}} in a large bowl.",
+     "note": "A big bowl stops it boiling over."
+    },
+    {
+     "instruction": "Microwave on high 2 minutes. Stir.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Microwave 1 minute more, until thick and creamy.",
+     "duration_min": 1
+    },
+    {
+     "instruction": "Slice {{ing:banana-medium}} on top. Drizzle with {{ing:honey}}."
+    }
+   ]
+  },
+  {
+   "slug": "mw-scrambled-eggs",
+   "name": "Microwave scrambled eggs on toast",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "breakfast",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher. Take them out slightly wet; they finish cooking in the bowl.",
+   "ingredients": [
+    {
+     "ref": "egg-medium",
+     "quantity": 3,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 10,
+     "unit": "g"
+    },
+    {
+     "ref": "bread-slice-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "chives",
+     "quantity": 5,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Beat {{ing:egg-medium}} and {{ing:milk-whole}} in a bowl. Add {{ing:butter-unsalted}}."
+    },
+    {
+     "instruction": "Microwave on high 40 seconds. Stir with a fork."
+    },
+    {
+     "instruction": "Microwave 30 seconds more. Stir. Repeat until barely set."
+    },
+    {
+     "instruction": "Toast {{ing:bread-slice-medium}}. Spoon the eggs on top. Snip over {{ing:chives}}."
+    }
+   ]
+  },
+  {
+   "slug": "mw-mushroom-risotto",
+   "name": "Microwave mushroom risotto",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "butter-unsalted",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "mushroom-chestnut",
+     "quantity": 8,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-arborio-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 500,
+     "unit": "ml"
+    },
+    {
+     "ref": "parmesan",
+     "quantity": 30,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Put in a large bowl with {{ing:butter-unsalted}}. Microwave 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Slice {{ing:mushroom-chestnut}}. Add with {{ing:rice-arborio-dry}}. Stir to coat."
+    },
+    {
+     "instruction": "Add half of {{ing:stock-vegetable}}, hot. Cover loosely. Microwave 6 minutes.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir. Add the rest of the stock. Microwave 6 minutes more, until the rice is tender.",
+     "duration_min": 6
+    },
+    {
+     "instruction": "Stir in grated {{ing:parmesan}}. Leave 2 minutes to thicken.",
+     "duration_min": 2
+    }
+   ],
+   "swaps": [
+    {
+     "instead": "parmesan",
+     "text": "A vegetarian hard cheese: most parmesan is made with animal rennet"
+    }
+   ]
+  },
+  {
+   "slug": "mw-ginger-salmon",
+   "name": "Microwave salmon with ginger and soy",
+   "cuisine": "Microwave",
+   "budget_tier": "everyday",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "pak-choi",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "salmon-fillet",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "ginger-fresh",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "soy-sauce",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "spring-onion",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Halve {{ing:pak-choi}}. Lay in a shallow dish."
+    },
+    {
+     "instruction": "Put {{ing:salmon-fillet}} on top. Spoon over {{ing:soy-sauce}} and grated {{ing:ginger-fresh}}."
+    },
+    {
+     "instruction": "Cover with a plate. Microwave on high 4 minutes, until the fish flakes.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Heat {{ing:rice-white-cooked}} for the time on the pouch."
+    },
+    {
+     "instruction": "Scatter sliced {{ing:spring-onion}} over the fish. Serve with the rice."
+    }
+   ]
+  },
+  {
+   "slug": "mw-mac-cheese",
+   "name": "Microwave macaroni cheese",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "penne-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "water",
+     "quantity": 400,
+     "unit": "ml"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 100,
+     "unit": "ml"
+    },
+    {
+     "ref": "cheddar-cheese",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "mustard-dijon",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Put {{ing:penne-dry}} and {{ing:water}} in a large bowl."
+    },
+    {
+     "instruction": "Microwave on high 10 minutes, stirring halfway, until the pasta is tender. Drain any water left.",
+     "duration_min": 10
+    },
+    {
+     "instruction": "Stir in {{ing:milk-whole}}, grated {{ing:cheddar-cheese}} and {{ing:mustard-dijon}}."
+    },
+    {
+     "instruction": "Microwave 1 minute. Stir until smooth and saucy.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-syrup-sponge",
+   "name": "Microwave golden syrup sponge",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "golden-syrup",
+     "quantity": 45,
+     "unit": "ml"
+    },
+    {
+     "ref": "butter-unsalted",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "flour-self-raising",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Grease a 1 litre microwave-safe bowl. Spoon {{ing:golden-syrup}} into the bottom."
+    },
+    {
+     "instruction": "Beat soft {{ing:butter-unsalted}} with {{ing:sugar-caster}}. Beat in {{ing:egg-medium}}."
+    },
+    {
+     "instruction": "Fold in {{ing:flour-self-raising}} and {{ing:milk-whole}}. Spoon over the syrup."
+    },
+    {
+     "instruction": "Cover loosely. Microwave on high 4 minutes, until risen and springy.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Leave 2 minutes. Turn out onto a plate.",
+     "duration_min": 2
+    }
+   ]
+  },
+  {
+   "slug": "mw-steamed-greens",
+   "name": "Microwave steamed greens with lemon",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 4,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "side": true,
+   "ingredients": [
+    {
+     "ref": "broccoli-head",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "green-beans",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "olive-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Cut {{ing:broccoli-head}} into florets. Put in a bowl with {{ing:green-beans}} and 2 tbsp water."
+    },
+    {
+     "instruction": "Cover with a plate. Microwave on high 4 minutes, until bright green and tender.",
+     "duration_min": 4
+    },
+    {
+     "instruction": "Drain."
+    },
+    {
+     "instruction": "Toss with {{ing:olive-oil}} and the juice of {{ing:lemon}}."
+    }
+   ]
+  },
+  {
+   "slug": "mw-sweet-potato-beans",
+   "name": "Microwave sweet potato with black beans",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "sweet-potato",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "black-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "cumin-ground",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "salsa-dip",
+     "quantity": 100,
+     "unit": "g"
+    },
+    {
+     "ref": "lime",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Prick {{ing:sweet-potato}} all over."
+    },
+    {
+     "instruction": "Microwave on high 8 minutes, turning halfway, until soft.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Heat drained {{ing:black-beans-tinned}} with {{ing:cumin-ground}} in a covered bowl 2 minutes.",
+     "duration_min": 2
+    },
+    {
+     "instruction": "Split the potatoes. Fill with the beans and {{ing:salsa-dip}}. Squeeze over {{ing:lime}}."
+    }
+   ]
+  },
+  {
+   "slug": "mw-chilli",
+   "name": "Microwave chilli con carne",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "onion-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "beef-mince-5-fat",
+     "quantity": 250,
+     "unit": "g"
+    },
+    {
+     "ref": "chilli-powder",
+     "quantity": 5,
+     "unit": "ml"
+    },
+    {
+     "ref": "chopped-tomatoes-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "kidney-beans-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "rice-white-cooked",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Chop {{ing:onion-medium}}. Put in a large bowl with {{ing:beef-mince-5-fat}}."
+    },
+    {
+     "instruction": "Microwave on high 5 minutes, breaking up the mince with a fork halfway.",
+     "duration_min": 5
+    },
+    {
+     "instruction": "Stir in {{ing:chilli-powder}}, {{ing:chopped-tomatoes-tinned}} and drained {{ing:kidney-beans-tinned}}."
+    },
+    {
+     "instruction": "Cover loosely. Microwave 8 minutes, stirring halfway, until thick and the meat is cooked through.",
+     "duration_min": 8
+    },
+    {
+     "instruction": "Heat {{ing:rice-white-cooked}} for the time on the pouch."
+    }
+   ]
+  },
+  {
+   "slug": "mw-baked-apple",
+   "name": "Microwave baked apple",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 2,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "apple-medium",
+     "quantity": 2,
+     "unit": "item"
+    },
+    {
+     "ref": "sultanas",
+     "quantity": 20,
+     "unit": "g"
+    },
+    {
+     "ref": "maple-syrup",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "cinnamon-ground",
+     "quantity": 2.5,
+     "unit": "ml"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Core {{ing:apple-medium}}. Score a line round the middle of each."
+    },
+    {
+     "instruction": "Mix {{ing:sultanas}} with {{ing:cinnamon-ground}}. Stuff into the apples."
+    },
+    {
+     "instruction": "Stand in a dish. Pour over {{ing:maple-syrup}}."
+    },
+    {
+     "instruction": "Cover. Microwave on high 4 minutes, until soft.",
+     "duration_min": 4
+    }
+   ]
+  },
+  {
+   "slug": "mw-coconut-dal",
+   "name": "Microwave coconut dal",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 3,
+   "dietary_tags": [
+    "vegetarian",
+    "vegan",
+    "gluten_free",
+    "dairy_free"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "main",
+   "ingredients": [
+    {
+     "ref": "lentils-red-dry",
+     "quantity": 150,
+     "unit": "g"
+    },
+    {
+     "ref": "coconut-milk-tinned",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "stock-vegetable",
+     "quantity": 300,
+     "unit": "ml"
+    },
+    {
+     "ref": "curry-powder",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "garlic-clove",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "spinach",
+     "quantity": 80,
+     "unit": "g"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Rinse {{ing:lentils-red-dry}}. Put in a large bowl with {{ing:coconut-milk-tinned}}, {{ing:stock-vegetable}} and {{ing:curry-powder}}."
+    },
+    {
+     "instruction": "Crush in {{ing:garlic-clove}}."
+    },
+    {
+     "instruction": "Cover loosely. Microwave on high 15 minutes, stirring every 5, until the lentils collapse.",
+     "duration_min": 15
+    },
+    {
+     "instruction": "Stir in {{ing:spinach}}. Microwave 1 minute more.",
+     "duration_min": 1
+    }
+   ]
+  },
+  {
+   "slug": "mw-lemon-mug-pudding",
+   "name": "Lemon curd mug pudding",
+   "cuisine": "Microwave",
+   "budget_tier": "budget",
+   "default_slot": "dinner",
+   "default_serves": 1,
+   "dietary_tags": [
+    "vegetarian"
+   ],
+   "method_note": "Times are for an 800 W microwave. Add a little longer at lower power, a little less at higher.",
+   "course": "pudding",
+   "ingredients": [
+    {
+     "ref": "flour-self-raising",
+     "quantity": 60,
+     "unit": "ml"
+    },
+    {
+     "ref": "sugar-caster",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "egg-medium",
+     "quantity": 1,
+     "unit": "item"
+    },
+    {
+     "ref": "milk-whole",
+     "quantity": 30,
+     "unit": "ml"
+    },
+    {
+     "ref": "vegetable-oil",
+     "quantity": 15,
+     "unit": "ml"
+    },
+    {
+     "ref": "lemon",
+     "quantity": 1,
+     "unit": "item"
+    }
+   ],
+   "steps": [
+    {
+     "instruction": "Mix {{ing:flour-self-raising}} and {{ing:sugar-caster}} in a large mug."
+    },
+    {
+     "instruction": "Beat in {{ing:egg-medium}}, {{ing:milk-whole}}, {{ing:vegetable-oil}} and the zest of {{ing:lemon}}."
+    },
+    {
+     "instruction": "Microwave on high 75 seconds, until risen."
+    },
+    {
+     "instruction": "Squeeze over a little of the lemon juice."
+    }
+   ]
+  }
+ ]
+}
