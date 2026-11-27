@@ -1,4 +1,5 @@
-/* css/components.css — 26 Nov 2026 v104 */
+/* css/components.css — 27 Nov 2026 v105 */
+/* v105: favourites and regulars, three lists (Phase 36b). */
 /* v104: Hearth page and the Free library note (Phase 36a). */
 /* v103: shopping list arrangement switch and sub-headings (Phase 35). */
 /* v102: Check and save, the Meals tab (Phase 34). */
@@ -5160,3 +5161,21 @@ body.sheet-open {
 .hearth-table thead th { color: var(--color-text-muted); }
 .library-hearth-note { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .settings-hearth { margin: 0 0 var(--space-4); }
+
+/* ---- Favourites and regulars (Phase 36b) ----------------------------------- */
+.shop-lists { margin-top: var(--space-3); }
+.favs { display: flex; flex-direction: column; gap: var(--space-5); }
+.favs-section h2 { margin: 0 0 var(--space-2); }
+.favs-list, .favs-pick { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.favs-pick { flex-direction: row; flex-wrap: wrap; gap: var(--space-2); }
+.favs-item {
+  padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface); display: flex; flex-direction: column; gap: var(--space-2);
+}
+.favs-name { margin: 0; font-size: var(--text-lg); }
+.favs-controls, .favs-when { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: flex-end; }
+.favs-amount { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.favs-amount input { width: 6em; min-height: var(--tap-min); }
+.favs-amount select, .favs-controls select, .favs-when select, .favs-when input { min-height: var(--tap-min); }
+.favs-buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.favs-star { min-height: var(--tap-min); }

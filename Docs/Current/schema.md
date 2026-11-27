@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-26 Nov 2026 v25
+27 Nov 2026 v26
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -13,6 +13,14 @@ policies**, 3 trigger functions, 22 update triggers.
 ownership; 5 remain personal. See §0f and §4.
 
 ---
+
+## 0x. Revision 29 — favourites and regulars (27 Nov 2026)
+
+New table **`shop_favourites`** (Phase 36b, Hearth): the things a household
+buys again and again. `every` empty = a favourite (one tap onto the list);
+`every` set = a regular, added by itself when the week's list is built, once
+per week, fortnight or month, unless the pantry already has enough.
+One row per food per household. Migration: `migrations/029_shop_favourites.sql`.
 
 ## 0w. Revision 28 — Free and Hearth (26 Nov 2026)
 
@@ -1322,6 +1330,18 @@ Redemption is **not** a direct insert. It goes through
 
 Style is canonical in `RECIPE_STEP_STYLE.md` and applies to every recipe in
 the app, seeded or typed.
+
+### shop_favourites
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, default my_household_id() |
+| food_id | uuid | not null, references foods, on delete cascade; unique with household_id |
+| every | text | nullable; check in ('week','fortnight','month'). Empty = favourite only |
+| qty | numeric | nullable; check > 0 and ≤ 9999. How many a regular adds |
+| unit | text | not null default 'item' |
+| last_added_on | date | nullable; when a regular last went on the list |
+
+Revision 29.
 
 ### household_entitlements
 | Column | Type | Notes |

@@ -1,4 +1,5 @@
-// service-worker.js — 26 Nov 2026 v137
+// service-worker.js — 27 Nov 2026 v138
+// v138: Phase 36b — data/favourites.js, views/shopFavourites.js. Shell v184.
 // v137: Phase 36a, Hearth — data/hearth.js, components/hearthCard.js, views/hearth.js. Shell v183.
 // v136: Phase 35, shopping list sections — lib/shopSections.js. Shell v182.
 // v135: Phase 34, quick kitchen — views/recipeCheck.js, views/mealsHome.js, data/ingredientMatch.js, lib/kitchenMeasures.js. Shell v181.
@@ -281,9 +282,11 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v183';
+const CACHE_NAME = 'home-os-shell-v184';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
+  './js/data/favourites.js',
+  './js/views/shopFavourites.js',
   './js/data/hearth.js',
   './js/components/hearthCard.js',
   './js/views/hearth.js',
@@ -319,9 +322,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=183',
-  './css/base.css?v=183',
-  './css/components.css?v=183',
+  './css/tokens.css?v=184',
+  './css/base.css?v=184',
+  './css/components.css?v=184',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

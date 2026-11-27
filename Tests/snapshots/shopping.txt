@@ -10,6 +10,15 @@ header.shop-header
       label.shop-sort__label"Where it goes"
       input.shop-sort__input[type=radio]
       label.shop-sort__label"Aisle order"
+  fieldset.shop-lists.shop-sort
+    legend.shop-sort__legend"Which list"
+    div.shop-sort__options
+      input.shop-sort__input[type=radio]
+      label.shop-sort__label"Groceries (<n>)"
+      input.shop-sort__input[type=radio]
+      label.shop-sort__label"Household (<n>)"
+      input.shop-sort__input[type=radio]
+      label.shop-sort__label"Toiletries (<n>)"
 p.visually-hidden[role=status]
 div.shop-groups
   div.shop-empty
@@ -25,6 +34,7 @@ div.shop-actions
   button.btn.btn-block.btn-primary[type=button][hidden=]"Done shopping"
   button.btn.btn-block[type=button][hidden=]"Bought everything"
   button.btn.btn-block.shop-from-plan[type=button]"Add everything from the plan"
+  a.btn.btn-block"Favourites and regulars"
   button.btn.btn-block[type=button]"Share the list"
   a.btn.btn-block"Add something to the list"
   button.btn.btn-block.btn-quiet.shop-clear[type=button]"Clear the list"

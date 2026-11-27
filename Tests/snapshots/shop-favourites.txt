@@ -1,0 +1,33 @@
+a.back-link"Shopping list"
+h1"Favourites and regulars"
+p.visually-hidden[role=status]
+div.favs
+  section.favs-section
+    h2"Your favourites"
+    p.field-hint
+  section.favs-section
+    h2"Add favourites"
+    p.field-hint
+  section.favs-section
+    h2"Your weekly list"
+    p.field-hint
+    div.checkbox-row
+      input[type=checkbox]
+      label"Build my list each week"
+    div.favs-when
+      div.field
+        label"Day"
+        select
+          option
+          option
+          option
+          option
+          option
+          option
+          option
+      div.field
+        label"Time"
+        input[type=time]
+    button.btn[type=button]"Build it now"
+div.action-bar
+  a.action-bar__control.btn.btn-primary"Back to the list"

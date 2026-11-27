@@ -1,4 +1,7 @@
-// js/views/kitchenShop.js — 25 Nov 2026 v9
+// js/views/kitchenShop.js — 27 Nov 2026 v10
+// v10 (Phase 36b, Hearth): Groceries, Household and Toiletries as three
+// lists; Favourites and regulars one tap away; the list built for you on
+// the day and time you choose, the first time the list opens after it.
 // v9 (Phase 35): Where it goes (Fridge › Meat, Fish, Dairy; Freezer; Fruit;
 // Veg; Bakery; Cupboard › …; Drinks; Home › …) or Aisle order, chosen with
 // one switch and remembered (lib/shopSections.js). Shared text follows it.
@@ -57,6 +60,9 @@ import { listStock, findByFood, addStock, updateStock, todayIso, defaultShelfLif
 import { announce } from '../lib/a11y.js';
 import { showToast } from '../components/toast.js';
 import { arrange, readSort, saveSort, SORTS } from '../lib/shopSections.js';
+import { loadHearth, isHearth } from '../data/hearth.js';
+import { showHearthCard } from '../components/hearthCard.js';
+import { LISTS, listOf, readBuild, buildDue, runWeeklyBuild } from '../data/favourites.js';
 
 const REFRESH_MS = 20000;
 
@@ -177,6 +183,33 @@ export function render(mountEl) {
   }
   sortGroup.appendChild(sortOptions);
   header.appendChild(sortGroup);
+
+  // ---- Phase 36b (Hearth): three lists ------------------------------------
+  // Groceries, Household, Toiletries, by each thing's kind. Free keeps one
+  // list; these tabs are not shown there. The basket below stays whole: a
+  // trip is one trip.
+  let whichList = 'groceries';
+  const listGroup = el('fieldset', { class: 'shop-sort shop-lists' });
+  listGroup.appendChild(el('legend', { class: 'shop-sort__legend', text: 'Which list' }));
+  const listOptions = el('div', { class: 'shop-sort__options' });
+  const listLabels = new Map();
+  for (const option of LISTS) {
+    const id = `shop-list-${option.value}`;
+    const input = el('input', { type: 'radio', name: 'shop-list', id, value: option.value, class: 'shop-sort__input' });
+    input.checked = option.value === whichList;
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
+      whichList = option.value;
+      paint();
+      status.textContent = `${option.label} list.`;
+    }, { signal });
+    const label = el('label', { for: id, class: 'shop-sort__label', text: option.label });
+    listLabels.set(option.value, label);
+    listOptions.append(input, label);
+  }
+  listGroup.appendChild(listOptions);
+  listGroup.hidden = true;
+  header.appendChild(listGroup);
   mountEl.appendChild(header);
 
   const status = el('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
@@ -203,6 +236,13 @@ export function render(mountEl) {
   const actions = el('div', { class: 'shop-actions' });
   const doneBtn = el('button', { type: 'button', class: 'btn btn-primary btn-block', text: 'Done shopping' });
   const addLink = el('a', { class: 'btn btn-block', href: '#/shopping-add', text: 'Add something to the list' });
+  // Phase 36b: favourites, regulars and the weekly list (Hearth).
+  const favLink = el('a', { class: 'btn btn-block', href: '#/shop-favourites', text: 'Favourites and regulars' });
+  favLink.addEventListener('click', (event) => {
+    if (isHearth()) return;
+    event.preventDefault();
+    showHearthCard('favourites');
+  }, { signal });
   // 3 Oct 2026: send the list anywhere — a partner, WhatsApp, Notes, or
   // pasted into a supermarket's own list. The phone's share sheet where
   // there is one; copied to the clipboard where there is not.
@@ -301,7 +341,7 @@ export function render(mountEl) {
     fromPlanBtn.focus();
   }, { signal });
 
-  actions.append(doneBtn, allBtn, fromPlanBtn, shareBtn, addLink, clearBtn);
+  actions.append(doneBtn, allBtn, fromPlanBtn, favLink, shareBtn, addLink, clearBtn);
   mountEl.appendChild(actions);
 
   const buildLink = el('p', { class: 'shop-build' });
@@ -316,7 +356,18 @@ export function render(mountEl) {
     const have = items.filter((i) => i.status === 'have');
     const total = needed.length + bought.length;
     const toCheck = needed.filter((i) => buyOf(i).kind === 'check');
-    const toBuy = needed.filter((i) => buyOf(i).kind !== 'check');
+    const allToBuy = needed.filter((i) => buyOf(i).kind !== 'check');
+    // Phase 36b: on Hearth, the list showing is one of three.
+    const listKind = (i) => listOf(shelfFor(i.foods || {}));
+    const threeLists = isHearth();
+    listGroup.hidden = !threeLists;
+    if (threeLists) {
+      for (const option of LISTS) {
+        const n = allToBuy.filter((i) => listKind(i) === option.value).length;
+        listLabels.get(option.value).textContent = `${option.label} (${n})`;
+      }
+    }
+    const toBuy = threeLists ? allToBuy.filter((i) => listKind(i) === whichList) : allToBuy;
 
     summary.textContent = total === 0
       ? 'Nothing to buy.'
@@ -332,6 +383,10 @@ export function render(mountEl) {
         ? 'Plan some meals and what they need appears here on its own.'
         : 'Tap Done shopping when you are finished.' }));
       listWrap.appendChild(empty);
+    }
+    if (threeLists && needed.length && !toBuy.length) {
+      const label = (LISTS.find((o) => o.value === whichList) || LISTS[0]).label;
+      listWrap.appendChild(el('p', { class: 'shop-empty-title', text: `Nothing on the ${label} list.` }));
     }
     for (const group of arrange(toBuy, (i) => shelfFor(i.foods || {}), sort)) {
       const section = el('section', { class: 'shop-group', 'aria-labelledby': `aisle-${group.key}` });
@@ -570,7 +625,23 @@ export function render(mountEl) {
     if (document.visibilityState === 'visible') load();
   }, { signal });
 
-  load();
+  // Phase 36b: the list built for you, the first time it opens after the
+  // chosen day and time (Hearth). Then the usual load.
+  (async () => {
+    await loadHearth();
+    if (destroyed) return;
+    if (isHearth() && buildDue(readBuild())) {
+      summary.textContent = 'Building your weekly list…';
+      const built = await runWeeklyBuild();
+      if (destroyed) return;
+      if (built.ok) {
+        const words = `Your weekly list is ready: ${built.fromPlan} from your plan and ${built.regulars.length} regular${built.regulars.length === 1 ? '' : 's'}.`;
+        showToast(words);
+        status.textContent = words;
+      }
+    }
+    await load();
+  })();
   startRefresh();
 
   return () => {
