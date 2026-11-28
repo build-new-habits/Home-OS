@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 28 Nov 2026 v7 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 28 Nov 2026 v8 -->
 
 ## Why this file exists
 
@@ -77,8 +77,8 @@ Status values are deliberately blunt:
 | 027_recipe_source | applied | 24 Nov 2026 | run against "Home OS"; VERIFY returned three PASS rows: meals.source_url, source_url check, unique per household |
 | 028_hearth | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, read-only for members all PASS; every household then set to Hearth with an upsert, so the fourth check holds |
 | 029_shop_favourites | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, one food once per household — three PASS |
-| 030_week_shapes | NOT APPLIED | — | written 27 Nov 2026 (Phase 37): Week Shaper rules and events, one row per household. Until it runs, the app keeps both on the phone |
-| 031_ai_imports | NOT APPLIED | — | written 28 Nov 2026 (Phase 45): one row per AI import, for the Hearth fair-use limit. Until it runs, the ai-import-recipe function answers "unavailable" and makes no AI call |
+| 030_week_shapes | APPLIED | 28 Nov 2026 | verified: table present, row level security on. written 27 Nov 2026 (Phase 37): Week Shaper rules and events, one row per household. Until it runs, the app keeps both on the phone |
+| 031_ai_imports | APPLIED | 28 Nov 2026 | verified: table present (run together with 030 in one script). written 28 Nov 2026 (Phase 45): one row per AI import, for the Hearth fair-use limit. Until it runs, the ai-import-recipe function answers "unavailable" and makes no AI call |
 
 ## The honest caveat
 
