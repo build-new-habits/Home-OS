@@ -74,6 +74,7 @@ run "Schema conformance — columns vs schema.md"      schema-conformance.mjs
 run "Interaction trace — every control, every write" trace.mjs
 run "Recipe library — style guide and refs"          library.mjs
 run "Import — shared pages, captions and links"     import.mjs
+run "AI import — Hearth photo and text reading"     aiImport.mjs
 run "Shop sections — where it goes, aisle order"   shopSections.mjs
 run "Hearth — Free limits and the paid tier"        hearth.mjs
 run "Favourites — regulars, lists, weekly build"   favourites.mjs

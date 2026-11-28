@@ -14,5 +14,14 @@ div.recipe-import
     p.field-hint
     p.field-error[hidden=]
     button.btn[type=button]"Read this text"
+    button.btn.btn-quiet[type=button]"Read it with AI (Hearth)"
+    p.field-hint
+  section.import-photo
+    h2"From a photo of a cookbook page"
+    label"Choose or take a photo"
+    input[type=file]
+    p.field-hint
+    p.field-error[hidden=]
+    button.btn[type=button]"Read the photo"
 div.action-bar
   button.action-bar__control.btn.btn-primary[type=button]"Get the recipe"

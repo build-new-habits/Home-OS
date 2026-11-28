@@ -1,4 +1,5 @@
-// js/data/hearth.js — 27 Nov 2026 v2
+// js/data/hearth.js — 28 Nov 2026 v3
+// v3: aiImport — reading photos and captions with AI (Phase 45).
 // v2: menus — a whole menu into My meals in one tap (Phase 38).
 // Phase 36a. Free and Hearth.
 //
@@ -49,7 +50,8 @@ export const WHAT_HEARTH_ADDS = {
   planSlots: 'Hearth plans breakfasts, lunches, snacks and drinks as well as dinners.',
   weekShaper: 'Hearth shapes your week from your rules: fish and veggie nights, a match or the gym, what suits everyone, and what is in the pantry.',
   favourites: 'Hearth keeps your favourites and regulars, splits Groceries, Household and Toiletries, and builds your list each week.',
-  menus: 'Hearth adds a whole menu to your meals in one tap, drinks included, ready to plan and shop for.'
+  menus: 'Hearth adds a whole menu to your meals in one tap, drinks included, ready to plan and shop for.',
+  aiImport: 'Hearth reads a recipe from a photo of a cookbook page or card, or from a messy caption, and rewrites the steps plainly, with vegetarian and vegan swaps.'
 };
 
 const CACHE_KEY = 'home-os-hearth';

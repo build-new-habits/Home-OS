@@ -1,5 +1,5 @@
 # Home PWA: Schema (Canonical)
-27 Nov 2026 v27
+28 Nov 2026 v28
 
 **This is the single source of truth for the database.** Every phase reads
 this before writing code. If live code and this document disagree, stop and
@@ -13,6 +13,15 @@ policies**, 3 trigger functions, 23 update triggers.
 ownership; 5 remain personal. See §0f and §4.
 
 ---
+
+## 0z. Revision 31 — AI import fair use (28 Nov 2026)
+
+New table **`ai_imports`** (Phase 45, Hearth): one row per AI recipe import
+(a photo of a page, or messy pasted text), written only by the
+`ai-import-recipe` Edge Function with the service role. Members can read
+their household's rows; nobody else can add, change or delete them. The
+function counts this calendar month's rows before every AI call.
+Migration: `migrations/031_ai_imports.sql`.
 
 ## 0y. Revision 30 — Week Shaper (27 Nov 2026)
 
@@ -1361,6 +1370,17 @@ Revision 29.
 | events | jsonb | not null default '{}'. `{"YYYY-MM-DD": ["match","gym","busy","guests"]}`; older than 14 days dropped on save |
 
 Revision 30.
+
+### ai_imports
+| Column | Type | Notes |
+|---|---|---|
+| household_id | uuid | not null, references households, on delete cascade |
+| user_id | uuid | nullable, references auth.users, on delete set null |
+| kind | text | not null; check in ('photo','text') |
+| outcome | text | not null default 'read'; 'read', 'not-a-recipe' or 'unreadable' |
+
+Revision 31. **Select-only** for members; written by the Edge Function only.
+Index on `(household_id, created_at)` for the monthly count.
 
 ### household_entitlements
 | Column | Type | Notes |
