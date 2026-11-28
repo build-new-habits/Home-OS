@@ -1,6 +1,6 @@
 # Migrations applied to the live database
 
-<!-- Docs/Current/MIGRATIONS_APPLIED.md — 24 Nov 2026 v6 -->
+<!-- Docs/Current/MIGRATIONS_APPLIED.md — 28 Nov 2026 v7 -->
 
 ## Why this file exists
 
@@ -78,6 +78,7 @@ Status values are deliberately blunt:
 | 028_hearth | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, read-only for members all PASS; every household then set to Hearth with an upsert, so the fourth check holds |
 | 029_shop_favourites | applied | 27 Nov 2026 | run against "Home OS"; VERIFY: table exists, row level security on, one food once per household — three PASS |
 | 030_week_shapes | NOT APPLIED | — | written 27 Nov 2026 (Phase 37): Week Shaper rules and events, one row per household. Until it runs, the app keeps both on the phone |
+| 031_ai_imports | NOT APPLIED | — | written 28 Nov 2026 (Phase 45): one row per AI import, for the Hearth fair-use limit. Until it runs, the ai-import-recipe function answers "unavailable" and makes no AI call |
 
 ## The honest caveat
 
@@ -145,3 +146,4 @@ recorded here has not been shown to be live.
 | Function | Status | Date | Notes |
 |---|---|---|---|
 | import-recipe | deployed | 24 Nov 2026 | v2 pasted and deployed from the dashboard; Code tab line 1 confirmed v2. "Verify JWT with legacy secret" OFF (v2 checks sign-in itself, publishable keys) |
+| ai-import-recipe | NOT DEPLOYED | — | written 28 Nov 2026 (Phase 45). Needs the ANTHROPIC_API_KEY secret, migration 031, and "Verify JWT with legacy secret" OFF |

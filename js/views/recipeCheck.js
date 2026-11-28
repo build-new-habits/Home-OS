@@ -1,4 +1,6 @@
-// js/views/recipeCheck.js — 26 Nov 2026 v2
+// js/views/recipeCheck.js — 28 Nov 2026 v3
+// v3: a recipe read by AI says so, and lists what to check against the page
+//     first (Phase 45).
 // v2: a saved import counts towards the 10 recipes Free keeps (Phase 36a).
 // Phase 34. "Check and save" (#/recipe-check): where an imported recipe lands.
 //
@@ -122,6 +124,24 @@ export function render(mountEl) {
         from.textContent = `From ${name}`;
       }
       page.appendChild(from);
+    }
+
+    // ---- Read by AI: say so, and what to look at first (Phase 45) ----------
+    if (draft.readByAi) {
+      const from = draft.readFrom === 'photo' ? 'your photo' : 'the text';
+      const notice = el('section', { class: 'check-ai', 'aria-labelledby': 'check-ai-h' });
+      notice.appendChild(el('h2', { id: 'check-ai-h', text: 'Read by AI' }));
+      notice.appendChild(el('p', {
+        text: `This was read from ${from} by AI, and the steps were rewritten plainly. Check it against the original before you save.`
+      }));
+      const items = (draft.checkFirst || []).filter(Boolean);
+      if (items.length) {
+        notice.appendChild(el('p', { text: 'Worth checking first:' }));
+        const list = el('ul', { class: 'check-ai__list' });
+        for (const item of items) list.appendChild(el('li', { text: item }));
+        notice.appendChild(list);
+      }
+      page.appendChild(notice);
     }
 
     // ---- Name and serves ---------------------------------------------------

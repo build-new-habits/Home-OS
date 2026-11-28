@@ -1,4 +1,5 @@
-// service-worker.js — 27 Nov 2026 v146
+// service-worker.js — 28 Nov 2026 v147
+// v147: Phase 45 — AI recipe import (Hearth): data/aiImport.js. Phase 44 doubled the recipes (v193). Shell v194.
 // v146: Phase 43 — how it's cooked: data/cookingMethods.js; Microwave recipes (14). Shell v192.
 // v145: Phase 42 — a month either side of a season; Coming up next month. Shell v191.
 // v144: Phase 41 — seasons in Shape my week and Fill the week: data/seasons.js. Shell v190.
@@ -290,7 +291,7 @@
 //
 // Precache is all-or-nothing: cache.addAll() rejects the whole install if
 // any single path 404s, so every path below must be verified to return 200.
-const CACHE_NAME = 'home-os-shell-v193';
+const CACHE_NAME = 'home-os-shell-v194';
 const SCOPE = self.registration.scope; // e.g. https://<user>.github.io/Home-OS/
 const SHELL_FILES = [
   './js/data/cookingMethods.js',
@@ -320,6 +321,7 @@ const SHELL_FILES = [
   './js/share.js',
   './js/views/recipeImport.js',
   './js/data/recipeImport.js',
+  './js/data/aiImport.js',
   './js/views/plate.js',
   './js/data/plate.js',
   './js/lib/updates.js',
@@ -343,9 +345,9 @@ const SHELL_FILES = [
   './manifest.webmanifest',
   './404.html',
   './assets/icons/icon.svg',
-  './css/tokens.css?v=193',
-  './css/base.css?v=193',
-  './css/components.css?v=193',
+  './css/tokens.css?v=194',
+  './css/base.css?v=194',
+  './css/components.css?v=194',
   './js/config.js',
   './js/supabaseClient.js',
   './js/vendor/supabase-js.js',

@@ -1,4 +1,6 @@
-// js/views/recipeImport.js — 26 Nov 2026 v3
+// js/views/recipeImport.js — 28 Nov 2026 v4
+// v4: Hearth reads a photo of a cookbook page, or a messy caption, with AI
+//     (Phase 45). Both land on Check and save like every other import.
 // v3: Free imports 3 recipes a month; the Hearth card past that (Phase 36a).
 // v2: an import lands on Check and save (#/recipe-check), not the full editor.
 // Phase 33. "Import a recipe" (#/recipe-import).
@@ -38,7 +40,8 @@ import {
   extractUrl, hostOf, isSocialHost, socialName, importFromUrl, findExisting,
   textToDraft, draftCounts, keptLinks, keepForLater, forgetKept, stashImportDraft
 } from '../data/recipeImport.js';
-import { canAdd, countImport } from '../data/hearth.js';
+import { canAdd, countImport, loadHearth, isHearth } from '../data/hearth.js';
+import { readWithAi, preparePhoto, aiProblem, MAX_PHOTOS } from '../data/aiImport.js';
 import { showHearthCard } from '../components/hearthCard.js';
 
 /** u, t and title from #/recipe-import?u=…&t=… */
@@ -144,6 +147,26 @@ export function render(mountEl) {
       button.addEventListener('click', read, { signal });
       section.appendChild(button);
     }
+    // Hearth: the same text read by AI, for captions with no clear lines.
+    const ai = el('button', {
+      type: 'button', class: 'btn btn-quiet', text: 'Read it with AI (Hearth)',
+      'aria-describedby': 'import-text-ai-hint'
+    });
+    ai.addEventListener('click', () => {
+      if (!area.value.trim()) {
+        problem.textContent = 'There is no recipe text in the box yet. Paste the caption or the recipe, then try again.';
+        problem.hidden = false;
+        area.setAttribute('aria-invalid', 'true');
+        area.setAttribute('aria-describedby', 'import-text-problem import-text-hint');
+        area.focus();
+        return;
+      }
+      aiRead({ text: area.value, sourceUrl });
+    }, { signal });
+    section.append(ai, el('p', {
+      id: 'import-text-ai-hint', class: 'field-hint',
+      text: 'For a caption that is all one paragraph. AI finds the ingredients, rewrites the steps plainly and suggests swaps.'
+    }));
     return { element: section, read, area };
   }
 
@@ -159,12 +182,89 @@ export function render(mountEl) {
     window.location.replace('#/recipe-check');
   }
 
+  // ---- A photo of a cookbook page (Hearth) ---------------------------------------
+  function photoBox() {
+    const section = el('section', { class: 'import-photo', 'aria-labelledby': 'import-photo-h' });
+    section.appendChild(el('h2', { id: 'import-photo-h', text: 'From a photo of a cookbook page' }));
+    const input = el('input', {
+      type: 'file', id: 'import-photo', accept: 'image/*', multiple: '',
+      'aria-describedby': 'import-photo-hint'
+    });
+    const hint = el('p', {
+      id: 'import-photo-hint', class: 'field-hint',
+      text: `One recipe, on one or two pages: choose up to ${MAX_PHOTOS} photos. Good light and a flat page read best. Read by AI, part of Hearth. The photo is not kept.`
+    });
+    const problem = el('p', { id: 'import-photo-problem', class: 'field-error', hidden: '' });
+    const setProblem = (message) => {
+      problem.textContent = message;
+      problem.hidden = !message;
+      input.setAttribute('aria-describedby', message ? 'import-photo-problem import-photo-hint' : 'import-photo-hint');
+      if (message) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    };
+    const button = el('button', { type: 'button', class: 'btn', text: 'Read the photo' });
+    button.addEventListener('click', async () => {
+      const files = [...(input.files || [])];
+      if (!files.length) { setProblem('Choose a photo first, or take one.'); input.focus(); return; }
+      if (files.length > MAX_PHOTOS) { setProblem(aiProblem('too-many')); input.focus(); return; }
+      if (!(await hearthOrCard())) return;
+      button.disabled = true;
+      const photos = [];
+      for (const file of files) {
+        const photo = await preparePhoto(file);
+        if (destroyed) return;
+        if (!photo) { button.disabled = false; setProblem(aiProblem('not-a-photo')); input.focus(); return; }
+        photos.push(photo);
+      }
+      aiRead({ photos });
+    }, { signal });
+    section.append(el('label', { for: 'import-photo', text: 'Choose or take a photo' }), input, hint, problem, button);
+    return section;
+  }
+
+  /** True on Hearth; otherwise the Hearth card, and false. */
+  async function hearthOrCard() {
+    await loadHearth();
+    if (isHearth()) return true;
+    if (!destroyed) await showHearthCard('aiImport', { fact: 'Reading photos and captions with AI costs money to run, so it is part of Hearth.' });
+    return false;
+  }
+
+  async function aiRead({ photos = [], text = '', sourceUrl = '' }) {
+    if (!(await hearthOrCard())) return;
+    if (destroyed) return;
+    const what = photos.length ? (photos.length > 1 ? 'the photos' : 'the photo') : 'the text';
+    show('Reading the recipe', `Reading ${what} with AI. This can take up to a minute.`);
+    page.appendChild(el('p', { class: 'import-working', role: 'status', text: `Reading ${what} with AI. This can take up to a minute.` }));
+    const result = await readWithAi({ photos, text, sourceUrl, sourceName: sourceUrl ? socialName(sourceUrl) : '' });
+    if (destroyed) return;
+    if (result.ok) {
+      const counts = draftCounts(result.draft);
+      handOver(result.draft, `Read ${result.draft.name || 'the recipe'}: ${counts.ingredients} ingredients and ${counts.steps} steps. Opening it to check.`);
+      return;
+    }
+    if (result.reason === 'not-hearth') { await hearthOrCard(); if (!destroyed) showStart(); return; }
+    showAiProblem(result, { photos, text, sourceUrl });
+  }
+
+  function showAiProblem(result, again) {
+    const message = aiProblem(result.reason, result);
+    show('The recipe was not read', message);
+    page.appendChild(el('p', { text: message }));
+    const retry = el('button', { type: 'button', class: 'btn', text: 'Try once more' });
+    retry.addEventListener('click', () => aiRead(again), { signal });
+    if (!['limit', 'not-a-recipe', 'unavailable', 'signed-out', 'too-big', 'too-long'].includes(result.reason)) page.appendChild(retry);
+    const box = pasteBox(again.text || '', { sourceUrl: again.sourceUrl, withButton: false });
+    page.appendChild(box.element);
+    actionBar('Read this text', box.read);
+    page.appendChild(el('a', { class: 'btn btn-quiet', href: '#/recipe-edit', text: 'Type it in myself' }));
+  }
+
   // ---- States ---------------------------------------------------------------------
 
   function showStart({ problem = '', url = '', text = '' } = {}) {
     show('Import a recipe');
     page.appendChild(el('p', {
-      text: 'Share a recipe page to Home-OS from your browser, or paste its link here. It opens filled in, ready to check and save.'
+      text: 'Share a recipe page to Home-OS from your browser, paste its link or its text here, or read a photo of a cookbook page. It opens filled in, ready to check and save.'
     }));
     const link = linkField(url);
     if (problem) link.setProblem(problem);
@@ -191,6 +291,7 @@ export function render(mountEl) {
       actionBar('Get the recipe', getRecipe);
       page.appendChild(pasteBox('').element);
     }
+    page.appendChild(photoBox());
     paintKept();
   }
 
